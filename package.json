@@ -42,6 +42,7 @@
     "run-sequence": "^1.1.4",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.4.2",
+    "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.12.2",
     "yargs": "^3.29.0"
   }
