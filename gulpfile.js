@@ -11,7 +11,7 @@ var del = require('del');
 var browserify = require('browserify');
 var sequence = require('run-sequence');
 
-var prod = !!argv.prod;
+var prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 var onError = function onError(err) {
   gutils.beep();
