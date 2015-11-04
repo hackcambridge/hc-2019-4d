@@ -19,14 +19,17 @@ var onError = function onError(err) {
   this.emit('end');
 };
 
-gulp.task('clean', function (cb) {
+gulp.task('clean', function () {
   return del('assets/dist');
 });
 
 // css
 gulp.task('styles', function () {
   gulp.src('assets/styles/main.styl')
-    .pipe($.stylus())
+    .pipe($.stylus({
+      'include css': true,
+      paths: ['./node_modules']
+    }))
     .pipe($.autoprefixer())
     .pipe(gulp.dest('assets/dist/styles'));
 });

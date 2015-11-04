@@ -38,6 +38,7 @@
     "gutils": "0.0.5",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
+    "normalize.css": "^3.0.3",
     "nunjucks": "^2.1.0",
     "run-sequence": "^1.1.4",
     "style-loader": "^0.13.0",
