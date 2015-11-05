@@ -42,6 +42,9 @@
 
 }
 
+/* Subscribe Form
+   ========================================================================== */
+
 .subscribe-form-input-container {
   display: flex;
   position: relative;
@@ -71,9 +74,16 @@
   background: transparent;
   border: none;
   font-size: 1.2em;
+  box-shadow: none;
 
   &:focus {
     outline: none;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    opacity: 1;
+    color: $grayLighter;
   }
 }
 
@@ -95,6 +105,44 @@
   &:active {
     transform: translate(0, 5px);
   }
+}
+
+/* Intro animation
+   ========================================================================== */
+
+.landing-intro-section {
+
+  .hack-logo-cambridge-text {
+    for $num in (1..9) {
+      path:nth-child({$num}) {
+        animation: logoAnimateIn;
+        animation-delay: (1 + $num * 0.1)s
+        animation-duration: 2s;
+        animation-fill-mode: both;
+      }
+    }
+  }
+}
+
+.landing-intro-logo ~ * {
+  animation: fadeIn;
+  animation-duration: 2s;
+  animation-delay: 2.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes logoAnimateIn {
+  0% { opacity: 0; fill $colorPrimary; }
+  20% { fill: $colorPrimary; }
+  25% { opacity: 1; }
+  50% { fill: #B72CD6; }
+  70% { fill: #000; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .landing-intro-social-links {
