@@ -10,12 +10,18 @@
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-  padding: ($punit * 3);
+  padding: ($punit * 3) ($punit);
 
   background: radial-gradient(circle at top center, $backgroundColor 0%, darken($backgroundColor, 5%) 100%);
   color: $colorSecondary;
   font-weight: 300;
+
+  @media only screen and (min-width: 500px) {
+    padding: ($punit * 3);
+  }
 }
+
+
 
 .landing-intro-content {
   width: 100%;
@@ -39,7 +45,6 @@
 .landing-intro-subscribe-form {
   width: 100%;
   max-width: 500px;
-
 }
 
 /* Subscribe Form
@@ -75,6 +80,7 @@
   border: none;
   font-size: 1.2em;
   box-shadow: none;
+  min-width: 0;
 
   &:focus {
     outline: none;
@@ -88,7 +94,7 @@
 }
 
 .subscribe-form-submit {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   background: transparent;
   border: none;
 
