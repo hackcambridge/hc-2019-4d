@@ -7,6 +7,7 @@ try {
 var express = require('express');
 var nunjucks = require('nunjucks');
 var bodyParser = require('body-parser');
+var path = require('path');
 var _ = require('lodash');
 var mailchimp = require('mailchimp-api');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
@@ -90,6 +91,10 @@ app.use('/api', api);
 
 app.get('/', function (req, res) {
   res.render('index.html');
+});
+
+app.get('/favicon.ico', function (req, res) {
+  res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
 
 app.use(function (req, res) {
