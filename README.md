@@ -11,6 +11,8 @@ npm start
 
 And your server will be ready to go.
 
+To enable the MailChimp integration, environment variables `MAILCHIMP_API_KEY` and `MAILCHIMP_LIST_ID` must be present. For convenience, these can be placed in a `.env` file at the root of the project.
+
 ## Build System
 
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.

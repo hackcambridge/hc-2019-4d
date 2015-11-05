@@ -1,8 +1,15 @@
 'use strict';
 
+try {
+  require('dotenv').load();
+} catch (e) { }
+
 var express = require('express');
 var nunjucks = require('nunjucks');
+var bodyParser = require('body-parser');
 var _ = require('lodash');
+var mailchimp = require('mailchimp-api');
+var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
 
 // Static file serving
@@ -27,7 +34,6 @@ try {
   assetsFile = { };
 }
 
-
 nunjucksEnv.addGlobal('asset', function (asset) {
   if (_.has(assetsFile, asset)) {
     asset = assetsFile[asset];
@@ -36,8 +42,56 @@ nunjucksEnv.addGlobal('asset', function (asset) {
   return '/assets/' + asset;
 });
 
+// API
+var api = new express.Router();
+api.use(bodyParser.json());
+api.use(bodyParser.urlencoded({ extended: true }));
+
+api.post('/subscribe', function (req, res, next) {
+  console.log(req.body);
+  if (_.isEmpty(req.body.email)) {
+    var err = new Error('Must provide email');
+    err.status = 401;
+    next(err);
+    return;
+  }
+
+  // TODO: Check user is already subscribed
+  MC.lists.subscribe({
+    id: process.env.MAILCHIMP_LIST_ID,
+    email: { email: req.body.email },
+    merge_vars: { EMAIL: req.body.email }
+  }, function(data) {
+      res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
+  }, function(error) {
+      var err = new Error('We couldn\'t add you. Are you already subscribed?');
+      err.status = 500;
+      next(err);
+  });
+});
+
+api.use(function (req, res, next) {
+  var err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});
+
+api.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(err.status || 500);
+  res.json({
+    error: err.message || 'An error occurred'
+  });
+});
+
 // Routes
+app.use('/api', api);
+
 app.get('/', function (req, res) {
+  res.render('index.html');
+});
+
+app.use(function (req, res) {
   res.render('index.html');
 });
 
