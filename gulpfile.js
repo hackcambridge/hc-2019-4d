@@ -2,7 +2,6 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var gutils = require('gutils');
 var argv = require('yargs').argv;
 var path = require('path');
 var source = require('vinyl-source-stream');
@@ -14,7 +13,7 @@ var sequence = require('run-sequence');
 var prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 var onError = function onError(err) {
-  gutils.beep();
+  $.util.beep();
   console.log(err.message);
   this.emit('end');
 };

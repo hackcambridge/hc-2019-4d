@@ -60,11 +60,12 @@ api.post('/subscribe', function (req, res, next) {
   MC.lists.subscribe({
     id: process.env.MAILCHIMP_LIST_ID,
     email: { email: req.body.email },
-    merge_vars: { EMAIL: req.body.email }
+    merge_vars: { EMAIL: req.body.email },
+    update_existing: true
   }, function(data) {
       res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
   }, function(error) {
-      var err = new Error('We couldn\'t add you. Are you already subscribed?');
+      var err = new Error('We couldn\'t add you. Please check that this is a valid email.');
       err.status = 500;
       next(err);
   });

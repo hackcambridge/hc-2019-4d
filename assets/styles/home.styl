@@ -9,11 +9,12 @@
 
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   padding: ($punit * 3);
 
   background: radial-gradient(circle at top center, $backgroundColor 0%, darken($backgroundColor, 5%) 100%);
   color: $colorSecondary;
+  font-weight: 300;
 }
 
 .landing-intro-content {
@@ -30,24 +31,70 @@
   height: auto;
 }
 
+.subscribe-form-output {
+  padding-top: 10px;
+  margin: 0;
+}
+
 .landing-intro-subscribe-form {
   width: 100%;
   max-width: 500px;
+
+}
+
+.subscribe-form-input-container {
   display: flex;
-  border-bottom: 2px solid $grayLighter;
-  padding-bottom: 5px;
+  position: relative;
+  padding-bottom: 7px;
+}
+
+.subscribe-form-underbar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: block;
+  height: 2px;
+
+  background: $grayLighter;
+
+  transition: background 0.2s;
+
+  .subscribe-form-email:focus ~ & {
+    background: $colorPrimary;
+  }
 }
 
 .subscribe-form-email {
   flex: 1 1 auto;
   background: transparent;
   border: none;
+  font-size: 1.2em;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .subscribe-form-submit {
   flex: 0 1 auto;
   background: transparent;
   border: none;
+
+  color: $gray;
+
+  transition-property: color transform;
+  transition-duration: 0.2s;
+
+  &:hover, &:focus {
+    color: $colorPrimary;
+    outline: none;
+  }
+
+  &:active {
+    transform: translate(0, 5px);
+  }
 }
 
 .landing-intro-social-links {

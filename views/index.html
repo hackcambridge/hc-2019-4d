@@ -5,12 +5,15 @@
     {% set class = 'landing-intro-logo' %}
     {% include 'hackcambridge.svg' %}
     <p class="landing-intro-dates">30 &ndash; 31 January 2016, University of Cambridge</p>
-    
+
     <p>Get notified when applications open:</p>
-    <form class="landing-intro-subscribe-form">
-      <label class="sr-only" for="subscribe-form-email">Email</label>
-      <input class="subscribe-form-email" type="text" name="email" id="subscribe-form-email" placeholder="Your email address" />
-      <button class="subscribe-form-submit" ype="submit">Sign Up</button>
+    <form class="landing-intro-subscribe-form subscribe-form" action="/api/subscribe" method="POST">
+      <div class="subscribe-form-input-container">
+        <label class="sr-only" for="subscribe-form-email">Email</label>
+        <input class="subscribe-form-email" type="email" name="email" id="subscribe-form-email" placeholder="Your email address" required />
+        <button class="subscribe-form-submit" type="submit">Sign Up</button>
+        <span class="subscribe-form-underbar"></span>
+      </div>
     </form>
 
     <ul class="landing-intro-social-links">
