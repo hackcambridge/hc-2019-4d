@@ -56,7 +56,8 @@ $(document).ready(function () {
         }, 3000)
       });
 
-      ga && ga('send', 'event', 'Subscription', 'subscribed');
+      ga('send', 'event', 'Subscription', 'subscribed');
+      fbq('track', 'CompleteRegistration');
     });
   });
 });
