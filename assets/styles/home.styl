@@ -1,7 +1,8 @@
-/* Landing block
+/* ==========================================================================
+   Welcome Section
    ========================================================================== */
 
-.landing-intro-section {
+.landing-welcome-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,28 +11,23 @@
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-  padding: ($punit * 3) ($punit);
+  padding: ($punit * 3) 0;
 
-  background: radial-gradient(circle at top center, $backgroundColor 0%, darken($backgroundColor, 5%) 100%);
+  main-background();
   color: $colorSecondary;
   font-weight: 300;
-
-  @media only screen and (min-width: 500px) {
-    padding: ($punit * 3);
-  }
 }
 
 
-
-.landing-intro-content {
-  width: 100%;
+.landing-welcome-content {
+  @extend .content-wrapper;
 }
 
-.landing-intro-dates {
+.landing-welcome-dates {
   margin-bottom: ($punit * 4);
 }
 
-.landing-intro-logo {
+.landing-welcome-logo {
   width: 100%;
   max-width: 400px;
   height: auto;
@@ -42,7 +38,7 @@
   margin: 0;
 }
 
-.landing-intro-subscribe-form {
+.landing-welcome-subscribe-form {
   width: 100%;
   max-width: 500px;
 }
@@ -113,10 +109,10 @@
   }
 }
 
-/* Intro animation
+/* welcome animation
    ========================================================================== */
 
-.landing-intro-section {
+.landing-welcome-section {
 
   .hack-logo-cambridge-text {
     for $num in (1..9) {
@@ -130,7 +126,7 @@
   }
 }
 
-.landing-intro-logo ~ * {
+.landing-welcome-logo ~ * {
   animation: fadeIn;
   animation-duration: 2s;
   animation-delay: 2.5s;
@@ -151,7 +147,7 @@
   100% { opacity: 1; }
 }
 
-.landing-intro-social-links {
+.landing-welcome-social-links {
   list-style: none;
   padding: 0;
 
@@ -185,4 +181,103 @@
       }
     }
   }
+}
+
+/* ==========================================================================
+   About Sections
+   ========================================================================== */
+
+.landing-cambridge-photo-section {
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 200px;
+
+  background-size: cover;
+  background-position: bottom center;
+  background-image: url(../images/cambridge-kings-photo.jpg);
+
+  &::before {
+    content: ' ';
+    display: block;
+    padding-top: 33.3%;
+  }
+}
+
+.landing-intro-section {
+  main-background();
+  padding: $punit * 3 0;
+}
+
+.landing-venue-section {
+  padding: $punit * 3 0;
+  box-sizing: border-box;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-size: cover;
+  background-position: bottom center;
+  dark-background();
+
+  .content-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   FAQs Section
+   ========================================================================== */
+
+.landing-faqs-section {
+  padding: $punit * 3 0;
+
+  .content-wrapper {
+    width: 1000px;
+  }
+
+  .faqs-listing {
+    @extend .clearfix;
+
+    margin: 0 ($punit / -2);
+  }
+
+  .faq-element {
+    width: 100%;
+    padding: ($punit / 2);
+    float: left;
+    box-sizing: border-box;
+  }
+
+  @media only screen and (min-width: 500px) {
+    .faq-element {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    .faq-element {
+      width: 33.33%;
+    }
+  }
+}
+
+/* ==========================================================================
+   Sponsors Section
+   ========================================================================== */
+
+.landing-sponsors-section {
+  padding: $punit * 3 0;
+
+  dark-background();
+  color: #fff;
+}
+
+.landing-footer {
+  font-size: 0.9em;
+  margin-top: 200px;
+  color: $grayLight;
 }

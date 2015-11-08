@@ -1,13 +1,13 @@
-{% extends 'default.html' %}
-{% block pageContent %}
-<section class="landing-intro-section">
-  <div class="landing-intro-content">
-    {% set class = 'landing-intro-logo' %}
+{% extends 'base.html' %}
+{% block content %}
+<section class="landing-welcome-section">
+  <div class="landing-welcome-content">
+    {% set class = 'landing-welcome-logo' %}
     {% include 'hackcambridge.svg' %}
-    <p class="landing-intro-dates">30 &ndash; 31 January 2016, University of Cambridge</p>
+    <p class="landing-welcome-dates">30 &ndash; 31 January 2016, University of Cambridge</p>
 
     <p>Get notified when applications open:</p>
-    <form class="landing-intro-subscribe-form subscribe-form" action="/api/subscribe" method="POST">
+    <form class="landing-welcome-subscribe-form subscribe-form" action="/api/subscribe" method="POST">
       <div class="subscribe-form-input-container">
         <label class="sr-only" for="subscribe-form-email">Email</label>
         <input class="subscribe-form-email" type="email" name="email" id="subscribe-form-email" placeholder="Your email address" required />
@@ -16,7 +16,7 @@
       </div>
     </form>
 
-    <ul class="landing-intro-social-links">
+    <ul class="landing-welcome-social-links">
       <li><a href="https://facebook.com/hackcambridge" target="_blank">
         <svg version="1.1" id="Facebook" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
@@ -39,6 +39,54 @@
         <span class="social-link-text">@hack_cambridge</span>
       </a></li>
     </ul>
+  </div>
+</section>
+<section class="landing-cambridge-photo-section"></section>
+<section class="landing-intro-section">
+  <div class="content-wrapper-thin">
+    <h2 class="grand-heading">What will you create?</h2>
+    <p>Ten years ago a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Today, still wanted by the government, they survive as soldiers of fortune. If you have a problem and no one else can help, and if you can find them, maybe you can hire the A-team.</p>
+    <p>Thunder, thunder, thundercats, Ho! Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats!</p>
+  </div>
+</section>
+<section class="landing-venue-section">
+  <div class="content-wrapper">
+    <h2 class="grand-heading">24 hours in the Cambridge Corn Exchange</h2>
+    <p>Blah blah blah blah blah blah directions. Apply now.</p>
+  </div>
+</section>
+<section class="landing-faqs-section">
+  <div class="content-wrapper">
+    <h2 class="grand-heading">FAQs</h2>
+    <div class="faqs-listing">
+      <div class="faq-element">
+        <h3>Can I do something?</h3>
+        <p>No</p>
+      </div>
+      <div class="faq-element">
+        <h3>Can I do something?</h3>
+        <p>No</p>
+      </div>
+      <div class="faq-element">
+        <h3>Can I do something?</h3>
+        <p>No</p>
+      </div>
+      <div class="faq-element">
+        <h3>Can I do something?</h3>
+        <p>No</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="landing-sponsors-section">
+  <div class="content-wrapper">
+    <h2 class="grand-heading">Our Sponsors</h2>
+    <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:team@hackcambridge.com">team@hackcambridge.com</a>.</p>
+    <h2 class="grand-heading">In Partnership With</h2>
+    <p>MLH, Cambridge Live logos</p>
+    <h2 class="grand-heading">Special Thanks To</h2>
+    <p><a href="https://instagram.com/cambridgecaptured/">@cambridgecaptured</a> for letting us use their photos.</p>
+    <p class="landing-footer">Copyright Hack Cambridge 2015, all rights reserved. Terms &amp; Conditions. Privacy Policy.</p>
   </div>
 </section>
 {% endblock %}

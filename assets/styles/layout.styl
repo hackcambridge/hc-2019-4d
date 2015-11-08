@@ -32,3 +32,87 @@ html {
   clip: rect(0,0,0,0);
   border: 0;
 }
+
+main-background() {
+  background-image: radial-gradient(circle at top center, $backgroundColor 0%, darken($backgroundColor, 5%) 100%);
+}
+
+dark-background() {
+  background-image: radial-gradient(circle at top center, #323647 0%, #323647 100%);
+}
+
+.clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.content-wrapper {
+  box-sizing: border-box;
+  width: 800px;
+  max-width: 100%;
+  padding-left: ($punit);
+  padding-right: ($punit);
+
+  @media only screen and (min-width: 500px) {
+    padding-left: ($punit * 3);
+    padding-right: ($punit * 3);
+  }
+}
+
+.content-wrapper-thin {
+  box-sizing: border-box;
+  width: 600px;
+  max-width: 100%;
+  padding-left: ($punit);
+  padding-right: ($punit);
+
+  @media only screen and (min-width: 500px) {
+    padding-left: ($punit * 3);
+    padding-right: ($punit * 3);
+  }
+}
+
+/* Typography
+   ========================================================================== */
+
+margin-element() {
+  margin-top: 1em;
+  margin-bottom: 10px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, li, p {
+  margin-element();
+}
+
+h1, .grand-heading {
+  margin-bottom: 40px;
+  font-size: 2em;
+
+  @media only screen and (min-width: 600px) {
+    font-size: 3em;
+  }
+}
+
+h1, h2, h3, .grand-heading {
+  font-weight: 300;
+}
+
+a, a:visited {
+  color: $colorSecondary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
