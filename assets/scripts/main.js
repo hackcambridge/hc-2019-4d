@@ -55,6 +55,8 @@ $(document).ready(function () {
           $submit.prop('disabled', false);
         }, 3000)
       });
+
+      ga && ga('send', 'event', 'Subscription', 'subscribed');
     });
   });
 });
