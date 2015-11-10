@@ -97,7 +97,6 @@ app.get('/', function (req, res) {
 	} else {
       faqs = require('./resources/faqs.json');
 	}
-    console.log(faqs);
     res.render('index.html', {faqs: faqs.faqs});
 });
 
