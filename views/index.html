@@ -55,29 +55,20 @@
 <section class="landing-venue-section">
   <div class="content-wrapper">
     <h2 class="grand-heading">24 hours in the Cambridge Corn Exchange</h2>
-    <p>Blah blah blah blah blah blah directions. Apply now.</p>
+    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJHeJ7d71w2EcRtffP3zIGIVQ&key=AIzaSyBneo5KYRnHaYd6jYjKfp7gbE8VBozH4pI" allowfullscreen></iframe>
   </div>
 </section>
 <section class="landing-faqs-section">
   <div class="content-wrapper">
     <h2 class="grand-heading">FAQs</h2>
     <div class="faqs-listing">
+      {% for faq in faqs %}
       <div class="faq-element">
-        <h3>Can I do something?</h3>
-        <p>No</p>
+        <h3>{{faq.question}}</h3>
+        <p>{{faq.answer}}</p>
+        <img src="{{image.src}}" alt="{{image.alt}}">
       </div>
-      <div class="faq-element">
-        <h3>Can I do something?</h3>
-        <p>No</p>
-      </div>
-      <div class="faq-element">
-        <h3>Can I do something?</h3>
-        <p>No</p>
-      </div>
-      <div class="faq-element">
-        <h3>Can I do something?</h3>
-        <p>No</p>
-      </div>
+     {% endfor %}
     </div>
   </div>
 </section>
