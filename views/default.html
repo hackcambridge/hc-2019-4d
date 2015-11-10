@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-
-{% block pageContent %}{% endblock %}
-
+<header class="default-header">
+  <div class="content-wrapper">
+    <a class="header-link" href="/">{% include 'hackcambridge.svg' %}</a>
+  </div>
+</header>
+<main class="default-main">
+  <div class="content-wrapper">
+    {% block pageContent %}
+    {% endblock %}
+  </div>
+</main>
+<footer class="default-footer">
+  <div class="content-wrapper">
+    <p>Copyright Hack Cambridge 2015, all rights reserved. <a href="/terms">Terms &amp; Conditions</a>. <a href="/privacy">Privacy Policy</a>.</p>
+  </div>
+</footer>
 {% endblock %}
