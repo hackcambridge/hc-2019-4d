@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <title>Hack Cambridge</title>
-    <meta name="title" content="{% block pageTitle %}Hack Cambridge{% endblock %}" />
+    <title>{% block pageTitle %}{{ title }}{% endblock %}</title>
+    <meta name="title" content="{{ title }}" />
 	  <meta name="description" content="The University of Cambridge hosts their first hackathon. Applications open soon." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">

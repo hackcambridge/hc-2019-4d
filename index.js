@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
+var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
@@ -90,16 +91,24 @@ api.use(function (err, req, res, next) {
 // Routes
 app.use('/api', api);
 
-app.get('/', function (req, res) {
-  var faqs =[];
-   if(app.settings.env == "development") {
-      faqs = JSON.parse(fs.readFileSync('./resources/faqs.json'));
-	} else {
-      faqs = require('./resources/faqs.json');
-	}
-    console.log(faqs);
-    res.render('index.html', {faqs: faqs.faqs});
+app.use(function (req, res, next) {
+  res.locals.title = 'Hack Cambridge';
+  next();
 });
+
+function renderHome(req, res) {
+  var faqs = [];
+
+  if (app.settings.env == "development") {
+    faqs = JSON.parse(fs.readFileSync('./resources/faqs.json'));
+  } else {
+    faqs = require('./resources/faqs.json');
+  }
+
+  res.render('index.html', { faqs: faqs.faqs });
+}
+
+app.get('/', renderHome);
 
 app.get('/terms', function (req, res) {
   res.render('terms.html');
@@ -109,13 +118,29 @@ app.get('/privacy', function (req, res) {
   res.render('privacy.html');
 });
 
+app.get('/apply', function (req, res) {
+  crypto.randomBytes(3, function(ex, buf) {
+    var token = buf.toString('hex') + '-' + (Math.floor(Date.now() / 1000).toString().substr(-6));
+
+    res.render('form.html', {
+      title: 'Apply to Hack Cambridge',
+      formUrl: process.env.APPLICATION_URL.replace('{{applicationid}}', token)
+    });
+  });
+});
+
+app.get('/teamapply', function(req, res) {
+  res.render('form.html', {
+    title: 'Apply to Hack Cambridge as a Team',
+    formUrl: process.env.TEAM_APPLICATION_URL
+  })
+})
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
 
-app.use(function (req, res) {
-  res.render('index.html');
-});
+app.use(renderHome);
 
 // Start server
 app.set('port', (process.env.PORT || 3000));
