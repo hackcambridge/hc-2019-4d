@@ -101,6 +101,14 @@ app.get('/', function (req, res) {
     res.render('index.html', {faqs: faqs.faqs});
 });
 
+app.get('/terms', function (req, res) {
+  res.render('terms.html');
+});
+
+app.get('/privacy', function (req, res) {
+  res.render('privacy.html');
+});
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
