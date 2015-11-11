@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  position: relative;
 
   box-sizing: border-box;
   width: 100%;
@@ -42,12 +43,38 @@
   max-width: 500px;
 }
 
+.landing-welcome-lower-caret svg {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+
+  width: 40px;
+  height: auto;
+  margin-left: -20px;
+
+  fill: none;
+  stroke: $grayLighter;
+  stroke-width: 2px;
+
+  animation: updown 3s alternate infinite;
+  position: absolute;
+
+  @media only screen and (min-height: 600px) {
+    bottom: 40px;
+    width: 80px;
+    height: 40px;
+    margin-left: -40px;
+  }
+}
+
 a.apply-link {
   display: inline-block;
   margin-element();
   padding: 8px 10px;
   border-radius: 2px;
+
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7) inset;
+
   font-size: 1em;
   font-weight: 300;
   cursor: pointer;
@@ -139,7 +166,6 @@ a.apply-link {
    ========================================================================== */
 
 .landing-welcome-section {
-
   .hack-logo-cambridge-text {
     for $num in (1..9) {
       path:nth-child({$num}) {
@@ -152,7 +178,7 @@ a.apply-link {
   }
 }
 
-.landing-welcome-logo ~ * {
+.landing-welcome-logo ~ *, .landing-welcome-lower-caret {
   animation: fadeIn;
   animation-duration: 2s;
   animation-delay: 2.5s;
@@ -182,6 +208,11 @@ a.apply-link {
   35% { background-color: $logoColor2; }
   60% { background-color: $logoColor3; }
   100% { background-color: $logoColor1; }
+}
+
+@keyframes updown {
+  from { transform: translate(0, -25%); }
+  to { transform: translate(0, 25%); }
 }
 
 .landing-welcome-social-links {
