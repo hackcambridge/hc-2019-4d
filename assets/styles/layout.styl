@@ -38,7 +38,7 @@ main-background() {
 }
 
 dark-background() {
-  background-image: radial-gradient(circle at top center, #323647 0%, #323647 100%);
+  background-image: radial-gradient(circle at top center, #323647 0%, #121421 100%);
 }
 
 .clearfix {
@@ -95,17 +95,18 @@ h1, h2, h3, h4, h5, h6, ul, ol, li, p {
   margin-element();
 }
 
+h1, h2, h3, .grand-heading {
+  font-weight: 300;
+}
+
 h1, .grand-heading {
   margin-bottom: 40px;
   font-size: 2em;
+  font-weight: 100;
 
   @media only screen and (min-width: 600px) {
     font-size: 3em;
   }
-}
-
-h1, h2, h3, .grand-heading {
-  font-weight: 300;
 }
 
 a, a:visited {

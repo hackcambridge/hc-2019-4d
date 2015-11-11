@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="45px" height="67px" viewBox="0 0 45 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>map-marker</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="location-map" sketch:type="MSArtboardGroup" transform="translate(-178.000000, -132.000000)" fill="#FB8F58">
+            <path d="M200.5,199 C200.5,199 223,166.926407 223,154.5 C223,142.073593 212.926407,132 200.5,132 C188.073593,132 178,142.073593 178,154.5 C178,166.926407 200.5,199 200.5,199 Z M200.5,163.935484 C205.711074,163.935484 209.935484,159.711074 209.935484,154.5 C209.935484,149.288926 205.711074,145.064516 200.5,145.064516 C195.288926,145.064516 191.064516,149.288926 191.064516,154.5 C191.064516,159.711074 195.288926,163.935484 200.5,163.935484 Z" id="map-marker" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

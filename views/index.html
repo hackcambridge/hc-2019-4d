@@ -5,8 +5,8 @@
     {% set class = 'landing-welcome-logo' %}
     {% include 'hackcambridge.svg' %}
     <p class="landing-welcome-dates">24 Hours: 30 &ndash; 31 January 2016, University of Cambridge</p>
-    <p>
-      <a class="apply-link"><span class="apply-link-text">Apply Now!</span></a>
+    <p class="apply-link-container">
+      <a class="apply-link"><span class="apply-link-text">Apply Now</span></a>
     </p>
     <ul class="landing-welcome-social-links">
       <li><a href="https://facebook.com/hackcambridge" target="_blank">
@@ -59,26 +59,31 @@
     </p>
     <p> See you there! </p>
     <p> The Hack Cambridge team. </p>
+    <p><a class="apply-link" href="/apply">Apply Now</a></p>
   </div>
 </section>
 <section class="landing-venue-section">
   <div class="content-wrapper">
     <h2 class="grand-heading">24 hours in the Cambridge Corn Exchange</h2>
-    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJHeJ7d71w2EcRtffP3zIGIVQ&key=AIzaSyBneo5KYRnHaYd6jYjKfp7gbE8VBozH4pI" allowfullscreen></iframe>
+    <p>You'll be creating the solutions for the future surrounded by inspirations from the past.</p>
+    <a href="" target="_blank" class="landing-location-map">
+      <img src="{{ asset('images/map-marker.svg') }}" class="landing-location-marker" alt="" />
+    </a>
   </div>
 </section>
 <section class="landing-faqs-section">
   <div class="content-wrapper">
     <h2 class="grand-heading">FAQs</h2>
-    <div class="faqs-listing">
+    <div class="faqs-listing"><!--
       {% for faq in faqs %}
-      <div class="faq-element">
+      --><div class="faq-element">
         <h3>{{faq.question}}</h3>
         <p>{{faq.answer}}</p>
         <img src="{{image.src}}" alt="{{image.alt}}">
-      </div>
+      </div><!--
      {% endfor %}
-    </div>
+   --></div>
+   <p><a class="apply-link" href="/apply">Apply Now</a></p>
   </div>
 </section>
 <section class="landing-sponsors-section">
@@ -86,7 +91,7 @@
     <h2 class="grand-heading">Our Sponsors</h2>
     <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:team@hackcambridge.com">team@hackcambridge.com</a>.</p>
     <h2 class="grand-heading">In Partnership With</h2>
-    <p>MLH, Cambridge Live logos</p>
+    <p><a href="https://www.cambridgelivetrust.co.uk/" target="_blank">Cambridge Live</a></p>
     <h2 class="grand-heading">Special Thanks To</h2>
     <p><a href="https://instagram.com/cambridgecaptured/">@cambridgecaptured</a> for letting us use their photos.</p>
     <p class="landing-footer">Copyright Hack Cambridge 2015, all rights reserved. <a href="/terms">Terms &amp; Conditions</a>. <a href="/privacy">Privacy Policy</a>.</p>

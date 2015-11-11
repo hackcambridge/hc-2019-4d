@@ -13,7 +13,7 @@
   min-height: 100%;
   padding: ($punit * 3) 0;
 
-  main-background();
+  dark-background();
   color: $colorSecondary;
   font-weight: 300;
 }
@@ -23,7 +23,7 @@
 }
 
 .landing-welcome-dates {
-  margin-bottom: ($punit * 1);
+  margin-bottom: ($punit * 4);
 }
 
 .landing-welcome-logo {
@@ -48,7 +48,8 @@ a.apply-link {
   animation: rotateBrand;
   animation-duration: 10s;
   animation-iteration-count: infinite;
-  font-size: 2.7em;
+  font-size: 2em;
+  font-weight: 300;
   cursor: pointer;
   transition: transform 0.6s;
 
@@ -146,6 +147,8 @@ a.apply-link {
 .landing-welcome-section {
 
   .hack-logo-cambridge-text {
+    fill: #fff;
+
     for $num in (1..9) {
       path:nth-child({$num}) {
         animation: logoAnimateIn;
@@ -162,6 +165,10 @@ a.apply-link {
   animation-duration: 2s;
   animation-delay: 2.5s;
   animation-fill-mode: both;
+
+  &.apply-link-container {
+    animation-delay: 1s;
+  }
 }
 
 @keyframes logoAnimateIn {
@@ -169,8 +176,8 @@ a.apply-link {
   20% { fill: $colorPrimary; }
   25% { opacity: 1; }
   50% { fill: #B72CD6; }
-  70% { fill: #000; }
-  100% { opacity: 1; }
+  70% { fill: #FFF; }
+  100% { opacity: 1; fill: #fff; }
 }
 
 @keyframes fadeIn {
@@ -195,23 +202,29 @@ a.apply-link {
   }
 
   svg {
-    width: 20px;
-    fill: darken($backgroundColor, 20%);
+    width: 17px;
+    fill: #3F4359;
     vertical-align: bottom;
     position: absolute;
     left: 0;
     bottom: 0;
+
+    transition: fill 0.2s;
   }
 
   a {
-    color: $gray;
+    color: currentColor;
     text-decoration: none;
     position: relative;
     padding-left: 30px;
 
+    transition: color 0.2s;
+
     &:hover {
+      color: $colorSecondary;
+
       svg {
-        fill: currentColor;
+        fill: $colorSecondary;
       }
 
       .social-link-text {
@@ -224,6 +237,16 @@ a.apply-link {
 /* ==========================================================================
    About Sections
    ========================================================================== */
+
+$home-light-section {
+  padding: ($punit * 6) 0;
+
+  color: $gray;
+
+  .grand-heading {
+    color: $colorSecondary;
+  }
+}
 
 .landing-cambridge-photo-section {
   overflow: hidden;
@@ -243,20 +266,25 @@ a.apply-link {
 
 .landing-intro-section {
   main-background();
-  padding: $punit * 3 0;
+  @extend $home-light-section;
 }
 
 .landing-venue-section {
   padding: $punit * 3 0;
-  box-sizing: border-box;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   background-size: cover;
   background-position: bottom center;
   dark-background();
+
+  .grand-heading {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: $punit * 2;
+    font-weight: 300;
+    font-size: 1.2em;
+  }
 
   .content-wrapper {
     margin: 0 auto;
@@ -266,12 +294,46 @@ a.apply-link {
   }
 }
 
+.landing-location-map {
+  position: relative;
+
+  display: block;
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: -100px;
+
+  background-size: cover;
+  background-position: center;
+  background-image: url(../images/location-map.png);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  &:hover .landing-location-marker{
+    transform: scale(1.2) translate(0, -2px);
+  }
+}
+
+.landing-location-marker {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+
+  width: 30px;
+  height: auto;
+  margin-left: -10px;
+
+  transition: transform 0.2s;
+  transform-origin: bottom center;
+}
+
 /* ==========================================================================
    FAQs Section
    ========================================================================== */
 
 .landing-faqs-section {
-  padding: $punit * 3 0;
+  @extend $home-light-section;
 
   .content-wrapper {
     width: 1000px;
@@ -286,8 +348,9 @@ a.apply-link {
   .faq-element {
     width: 100%;
     padding: ($punit / 2);
-    float: left;
+    display: inline-block;
     box-sizing: border-box;
+    vertical-align: top;
   }
 
   @media only screen and (min-width: 500px) {
