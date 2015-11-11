@@ -13,7 +13,7 @@
   min-height: 100%;
   padding: ($punit * 3) 0;
 
-  dark-background();
+  main-background();
   color: $colorSecondary;
   font-weight: 300;
 }
@@ -147,8 +147,6 @@ a.apply-link {
 .landing-welcome-section {
 
   .hack-logo-cambridge-text {
-    fill: #fff;
-
     for $num in (1..9) {
       path:nth-child({$num}) {
         animation: logoAnimateIn;
@@ -176,8 +174,8 @@ a.apply-link {
   20% { fill: $colorPrimary; }
   25% { opacity: 1; }
   50% { fill: #B72CD6; }
-  70% { fill: #FFF; }
-  100% { opacity: 1; fill: #fff; }
+  70% { fill: #000; }
+  100% { opacity: 1; }
 }
 
 @keyframes fadeIn {
@@ -213,7 +211,7 @@ a.apply-link {
   }
 
   a {
-    color: currentColor;
+    color: desaturate(lighten($colorSecondary, 30%), 20%);
     text-decoration: none;
     position: relative;
     padding-left: 30px;
