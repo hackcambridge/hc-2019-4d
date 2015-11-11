@@ -54,7 +54,7 @@
   <div class="content-wrapper-thin">
     <h2 class="grand-heading">What will you create?</h2>
     <p>
-       Hack Cambridge is the major hackathon in Cambridge. Open to all students, an intense 24 hour period from the 30th to the 31st of January 2016,
+       jHack Cambridge is the major hackathon in Cambridge. Open to all students, an intense 24 hour period from the 30th to the 31st of January 2016,
        with some of the best partners in industry. From the local cutting-edge startups that make Cambridge to the big giants that define the
        software industry, this is an event you don’t want to miss.
     </p>
@@ -83,8 +83,7 @@
       {% for faq in faqs %}
       --><div class="faq-element">
         <h3>{{faq.question}}</h3>
-        <p>{{faq.answer}}</p>
-        <img src="{{image.src}}" alt="{{image.alt}}">
+        {{ faq.answer | safe }}
       </div><!--
      {% endfor %}
    --></div>

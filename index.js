@@ -10,6 +10,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
+var marked = require('marked');
+var yaml = require('js-yaml');
 var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
@@ -96,16 +98,26 @@ app.use(function (req, res, next) {
   next();
 });
 
-function renderHome(req, res) {
-  var faqs = [];
+var loadedFAQs = null;
+function loadFAQs() {
+  if ((!loadedFAQs) || (app.settings.env == "development")) {
+    loadedFAQs = yaml.safeLoad(fs.readFileSync('./resources/faqs.yml')).faqs;
 
-  if (app.settings.env == "development") {
-    faqs = JSON.parse(fs.readFileSync('./resources/faqs.json'));
-  } else {
-    faqs = require('./resources/faqs.json');
+    loadedFAQs = _.map(loadedFAQs, function(faq) {
+      return {
+        question: faq.question,
+        answer: marked(faq.answer)
+      }
+    });
   }
 
-  res.render('index.html', { faqs: faqs.faqs });
+  return loadedFAQs;
+}
+
+function renderHome(req, res) {
+  var faqs = loadFAQs();
+
+  res.render('index.html', { faqs: faqs });
 }
 
 app.get('/', renderHome);
