@@ -45,13 +45,19 @@
 a.apply-link {
   display: inline-block;
   margin-element();
-  animation: rotateBrand;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  font-size: 2em;
+  padding: 8px 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7) inset;
+  font-size: 1em;
   font-weight: 300;
   cursor: pointer;
   transition: transform 0.6s;
+  color: rgba(255, 255, 255, 0.8);
+
+  animation: rotateBrand;
+  animation-duration: 10s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
 
   &:hover {
     text-decoration: none;
@@ -61,18 +67,6 @@ a.apply-link {
   &:active {
     transform: scale(0.9);
   }
-
-  /*@media only screen and (min-width: 700px) {
-    display: block;
-    position: absolute;
-    font-size: 3em;
-    left: 50%;
-    margin: 0;
-    margin-left: 100px;
-    transform: translate(0, -50%);
-    top: 50%;
-
-  }*/
 }
 
 /* Subscribe Form
@@ -184,10 +178,10 @@ a.apply-link {
 }
 
 @keyframes rotateBrand {
-  0% { color: $logoColor1; }
-  35% { color: $logoColor2; }
-  60% { color: $logoColor3; }
-  100% { color: $logoColor1; }
+  0% { background-color: $logoColor1; }
+  35% { background-color: $logoColor2; }
+  60% { background-color: $logoColor3; }
+  100% { background-color: $logoColor1; }
 }
 
 .landing-welcome-social-links {
