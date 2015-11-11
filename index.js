@@ -119,13 +119,9 @@ app.get('/privacy', function (req, res) {
 });
 
 app.get('/apply', function (req, res) {
-  crypto.randomBytes(3, function(ex, buf) {
-    var token = buf.toString('hex') + '-' + (Math.floor(Date.now() / 1000).toString().substr(-6));
-
-    res.render('form.html', {
-      title: 'Apply to Hack Cambridge',
-      formUrl: process.env.APPLICATION_URL.replace('{{applicationid}}', token)
-    });
+  res.render('form.html', {
+    title: 'Apply to Hack Cambridge',
+    formUrl: process.env.APPLICATION_URL
   });
 });
 
@@ -134,7 +130,7 @@ app.get('/teamapply', function(req, res) {
     title: 'Apply to Hack Cambridge as a Team',
     formUrl: process.env.TEAM_APPLICATION_URL
   })
-})
+});
 
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
