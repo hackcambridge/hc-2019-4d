@@ -1,6 +1,6 @@
 faqs:
   - question: What is a hackathon?
-    answer: Think of hackathons like the 100m sprint of programming and invention. For 24 hours you and a small team will create something new and exciting. With many other teams 'hacking' alongside you.
+    answer: Think of hackathons like the 100m sprint of programming and invention. For 24 hours you and a small team will create something new and exciting. With many other teams hacking alongside you.
 
   - question: Can I attend?
     answer: Anyone over 18 who is at any University or has left after the 30th of January 2015 may apply to take part.
@@ -21,13 +21,10 @@ faqs:
     answer: The best solution to this is prepare. Sleep well beforehand and feel free bring a sleeping bag if you wish to sleep during the hackathon. If you a travelling a long distance contact us after your application and we will try our best to accommodate you.
 
   - question: What should I bring?
-    answer: A laptop is a big must, anything else depends on what you want to do at the hackathon.
+    answer: A laptop is a big must, anything else depends on what you want to do at the hackathon. Some toiletries may come in handy, too.
 
   - question: What if I don’t know what I want to do?
     answer: We will be providing experienced people and ideas to help you with.
-
-  - question: How do I get there?
-    answer: The nearest station to Hack Cambridge is the Cambridge train station.
 
   - question: How do teams work?
     answer: We support teams of up to 4 members. If you want to apply as a group, submit your individual application. Once all members of your planned team have submitted their individual applications, one you can complete [this team form](/teamapply).
@@ -39,7 +36,7 @@ faqs:
     answer: We will try to make reimbursements as fair as possible. After all applications have been accepted, all successful applicants will be contact with regards to reimbursement details.
 
   - question: What about hardware hacks?
-    answer: We love ‘em!
+    answer: We love ‘em! We'll provide the basics (soldering kits, breadboards, etc...) and you do the rest.
 
   - question: What if this FAQ didn’t answer my questions?
     answer: Contact us at [team@hackcambridge.com](mailto:team@hackcambridge.com)
