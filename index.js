@@ -96,9 +96,9 @@ app.use('/api', api);
 
 app.use(function (req, res, next) {
   res.locals.title = 'Hack Cambridge';
-  var port = req.app.settings.port;
+  var port = (app.settings.env == "development") ? ':' + req.app.settings.port : '';
   res.locals.requestedUrl = url.parse(
-    req.protocol + '://' + req.hostname + (port == 80 || port == 443 ? '' : ':' + port) + req.originalUrl
+    req.protocol + '://' + req.hostname + port + req.originalUrl
   );
   next();
 });
