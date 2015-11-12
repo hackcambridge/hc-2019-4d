@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
+var url = require('url');
 var marked = require('marked');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
@@ -95,6 +96,10 @@ app.use('/api', api);
 
 app.use(function (req, res, next) {
   res.locals.title = 'Hack Cambridge';
+  var port = req.app.settings.port;
+  res.locals.requestedUrl = url.parse(
+    req.protocol + '://' + req.hostname + (port == 80 || port == 443 ? '' : ':' + port) + req.originalUrl
+  );
   next();
 });
 
