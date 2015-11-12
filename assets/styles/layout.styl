@@ -29,7 +29,7 @@ html {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
@@ -49,30 +49,38 @@ dark-background() {
   }
 }
 
-.content-wrapper {
+content-wrapper() {
   box-sizing: border-box;
-  width: 800px;
   max-width: 100%;
   padding-left: ($punit);
   padding-right: ($punit);
 
   @media only screen and (min-width: 500px) {
-    padding-left: ($punit * 3);
-    padding-right: ($punit * 3);
+    padding-left: ($punit * 2);
+    padding-right: ($punit * 2);
   }
 }
 
-.content-wrapper-thin {
-  box-sizing: border-box;
-  width: 600px;
-  max-width: 100%;
-  padding-left: ($punit);
-  padding-right: ($punit);
+content-wrapper-left() {
+  content-wrapper()
 
-  @media only screen and (min-width: 500px) {
-    padding-left: ($punit * 3);
-    padding-right: ($punit * 3);
+  @media only screen and (min-width: 900px) {
+    padding-left: ($punit * 6);
   }
+}
+
+.content-wrapper {
+  content-wrapper-left();
+  width: 900px;
+}
+
+.content-wrapper-standard {
+  content-wrapper();
+}
+
+.content-wrapper-thin {
+  content-wrapper-left();
+  width: 700px;
 }
 
 /* Typography
@@ -90,6 +98,13 @@ margin-element() {
     margin-bottom: 0;
   }
 }
+
+h1 { font-size: 1.2 * 1.2 * 1.2; }
+h2 { font-size: 1.2 * 1.2; }
+h3 { font-size: 1.2em; color: $grayDark; }
+h4 { font-size: 1em; }
+h5 { font-size: 1 / 1.2; }
+h6 { font-size: 1 / 1.2 / 1.2; }
 
 h1, h2, h3, h4, h5, h6, ul, ol, li, p {
   margin-element();
