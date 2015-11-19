@@ -42,7 +42,7 @@ faqs:
     answer: We will come back to you after your application, you can decide whether we team you up or you can try and form one at the event!
 
   - question: Since I'm traveling from far away, can I get an increase in reimbursement?
-    answer: We will try to make reimbursements as fair as possible. After all applications have been accepted, all successful applicants will be contact with regards to reimbursement details.
+    answer: We will try to make reimbursements as fair as possible. After all applications have been accepted, all successful applicants will be contact with specifics about reimbursement details. However, if you're travelling from outside the EU it is *unlikely* we'll be able to make a significant contribution to your travel costs.
 
   - question: What about hardware hacks?
     answer: We love ‘em! We'll provide the basics (soldering kits, breadboards, etc...) and you do the rest. Do bring along any special equipment you might want to hack on as well.
@@ -55,4 +55,3 @@ faqs:
 
   - question: What if this FAQ didn’t answer my questions?
     answer: Contact us at [team@hackcambridge.com](mailto:team@hackcambridge.com)
-
