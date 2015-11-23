@@ -92,6 +92,16 @@ api.use(function (err, req, res, next) {
 });
 
 // Routes
+
+app.use(function(req, res, next) {
+  // Force https
+  if ((req.headers['x-forwarded-proto'] != 'https') && (process.env.FORCE_HTTPS == "1")) {
+    res.redirect('https://' + req.hostname + req.originalUrl);
+  } else {
+    next();
+  }
+});
+
 app.use('/api', api);
 
 app.use(function (req, res, next) {
