@@ -395,6 +395,66 @@ $home-light-section {
    Sponsors Section
    ========================================================================== */
 
+.sponsors-container {
+  margin: ($punit * 4) (-1 * $punit);
+
+
+
+  .sponsor-link {
+    display: inline-block;
+    vertical-align: middle;
+    margin: $punit;
+    max-width: 100%;
+
+    img {
+      // HACK: Using important
+      max-width: 100% !important;
+    }
+  }
+
+  &-tera {
+    .sponsor-link-wide img {
+      width: 600px;
+    }
+
+    .sponsor-link-tall img {
+      height: 400px;
+    }
+  }
+
+  &-giga {
+    .sponsor-link-wide img {
+      width: 350px;
+    }
+
+    .sponsor-link-tall img {
+      height: 250px;
+    }
+  }
+
+  &-mega {
+    .sponsor-link-wide img {
+      width: 200px;
+    }
+
+    .sponsor-link-tall img {
+      height: 150px;
+    }
+  }
+
+  &-kilo {
+    .sponsor-link-wide img {
+      width: 140px;
+    }
+
+    .sponsor-link-tall img {
+      height: 140px;
+    }
+  }
+
+
+}
+
 .landing-sponsors-section {
   padding: $punit * 3 0;
 

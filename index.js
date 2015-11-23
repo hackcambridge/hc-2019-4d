@@ -113,26 +113,29 @@ app.use(function (req, res, next) {
   next();
 });
 
-var loadedFAQs = null;
-function loadFAQs() {
-  if ((!loadedFAQs) || (app.settings.env == "development")) {
-    loadedFAQs = yaml.safeLoad(fs.readFileSync('./resources/faqs.yml')).faqs;
+var loadedResources = [];
+function loadResource(resourceName) {
+  if ((!loadedResources[resourceName]) || (app.settings.env == "development")) {
+    var loadedResource = yaml.safeLoad(fs.readFileSync('./resources/' + resourceName + '.yml'))[resourceName];
 
-    loadedFAQs = _.map(loadedFAQs, function(faq) {
-      return {
-        question: faq.question,
-        answer: marked(faq.answer)
-      }
-    });
+    if (resourceName == 'faqs') {
+      loadedResource = _.map(loadedResource, function(faq) {
+        return {
+          question: faq.question,
+          answer: marked(faq.answer)
+        }
+      });
+    }
+
+    loadedResources[resourceName] = loadedResource;
   }
 
-  return loadedFAQs;
+  return loadedResources[resourceName];
 }
 
 function renderHome(req, res) {
-  var faqs = loadFAQs();
 
-  res.render('index.html', { faqs: faqs });
+  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors') });
 }
 
 app.get('/', renderHome);
