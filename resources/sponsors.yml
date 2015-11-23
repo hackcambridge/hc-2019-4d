@@ -1,0 +1,23 @@
+sponsors:
+#  cohost:
+  tera:
+    - name: Darktrace
+      website: https://www.darktrace.com/
+      logo: darktrace-logo.svg
+      variant: wide
+
+  giga:
+    - name: Two Sigma
+      website: https://www.twosigma.com/
+      logo: twosigma-logo.svg
+      variant: tall
+  mega:
+    - name: KCG
+      website: https://www.kcg.com/
+      logo: kcg-logo.svg
+      variant: wide
+    - name: DE Shaw
+      website: https://www.deshaw.com/
+      logo: deshaw-logo.svg
+      variant: wide
+#  kilo:
