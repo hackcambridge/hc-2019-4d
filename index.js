@@ -11,6 +11,7 @@ var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
 var url = require('url');
+var querystring = require('querystring');
 var marked = require('marked');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
@@ -149,9 +150,24 @@ app.get('/privacy', function (req, res) {
 });
 
 app.get('/apply', function (req, res) {
-  res.render('form.html', {
-    title: 'Apply to Hack Cambridge',
-    formUrl: process.env.APPLICATION_URL
+  crypto.randomBytes(3, function(ex, buf) {
+    var token = buf.toString('hex') + '-' + (Math.floor(Date.now() / 1000).toString().substr(-6));
+    var formUrl = url.parse(process.env.APPLICATION_URL);
+    // Search contains `?` character as first character
+    // So we remove it
+    var query = querystring.parse(formUrl.search.substr(1));
+
+    if (_.has(req.query, 'referrer')) {
+      query.referrer = req.query.referrer;
+    }
+    query.applicationid = token;
+
+    formUrl.search = querystring.stringify(query);
+
+    res.render('form.html', {
+      title: 'Apply to Hack Cambridge',
+      formUrl: url.format(formUrl)
+    });
   });
 });
 
