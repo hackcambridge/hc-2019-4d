@@ -11,6 +11,7 @@ sponsors:
       website: https://www.twosigma.com/
       logo: twosigma-logo.svg
       variant: tall
+
   mega:
     - name: KCG
       website: https://www.kcg.com/
@@ -20,4 +21,8 @@ sponsors:
       website: https://www.deshaw.com/
       logo: deshaw-logo.svg
       variant: wide
-#  kilo:
+  kilo:
+    - name: Jane Street
+      website: https://www.janestreet.com/
+      logo: janestreet-logo.svg
+      variant: wide
