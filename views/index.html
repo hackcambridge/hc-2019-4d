@@ -94,13 +94,13 @@
    <p><a class="apply-link" href="/apply"><span class="apply-link-text">Apply Now</span></a></p>
   </div>
 </section>
-<section class="landing-sponsors-section">
+<section class="landing-helpers-section">
   <div class="content-wrapper">
     <h2 class="grand-heading">Our Sponsors</h2>
       {% for sponsorTierName, sponsorTier in sponsors %}
-        <div class="sponsors-container sponsors-container-{{ sponsorTierName }}">
+        <div class="helpers-container helpers-container-{{ sponsorTierName }}">
           {% for sponsor in sponsorTier %}
-          <a class="sponsor-link sponsor-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
+          <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
             <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
           </a>
           {% endfor %}
@@ -108,8 +108,8 @@
       {% endfor %}
     <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:team@hackcambridge.com">team@hackcambridge.com</a>.</p>
     <h2 class="grand-heading">In Partnership With</h2>
-    <div class="sponsors-container sponsors-container-tera">
-      <a class="sponsor-link sponsor-link-wide" href="https://www.cambridgelivetrust.co.uk/" target="_blank">
+    <div class="helpers-container shponzors-container-tera">
+      <a class="helper-link helper-link-wide" href="https://www.cambridgelivetrust.co.uk/" target="_blank">
         <img src="{{ asset('images/logos/cambridgelive-logo.svg') }}" alt="Cambridge Live" />
       </a>
     </div>
