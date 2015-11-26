@@ -396,7 +396,7 @@ $home-light-section {
    ========================================================================== */
 
 .sponsors-container {
-  margin: ($punit * 4) (-1 * $punit);
+  margin: ($punit * 2) (-1 * $punit);
 
 
 
@@ -407,52 +407,39 @@ $home-light-section {
     max-width: 100%;
 
     img {
-      // HACK: Using important
-      max-width: 100% !important;
+      max-width: 100%;
     }
   }
 
-  &-tera {
-    .sponsor-link-wide img {
-      width: 600px;
-    }
+  $sponsorSizes = (tera 600px 400px) (giga 350px 250px) (mega 200px 150px) (kilo 140px 80px);
 
-    .sponsor-link-tall img {
-      height: 400px;
-    }
-  }
+  for $sponsor in $sponsorSizes {
+    &-{$sponsor[0]} {
+      .sponsor-link-wide img {
+        width: ($sponsor[1] / 2);
+      }
 
-  &-giga {
-    .sponsor-link-wide img {
-      width: 350px;
-    }
-
-    .sponsor-link-tall img {
-      height: 250px;
+      .sponsor-link-tall img {
+        height: ($sponsor[2] / 2);
+      }
     }
   }
 
-  &-mega {
-    .sponsor-link-wide img {
-      width: 200px;
-    }
+  @media only screen and (min-width: 600px) {
+    margin: ($punit * 4) (-1 * $punit);
 
-    .sponsor-link-tall img {
-      height: 150px;
-    }
-  }
+    for $sponsor in $sponsorSizes {
+      &-{$sponsor[0]} {
+        .sponsor-link-wide img {
+          width: ($sponsor[1]);
+        }
 
-  &-kilo {
-    .sponsor-link-wide img {
-      width: 140px;
-    }
-
-    .sponsor-link-tall img {
-      height: 140px;
+        .sponsor-link-tall img {
+          height: ($sponsor[2]);
+        }
+      }
     }
   }
-
-
 }
 
 .landing-sponsors-section {
