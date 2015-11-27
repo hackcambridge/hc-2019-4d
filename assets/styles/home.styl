@@ -43,27 +43,31 @@
   max-width: 500px;
 }
 
-.landing-welcome-lower-caret svg {
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
+.landing-welcome-lower-caret {
+  cursor: pointer;
+  
+  svg {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
 
-  width: 40px;
-  height: auto;
-  margin-left: -20px;
+    width: 40px;
+    height: auto;
+    margin-left: -20px;
 
-  fill: none;
-  stroke: $grayLighter;
-  stroke-width: 2px;
+    fill: none;
+    stroke: $grayLighter;
+    stroke-width: 2px;
 
-  animation: updown 3s alternate infinite;
-  position: absolute;
+    animation: updown 3s alternate infinite;
+    position: absolute;
 
-  @media only screen and (min-height: 600px) {
-    bottom: 40px;
-    width: 80px;
-    height: 40px;
-    margin-left: -40px;
+    @media only screen and (min-height: 600px) {
+      bottom: 40px;
+      width: 80px;
+      height: 40px;
+      margin-left: -40px;
+    }
   }
 }
 
