@@ -30,6 +30,16 @@
 				</svg>
         <span class="social-link-text">@hack_cambridge</span>
       </a></li>
+      <li><a href="https://medium.com/@HackCambridge" target="_blank">
+        <svg version="1.1" id="Medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			        viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+            <path d="M13.5 1.5h-.2v14l6 3c.4 0 .6 0 .6-.4V5l-.2-.2-6.3-3" opacity=".25"/>
+            <path d="M6.7 12l6.5-10.5h.3l6.3 3V5l-6.5 10.6L6.7 12" opacity=".5"/>
+            <path d="M.8 1.7c-.4-.2-.5 0-.3.4l6.2 10 6.6 3.4L6.7 4.7l-6-3" opacity=".75"/>
+            <path d="M6.7 18c0 .5-.3.6-.6.5l-5.5-3c-.3 0-.4-.3-.4-.5V1.8c0-.3.2-.3.4-.3l6.2 3V18.2" />
+        </svg>
+        <span class="social-link-text">medium.com/@HackCambridge</span>
+      </a></li>
       <li><a href="mailto:team@hackcambridge.com">
         <svg version="1.1" id="Mail" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         	 viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
@@ -44,13 +54,15 @@
     </ul>
   </div>
   <div class="landing-welcome-lower-caret">
+    <a href="#about">
     <svg viewbox="0 0 20 10" width="20" height="10">
       <path d="M2,2 L10,7 L18,2" />
     </svg>
+    </a>
   </div>
 </section>
 <section class="landing-cambridge-photo-section"></section>
-<section class="landing-intro-section">
+<section class="landing-intro-section" id="about">
   <div class="content-wrapper-thin">
     <h2 class="grand-heading">What is Hack&nbsp;Cambridge?</h2>
     <p>
@@ -80,7 +92,7 @@
     </a>
   </div>
 </section>
-<section class="landing-faqs-section">
+<section class="landing-faqs-section" id ="faq">
   <div class="content-wrapper">
     <h2 class="grand-heading">FAQs</h2>
     <div class="faqs-listing"><!--
@@ -94,7 +106,7 @@
    <p><a class="apply-link" href="/apply"><span class="apply-link-text">Apply Now</span></a></p>
   </div>
 </section>
-<section class="landing-helpers-section">
+<section class="landing-helpers-section" id="helpers">
   <div class="content-wrapper">
     <h2 class="grand-heading">Our Sponsors</h2>
       {% for sponsorTierName, sponsorTier in sponsors %}
