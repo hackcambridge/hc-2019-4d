@@ -76,6 +76,8 @@ $(document).ready(function () {
     $('.application-countdown').html(createCountdownText());
   };
 
-  setInterval(updateCountdown, 500);
-  updateCountdown();
+  if ($('.application-countdown').length > 0) {
+    setInterval(updateCountdown, 500);
+    updateCountdown();
+  }
 });

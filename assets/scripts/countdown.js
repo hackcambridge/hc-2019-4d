@@ -19,7 +19,7 @@ module.exports = function createCountdownText(html) {
 
   var difference = Math.max(0, deadlineTime - nowTime);
   if (difference == 0) {
-    return 'Applications are closed.'
+    return ''
   }
 
   var hours = formatTime(difference, 0, 1 / (1000 * 60 * 60), 'Hour');
