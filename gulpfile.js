@@ -14,7 +14,7 @@ var prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 var onError = function onError(err) {
   $.util.beep();
-  console.log(err.message);
+  console.log(err);
   this.emit('end');
 };
 

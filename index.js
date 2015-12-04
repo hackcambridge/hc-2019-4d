@@ -136,7 +136,7 @@ function loadResource(resourceName) {
 
 function renderHome(req, res) {
 
-  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors') });
+  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors'), countdown: require('./assets/scripts/countdown')() });
 }
 
 app.get('/', renderHome);
