@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var createCountdownText = require('./countdown.js');
 
 $(document).ready(function () {
   $('.subscribe-form').each(function () {
@@ -70,4 +71,11 @@ $(document).ready(function () {
       $('body, html').animate({ scrollTop: $('.landing-intro-section').offset().top - 40 }, 1400);
     });
   });
+
+  var updateCountdown = function () {
+    $('.application-countdown').html(createCountdownText());
+  };
+
+  setInterval(updateCountdown, 500);
+  updateCountdown();
 });
