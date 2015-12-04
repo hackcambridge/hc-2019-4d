@@ -5,7 +5,9 @@
     {% set class = 'landing-welcome-logo' %}
     {% include 'hackcambridge.svg' %}
     <p class="landing-welcome-dates">24 Hours: 30 &ndash; 31 January 2016, University of Cambridge</p>
+    {% if countdown %}
     <p class="application-countdown">{{ countdown }}</p>
+    {% endif %}
     <p class="apply-link-container">
       <a class="apply-link" href="/apply"><span class="apply-link-text">Apply Now</span></a>
     </p>
