@@ -135,8 +135,7 @@ function loadResource(resourceName) {
 }
 
 function renderHome(req, res) {
-
-  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors'), countdown: require('./assets/scripts/countdown')() });
+  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors') });
 }
 
 app.get('/', renderHome);
@@ -149,7 +148,6 @@ app.get('/privacy', function (req, res) {
   res.render('privacy.html');
 });
 
-// Applications are closed
 app.get('/apply', function (req, res) {
   crypto.randomBytes(3, function(ex, buf) {
     var token = buf.toString('hex') + '-' + (Math.floor(Date.now() / 1000).toString().substr(-6));
