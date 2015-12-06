@@ -150,7 +150,7 @@ app.get('/privacy', function (req, res) {
 });
 
 // Applications are closed
-/*app.get('/apply', function (req, res) {
+app.get('/apply', function (req, res) {
   crypto.randomBytes(3, function(ex, buf) {
     var token = buf.toString('hex') + '-' + (Math.floor(Date.now() / 1000).toString().substr(-6));
     var formUrl = url.parse(process.env.APPLICATION_URL);
@@ -170,7 +170,7 @@ app.get('/privacy', function (req, res) {
       formUrl: url.format(formUrl)
     });
   });
-});*/
+});
 
 app.get('/teamapply', function(req, res) {
   res.render('form.html', {
