@@ -4,7 +4,7 @@
   "description": "Website for Hack Cambridge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha",
     "start": "node index.js",
     "postinstall": "gulp build"
   },
@@ -54,6 +54,7 @@
     "yargs": "^3.29.0"
   },
   "devDependencies": {
-    "eslint": "^1.8.0"
+    "eslint": "^1.8.0",
+    "mocha": "^2.3.4"
   }
 }
