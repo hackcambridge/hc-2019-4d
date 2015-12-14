@@ -25,6 +25,10 @@ sponsors:
       website: https://www.ahl.com/
       logo: manahl-logo.svg
       variant: wide
+    - name: Mendeley
+      website: https://www.mendeley.com/
+      logo: mendeley-logo.svg
+      variant: wide
   kilo:
     - name: Jane Street
       website: https://www.janestreet.com/
