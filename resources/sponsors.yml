@@ -29,6 +29,10 @@ sponsors:
       website: https://www.mendeley.com/
       logo: mendeley-logo.svg
       variant: wide
+    - name: Morgan Stanley
+      website : http://morganstanley.com/
+      logo: morganstanley-logo.svg
+      variant: wide
   kilo:
     - name: Jane Street
       website: https://www.janestreet.com/
@@ -37,8 +41,4 @@ sponsors:
     - name: Softwire
       website: http://www.softwire.com/
       logo: softwire-logo.svg
-      variant: wide
-    - name: Morgan Stanley
-      website : http://morganstanley.com/
-      logo: morganstanley-logo.svg
       variant: wide
