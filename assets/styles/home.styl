@@ -401,12 +401,11 @@ $home-light-section {
 
 // `sponsor` triggers ad blockers. Now we user `helper`
 .helpers-container {
-  margin: ($punit * 2) (-1 * $punit);
+  margin: ($punit * 2);
 
   .helper-link {
     display: inline-block;
     vertical-align: middle;
-    margin: $punit;
     max-width: 100%;
 
     img {
@@ -414,16 +413,26 @@ $home-light-section {
     }
   }
 
-  $sponsorSizes = (tera 600px 400px) (giga 300px 200px) (mega 150px 100px) (kilo 75px 50px);
+  // Name, width, height, padding
+  $sponsorSizes = (tera 600px 400px 20px) (giga 300px 200px 20px) (mega 150px 100px 15px) (kilo 75px 50px 10px);
+  $minSize = 45px 30px 5px
 
   for $sponsor in $sponsorSizes {
     &-{$sponsor[0]} {
+      $marginSize = min($minSize[2], ($sponsor[3]) / 2);
+      margin-left: -($marginSize);
+      margin-right: -($marginSize);
+
       .helper-link-wide img {
-        width: ($sponsor[1] / 2);
+        width: max($minSize[0], $sponsor[1] / 2);
       }
 
       .helper-link-tall img {
-        height: ($sponsor[2] / 2);
+        height: max($minSize[1], $sponsor[2] / 2);
+      }
+
+      .helper-link {
+        margin: ($marginSize);
       }
     }
   }
@@ -433,12 +442,20 @@ $home-light-section {
 
     for $sponsor in $sponsorSizes {
       &-{$sponsor[0]} {
+        $marginSize = ($sponsor[3]);
+        margin-left: -($marginSize);
+        margin-right: -($marginSize);
+
         .helper-link-wide img {
           width: ($sponsor[1]);
         }
 
         .helper-link-tall img {
           height: ($sponsor[2]);
+        }
+
+        .helper-link {
+          margin: ($marginSize);
         }
       }
     }
