@@ -30,8 +30,12 @@ sponsors:
       logo: mendeley-logo.svg
       variant: wide
     - name: Morgan Stanley
-      website : http://morganstanley.com/
+      website: http://morganstanley.com/
       logo: morganstanley-logo.svg
+      variant: wide
+    - name: Citrix
+      website: https://www.citrix.com/
+      logo: citrix-logo.svg
       variant: wide
   kilo:
     - name: Jane Street
