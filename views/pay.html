@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="payment-form" action="/api/payment">
+  <label for="payment-form-amount">Amount (GBP)</label>
+  <input name="amount" class="payment-form-amount" id="payment-form-amount" type="number" min="1" max="99999.99" step="0.01" required />
+  <div class="payment-surcharge"></div>
+  <label for="payment-form-reference">Reference</label>
+  <input name="reference" class="payment-form-reference" id="payment-form-reference" type="text" required />
+  <input name="token" class="payment-form-token" type="hidden" />
+  <button type="submit">Make Payment</button>
+  <div class="payment-form-output"></div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script>window.stripeConfig = { key: "{{ stripeKey }}", image: "{{ asset('images/apple-touch-icon.png') }}" };</script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+{{ super() }}
+{% endblock %}
