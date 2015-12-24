@@ -5,6 +5,10 @@ sponsors:
       website: https://www.darktrace.com/
       logo: darktrace-logo.svg
       variant: wide
+    - name: Cantab Capital Partners
+      website: http://www.cantabcapital.com/
+      logo: cantab-logo.svg
+      variant: wide
 
   giga:
     - name: Two Sigma
