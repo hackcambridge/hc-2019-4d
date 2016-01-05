@@ -1,5 +1,10 @@
 sponsors:
-#  cohost:
+  cohost:
+    - name: Thales
+      website: https://www.thalesgroup.com/
+      logo: thales-logo.svg
+      variant: wide
+
   tera:
     - name: Darktrace
       website: https://www.darktrace.com/
