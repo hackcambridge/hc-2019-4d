@@ -49,21 +49,30 @@ api.post('/payment', function (req, res, next) {
     next(err);
   }
 
+  if (_.isEmpty(req.body.email)) {
+    var err = new Error('Must provide email');
+    err.status = 401;
+    next(err);
+  }
+
+  var amount = Math.round(req.body.amount * 100);
+
   stripe.charges.create({
-    amount: Math.round(req.body.amount * 100),
+    amount: amount,
     currency: 'gbp',
     source: req.body.token,
-    description: 'Reference: ' + req.body.reference + '\nAmount: ' + req.body.amount
+    receipt_email: req.body.email,
+    description: req.body.reference
   }, function (err, charge) {
     if (err) {
-      var e = new Error('Something went wrong with your transaction');
+      var e = new Error(err.message || 'Something went wrong with your transaction.');
       console.error(err);
       e.status = 500;
       next(e);
       return;
     }
 
-    res.json({ message: 'Your payment has been processed. Thank you!'});
+    res.json({ message: 'Your payment of £' + (amount / 100).toFixed(2) + ' has been processed. Thank you!'});
   });
 });
 
