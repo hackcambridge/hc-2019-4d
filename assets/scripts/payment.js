@@ -51,12 +51,10 @@ module.exports = function () {
           return 0;
         }
 
-        // Compensate for (kind of arbitrary) 3% surcharge
-        return amount / 0.97;
+        return amount;
       };
 
       $amount.on('change input', function () {
-        console.log('Eh');
         var amount = getAmount();
         $this.find('.payment-surcharge').html('You Pay: <strong>£' + amount.toFixed(2) + '</strong>');
       });
@@ -84,8 +82,7 @@ module.exports = function () {
           description: 'Payment: ' + reference,
           amount: amount
         });
-      })
-      console.log('Blah');
-    })
+      });
+    });
   }
 };

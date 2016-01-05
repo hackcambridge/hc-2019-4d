@@ -50,7 +50,7 @@ api.post('/payment', function (req, res, next) {
   }
 
   stripe.charges.create({
-    amount: Math.round(req.body.amount / 0.97 * 100),
+    amount: Math.round(req.body.amount * 100),
     currency: 'gbp',
     source: req.body.token,
     description: 'Reference: ' + req.body.reference + '\nAmount: ' + req.body.amount
