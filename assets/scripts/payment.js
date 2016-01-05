@@ -15,23 +15,28 @@ module.exports = function () {
         currency: 'GBP',
         token: function (token) {
           console.log("TOKEN");
-          $token.val(token.id)
           $output.text("Working...");
+
+          var data = $this.serializeArray();
+
+          data.push({ name: 'token', value: token.id });
+          data.push({ name: 'email', value: token.email });
 
           loading = $.ajax('/api/payment', {
             method: 'POST',
-            data: $this.serialize()
+            data: data
           })
           .success(function (data) {
-            $output.text(data.message);
+            $('.payment-form').remove();
+            $('.payment-form-description').text(data.message);
           })
           .fail(function (jqXHR) {
             var errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
             $output.text(errormsg);
+            $this.find('input, button').prop('disabled', false);
           })
           .always(function () {
             loading = null;
-            $this.find('input, button').prop('disabled', false);
           });
 
           $this.find('input, button').prop('disabled', true);
@@ -53,11 +58,6 @@ module.exports = function () {
 
         return amount;
       };
-
-      $amount.on('change input', function () {
-        var amount = getAmount();
-        $this.find('.payment-surcharge').html('You Pay: <strong>£' + amount.toFixed(2) + '</strong>');
-      });
 
       $this.submit(function (e) {
         e.preventDefault();
