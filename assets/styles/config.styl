@@ -17,9 +17,13 @@ $logoColor3 = #AC41EC;
 
 $black = #000;
 
-$grayDarker = lighten($black, 15%);
-$grayDark = lighten($black, 30%);
-$gray = lighten($black, 50%)
-$grayLight = lighten($black, 70%);
-$grayLighter = lighten($black, 85%);
-$grayLightest = lighten($black, 95%);
+gray($amount) {
+  return lighten($black, $amount);
+}
+
+$grayDarker = gray(15%);
+$grayDark = gray(30%);
+$gray = gray(50%);
+$grayLight = gray(70%);
+$grayLighter = gray(85%);
+$grayLightest = gray(95%);
