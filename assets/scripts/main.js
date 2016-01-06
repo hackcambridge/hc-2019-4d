@@ -2,6 +2,8 @@ var $ = require('jquery');
 var createCountdownText = require('./countdown.js');
 
 $(document).ready(function () {
+  require('./payment')();
+
   $('.subscribe-form').each(function () {
     var $this = $(this);
     var action = $this.attr('action');

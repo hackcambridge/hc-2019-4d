@@ -49,49 +49,6 @@ nunjucksEnv.addGlobal('asset', function (asset) {
   return '/assets/' + asset;
 });
 
-// API
-var api = new express.Router();
-api.use(bodyParser.json());
-api.use(bodyParser.urlencoded({ extended: true }));
-
-api.post('/subscribe', function (req, res, next) {
-  console.log(req.body);
-  if (_.isEmpty(req.body.email)) {
-    var err = new Error('Must provide email');
-    err.status = 401;
-    next(err);
-    return;
-  }
-
-  // TODO: Check user is already subscribed
-  MC.lists.subscribe({
-    id: process.env.MAILCHIMP_LIST_ID,
-    email: { email: req.body.email },
-    merge_vars: { EMAIL: req.body.email },
-    update_existing: true
-  }, function(data) {
-      res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
-  }, function(error) {
-      var err = new Error('We couldn\'t add you. Please check that this is a valid email.');
-      err.status = 500;
-      next(err);
-  });
-});
-
-api.use(function (req, res, next) {
-  var err = new Error('Not found');
-  err.status = 404;
-  next(err);
-});
-
-api.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(err.status || 500);
-  res.json({
-    error: err.message || 'An error occurred'
-  });
-});
-
 // Routes
 
 app.use(function(req, res, next) {
@@ -103,7 +60,7 @@ app.use(function(req, res, next) {
   }
 });
 
-app.use('/api', api);
+app.use('/api', require('./api'));
 
 app.use(function (req, res, next) {
   res.locals.title = 'Hack Cambridge';
@@ -175,6 +132,13 @@ app.get('/teamapply', function(req, res) {
     title: 'Apply to Hack Cambridge as a Team',
     formUrl: process.env.TEAM_APPLICATION_URL
   })
+});
+
+app.get('/pay', function (req, res) {
+  res.render('pay.html', {
+    title: 'Make a payment to Hack Cambridge',
+    stripeKey: process.env.STRIPE_PUBLISH_KEY
+  });
 });
 
 app.get('/favicon.ico', function (req, res) {

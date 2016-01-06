@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+ /* Buttons
+    ========================================================================== */
+
+buttonColor($foreground, $background = $grayLightest) {
+  $isdark = dark($background);
+
+  color: $foreground;
+  background-color: $background;
+
+  if ($isdark) {
+    background-image: linear-gradient(to top, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0));
+  } else {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .05), rgba(0, 0, 0, 0));
+  }
+
+
+
+  &:hover, &:focus {
+    if ($isdark) {
+      background-color: lighten($background, 3);
+    } else {
+      background-color: darken($background, 3);
+    }
+  }
+
+  &:active {
+    if ($isdark) {
+      background-color: lighten($background, 8);
+    } else {
+      background-color: darken($background, 8);
+    }
+  }
+}
+
+button($foreground, $background) {
+  display: inline-block;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 40px;
+
+  transition-property: background-color, transform;
+  transition-duration: 0.2s;
+
+  buttonColor($foreground, $background);
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button {
+  button($colorSecondary, gray(98%));
+}
+
+/* Fields
+   ========================================================================== */
+
+.form-row {
+  margin: 10px 0;
+}
+
+.form-label {
+  display: block;
+  margin: 5px 0;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: $grayLight;
+}
+
+.form-control {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 5px 0;
+
+  border: none;
+  padding: 5px;
+  border-bottom: 2px solid $grayLightest;
+
+  color: $colorSecondary;
+  background: transparent;
+
+  transition: border-bottom-color 0.2s;
+
+  &::placeholder {
+    color: $grayLighter;
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom-color: $colorPrimary;
+  }
+}
+
+.form-control-money {
+  padding-left: 20px;
+}
+
+.form-control-money-sign {
+  position: absolute;
+  margin-top: 6px;
+  margin-left: 5px;
+  color: $colorSecondary;
+}
+
+.submit-button {
+  float: right;
+}
