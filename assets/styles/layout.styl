@@ -205,3 +205,39 @@ a, a:visited {
     width: 100%;
   }
 }
+
+/* Default layout
+   ========================================================================== */
+
+.strike-heading {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.strike-heading > span {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+}
+
+.strike-heading > span:before,
+.strike-heading > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 3000%;
+    height: 1px;
+    background: white;
+}
+
+.strike-heading > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike-heading > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
