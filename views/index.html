@@ -108,7 +108,7 @@
     <div class="faqs-listing"><!--
       {% for faq in faqs %}
       --><div class="faq-element">
-        <h3>{{faq.question}}</h3>
+        <h3>{{ faq.question }}</h3>
         {{ faq.answer | safe }}
       </div><!--
      {% endfor %}
@@ -120,7 +120,7 @@
     <h2 class="grand-heading">Our Sponsors</h2>
       {% for sponsorTierName, sponsorTier in sponsors %}
         <div class="strike-heading">
-          <span> {{sponsorTierName | upper}} </span>
+          <span> {{ sponsorTierName | capitalize }} </span>
         </div>
         <div class="helpers-container helpers-container-{{ sponsorTierName }}">
           {% for sponsor in sponsorTier %}
