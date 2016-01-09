@@ -421,8 +421,6 @@ $home-light-section {
   for $sponsor in $sponsorSizes {
     &-{$sponsor[0]} {
       $marginSize = min($minSize[2], ($sponsor[3]) / 2);
-      margin-left: -($marginSize);
-      margin-right: -($marginSize);
 
       .helper-link-wide img {
         width: max($minSize[0], $sponsor[1] / 2);
@@ -439,13 +437,11 @@ $home-light-section {
   }
 
   @media only screen and (min-width: 600px) {
-    margin: ($punit * 4) (-1 * $punit);
+    margin: ($punit * 4) (0);
 
     for $sponsor in $sponsorSizes {
       &-{$sponsor[0]} {
         $marginSize = ($sponsor[3]);
-        margin-left: -($marginSize);
-        margin-right: -($marginSize);
 
         .helper-link-wide img {
           width: ($sponsor[1]);
