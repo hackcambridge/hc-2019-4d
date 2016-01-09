@@ -210,34 +210,30 @@ a, a:visited {
    ========================================================================== */
 
 .strike-heading {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.15em;
     text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-}
+    line-height: 1;
 
-.strike-heading > span {
-    position: relative;
-    display: inline-block;
-    font-size: 30px;
-}
 
-.strike-heading > span:before,
-.strike-heading > span:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 3000%;
-    height: 1px;
-    background: white;
-}
+    &:before, &:after {
+      content: '';
+      display: block;
+      flex: 1 1 auto;
+      height: 2px;
+      background: $colorSecondary;
+    }
 
-.strike-heading > span:before {
-    right: 100%;
-    margin-right: 15px;
-}
-
-.strike-heading > span:after {
-    left: 100%;
-    margin-left: 15px;
+    > span {
+      flex: 0 0 auto;
+      display: block;
+      margin: 0 15px;
+      opacity: 0.8;
+    }
 }
