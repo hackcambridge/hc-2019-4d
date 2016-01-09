@@ -24,6 +24,10 @@ sponsors:
       website: http://havenondemand.com/
       logo: hpehaven-logo.svg
       variant: wide
+    - name: Metaswitch
+      website: http://www.metaswitch.com/
+      logo: metaswitch-logo.svg
+      variant: wide
 
   mega:
     - name: KCG
