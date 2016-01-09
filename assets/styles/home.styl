@@ -472,21 +472,22 @@ $home-light-section {
   color: $grayLight;
 }
 
-.strike {
+//stylings for the horizontal lines in the sponsorship header sections.
+.horizontal-line {
     display: block;
     text-align: center;
     overflow: hidden;
     white-space: nowrap; 
 }
 
-.strike > span {
+.horizontal-line > span {
     position: relative;
     display: inline-block;
     font-size: 30px;
 }
 
-.strike > span:before,
-.strike > span:after {
+.horizontal-line > span:before,
+.horizontal-line > span:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -495,12 +496,12 @@ $home-light-section {
     background: white;
 }
 
-.strike > span:before {
+.horizontal-line > span:before {
     right: 100%;
     margin-right: 15px;
 }
 
-.strike > span:after {
+.horizontal-line > span:after {
     left: 100%;
     margin-left: 15px;
 }

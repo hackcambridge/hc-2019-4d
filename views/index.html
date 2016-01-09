@@ -119,11 +119,9 @@
   <div class="content-wrapper-center">
     <h2 class="grand-heading">Our Sponsors</h2>
       {% for sponsorTierName, sponsorTier in sponsors %}
-          <div class="strike">
-            <span>
-                {{sponsorTierName | upper}}
-            </span>
-          </div>
+        <div class="horizontal-line">
+          <span> {{sponsorTierName | upper}} </span>
+        </div>
         <div class="helpers-container helpers-container-{{ sponsorTierName }}">
           {% for sponsor in sponsorTier %}
           <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
