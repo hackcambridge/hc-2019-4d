@@ -415,7 +415,7 @@ $home-light-section {
   }
 
   // Name, width, height, padding
-  $sponsorSizes = (cohost 1200px 800px 0px) (tera 600px 400px 60px) (giga 300px 200px 30px) (mega 150px 100px 15px) (kilo 75px 50px 10px);
+  $sponsorSizes = (cohost 1200px 800px 30px) (tera 600px 400px 30px) (giga 300px 200px 15px) (mega 150px 100px 10px) (kilo 75px 50px 5px);
   $minSize = 45px 30px 5px
 
   for $sponsor in $sponsorSizes {
@@ -437,7 +437,7 @@ $home-light-section {
   }
 
   @media only screen and (min-width: 600px) {
-    margin: ($punit * 4) (0);
+    margin: ($punit * 2) (0);
 
     for $sponsor in $sponsorSizes {
       &-{$sponsor[0]} {
@@ -452,7 +452,7 @@ $home-light-section {
         }
 
         .helper-link {
-          margin: ($marginSize) ($marginSize * 1.5);
+          margin: ($marginSize) ($marginSize * 3);
         }
       }
     }
@@ -470,4 +470,37 @@ $home-light-section {
   font-size: 0.9em;
   margin-top: 200px;
   color: $grayLight;
+}
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 3000%;
+    height: 1px;
+    background: white;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
 }
