@@ -20,6 +20,10 @@ sponsors:
       website: https://www.twosigma.com/
       logo: twosigma-logo.svg
       variant: wide
+    - name: Bloomberg
+      website: http://www.bloomberg.com/
+      logo: bloomberg-logo.svg
+      variant: wide
     - name: HPE Haven OnDemand
       website: http://havenondemand.com/
       logo: hpehaven-logo.svg
