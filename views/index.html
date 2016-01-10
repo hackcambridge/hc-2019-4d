@@ -108,7 +108,7 @@
     <div class="faqs-listing"><!--
       {% for faq in faqs %}
       --><div class="faq-element">
-        <h3>{{faq.question}}</h3>
+        <h3>{{ faq.question }}</h3>
         {{ faq.answer | safe }}
       </div><!--
      {% endfor %}
@@ -116,9 +116,12 @@
   </div>
 </section>
 <section class="landing-helpers-section" id="helpers">
-  <div class="content-wrapper">
+  <div class="content-wrapper-center">
     <h2 class="grand-heading">Our Sponsors</h2>
       {% for sponsorTierName, sponsorTier in sponsors %}
+        <h3 class="strike-heading">
+          <span> {{ sponsorTierName | capitalize }} </span>
+        </h3>
         <div class="helpers-container helpers-container-{{ sponsorTierName }}">
           {% for sponsor in sponsorTier %}
           <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
@@ -133,8 +136,7 @@
       <a class="helper-link helper-link-wide" href="https://www.cambridgelivetrust.co.uk/" target="_blank">
         <img src="{{ asset('images/logos/cambridgelive-logo.svg') }}" alt="Cambridge Live" />
       </a>
-    </div>
-    <div class="helpers-container helpers-container-giga">
+
       <a class="helper-link helper-link-wide" href="https://mlh.io/" target="_blank">
         <img src="{{ asset('images/logos/mlh-logo.svg') }}" alt="MLH" />
       </a>

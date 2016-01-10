@@ -383,6 +383,10 @@ $home-light-section {
     vertical-align: top;
   }
 
+  h3 {
+    color: $grayDark; 
+  }
+
   @media only screen and (min-width: 500px) {
     .faq-element {
       width: 50%;
@@ -408,55 +412,65 @@ $home-light-section {
     display: inline-block;
     vertical-align: middle;
     max-width: 100%;
+    box-sizing: border-box;
 
     img {
       max-width: 100%;
     }
   }
 
+  .helper-link-wide img {
+    width: 100%;
+  }
+
+  // Tall helper links could cause some weird bugs on mobile
+  // Probably best to avoid for now!
+  .helper-link-tall img {
+    height: 100%;
+  }
+
   // Name, width, height, padding
-  $sponsorSizes = (cohost 1200px 800px 0px) (tera 600px 400px 60px) (giga 300px 200px 30px) (mega 150px 100px 15px) (kilo 75px 50px 10px);
+  $sponsorSizes = (cohost 1050px 800px 30px) (tera 583px 400px 20px) (giga 324px 200px 15px) (mega 180px 100px 10px) (kilo 100px 50px 5px);
   $minSize = 45px 30px 5px
 
   for $sponsor in $sponsorSizes {
     &-{$sponsor[0]} {
       $marginSize = min($minSize[2], ($sponsor[3]) / 2);
-      margin-left: -($marginSize);
-      margin-right: -($marginSize);
 
-      .helper-link-wide img {
+      .helper-link-wide {
         width: max($minSize[0], $sponsor[1] / 2);
       }
 
-      .helper-link-tall img {
+      .helper-link-tall {
         height: max($minSize[1], $sponsor[2] / 2);
       }
 
       .helper-link {
-        margin: ($marginSize);
+        padding: ($marginSize);
       }
     }
   }
 
   @media only screen and (min-width: 600px) {
-    margin: ($punit * 4) (-1 * $punit);
+    margin: ($punit * 2) (0);
 
     for $sponsor in $sponsorSizes {
       &-{$sponsor[0]} {
-        $marginSize = ($sponsor[3]);
-        margin-left: -($marginSize);
-        margin-right: -($marginSize);
+        $marginSize = ($sponsor[3]) * 2;
+        $outerMargin = ~min($marginSize, $punit);
+        margin-left: $outerMargin;
+        margin-right: $outerMargin;
 
-        .helper-link-wide img {
+        .helper-link-wide {
           width: ($sponsor[1]);
         }
 
-        .helper-link-tall img {
+        .helper-link-tall {
           height: ($sponsor[2]);
         }
 
         .helper-link {
-          margin: ($marginSize);
+          padding ($marginSize);
         }
       }
     }
