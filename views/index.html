@@ -127,6 +127,14 @@
           <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
             <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
           </a>
+          {% if sponsorTierName == "cohost" %}
+          <p> Thales e-Security is a leading global provider of trusted cryptographic and cybersecurity solutions,
+              protecting the world’s most sensitive applications and information. Thales solutions enhance privacy,
+              trusted identities, and secure payments with certified, high performance encryption and digital signature
+              technology for customers in a wide range of markets including financial services, high technology,
+              manufacturing, and government. </p>
+          <a href="https://www.thales-esecurity.com" target="_blank"> www.thales-esecurity.com </a>
+          {% endif %}
           {% endfor %}
         </div>
       {% endfor %}
