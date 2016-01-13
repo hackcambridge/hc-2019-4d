@@ -32,6 +32,10 @@ sponsors:
       website: http://havenondemand.com/
       logo: hpehaven-logo.svg
       variant: wide
+    - name: McKinsey & Company
+      website: http://www.mckinsey.com/
+      logo: mckinsey-logo.svg
+      variant: wide
 
   mega:
     - name: KCG
