@@ -58,6 +58,11 @@ sponsors:
       website: https://www.citrix.com/
       logo: citrix-logo.svg
       variant: wide
+    - name: Skyscanner
+      website: http://www.skyscanner.net/
+      logo: skyscanner-logo.svg
+      variant: wide
+
   kilo:
     - name: Jane Street
       website: https://www.janestreet.com/
