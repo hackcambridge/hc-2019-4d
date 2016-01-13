@@ -67,3 +67,7 @@ sponsors:
       website: http://www.softwire.com/
       logo: softwire-logo.svg
       variant: wide
+    - name: Bank of America Merrill Lynch
+      website: http://www.bofaml.com/content/boaml/en_us/home.html
+      logo: baml-logo.svg
+      variant: wide
