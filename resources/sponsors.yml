@@ -58,6 +58,11 @@ sponsors:
       website: https://www.citrix.com/
       logo: citrix-logo.svg
       variant: wide
+    - name: Capital One
+      website: http://www.capitalone.co.uk/web/index.jsf
+      logo: capitalone-logo.svg
+      variant: wide
+
   kilo:
     - name: Jane Street
       website: https://www.janestreet.com/
