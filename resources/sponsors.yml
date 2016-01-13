@@ -16,6 +16,10 @@ sponsors:
       variant: wide
 
   giga:
+    - name: G-Research
+      website: http://www.gresearch.co.uk/
+      logo: gresearch-logo.svg
+      variant: tall
     - name: Two Sigma
       website: https://www.twosigma.com/
       logo: twosigma-logo.svg
