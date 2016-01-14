@@ -32,6 +32,10 @@ sponsors:
       website: http://havenondemand.com/
       logo: hpehaven-logo.svg
       variant: wide
+    - name: Improbable
+      website: http://improbable.io/
+      logo: improbable-logo.svg
+      variant: tall
 
   mega:
     - name: KCG
@@ -62,6 +66,10 @@ sponsors:
     - name: Jane Street
       website: https://www.janestreet.com/
       logo: janestreet-logo.svg
+      variant: wide
+    - name: Google
+      website: https://www.google.com/about/careers/
+      logo: google-logo.svg
       variant: wide
     - name: Softwire
       website: http://www.softwire.com/
