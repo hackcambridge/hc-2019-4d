@@ -14,6 +14,10 @@ sponsors:
       website: http://www.cantabcapital.com/
       logo: cantab-logo.svg
       variant: wide
+    - name: GSA Capital Partners
+      website: https://www.gsacapital.com/
+      logo: gsa-logo.svg
+      variant: tall
 
   giga:
     - name: G-Research
@@ -79,3 +83,6 @@ sponsors:
       website: http://www.softwire.com/
       logo: softwire-logo.svg
       variant: wide
+
+
+
