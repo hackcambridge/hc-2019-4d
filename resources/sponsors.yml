@@ -36,6 +36,10 @@ sponsors:
       website: http://improbable.io/
       logo: improbable-logo.svg
       variant: tall
+    - name: Geospock
+      website: http://www.geospock.com/
+      logo: geospock-logo.svg
+      variant: wide
 
   mega:
     - name: KCG
