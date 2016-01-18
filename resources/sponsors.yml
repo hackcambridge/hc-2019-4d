@@ -75,6 +75,10 @@ sponsors:
       website: https://www.janestreet.com/
       logo: janestreet-logo.svg
       variant: wide
+    - name: Tractable
+      website: http://tractable.io/
+      logo: tractable-logo.svg
+      variant: wide
     - name: Google
       website: https://www.google.com/about/careers/
       logo: google-logo.svg
