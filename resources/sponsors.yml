@@ -82,6 +82,10 @@ sponsors:
       website: http://tractable.io/
       logo: tractable-logo.svg
       variant: wide
+    - name: ARM
+      website: http://www.arm.com/careers/index.html
+      logo: arm-logo.svg
+      variant: wide
     - name: Google
       website: https://www.google.com/about/careers/
       logo: google-logo.svg
