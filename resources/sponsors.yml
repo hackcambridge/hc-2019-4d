@@ -43,6 +43,7 @@ sponsors:
     - name: Geospock
       website: http://www.geospock.com/
       logo: geospock-logo.svg
+      variant: wide
     - name: Metaswitch
       website: http://www.metaswitch.com/
       logo: metaswitch-logo.svg
