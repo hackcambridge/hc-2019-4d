@@ -1,1 +1,14 @@
-api_prizes:
+prizes:
+  general:
+  api:
+    - name: HPE Haven OnDemand API Challenge
+      description: | 
+        HPE Haven OnDemand (https://www.havenondemand.com/) is a platform for developers and businesses to build
+        cognitive computing solutions and data rich applications using text analysis, speech recognition, image analysis, indexing and search APIs.
+ 
+        Your challenge, should you choose to accept it, is to build the most innovative cognitive computing solution to augment human intelligence
+        using the Haven OnDemand natural language processing, machine learning, and predictive analytics APIs. There are more than 60 APIs in the
+        catalog (https://dev.havenondemand.com/apis), and all Developers get an API key with FREE monthly quota. Sign up here (https://www.havenondemand.com/signup.html)
+        and check out the hackathon resources (https://community.havenondemand.com/t5/Blog/Developer-resources-for-your-hackathon/ba-p/2495) to jumpstart your projects.
+
+      prize: 1 GoPro - HERO4 Session HD Waterproof Action Camera for each member of the winning team.
