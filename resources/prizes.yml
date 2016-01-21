@@ -1,5 +1,21 @@
 prizes:
   general:
+    - name: The Hack Cambridge Gold Award
+      description: |
+        Description goes here.
+      prize: Prize Goes here
+    - name: The Hack Cambridge Silver Award
+      description: |
+        Description goes here
+      prize: Prize goes here
+    - name: The Hack Cambridge Bronze Award
+      description: |
+        Description goes here
+      prize: Prize goes here
+    - name: The Hack Cambridge People's Choice Award
+      description: |
+        Description goes here
+      prize: Prize goes here
   api:
     - name: HPE Haven OnDemand API Challenge
       description: | 
@@ -11,4 +27,4 @@ prizes:
         catalog (https://dev.havenondemand.com/apis), and all Developers get an API key with FREE monthly quota. Sign up here (https://www.havenondemand.com/signup.html)
         and check out the hackathon resources (https://community.havenondemand.com/t5/Blog/Developer-resources-for-your-hackathon/ba-p/2495) to jumpstart your projects.
 
-      prize: 1 GoPro - HERO4 Session HD Waterproof Action Camera for each member of the winning team.
+      prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
