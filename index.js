@@ -127,6 +127,10 @@ app.get('/apply', function (req, res) {
   });
 });
 
+app.get('/event', function (req, res) {
+  res.render('event.html');
+});
+
 app.get('/teamapply', function(req, res) {
   res.render('form.html', {
     title: 'Apply to Hack Cambridge as a Team',
