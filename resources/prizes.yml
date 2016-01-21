@@ -44,4 +44,16 @@ prizes:
         Mailjet enables you to send transactional emails with peace of mind. We ensure a great deliverability for your emails and an end-to-end tracking.
         You can send your emails through SMTP relay or API. Discover more at http://dev.mailjet.com/guides/.
       prize: One nerfgun+camera for each member of the winning team alongside 6-months Silver Premium Plan for 6 months. TODO: NEED TO FIND DETAILS!
+      picture: picture.png
+    - name: Nessie by Capital One – api.reimaginebanking.com
+      description: |
+        Nessie is Capital One’s Hackathon API that gives you access to real public-facing data - such as ATM and bank locations - along with mock customer data.
+        Use HTTP requests to setup peer-to-peer transactions, simulate a weekly paycheque, or even schedule bills for customers! Have a go: api.reimaginebanking.com
+
+        Nessie is still young and we’re always looking for feedback to improve it. Grab anyone of us from Capital One to get help with Nessie, give feedback or talk
+        about how you’d reimagine banking.
+
+        Happy Hacking!
+      prize: TBA
+      picture: picture.png
         

@@ -9,5 +9,11 @@ workshops:
    
       Speaker: Tyler Nappy, Developer Evangelist
       Follow Tyler on Twitter @tylernappy (https://twitter.com/tylernappy)
-    time: Januray the 30th at 13:00 GMT
+    time: January the 30th from 13:00 to 13:30 GMT
+    location: TBA
+  - name: Title: Winning at APIs - Getting started working with APIs
+    description: |
+      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
+      and consumption of APIs is a critical skill, this is a talk not to be missed!
+    time: TBA (10 mins long)
     location: TBA
