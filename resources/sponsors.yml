@@ -78,6 +78,10 @@ sponsors:
       website: http://capitalonecareers.co.uk/graduates
       logo: capitalone-logo.svg
       variant: wide
+    - name: Palantir
+      website: https://www.palantir.com/careers/teams/recruiting/
+      logo: palantir-logo.svg
+      variant: wide
 
   kilo:
     - name: Jane Street
