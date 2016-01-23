@@ -96,6 +96,10 @@ sponsors:
       website: https://squareup.com/careers
       logo: square-logo.svg
       variant: wide
+    - name: Mailjet
+      website: http://dev.mailjet.com/
+      logo: mailjet-logo.svg
+      variant: wide
     - name: ARM
       website: http://www.arm.com/careers/index.html
       logo: arm-logo.svg
