@@ -16,6 +16,7 @@ var marked = require('marked');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
+var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
 
@@ -71,28 +72,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-var loadedResources = [];
-function loadResource(resourceName) {
-  if ((!loadedResources[resourceName]) || (app.settings.env == "development")) {
-    var loadedResource = yaml.safeLoad(fs.readFileSync('./resources/' + resourceName + '.yml'))[resourceName];
-
-    if (resourceName == 'faqs') {
-      loadedResource = _.map(loadedResource, function(faq) {
-        return {
-          question: faq.question,
-          answer: marked(faq.answer)
-        }
-      });
-    }
-
-    loadedResources[resourceName] = loadedResource;
-  }
-
-  return loadedResources[resourceName];
-}
-
 function renderHome(req, res) {
-  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors') });
+  res.render('index.html', { faqs: utils.loadResource('faqs'), sponsors: utils.loadResource('sponsors') });
 }
 
 app.get('/', renderHome);
