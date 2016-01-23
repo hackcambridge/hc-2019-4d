@@ -84,6 +84,10 @@ sponsors:
       variant: wide
 
   kilo:
+    - name: Costain
+      website: http://costain.com/careers/
+      logo: costain-logo.svg
+      variant: wide
     - name: Jane Street
       website: https://www.janestreet.com/
       logo: janestreet-logo.svg
