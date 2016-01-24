@@ -1,24 +1,24 @@
 prizes:
   general:
-    - name: The Hack Cambridge Gold Award
+    - name: Hack Cambridge 1st Place
       description: |
-        Description goes here.
+        You did very gud son!
       prize: Prize Goes here
       picture: picture.png
-    - name: The Hack Cambridge Silver Award
+    - name: Hack Cambridge 2nd Place
       description: |
-        Description goes here
-      prize: Prize goes here
+        You did gud son!
+      prize: Each member of the winning team will receive a Parrot MiniDrones Airborne Cargo Drone, a mini-keyboard and a grey Logitech M185 Wireless Mouse.
       picture: picture.png
-    - name: The Hack Cambridge Bronze Award
+    - name: Hack Cambridge 3rd Place
       description: |
-        Description goes here
-      prize: Prize goes here
+        You did kinda u on!
+      prize: Each member of the winning team will receive a 6" Touchscreen Kindle.
       picture: picture.png
     - name: The Hack Cambridge People's Choice Award
       description: |
-        Description goes here
-      prize: Prize goes here
+        Do you think you have what it takes to impress your peers? During the judging period hackers will be able to check out each other's projects and vote for their favourites.
+      prize: Echo member of the winnng team will receive a Black Pebble Time smartwatch.
       picture: picture.png
   api:
     - name: HPE Haven OnDemand API
@@ -32,6 +32,18 @@ prizes:
         and check out the [hackathon resources](https://community.havenondemand.com/t5/Blog/Developer-resources-for-your-hackathon/ba-p/2495) to jumpstart your projects.
 
       prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
+      picture: picture.png
+    - name: Beaker API
+      description: |
+        [The Beaker Notebook](http://beakernotebook.com/) is a new open source tool for collaborative data science. Beaker has an innovative UI and unique architecture to make
+        it easier for novices to get started, and enable experts to work faster. Like IPython, Beaker uses a notebook-based UI metaphor, but Beaker was
+        designed to be polyglot from the ground up. That is, a single notebook may contain cells from multiple different languages that communicate with one
+        another through a unique feature called autotranslation. You can set a variable in a Python cell and then read that variable in a subsequent R cell,
+        and everything just works – magically. Beaker comes with built-in support for Python, R, JavaScript, Java, Scala, Clojure, Julia, and more.
+
+        Each part of your problem can be solved in the language best suited to it. For example, you can scrape the web in Python, do a regression in R, and
+        then visualize it with d3.js, seamlessly and all in the same notebook. 
+      prize: TBA
       picture: picture.png
     - name: Mailjet API
       description: |
