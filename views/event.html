@@ -1,4 +1,59 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>Hi</div>
+<section class="section-event-intro">
+  {# Countdown #}
+  {# Twitter Stream #}
+  {# Link to livestream #}
+  {# Nav to parts of the page #}
+</section>
+<section class="section-event-prizes">
+  <div class="content-wrapper">
+    <h2>Prizes</h2>
+    <div class="event-prizes-general">
+    {% for prize in prizes.general %}
+      <div class="event-prize-general">
+        <h3>{{ prize.name }}</h3>
+      </div>
+    {% endfor %}
+    </div>
+    <h2>API Prizes</h2>
+    <div class="event-prizes-api">
+      {% for prize in prizes.api %}
+      <div class="event-prize-api">
+        <h3>{{ prize.name }}</h3>
+        {{ prize.description }}
+      </div>
+      {% endfor %}
+    </div>
+    <p>More prizes to come!</p>
+  </div>
+</section>
+<section class="section-event-timetable">
+  <div class="content-wrapper">
+    <h2>Schedule</h2>
+
+    <h2>Workshops</h2>
+    {# Workshops #}
+    {# General timetable #}
+    <div class="event-timetable-workshops">
+      {% for workshop in workshops %}
+        <div class="event-workshop">
+          <h3>{{ workshop.name }}</h3>
+          {{ workshop.description }}
+          {{ workshop.time }}
+        </div>
+      {% endfor %}
+    </div>
+    <p>More workshops to come!</p>
+  </div>
+</section>
+<section class="section-event-info">
+  <div class="content-wrapper">
+    <h2>Submitting Your Hack</h2>
+    <h2>Hardware</h2>
+    <h2>Food &amp; Snacks</h2>
+    <h2>Games</h2>
+    <h2>Emergencies</h2>
+  </div>
+</section>
 {% endblock %}
