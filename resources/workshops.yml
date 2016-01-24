@@ -4,16 +4,18 @@ workshops:
       With more than 60 powerful and easy to use APIs, HPE Haven OnDemand can crawl, index and analyze data from file systems and the web.
       It can analyze and extract insights from text, audio, video, and image files, or be used to build prediction models and recommendation engines.
       By combining APIs you'll be able to create powerful data transformation and enrichment workflows.
-   
+
       Join us on January 30th at 1:00 p.m. GMT for a demo, followed by Q&A.
-   
+
       Speaker: Tyler Nappy, Developer Evangelist
-      Follow Tyler on Twitter @tylernappy (https://twitter.com/tylernappy)
-    time: January the 30th from 13:00 to 13:30 GMT
+      Follow Tyler on Twitter [@tylernappy](https://twitter.com/tylernappy)
+    time: 2016-30-01 13:00:00
+    duration: 30 # In minutes
     location: TBA
-  - name: Title: Winning at APIs - Getting started working with APIs
+  - name: Winning at APIs - Getting started working with APIs
     description: |
       Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
       and consumption of APIs is a critical skill, this is a talk not to be missed!
-    time: TBA (10 mins long)
+    time: 2016-30-01 13:20:00
+    duration: 10
     location: TBA
