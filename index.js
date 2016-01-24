@@ -20,6 +20,8 @@ var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
 
+utils.init(app);
+
 // Static file serving
 var staticOptions = { };
 if (app.settings.env != 'development') {
@@ -109,7 +111,11 @@ app.get('/apply', function (req, res) {
 });
 
 app.get('/event', function (req, res) {
-  res.render('event.html');
+  res.render('event.html', {
+    title: 'Hack Cambridge 2016',
+    workshops: utils.loadResource('workshops'),
+    prizes: utils.loadResource('prizes')
+  });
 });
 
 app.get('/teamapply', function(req, res) {

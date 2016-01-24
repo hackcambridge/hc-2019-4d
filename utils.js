@@ -2,12 +2,24 @@ var _ = require('lodash');
 var yaml = require('js-yaml');
 var marked = require('marked');
 var fs = require('fs');
+var moment = require('moment-timezone');
+var nunjucks = require('nunjucks');
 
 var loadedResources = [];
+var app;
+
+function timeProperties(items, properties) {
+  items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop].time, 'Europe/London')));
+}
+
 
 function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => item[prop] = marked(item[prop])));
+  items.forEach((item) => properties.forEach((prop) => item[prop] = nunjucks.runtime.markSafe(marked(item[prop]))));
 }
+
+exports.init = function init(a) {
+  app = a;
+};
 
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
@@ -22,6 +34,7 @@ exports.loadResource = function loadResource(resourceName) {
         break;
       case 'workshops':
         markdownProperties(loadedResource, ['description']);
+        timeProperties(loadedResource, ['time'])
         break;
     }
 
