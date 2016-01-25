@@ -19,6 +19,7 @@ var mailchimp = require('mailchimp-api');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
 
+
 // Static file serving
 var staticOptions = { };
 if (app.settings.env != 'development') {
