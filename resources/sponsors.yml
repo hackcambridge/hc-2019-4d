@@ -104,6 +104,10 @@ sponsors:
       website: http://www.arm.com/careers/index.html
       logo: arm-logo.svg
       variant: wide
+    - name: Amazon UK
+      website: http://www.amazon.jobs/
+      logo: amazon-logo.svg
+      variant: wide
     - name: Google
       website: https://www.google.com/about/careers/
       logo: google-logo.svg
