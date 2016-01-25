@@ -62,9 +62,9 @@ var assetPath = ['assets/**', '!assets/scripts/**', '!assets/styles/**', '!asset
 
 // other assets
 gulp.task('assets', function () {
-  gulp.src(assetPath)
+  return gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
-    .pipe(bs.stream());
+    .pipe(bs.stream({ once: true }));
 });
 
 gulp.task('rev', function () {
@@ -104,7 +104,7 @@ gulp.task('serve', ['watch'], function () {
   });
 });
 
-gulp.task('build', function () {
+gulp.task('build', function (cb) {
   var args = ['clean', 'assets', 'scripts', 'styles'];
 
   if (prod) {
@@ -112,6 +112,8 @@ gulp.task('build', function () {
     args.push('wait');
     args.push('rev');
   }
+
+  args.push(cb);
 
   sequence.apply(null, args);
 });
