@@ -44,6 +44,10 @@ sponsors:
       website: http://www.geospock.com/
       logo: geospock-logo.svg
       variant: wide
+    - name: Metaswitch
+      website: http://www.metaswitch.com/
+      logo: metaswitch-logo.svg
+      variant: wide
 
   mega:
     - name: KCG
@@ -70,10 +74,35 @@ sponsors:
       website: https://www.citrix.com/
       logo: citrix-logo.svg
       variant: wide
+    - name: Capital One
+      website: http://capitalonecareers.co.uk/graduates
+      logo: capitalone-logo.svg
+      variant: wide
+    - name: Palantir
+      website: https://www.palantir.com/careers/teams/recruiting/
+      logo: palantir-logo.svg
+      variant: wide
+
   kilo:
     - name: Jane Street
       website: https://www.janestreet.com/
       logo: janestreet-logo.svg
+      variant: wide
+    - name: Tractable
+      website: http://tractable.io/
+      logo: tractable-logo.svg
+      variant: wide
+    - name: Square
+      website: https://squareup.com/careers
+      logo: square-logo.svg
+      variant: wide
+    - name: Mailjet
+      website: http://dev.mailjet.com/
+      logo: mailjet-logo.svg
+      variant: wide
+    - name: ARM
+      website: http://www.arm.com/careers/index.html
+      logo: arm-logo.svg
       variant: wide
     - name: Google
       website: https://www.google.com/about/careers/
@@ -83,6 +112,9 @@ sponsors:
       website: http://www.softwire.com/
       logo: softwire-logo.svg
       variant: wide
-
+    - name: Bank of America Merrill Lynch
+      website: http://www.bofaml.com/content/boaml/en_us/home.html
+      logo: baml-logo.svg
+      variant: wide
 
 
