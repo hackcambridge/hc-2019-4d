@@ -9,6 +9,8 @@ var buffer = require('vinyl-buffer');
 var del = require('del');
 var browserify = require('browserify');
 var sequence = require('run-sequence');
+var bs = require('browser-sync').create();
+var nodemon = require('nodemon');
 
 var prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -30,7 +32,8 @@ gulp.task('styles', function () {
       paths: ['./node_modules']
     }))
     .pipe($.autoprefixer())
-    .pipe(gulp.dest('assets/dist/styles'));
+    .pipe(gulp.dest('assets/dist/styles'))
+    .pipe(bs.stream());;
 });
 
 // js
@@ -51,7 +54,8 @@ gulp.task('scripts', function () {
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
     .pipe($.if(prod, $.uglify()))
     .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/scripts'));
+    .pipe(gulp.dest('assets/dist/scripts'))
+    .pipe(bs.stream());;
 });
 
 var assetPath = ['assets/**', '!assets/scripts/**', '!assets/styles/**', '!assets/dist/**'];
@@ -59,7 +63,8 @@ var assetPath = ['assets/**', '!assets/scripts/**', '!assets/styles/**', '!asset
 // other assets
 gulp.task('assets', function () {
   gulp.src(assetPath)
-    .pipe(gulp.dest('assets/dist'));
+    .pipe(gulp.dest('assets/dist'))
+    .pipe(bs.stream());
 });
 
 gulp.task('rev', function () {
@@ -79,7 +84,24 @@ gulp.task('wait', function (cb) {
 gulp.task('watch', ['build'], function () {
   gulp.watch('assets/scripts/**', ['scripts']);
   gulp.watch('assets/styles/**', ['styles']);
+  gulp.watch('views/**', bs.reload)
   gulp.watch(assetPath, ['assets']);
+});
+
+gulp.task('serve', ['watch'], function () {
+  bs.init({
+    port: 8000,
+    logSnippet: false
+  }, function (err) {
+    nodemon({
+      script: 'index.js',
+      ext: 'js',
+      ignore: ['assets/**', 'gulpfile.js'],
+      env: {
+        BS_SNIPPET: bs.getOption('snippet')
+      }
+    });
+  });
 });
 
 gulp.task('build', function () {

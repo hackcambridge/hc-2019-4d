@@ -44,13 +44,17 @@ try {
   assetsFile = { };
 }
 
-nunjucksEnv.addGlobal('asset', function (asset) {
+app.locals.asset = function (asset) {
   if (_.has(assetsFile, asset)) {
     asset = assetsFile[asset];
   }
 
   return '/assets/' + asset;
-});
+};
+
+if (process.env.BS_SNIPPET) {
+  app.locals.browserSync = process.env.BS_SNIPPET;
+}
 
 // Routes
 
@@ -140,6 +144,8 @@ app.use(renderHome);
 
 // Start server
 app.set('port', (process.env.PORT || 3000));
+
+module.exports = app;
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
