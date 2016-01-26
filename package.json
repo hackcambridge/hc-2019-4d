@@ -17,6 +17,9 @@
   "bugs": {
     "url": "https://github.com/hackcambridge/hack-cambridge-website/issues"
   },
+  "engines": {
+    "node": "4.2.4"
+  },
   "homepage": "https://github.com/hackcambridge/hack-cambridge-website#readme",
   "dependencies": {
     "autoprefixer-loader": "^3.1.0",
