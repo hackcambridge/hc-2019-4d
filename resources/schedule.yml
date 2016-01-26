@@ -1,0 +1,33 @@
+schedule:
+  - event: Registration Opens
+    time: 2016-01-30 9:00:00
+  - event: Pitching Session
+    time: 2016-01-30 9:00:00
+  - event: Opening Ceremony
+    time: 2016-01-30 11:00:00
+  - event: Hacking Starts
+    time: 2016-01-30 12:00:00
+    class: emphasis
+  - event: Lunch
+    time: 2016-01-30 12:00:00
+  - event: Workshops
+    time: 2016-01-30 13:00:00
+  - event: Dinner
+    time: 2016-01-30 18:00:00
+  - event: Code-in-the-Dark
+    time: 2016-01-30 20:00:00
+
+  # Suday
+  - event: Midnight Supper
+    time: 2016-01-31 00:00:00
+  - event: Breakfast
+    time: 2016-01-31 07:00:00
+  - event: Hacking Ends
+    time: 2016-01-31 12:00:00
+    class: emphasis
+  - event: Hack Expo
+    time: 2016-01-31 13:00:00
+  - event: Closing Ceremony
+    time: 2016-01-31 16:15:00
+  - event: Hack Cambridge Concludes
+    time: 2016-01-31 17:00:00

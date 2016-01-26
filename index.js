@@ -118,7 +118,8 @@ app.get('/event', function (req, res) {
   res.render('event.html', {
     title: 'Hack Cambridge 2016',
     workshops: utils.loadResource('workshops'),
-    prizes: utils.loadResource('prizes')
+    prizes: utils.loadResource('prizes'),
+    schedule: utils.loadResource('schedule')
   });
 });
 

@@ -34,6 +34,24 @@
 <section class="section-event-timetable" id="schedule">
   <div class="content-wrapper">
     <h2 class="grand-heading">Schedule</h2>
+
+    {% macro render_schedule(day) %}
+      <div class="event-timetable-schedule-day event-timetable-schedule-{{ day }}">
+        <h3>{{ day | title }}</h3>
+        {% for event in schedule[day] %}
+        <div class="event-timetable-schedule-item{% if event.class %} {{ event.class }}{% endif %}">
+          <div class="event-timetable-schedule-item-time">{{ event.time.format('HH:mm') }}</div>
+          <div class="event-timetable-schedule-item-name">{{ event.event }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endmacro %}
+
+    <div class="event-timetable-schedule">
+      {{ render_schedule('saturday') }}
+      {{ render_schedule('sunday') }}
+    </div>
+
     <h2 class="grand-heading">Workshops</h2>
     <p>Workshops run on Saturday afternoon</p>
     {# Workshops #}
@@ -47,9 +65,9 @@
             {% if not workshop.time.isValid() %}
               TBA
             {% else %}
-              {{ workshop.time.format('h:mm') }}
+              {{ workshop.time.format('H:mm') }}
               <div class="event-workshop-decorator">until</div>
-              {{ workshop.time.add(workshop.duration, 'minutes').format('h:mm') }}
+              {{ workshop.time.add(workshop.duration, 'minutes').format('H:mm') }}
             {% endif %}
           </div>
           {{ workshop.description }}

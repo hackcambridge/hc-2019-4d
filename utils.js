@@ -36,6 +36,12 @@ exports.loadResource = function loadResource(resourceName) {
         markdownProperties(loadedResource, ['description']);
         timeProperties(loadedResource, ['time'])
         break;
+      case 'schedule':
+        timeProperties(loadedResource, ['time']);
+        loadedResource = {
+          saturday: loadedResource.filter((event) => event.time.date() == 30),
+          sunday: loadedResource.filter((event) => event.time.date() == 31)
+        };
     }
 
     loadedResources[resourceName] = loadedResource;

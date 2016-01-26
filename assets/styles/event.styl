@@ -102,10 +102,59 @@
 /* Schedule
    ========================================================================== */
 
+
+
 .section-event-timetable {
   dark-background();
   color: #fff;
   padding: ($punit * 4) 0;
+}
+
+.event-timetable-schedule {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+
+  h3 {
+    color: lighten($colorSecondary, 20%);
+  }
+}
+
+.event-timetable-schedule-day {
+  padding-left: 50px;
+  box-sizing: border-box;
+}
+
+.event-timetable-schedule-item {
+  position: relative;
+  margin: 20px 0;
+
+  &-name {
+    font-size: 1.3em;
+    font-weight: lighter;
+  }
+
+  &-time {
+    position: absolute;
+    width: 50px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    left: -50px;
+    top: 5px;
+
+    text-align: right;
+    color: lighten($colorSecondary, 20%);
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+  }
+
+  &.emphasis &-time {
+    color: $colorPrimary;
+  }
+
+  &.emphasis &-name {
+    font-weight: normal;
+  }
 }
 
 .event-timetable-workshops {
@@ -158,8 +207,22 @@
   margin-bottom: ($punit * 2);
 }
 
+@media (min-width: 600px) {
+  .event-timetable-schedule {
+    flex-direction: row;
+  }
+
+  .event-timetable-schedule-day {
+    width: 50%;
+  }
+}
+
 @media (min-width: 900px) {
   .event-timetable-workshops {
     margin-left: 0;
+  }
+
+  .event-timetable-schedule {
+    margin-left: -50px;
   }
 }
