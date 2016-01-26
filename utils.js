@@ -6,7 +6,7 @@ var markdown = require('markdown-it')({
   html: true,
   linkify: true,
   typographer: true
-});
+}).use(require('markdown-it-attrs'));
 var nunjucks = require('nunjucks');
 
 var loadedResources = {};
