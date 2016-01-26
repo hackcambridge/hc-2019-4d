@@ -1,0 +1,41 @@
+workshops:
+  - name: Give your app an unfair advantage with HPE Haven OnDemand APIs
+    description: |
+      With more than 60 powerful and easy to use APIs, HPE Haven OnDemand can crawl, index and analyze data from file systems and the web.
+      It can analyze and extract insights from text, audio, video, and image files, or be used to build prediction models and recommendation engines.
+      By combining APIs you'll be able to create powerful data transformation and enrichment workflows.
+
+      Join us for a demo, followed by Q&A.
+
+      Speaker: Tyler Nappy, Developer Evangelist
+      Follow Tyler on Twitter [@tylernappy](https://twitter.com/tylernappy)
+    time: 2016-01-30 13:00:00
+    duration: 30 # In minutes
+    location: TBA
+  - name: Winning at APIs - Getting started working with APIs
+    description: |
+      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
+      and consumption of APIs is a critical skill, this is a talk not to be missed!
+    time: 2016-01-30 13:20:00
+    duration: 10
+    location: TBA
+  - name: Beaker in action
+    description: |
+      Scott Draves is an award-winning software artist, VJ, and a pioneer of the open source movement.
+      His clients and exhibitions range from the likes of MoMA.org, LACMA, Google, and the Adler Planetarium to Skrillex.
+      He has a PhD in Computer Science from Carnegie Mellon and a BS in Math from Brown. Draves is currently employed as the PM and developer
+      of [the Beaker Notebook](http://beakernotebook.com/) for Two Sigma Open Source.
+
+      This talk will motivate the design, review the architecture, and include a live demo of Beaker in action.
+    time: TBA
+    duration: 30
+    location: TBA
+  - name: Cantab on FinTech
+    description: |
+      Finance has been a Big Data arena for decades, long before the term FinTech was coined. We will review the opportunities for programmers
+      in hedge funds and investment banks. As time permits, we will drill down on interesting implementation details involving time series data.
+      There will be some visualisations of how one trades billions of dollars a day, and how one copes with millisecond updates to the data that
+      feeds ‘black box’ trading models.
+    time: TBA
+    duration: 30
+    location: TBA

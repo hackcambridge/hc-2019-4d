@@ -7,7 +7,7 @@ body {
 
   font-family: $fontFamily;
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.5;
   color: $textColor;
 
   background-color: $backgroundColor;
@@ -92,27 +92,46 @@ content-wrapper-left() {
    ========================================================================== */
 
 margin-element() {
-  margin-top: 1em;
-  margin-bottom: 10px;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin: 0;
+  margin-bottom: 25px;
 }
 
-h1 { font-size: 1.2 * 1.2 * 1.2; }
-h2 { font-size: 1.2 * 1.2; }
-h3 { font-size: 1.2em; }
-h4 { font-size: 1em; }
-h5 { font-size: 1 / 1.2; }
-h6 { font-size: 1 / 1.2 / 1.2; }
+h1 {
+  font-size: 1.2 * 1.2 * 1.2;
+  line-height: 1.2;
+}
 
-h1, h2, h3, h4, h5, h6, ul, ol, li, p {
+h2 {
+  font-size: 1.2 * 1.2;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.2em;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: 1em;
+  line-height: 1.2;
+}
+
+h5 {
+  font-size: 1 / 1.2;
+  line-height: 1.2;
+}
+
+h6 {
+  font-size: 1 / 1.2 / 1.2;
+  line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, p {
   margin-element();
+}
+
+li {
+  margin-bottom: 10px;
 }
 
 h1, h2, h3, .grand-heading {
@@ -120,7 +139,6 @@ h1, h2, h3, .grand-heading {
 }
 
 h1, .grand-heading {
-  margin-bottom: 40px;
   font-size: 2em;
   font-weight: 100;
 
@@ -199,7 +217,7 @@ a, a:visited {
   width: 10%;
   min-width: 60px;
   display: block;
-  z-index: 10000;
+  z-index: 1000;
 
   img {
     width: 100%;

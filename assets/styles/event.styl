@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Event Page
+   ========================================================================== */
+
+.event-tba {
+  opacity: 0.3;
+  user-select: none;
+  cursor: normal;
+}
+
+/* Intro
+   ========================================================================== */
+
+ .section-event-intro {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: left;
+   position: relative;
+
+   box-sizing: border-box;
+   width: 100%;
+   min-height: 100%;
+   min-height: calc(100% - 40px);
+   padding: ($punit * 3) 0;
+
+   dark-background();
+   color: #fff;
+   font-weight: 300;
+ }
+
+ .event-logo {
+   max-width: 100%;
+   width: 400px;
+ }
+
+.event-nav {
+  margin: 10px -10px;
+
+  .event-nav-button {
+    color: #fff;
+    font-size: 1.2em;
+    padding: 20px 10px;
+    transition: background-color 0.2s;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      background-color: alpha($colorSecondary, 8%);
+    }
+
+    &:active {
+      background-color: alpha($colorSecondary, 15%);
+    }
+  }
+}
+
+/* Info
+   ========================================================================== */
+
+.section-event-info {
+  padding: ($punit * 4) 0;
+  main-background();
+}
+
+/* Prizes
+   ========================================================================== */
+
+.section-event-prizes {
+  padding: $punit * 3 0;
+  main-background();
+}
+
+/* Map
+   ========================================================================== */
+
+.section-event-map {
+  background-color: gray(90%);
+  background-image: linear-gradient(to bottom, gray(95%), gray(90%));
+  padding: $punit;
+}
+
+.event-map-container {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2), 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.event-map {
+  border: 0;
+  width: 100%;
+  height: 600px;
+  height: calc(100vh - 100px);
+  min-height: 300px;
+  opacity: 0.9;
+
+  pointer-events: none;
+
+  &.enabled {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+
+@media (min-width: 600px) {
+  .section-event-map {
+    padding: $punit * 2;
+  }
+}
+
+/* Schedule
+   ========================================================================== */
+
+
+
+.section-event-timetable {
+  dark-background();
+  color: #fff;
+  padding: ($punit * 4) 0;
+}
+
+.event-timetable-schedule {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+
+  h3 {
+    color: lighten($colorSecondary, 20%);
+  }
+}
+
+.event-timetable-schedule-day {
+  padding-left: 50px;
+  box-sizing: border-box;
+}
+
+.event-timetable-schedule-item {
+  position: relative;
+  margin: 20px 0;
+
+  &-name {
+    font-size: 1.3em;
+    font-weight: lighter;
+  }
+
+  &-time {
+    position: absolute;
+    width: 50px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    left: -50px;
+    top: 5px;
+
+    text-align: right;
+    color: lighten($colorSecondary, 20%);
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+  }
+
+  &.emphasis &-time {
+    color: $colorPrimary;
+  }
+
+  &.emphasis &-name {
+    font-weight: normal;
+  }
+}
+
+.event-timetable-workshops {
+  border-left: 2px solid darken($colorSecondary, 30%);
+  padding-left: $punit;
+  margin-left: 40px;
+}
+
+.event-workshop-time {
+  position: absolute;
+  left: (~$punit - 50px);
+  padding-right: 10px;
+  box-sizing: border-box;
+  top: 3px;
+  width: 50px;
+  text-align: right;
+  color: lighten($colorSecondary, 20%);
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+
+  &::before {
+    position: absolute;
+    content: ' ';
+    display: block;
+    width: 6px;
+    border-bottom: 2px solid darken($colorSecondary, 30%);
+    right: 0;
+    top: 8px;
+  }
+}
+
+.event-workshop-decorator {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+  opacity: 0.5;
+  margin: 5px 0;
+  line-height: 1;
+}
+
+.event-workshop-location {
+  margin-top: -15px;
+  color: $colorSecondary;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+
+.event-workshop {
+  position: relative;
+  margin-bottom: ($punit * 2);
+}
+
+@media (min-width: 600px) {
+  .event-timetable-schedule {
+    flex-direction: row;
+  }
+
+  .event-timetable-schedule-day {
+    width: 50%;
+  }
+}
+
+@media (min-width: 900px) {
+  .event-timetable-workshops {
+    margin-left: 0;
+  }
+
+  .event-timetable-schedule {
+    margin-left: -50px;
+  }
+}

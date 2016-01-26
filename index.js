@@ -12,13 +12,15 @@ var fs = require('fs');
 var _ = require('lodash');
 var url = require('url');
 var querystring = require('querystring');
-var marked = require('marked');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
+var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
 
+
+utils.init(app);
 
 // Static file serving
 var staticOptions = { };
@@ -42,13 +44,19 @@ try {
   assetsFile = { };
 }
 
-nunjucksEnv.addGlobal('asset', function (asset) {
+app.locals.asset = function (asset) {
   if (_.has(assetsFile, asset)) {
     asset = assetsFile[asset];
   }
 
   return '/assets/' + asset;
-});
+};
+
+app.locals.markdownResource = utils.loadMarkdown;
+
+if (process.env.BS_SNIPPET) {
+  app.locals.browserSync = process.env.BS_SNIPPET;
+}
 
 // Routes
 
@@ -72,28 +80,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-var loadedResources = [];
-function loadResource(resourceName) {
-  if ((!loadedResources[resourceName]) || (app.settings.env == "development")) {
-    var loadedResource = yaml.safeLoad(fs.readFileSync('./resources/' + resourceName + '.yml'))[resourceName];
-
-    if (resourceName == 'faqs') {
-      loadedResource = _.map(loadedResource, function(faq) {
-        return {
-          question: faq.question,
-          answer: marked(faq.answer)
-        }
-      });
-    }
-
-    loadedResources[resourceName] = loadedResource;
-  }
-
-  return loadedResources[resourceName];
-}
-
 function renderHome(req, res) {
-  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors') });
+  res.render('index.html', { faqs: utils.loadResource('faqs'), sponsors: utils.loadResource('sponsors') });
 }
 
 app.get('/', renderHome);
@@ -128,6 +116,15 @@ app.get('/apply', function (req, res) {
   });
 });
 
+app.get('/event', function (req, res) {
+  res.render('event.html', {
+    title: 'Hack Cambridge 2016',
+    workshops: utils.loadResource('workshops'),
+    prizes: utils.loadResource('prizes'),
+    schedule: utils.loadResource('schedule')
+  });
+});
+
 app.get('/teamapply', function(req, res) {
   res.render('form.html', {
     title: 'Apply to Hack Cambridge as a Team',
@@ -150,6 +147,8 @@ app.use(renderHome);
 
 // Start server
 app.set('port', (process.env.PORT || 3000));
+
+module.exports = app;
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

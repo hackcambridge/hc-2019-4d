@@ -20,14 +20,11 @@ This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build 
 ```bash
 npm install -g gulp
 gulp build # Build the assets
+gulp serve # Start the server, automatically build assets and reload the browser when changes are made
 gulp watch # Watch for changes in assets and build automatically
 gulp build --prod # Build production assets (or set NODE_ENV to production)
 ```
 
 ## Deploying
 
-Set up Heroku in your local copy, then simply:
-
-```bash
-git push heroku master
-```
+Deploying is done manually through Heroku interface.

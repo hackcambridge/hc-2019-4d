@@ -3,6 +3,7 @@ var createCountdownText = require('./countdown.js');
 
 $(document).ready(function () {
   require('./payment')();
+  require('./event')();
 
   $('.subscribe-form').each(function () {
     var $this = $(this);
