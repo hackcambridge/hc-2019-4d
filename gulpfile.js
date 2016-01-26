@@ -27,11 +27,14 @@ gulp.task('clean', function () {
 // css
 gulp.task('styles', function () {
   gulp.src('assets/styles/main.styl')
+    .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
-      paths: ['./node_modules']
+      paths: ['./node_modules'],
+
     }))
     .pipe($.autoprefixer())
+    .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());;
 });
@@ -44,6 +47,7 @@ gulp.task('scripts', function () {
       debug: !prod,
       paths: [path.dirname(fileIn)]
     })
+    .transform('babelify')
     .bundle()
     .on('error', onError)
     .pipe(source(fileOut))
