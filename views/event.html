@@ -3,12 +3,12 @@
 <section class="section-event-intro">
   <div class="content-wrapper">
     <img class="event-logo" src="{{ asset('images/logos/hc-logo-white-col.svg') }}" alt="Hack Cambridge" />
-    <p>2016 Event Guide</p>
+    <p>2016 Event Guide (Draft)</p>
     <nav class="event-nav">
       <a class="event-nav-button" href="#info">Info</a>
-      <a class="event-nav-button" href="#prizes">Prizes</a>
       <a class="event-nav-button" href="#schedule">Schedule</a>
       <a class="event-nav-button" href="#map">Map</a>
+      <a class="event-nav-button" href="#prizes">Prizes</a>
   </div>
 </section>
 
@@ -21,6 +21,13 @@
     <h2>Food &amp; Snacks</h2>
     <h2>Games</h2>
     <h2>Emergencies</h2>
+  </div>
+</section>
+
+<section class="section-event-map" id="map">
+  <p>Click on the map to interact with it</p>
+  <div class="event-map-container">
+    <iframe src="https://mapsengine.google.com/map/u/3/embed?mid=zpSuCJ1FOACs.kxtoljjF0saI" width="640" height="480" class="event-map"></iframe>
   </div>
 </section>
 
@@ -76,4 +83,9 @@
     <p>More prizes to come!</p>
   </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDt0bjKA8mt2v7HRYxBxCjn89AsBIUewTI&sensor=false&extension=.js'></script>
+{{ super() }}
 {% endblock %}
