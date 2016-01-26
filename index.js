@@ -12,13 +12,13 @@ var fs = require('fs');
 var _ = require('lodash');
 var url = require('url');
 var querystring = require('querystring');
-var marked = require('marked');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
 var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
+
 
 utils.init(app);
 
@@ -51,6 +51,8 @@ app.locals.asset = function (asset) {
 
   return '/assets/' + asset;
 };
+
+app.locals.markdownResource = utils.loadMarkdown;
 
 if (process.env.BS_SNIPPET) {
   app.locals.browserSync = process.env.BS_SNIPPET;

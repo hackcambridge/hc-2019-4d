@@ -88,7 +88,7 @@ gulp.task('wait', function (cb) {
 gulp.task('watch', ['build'], function () {
   gulp.watch('assets/scripts/**', ['scripts']);
   gulp.watch('assets/styles/**', ['styles']);
-  gulp.watch('views/**', bs.reload)
+  gulp.watch(['views/**', 'resources/**'], bs.reload)
   gulp.watch(assetPath, ['assets']);
 });
 

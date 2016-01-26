@@ -1,11 +1,16 @@
 var _ = require('lodash');
 var yaml = require('js-yaml');
-var marked = require('marked');
 var fs = require('fs');
 var moment = require('moment-timezone');
+var markdown = require('markdown-it')({
+  html: true,
+  linkify: true,
+  typographer: true
+});
 var nunjucks = require('nunjucks');
 
-var loadedResources = [];
+var loadedResources = {};
+var loadedMarkdowns = {};
 var app;
 
 function timeProperties(items, properties) {
@@ -14,7 +19,7 @@ function timeProperties(items, properties) {
 
 
 function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => item[prop] = nunjucks.runtime.markSafe(marked(item[prop]))));
+  items.forEach((item) => properties.forEach((prop) => item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop]))));
 }
 
 exports.init = function init(a) {
@@ -48,4 +53,14 @@ exports.loadResource = function loadResource(resourceName) {
   }
 
   return loadedResources[resourceName];
+}
+
+
+exports.loadMarkdown = function loadMarkdown(markdownName) {
+  if ((!loadedMarkdowns[markdownName]) || (app.settings.env == 'development')) {
+    var loadedMarkdown = nunjucks.runtime.markSafe(markdown.render(fs.readFileSync('./resources/' + markdownName + '.md', 'utf8')));
+    loadedMarkdowns[markdownName] = loadedMarkdown;
+  }
+
+  return loadedMarkdowns[markdownName];
 }
