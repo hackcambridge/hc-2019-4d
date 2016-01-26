@@ -12,6 +12,13 @@ workshops:
     time: 2016-01-30 13:00:00
     duration: 30 # In minutes
     location: TBA
+  - name: Winning at APIs - Getting started working with APIs
+    description: |
+      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
+      and consumption of APIs is a critical skill, this is a talk not to be missed!
+    time: 2016-01-30 13:20:00
+    duration: 10
+    location: TBA
   - name: Beaker in action
     description: |
       Scott Draves is an award-winning software artist, VJ, and a pioneer of the open source movement.
@@ -31,11 +38,4 @@ workshops:
       feeds ‘black box’ trading models.
     time: TBA
     duration: 30
-    location: TBA
-  - name: Winning at APIs - Getting started working with APIs
-    description: |
-      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
-      and consumption of APIs is a critical skill, this is a talk not to be missed!
-    time: 2016-01-30 13:20:00
-    duration: 10
     location: TBA
