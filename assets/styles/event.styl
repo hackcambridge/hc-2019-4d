@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Event Page
+   ========================================================================== */
+
+.section-event-timetable {
+  dark-background();
+  color: #fff;
+  padding: ($punit * 4) 0;
+}
+
+.event-timetable-workshops {
+  border-left: 2px solid darken($colorSecondary, 30%);
+  padding-left: $punit;
+  margin-left: 40px;
+}
+
+.event-workshop-time {
+  position: absolute;
+  left: (~$punit - 50px);
+  padding-right: 10px;
+  box-sizing: border-box;
+  top: 3px;
+  width: 50px;
+  text-align: right;
+  color: lighten($colorSecondary, 20%);
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+
+  &::before {
+    position: absolute;
+    content: ' ';
+    display: block;
+    width: 6px;
+    border-bottom: 2px solid darken($colorSecondary, 30%);
+    right: 0;
+    top: 8px;
+  }
+}
+
+.event-workshop-decorator {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+  opacity: 0.5;
+  margin: 5px 0;
+  line-height: 1;
+}
+
+.event-workshop-location {
+  margin-top: -15px;
+  color: $colorSecondary;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+
+.event-workshop {
+  position: relative;
+  margin-bottom: ($punit * 2);
+}
+
+@media (min-width: 900px) {
+  .event-timetable-workshops {
+    margin-left: 0;
+  }
+}

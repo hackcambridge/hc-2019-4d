@@ -30,17 +30,23 @@
 </section>
 <section class="section-event-timetable">
   <div class="content-wrapper">
-    <h2>Schedule</h2>
-
-    <h2>Workshops</h2>
+    <h2 class="grand-heading">Schedule</h2>
+    <h2 class="grand-heading">Workshops</h2>
+    <p>Workshops run on Saturday afternoon</p>
     {# Workshops #}
     {# General timetable #}
     <div class="event-timetable-workshops">
       {% for workshop in workshops %}
         <div class="event-workshop">
           <h3>{{ workshop.name }}</h3>
+          <p class="event-workshop-location">Location: {{ workshop.location }}</p>
+          <div class="event-workshop-time">
+            {{ workshop.time.format('h:mm') }}
+            <div class="event-workshop-decorator">until</div>
+            {{ workshop.time.add(workshop.duration, 'minutes').format('h:mm') }}
+          </div>
           {{ workshop.description }}
-          {{ workshop.time }}
+
         </div>
       {% endfor %}
     </div>
