@@ -47,7 +47,7 @@ gulp.task('scripts', function () {
       debug: !prod,
       paths: [path.dirname(fileIn)]
     })
-    .transform('babelify')
+    .transform('babelify', { presets: ['es2015'] })
     .bundle()
     .on('error', onError)
     .pipe(source(fileOut))
