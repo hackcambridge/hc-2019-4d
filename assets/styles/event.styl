@@ -2,6 +2,67 @@
    Event Page
    ========================================================================== */
 
+/* Intro
+   ========================================================================== */
+
+ .section-event-intro {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: left;
+   position: relative;
+
+   box-sizing: border-box;
+   width: 100%;
+   min-height: 100%;
+   min-height: calc(100% - 40px);
+   padding: ($punit * 3) 0;
+
+   dark-background();
+   color: #fff;
+   font-weight: 300;
+ }
+
+ .event-logo {
+   max-width: 100%;
+   width: 400px;
+ }
+
+.event-nav {
+  margin: 10px -10px;
+
+  .event-nav-button {
+    color: #fff;
+    font-size: 1.2em;
+    padding: 20px 10px;
+    transition: background-color 0.2s;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      background-color: alpha($colorSecondary, 8%);
+    }
+
+    &:active {
+      background-color: alpha($colorSecondary, 15%);
+    }
+  }
+}
+
+/* Prizes
+   ========================================================================== */
+
+.section-event-prizes {
+  padding: $punit * 3 0;
+  main-background();
+}
+
+/* Prizes
+   ========================================================================== */
+
+/* Schedule
+   ========================================================================== */
+
 .section-event-timetable {
   dark-background();
   color: #fff;

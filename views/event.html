@@ -1,34 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="section-event-intro">
-  {# Countdown #}
-  {# Twitter Stream #}
-  {# Link to livestream #}
-  {# Nav to parts of the page #}
-</section>
-<section class="section-event-prizes">
   <div class="content-wrapper">
-    <h2>Prizes</h2>
-    <div class="event-prizes-general">
-    {% for prize in prizes.general %}
-      <div class="event-prize-general">
-        <h3>{{ prize.name }}</h3>
-      </div>
-    {% endfor %}
-    </div>
-    <h2>API Prizes</h2>
-    <div class="event-prizes-api">
-      {% for prize in prizes.api %}
-      <div class="event-prize-api">
-        <h3>{{ prize.name }}</h3>
-        {{ prize.description }}
-      </div>
-      {% endfor %}
-    </div>
-    <p>More prizes to come!</p>
+    <img class="event-logo" src="{{ asset('images/logos/hc-logo-white-col.svg') }}" alt="Hack Cambridge" />
+    <p>2016 Event Guide</p>
+    <nav class="event-nav">
+      <a class="event-nav-button" href="#info">Info</a>
+      <a class="event-nav-button" href="#prizes">Prizes</a>
+      <a class="event-nav-button" href="#schedule">Schedule</a>
+      <a class="event-nav-button" href="#map">Map</a>
   </div>
 </section>
-<section class="section-event-timetable">
+
+<section class="section-event-info" id="info">
+  <div class="content-wrapper">
+    <h1 class="grand-heading">General Information</h1>
+    <h2>Getting to the Corn Exchange</h2>
+    <h2>Submitting Your Hack</h2>
+    <h2>Hardware</h2>
+    <h2>Food &amp; Snacks</h2>
+    <h2>Games</h2>
+    <h2>Emergencies</h2>
+  </div>
+</section>
+
+<section class="section-event-timetable" id="schedule">
   <div class="content-wrapper">
     <h2 class="grand-heading">Schedule</h2>
     <h2 class="grand-heading">Workshops</h2>
@@ -41,9 +37,13 @@
           <h3>{{ workshop.name }}</h3>
           <p class="event-workshop-location">Location: {{ workshop.location }}</p>
           <div class="event-workshop-time">
-            {{ workshop.time.format('h:mm') }}
-            <div class="event-workshop-decorator">until</div>
-            {{ workshop.time.add(workshop.duration, 'minutes').format('h:mm') }}
+            {% if not workshop.time.isValid() %}
+              TBA
+            {% else %}
+              {{ workshop.time.format('h:mm') }}
+              <div class="event-workshop-decorator">until</div>
+              {{ workshop.time.add(workshop.duration, 'minutes').format('h:mm') }}
+            {% endif %}
           </div>
           {{ workshop.description }}
 
@@ -53,13 +53,27 @@
     <p>More workshops to come!</p>
   </div>
 </section>
-<section class="section-event-info">
+
+<section class="section-event-prizes" id="prizes">
   <div class="content-wrapper">
-    <h2>Submitting Your Hack</h2>
-    <h2>Hardware</h2>
-    <h2>Food &amp; Snacks</h2>
-    <h2>Games</h2>
-    <h2>Emergencies</h2>
+    <h2 class="grand-heading">Prizes</h2>
+    <div class="event-prizes-general">
+    {% for prize in prizes.general %}
+      <div class="event-prize-general">
+        <h3>{{ prize.name }}</h3>
+      </div>
+    {% endfor %}
+    </div>
+    <h2 class="grand-heading">API Prizes</h2>
+    <div class="event-prizes-api">
+      {% for prize in prizes.api %}
+      <div class="event-prize-api">
+        <h3>{{ prize.name }}</h3>
+        {{ prize.description }}
+      </div>
+      {% endfor %}
+    </div>
+    <p>More prizes to come!</p>
   </div>
 </section>
 {% endblock %}
