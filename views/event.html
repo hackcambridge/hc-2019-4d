@@ -61,9 +61,9 @@
             {% if not workshop.time.isValid() %}
               TBA
             {% else %}
-              {{ workshop.time.format('H:mm') }}
+              {{ workshop.time.format('HH:mm') }}
               <div class="event-workshop-decorator">until</div>
-              {{ workshop.time.add(workshop.duration, 'minutes').format('H:mm') }}
+              {{ workshop.time.clone().add(workshop.duration, 'minutes').format('HH:mm') }}
             {% endif %}
           </div>
           {{ workshop.description }}
