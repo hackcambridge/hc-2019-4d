@@ -9,7 +9,7 @@ var loadedResources = [];
 var app;
 
 function timeProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop].time, 'Europe/London')));
+  items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
 }
 
 

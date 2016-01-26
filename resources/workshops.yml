@@ -5,11 +5,11 @@ workshops:
       It can analyze and extract insights from text, audio, video, and image files, or be used to build prediction models and recommendation engines.
       By combining APIs you'll be able to create powerful data transformation and enrichment workflows.
 
-      Join us on January 30th at 1:00 p.m. GMT for a demo, followed by Q&A.
+      Join us for a demo, followed by Q&A.
 
       Speaker: Tyler Nappy, Developer Evangelist
       Follow Tyler on Twitter [@tylernappy](https://twitter.com/tylernappy)
-    time: 2016-30-01 13:00:00
+    time: 2016-01-30 13:00:00
     duration: 30 # In minutes
     location: TBA
   - name: Beaker in action
@@ -36,6 +36,6 @@ workshops:
     description: |
       Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
       and consumption of APIs is a critical skill, this is a talk not to be missed!
-    time: 2016-30-01 13:20:00
+    time: 2016-01-30 13:20:00
     duration: 10
     location: TBA
