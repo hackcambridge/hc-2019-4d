@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 var stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+//var googleSpreadsheet = require("google-spreadsheet");
+//var google_sheets_auth = require(process.env.GOOGLE_SHEETS_AUTH;
+//var google_sheets_wifi_sheet_id = require(process.env.GOOGLE_SHEETS_WIFI_SHEET_ID);
 
 var api = module.exports = new express.Router();
 api.use(bodyParser.json());
@@ -74,6 +77,43 @@ api.post('/payment', function (req, res, next) {
 
     res.json({ message: 'Your payment of £' + (amount / 100).toFixed(2) + ' has been processed. Thank you!'});
   });
+});
+
+api.post('/wifi', function (req, res, next) {
+  if (_.isEmpty(req.body.ticket_id)) {
+    var err = new Error('Must provide ticket_id');
+    err.status = 401;
+    next(err);
+  }
+
+  var ticket_id = req.body.ticket_id;
+
+  /*
+
+  // spreadsheet key is the long id in the sheets URL 
+  var wifi_sheet = new googleSpreadsheet(google_sheets_wifi_sheet_id);
+
+  wifi_sheet.useServiceAccountAuth(google_sheets_auth, function(err) {
+	  // getInfo returns info about the sheet and an array or "worksheet" objects 
+	  wifi_sheet.getInfo(function(err, sheet_info) {
+		  console.log( sheet_info.title + ' is loaded' );
+   
+      var column_title_application_id = url_encode("Application ID");
+      var column_title_uis_id = url_encode("UIS ID");
+		  var ticket_sheet = sheet_info.worksheets[1];
+		  ticket_sheet.getRows({
+        start: 2,
+        query: column_title_application_id + " = " + ticket_id
+      }, function(err, rows) {
+			  var wifi_key = rows[0][1];
+        res.json({ message: 'Your UIS WiFi key is ' + wifi_key});
+		  });
+	  });
+  })
+
+  */
+
+  res.json({ message: 'Your ticket id is ' + ticket_id});
 });
 
 api.use(function (req, res, next) {
