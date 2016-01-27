@@ -86,6 +86,10 @@ sponsors:
       website: https://www.palantir.com/careers/teams/recruiting/
       logo: palantir-logo.svg
       variant: wide
+    - name: Skyscanner
+      website: http://www.skyscanner.net/
+      logo: skyscanner-logo.svg
+      variant: wide
 
   kilo:
     - name: Costain
