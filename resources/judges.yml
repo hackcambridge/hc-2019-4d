@@ -1,0 +1,25 @@
+judges:
+  - name: Dr. Robert Mullins
+    description: |
+      Robert Mullins is a Senior Lecturer in the Computer Laboratory at the University of Cambridge.
+      His research and teaching focuses on computer architecture and VLSI design. He has a particular
+      interest in on-chip interconnection networks, chip-multiprocessors and novel parallel processing fabrics.
+      
+      He is a Fellow of St. John's College and Director of Studies for Computer Science at St. John's College
+      and Peterhouse College. He was a founder of the [Raspberry Pi Foundation](https://www.raspberrypi.org/about/),
+      a UK charity that promotes the study of computer science and electronics at the school level. He is a founder
+      and director of the [lowRISC project](http://www.lowrisc.org/about/).
+  - name: Rob Whitehead
+    description: |
+      Rob Whitehead is the CTO of improbable.
+  - name: Dr. Cicilia Mascolo
+    description: |
+      Cicilia Mascolo am a Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge.
+      I belong to the Networks and Operating Systems Group.
+  - name: Tim Fogarty
+    description: |
+      MLH judge.
+  - name: William Tunstall-Pedoe
+    description: |
+      Blurb goes here.
+  
