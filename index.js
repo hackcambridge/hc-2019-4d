@@ -15,6 +15,7 @@ var querystring = require('querystring');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
+var Countdown = require('./lib/countdown');
 var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
@@ -81,7 +82,11 @@ app.use(function (req, res, next) {
 });
 
 function renderHome(req, res) {
-  res.render('index.html', { faqs: utils.loadResource('faqs'), sponsors: utils.loadResource('sponsors') });
+  res.render('index.html', {
+    faqs: utils.loadResource('faqs'),
+    sponsors: utils.loadResource('sponsors'),
+    countdown: Countdown.createStartCountdown()
+  });
 }
 
 app.get('/', renderHome);
