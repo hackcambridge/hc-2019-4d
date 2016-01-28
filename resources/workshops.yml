@@ -27,7 +27,7 @@ workshops:
       of [the Beaker Notebook](http://beakernotebook.com/) for Two Sigma Open Source.
 
       This talk will motivate the design, review the architecture, and include a live demo of Beaker in action.
-    time: TBA
+    time: 2016-01-30 13:20:00
     duration: 30
     location: TBA
   - name: Cantab on FinTech
@@ -36,6 +36,24 @@ workshops:
       in hedge funds and investment banks. As time permits, we will drill down on interesting implementation details involving time series data.
       There will be some visualisations of how one trades billions of dollars a day, and how one copes with millisecond updates to the data that
       feeds ‘black box’ trading models.
-    time: TBA
+    time: 2016-01-30 14:00:00
     duration: 30
+    location: TBA
+  - name: Hardware Security Modules – By Thales e-Security
+    description: |
+      This talk will describe what Hardware Security Modules are, what they are good for, why they are deployed, and some of their limitations.
+      The talk will focus on the nShield line of general purpose HSMs. We shall describe the architecture, security mechanisms including key
+      protection and policies, and discuss example applications.
+ 
+      Speakers: Clara Juanes Vallejo, Business Transformation Manager, and Robert Rainbird, Lead Engineer.
+    time: 2016-01-30 15:00:00
+    duration: 30
+    location: TBA
+  - name: How Mendeley can manage your course load
+    description: | 
+      What is Mendeley and why you will care in the future? For all you researchers and future Masters and PhDs, Mendeley will help clear the
+      busywork from your course load. Our tools are designed to help you discover new research, organise your reference work and connect with
+      experts and other like-minded people. Come along if you want to hear more about how Mendeley will help you in your future studies.
+    time: TBA
+    duration: 10
     location: TBA
