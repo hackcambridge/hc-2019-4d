@@ -144,6 +144,12 @@ app.get('/pay', function (req, res) {
   });
 });
 
+app.get('/wifi', function (req, res) {
+  res.render('wifi.html', {
+    title: 'Get your UIS WiFi Key',
+  });
+});
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
