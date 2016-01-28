@@ -78,6 +78,17 @@
   </div>
 </section>
 
+<section class="section-event-apis" id="apis">
+  <div class="content-wrapper">
+    <h2 class="grand-heading">APIs & Challenges</h2>
+    {% for api in apis %}
+      <div class="event-prize-api">
+        <h3>{{ api.name }}</h3>
+        {{ api.description }}
+      </div>
+    {% endfor %}
+</section>
+
 <section class="section-event-prizes" id="prizes">
   <div class="content-wrapper">
     <h2 class="grand-heading">Prizes</h2>
