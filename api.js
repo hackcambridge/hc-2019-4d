@@ -2,9 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 var stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-//var googleSpreadsheet = require("google-spreadsheet");
-//var google_sheets_auth = require(process.env.GOOGLE_SHEETS_AUTH;
-//var google_sheets_wifi_sheet_id = require(process.env.GOOGLE_SHEETS_WIFI_SHEET_ID);
+var googleSpreadsheet = require("google-spreadsheet");
+var google_sheets_auth_email = process.env.GOOGLE_SHEETS_AUTH_EMAIL;
+var google_sheets_auth_key =process.env.GOOGLE_SHEETS_AUTH_KEY;
+var google_sheets_wifi_sheet_id = process.env.GOOGLE_SHEETS_WIFI_SHEET_ID;
 
 var api = module.exports = new express.Router();
 api.use(bodyParser.json());
@@ -87,33 +88,44 @@ api.post('/wifi', function (req, res, next) {
   }
 
   var ticket_id = req.body.ticket_id;
-
-  /*
+  var google_sheets_auth = {
+    client_email: google_sheets_auth_email,
+    private_key: google_sheets_auth_key.replace("\\n", "\n")
+  }
 
   // spreadsheet key is the long id in the sheets URL 
   var wifi_sheet = new googleSpreadsheet(google_sheets_wifi_sheet_id);
 
   wifi_sheet.useServiceAccountAuth(google_sheets_auth, function(err) {
 	  // getInfo returns info about the sheet and an array or "worksheet" objects 
+    console.log(err);
 	  wifi_sheet.getInfo(function(err, sheet_info) {
 		  console.log( sheet_info.title + ' is loaded' );
-   
-      var column_title_application_id = url_encode("Application ID");
-      var column_title_uis_id = url_encode("UIS ID");
+
 		  var ticket_sheet = sheet_info.worksheets[1];
+      console.log(ticket_sheet);
 		  ticket_sheet.getRows({
-        start: 2,
-        query: column_title_application_id + " = " + ticket_id
+        "start-index": 1,
+        "max-results": 1,
+        "query":  "applicationid = " + ticket_id
       }, function(err, rows) {
-			  var wifi_key = rows[0][1];
+        if (err) {
+          var err = new Error('An error occured');
+          err.status = 500;
+          next(err);
+          return;
+        } else if (rows.length == 0) {
+          var err = new Error('Ticket id not found');
+          err.status = 404;
+          next(err);
+          return;
+        }
+   
+        var wifi_key = rows[0].uisid;
         res.json({ message: 'Your UIS WiFi key is ' + wifi_key});
 		  });
 	  });
   })
-
-  */
-
-  res.json({ message: 'Your ticket id is ' + ticket_id});
 });
 
 api.use(function (req, res, next) {
