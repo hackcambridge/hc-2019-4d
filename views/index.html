@@ -15,9 +15,8 @@
       </a>
     </p>
     <p class="landing-welcome-dates">24 Hours: 30 &ndash; 31 January 2016, University of Cambridge</p>
-    <p>Applications are closed</p>
     <p class="apply-link-container">
-      <a class="apply-link" href="/event"><span class="apply-link-text">Event Guide</span></a>
+      <a class="apply-link" href="/event"><span class="apply-link-text">{% if countdown.done %}Event Guide{% else %}{{ countdown.render() }}{% endif %}</span></a>
     </p>
     <ul class="landing-welcome-social-links">
       <li><a href="https://facebook.com/hackcambridge" target="_blank">

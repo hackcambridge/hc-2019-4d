@@ -45,7 +45,7 @@ gulp.task('scripts', function () {
     return browserify({
       entries: fileIn,
       debug: !prod,
-      paths: [path.dirname(fileIn)]
+      paths: [path.dirname(fileIn), './']
     })
     .transform('babelify', { presets: ['es2015'] })
     .bundle()
@@ -86,7 +86,7 @@ gulp.task('wait', function (cb) {
 });
 
 gulp.task('watch', ['build'], function () {
-  gulp.watch('assets/scripts/**', ['scripts']);
+  gulp.watch(['assets/scripts/**', 'lib/**'], ['scripts']);
   gulp.watch('assets/styles/**', ['styles']);
   gulp.watch(['views/**', 'resources/**'], bs.reload)
   gulp.watch(assetPath, ['assets']);

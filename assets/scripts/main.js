@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var createCountdownText = require('./countdown.js');
+var Countdown = require('lib/countdown.js');
 
 $(document).ready(function () {
   require('./payment')();
@@ -75,12 +75,12 @@ $(document).ready(function () {
     });
   });
 
-  var updateCountdown = function () {
+  /*var updateCountdown = function () {
     $('.application-countdown').html(createCountdownText());
   };
 
   if ($('.application-countdown').length > 0) {
     setInterval(updateCountdown, 500);
     updateCountdown();
-  }
+  }*/
 });
