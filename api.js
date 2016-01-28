@@ -98,12 +98,10 @@ api.post('/wifi', function (req, res, next) {
 
   wifi_sheet.useServiceAccountAuth(google_sheets_auth, function(err) {
 	  // getInfo returns info about the sheet and an array or "worksheet" objects 
-    console.log(err);
+
 	  wifi_sheet.getInfo(function(err, sheet_info) {
-		  console.log( sheet_info.title + ' is loaded' );
 
 		  var ticket_sheet = sheet_info.worksheets[1];
-      console.log(ticket_sheet);
 		  ticket_sheet.getRows({
         "start-index": 1,
         "max-results": 1,
@@ -115,14 +113,14 @@ api.post('/wifi', function (req, res, next) {
           next(err);
           return;
         } else if (rows.length == 0) {
-          var err = new Error('Ticket id not found');
+          var err = new Error('Ticket ID not found');
           err.status = 404;
           next(err);
           return;
         }
    
         var wifi_key = rows[0].uisid;
-        res.json({ message: 'Your UIS WiFi key is ' + wifi_key});
+        res.json({ message: 'Your UIS WiFi key is: <code>' + wifi_key + '</code>'});
 		  });
 	  });
   })
