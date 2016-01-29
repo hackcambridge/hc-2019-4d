@@ -11,7 +11,22 @@ npm start
 
 And your server will be ready to go.
 
-To enable the MailChimp integration, environment variables `MAILCHIMP_API_KEY` and `MAILCHIMP_LIST_ID` must be present. For convenience, these can be placed in a `.env` file at the root of the project.
+## Environment Variables
+
+Certain environment variables need to be available for features to work. For convenience
+you can do this in the `.env` file at the root of your project.
+
+```
+MAILCHIMP_API_KEY=
+MAILCHIMP_LIST_ID=
+APPLICATION_URL=
+TEAM_APPLICATION_URL=
+STRIPE_PUBLISH_KEY=
+STRIPE_PRIVATE_KEY=
+GOOGLE_SHEETS_AUTH_EMAIL=
+GOOGLE_SHEETS_AUTH_KEY=
+GOOGLE_SHEETS_WIFI_SHEET_ID=
+```
 
 ## Build System
 
