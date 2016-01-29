@@ -2,6 +2,7 @@ var _ = require('lodash');
 var yaml = require('js-yaml');
 var fs = require('fs');
 var moment = require('moment-timezone');
+var crypto = require('crypto');
 var markdown = require('markdown-it')({
   html: true,
   linkify: true,
@@ -63,4 +64,10 @@ exports.loadMarkdown = function loadMarkdown(markdownName) {
   }
 
   return loadedMarkdowns[markdownName];
-}
+};
+
+var publicId = process.env.APP_ID || crypto.randomBytes(10).toString('hex');
+
+exports.getPublicId = function () {
+  return publicId;
+};

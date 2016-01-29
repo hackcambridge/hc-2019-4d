@@ -1,4 +1,10 @@
 {
   "name": "Hack Cambridge",
-  "repository": "https://github.com/hackcambridge/hack-cambridge-website"
+  "repository": "https://github.com/hackcambridge/hack-cambridge-website",
+  "env": {
+    "APP_ID": {
+      "description": "A random, public, identifier for this application",
+      "generator": "secret"
+    }
+  }
 }

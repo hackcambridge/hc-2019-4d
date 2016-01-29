@@ -19,7 +19,9 @@ var Countdown = require('./lib/countdown');
 var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
+var server = require('http').Server(app);
 
+require('./sockets.js')(server);
 
 utils.init(app);
 
@@ -150,6 +152,10 @@ app.get('/wifi', function (req, res) {
   });
 });
 
+app.get('/pres', function (req, res) {
+  res.render('pres.html');
+})
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
@@ -161,6 +167,6 @@ app.set('port', (process.env.PORT || 3000));
 
 module.exports = app;
 
-app.listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
