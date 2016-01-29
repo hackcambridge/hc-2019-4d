@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="event-viewer">
-<h1>Hid</h1>
+<div class="event-viewer-container">
+  <div class="event-viewer">
+  <h1>Hid</h1>
+  </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
-{# Refresh the page if an error occurs and kills our JS #}
 <script>
+  // Refersh the page if an error occurs and kills JS
   window.addEventListener('error', function (evt) {
     setTimeout(function () { location.reload(true) }, 5000);
   });
