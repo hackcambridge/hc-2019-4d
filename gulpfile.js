@@ -14,6 +14,8 @@ var nodemon = require('nodemon');
 
 var prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
+console.log(argv);
+
 var onError = function onError(err) {
   $.util.beep();
   console.log(err);
@@ -93,19 +95,27 @@ gulp.task('watch', ['build'], function () {
 });
 
 gulp.task('serve', ['watch'], function () {
-  bs.init({
-    port: 8000,
-    logSnippet: false
-  }, function (err) {
+  var runnode = function (env) {
     nodemon({
       script: 'index.js',
       ext: 'js',
       ignore: ['assets/**', 'gulpfile.js'],
-      env: {
-        BS_SNIPPET: bs.getOption('snippet')
-      }
+      env: env || { }
     });
-  });
+  }
+
+  if (!argv.nobs) {
+    bs.init({
+      port: 8000,
+      logSnippet: false
+    }, function (err) {
+      runnode({
+        BS_SNIPPET: bs.getOption('snippet')
+      });
+    });
+  } else {
+    runnode();
+  }
 });
 
 gulp.task('build', function (cb) {

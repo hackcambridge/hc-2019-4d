@@ -2,6 +2,7 @@ var _ = require('lodash');
 var yaml = require('js-yaml');
 var fs = require('fs');
 var moment = require('moment-timezone');
+var crypto = require('crypto');
 var markdown = require('markdown-it')({
   html: true,
   linkify: true,
@@ -25,6 +26,36 @@ function markdownProperties(items, properties) {
 exports.init = function init(a) {
   app = a;
 };
+
+var assetsFile;
+
+try {
+  assetsFile = require('./assets/dist/rev-manifest.json');
+} catch (e) {
+  assetsFile = { };
+}
+
+exports.asset = function (asset, prefix) {
+  if (prefix == null) {
+    prefix = '/assets/'
+  }
+
+  if (_.has(assetsFile, asset)) {
+    asset = assetsFile[asset];
+  }
+
+  return prefix + asset;
+};
+
+var loadedAssets = { };
+
+exports.loadAsset = function loadAsset(assetName) {
+  if ((!loadedAssets[assetName]) || (app.settings.env == 'development')) {
+    loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
+  }
+
+  return loadedAssets[assetName];
+}
 
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
@@ -63,4 +94,10 @@ exports.loadMarkdown = function loadMarkdown(markdownName) {
   }
 
   return loadedMarkdowns[markdownName];
-}
+};
+
+var publicId = crypto.randomBytes(12).toString('hex');
+
+exports.getPublicId = function () {
+  return publicId;
+};

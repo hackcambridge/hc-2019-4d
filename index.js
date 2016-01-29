@@ -19,7 +19,9 @@ var Countdown = require('./lib/countdown');
 var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
+var server = require('http').Server(app);
 
+require('./sockets.js')(server);
 
 utils.init(app);
 
@@ -38,21 +40,8 @@ var nunjucksEnv = nunjucks.configure('views', {
   express: app
 });
 
-var assetsFile;
-try {
-  assetsFile = require('./assets/dist/rev-manifest.json');
-} catch (e) {
-  assetsFile = { };
-}
-
-app.locals.asset = function (asset) {
-  if (_.has(assetsFile, asset)) {
-    asset = assetsFile[asset];
-  }
-
-  return '/assets/' + asset;
-};
-
+app.locals.asset = utils.asset;
+app.locals.loadAsset = utils.loadAsset;
 app.locals.markdownResource = utils.loadMarkdown;
 
 if (process.env.BS_SNIPPET) {
@@ -145,6 +134,16 @@ app.get('/pay', function (req, res) {
   });
 });
 
+app.get('/wifi', function (req, res) {
+  res.render('wifi.html', {
+    title: 'Get your UIS WiFi Key',
+  });
+});
+
+app.get('/pres', function (req, res) {
+  res.render('pres.html');
+})
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
@@ -156,6 +155,6 @@ app.set('port', (process.env.PORT || 3000));
 
 module.exports = app;
 
-app.listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

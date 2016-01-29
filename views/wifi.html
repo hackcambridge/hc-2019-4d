@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="payment-page">
+  <div class="wrapper-content payment-form-container">
+    <h1 class="payment-form-heading">Get a WiFi Key to the UIS rooms</h1>
+    <p class="wifi-form-description">
+      If you are going to the UIS rooms for a workshop, you'll need a wifi key to access the internet from there.
+      Please enter your <em>unique</em> ticket id to retrieve it.
+    </p>
+
+    <form class="wifi-form center-form" action="/api/wifi" method="post">
+      <div class="form-row">
+        <label class="form-label" for="payment-form-amount">Ticket ID</label>
+        <input class="form-control payment-form-amount" name="ticket_id" placeholder="xxxxxx-xxxxxx" class="payment-form-amount" id="payment-form-amount" minlength="9" maxlength="13" required />
+      </div>
+
+      <div class="form-row payment-form-output"></div>
+
+      <div class="form-row">
+        <button class="button submit-button" type="submit">Get WiFi Key</button>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}
