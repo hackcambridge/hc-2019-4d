@@ -27,6 +27,36 @@ exports.init = function init(a) {
   app = a;
 };
 
+var assetsFile;
+
+try {
+  assetsFile = require('./assets/dist/rev-manifest.json');
+} catch (e) {
+  assetsFile = { };
+}
+
+exports.asset = function (asset, prefix) {
+  if (prefix == null) {
+    prefix = '/assets/'
+  }
+
+  if (_.has(assetsFile, asset)) {
+    asset = assetsFile[asset];
+  }
+
+  return prefix + asset;
+};
+
+var loadedAssets = { };
+
+exports.loadAsset = function loadAsset(assetName) {
+  if ((loadedAssets[assetName]) || (app.settings.env == 'development')) {
+    loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
+  }
+
+  return loadedAssets[assetName];
+}
+
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
     var loadedResource = yaml.safeLoad(fs.readFileSync('./resources/' + resourceName + '.yml'))[resourceName];

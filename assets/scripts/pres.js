@@ -21,6 +21,7 @@ class Viewer {
     }
 
     this.resize();
+    this._initSockets();
 
     $(window).on('resize', this.resize.bind(this));
   }
@@ -50,9 +51,14 @@ class Viewer {
     io.on('welcome', function (data) {
       if (id == null) {
         id = data.id;
+        console.log(id);
       } else if (id != data.id) {
         location.reload(true);
       }
+    });
+
+    io.on('tweet', function (tweet) {
+      console.log(tweet);
     });
   }
 }

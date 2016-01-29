@@ -1,5 +1,5 @@
 var socketio = require('socket.io');
-var utils = require('./utils.js')
+var utils = require('./utils.js');
 
 /**
  * Handle all of our socket connections
