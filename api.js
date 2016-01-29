@@ -4,7 +4,7 @@ var _ = require('lodash');
 var stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 var googleSpreadsheet = require("google-spreadsheet");
 var google_sheets_auth_email = process.env.GOOGLE_SHEETS_AUTH_EMAIL;
-var google_sheets_auth_key =process.env.GOOGLE_SHEETS_AUTH_KEY;
+var google_sheets_auth_key = (process.env.GOOGLE_SHEETS_AUTH_KEY || '').replace(/\\n/g, '\n');
 var google_sheets_wifi_sheet_id = process.env.GOOGLE_SHEETS_WIFI_SHEET_ID;
 
 var api = module.exports = new express.Router();
@@ -90,7 +90,7 @@ api.post('/wifi', function (req, res, next) {
   var ticket_id = req.body.ticket_id;
   var google_sheets_auth = {
     client_email: google_sheets_auth_email,
-    private_key: google_sheets_auth_key.replace("\\n", "\n")
+    private_key: google_sheets_auth_key
   }
 
   // spreadsheet key is the long id in the sheets URL
