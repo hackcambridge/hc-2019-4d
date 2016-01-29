@@ -14,11 +14,20 @@ judges:
       Rob Whitehead is the CTO of improbable.
   - name: Dr. Cicilia Mascolo
     description: |
-      Cicilia Mascolo am a Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge.
-      I belong to the Networks and Operating Systems Group.
+      Cecilia Mascolo is Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge, UK.
+      Prior joining Cambridge in 2008, she has been a faculty member in the Department of Computer Science at University
+      College London. She holds a PhD from the University of Bologna. Her research interests are in human mobility modelling,
+      mobile and sensor systems and networking and spatio-temporal data analysis. She has published in a number of top tier
+      conferences and journals in the area and her investigator experience spans projects funded by Research Councils and industry.
+      She has served as organizing and programme committee member of mobile, sensor systems and networking conferences and workshops.
+      She sits on the editorial boards of IEEE Pervasive Computing, IEEE Transactions on Mobile Computing and ACM Transactions on Sensor Networks.
+
+      More details at www.cl.cam.ac.uk/users/cm542
   - name: Tim Fogarty
     description: |
-      MLH judge.
+      Tim is the Commissioner of [Major League Hacking](https://mlh.io/), the student hackathon league. He spends his time helping
+      support over 200 hackathons a year across North America and Europe. He used to organise HackNotts at the
+      University of Nottingham and is a keen Node.js hacker.
   - name: William Tunstall-Pedoe
     description: |
       Blurb goes here.
