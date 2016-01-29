@@ -93,7 +93,8 @@ api.post('/wifi', function (req, res, next) {
     private_key: google_sheets_auth_key.replace("\\n", "\n")
   }
   
-  console.log(google_sheets_auth);
+  console.log(google_sheets_auth_key);
+  console.log(google_sheets_auth.private_key);
 
   // spreadsheet key is the long id in the sheets URL 
   var wifi_sheet = new googleSpreadsheet(google_sheets_wifi_sheet_id);
