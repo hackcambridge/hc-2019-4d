@@ -1,10 +1,15 @@
 var $ = require('jquery');
 var Countdown = require('lib/countdown.js');
 
+var pages = [
+  require('./payment'),
+  require('./event'),
+  require('./wifi'),
+  require('./pres')
+];
+
 $(document).ready(function () {
-  require('./payment')();
-  require('./event')();
-  require('./wifi')();
+  pages.forEach((f) => f());
 
   $('.subscribe-form').each(function () {
     var $this = $(this);

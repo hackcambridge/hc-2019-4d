@@ -57,6 +57,8 @@
     "normalize.css": "^3.0.3",
     "nunjucks": "^2.1.0",
     "run-sequence": "^1.1.4",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5",
     "stripe": "^4.1.0",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.4.2",
