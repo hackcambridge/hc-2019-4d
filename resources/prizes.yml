@@ -20,4 +20,15 @@ prizes:
         Do you think you have what it takes to impress your peers? During the judging period hackers will be able to check out each other's projects and vote for their favourites.
       prize: Echo member of the winnng team will receive a Black Pebble Time smartwatch.
       picture: picture.png
-  api-prizes:
+  api:
+    - name: HPE Haven OnDemand API
+      prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
+    - name: Beaker API
+      prize: TBA
+    - name: Mailjet API
+      # TODO: Find details on the below
+      prize: One nerfgun+camera for each member of the winning team alongside 6-months Silver Premium Plan for 6 months.
+    - name: Nessie by Capital One
+      prize: TBA
+    - name: Google Cloud Platform
+      prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.

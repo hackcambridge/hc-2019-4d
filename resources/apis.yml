@@ -8,8 +8,6 @@ apis:
       using the Haven OnDemand natural language processing, machine learning, and predictive analytics APIs. There are more than 60 APIs in the
       [catalog](https://dev.havenondemand.com/apis), and all Developers get an API key with FREE monthly quota. [Sign up here](https://www.havenondemand.com/signup.html)
       and check out the [hackathon resources](https://community.havenondemand.com/t5/Blog/Developer-resources-for-your-hackathon/ba-p/2495) to jumpstart your projects.
-
-    prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
     picture: picture.png
   - name: Beaker API
     description: |
@@ -20,8 +18,7 @@ apis:
       and everything just works – magically. Beaker comes with built-in support for Python, R, JavaScript, Java, Scala, Clojure, Julia, and more.
 
       Each part of your problem can be solved in the language best suited to it. For example, you can scrape the web in Python, do a regression in R, and
-      then visualize it with d3.js, seamlessly and all in the same notebook. 
-    prize: TBA
+      then visualize it with d3.js, seamlessly and all in the same notebook.
     picture: picture.png
   - name: Mailjet API
     description: |
@@ -33,7 +30,6 @@ apis:
       Let us handle the heavy lifting of sending so that so you can focus on what matters most: innovating.
       Mailjet enables you to send transactional emails with peace of mind. We ensure a great deliverability for your emails and an end-to-end tracking.
       You can send your emails through SMTP relay or API. Discover more at http://dev.mailjet.com/guides/.
-    prize: One nerfgun+camera for each member of the winning team alongside 6-months Silver Premium Plan for 6 months. TODO NEED TO FIND DETAILS!
     picture: picture.png
   - name: Nessie by Capital One
     description: |
@@ -44,7 +40,6 @@ apis:
       about how you’d reimagine banking.
 
       Happy Hacking!
-    prize: TBA
     picture: picture.png
   - name: Google Cloud Platform
     description: |

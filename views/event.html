@@ -9,8 +9,9 @@
 
     <nav class="event-nav">
       <a class="event-nav-button" href="#info">Info</a>
-      <a class="event-nav-button" href="#schedule">Schedule</a>
       <a class="event-nav-button" href="#map">Map</a>
+      <a class="event-nav-button" href="#apis">APIs</a>
+      <a class="event-nav-button" href="#schedule">Schedule</a>
       <a class="event-nav-button" href="#prizes">Prizes</a>
     </nav>
   </div>
@@ -28,6 +29,17 @@
   <div class="event-map-container">
     <iframe src="https://mapsengine.google.com/map/u/3/embed?mid=zpSuCJ1FOACs.kxtoljjF0saI" width="640" height="480" class="event-map"></iframe>
   </div>
+</section>
+
+<section class="section-event-apis" id="apis">
+  <div class="content-wrapper">
+    <h2 class="grand-heading">APIs & Challenges</h2>
+    {% for api in apis %}
+      <div class="event-prize-api">
+        <h3>{{ api.name }}</h3>
+        {{ api.description }}
+      </div>
+    {% endfor %}
 </section>
 
 <section class="section-event-timetable" id="schedule">
@@ -76,17 +88,6 @@
     </div>
     <p>More workshops to come!</p>
   </div>
-</section>
-
-<section class="section-event-apis" id="apis">
-  <div class="content-wrapper">
-    <h2 class="grand-heading">APIs & Challenges</h2>
-    {% for api in apis %}
-      <div class="event-prize-api">
-        <h3>{{ api.name }}</h3>
-        {{ api.description }}
-      </div>
-    {% endfor %}
 </section>
 
 <section class="section-event-prizes" id="prizes">

@@ -20,7 +20,7 @@ function timeProperties(items, properties) {
 
 
 function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop]))));
+  items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])) }} ));
 }
 
 exports.init = function init(a) {
@@ -71,6 +71,9 @@ exports.loadResource = function loadResource(resourceName) {
       case 'workshops':
         markdownProperties(loadedResource, ['description']);
         timeProperties(loadedResource, ['time'])
+        break;
+      case 'apis':
+        markdownProperties(loadedResource, ['description']);
         break;
       case 'schedule':
         timeProperties(loadedResource, ['time']);
