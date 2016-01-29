@@ -96,7 +96,7 @@ exports.loadMarkdown = function loadMarkdown(markdownName) {
   return loadedMarkdowns[markdownName];
 };
 
-var publicId = process.env.APP_ID || crypto.randomBytes(10).toString('hex');
+var publicId = crypto.randomBytes(12).toString('hex');
 
 exports.getPublicId = function () {
   return publicId;
