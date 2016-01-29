@@ -50,7 +50,7 @@ exports.asset = function (asset, prefix) {
 var loadedAssets = { };
 
 exports.loadAsset = function loadAsset(assetName) {
-  if ((loadedAssets[assetName]) || (app.settings.env == 'development')) {
+  if ((!loadedAssets[assetName]) || (app.settings.env == 'development')) {
     loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
   }
 
