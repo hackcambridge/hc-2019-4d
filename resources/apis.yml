@@ -47,3 +47,10 @@ apis:
       Compute Engine (VMs), Cloud Storage, Datastore, Cloud SQL. Basically, if it is listed on our site (https://cloud.google.com/)  you can use it.
     prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
     picture: picture.png
+  - name: Mendeley API
+    description: |
+      Mendeley is a platform that allows scholars from all over the world to collaborate, and opens up science for everyone.
+      We invite you to make the best use of our API to build something great to help change research.
+      The Mendeley API provides the ability to query metadata about millions of research documents in almost any programming language.
+
+      Head over to (http://dev.mendeley.com/hackathon.html) for a quick start guide on using our API.
