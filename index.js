@@ -147,7 +147,9 @@ app.get('/touch', function (req, res) {
 });
 
 app.get('/pres', function (req, res) {
-  res.render('pres.html');
+  res.render('pres.html', {
+    message: process.env.SCREEN_MESSAGE || ''
+  });
 });
 
 app.get('/favicon.ico', function (req, res) {
