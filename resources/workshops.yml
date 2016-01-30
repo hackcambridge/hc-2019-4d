@@ -1,4 +1,5 @@
 workshops:
+
   - name: Give your app an unfair advantage with HPE Haven OnDemand APIs
     description: |
       With more than 60 powerful and easy to use APIs, HPE Haven OnDemand can crawl, index and analyze data from file systems and the web.
@@ -11,14 +12,17 @@ workshops:
       Follow Tyler on Twitter [@tylernappy](https://twitter.com/tylernappy)
     time: 2016-01-30 13:00:00
     duration: 30 # In minutes
-    location: TBA
-  - name: Winning at APIs - Getting started working with APIs
+    location: Cockcroft Lecture Theatre
+
+  - name: How Mendeley can manage your course load
     description: |
-      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
-      and consumption of APIs is a critical skill, this is a talk not to be missed!
-    time: TBA
+      What is Mendeley and why you will care in the future? For all you researchers and future Masters and PhDs, Mendeley will help clear the
+      busywork from your course load. Our tools are designed to help you discover new research, organise your reference work and connect with
+      experts and other like-minded people. Come along if you want to hear more about how Mendeley will help you in your future studies.
+    time: 2016-01-30 13:10:00
     duration: 10
-    location: TBA
+    location: Phoenix
+
   - name: Beaker in action
     description: |
       Scott Draves is an award-winning software artist, VJ, and a pioneer of the open source movement.
@@ -29,7 +33,40 @@ workshops:
       This talk will motivate the design, review the architecture, and include a live demo of Beaker in action.
     time: 2016-01-30 13:20:00
     duration: 30
-    location: TBA
+    location: Titan
+
+  - name: Hacking with Mailjet
+    description: |
+      Email is not dead! But it is changing.
+      Leverage the #1 communication channel to discuss with your users, notify them or build original hacks to innovate.
+      We'll see how developers use email in a creative way in their apps and startups.
+      We'll also cover how easy it is to send, monitor the emails you send with rich analytics, and last but not least, parse inbound emails to extract data with the Mailjet APIs.
+    time: 2016-01-30 13:30:00
+    duration: 10
+    location: Phoenix
+
+  - name: Metaswitch on Communicating in the Cloud
+    description: |
+      Global communications networks are undergoing fundamental change.  Historically built on specialised, dedicated hardware, today’s
+      communication services are delivered on standard commodity computing hardware … with all the intelligence delivered in software.
+
+      This technology revolution is enabling dramatically faster innovation and has created startling potential for new services to capture 10s
+      or 100s of millions of users rapidly.
+
+      We will analyse the key technological changes that are driving this revolution, illustrate some of the complex programming challenges
+      that arise, and discuss the opportunities for software developers in this domain.
+    time: 2016-01-30 13:40:00
+    duration: 30
+    location: Cockcroft Lecture Theatre
+
+  - name: 3 Google Cloud Platform Tools
+    description: |
+      Our API challenge is open on any piece of Google Cloud Platform, but some tools make more sense at an event like a hackathon than others.
+      We'll recommend 3 tools that can help you get your ideas out there as fast as you can this weekend.
+    time: 2016-01-30 13:50:00
+    duration: 10
+    location: Phoenix
+
   - name: Cantab on FinTech
     description: |
       Finance has been a Big Data arena for decades, long before the term FinTech was coined. We will review the opportunities for programmers
@@ -38,43 +75,50 @@ workshops:
       feeds ‘black box’ trading models.
     time: 2016-01-30 14:00:00
     duration: 30
-    location: TBA
+    location: Titan
+
+  - name: What can you build with Skyscanner’s API in 24 hours?
+    description: |
+      Started in 2003, Skyscanner is Scotland’s first unicorn technology startup.
+      Over the years we’ve grown into one of the world’s top travel meta-search engines with more than 750 travel partnerships and over 40 million unique monthly visitors.
+      Our API is free to use for individuals and startups alike to add travel search functionality to existing products, or build fully-fledged travel search products.
+      What could you build in 24 hours?
+
+      Speakers: Iain McDonald and Matt Smith
+    time: 2016-01-30 14:10:00
+    duration: 10
+    location: Phoenix
+
   - name: Hardware Security Modules – By Thales e-Security
     description: |
       This talk will describe what Hardware Security Modules are, what they are good for, why they are deployed, and some of their limitations.
       The talk will focus on the nShield line of general purpose HSMs. We shall describe the architecture, security mechanisms including key
       protection and policies, and discuss example applications.
- 
+
       Speakers: Clara Juanes Vallejo, Business Transformation Manager, and Robert Rainbird, Lead Engineer.
     time: 2016-01-30 15:00:00
     duration: 30
-    location: TBA
-  - name: How Mendeley can manage your course load
-    description: | 
-      What is Mendeley and why you will care in the future? For all you researchers and future Masters and PhDs, Mendeley will help clear the
-      busywork from your course load. Our tools are designed to help you discover new research, organise your reference work and connect with
-      experts and other like-minded people. Come along if you want to hear more about how Mendeley will help you in your future studies.
+    location: Cockcroft Lecture Theatre
+
+  - name: Workshop by Improbable
+    description: |
+      TBA
+    time: 2016-01-30 15:20:00
+    duration: 30
+    location: Titan
+
+  - name: Workshop by G-Research
+    description: |
+      TBA
+    time: 2016-01-30 16:00:00
+    duration: 30
+    location: Cockcroft Lecture Theatre
+
+  - name: Winning at APIs - Getting started working with APIs
+    description: |
+      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
+      and consumption of APIs is a critical skill, this is a talk not to be missed!
     time: TBA
     duration: 10
-    location: TBA
-  - name: 3 Google Cloud Platform Tools
-    description: |
-      Our API challenge is open on any piece of Google Cloud Platform, but some tools make more sense at an event like a hackathon than others.
-      We'll recommend 3 tools that can help you get your ideas out there as fast as you can this weekend.
-    time: 2016-01-30 13:50:00
-    duration: 10
-    location: TBA
-  - name: Metaswitch on Communicating in the Cloud
-    description: |
-      Global communications networks are undergoing fundamental change.  Historically built on specialised, dedicated hardware, today’s
-      communication services are delivered on standard commodity computing hardware … with all the intelligence delivered in software. 
-     
-      This technology revolution is enabling dramatically faster innovation and has created startling potential for new services to capture 10s
-      or 100s of millions of users rapidly.
-      
-      We will analyse the key technological changes that are driving this revolution, illustrate some of the complex programming challenges
-      that arise, and discuss the opportunities for software developers in this domain.
-    time: 2016-01-30 13:40:00
-    duration: 30
     location: TBA
 
