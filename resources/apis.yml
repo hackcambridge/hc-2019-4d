@@ -54,3 +54,8 @@ apis:
       The Mendeley API provides the ability to query metadata about millions of research documents in almost any programming language.
 
       Head over to (http://dev.mendeley.com/hackathon.html) for a quick start guide on using our API.
+  - name: OpenTSDB
+    description: |
+      [OpenTSDB](http://opentsdb.net/) is a Hadoop-based time series database optimised for write performance in order to scale to over 1 million writes per second.
+      We challenge you to create compelling visualisations of data using OpenTSDB's API,  and to use them to drive discovery, analysis and
+      diagnosis of events.
