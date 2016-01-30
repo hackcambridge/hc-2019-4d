@@ -138,10 +138,23 @@
   }
 }
 
-/* Schedule
+/* APIs
    ========================================================================== */
 
+.event-api {
 
+  &:nth-child(2n + 1) {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 5px;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+    margin-bottom: $punit;
+  }
+}
+
+/* Schedule
+   ========================================================================== */
 
 .section-event-timetable {
   dark-background();
@@ -206,8 +219,8 @@
   position: absolute;
   left: (~$punit - 50px);
   padding-right: 10px;
-  box-sizing: border-box;
   top: 3px;
+  box-sizing: border-box;
   width: 50px;
   text-align: right;
   color: lighten($colorSecondary, 20%);
@@ -218,9 +231,9 @@
     position: absolute;
     content: ' ';
     display: block;
-    width: 6px;
-    border-bottom: 2px solid darken($colorSecondary, 30%);
-    right: 0;
+    width: 15px;
+    border-bottom: 2px solid $colorSecondary;
+    right: -12px;
     top: 8px;
   }
 }
@@ -241,9 +254,13 @@
   font-size: 0.9em;
 }
 
+.event-workshop-description {
+  color: lighten($colorSecondary, 50%);
+}
+
 .event-workshop {
-  position: relative;
   margin-bottom: ($punit * 2);
+  position: relative;
 }
 
 @media (min-width: 600px) {

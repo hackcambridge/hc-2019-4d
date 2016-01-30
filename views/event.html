@@ -33,11 +33,13 @@
 
 <section class="section-event-apis" id="apis">
   <div class="content-wrapper">
-    <h2 class="grand-heading">APIs & Challenges</h2>
+    <h2 class="grand-heading">APIs &amp; Challenges</h2>
     {% for api in apis %}
-      <div class="event-prize-api">
+      <div class="event-api">
         <h3>{{ api.name }}</h3>
-        {{ api.description }}
+        <div class="event-api-description">
+          {{ api.description }}
+        </div>
       </div>
     {% endfor %}
 </section>
@@ -81,8 +83,9 @@
               {{ workshop.time.clone().add(workshop.duration, 'minutes').format('HH:mm') }}
             {% endif %}
           </div>
-          {{ workshop.description }}
-
+          <div class="event-workshop-description">
+            {{ workshop.description }}
+          </div>
         </div>
       {% endfor %}
     </div>
