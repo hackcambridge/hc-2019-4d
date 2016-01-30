@@ -2,29 +2,24 @@ prizes:
   general:
     - name: Hack Cambridge 1st Place
       description: |
-        Do you think you have what it takes to be the best at the most awesome hackathon in the world? Well, you will just
-        have to settle for the chance of being the best at Hack Cambridge, still pretty cool though. This award will go to
-        the project determined to be the best by our expert panel of judges and everyone is entered.
-        More to be announced...
-      prize: Each member of the winning team will win a Nexus 9 tablet.
+        Do you think you have what it takes to be the best at Hack Cambridge?
+      prize: Each member of the winning team will receive a Nexus 9 tablet.
       picture: picture.png
       class: first
     - name: Hack Cambridge 2nd Place
       description: |
-        You did pretty well to the impress the judges this much.
       prize: Each member of the winning team will receive a Parrot MiniDrones Airborne Cargo Drone, a mini-keyboard and a grey Logitech M185 Wireless Mouse.
       picture: picture.png
       class: second
     - name: Hack Cambridge 3rd Place
       description: |
-        Very impressive.
       prize: Each member of the winning team will receive a 6" Touchscreen Kindle.
       picture: picture.png
       class: third
     - name: The Hack Cambridge People's Choice Award
       description: |
         Do you think you have what it takes to impress your peers? During the judging period hackers will be able to check out each other's projects and vote for their favourites.
-      prize: Echo member of the winnng team will receive a Black Pebble Time smartwatch.
+      prize: Each member of the winnng team will receive a Black Pebble Time smartwatch.
       picture: picture.png
       class: pc
     - name: The Thales Security Challenge
@@ -33,9 +28,6 @@ prizes:
     - name: Best Gaming/VR Hack by Improbable
       prize: TBA
       class: gaming
-    - name: Best Machine Learning Hack by Darktrace
-      prize: TBA
-      class: machine
   api:
     - name: HPE Haven OnDemand API
       prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
