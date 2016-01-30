@@ -16,7 +16,7 @@ workshops:
     description: |
       Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
       and consumption of APIs is a critical skill, this is a talk not to be missed!
-    time: 2016-01-30 13:20:00
+    time: TBA
     duration: 10
     location: TBA
   - name: Beaker in action
@@ -63,5 +63,18 @@ workshops:
       We'll recommend 3 tools that can help you get your ideas out there as fast as you can this weekend.
     time: 2016-01-30 13:50:00
     duration: 10
+    location: TBA
+  - name: Metaswitch on Communicating in the Cloud
+    description: |
+      Global communications networks are undergoing fundamental change.  Historically built on specialised, dedicated hardware, today’s
+      communication services are delivered on standard commodity computing hardware … with all the intelligence delivered in software. 
+     
+      This technology revolution is enabling dramatically faster innovation and has created startling potential for new services to capture 10s
+      or 100s of millions of users rapidly.
+      
+      We will analyse the key technological changes that are driving this revolution, illustrate some of the complex programming challenges
+      that arise, and discuss the opportunities for software developers in this domain.
+    time: 2016-01-30 13:40:00
+    duration: 30
     location: TBA
 
