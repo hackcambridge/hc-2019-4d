@@ -70,7 +70,22 @@ exports.loadResource = function loadResource(resourceName) {
         break;
       case 'workshops':
         markdownProperties(loadedResource, ['description']);
-        timeProperties(loadedResource, ['time'])
+        timeProperties(loadedResource, ['time']);
+
+        loadedResource = loadedResource.sort((r1, r2) => {
+          var time1 = r1.time;
+          var time2 = r2.time;
+
+          if (time1.isValid()) {
+            if (!time2.isValid()) {
+              return -1;
+            } else {
+              return Math.sign(time1.diff(time2));
+            }
+          } else {
+            return (time2.isValid()) ? 1 : 0;
+          }
+        })
         break;
       case 'apis':
         markdownProperties(loadedResource, ['description']);
