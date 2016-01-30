@@ -2,36 +2,47 @@ prizes:
   general:
     - name: Hack Cambridge 1st Place
       description: |
-        Do you think you have what it takes to be the best at the most awesome hackathon in the world? Well, you will just
-        have to settle for the chance of being the best at Hack Cambridge, still pretty cool though. This award will go to
-        the project determined to be the best by our expert panel of judges and everyone is entered.
-        More to be announced...
-      prize: Each member of the winning team will win a Nexus 9 tablet.
+        Do you think you have what it takes to be the best at Hack Cambridge?
+      prize: Each member of the winning team will receive a Nexus 9 tablet.
       picture: picture.png
+      class: first
     - name: Hack Cambridge 2nd Place
       description: |
-        You did pretty well to the impress the judges this much.
       prize: Each member of the winning team will receive a Parrot MiniDrones Airborne Cargo Drone, a mini-keyboard and a grey Logitech M185 Wireless Mouse.
       picture: picture.png
+      class: second
     - name: Hack Cambridge 3rd Place
       description: |
-        Very impressive.
       prize: Each member of the winning team will receive a 6" Touchscreen Kindle.
       picture: picture.png
+      class: third
     - name: The Hack Cambridge People's Choice Award
       description: |
         Do you think you have what it takes to impress your peers? During the judging period hackers will be able to check out each other's projects and vote for their favourites.
-      prize: Echo member of the winnng team will receive a Black Pebble Time smartwatch.
+      prize: Each member of the winnng team will receive a Black Pebble Time smartwatch.
       picture: picture.png
+      class: pc
+    - name: The Thales Security Challenge
+      prize: Each member of the team will received £200
+      class: security
+    - name: Best Gaming/VR Hack by Improbable
+      prize: TBA
+      class: gaming
+    - name: Best Hardware Hack by ARM
+      prize: TBA
+      class: hardware
   api:
     - name: HPE Haven OnDemand API
       prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
     - name: Beaker API
-      prize: TBA
+      prize: £1000 pounds in gift cards split amongst the winning team
     - name: Mailjet API
-      # TODO: Find details on the below
-      prize: One nerfgun+camera for each member of the winning team alongside 6-months Silver Premium Plan for 6 months.
+      prize: One Nerf Gun with a Camera installed for each member of the winning team alongside 6-months Silver Premium Plan for 6 months.
     - name: Nessie by Capital One
-      prize: TBA
+      prize: A Nespresso coffee machine by KRUPS for each member of the winning team
     - name: Google Cloud Platform
       prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
+    - name: Best Use of Amazon Web Services
+      prize: TBA
+    - name: Best domain name registered with domain.com
+      prize: TBA

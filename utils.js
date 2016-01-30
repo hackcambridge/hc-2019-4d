@@ -66,7 +66,7 @@ exports.loadResource = function loadResource(resourceName) {
         markdownProperties(loadedResource, ['answer']);
         break;
       case 'prizes':
-        _.forOwn(loadedResource, (item) => markdownProperties(item, ['description', 'prize']));
+        _.forOwn(loadedResource, (item) => markdownProperties(item, ['description']));
         break;
       case 'workshops':
         markdownProperties(loadedResource, ['description']);

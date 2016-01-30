@@ -26,18 +26,25 @@
 
 <section class="section-event-map" id="map">
   <p>Click on the map to interact with it</p>
-  <div class="event-map-container">
-    <iframe src="https://mapsengine.google.com/map/u/3/embed?mid=zpSuCJ1FOACs.kxtoljjF0saI" width="640" height="480" class="event-map"></iframe>
+  <div class="event-maps-grid">
+    <div class="event-map-container">
+      <iframe src="https://mapsengine.google.com/map/u/3/embed?mid=zpSuCJ1FOACs.kxtoljjF0saI" width="640" height="480" class="event-map"></iframe>
+    </div>
+    <div class="event-map-cornex-container">
+      <img class="event-map-cornex" src="{{ asset('images/cornex-floor.svg') }}" />
+    </div>
   </div>
 </section>
 
 <section class="section-event-apis" id="apis">
   <div class="content-wrapper">
-    <h2 class="grand-heading">APIs & Challenges</h2>
+    <h2 class="grand-heading">APIs &amp; Challenges</h2>
     {% for api in apis %}
-      <div class="event-prize-api">
+      <div class="event-api">
         <h3>{{ api.name }}</h3>
-        {{ api.description }}
+        <div class="event-api-description">
+          {{ api.description }}
+        </div>
       </div>
     {% endfor %}
 </section>
@@ -81,8 +88,9 @@
               {{ workshop.time.clone().add(workshop.duration, 'minutes').format('HH:mm') }}
             {% endif %}
           </div>
-          {{ workshop.description }}
-
+          <div class="event-workshop-description">
+            {{ workshop.description }}
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -92,22 +100,25 @@
 
 <section class="section-event-prizes" id="prizes">
   <div class="content-wrapper">
+    {% macro renderPrizes(prizes) %}
+      {% for prize in prizes %}
+        <div class="event-prize{% if prize.class %} event-prize-decorate-{{ prize.class}}{% endif %}">
+          <div class="event-prize-inner">
+            <h3>{{ prize.name }}</h3>
+            <p class="event-prize-content">{{ prize.prize }}</p>
+            {{ prize.description }}
+          </div>
+        </div>
+      {% endfor %}
+    {% endmacro %}
+
     <h2 class="grand-heading">Prizes</h2>
-    <div class="event-prizes-general">
-    {% for prize in prizes.general %}
-      <div class="event-prize-general">
-        <h3>{{ prize.name }}</h3>
-      </div>
-    {% endfor %}
+    <div class="event-prizes-general event-prize-container">
+      {{ renderPrizes(prizes.general) }}
     </div>
     <h2 class="grand-heading">API Prizes</h2>
-    <div class="event-prizes-api">
-      {% for prize in prizes.api %}
-      <div class="event-prize-api">
-        <h3>{{ prize.name }}</h3>
-        {{ prize.description }}
-      </div>
-      {% endfor %}
+    <div class="event-prize-container event-prizes-api">
+      {{ renderPrizes(prizes.api) }}
     </div>
     <p>More prizes to come!</p>
   </div>
