@@ -47,7 +47,7 @@
 .event-viewer-logos {
   position: absolute;
   right: 30px;
-  bottom: 30px;
+  top: 30px;
   text-align: right;
   display: flex;
   justify-content: right;
@@ -57,7 +57,7 @@
 .hc-corner-logo {
   position: absolute;
   left: 30px;
-  bottom: 30px;
+  top: 30px;
   width: 60px;
   height: auto;
 
@@ -72,7 +72,7 @@
   width: 400px;
   height: 600px;
   overflow: hidden;
-  top: 45%;
+  top: 50%;
   transform: translate(0, -50%);
 }
 
@@ -107,14 +107,13 @@
 .event-viewer-logo {
   margin-left: 20px;
   vertical-align: middle;
-  mix-blend-mode: soft-light;
 
   svg {
     width: 100%;
     height: auto;
 
     path {
-      fill: #fff;
+      fill: lighten($colorSecondary, 40%);
     }
   }
 
