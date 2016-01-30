@@ -5,21 +5,34 @@ prizes:
         You did very gud son!
       prize: Prize Goes here
       picture: picture.png
+      class: first
     - name: Hack Cambridge 2nd Place
       description: |
         You did gud son!
       prize: Each member of the winning team will receive a Parrot MiniDrones Airborne Cargo Drone, a mini-keyboard and a grey Logitech M185 Wireless Mouse.
       picture: picture.png
+      class: second
     - name: Hack Cambridge 3rd Place
       description: |
         You did kinda u on!
       prize: Each member of the winning team will receive a 6" Touchscreen Kindle.
       picture: picture.png
+      class: third
     - name: The Hack Cambridge People's Choice Award
       description: |
         Do you think you have what it takes to impress your peers? During the judging period hackers will be able to check out each other's projects and vote for their favourites.
       prize: Echo member of the winnng team will receive a Black Pebble Time smartwatch.
       picture: picture.png
+      class: pc
+    - name: The Thales Security Challenge
+      prize: Each member of the team will received £200
+      class: security
+    - name: Best Gaming/VR Hack by Improbable
+      prize: TBA
+      class: gaming
+    - name: Best Machine Learning Hack by Darktrace
+      prize: TBA
+      class: machine
   api:
     - name: HPE Haven OnDemand API
       prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.

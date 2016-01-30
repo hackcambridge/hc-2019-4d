@@ -95,22 +95,25 @@
 
 <section class="section-event-prizes" id="prizes">
   <div class="content-wrapper">
+    {% macro renderPrizes(prizes) %}
+      {% for prize in prizes %}
+        <div class="event-prize{% if prize.class %} event-prize-decorate-{{ prize.class}}{% endif %}">
+          <div class="event-prize-inner">
+            <h3>{{ prize.name }}</h3>
+            <p class="event-prize-content">{{ prize.prize }}</p>
+            {{ prize.description }}
+          </div>
+        </div>
+      {% endfor %}
+    {% endmacro %}
+
     <h2 class="grand-heading">Prizes</h2>
-    <div class="event-prizes-general">
-    {% for prize in prizes.general %}
-      <div class="event-prize-general">
-        <h3>{{ prize.name }}</h3>
-      </div>
-    {% endfor %}
+    <div class="event-prizes-general event-prize-container">
+      {{ renderPrizes(prizes.general) }}
     </div>
     <h2 class="grand-heading">API Prizes</h2>
-    <div class="event-prizes-api">
-      {% for prize in prizes.api %}
-      <div class="event-prize-api">
-        <h3>{{ prize.name }}</h3>
-        {{ prize.description }}
-      </div>
-      {% endfor %}
+    <div class="event-prize-container event-prizes-api">
+      {{ renderPrizes(prizes.api) }}
     </div>
     <p>More prizes to come!</p>
   </div>
