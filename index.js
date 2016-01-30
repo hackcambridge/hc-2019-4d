@@ -40,21 +40,8 @@ var nunjucksEnv = nunjucks.configure('views', {
   express: app
 });
 
-var assetsFile;
-try {
-  assetsFile = require('./assets/dist/rev-manifest.json');
-} catch (e) {
-  assetsFile = { };
-}
-
-app.locals.asset = function (asset) {
-  if (_.has(assetsFile, asset)) {
-    asset = assetsFile[asset];
-  }
-
-  return '/assets/' + asset;
-};
-
+app.locals.asset = utils.asset;
+app.locals.loadAsset = utils.loadAsset;
 app.locals.markdownResource = utils.loadMarkdown;
 
 if (process.env.BS_SNIPPET) {
@@ -128,7 +115,8 @@ app.get('/event', function (req, res) {
     title: 'Hack Cambridge 2016',
     workshops: utils.loadResource('workshops'),
     prizes: utils.loadResource('prizes'),
-    schedule: utils.loadResource('schedule')
+    schedule: utils.loadResource('schedule'),
+    apis: utils.loadResource('apis')
   });
 });
 

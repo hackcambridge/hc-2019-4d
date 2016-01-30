@@ -104,9 +104,7 @@ gulp.task('serve', ['watch'], function () {
     });
   }
 
-  console.log(argv.nobs);
-
-  if (argv.nobs) {
+  if (!argv.nobs) {
     bs.init({
       port: 8000,
       logSnippet: false

@@ -20,12 +20,42 @@ function timeProperties(items, properties) {
 
 
 function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop]))));
+  items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])) }} ));
 }
 
 exports.init = function init(a) {
   app = a;
 };
+
+var assetsFile;
+
+try {
+  assetsFile = require('./assets/dist/rev-manifest.json');
+} catch (e) {
+  assetsFile = { };
+}
+
+exports.asset = function (asset, prefix) {
+  if (prefix == null) {
+    prefix = '/assets/'
+  }
+
+  if (_.has(assetsFile, asset)) {
+    asset = assetsFile[asset];
+  }
+
+  return prefix + asset;
+};
+
+var loadedAssets = { };
+
+exports.loadAsset = function loadAsset(assetName) {
+  if ((!loadedAssets[assetName]) || (app.settings.env == 'development')) {
+    loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
+  }
+
+  return loadedAssets[assetName];
+}
 
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
@@ -41,6 +71,9 @@ exports.loadResource = function loadResource(resourceName) {
       case 'workshops':
         markdownProperties(loadedResource, ['description']);
         timeProperties(loadedResource, ['time'])
+        break;
+      case 'apis':
+        markdownProperties(loadedResource, ['description']);
         break;
       case 'schedule':
         timeProperties(loadedResource, ['time']);
@@ -66,7 +99,7 @@ exports.loadMarkdown = function loadMarkdown(markdownName) {
   return loadedMarkdowns[markdownName];
 };
 
-var publicId = process.env.APP_ID || crypto.randomBytes(10).toString('hex');
+var publicId = crypto.randomBytes(12).toString('hex');
 
 exports.getPublicId = function () {
   return publicId;

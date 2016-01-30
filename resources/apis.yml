@@ -1,0 +1,49 @@
+apis:
+  - name: HPE Haven OnDemand API
+    description: |
+      [HPE Haven OnDemand](https://www.havenondemand.com/) is a platform for developers and businesses to build
+      cognitive computing solutions and data rich applications using text analysis, speech recognition, image analysis, indexing and search APIs.
+
+      Your challenge, should you choose to accept it, is to build the most innovative cognitive computing solution to augment human intelligence
+      using the Haven OnDemand natural language processing, machine learning, and predictive analytics APIs. There are more than 60 APIs in the
+      [catalog](https://dev.havenondemand.com/apis), and all Developers get an API key with FREE monthly quota. [Sign up here](https://www.havenondemand.com/signup.html)
+      and check out the [hackathon resources](https://community.havenondemand.com/t5/Blog/Developer-resources-for-your-hackathon/ba-p/2495) to jumpstart your projects.
+    picture: picture.png
+  - name: Beaker API
+    description: |
+      [The Beaker Notebook](http://beakernotebook.com/) is a new open source tool for collaborative data science. Beaker has an innovative UI and unique architecture to make
+      it easier for novices to get started, and enable experts to work faster. Like IPython, Beaker uses a notebook-based UI metaphor, but Beaker was
+      designed to be polyglot from the ground up. That is, a single notebook may contain cells from multiple different languages that communicate with one
+      another through a unique feature called autotranslation. You can set a variable in a Python cell and then read that variable in a subsequent R cell,
+      and everything just works – magically. Beaker comes with built-in support for Python, R, JavaScript, Java, Scala, Clojure, Julia, and more.
+
+      Each part of your problem can be solved in the language best suited to it. For example, you can scrape the web in Python, do a regression in R, and
+      then visualize it with d3.js, seamlessly and all in the same notebook.
+    picture: picture.png
+  - name: Mailjet API
+    description: |
+      Your goal is to come up with an innovative use of the Mailjet API.
+
+      Mailjet is a powerful email service provider that ensures maximum insight and deliverability results for marketing and transactional emails.
+      Our analytics tools and intelligent APIs offer the flexibility to create, send and optimize emails for all.
+
+      Let us handle the heavy lifting of sending so that so you can focus on what matters most: innovating.
+      Mailjet enables you to send transactional emails with peace of mind. We ensure a great deliverability for your emails and an end-to-end tracking.
+      You can send your emails through SMTP relay or API. Discover more at http://dev.mailjet.com/guides/.
+    picture: picture.png
+  - name: Nessie by Capital One
+    description: |
+      Nessie is Capital One’s Hackathon API that gives you access to real public-facing data - such as ATM and bank locations - along with mock customer data.
+      Use HTTP requests to setup peer-to-peer transactions, simulate a weekly paycheque, or even schedule bills for customers! Have a go: api.reimaginebanking.com
+
+      Nessie is still young and we’re always looking for feedback to improve it. Grab anyone of us from Capital One to get help with Nessie, give feedback or talk
+      about how you’d reimagine banking.
+
+      Happy Hacking!
+    picture: picture.png
+  - name: Google Cloud Platform
+    description: |
+      Our API challenge is simple - use any part of Google Cloud Platform to power your application, and your eligible. It includes App Engine,
+      Compute Engine (VMs), Cloud Storage, Datastore, Cloud SQL. Basically, if it is listed on our site (https://cloud.google.com/)  you can use it.
+    prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
+    picture: picture.png
