@@ -12,12 +12,18 @@ var fs = require('fs');
 var _ = require('lodash');
 var url = require('url');
 var querystring = require('querystring');
-var marked = require('marked');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var mailchimp = require('mailchimp-api');
+var Countdown = require('./lib/countdown');
+var utils = require('./utils');
 var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
+var server = require('http').Server(app);
+
+require('./sockets.js')(server);
+
+utils.init(app);
 
 // Static file serving
 var staticOptions = { };
@@ -34,20 +40,13 @@ var nunjucksEnv = nunjucks.configure('views', {
   express: app
 });
 
-var assetsFile;
-try {
-  assetsFile = require('./assets/dist/rev-manifest.json');
-} catch (e) {
-  assetsFile = { };
+app.locals.asset = utils.asset;
+app.locals.loadAsset = utils.loadAsset;
+app.locals.markdownResource = utils.loadMarkdown;
+
+if (process.env.BS_SNIPPET) {
+  app.locals.browserSync = process.env.BS_SNIPPET;
 }
-
-nunjucksEnv.addGlobal('asset', function (asset) {
-  if (_.has(assetsFile, asset)) {
-    asset = assetsFile[asset];
-  }
-
-  return '/assets/' + asset;
-});
 
 // Routes
 
@@ -71,28 +70,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-var loadedResources = [];
-function loadResource(resourceName) {
-  if ((!loadedResources[resourceName]) || (app.settings.env == "development")) {
-    var loadedResource = yaml.safeLoad(fs.readFileSync('./resources/' + resourceName + '.yml'))[resourceName];
-
-    if (resourceName == 'faqs') {
-      loadedResource = _.map(loadedResource, function(faq) {
-        return {
-          question: faq.question,
-          answer: marked(faq.answer)
-        }
-      });
-    }
-
-    loadedResources[resourceName] = loadedResource;
-  }
-
-  return loadedResources[resourceName];
-}
-
 function renderHome(req, res) {
-  res.render('index.html', { faqs: loadResource('faqs'), sponsors: loadResource('sponsors') });
+  res.render('index.html', {
+    faqs: utils.loadResource('faqs'),
+    sponsors: utils.loadResource('sponsors'),
+    countdown: Countdown.createStartCountdown()
+  });
 }
 
 app.get('/', renderHome);
@@ -127,6 +110,16 @@ app.get('/apply', function (req, res) {
   });
 });
 
+app.get('/event', function (req, res) {
+  res.render('event.html', {
+    title: 'Hack Cambridge 2016',
+    workshops: utils.loadResource('workshops'),
+    prizes: utils.loadResource('prizes'),
+    schedule: utils.loadResource('schedule'),
+    apis: utils.loadResource('apis')
+  });
+});
+
 app.get('/teamapply', function(req, res) {
   res.render('form.html', {
     title: 'Apply to Hack Cambridge as a Team',
@@ -141,6 +134,22 @@ app.get('/pay', function (req, res) {
   });
 });
 
+app.get('/wifi', function (req, res) {
+  res.render('wifi.html', {
+    title: 'Get your UIS WiFi Key',
+  });
+});
+
+app.get('/touch', function (req, res) {
+  res.render('touch.html', {
+    title: 'Hack Cambridge Touch'
+  });
+});
+
+app.get('/pres', function (req, res) {
+  res.render('pres.html');
+});
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
@@ -150,6 +159,8 @@ app.use(renderHome);
 // Start server
 app.set('port', (process.env.PORT || 3000));
 
-app.listen(app.get('port'), function() {
+module.exports = app;
+
+server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

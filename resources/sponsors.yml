@@ -48,6 +48,10 @@ sponsors:
       website: http://www.metaswitch.com/
       logo: metaswitch-logo.svg
       variant: wide
+    - name: McKinsey & Company
+      website: http://www.mckinsey.com/
+      logo: mckinsey-logo.svg
+      variant: wide
 
   mega:
     - name: KCG
@@ -79,11 +83,19 @@ sponsors:
       logo: capitalone-logo.svg
       variant: wide
     - name: Palantir
-      website: https://www.palantir.com/careers/teams/recruiting/
+      website: https://www.palantir.com/college/
       logo: palantir-logo.svg
+      variant: wide
+    - name: Skyscanner
+      website: http://www.skyscanner.net/
+      logo: skyscanner-logo.svg
       variant: wide
 
   kilo:
+    - name: Costain
+      website: http://costain.com/careers/
+      logo: costain-logo.svg
+      variant: wide
     - name: Jane Street
       website: https://www.janestreet.com/
       logo: janestreet-logo.svg
@@ -104,9 +116,17 @@ sponsors:
       website: http://www.arm.com/careers/index.html
       logo: arm-logo.svg
       variant: wide
+    - name: Amazon UK
+      website: http://www.amazon.jobs/
+      logo: amazon-logo.svg
+      variant: wide
     - name: Google
       website: https://www.google.com/about/careers/
       logo: google-logo.svg
+      variant: wide
+    - name: Origami Energy
+      website: http://www.origamienergy.com/careers.html
+      logo: origami-logo.svg
       variant: wide
     - name: Softwire
       website: http://www.softwire.com/

@@ -1,8 +1,18 @@
 var $ = require('jquery');
-var createCountdownText = require('./countdown.js');
+var Countdown = require('lib/countdown.js');
+
+require('./polyfills')
+
+var pages = [
+  require('./payment'),
+  require('./event'),
+  require('./wifi'),
+  require('./pres'),
+  require('./touch')
+];
 
 $(document).ready(function () {
-  require('./payment')();
+  pages.forEach((f) => f());
 
   $('.subscribe-form').each(function () {
     var $this = $(this);
@@ -74,12 +84,12 @@ $(document).ready(function () {
     });
   });
 
-  var updateCountdown = function () {
+  /*var updateCountdown = function () {
     $('.application-countdown').html(createCountdownText());
   };
 
   if ($('.application-countdown').length > 0) {
     setInterval(updateCountdown, 500);
     updateCountdown();
-  }
+  }*/
 });

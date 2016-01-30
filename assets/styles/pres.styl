@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Syles for the presentation page
+   ========================================================================== */
+
+.event-viewer-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.event-viewer {
+  width: 1600px;
+  height: 900px;
+  flex: 0 0 auto;
+  dark-background();
+}
+
+.event-viewer-countdown {
+  position: absolute;
+  right: 80px;
+  font-size: 4em;
+  font-weight: 100;
+  transform: translate(0, -50%);
+  top: 50%;
+}
+
+.event-viewer-logos {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  text-align: right;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.hc-corner-logo {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: auto;
+
+  img {
+    width: 100%;
+  }
+}
+
+.event-viewer-twitter-stream-container {
+  position: absolute;
+  left: 100px;
+  width: 400px;
+  height: 600px;
+  overflow: hidden;
+  top: 45%;
+  transform: translate(0, -50%);
+}
+
+.event-viewer-twitter-stream {
+  height: 100%;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0), #fff 30%);
+}
+
+.event-viewer-twitter-hashtag {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+.event-viewer-twitter-logo {
+  width: 25px;
+  fill: #fff;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.event-viewer-touch {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.event-viewer-logo {
+  margin-left: 20px;
+  vertical-align: middle;
+  mix-blend-mode: soft-light;
+
+  svg {
+    width: 100%;
+    height: auto;
+
+    path {
+      fill: #fff;
+    }
+  }
+
+  &-thales {
+    width: 140px;
+    margin-left: 40px;
+  }
+
+  &-darktrace {
+    width: 90px;
+  }
+
+  &-gsa {
+    width: 50px;
+  }
+
+  &-cantab {
+    width: 80px;
+  }
+}
