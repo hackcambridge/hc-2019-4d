@@ -40,11 +40,14 @@ prizes:
     - name: HPE Haven OnDemand API
       prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
     - name: Beaker API
-      prize: TBA
+      prize: £1000 pounds in gift cards split amongst the winning team
     - name: Mailjet API
-      # TODO: Find details on the below
-      prize: One nerfgun+camera for each member of the winning team alongside 6-months Silver Premium Plan for 6 months.
+      prize: One Nerf Gun with a Camera installed for each member of the winning team alongside 6-months Silver Premium Plan for 6 months.
     - name: Nessie by Capital One
-      prize: TBA
+      prize: A Nespresso coffee machine by KRUPS for each member of the winning team
     - name: Google Cloud Platform
       prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
+    - name: Best Use of Amazon Web Services
+      prize: TBA
+    - name: Best domain name registered with domain.com
+      prize: TBA
