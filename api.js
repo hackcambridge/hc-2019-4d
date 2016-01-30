@@ -120,7 +120,8 @@ api.post('/wifi', function (req, res, next) {
         }
 
         var wifi_key = rows[0].uisid;
-        res.json({ message: 'Your UIS WiFi key is: <code>' + wifi_key + '</code>'});
+        var ticket_no = rows[0].ticketno;
+        res.json({ message: `Ticket No: <code>${ticket_no}</code><br />Pasword: <code>${wifi_key}</code>`});
 		  });
 	  });
   })
