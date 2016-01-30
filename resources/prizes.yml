@@ -28,6 +28,9 @@ prizes:
     - name: Best Gaming/VR Hack by Improbable
       prize: TBA
       class: gaming
+    - name: Best Hardware Hack by ARM
+      prize: TBA
+      class: hardware
   api:
     - name: HPE Haven OnDemand API
       prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
