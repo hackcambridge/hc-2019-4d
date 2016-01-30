@@ -140,9 +140,15 @@ app.get('/wifi', function (req, res) {
   });
 });
 
+app.get('/touch', function (req, res) {
+  res.render('touch.html', {
+    title: 'Hack Cambridge Touch'
+  });
+});
+
 app.get('/pres', function (req, res) {
   res.render('pres.html');
-})
+});
 
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));

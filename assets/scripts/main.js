@@ -1,11 +1,14 @@
 var $ = require('jquery');
 var Countdown = require('lib/countdown.js');
 
+require('./polyfills')
+
 var pages = [
   require('./payment'),
   require('./event'),
   require('./wifi'),
-  require('./pres')
+  require('./pres'),
+  require('./touch')
 ];
 
 $(document).ready(function () {

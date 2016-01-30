@@ -1,5 +1,6 @@
 var socketio = require('socket.io');
 var utils = require('./utils.js');
+var _ = require('lodash');
 
 /**
  * Handle all of our socket connections
@@ -15,4 +16,31 @@ module.exports = function (server) {
   viewer.on('connection', function (socket) {
     socket.emit('welcome', { id: utils.getPublicId() });
   });
+
+  var touch = io.of('/touch');
+
+  touch.on('connection', function (socket) {
+    socket.touchPointers = [];
+    socket.on('pointers', function (data) {
+      socket.touchPointers = data;
+    });
+  });
+
+
+  var emitPointers = function () {
+    var pointers = [];
+    _.forOwn(touch.connected, function (socket) {
+      socket.touchPointers.forEach(function(pointer) {
+        if (pointer) {
+          // Add ID to pointer
+          pointer.push(socket.id);
+          pointers.push(pointer);
+        }
+      });
+    });
+
+    viewer.emit('pointers', pointers);
+  };
+
+  setInterval(emitPointers, 50);
 };
