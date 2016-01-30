@@ -31,4 +31,7 @@ judges:
   - name: William Tunstall-Pedoe
     description: |
       Blurb goes here.
+  - name: John Brittan
+    description: |
+      Cool.
   
