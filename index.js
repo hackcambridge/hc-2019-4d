@@ -28,9 +28,9 @@ utils.init(app);
 // Static file serving
 var staticOptions = { };
 if (app.settings.env != 'development') {
-  staticOptions.maxAge = 60 * 60 * 365;
+  staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
-
+app.use(require('compression')());
 app.use('/assets', express.static('assets/dist', staticOptions));
 
 // View rendering
