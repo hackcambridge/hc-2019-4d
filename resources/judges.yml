@@ -11,8 +11,9 @@ judges:
       and director of the [lowRISC project](http://www.lowrisc.org/about/).
   - name: Rob Whitehead
     description: |
-      Rob Whitehead is the CTO of improbable.
-  - name: Dr. Cicilia Mascolo
+      Rob Whitehead is the CTO of Improbable, a London-based technology start-up creating persistent, distributed, real-time simulations.
+      
+  - name: Professor Cicilia Mascolo
     description: |
       Cecilia Mascolo is Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge, UK.
       Prior joining Cambridge in 2008, she has been a faculty member in the Department of Computer Science at University
@@ -30,8 +31,11 @@ judges:
       University of Nottingham and is a keen Node.js hacker.
   - name: William Tunstall-Pedoe
     description: |
-      Blurb goes here.
+      William Tunstall-Pedoe is the Founder of Evi (an Amazon company), with over 30 years of business and software development experience
+      in the high-tech space. He has solved previously-unsolved problems in AI and has taken a start-up as the sole founder from an idea
+      through multiple rounds of venture capital on to a successful exit to one of the world's top technology businesses.
   - name: John Brittan
     description: |
-      Cool.
+      John Britton, Education Liaison at GitHub, is a developer and community builder focused on bringing the principles of open source
+      into the classroom.
   
