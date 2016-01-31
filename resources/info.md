@@ -25,10 +25,23 @@ through the nearest fire exit. Do not pick up your laptop or hardware hacks or s
 
 Our workshops are held in the UIS rooms, where the WiFi system is different. Before you go, please get a ticket number and password from our [WiFi page](/wifi) (you will need your Hack Cambridge ticket reference). Once at a workshop, you will need to connect to UniOfCam and enter the details you obtained from the WiFi page.
 
-<div class="event-tba">
-
 ## Submitting Your Hack
 
-Details TBA
+We are using [Devpost](http://devpost.com) for hack submissions. Never used it before? It's an online platform for sharing your projects.
 
-</div>
+- All hacks must be submitted before hacking ends at 12:00:00pm
+- You must submit all relevant source code for your hack
+
+**All team members** need to do the following:
+
+1. Make sure all of your team members are registered for Devpost and you know their usernames.
+2. Head over to the [Hack Cambridge Devpost](http://hackcambridge.devpost.com/), click on "Register for this hackathon".
+
+Then **just one team member** needs to:
+
+1. On the Devpost page, click "Enter a submission". Create your new project for the hackathon.
+    - Be nice and descriptive and upload pretty pictures
+    - Provide access to relevant source code in some way (GitHub is the easiest way to do this)
+    - Add all of your team members to the project
+2. In the next step, **choose all of the prizes** you want to be eligible for. If you've used someone's API or have fit a certain theme, make sure to do this or you won't be considered.
+3. Submit! We'll handle the rest.

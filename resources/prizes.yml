@@ -29,7 +29,7 @@ prizes:
       prize: TBA
       class: gaming
     - name: Best Hardware Hack by ARM
-      prize: TBA
+      prize: Each member of the winning team will receive Grover Sensor starter kit for mbed, ROCKI wifi music system, and a £30 Spotify gift card.
       class: hardware
   api:
     - name: HPE Haven OnDemand API
@@ -37,18 +37,18 @@ prizes:
     - name: Beaker API
       prize: £1000 pounds in gift cards split amongst the winning team
     - name: Mailjet API
-      prize: One Nerf Gun with a Camera installed for each member of the winning team alongside 6-months Silver Premium Plan for 6 months.
+      prize: One Nerf Gun with a Camera installed for each member of the winning team alongside 6-months Silver Premium Plan.
     - name: Nessie by Capital One
       prize: A Nespresso coffee machine by KRUPS for each member of the winning team
     - name: Google Cloud Platform
       prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
     - name: Mendeley API
       prize: One Parrot Jumping Race Drone JETT for each member of the winning team
-    - name: Best Use of Amazon Web Services
+    - name: Amazon Web Services
       prize: Power Banks
     - name: Best domain name registered with domain.com
       prize: Arduino Red Board
     - name: OpenTSDB
       prize: Vouchers for Amazon, amount TBA
     - name: Bloomberg's Favourite Hack
-      prize: ICE Orb floating Blutooth Speaker 
+      prize: ICE Orb floating Blutooth Speaker
