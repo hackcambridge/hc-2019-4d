@@ -1,5 +1,6 @@
 var socketio = require('socket.io');
 var utils = require('./utils.js');
+var moment = require('moment');
 var _ = require('lodash');
 
 /**
@@ -23,6 +24,7 @@ module.exports = function (server) {
     socket.touchPointers = [];
     socket.on('pointers', function (data) {
       socket.touchPointers = data;
+      socket.age = moment();
     });
   });
 
@@ -42,5 +44,14 @@ module.exports = function (server) {
     viewer.emit('pointers', pointers);
   };
 
+  var clearPointers = function () {
+    _.forOwn(touch.connected, function (socket) {
+      if ((socket.age) && (moment().diff(socket.age) > 1000)) {
+        socket.touchPointers = [];
+      }
+    });
+  }
+
   setInterval(emitPointers, 50);
+  setInterval(clearPointers, 1000);
 };
