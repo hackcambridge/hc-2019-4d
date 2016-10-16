@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   position: relative;
 
   box-sizing: border-box;
@@ -21,11 +21,13 @@
 }
 
 .landing-welcome-content {
-  @extend .content-wrapper;
+  @extend .content-wrapper-center;
 }
 
 .landing-welcome-dates {
-  margin-bottom: ($punit * 2);
+  font-size: 1.2em;
+  margin: 2em 0;
+  opacity: 0.9;
 }
 
 .landing-welcome-logo {
@@ -119,12 +121,14 @@ a.apply-link {
   display: block;
   height: 2px;
 
-  background: $grayLighter;
+  background: #FFFFFF;
+  opacity: 0.5;
 
-  transition: background 0.2s;
+  transition: background 0.2s, opacity 0.2s;
 
   .subscribe-form-email:focus ~ & {
-    background: $colorPrimary;
+    opacity: 1;
+    background: $fff;
   }
 }
 
@@ -135,6 +139,7 @@ a.apply-link {
   font-size: 1.2em;
   box-shadow: none;
   min-width: 0;
+  text-align: center;
 
   &:focus {
     outline: none;
@@ -142,9 +147,15 @@ a.apply-link {
   }
 
   &::placeholder {
-    opacity: 1;
-    color: $grayLighter;
+    opacity: 0.5;
+    color: #FFFFFF;
   }
+}
+
+.subscribe-form-note {
+  margin-top: 1em;
+  font-size: 0.8em;
+  opacity: 0.9;
 }
 
 .subscribe-form-submit {
@@ -221,30 +232,41 @@ a.apply-link {
 }
 
 .landing-welcome-social-links {
-  list-style: none;
-  padding: 0;
+  margin-top: 6em;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 
   li {
-    padding: 10px 0;
-    margin: 0;
+    margin: 1.5em;
+    padding: 0;
+    display: inline-block;
   }
 
   svg {
-    width: 17px;
-    fill: #3F4359;
+    width: 24px;
+    fill: #FFFFFF;
+    opacity: 0.8;
     vertical-align: bottom;
     position: absolute;
     left: 0;
     bottom: 0;
 
-    transition: fill 0.2s;
+    transition: fill 0.2s, opacity 0.2s;
+  }
+  
+  p {
+    font-size: 0.8em;
+    opacity: 0.9;
   }
 
   a {
     color: desaturate(lighten($colorSecondary, 30%), 20%);
     text-decoration: none;
     position: relative;
-    padding-left: 30px;
+    font-weight: bolder;
 
     transition: color 0.2s;
 
@@ -253,6 +275,7 @@ a.apply-link {
 
       svg {
         fill: $colorSecondary;
+        opacity: 1;
       }
 
       .social-link-text {
@@ -319,7 +342,7 @@ $home-light-section {
   .content-wrapper-standard {
     margin: 0 auto;
     text-align: center;
-    color: #fff;
+    color: #FFFFFF;
     width: 100%;
   }
 }
@@ -481,7 +504,7 @@ $home-light-section {
   padding: $punit * 3 0;
 
   dark-background();
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .landing-footer {
