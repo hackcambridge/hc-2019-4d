@@ -34,6 +34,7 @@
   width: 100%;
   max-width: 400px;
   height: auto;
+  margin-bottom: 4em;
 }
 
 .subscribe-form-output {
@@ -194,17 +195,6 @@ a.apply-link {
   }
 }
 
-.landing-welcome-logo ~ *, .landing-welcome-lower-caret {
-  animation: fadeIn;
-  animation-duration: 2s;
-  animation-delay: 2.5s;
-  animation-fill-mode: both;
-
-  &.apply-link-container {
-    animation-delay: 1s;
-  }
-}
-
 @keyframes logoAnimateIn {
   0% { opacity: 0; fill $colorPrimary; }
   20% { fill: $colorPrimary; }
@@ -232,7 +222,7 @@ a.apply-link {
 }
 
 .landing-welcome-social-links {
-  margin-top: 6em;
+  margin-top: 4em;
   
   ul {
     list-style: none;
@@ -240,7 +230,7 @@ a.apply-link {
   }
 
   li {
-    margin: 1.5em;
+    margin: 0 0.8em;
     padding: 0;
     display: inline-block;
   }
@@ -250,7 +240,6 @@ a.apply-link {
     fill: #FFFFFF;
     opacity: 0.8;
     vertical-align: bottom;
-    position: absolute;
     left: 0;
     bottom: 0;
 
