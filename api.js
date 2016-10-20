@@ -1,8 +1,11 @@
+const mailchimp = require('mailchimp-api');
 var express = require('express');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 var stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 var googleSpreadsheet = require("google-spreadsheet");
+
+const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var google_sheets_auth_email = process.env.GOOGLE_SHEETS_AUTH_EMAIL;
 var google_sheets_auth_key = (process.env.GOOGLE_SHEETS_AUTH_KEY || '').replace(/\\n/g, '\n');
 var google_sheets_wifi_sheet_id = process.env.GOOGLE_SHEETS_WIFI_SHEET_ID;
@@ -25,12 +28,12 @@ api.post('/subscribe', function (req, res, next) {
     email: { email: req.body.email },
     merge_vars: { EMAIL: req.body.email },
     update_existing: true
-  }, function(data) {
-      res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
-  }, function(error) {
-      var err = new Error('We couldn\'t add you. Please check that this is a valid email.');
-      err.status = 500;
-      next(err);
+  }, (data) => {
+    res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
+  }, (error) => {
+    const err = new Error('We couldn\'t add you. Please check that this is a valid email.');
+    err.status = 500;
+    next(err);
   });
 });
 
