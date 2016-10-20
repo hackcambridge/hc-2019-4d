@@ -86,45 +86,6 @@ app.get('/privacy', function (req, res) {
   res.render('privacy.html');
 });
 
-app.get('/apply', function (req, res) {
-  crypto.randomBytes(3, function(ex, buf) {
-    var token = buf.toString('hex') + '-' + (Math.floor(Date.now() / 1000).toString().substr(-6));
-    var formUrl = url.parse(process.env.APPLICATION_URL);
-    // Search contains `?` character as first character
-    // So we remove it
-    var query = querystring.parse(formUrl.search.substr(1));
-
-    if (_.has(req.query, 'referrer')) {
-      query.referrer = req.query.referrer;
-    }
-    query.applicationid = token;
-
-    formUrl.search = querystring.stringify(query);
-
-    res.render('form.html', {
-      title: 'Apply to Hack Cambridge',
-      formUrl: url.format(formUrl)
-    });
-  });
-});
-
-app.get('/event', function (req, res) {
-  res.render('event.html', {
-    title: 'Hack Cambridge 2016',
-    workshops: utils.loadResource('workshops'),
-    prizes: utils.loadResource('prizes'),
-    schedule: utils.loadResource('schedule'),
-    apis: utils.loadResource('apis')
-  });
-});
-
-app.get('/teamapply', function(req, res) {
-  res.render('form.html', {
-    title: 'Apply to Hack Cambridge as a Team',
-    formUrl: process.env.TEAM_APPLICATION_URL
-  })
-});
-
 app.get('/pay', function (req, res) {
   res.render('pay.html', {
     title: 'Make a payment to Hack Cambridge',
@@ -132,29 +93,13 @@ app.get('/pay', function (req, res) {
   });
 });
 
-app.get('/wifi', function (req, res) {
-  res.render('wifi.html', {
-    title: 'Get your UIS WiFi Key',
-  });
-});
-
-app.get('/touch', function (req, res) {
-  res.render('touch.html', {
-    title: 'Hack Cambridge Touch'
-  });
-});
-
-app.get('/pres', function (req, res) {
-  res.render('pres.html', {
-    message: process.env.SCREEN_MESSAGE || ''
-  });
-});
-
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
 });
 
-app.use(renderHome);
+app.use((req, res) => {
+  res.status(404).render('404.html');
+});
 
 // Start server
 app.set('port', (process.env.PORT || 3000));
