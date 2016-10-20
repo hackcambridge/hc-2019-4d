@@ -14,10 +14,8 @@ var url = require('url');
 var querystring = require('querystring');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
-var mailchimp = require('mailchimp-api');
 var Countdown = require('./lib/countdown');
 var utils = require('./utils');
-var MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 var app = express();
 var server = require('http').Server(app);
 

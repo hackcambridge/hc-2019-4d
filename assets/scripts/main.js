@@ -14,18 +14,18 @@ var pages = [
 $(document).ready(function () {
   pages.forEach((f) => f());
 
-  $('.subscribe-form').each(function () {
-    var $this = $(this);
-    var action = $this.attr('action');
-    var method = $this.attr('method');
-    var $submit = $this.find('.subscribe-form-submit');
-    var submitText = $submit.text();
-    var loading = null;
+  $('.subscribe-form').each((index, element) => {
+    const $this = $(element);
+    const action = $this.attr('action');
+    const method = $this.attr('method');
+    const $submit = $this.find('.subscribe-form-submit');
+    const submitText = $submit.text();
+    let loading = null;
 
-    var createFlash = function (text, clazz) {
+    const createFlash = (text, className) => {
       return $('<p class="subscribe-form-output"></p>')
         .text(text)
-        .addClass(clazz)
+        .addClass(className)
         .appendTo($this)
         .hide()
         .slideDown();
@@ -50,20 +50,17 @@ $(document).ready(function () {
       loading = $.ajax(action, {
         method: method,
         data: $this.serialize()
-      })
-      .success(function (data) {
+      }).success((data) => {
         createFlash(data.message, 'subscribe-form-success');
-      })
-      .fail(function (jqXHR) {
-        var errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
+      }).fail((jqXHR) => {
+        const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
 
         createFlash(errormsg, 'subscribe-form-error');
-      })
-      .always(function () {
+      }).always(() => {
         $submit
           .text(submitText);
 
-        setTimeout(function () {
+        setTimeout(() => {
           loading = null;
           $submit.prop('disabled', false);
         }, 3000)
