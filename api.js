@@ -80,53 +80,6 @@ api.post('/payment', function (req, res, next) {
   });
 });
 
-api.post('/wifi', function (req, res, next) {
-  if (_.isEmpty(req.body.ticket_id)) {
-    var err = new Error('Must provide ticket_id');
-    err.status = 401;
-    next(err);
-  }
-
-  var ticket_id = req.body.ticket_id;
-  var google_sheets_auth = {
-    client_email: google_sheets_auth_email,
-    private_key: google_sheets_auth_key
-  }
-
-  // spreadsheet key is the long id in the sheets URL
-  var wifi_sheet = new googleSpreadsheet(google_sheets_wifi_sheet_id);
-
-  wifi_sheet.useServiceAccountAuth(google_sheets_auth, function(err) {
-	  // getInfo returns info about the sheet and an array or "worksheet" objects
-
-	  wifi_sheet.getInfo(function(err, sheet_info) {
-
-		  var ticket_sheet = sheet_info.worksheets[1];
-		  ticket_sheet.getRows({
-        "start-index": 1,
-        "max-results": 1,
-        "query":  "applicationid = " + ticket_id
-      }, function(err, rows) {
-        if (err) {
-          var err = new Error('An error occured');
-          err.status = 500;
-          next(err);
-          return;
-        } else if (rows.length == 0) {
-          var err = new Error('Ticket ID not found');
-          err.status = 404;
-          next(err);
-          return;
-        }
-
-        var wifi_key = rows[0].uisid;
-        var ticket_no = rows[0].ticketno;
-        res.json({ message: `Ticket No: <code>${ticket_no}</code><br />Pasword: <code>${wifi_key}</code>`});
-		  });
-	  });
-  })
-});
-
 api.use(function (req, res, next) {
   var err = new Error('Not found');
   err.status = 404;

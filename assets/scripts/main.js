@@ -5,10 +5,6 @@ require('./polyfills')
 
 var pages = [
   require('./payment'),
-  require('./event'),
-  require('./wifi'),
-  require('./pres'),
-  require('./touch')
 ];
 
 $(document).ready(function () {
