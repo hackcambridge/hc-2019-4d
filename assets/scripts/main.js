@@ -22,13 +22,18 @@ $(document).ready(function () {
       return $('<p class="subscribe-form-output"></p>')
         .text(text)
         .addClass(className)
-        .appendTo($this)
+        .insertAfter($submit)
         .hide()
         .slideDown();
     };
 
     $this.submit(function (e) {
       e.preventDefault();
+
+      if ($this.find('.subscribe-form-email').val().trim() === "") {
+        createFlash('Must provide email', 'subscribe-form-error');
+        return;
+      }
 
       if (loading != null) {
         return;
