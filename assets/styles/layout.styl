@@ -22,11 +22,6 @@ html {
   height: 100%;
 }
 
-::selection {
-  background-color: $colorSecondary;
-  color: $colorPrimary;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -43,7 +38,7 @@ main-background() {
 }
 
 dark-background() {
-  background-image: radial-gradient(circle at top center, #323647 0%, $colorDark 100%);
+  background-color: $colorPrimary;
 }
 
 .clearfix {
@@ -159,7 +154,7 @@ h1, .grand-heading {
 }
 
 a, a:visited {
-  color: $colorSecondary;
+  color: $colorPrimary;
   text-decoration: none;
 
   &:hover {
@@ -174,9 +169,9 @@ a, a:visited {
   margin-top: ($punit * 4);
   margin-bottom: ($punit * 2);
 
-  .header-link svg {
+  .header-link img {
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
     height: auto;
   }
 }

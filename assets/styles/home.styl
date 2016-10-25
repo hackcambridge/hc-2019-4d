@@ -14,8 +14,8 @@
   min-height: 100%;
   padding: ($punit * 3) 0;
 
-  main-background();
-  color: $colorSecondary;
+  dark-background();
+  color: #fff;
   font-weight: 300;
   padding-top: 103px; /*Stop MLH logo from obscuring logo on mobile*/
 }
@@ -242,12 +242,12 @@ a.apply-link {
   svg {
     width: 24px;
     fill: #FFFFFF;
-    opacity: 0.8;
     vertical-align: bottom;
+    opacity: 1;
     left: 0;
     bottom: 0;
 
-    transition: fill 0.2s, opacity 0.2s;
+    transition: opacity 0.2s;
   }
   
   p {
@@ -256,19 +256,19 @@ a.apply-link {
   }
 
   a {
-    color: desaturate(lighten($colorSecondary, 30%), 20%);
+    color: #fff;
     text-decoration: none;
     position: relative;
     font-weight: bolder;
 
-    transition: color 0.2s;
+    transition: opacity 0.2s;
 
     &:hover {
-      color: $colorSecondary;
+      color: #fff;
+      text-decoration: underline;
 
       svg {
-        fill: $colorSecondary;
-        opacity: 1;
+        opacity: 0.8;
       }
 
       .social-link-text {
