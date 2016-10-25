@@ -7,6 +7,8 @@ body {
 
   font-family: $fontFamily;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   line-height: 1.5;
   color: $textColor;
 
@@ -102,26 +104,31 @@ h1 {
 }
 
 h2 {
+  font-weight: normal;
   font-size: 1.2 * 1.2;
   line-height: 1.2;
 }
 
 h3 {
+  font-weight: normal;
   font-size: 1.2em;
   line-height: 1.2;
 }
 
 h4 {
+  font-weight: bold;
   font-size: 1em;
   line-height: 1.2;
 }
 
 h5 {
+  font-weight: bold;
   font-size: 1 / 1.2;
   line-height: 1.2;
 }
 
 h6 {
+  font-weight: bold;
   font-size: 1 / 1.2 / 1.2;
   line-height: 1.2;
 }
@@ -140,7 +147,7 @@ ol, ul {
   }
 }
 
-h1, h2, h3, .grand-heading {
+h1, .grand-heading {
   font-weight: 300;
 }
 
