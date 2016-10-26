@@ -7,6 +7,8 @@ body {
 
   font-family: $fontFamily;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   line-height: 1.5;
   color: $textColor;
 
@@ -38,7 +40,7 @@ main-background() {
 }
 
 dark-background() {
-  background-image: radial-gradient(circle at top center, #323647 0%, $colorDark 100%);
+  background-color: $colorPrimary;
 }
 
 .clearfix {
@@ -102,26 +104,31 @@ h1 {
 }
 
 h2 {
+  font-weight: normal;
   font-size: 1.2 * 1.2;
   line-height: 1.2;
 }
 
 h3 {
+  font-weight: normal;
   font-size: 1.2em;
   line-height: 1.2;
 }
 
 h4 {
+  font-weight: bold;
   font-size: 1em;
   line-height: 1.2;
 }
 
 h5 {
+  font-weight: bold;
   font-size: 1 / 1.2;
   line-height: 1.2;
 }
 
 h6 {
+  font-weight: bold;
   font-size: 1 / 1.2 / 1.2;
   line-height: 1.2;
 }
@@ -140,7 +147,7 @@ ol, ul {
   }
 }
 
-h1, h2, h3, .grand-heading {
+h1, .grand-heading {
   font-weight: 300;
 }
 
@@ -154,7 +161,7 @@ h1, .grand-heading {
 }
 
 a, a:visited {
-  color: $colorSecondary;
+  color: $colorPrimary;
   text-decoration: none;
 
   &:hover {
@@ -169,9 +176,9 @@ a, a:visited {
   margin-top: ($punit * 4);
   margin-bottom: ($punit * 2);
 
-  .header-link svg {
+  .header-link img {
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
     height: auto;
   }
 }

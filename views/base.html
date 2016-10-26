@@ -3,15 +3,17 @@
   <head>
     <title>{% block pageTitle %}{{ title }}{% endblock %}</title>
     <meta name="title" content="{{ title }}" />
-	  <meta name="description" content="Join us for 24 hours of building, breaking and creating in the heart of Cambridge on January 30 - 31." />
+	  <meta name="description" content="Join us for 24 hours of building, breaking and creating in the heart of Cambridge from January 28 – 29." />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:url" content="{{ requestedUrl.href }}" />
-    <meta property="og:description" content="Join us for 24 hours of building, breaking and creating in the heart of Cambridge on January 30 - 31." />
+    <meta property="og:description" content="Join us for 24 hours of building, breaking and creating in the heart of Cambridge from January 28 – 29." />
     <meta property="og:image" content="{{ requestedUrl.protocol }}//{{ requestedUrl.host }}{{ asset('images/fb-share.jpg') }}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	  <meta name="language" content="en">
+    <script src="https://use.typekit.net/jig8uxt.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     {% if browserSync %}{{ browserSync | safe }}{% endif %}
     <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/main.css') }}" />
