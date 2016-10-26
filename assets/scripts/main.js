@@ -30,6 +30,11 @@ $(document).ready(function () {
     $this.submit(function (e) {
       e.preventDefault();
 
+      $this.find('.subscribe-form-output')
+        .slideUp(400, function () {
+          $(this).remove();
+        });
+
       if ($this.find('.subscribe-form-email').val().trim() === "") {
         createFlash('Must provide email', 'subscribe-form-error');
         return;
@@ -42,11 +47,6 @@ $(document).ready(function () {
       $submit
         .prop('disabled', true)
         .text('Working...');
-
-      $this.find('.subscribe-form-output')
-        .slideUp(400, function () {
-          $(this).remove();
-        });
 
       loading = $.ajax(action, {
         method: method,
