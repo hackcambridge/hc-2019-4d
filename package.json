@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "start": "node index.js",
+    "start": "export NODE_PATH=$NODE_PATH:./src; node ./index",
     "postinstall": "gulp build"
   },
   "repository": {
@@ -18,7 +18,7 @@
     "url": "https://github.com/hackcambridge/hack-cambridge-website/issues"
   },
   "engines": {
-    "node": "4.2.4"
+    "node": "6.9.1"
   },
   "homepage": "https://github.com/hackcambridge/hack-cambridge-website#readme",
   "dependencies": {

@@ -28,7 +28,7 @@ gulp.task('clean', function () {
 
 // css
 gulp.task('styles', function () {
-  gulp.src('assets/styles/main.styl')
+  gulp.src('src/styles/main.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
@@ -47,7 +47,7 @@ gulp.task('scripts', function () {
     return browserify({
       entries: fileIn,
       debug: !prod,
-      paths: [path.dirname(fileIn), './']
+      paths: [path.dirname(fileIn), './src']
     })
     .transform('babelify', { presets: ['es2015'] })
     .bundle()
@@ -56,7 +56,7 @@ gulp.task('scripts', function () {
     .pipe(buffer());
   };
 
-  return gulpBrowserify('./assets/scripts/main.js', 'main.js')
+  return gulpBrowserify('./src/js/client/main.js', 'main.js')
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
     .pipe($.if(prod, $.uglify()))
     .pipe($.if(!prod, $.sourcemaps.write()))
@@ -64,7 +64,7 @@ gulp.task('scripts', function () {
     .pipe(bs.stream());;
 });
 
-var assetPath = ['assets/**', '!assets/scripts/**', '!assets/styles/**', '!assets/dist/**'];
+var assetPath = ['assets/**', '!assets/dist/**'];
 
 // other assets
 gulp.task('assets', function () {
@@ -88,19 +88,21 @@ gulp.task('wait', function (cb) {
 });
 
 gulp.task('watch', ['build'], function () {
-  gulp.watch(['assets/scripts/**', 'lib/**'], ['scripts']);
-  gulp.watch('assets/styles/**', ['styles']);
-  gulp.watch(['views/**', 'resources/**'], bs.reload)
+  gulp.watch(['src/js/**'], ['scripts']);
+  gulp.watch('src/styles/**', ['styles']);
+  gulp.watch(['src/views/**', 'src/resources/**'], bs.reload)
   gulp.watch(assetPath, ['assets']);
 });
 
 gulp.task('serve', ['watch'], function () {
-  var runnode = function (env) {
+  var runnode = function (env = {}) {
     nodemon({
       script: 'index.js',
       ext: 'js',
-      ignore: ['assets/**', 'gulpfile.js'],
-      env: env || { }
+      ignore: ['src/js/client/**', 'gulpfile.js'],
+      env: Object.assign({
+        NODE_PATH: './src',
+      }, env),
     });
   }
 
@@ -114,7 +116,9 @@ gulp.task('serve', ['watch'], function () {
       });
     });
   } else {
-    runnode();
+    runnode({
+      NODE_PATH: `${process.env.NODE_PATH}:./src`,
+    });
   }
 });
 
