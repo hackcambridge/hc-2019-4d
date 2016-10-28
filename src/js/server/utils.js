@@ -9,10 +9,13 @@ var markdown = require('markdown-it')({
   typographer: true
 }).use(require('markdown-it-attrs'));
 var nunjucks = require('nunjucks');
+const path = require('path');
 
 var loadedResources = {};
 var loadedMarkdowns = {};
 var app;
+
+const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../'));
 
 function timeProperties(items, properties) {
   items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
@@ -27,10 +30,14 @@ exports.init = function init(a) {
   app = a;
 };
 
+exports.resolvePath = function resolvePath(fromProjectRoot) {
+  return path.join(PROJECT_ROOT, fromProjectRoot);
+}
+
 var assetsFile;
 
 try {
-  assetsFile = require('./assets/dist/rev-manifest.json');
+  assetsFile = require(exports.resolvePath('./assets/dist/rev-manifest.json'));
 } catch (e) {
   assetsFile = { };
 }
@@ -59,7 +66,9 @@ exports.loadAsset = function loadAsset(assetName) {
 
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
-    var loadedResource = yaml.safeLoad(fs.readFileSync('./resources/' + resourceName + '.yml'))[resourceName];
+    var loadedResource = yaml.safeLoad(
+      fs.readFileSync(exports.resolvePath(`src/resources/${resourceName}.yml`))
+    )[resourceName];
 
     switch (resourceName) {
       case 'faqs':
@@ -107,7 +116,11 @@ exports.loadResource = function loadResource(resourceName) {
 
 exports.loadMarkdown = function loadMarkdown(markdownName) {
   if ((!loadedMarkdowns[markdownName]) || (app.settings.env == 'development')) {
-    var loadedMarkdown = nunjucks.runtime.markSafe(markdown.render(fs.readFileSync('./resources/' + markdownName + '.md', 'utf8')));
+    var loadedMarkdown = nunjucks.runtime.markSafe(
+      markdown.render(fs.readFileSync(exports.resolvePath(
+        `src/resources/${markdownName}.md`, 'utf8'
+      )))
+    );
     loadedMarkdowns[markdownName] = loadedMarkdown;
   }
 

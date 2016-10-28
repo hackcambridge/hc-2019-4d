@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var Countdown = require('lib/countdown.js');
+var Countdown = require('js/shared/countdown.js');
 
 require('./polyfills')
 
