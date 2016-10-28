@@ -54,6 +54,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api', require('./api'));
+app.use('/apply', require('./routes/apply'));
 
 app.use(function (req, res, next) {
   res.locals.title = 'Hack Cambridge';
@@ -87,6 +88,10 @@ app.get('/pay', function (req, res) {
     title: 'Make a payment to Hack Cambridge',
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
+});
+
+app.get('/apply', (req, res) => {
+  
 });
 
 app.get('/favicon.ico', function (req, res) {
