@@ -13,6 +13,7 @@ var crypto = require('crypto');
 var Countdown = require('js/shared/countdown');
 var utils = require('./utils');
 var app = express();
+
 var server = require('http').Server(app);
 
 require('./sockets.js')(server);
@@ -53,6 +54,7 @@ app.use(function(req, res, next) {
   }
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
 app.use('/apply', require('./routes/apply'));
 

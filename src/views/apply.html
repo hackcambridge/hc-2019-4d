@@ -1,4 +1,9 @@
 {% extends 'default.html' %}
 {% block pageContent %}
-{{ formHtml|safe }}
+<form class="apply-form" method="POST">
+  <div class="form-content">
+    {{ formHtml|safe }}
+  </div>
+  <button type="submit">Submit</button>
+</form>
 {% endblock %}
