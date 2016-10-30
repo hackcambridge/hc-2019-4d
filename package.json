@@ -55,6 +55,7 @@
     "markdown-it-attrs": "^0.1.8",
     "moment": "^2.11.1",
     "moment-timezone": "^0.5.0",
+    "multer": "^1.2.0",
     "nodemon": "^1.8.1",
     "normalize.css": "^3.0.3",
     "nunjucks": "^2.1.0",
