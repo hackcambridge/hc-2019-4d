@@ -1,6 +1,6 @@
 {% extends 'default.html' %}
 {% block pageContent %}
-<form class="apply-form" method="POST">
+<form class="apply-form" method="POST" enctype="multipart/form-data">
   <div class="form-content">
     {{ formHtml|safe }}
   </div>

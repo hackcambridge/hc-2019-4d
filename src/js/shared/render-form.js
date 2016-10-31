@@ -7,14 +7,12 @@ function isMultipleField(type) {
 }
 
 module.exports = function (name, field, options = { }) {
-  const errorHtml = options.hideError ? '' : field.errorHTML();
   const widgetHtml = field.widget.toHTML(name, field);
   const innerContent = isMultipleField(field.widget.type) ? tag('div', { }, widgetHtml) : widgetHtml;
 
   return tag('div', { classes: field.classes(), required: !!field.required }, [
     field.labelHTML(name, field.id),
-    options.errorAfterField ? '' : errorHtml,
+    field.errorHTML(),
     innerContent,
-    options.errorAfterField ? errorHtml : '',
   ].join(''));
 }
