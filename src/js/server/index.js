@@ -18,7 +18,6 @@ var server = require('http').Server(app);
 var fetch = require('node-fetch');
 
 // Authorisation config
-// MUST NOT COMMIT THIS TO PUBLIC
 let client_id = process.env.MYMLH_CLIENT_ID;
 let client_secret = process.env.MYMLH_CLIENT_SECRET;
 let auth_callback = "http://localhost:3000/apply/success";
