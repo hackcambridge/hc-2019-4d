@@ -1,10 +1,10 @@
 var $ = require('jquery');
-var Countdown = require('js/shared/countdown.js');
 
 require('./polyfills')
 
 var pages = [
   require('./payment'),
+  require('./apply'),
 ];
 
 $(document).ready(function () {
