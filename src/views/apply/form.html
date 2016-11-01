@@ -1,10 +1,12 @@
 {% extends 'default.html' %}
+{% set title = 'Apply for Hack Cambridge' %}
+{% block pageHeading %}Apply{% endblock %}
 {% block pageContent %}
+<p>Hello, {{ user.first_name }}! Let us get to know you better</p>
 <form class="apply-form" method="POST" enctype="multipart/form-data">
   <div class="form-content">
-    Hello, {{ user.first_name }}! Let us get to know you better
     {{ formHtml|safe }}
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" class="button submit-button">Submit</button>
 </form>
 {% endblock %}

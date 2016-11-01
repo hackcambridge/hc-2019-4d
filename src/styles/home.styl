@@ -106,49 +106,22 @@ a.apply-link {
 /* Subscribe Form
    ========================================================================== */
 
-.subscribe-form-input-container {
-  display: flex;
-  position: relative;
-  padding-bottom: 7px;
-}
-
-.subscribe-form-underbar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-
-  display: block;
-  height: 2px;
-
-  background: #FFFFFF;
-  opacity: 0.5;
-
-  transition: background 0.2s, opacity 0.2s;
-
-  .subscribe-form-email:focus ~ & {
-    opacity: 1;
-    background: $fff;
-  }
-}
-
 .subscribe-form-email {
-  flex: 1 1 auto;
-  background: transparent;
-  border: none;
-  font-size: 1.2em;
-  box-shadow: none;
-  min-width: 0;
+  color: #fff;
   text-align: center;
+  font-size: 1.2em;
 
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  
   &:focus {
+    border-bottom-color: rgba(255, 255, 255, 1);
     outline: none;
     box-shadow: none;
   }
 
   &::placeholder {
     opacity: 0.5;
-    color: #FFFFFF;
+    color: #fff;
   }
 }
 

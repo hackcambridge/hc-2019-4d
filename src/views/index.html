@@ -2,14 +2,11 @@
 {% block content %}
 <section class="landing-welcome-section">
   <div class="landing-welcome-content">
-    <img class="landing-welcome-logo" src="{{ asset('images/logos/hc2017-logo-vertical-light.svg') }}" alt="Hack Cambridge: Recurse">
+    <img class="landing-welcome-logo" src="{{ asset('images/logos/hc2017-logo-full-light.svg') }}" alt="Hack Cambridge: Recurse">
     <p class="landing-welcome-dates">28 &ndash; 29 January 2017, University of Cambridge</p>
     <form class="subscribe-form landing-welcome-subscribe-form" action="/api/subscribe" method="POST">
       <label class="sr-only" for="subscribe-form-email">Email</label>
-      <div class="subscribe-form-input-container">
-        <input type="email" class="subscribe-form-email" placeholder="Email Address" id="subscribe-form-email" name="email" required>
-        <div class="subscribe-form-underbar"></div>
-      </div>
+      <input type="email" class="form-control subscribe-form-email" placeholder="Email Address" id="subscribe-form-email" name="email" required>
       <button type="submit" class="subscribe-form-submit">Notify me when applications open</button>
     </form>
     <div class="landing-welcome-social-links">
