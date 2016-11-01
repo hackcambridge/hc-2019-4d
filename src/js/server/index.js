@@ -17,11 +17,6 @@ var app = express();
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
 
-// Authorisation config
-let client_id = process.env.MYMLH_CLIENT_ID;
-let client_secret = process.env.MYMLH_CLIENT_SECRET;
-let auth_callback = "http://localhost:3000/apply/success";
-
 require('./sockets.js')(server);
 
 utils.init(app);
@@ -81,111 +76,10 @@ function renderHome(req, res) {
   });
 }
 
-// Take a code and return a promise of user info from the MyMLH api
-function getUser(access_token) {
-  var base_url = "https://my.mlh.io/api/v2/user.json";
-  var query = {
-    access_token: access_token
-  }
-  var query_string = querystring.stringify(query);
-  var full_url = base_url + "?" + query_string;
-
-  return fetch(full_url, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'GET',
-  }).then(function(response) {
-    return response.json();
-  }).then(function(json) {
-    if (json.hasOwnProperty("data")) {
-      return json.data;
-    } else {
-      console.log("Bad data");
-      console.log(json);
-      throw "Couldn't get user data";
-    }
-  });
-}
-
 app.get('/', renderHome);
 
 app.get('/terms', function (req, res) {
   res.render('terms.html');
-});
-
-app.get('/apply', function (req, res) {
-  res.render('apply.html');
-});
-
-app.get('/apply/mymlh', function(req, res) {
-  let base_url = "https://my.mlh.io/oauth/authorize";
-
-  // Construct the query string
-  var qs = querystring.stringify({
-    client_id: client_id,
-    redirect_uri: auth_callback,
-    response_type: 'code',
-    scope: [
-      // All the user details we need
-      'email',
-      'phone_number',
-      'demographics',
-      'birthday',
-      'education',
-      'event'
-    ].join(' ')
-  });
-
-  // Redirec to the authorization page on MyMLH
-  res.redirect(base_url + "?" + qs);
-})
-
-app.get('/apply/success', function(req, res) {
-
-  // Now we have an authorization code, we can get an access token
-  var base_url = "https://my.mlh.io/oauth/token";
-  var code = req.query.code;
-
-  // For debugging purposes
-  console.log(code);
-
-
-  var headers = { 'Content-Type': 'application/json' }
-  var body = {
-    'client_id': client_id,
-    'client_secret': client_secret,
-    'code': code,
-    'grant_type': "authorization_code",
-    'redirect_uri': auth_callback
-  }
-
-  fetch(base_url, {
-
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify(body)
-
-  }).then(function(response) {
-    return response.json();
-  }).then(function(j) {
-    getUser(j.access_token).then(function(user) {
-      console.log(user);
-      res.render('success.html', {
-        user: user
-      });
-    }).catch(function(err) {
-      console.log("Caught bad code")
-      console.log(err);
-      // Couldn't get the user data, redirect to the auth page
-      res.redirect('/apply/mymlh');
-    });
-  }).catch(function(err) {
-    // Error :(
-    console.log(err);
-  });
 });
 
 app.get('/privacy', function (req, res) {
