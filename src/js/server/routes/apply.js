@@ -3,6 +3,7 @@ const { createApplicationForm, maxFieldSize } = require('js/shared/application-f
 const renderForm = require('js/shared/render-form');
 const multer = require('multer');
 const crypto = require('crypto');
+const email = require('js/server/email');
 
 const applyFormUpload = multer({
   // storage: s3?
@@ -33,7 +34,18 @@ applyRouter.post('/', applyFormUpload.single('cv'), (req, res) => {
   req.body.cv = req.file;
 
   form.handle(req.body, {
-    success: () => {
+    success: (resultForm) => {
+      // email.sendEmail({
+      //   to: 'applicant@hackcambridge.com',
+      //   contents: email.templates.applied({
+      //     name: 'John',
+      //     applicationId: '100012',
+      //   }),
+      // });
+
+      // Log form data to pretend we're doing something useful
+      console.log(resultForm.data);
+
       // redirect to the next page but for now...
       res.redirect('/');
     },

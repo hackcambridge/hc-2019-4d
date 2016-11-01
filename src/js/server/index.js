@@ -18,6 +18,10 @@ var server = require('http').Server(app);
 
 require('./sockets.js')(server);
 
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
+});
+
 utils.init(app);
 
 // Static file serving
