@@ -52,17 +52,33 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         development: 'Development',
         design: 'Design',
         product_management: 'Product Management',
-        none: 'I\'m not sure!',
+        unknown: 'I\'m not sure!',
       },
+      validators: [
+        (form, field, callback) => {
+          console.log(field.data);
+          if ((field.data.includes('unknown')) && (field.data.length > 1)) {
+            callback('You can\'t have an answer and not be sure!');
+          } else {
+            callback();
+          }
+        },
+      ],
       cssClasses,
     }),
-    links: textareaField('What are some links that we can use to learn more about you?', 500, { 
+    learn: textareaField('What do you want to learn from this event?', 500, {
+      required: validators.required('This field is required.'),
+    }),
+    interests: textareaField('What, in general, are you interested in?', 500, {
+      required: validators.required('This field is required.'),
+    }),
+    accomplishment: textareaField('What is a recent accomplishment that you\'re proud of?', 500, {
+      required: validators.required('This field is required.'),
+    }),
+    links: textareaField('Are there any links we can visit to get to know you better?', 500, { 
       note: 'For example: GitHub, LinkedIn or your personal website. Please put each link on a new line.', 
       placeholder: 'https://github.com/hackcambridge' 
     }),
-    learn: textareaField('What do you want to learn from this event?', 500),
-    interests: textareaField('What, in general, are you interested in?', 500),
-    accomplishment: textareaField('What is a recent accomplishment that you\'re proud of?', 500),
     team_apply: fields.boolean({
       widget: checkboxWidget('Yes, I am applying as part of a team. One of our members will fill out the team application form.'),
       note: 'We will not process your application until you have been entered into a team application form (after submit this form).',
@@ -73,6 +89,15 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       widget: checkboxWidget('Yes, please place me in a team'),
       note: 'We can suggest a team for you before the event. You can always change this by contacting us.',
       label: 'If not, would you like us to place you in a team?',
+      validators: [
+        (form, field, callback) => {
+          if ((field.data) && (form.fields.team_apply.data)) {
+            callback('We can\'t place you in a team if you are already applying as part of a team');
+          } else {
+            callback();
+          }
+        },
+      ],
       cssClasses,
     }),
     terms: fields.boolean({
