@@ -5,6 +5,10 @@
     "APP_ID": {
       "description": "A random, public, identifier for this application",
       "generator": "secret"
+    },
+    "MAILGUN_API_KEY": {
+      "description": "API key for accessing the Mailgun API",
+      "required": true
     }
   }
 }
