@@ -26,6 +26,20 @@ STRIPE_PRIVATE_KEY=
 MAILGUN_API_KEY=
 ```
 
+## Database
+
+To use our database in development, you'll first need to start it. Make sure you have [Docker](https://www.docker.com/) installed. Then run
+
+```
+docker-compose up
+```
+
+And now you can connect to it on port 5432
+
+```
+psql --host=localhost --username=postgres
+```
+
 ## Build System
 
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
