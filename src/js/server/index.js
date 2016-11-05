@@ -102,7 +102,7 @@ app.get('/pay', function (req, res) {
 });
 
 app.get('/favicon.ico', function (req, res) {
-  res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
+  res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
 
 app.use((req, res) => {
