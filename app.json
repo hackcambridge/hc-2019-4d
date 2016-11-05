@@ -5,6 +5,20 @@
     "APP_ID": {
       "description": "A random, public, identifier for this application",
       "generator": "secret"
+    },
+    "AUTH_SESSION_SECRET": {
+      "description": "The secret given to client-sessions to encrypt Cookies",
+      "required": true,
+      "generator": "secret"
+    },
+    "MYMLH_CLIENT_ID": {
+      "description": "The public identifier for the app speaking to MyMLH",
+      "required": true,
+      "value": "1926df5db5d25159e71a8e1529e167935900e3cc6f831221d0f2f74bf0c26b5c"
+    },
+    "MYMLH_CLIENT_SECRET": {
+      "description": "The private secret used to confirm MyMLH client identity",
+      "required": true,
     }
   }
 }
