@@ -1,12 +1,25 @@
 const express = require('express');
 const { createApplicationForm, maxFieldSize } = require('js/shared/application-form');
 const renderForm = require('js/shared/render-form');
+const aws = require('aws-sdk');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
 const crypto = require('crypto');
 const email = require('js/server/email');
 
+// Set up the S3 connection
+const s3 = new aws.S3(new aws.Config({
+  region: 'eu-west-1'
+}));
 const applyFormUpload = multer({
-  // storage: s3?
+  storage: multerS3({
+    s3,
+    bucket: process.env.S3_BUCKET,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key(req, file, callback) {
+      callback(null, crypto.randomBytes(256).toString('hex') + '.pdf');
+    }
+  }),
   limits: {
     fields: 20,
     fieldSize: maxFieldSize,

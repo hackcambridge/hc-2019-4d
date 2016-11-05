@@ -9,6 +9,18 @@
     "MAILGUN_API_KEY": {
       "description": "API key for accessing the Mailgun API",
       "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "Access key ID for interacting with Amazon Web Services",
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "Secret access key for interacting with Amazon Web Services",
+      "required": true
+    },
+    "S3_BUCKET": {
+      "description": "Name of the AWS S3 bucket used to store files",
+      "required": true
     }
   }
 }
