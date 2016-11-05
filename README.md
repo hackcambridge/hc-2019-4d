@@ -29,6 +29,24 @@ GOOGLE_SHEETS_WIFI_SHEET_ID=
 MYMLH_CLIENT_ID=
 MYMLH_CLIENT_SECRET=
 AUTH_SESSION_SECRET=
+MAILGUN_API_KEY=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+S3_BUCKET=
+```
+
+## Database
+
+To use our database in development, you'll first need to start it. Make sure you have [Docker](https://www.docker.com/) installed. Then run
+
+```
+docker-compose up
+```
+
+And now you can connect to it on port 5432
+
+```
+psql --host=localhost --username=postgres
 ```
 
 ## Build System

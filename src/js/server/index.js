@@ -21,6 +21,10 @@ var fetch = require('node-fetch');
 
 require('./sockets.js')(server);
 
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
+});
+
 utils.init(app);
 
 auth.setUpAuth(app);
