@@ -11,10 +11,13 @@ var querystring = require('querystring');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var Countdown = require('js/shared/countdown');
+const session = require('client-sessions');
 var utils = require('./utils');
 var app = express();
+const auth = require('js/server/auth');
 
 var server = require('http').Server(app);
+var fetch = require('node-fetch');
 
 require('./sockets.js')(server);
 
@@ -23,6 +26,8 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 utils.init(app);
+
+auth.setUpAuth(app);
 
 // Static file serving
 var staticOptions = { };
@@ -94,10 +99,6 @@ app.get('/pay', function (req, res) {
     title: 'Make a payment to Hack Cambridge',
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
-});
-
-app.get('/apply', (req, res) => {
-  
 });
 
 app.get('/favicon.ico', function (req, res) {
