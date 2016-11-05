@@ -51,53 +51,89 @@ function getFieldValue($field) {
   }
 }
 
-module.exports = function applyPage() {
-  const supportsFileApi = ($("<input type='file'>").get(0).files) !== undefined;
+function uncheckElements($fieldElements) {
+  $fieldElements.each(function () {
+    this.checked = false;
+  });
+}
 
-  $('.apply-form').each(function () {
-    const $applyForm = $(this);
+/**
+ * Determines if user input could lead to ambiguous data, and corrects it automatically
+ * based on context - e.g. what the user most recently selected.
+ */
+function disallowAmbiguousAnswersProactively($applyForm) {
+  const notSureAnswer = 'unknown';
 
-    const addFeedbackToForm = (form) => {
-      let firstErrorFound = false;
-      Object.keys(form.fields).forEach((fieldName) => {
-        const $row = $applyForm.find(`[name=${fieldName}]`).closest('.form-row');
-        const field = form.fields[fieldName];
+  const $developmentStyleFields = $applyForm.find('input[name=development]');
 
-        $row.removeClass('error');
-        $row.find('.form-error-message').remove();
+  $developmentStyleFields.change(function () {
+    const $field = $(this);
+    
+    if ($field.attr('value') === notSureAnswer) {
+      uncheckElements($developmentStyleFields.not(`[value=${notSureAnswer}]`));
+    } else {
+      uncheckElements($developmentStyleFields.filter(`[value=${notSureAnswer}]`));
+    }
+  });
 
-        if (field.error != null) {
-          if (!firstErrorFound) {
-            $('html, body').animate({
-              scrollTop: $row.offset().top
-            }, 500);
-            firstErrorFound = true;
-          }
-          $row.find('.form-label-longform').after(field.errorHTML());
-          $row.addClass('error');
+  const $teamFields = $applyForm.find('input[name=team_apply], input[name=team_placement]');
+
+  $teamFields.change(function () {
+    uncheckElements($teamFields.not(this));
+  });
+}
+
+function processForm($applyForm) {
+  disallowAmbiguousAnswersProactively($applyForm);
+
+  const supportsFileApi = ($('<input type="file">').get(0).files) !== undefined;
+
+  const addFeedbackToForm = (form) => {
+    let firstErrorFound = false;
+    Object.keys(form.fields).forEach((fieldName) => {
+      const $row = $applyForm.find(`[name=${fieldName}]`).closest('.form-row');
+      const field = form.fields[fieldName];
+
+      $row.removeClass('error');
+      $row.find('.form-error-message').remove();
+
+      if (field.error != null) {
+        if (!firstErrorFound) {
+          $('html, body').animate({
+            scrollTop: $row.offset().top
+          }, 500);
+          firstErrorFound = true;
         }
-      });
-    };
-
-    $applyForm.submit((event, { valid } = { }) => {
-      // Our form validation is asynchronous (but happens within a few ms).
-      // This means that we have to re-submit the form after validation
-      // with some kind of indicator that the validation has succeeded
-      console.log('yeee');
-      if (valid) {
-        return true;
+        $row.find('.form-label-longform').after(field.errorHTML());
+        $row.addClass('error');
       }
-
-      event.preventDefault();
-      
-      createApplicationForm(supportsFileApi).handle(
-        serializeForm($applyForm),
-        {
-          success: () => $applyForm.trigger('submit', { valid: true }),
-          error: addFeedbackToForm,
-          empty: addFeedbackToForm,
-        }
-      );
     });
+  };
+
+  $applyForm.submit((event, { valid } = { }) => {
+    // Our form validation is asynchronous (but happens within a few ms).
+    // This means that we have to re-submit the form after validation
+    // with some kind of indicator that the validation has succeeded
+
+    if (valid) {
+      return true;
+    }
+
+    event.preventDefault();
+    
+    createApplicationForm(supportsFileApi).handle(
+      serializeForm($applyForm),
+      {
+        success: () => $applyForm.trigger('submit', { valid: true }),
+        error: addFeedbackToForm,
+        empty: addFeedbackToForm,
+      }
+    );
+  });
+}
+
+module.exports = function applyPage() {
+  $('.apply-form').each(function () {
+    processForm($(this));
   });
 };
