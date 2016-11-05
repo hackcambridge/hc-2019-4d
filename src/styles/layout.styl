@@ -77,8 +77,10 @@ content-wrapper-left() {
 }
 
 .content-wrapper {
-  content-wrapper-left();
-  width: 900px;
+  content-wrapper();
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
 }
 
 .content-wrapper-standard {
@@ -86,8 +88,10 @@ content-wrapper-left() {
 }
 
 .content-wrapper-thin {
-  content-wrapper-left();
-  width: 700px;
+  content-wrapper();
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
 }
 
 /* Typography
@@ -173,14 +177,22 @@ a, a:visited {
    ========================================================================== */
 
 .default-header {
-  margin-top: ($punit * 4);
+  padding: ($punit * 4) 0;
+  background: $colorPrimary;
+  color: #fff;
+  text-align: center;
   margin-bottom: ($punit * 2);
+}
 
-  .header-link img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-  }
+.default-header-logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.default-header-heading {
+  margin-bottom: 0;
+  margin-top: 30px;
 }
 
 .default-main {

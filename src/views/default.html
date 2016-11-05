@@ -2,7 +2,12 @@
 {% block content %}
 <header class="default-header">
   <div class="content-wrapper">
-    <a class="header-link" href="/"><img src="{{ asset('images/logos/hc2017-logo-horizontal-color.svg') }}" /></a>
+    <a class="default-header-link" href="/">
+      <img class="default-header-logo" src="{{ asset('images/logos/hc2017-logo-horizontal-light.svg') }}" />
+    </a>
+    <h1 class="default-header-heading">
+      {% block pageHeading %}{% endblock %}
+    </h1>
   </div>
 </header>
 <main class="default-main">

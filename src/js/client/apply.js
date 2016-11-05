@@ -5,7 +5,7 @@ const renderForm = require('js/shared/render-form');
 /**
  * jQuery's .serializeArray does not give us file input values. While we can't get useful
  * information about files' content easily, we can get it's name for validation easily.
- * 
+ *
  * For inspiration, see their implementation: https://github.com/jquery/jquery/blob/master/src/serialize.js
  */
 function serializeForm($formElement) {
@@ -20,7 +20,7 @@ function serializeForm($formElement) {
     if (($element.attr('type') === 'submit') || (($element.attr('type') === 'checkbox') && !element.checked)) {
       return;
     }
-    
+
     if (Array.isArray(serializedObject[key])) {
       serializedObject[key].push(value);
     } else if (typeof serializedObject[key] !== 'undefined') {
@@ -58,6 +58,7 @@ module.exports = function applyPage() {
     const $applyForm = $(this);
 
     const addFeedbackToForm = (form) => {
+      let firstErrorFound = false;
       Object.keys(form.fields).forEach((fieldName) => {
         const $row = $applyForm.find(`[name=${fieldName}]`).closest('.form-row');
         const field = form.fields[fieldName];
@@ -66,7 +67,13 @@ module.exports = function applyPage() {
         $row.find('.form-error-message').remove();
 
         if (field.error != null) {
-          $row.find('.form-label').after(field.errorHTML());
+          if (!firstErrorFound) {
+            $('html, body').animate({
+              scrollTop: $row.offset().top
+            }, 500);
+            firstErrorFound = true;
+          }
+          $row.find('.form-label-longform').after(field.errorHTML());
           $row.addClass('error');
         }
       });
@@ -76,7 +83,7 @@ module.exports = function applyPage() {
       // Our form validation is asynchronous (but happens within a few ms).
       // This means that we have to re-submit the form after validation
       // with some kind of indicator that the validation has succeeded
-
+      console.log('yeee');
       if (valid) {
         return true;
       }

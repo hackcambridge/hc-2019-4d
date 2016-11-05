@@ -12,6 +12,7 @@ module.exports = function (name, field, options = { }) {
 
   return tag('div', { classes: field.classes(), required: !!field.required }, [
     field.labelHTML(name, field.id),
+    field.note ? tag('p', { classes: ['form-control-note'] }, field.note) : '',
     field.errorHTML(),
     innerContent,
   ].join(''));
