@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="landing-welcome-section">
-  <div class="landing-welcome-content">
-    <img class="landing-welcome-logo" src="{{ asset('images/logos/hc2017-logo-full-light.svg') }}" alt="Hack Cambridge: Recurse">
-    <p class="landing-welcome-dates">28 &ndash; 29 January 2017, University of Cambridge</p>
-    <form class="subscribe-form landing-welcome-subscribe-form" action="/api/subscribe" method="POST">
-      <label class="sr-only" for="subscribe-form-email">Email</label>
-      <input type="email" class="form-control subscribe-form-email" placeholder="Email Address" id="subscribe-form-email" name="email" required>
-      <button type="submit" class="subscribe-form-submit">Notify me when applications open</button>
-    </form>
+{# Group these two sections together as the bg needs to span both of them #}
+<div class="landing-welcome-intro">
+  {# Currently our recursive motif is diamonds. These are useful because they naturally point 
+     downwards. If we change it to something a little more flashy, we should look into something
+     that also leads the user down #}
+  <section class="landing-welcome-section">
+    <div class="landing-welcome-background">
+      <div class="landing-welcome-background-box1">
+        <div class="landing-welcome-background-box2">
+          <div class="landing-welcome-background-box3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="landing-welcome-content">
+      <img class="landing-welcome-logo" src="{{ asset('images/logos/hc2017-logo-full-light.svg') }}" alt="Hack Cambridge: Recurse">
+      <p class="landing-welcome-dates">28 &ndash; 29 January 2017, University of Cambridge</p>
+      {# These two links point to the same location, and do the same thing.
+         But to capture the intent of the user, we're making the apparent functionality
+         into two links. #}
+      <p class="apply-link-container">
+        <a class="apply-link" href="/apply">Apply with MyMLH</a>
+      </p>
+      <a class="signin-link" href="/apply">Or Sign In</a>
+    </div>
     <div class="landing-welcome-social-links">
       <p>Email us at <a href="mailto:team@hackcambridge.com">team@hackcambridge.com</a></p>
       <ul>
@@ -39,7 +54,73 @@
         </a></li>
       </ul>
     </div>
+  </section>
+  <section class="landing-about-section" id="about">
+    <div class="content-wrapper-thin">
+      <h2>Big Title Thing</h2>
+      <p>
+        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration 
+        in some form, by injected humour, or randomised words which don't look even slightly believable.
+      </p>
+      <p>
+        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing 
+        hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined 
+        chunks as necessary, making this the first true generator on the Internet.
+      </p>
+      <p class="apply-link-container">
+        <a class="apply-link" href="/apply">Apply with MyMLH</a>
+      </p>
+    </div>
+  </section>
+</div>
+<section class="landing-photo-section">
+  {# We should hard-code the image resolutions here once we know them #}
+  <div class="landing-photo landing-photo-small" src="http://placehold.it/200x400" alt="">
+    <img src="http://placehold.it/200x400" alt="" />
+  </div>
+  <div class="landing-photo landing-photo-medium" src="http://placehold.it/200x400" alt="">
+    <img src="http://placehold.it/200x400" alt="" />
+  </div>
+  <div class="landing-photo landing-photo-large" src="http://placehold.it/200x400" alt="">
+    <img src="http://placehold.it/200x400" alt="" />
+  </div>
+  <div class="landing-photo landing-photo-medium" src="http://placehold.it/200x400" alt="">
+    <img src="http://placehold.it/200x400" alt="" />
+  </div>
+  <div class="landing-photo landing-photo-small" src="http://placehold.it/200x400" alt="">
+    <img src="http://placehold.it/200x400" alt="" />
   </div>
 </section>
-
+<section class="landing-faqs-section" id ="faq">
+  <div class="content-wrapper">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faqs-listing"><!--
+      {% for faq in faqs %}
+      --><div class="faq-element">
+        <div class="faq-element-inner">
+          <h3>{{ faq.question }}</h3>
+          {{ faq.answer | safe }}
+        </div>
+      </div><!--
+     {% endfor %}
+   --></div>
+    <div class="landing-faqs-final">
+      <h2>Finally, what do I do now?</h2>
+      <p>
+        It's simple, click on the link below.
+      </p>
+      <p class="apply-link-container">
+        <a class="apply-link" href="/apply">Apply with MyMLH</a>
+      </p>
+    </div>
+  </div>
+</section>
+{# We could use a fractal to stylistically split this sections apart #}
+<section class="landing-helpers-section" id="helpers">
+  <div class="content-wrapper-center">
+    <h2>Sponsors</h2>
+    <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:sponsorship@hackcambridge.com">sponsorship@hackcambridge.com</a>.</p>
+  </div>
+</section>
+{% include 'footer.html' %}
 {% endblock %}
