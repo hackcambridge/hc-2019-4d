@@ -18,7 +18,7 @@
     },
     "MYMLH_CLIENT_SECRET": {
       "description": "The private secret used to confirm MyMLH client identity",
-      "required": true,
+      "required": true
     },
     "MAILGUN_API_KEY": {
       "description": "API key for accessing the Mailgun API",
