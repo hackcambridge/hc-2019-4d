@@ -11,21 +11,23 @@
 
   box-sizing: border-box;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   padding: ($punit * 3) 0;
 
-  dark-background();
+  background: desaturate(darken($colorPrimary, 50%), 25%);
   color: #fff;
   padding-top: 103px; /*Stop MLH logo from obscuring logo on mobile*/
 }
 
 .landing-welcome-content {
   @extend .content-wrapper-center;
+  position: relative;
+  z-index: 2;
 }
 
 .landing-welcome-dates {
   font-size: 1.2em;
-  margin: 2em 0;
+  margin-bottom: 3em;
   opacity: 0.9;
 }
 
@@ -33,7 +35,7 @@
   width: 100%;
   max-width: 400px;
   height: auto;
-  margin-bottom: 4em;
+  margin-bottom: 2em;
 }
 
 .subscribe-form-output {
@@ -46,159 +48,43 @@
   max-width: 400px;
 }
 
-.landing-welcome-lower-caret {
-  cursor: pointer;
-
-  svg {
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-
-    width: 40px;
-    height: auto;
-    margin-left: -20px;
-
-    fill: none;
-    stroke: $grayLighter;
-    stroke-width: 2px;
-
-    animation: updown 3s alternate infinite;
-    position: absolute;
-
-    @media only screen and (min-height: 600px) {
-      bottom: 40px;
-      width: 80px;
-      height: 40px;
-      margin-left: -40px;
-    }
-  }
-}
-
 .apply-link-container {
-  margin-bottom 25px;
+  margin-bottom: 0;
 }
 
 a.apply-link {
   display: inline-block;
-  margin-element();
+  margin-bottom: 10px;
   padding: 6px 10px;
   border-radius: 3px;
-  border: 2px solid $colorSecondary;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  color: inherit;
+  border: 2px solid currentColor;
+  opacity: 1;
+  transition-duration: 0.2s;
+  transition-property: opacity transform;
 
   font-size: 1em;
-  font-weight: 300;
   cursor: pointer;
-  color: $colorSecondary;
-
-  // animation: rotateBrand;
-  // animation-duration: 10s;
-  // animation-fill-mode: both;
-  // animation-iteration-count: infinite;
-
-  &:hover {
-    text-decoration: none;
-    opacity: 1;
-  }
-}
-
-/* Subscribe Form
-   ========================================================================== */
-
-.subscribe-form-email {
-  color: #fff;
-  text-align: center;
-  font-size: 1.2em;
-
-  border-bottom-color: rgba(255, 255, 255, 0.4);
-  
-  &:focus {
-    border-bottom-color: rgba(255, 255, 255, 1);
-    outline: none;
-    box-shadow: none;
-  }
-
-  &::placeholder {
-    opacity: 0.5;
-    color: #fff;
-  }
-}
-
-.subscribe-form-note {
-  margin-top: 1em;
-  font-size: 0.8em;
-  opacity: 0.9;
-}
-
-.subscribe-form-submit {
-  flex: 0 0 auto;
-  background: transparent;
-  border: none;
-
-  color: #fff;
-
-  transition-property: opacity transform;
-  transition-duration: 0.2s;
 
   &:hover, &:focus {
-    opacity: 0.8;
-    outline: none;
-  }
-
-  &:disabled {
-    opacity: 0.5;
+    text-decoration: none;
+    opacity: 0.7;
   }
 
   &:active {
-    transform: translate(0, 5px);
+    transform: scale(0.95);
   }
 }
 
-/* welcome animation
-   ========================================================================== */
-
-.landing-welcome-section {
-  .hack-logo-cambridge-text {
-    for $num in (1..9) {
-      path:nth-child({$num}) {
-        animation: logoAnimateIn;
-        animation-delay: (1 + $num * 0.1)s
-        animation-duration: 2s;
-        animation-fill-mode: both;
-      }
-    }
-  }
+a.signin-link {
+  color: #fff;
 }
 
-@keyframes logoAnimateIn {
-  0% { opacity: 0; fill $colorPrimary; }
-  20% { fill: $colorPrimary; }
-  25% { opacity: 1; }
-  50% { fill: #B72CD6; }
-  70% { fill: #000; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes rotateBrand {
-  0% { background-color: $logoColor1; }
-  35% { background-color: $logoColor2; }
-  60% { background-color: $logoColor3; }
-  100% { background-color: $logoColor1; }
-}
-
-@keyframes updown {
-  from { transform: translate(0, -25%); }
-  to { transform: translate(0, 25%); }
-}
 
 .landing-welcome-social-links {
-  margin-top: 4em;
+  @extend .content-wrapper-center;
+  margin-top: $punit;
+  margin-bottom: $punit;
   
   ul {
     list-style: none;
@@ -248,102 +134,144 @@ a.apply-link {
       }
     }
   }
+
+  @media only screen and (min-height: 700px) {
+    position: absolute;
+    bottom: 0px;
+  }
+}
+
+.landing-welcome-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.landing-welcome-background-box1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  width: 90vh;
+  squareify();
+  background: desaturate(darken($colorPrimary, 30%), 20%);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.landing-welcome-background-box2 {
+  width: 70%;
+  squareify();
+  background: desaturate(darken($colorPrimary, 20%), 15%);
+  position: absolute;
+  left: 15%;
+  top: 15%;
+}
+
+.landing-welcome-background-box3 {
+  width: 70%;
+  squareify();
+  background: $colorPrimary;
+  position: absolute;
+  left: 15%;
+  top: 15%;
+}
+
+$initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
+
+.landing-welcome-intro {
+  overflow: hidden;
+  background: $initialBackgroundColor;
+  color: #fff;
 }
 
 /* ==========================================================================
    About Sections
    ========================================================================== */
 
-$home-light-section {
-  padding: ($punit * 6) 0;
-
-  color: $gray;
-
-  .grand-heading {
-    color: $colorSecondary;
-  }
-}
-
-.landing-cambridge-photo-section {
-  overflow: hidden;
-  box-sizing: border-box;
-  min-height: 200px;
-
-  background-size: cover;
-  background-position: bottom center;
-  background-image: url(../images/cambridge-kings-photo.jpg);
-
-  &::before {
-    content: ' ';
-    display: block;
-    padding-top: 33.3%;
-  }
-}
-
-.landing-intro-section {
-  main-background();
-  @extend $home-light-section;
-}
-
-.landing-venue-section {
-  padding: $punit * 3 0;
-
-  background-size: cover;
-  background-position: top center;
-  background-color: $colorDark;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  background-image: url(../images/corn-exchange-photo.jpg);
-
-  .grand-heading {
-    margin-bottom: 10px;
-  }
-
-  p {
-    margin-bottom: $punit * 2;
-    font-weight: 300;
-    font-size: 1.2em;
-  }
-
-  .content-wrapper-standard {
-    margin: 0 auto;
-    text-align: center;
-    color: #FFFFFF;
-    width: 100%;
-  }
-}
-
-.landing-location-map {
+.landing-about-section {
   position: relative;
+  
+  padding-top: ($punit * 4);
+  padding-bottom: ($punit * 8);
 
-  display: block;
-  width: 300px;
-  height: 300px;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: -100px;
+  text-align: center;
+}
 
-  background-size: cover;
-  background-position: center;
-  background-image: url(../images/location-map.png);
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* ==========================================================================
+   Photo Section
+   ========================================================================== */
 
-  &:hover .landing-location-marker{
-    transform: scale(1.2) translate(0, -2px);
+.landing-photo-section {
+  min-height: 400px;
+  padding-left: ($punit / 2);
+  padding-right: ($punit / 2);
+  padding-bottom: ($punit * 4);
+  // This gradient may look better if we arc it,
+  // but that requires some geometric dexterity
+  background: linear-gradient(to bottom, $initialBackgroundColor, $colorSecondary);
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-photo {
+  display: inline-block;
+  margin: 0 ($punit / 2);
+  vertical-align: middle;
+  flex: 0 1 auto;
+
+  &-small {
+    width: 200px;
+    flex-basis: 200px;
+    display: none;
+  }
+
+  &-medium {
+    width: 250px;
+    flex-basis: 250px;
+  }
+
+  &-large {
+    width: 300px;
+    flex-basis: 300px;
+  }
+
+  img {
+    width: 100%;
+    display: block;
   }
 }
 
-.landing-location-marker {
-  position: absolute;
-  left: 50%;
-  bottom: 50%;
+@media only screen and (min-width: 600px) {
+  .landing-photo {
+    margin: 0 $punit;
+  }
 
-  width: 30px;
-  height: auto;
-  margin-left: -10px;
+  .landing-photo-section {
+    padding-left: $punit;
+    padding-right: $punit;
+  }
+}
 
-  transition: transform 0.2s;
-  transform-origin: bottom center;
+@media only screen and (min-width: 800px) {
+  .landing-photo-small {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .landing-photo {
+    margin: 0 ($punit * 2);
+  }
+
+  .landing-photo-section {
+    padding-left: ($punit * 2);
+    padding-right: ($punit * 2);
+  }
 }
 
 /* ==========================================================================
@@ -351,7 +279,14 @@ $home-light-section {
    ========================================================================== */
 
 .landing-faqs-section {
-  @extend $home-light-section;
+  background: $colorSecondary;
+  color: #fff;
+  padding-top: $punit * 4;
+  padding-bottom: $punit * 4;
+
+  h2 {
+    text-align: center;
+  }
 
   .content-wrapper {
     width: 1000px;
@@ -359,20 +294,39 @@ $home-light-section {
 
   .faqs-listing {
     @extend .clearfix;
+    display: flex;
+    flex-flow: wrap;
+    align-items: stretch;
 
     margin: 0 (-1 * $punit);
   }
 
   .faq-element {
+    color: $textColor;
+    display: inline-block;
+    display: flex;
+
     width: 100%;
     padding: ($punit);
-    display: inline-block;
     box-sizing: border-box;
     vertical-align: top;
+
+    align-items: stretch;
+  }
+
+  .faq-element-inner {
+    background: #fff;
+    padding: ($punit);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    border-radius: 2px;
   }
 
   h3 {
-    color: $grayDark; 
+    margin-top: ($punit * 2);
   }
 
   @media only screen and (min-width: 500px) {
@@ -386,6 +340,11 @@ $home-light-section {
       width: 33.33%;
     }
   }
+}
+
+.landing-faqs-final {
+  text-align: center;
+  margin-top: ($punit * 4);
 }
 
 /* ==========================================================================
@@ -467,9 +426,6 @@ $home-light-section {
 
 .landing-helpers-section {
   padding: $punit * 3 0;
-
-  dark-background();
-  color: #FFFFFF;
 }
 
 .landing-footer {

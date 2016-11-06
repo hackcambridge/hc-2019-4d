@@ -102,38 +102,41 @@ margin-element() {
   margin-bottom: 25px;
 }
 
-h1 {
-  font-size: 1.2 * 1.2 * 1.2;
+$rootSize = 1em;
+$typeScale = 1.3;
+
+h1, .grand-heading {
+  font-size: $rootSize * $typeScale * $typeScale * $typeScale;
   line-height: 1.2;
 }
 
 h2 {
   font-weight: normal;
-  font-size: 1.2 * 1.2;
+  font-size: $rootSize * $typeScale * $typeScale;
   line-height: 1.2;
 }
 
 h3 {
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: $rootSize * $typeScale;
   line-height: 1.2;
 }
 
 h4 {
   font-weight: bold;
-  font-size: 1em;
+  font-size: $rootSize;
   line-height: 1.2;
 }
 
 h5 {
   font-weight: bold;
-  font-size: 1 / 1.2;
+  font-size: $rootSize / $typeScale;
   line-height: 1.2;
 }
 
 h6 {
   font-weight: bold;
-  font-size: 1 / 1.2 / 1.2;
+  font-size: $rootSize / $typeScale / $typeScale;
   line-height: 1.2;
 }
 
