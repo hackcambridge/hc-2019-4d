@@ -1,0 +1,14 @@
+{% extends 'default.html' %}
+{% set title = 'Apply for Hack Cambridge' %}
+{% block pageHeading %}Dashboard{% endblock %}
+{% block pageContent %}
+<header class="content-wrapper-center">
+  <h3>Hello, {{ user.first_name }}!</h3>
+</header>
+<hr>
+Application status: <span class="warning">incomplete</span><br>
+<a href="/apply/form">complete your application now &rarr;</a><br>
+<hr>
+Team application status: N/A<br>
+You didn't apply as part of a team. You can <a href="/apply/team">change this</a>, but not for long!
+{% endblock %}

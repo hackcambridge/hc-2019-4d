@@ -16,7 +16,7 @@ var exports = module.exports = {};
 exports.setUpAuth = function (app) {
   // Used to store actual user data to avoid always hitting the db/API
   app.use(session({
-    cookieName: 'hc_user',
+    cookieName: 'user',
     secret: process.env.AUTH_SESSION_SECRET,
     duration: 2 * 60 * 60 * 1000, // lives for 2 hours
     activeDuration: 15 * 60 * 1000, // Gets refreshed for 15 mins on use
@@ -40,7 +40,7 @@ exports.setUpAuth = function (app) {
 
 // Ensures that there is user data available, otherwise redirects to authenticate the user
 exports.authenticate = function (req, res, next) {
-  if (!req.hc_user || !req.hc_user.hasOwnProperty('id')) {
+  if (!req.user || !req.user.hasOwnProperty('id')) {
     redirectToAuthorize(req, res);
   } else {
     next();
@@ -49,9 +49,9 @@ exports.authenticate = function (req, res, next) {
 
 // If there is user data available in the session, make sure it is put in the request and local res objects
 function setUserFromSession (req, res, next) {
-  if (req.hc_user) {
+  if (req.user) {
     // Check if we already have data
-    const user = req.hc_user;
+    const user = req.user;
     res.locals.user = user;
   }
   next();
@@ -68,7 +68,7 @@ function handleCallback(req, res) {
     return getUser(access_token);
   }).then(function(user) {
     // We got the user object, crack on
-    req.hc_user = user;
+    req.user = user;
     res.locals.user = user;
 
     // Get the redirect URL if it exists
@@ -93,8 +93,7 @@ function handleCallback(req, res) {
 }
 
 function redirectToAuthorize(req, res) {
-  // Store where the user was trying to get to so we can get back there
-
+  // Store where the user was trying to get to in session so we can get back there
   req.redirectTo = {url: req.originalUrl};
 
   console.log("Tried to store in cookie: " + req.originalUrl);

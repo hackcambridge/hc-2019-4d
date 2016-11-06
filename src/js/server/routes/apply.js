@@ -70,13 +70,18 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
   });
 });
 
-// The main apply page (has the login button)
+applyRouter.get('/dashboard', auth.authenticate, function(req, res) {
+  res.render('apply/dashboard.html');
+})
+
+// The login page (has the login button)
 applyRouter.get('/', function (req, res) {
   res.render('apply/index.html');
 });
 
 // Render the form for additional applicant details
 applyRouter.get('/form', auth.authenticate, function(req, res) {
+  // TODO: If the user has already completed the form, redirect to dashboard
   renderApplyPageWithForm(res, createApplicationForm());
 });
 
