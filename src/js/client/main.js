@@ -82,6 +82,10 @@ $(document).ready(function () {
     });
   });
 
+  $(window).scroll(() => {
+    document.querySelector('.landing-welcome-background-box1').style.setProperty('--diamond-size', `${90 + window.scrollY / 14}vh`);
+  });
+
   /*var updateCountdown = function () {
     $('.application-countdown').html(createCountdownText());
   };
