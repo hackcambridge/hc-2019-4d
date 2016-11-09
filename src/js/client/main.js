@@ -82,9 +82,18 @@ $(document).ready(function () {
     });
   });
 
-  $(window).scroll(() => {
-    document.querySelector('.landing-welcome-background-box1').style.setProperty('--diamond-size', `${90 + window.scrollY / 14}vh`);
-  });
+  {
+    let resize = true;
+    $(window).scroll(() => {
+      if (resize) {
+        window.requestAnimationFrame(() => {
+          document.querySelector('.landing-welcome-background-box1').style.setProperty('--diamond-scale', `${1 + window.scrollY / 1000}`);
+          resize = true;
+        });
+        resize = false;
+      }
+    });
+  }
 
   /*var updateCountdown = function () {
     $('.application-countdown').html(createCountdownText());

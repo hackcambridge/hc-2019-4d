@@ -156,11 +156,12 @@ a.signin-link {
   top: 50%;
   left: 50%;
   width: 50%;
-  --diamond-size: 90vh;
-  width: var(--diamond-size);
+  width: 90vh;
   squareify();
   background: desaturate(darken($colorPrimary, 30%), 20%);
-  transform: translate(-50%, -50%) rotate(45deg);
+  --diamond-scale: 1;
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  transform: translate(-50%, -50%) rotate(45deg) scale(var(--diamond-scale));
 }
 
 .landing-welcome-background-box2 {
