@@ -208,13 +208,15 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
    ========================================================================== */
 
 .landing-photo-section {
+  position: relative;
+  z-index: 1;
   min-height: 400px;
   padding-left: ($punit / 2);
   padding-right: ($punit / 2);
   padding-bottom: ($punit * 4);
   // This gradient may look better if we arc it,
   // but that requires some geometric dexterity
-  background: linear-gradient(to bottom, $initialBackgroundColor, $colorSecondary);
+  background: linear-gradient(to bottom, transparentify($colorSecondary, 0), $colorSecondary);
   text-align: center;
 
   display: flex;
@@ -224,11 +226,9 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
 
 .landing-photo {
   display: inline-block;
-  position: relative;
   margin: 0 ($punit / 2);
   vertical-align: middle;
   flex: 0 1 auto;
-  z-index: 1;
 
   &-small {
     width: 200px;
