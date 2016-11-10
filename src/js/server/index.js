@@ -18,6 +18,7 @@ const auth = require('js/server/auth');
 
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
+var database = require('js/server/database');
 
 require('./sockets.js')(server);
 

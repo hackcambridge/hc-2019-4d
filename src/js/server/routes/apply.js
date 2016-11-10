@@ -9,6 +9,8 @@ const multerS3 = require('multer-s3');
 const crypto = require('crypto');
 const auth = require('js/server/auth');
 const email = require('js/server/email');
+const session = require('client-sessions');
+const database = require('js/server/database');
 
 // Set up the S3 connection
 const s3 = new aws.S3(new aws.Config({
@@ -47,19 +49,30 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
 
   form.handle(req.body, {
     success: (resultForm) => {
+      // Store the hacker information in the database
+      const user = res.locals.user;
+      const form = resultForm.data;
+      const applicationID = crypto.randomBytes(64).toString('hex');
+      database.Hacker.create({
+        firstName: user.first_name,
+        lastName: user.last_name,
+        applicationID,
+        email: user.email,
+        phoneNumber: user.phone_number,
+        inTeam: form.team_apply,
+        wantsTeam: form.team_placement,
+      });
+
       // email.sendEmail({
-      //   to: 'applicant@hackcambridge.com',
+      //   to: user.email,
       //   contents: email.templates.applied({
-      //     name: 'John',
-      //     applicationId: '100012',
+      //     name: user.first_name,
+      //     applicationId: applicationID,
       //   }),
       // });
 
-      // Log form data to pretend we're doing something useful
-      console.log(resultForm.data);
-
       // redirect to the next page but for now...
-      res.redirect('/form');
+      res.redirect('/apply/form');
     },
     error: (resultForm) => {
       renderApplyPageWithForm(res, resultForm);
