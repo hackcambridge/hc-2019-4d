@@ -87,8 +87,11 @@ $(document).ready(function () {
     $(window).scroll(() => {
       if (resize) {
         window.requestAnimationFrame(() => {
-          document.querySelector('.landing-welcome-background-box1').style.setProperty('--diamond-scale', `${1 + window.scrollY / 1000}`);
-          resize = true;
+          const diamond = document.querySelector('.landing-welcome-background-box1');
+          if (diamond !== null) {
+            diamond.style.setProperty('--diamond-scale', `${1 + window.scrollY / 1000}`);
+            resize = true;
+          }
         });
         resize = false;
       }
