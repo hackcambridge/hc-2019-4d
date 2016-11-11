@@ -102,6 +102,10 @@ app.get('/pay', function (req, res) {
   });
 });
 
+app.get('/volunteers', (req, res) => {
+  res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
+})
+
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
