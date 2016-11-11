@@ -58,7 +58,6 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       },
       validators: [
         (form, field, callback) => {
-          console.log(field.data);
           if ((field.data.includes('unknown')) && (field.data.length > 1)) {
             callback('You can\'t have an answer and not be sure!');
           } else {
