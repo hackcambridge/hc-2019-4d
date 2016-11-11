@@ -113,4 +113,4 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
   }, {
     validatePastFirstError: true,
   });
-}
+};

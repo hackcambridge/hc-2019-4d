@@ -1,5 +1,6 @@
 const express = require('express');
 const { createApplicationForm, maxFieldSize } = require('js/shared/application-form');
+const { createTeamForm } = require('js/shared/team-form');
 const renderForm = require('js/shared/render-form');
 var querystring = require('querystring');
 var fetch = require('node-fetch');
@@ -71,14 +72,36 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
       //   }),
       // });
 
-      // redirect to the next page but for now...
-      res.redirect('/apply/form');
+      if (form.team_apply) {
+        res.redirect('/apply/team');
+      } else {
+        res.redirect('/apply/dashboard');
+      }
     },
     error: (resultForm) => {
       renderApplyPageWithForm(res, resultForm);
     },
     empty: () => {
       renderApplyPageWithForm(res, form);
+    }
+  });
+});
+
+applyRouter.post('/team', auth.authenticate, (req, res) => {
+  const form = createTeamForm();
+
+  form.handle(req.body, {
+    success: (resultForm) => {
+      console.log("Team application success.");
+      res.redirect('/apply/dashboard');
+    },
+    error: (resultForm) => {
+      console.log("error");
+      renderTeamPageWithForm(res, resultForm);
+    },
+    empty: () => {
+      console.log("empty");
+      renderTeamPageWithForm(res, form);
     }
   });
 });
@@ -93,10 +116,23 @@ applyRouter.get('/form', auth.authenticate, function(req, res) {
   renderApplyPageWithForm(res, createApplicationForm());
 });
 
-function renderApplyPageWithForm(res, form) {
-  res.render('apply/form.html', {
+// Render the team formation form
+applyRouter.get('/team', auth.authenticate, function(req, res) {
+  renderTeamPageWithForm(res, createTeamForm());
+});
+
+function renderPageWithForm(res, path, form) {
+  res.render(path, {
     formHtml: form.toHTML(renderForm)
   });
 }
+
+function renderApplyPageWithForm(res, form) {
+  renderPageWithForm(res, 'apply/form.html', form);
+};
+
+function renderTeamPageWithForm(res, form) {
+  renderPageWithForm(res, 'apply/team.html', form);
+};
 
 module.exports = applyRouter;
