@@ -35,6 +35,22 @@
     "S3_BUCKET": {
       "description": "Name of the AWS S3 bucket used to store files",
       "required": true
-    }
+    },
+    "PGDATABASE": {
+      "description": "Name of the PostgreSQL database",
+      "required": true
+    },
+    "PGUSER": {
+      "description": "Username used to access the database",
+      "required": true
+    },
+    "PGPASSWORD": {
+      "description": "Password used to access the database",
+      "required": true
+    },
+    "PGHOST": {
+      "description": "Host address used to connect to the database",
+      "required": true
+    },
   }
 }
