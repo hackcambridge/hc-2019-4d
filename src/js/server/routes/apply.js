@@ -10,7 +10,7 @@ const crypto = require('crypto');
 const auth = require('js/server/auth');
 const email = require('js/server/email');
 const session = require('client-sessions');
-const database = require('js/server/database');
+const { HackerApplication } = require('js/server/models');
 
 // Set up the S3 connection
 const s3 = new aws.S3(new aws.Config({
@@ -41,7 +41,29 @@ const applyFormUpload = multer({
 
 const applyRouter = new express.Router();
 
-applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req, res) => {
+applyRouter.get('/', (req, res) => {
+  if (req.user) {
+    res.redirect(`${req.baseUrl}/dashboard`);
+    return;
+  }
+
+  res.render('apply/index.html');
+});
+
+applyRouter.use(auth.requireAuth);
+
+// Route to redirect to whatever next step is required
+applyRouter.get('/', (req, res) => {
+  res.redirect(`${req.baseUrl}/form`);
+});
+
+applyRouter.get('/dashboard', (req, res) => {
+  res.end('Hey there :3');
+});
+
+applyRouter.all('/form', checkHasApplied);
+
+applyRouter.post('/form', applyFormUpload.single('cv'), (req, res, next) => {
   const form = createApplicationForm();
 
   // HACK: Put all our fields in the same place by moving the file into req.body
@@ -50,56 +72,30 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
   form.handle(req.body, {
     success: (resultForm) => {
       // Store the hacker information in the database
-      const user = res.locals.user;
+      const user = req.user;
       const form = resultForm.data;
-      form.cv = req.file;
-      const applicationID = crypto.randomBytes(64).toString('hex');
-      database.Hacker.create({
-        // Personal
-        firstName: user.first_name,
-        lastName: user.last_name,
-        gender: user.gender,
-        dateOfBirth: user.date_of_birth,
-        email: user.email,
-        phoneNumber: user.phone_number,
-        // Education
-        institution: user.school.name,
-        studyLevel: user.level_of_study,
-        course: user.major,
-        // Logistics
-        shirtSize: user.shirt_size,
-        dietaryRestrictions: user.dietary_restrictions,
-        specialNeeds: user.special_needs,
-      }).then(hacker => {
-        database.HackerApplication.create({
-          // Foreign key
-          hackerID: hacker.id,
-          // Application
-          applicationID,
-          CV: form.cv.location,
-          developmentRoles: JSON.stringify(form.development),
-          learningGoal: form.learn,
-          interests: form.interests,
-          recentAccomplishment: form.accomplishment,
-          links: form.links,
-          inTeam: form.team_apply,
-          wantsTeam: form.team_placement,
-        });
-        console.log(`An application was successfully made by ${user.first_name} ${user.last_name}.`);
+      const applicationSlug = crypto.randomBytes(64).toString('hex');
+
+      HackerApplication.create({
+        // Foreign key
+        hackerId: user.id,
+        // Application
+        applicationSlug,
+        cv: form.cv.location,
+        developmentRoles: form.development,
+        learningGoal: form.learn,
+        interests: form.interests,
+        recentAccomplishment: form.accomplishment,
+        links: form.links,
+        inTeam: form.team_apply,
+        wantsTeam: form.team_placement,
+      }).then(application => {
+        console.log(`An application was successfully made by ${user.firstName} ${user.lastName}.`);
+        res.redirect(`${req.baseUrl}/form`);
       }).catch(err => {
-        console.log("Failed to add an application to the database:", err);
+        console.log('Failed to add an application to the database');
+        next(err);
       });
-
-      // email.sendEmail({
-      //   to: user.email,
-      //   contents: email.templates.applied({
-      //     name: user.first_name,
-      //     applicationId: applicationID,
-      //   }),
-      // });
-
-      // redirect to the next page but for now...
-      res.redirect('/apply/form');
     },
     error: (resultForm) => {
       renderApplyPageWithForm(res, resultForm);
@@ -110,13 +106,8 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
   });
 });
 
-// The main apply page (has the login button)
-applyRouter.get('/', function (req, res) {
-  res.render('apply/index.html');
-});
-
 // Render the form for additional applicant details
-applyRouter.get('/form', auth.authenticate, function(req, res) {
+applyRouter.get('/form', (req, res) => {
   renderApplyPageWithForm(res, createApplicationForm());
 });
 
@@ -124,6 +115,23 @@ function renderApplyPageWithForm(res, form) {
   res.render('apply/form.html', {
     formHtml: form.toHTML(renderForm)
   });
+}
+
+/**
+ * Intercepts the request to check if the user has submitted an application
+ * 
+ * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
+ * as normal.
+ */
+function checkHasApplied(req, res, next) {
+  req.user.getHackerApplication().then(hackerApplication => {
+    if (hackerApplication) {
+      res.redirect(`${req.baseUrl}/dashboard`);
+      return;
+    } 
+
+    next();
+  }).catch(next);
 }
 
 module.exports = applyRouter;
