@@ -18,6 +18,7 @@ const auth = require('js/server/auth');
 
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
+var database = require('js/server/database');
 
 require('./sockets.js')(server);
 
@@ -100,6 +101,10 @@ app.get('/pay', function (req, res) {
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
 });
+
+app.get('/volunteers', (req, res) => {
+  res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
+})
 
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));

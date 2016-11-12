@@ -10,6 +10,8 @@ const crypto = require('crypto');
 const auth = require('js/server/auth');
 const email = require('js/server/email');
 const utils = require('../utils.js');
+const session = require('client-sessions');
+const database = require('js/server/database');
 
 // Set up the S3 connection
 const s3 = new aws.S3(new aws.Config({
@@ -48,19 +50,57 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
 
   form.handle(req.body, {
     success: (resultForm) => {
+      // Store the hacker information in the database
+      const user = res.locals.user;
+      const form = resultForm.data;
+      form.cv = req.file;
+      const applicationID = crypto.randomBytes(64).toString('hex');
+      database.Hacker.create({
+        // Personal
+        firstName: user.first_name,
+        lastName: user.last_name,
+        gender: user.gender,
+        dateOfBirth: user.date_of_birth,
+        email: user.email,
+        phoneNumber: user.phone_number,
+        // Education
+        institution: user.school.name,
+        studyLevel: user.level_of_study,
+        course: user.major,
+        // Logistics
+        shirtSize: user.shirt_size,
+        dietaryRestrictions: user.dietary_restrictions,
+        specialNeeds: user.special_needs,
+      }).then(hacker => {
+        database.HackerApplication.create({
+          // Foreign key
+          hackerID: hacker.id,
+          // Application
+          applicationID,
+          CV: form.cv.location,
+          developmentRoles: JSON.stringify(form.development),
+          learningGoal: form.learn,
+          interests: form.interests,
+          recentAccomplishment: form.accomplishment,
+          links: form.links,
+          inTeam: form.team_apply,
+          wantsTeam: form.team_placement,
+        });
+        console.log(`An application was successfully made by ${user.first_name} ${user.last_name}.`);
+      }).catch(err => {
+        console.log("Failed to add an application to the database:", err);
+      });
+
       // email.sendEmail({
-      //   to: 'applicant@hackcambridge.com',
+      //   to: user.email,
       //   contents: email.templates.applied({
-      //     name: 'John',
-      //     applicationId: '100012',
+      //     name: user.first_name,
+      //     applicationId: applicationID,
       //   }),
       // });
 
-      // Log form data to pretend we're doing something useful
-      console.log(resultForm.data);
-
       // redirect to the next page but for now...
-      res.redirect('/form');
+      res.redirect('/apply/form');
     },
     error: (resultForm) => {
       renderApplyPageWithForm(res, resultForm);

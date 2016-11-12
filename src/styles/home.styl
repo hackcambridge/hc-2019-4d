@@ -137,6 +137,8 @@ a.signin-link {
 
   @media only screen and (min-height: 700px) {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0px;
   }
 }
@@ -157,7 +159,9 @@ a.signin-link {
   width: 90vh;
   squareify();
   background: desaturate(darken($colorPrimary, 30%), 20%);
-  transform: translate(-50%, -50%) rotate(45deg);
+  --diamond-scale: 1;
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  transform: translate(-50%, -50%) rotate(45deg) scale(var(--diamond-scale));
 }
 
 .landing-welcome-background-box2 {
@@ -204,13 +208,15 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
    ========================================================================== */
 
 .landing-photo-section {
+  position: relative;
+  z-index: 1;
   min-height: 400px;
   padding-left: ($punit / 2);
   padding-right: ($punit / 2);
   padding-bottom: ($punit * 4);
   // This gradient may look better if we arc it,
   // but that requires some geometric dexterity
-  background: linear-gradient(to bottom, $initialBackgroundColor, $colorSecondary);
+  background: linear-gradient(to bottom, transparentify($colorSecondary, 0), $colorSecondary);
   text-align: center;
 
   display: flex;

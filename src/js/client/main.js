@@ -82,6 +82,22 @@ $(document).ready(function () {
     });
   });
 
+  {
+    let resize = true;
+    $(window).scroll(() => {
+      if (resize) {
+        window.requestAnimationFrame(() => {
+          const diamond = document.querySelector('.landing-welcome-background-box1');
+          if (diamond !== null) {
+            diamond.style.setProperty('--diamond-scale', `${1 + window.scrollY / 1000}`);
+            resize = true;
+          }
+        });
+        resize = false;
+      }
+    });
+  }
+
   /*var updateCountdown = function () {
     $('.application-countdown').html(createCountdownText());
   };
