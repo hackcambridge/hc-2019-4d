@@ -33,6 +33,7 @@ const Hacker = module.exports = db.define('hacker', {
   },
   phoneNumber: {
     type: Sequelize.STRING,
+    allowNull: false,
   },
   // Education
   institution: {
