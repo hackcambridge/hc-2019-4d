@@ -15,6 +15,10 @@
   padding: ($punit * 3) 0;
 
   background: desaturate(darken($colorPrimary, 50%), 25%);
+  
+  background: $colorPrimary;
+  background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
+
   color: #fff;
   padding-top: 103px; /*Stop MLH logo from obscuring logo on mobile*/
 }
@@ -158,7 +162,8 @@ a.signin-link {
   width: 50%;
   width: 90vh;
   squareify();
-  background: desaturate(darken($colorPrimary, 30%), 20%);
+  // background: desaturate(darken($colorPrimary, 30%), 20%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   --diamond-scale: 1;
   transform: translate(-50%, -50%) rotate(45deg) scale(1);
   transform: translate(-50%, -50%) rotate(45deg) scale(var(--diamond-scale));
@@ -167,7 +172,8 @@ a.signin-link {
 .landing-welcome-background-box2 {
   width: 70%;
   squareify();
-  background: desaturate(darken($colorPrimary, 20%), 15%);
+  // background: desaturate(darken($colorPrimary, 20%), 15%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   position: absolute;
   left: 15%;
   top: 15%;
@@ -176,7 +182,8 @@ a.signin-link {
 .landing-welcome-background-box3 {
   width: 70%;
   squareify();
-  background: $colorPrimary;
+  // background: $colorPrimary;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   position: absolute;
   left: 15%;
   top: 15%;
@@ -186,7 +193,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
 
 .landing-welcome-intro {
   overflow: hidden;
-  background: $initialBackgroundColor;
+  background: $colorPink;
   color: #fff;
 }
 
@@ -216,7 +223,8 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   padding-bottom: ($punit * 4);
   // This gradient may look better if we arc it,
   // but that requires some geometric dexterity
-  background: linear-gradient(to bottom, transparentify($colorSecondary, 0), $colorSecondary);
+  // background: linear-gradient(to bottom, transparentify($colorSecondary, 0), $colorSecondary);
+  background: linear-gradient(5deg, $colorSecondary 50%, transparentify($colorPink, 0) 50%);
   text-align: center;
 
   display: flex;
@@ -308,7 +316,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 
   .faq-element {
-    color: $textColor;
+    color: white;
     display: inline-block;
     display: flex;
 
@@ -321,7 +329,6 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 
   .faq-element-inner {
-    background: #fff;
     padding: ($punit);
 
     display: flex;
@@ -329,6 +336,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
     justify-content: flex-end;
 
     border-radius: 2px;
+    border: 3px solid $colorPrimary;
   }
 
   h3 {
