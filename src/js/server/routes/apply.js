@@ -9,6 +9,7 @@ const multerS3 = require('multer-s3');
 const crypto = require('crypto');
 const auth = require('js/server/auth');
 const email = require('js/server/email');
+const utils = require('../utils.js');
 
 // Set up the S3 connection
 const s3 = new aws.S3(new aws.Config({
@@ -91,7 +92,7 @@ function renderDashboard(req, res) {
   const userAppliedWithTeam = false;
   const teamApplicationComplete = true;
 
-  const reviewStatus = 'rejected'; // 'rejected' or 'accepted'
+  const reviewStatus = 'pending'; // 'pending', 'rejected' or 'accepted'
   const furtherDetailsComplete = false;
 
   // Derive the personal application status
@@ -110,23 +111,30 @@ function renderDashboard(req, res) {
   const furtherApplicationStatus = furtherDetailsComplete ? 'complete' : 'incomplete';
 
   // Derive the overall application status
-  let applicationStatus;
+  let overallStatus;
   if (!userHasApplied || userAppliedWithTeam && !teamApplicationComplete)
-    applicationStatus = 'incomplete';
+    overallStatus = 'incomplete';
   else if (reviewStatus == 'pending')
-    applicationStatus = 'in-review';
+    overallStatus = 'in-review';
   else if (reviewStatus == 'rejected')
-    applicationStatus = 'rejected';
+    overallStatus = 'rejected';
   else if (!furtherDetailsComplete)
-    applicationStatus = 'accepted-incomplete';
+    overallStatus = 'accepted-incomplete';
   else if (furtherDetailsComplete)
-    applicationStatus = 'accepted-complete';
+    overallStatus = 'accepted-complete';
+
+  const content = utils.loadResource('dashboard');
+  console.log(content);
 
   res.render('apply/dashboard.html', {
-    yourApplicationStatus: yourApplicationStatus,
+    applicationStatus: yourApplicationStatus,
     teamApplicationStatus: teamApplicationStatus,
     furtherApplicationStatus: furtherApplicationStatus,
-    applicationStatus: applicationStatus,
+
+    applicationInfo: content['your-application'][yourApplicationStatus],
+    teamApplicationInfo: content['team-application'][teamApplicationStatus],
+    furtherApplicationInfo: content['further-application'][furtherApplicationStatus],
+    statusMessage: content['status-messages'][overallStatus],
   })
 
 }

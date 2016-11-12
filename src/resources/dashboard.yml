@@ -1,0 +1,78 @@
+dashboard:
+  status-messages:
+    incomplete:
+      message_type: warning
+      title: Your application is incomplete &nbsp; &#128533; # Awkward face emoji
+      subline: Finish it off by fixing whatever's incomplete below
+    
+    in-review:
+      message_type: success
+      title: Your application is being reviewed &nbsp; &#9989; # Tick emoji
+      subline: Sit back and relax, we'll get back to you as soon as we can
+
+    accepted-incomplete:
+      message_type: success
+      title: You're in!
+      subline: We'd love to have you at Hack Cambridge 2017. A few final details...
+
+    accepted-complete:
+      message_type: success
+      title: See you there
+      subline: We've all we need from you. We can't wait to welcome you to Hack Cambridge 2017!
+
+    rejected:
+      message_type: neutral
+      title: We're sorry
+      subline: We weren't able to accept you this year
+
+  your-application:
+    incomplete:
+      type: warning
+      label: Incomplete
+      content: You missed a spot
+      action:
+        title: complete your application now
+        location: /apply/form
+    complete:
+      type: success
+      label: Complete
+      content: You've filled out your application. You're on top _form_!
+
+  team-application:
+    na:
+      type: na
+      label: N/A
+      content:
+        You didn't apply as part of a team. You can change this but not for long!
+      action:
+        title: Set up a team
+        location: /apply/team
+    incomplete:
+      type: warning
+      label: Incomplete
+      content: 
+        You applied as part of a team but nobody in your team has submitted a team application yet. Once one of you does this, 
+        we'll review your applications all in one.
+      action:
+        title: Submit a team application
+        location: /apply/team
+    complete:
+      type: success
+      label: Complete
+      content: You've been listed in a team application. You're a true team player
+      action:
+        title: View your team application
+        location: /apply/team
+  further-application:
+    incomplete:
+      type: warning
+      label: Incomplete
+      content: 
+        We still need a few more details from you to guarantee your enjoyment of Hack Cambridge
+      action:
+        title: Provide further details
+        location: /apply/further
+    complete:
+      type: success
+      label: Complete
+      content: We have everything we need from you
