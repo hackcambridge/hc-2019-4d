@@ -1,14 +1,104 @@
 {% extends 'default.html' %}
 {% set title = 'Apply for Hack Cambridge' %}
+{% set is_dashboard = true %}
 {% block pageHeading %}Dashboard{% endblock %}
 {% block pageContent %}
 <header class="content-wrapper-center">
   <h3>Hello, {{ user.first_name }}!</h3>
 </header>
-<hr>
-Application status: <span class="warning">incomplete</span><br>
-<a href="/apply/form">complete your application now &rarr;</a><br>
-<hr>
-Team application status: N/A<br>
-You didn't apply as part of a team. You can <a href="/apply/team">change this</a>, but not for long!
+
+  {# The main status banner #}
+  <div class="content-wrapper-center">
+    {% if applicationStatus == 'incomplete' %}
+      <div class="status-message warning">
+        <h2>Your application is incomplete &nbsp; &#128533;</h2>
+        <span>Finish it off by fixing whatever's incomplete below</span>
+      </div>
+    {% elseif applicationStatus == 'in-review' %}
+      <div class="status-message success">
+        <h2>Your application is being reviewed &nbsp; &#9989;</h2>
+        <span>Sit back and relax, we'll get back to you as soon as we can</span>
+      </div>
+    {% elseif applicationStatus == 'rejected' %}
+      <div class="status-message neutral">
+        <h2>We're sorry</h2>
+        <span>We weren't able to accept you to Hack Cambridge this year</span>
+      </div>
+    {% elseif applicationStatus == 'accepted-incomplete' %}
+      <div class="status-message success">
+        <h2>You're in!</h2>
+        <span>We'd love to have you at Hack Cambridge 2017. A few final details...</span>
+      </div>
+    {% elseif applicationStatus == 'accepted-complete' %}
+      <div class="status-message success">
+        <h2>See you there</h2>
+        <span>We've all we need from you. We can't wait to welcome you to Hack Cambridge 2017!</span>
+      </div>
+    {% endif %}
+  </div>
+  
+  {% if applicationStatus != 'rejected' %}
+    {# The user either has things still to do or would benefit from seeing their status #}
+    {# The personal application status #}
+    <section class="dashboard-section">
+      {% if yourApplicationStatus == 'incomplete' %}
+        {# The user hasn't completed their application form yet #}
+        <span class="warning float-right">Incomplete</span>
+        <h3>Your Application</h3>
+
+        You missed a spot
+        <br>
+        <a href="/apply/form">Complete your application now &rarr;</a><br>
+      {% else %}
+        {# The user has completed their application form #}
+        <span class="success float-right">Complete</span>
+        <h3>Your Application</h3>
+
+        You've filled out your application. You're on top <i>form</i>!
+        <br>
+      {% endif %}
+    </section>
+    
+    {# The team application status #}
+    <section class="dashboard-section">
+      {% if teamApplicationStatus == 'na' %}
+        {# User didn't apply as part of a team #}
+        <span class="na float-right">N/A</span>
+        <h3>Team application</h3>
+        You didn't apply as part of a team. You can <a href="/apply/team">change this</a>, but not for long!
+      {% elseif teamApplicationStatus == 'incomplete' %}
+        {# User applied as part of a team but no team form is complete #}
+        <span class="warning float-right">Incomplete</span>
+        <h3>Team Application</h3>
+        You applied as part of a team but nobody in your team has submitted a team application yet. Once one of you does this, we'll review your applications all in one.
+        <br>
+        <a href="/apply/form">Submit a team application &rarr;</a><br>
+      {% else %}
+        {# Team application is complete #}
+        <span class="success float-right">Complete</span>
+        <h3>Team Application</h3>
+        You've been listed in a team application. You're a true team player
+        <br>
+        <a href="/apply/form">View your team application &rarr;</a><br>
+      {% endif %}
+    </section>
+  {% endif %}
+  
+  <br><br>
+  <div class="content-wrapper-center">
+    <h2>Application FAQs</h2>
+  <div>
+    <h3>When will I hear back?</h3>
+    <p>
+      We're reviewing applications all the time.
+    </p>
+
+    <h3>What if I'm accepted and then can't attend?</h3>
+    <p>
+      Submitting your application is not a commitment to coming to Hack Cambridge (though we'd love to have you). If you get accepted and then can't make it, just let us know and we'll open up your space for somebody else.
+    </p>
+  </div>
+  </div>
+  
+
 {% endblock %}

@@ -71,7 +71,7 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
 });
 
 applyRouter.get('/dashboard', auth.authenticate, function(req, res) {
-  res.render('apply/dashboard.html');
+  renderDashboard(req, res);
 })
 
 // The login page (has the login button)
@@ -84,6 +84,52 @@ applyRouter.get('/form', auth.authenticate, function(req, res) {
   // TODO: If the user has already completed the form, redirect to dashboard
   renderApplyPageWithForm(res, createApplicationForm());
 });
+
+function renderDashboard(req, res) {
+  // TODO: Get these dynamically from db
+  const userHasApplied = true;
+  const userAppliedWithTeam = false;
+  const teamApplicationComplete = true;
+
+  const reviewStatus = 'rejected'; // 'rejected' or 'accepted'
+  const furtherDetailsComplete = false;
+
+  // Derive the personal application status
+  const yourApplicationStatus = userHasApplied ? 'complete' : 'incomplete';
+
+  // Derive the team application status
+  let teamApplicationStatus;
+  if (!userAppliedWithTeam)
+    teamApplicationStatus = 'na';
+  else if (!teamApplicationComplete)
+    teamApplicationStatus = 'incomplete';
+  else
+    teamApplicationStatus = 'complete';
+
+  // Derive the further application status
+  const furtherApplicationStatus = furtherDetailsComplete ? 'complete' : 'incomplete';
+
+  // Derive the overall application status
+  let applicationStatus;
+  if (!userHasApplied || userAppliedWithTeam && !teamApplicationComplete)
+    applicationStatus = 'incomplete';
+  else if (reviewStatus == 'pending')
+    applicationStatus = 'in-review';
+  else if (reviewStatus == 'rejected')
+    applicationStatus = 'rejected';
+  else if (!furtherDetailsComplete)
+    applicationStatus = 'accepted-incomplete';
+  else if (furtherDetailsComplete)
+    applicationStatus = 'accepted-complete';
+
+  res.render('apply/dashboard.html', {
+    yourApplicationStatus: yourApplicationStatus,
+    teamApplicationStatus: teamApplicationStatus,
+    furtherApplicationStatus: furtherApplicationStatus,
+    applicationStatus: applicationStatus,
+  })
+
+}
 
 function renderApplyPageWithForm(res, form) {
   res.render('apply/form.html', {

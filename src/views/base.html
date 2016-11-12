@@ -26,7 +26,10 @@
     {% if user.first_name %}
       <header class="logged-in">
         Logged in as {{ user.first_name }} {{ user.last_name }}
-        <a class="float-right" href="/apply/dashboard">Go to your dashboard &rarr;</a>
+        {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+        {% if not is_dashboard %}
+          <a class="float-right" href="/apply/dashboard">Go to your dashboard &rarr;</a>
+        {% endif %}
       </header>
     {% endif %}
     {% block content %}
