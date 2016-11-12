@@ -53,15 +53,42 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
       // Store the hacker information in the database
       const user = res.locals.user;
       const form = resultForm.data;
+      form.cv = req.file;
       const applicationID = crypto.randomBytes(64).toString('hex');
       database.Hacker.create({
+        // Personal
         firstName: user.first_name,
         lastName: user.last_name,
-        applicationID,
+        gender: user.gender,
+        dateOfBirth: user.date_of_birth,
         email: user.email,
         phoneNumber: user.phone_number,
-        inTeam: form.team_apply,
-        wantsTeam: form.team_placement,
+        // Education
+        institution: user.school.name,
+        studyLevel: user.level_of_study,
+        course: user.major,
+        // Logistics
+        shirtSize: user.shirt_size,
+        dietaryRestrictions: user.dietary_restrictions,
+        specialNeeds: user.special_needs,
+      }).then(hacker => {
+        database.HackerApplication.create({
+          // Foreign key
+          hackerID: hacker.id,
+          // Application
+          applicationID,
+          CV: form.cv.location,
+          developmentRoles: JSON.stringify(form.development),
+          learningGoal: form.learn,
+          interests: form.interests,
+          recentAccomplishment: form.accomplishment,
+          links: form.links,
+          inTeam: form.team_apply,
+          wantsTeam: form.team_placement,
+        });
+        console.log(`An application was successfully made by ${user.first_name} ${user.last_name}.`);
+      }).catch(err => {
+        console.log("Failed to add an application to the database:", err);
       });
 
       // email.sendEmail({
