@@ -12,6 +12,7 @@ exports.field = function field(userOptions = { }) {
         filename: rawData.originalname,
         mimetype: rawData.mimetype,
         size: rawData.size,
+        location: rawData.location,
       };
     }
 
