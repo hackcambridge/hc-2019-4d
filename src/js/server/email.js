@@ -43,6 +43,7 @@ exports.sendEmail = function sendEmail({ to, contents }) {
       html: mailGenerator.generate(contents),
     }, (error, info) => {
       if (error) {
+        console.log('Error sending email', error);
         reject(error);
         return;
       }
@@ -50,8 +51,4 @@ exports.sendEmail = function sendEmail({ to, contents }) {
       resolve(info);
     });
   });
-}
-
-exports.templates = {
-  applied: require('./applied'),
 };
