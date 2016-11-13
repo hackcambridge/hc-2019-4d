@@ -12,9 +12,11 @@ var yaml = require('js-yaml');
 var crypto = require('crypto');
 var Countdown = require('js/shared/countdown');
 const session = require('client-sessions');
+const chalk = require('chalk');
 var utils = require('./utils');
 var app = express();
 const auth = require('js/server/auth');
+const errors = require('js/server/errors');
 
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
@@ -69,6 +71,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
 app.use('/apply', require('./apply/router'));
 
+
+
 function renderHome(req, res) {
   res.render('index.html', {
     faqs: utils.loadResource('faqs'),
@@ -105,6 +109,8 @@ app.get('/favicon.ico', function (req, res) {
 app.use((req, res) => {
   res.status(404).render('404.html');
 });
+
+app.use(errors.middleware);
 
 // Start server
 app.set('port', (process.env.PORT || 3000));
