@@ -1,22 +1,25 @@
 const session     = require('client-sessions');
 const querystring = require('querystring');
 const fetch       = require('node-fetch');
+const url         = require('url');
+
+const { Hacker } = require('js/server/models');
 
 // Authorisation config
 const client_id     = process.env.MYMLH_CLIENT_ID;
 const client_secret = process.env.MYMLH_CLIENT_SECRET;
-const auth_callback = "http://localhost:3000/auth/callback";
-const authorize_url = "https://my.mlh.io/oauth/authorize";
-const token_url     = "https://my.mlh.io/oauth/token";
-const user_url      = "https://my.mlh.io/api/v2/user.json";
-const dashboard_url = "http://localhost:3000/apply"; // The default URL you end up at after logging in
+const authorize_url = 'https://my.mlh.io/oauth/authorize';
+const token_url     = 'https://my.mlh.io/oauth/token';
+const user_url      = 'https://my.mlh.io/api/v2/user.json';
+const auth_callback = '/auth/callback';
+const dashboard_url = '/apply/dashboard'; // The default URL you end up at after logging in
 
 var exports = module.exports = {};
 
 exports.setUpAuth = function (app) {
   // Used to store actual user data to avoid always hitting the db/API
   app.use(session({
-    cookieName: 'user',
+    cookieName: 'userSession',
     secret: process.env.AUTH_SESSION_SECRET,
     duration: 2 * 60 * 60 * 1000, // lives for 2 hours
     activeDuration: 15 * 60 * 1000, // Gets refreshed for 15 mins on use
@@ -34,13 +37,13 @@ exports.setUpAuth = function (app) {
     ephemeral: true
   }));
 
-  app.use('/apply', setUserFromSession); // TODO: Stop this firing for static resources
+  app.use(setUserFromSession);
   app.get('/auth/callback', handleCallback);
 }
 
 // Ensures that there is user data available, otherwise redirects to authenticate the user
-exports.authenticate = function (req, res, next) {
-  if (!req.user || !req.user.hasOwnProperty('id')) {
+exports.requireAuth = function (req, res, next) {
+  if (!req.user) {
     redirectToAuthorize(req, res);
   } else {
     next();
@@ -48,60 +51,69 @@ exports.authenticate = function (req, res, next) {
 };
 
 // If there is user data available in the session, make sure it is put in the request and local res objects
-function setUserFromSession (req, res, next) {
-  if (req.user) {
-    // Check if we already have data
-    const user = req.user;
-    res.locals.user = user;
+function setUserFromSession(req, res, next) {
+  if (req.userSession && req.userSession.id) {
+    Hacker.findById(req.userSession.id)
+      .then(user => {
+        if (user != null) {
+          req.user = user;
+          res.locals.user = user;
+        }
+
+        next();
+      });
+    return;
   }
+
   next();
 }
 
-function handleCallback(req, res) {
+function handleCallback(req, res, next) {
   // This is hit directly after the MyMLH authentication has happened
   // Should have authorization code in query
   if (req.query.code === undefined) {
     redirectToAuthorize(req, res);
   }
 
-  getToken(req.query.code).then(function(access_token) {
-    return getUser(access_token);
-  }).then(function(user) {
-    // We got the user object, crack on
-    req.user = user;
-    res.locals.user = user;
+  getToken(req.query.code, req).then(function(access_token) {
+    return getMlhUser(access_token);
+  }).then((mlhUser) => {
+    Hacker
+      .upsertAndFetchFromMlhUser(mlhUser)
+      .then(user => {
+        req.userSession = { id: user.id };
 
-    // Get the redirect URL if it exists
-    var redirectTo = req.redirectTo.url ? req.redirectTo.url : '/';
+        const redirectTo = req.redirectTo.url ? req.redirectTo.url : dashboard_url;
 
-    // For debugging
-    if (!req.redirectTo) {
-      console.log("No redirect URL stored");
-    }
+        // For debugging
+        if (!req.redirectTo) {
+          console.log('No redirect URL stored');
+        }
 
-    // Delete the redirect data as it's no longer needed
-    delete req.redirectTo;
+        // Delete the redirect data as it's no longer needed
+        delete req.redirectTo;
 
-    // Redirect with auth
-    res.redirect(redirectTo);
-  }).catch(function(err) {
-    // Couldn't get the user data, redirect to the auth page
-    console.log("Caught bad code");
-    console.log(err);
+        // Redirect with auth
+        res.redirect(redirectTo);
+      }).catch(err => {
+        console.log('Error logging a user in');
+        next(err);
+      });
+  }, err => {
+    console.log('Caught bad code', err);
     redirectToAuthorize(req, res);
   });
 }
 
 function redirectToAuthorize(req, res) {
-  // Store where the user was trying to get to in session so we can get back there
-  req.redirectTo = {url: req.originalUrl};
-
-  console.log("Tried to store in cookie: " + req.originalUrl);
+  // Store where the user was trying to get to so we can get back there
+  req.redirectTo = { url: req.originalUrl };
+  console.log(`Tried to store in cookie: ${req.originalUrl}`);
 
   // Construct the query string
   var qs = querystring.stringify({
     client_id: client_id,
-    redirect_uri: auth_callback,
+    redirect_uri: url.resolve(req.requestedUrl, auth_callback),
     response_type: 'code',
     scope: [
       // All the user details we need
@@ -115,27 +127,26 @@ function redirectToAuthorize(req, res) {
   });
 
   // Redirect to the authorization page on MyMLH
-  res.redirect(authorize_url + "?" + qs);
+  res.redirect(`${authorize_url}?${qs}`);
 }
 
 // Take a code and return a promise of an access token
-function getToken(code) {
+function getToken(code, req) {
   // Now we have an authorization code, we can exchange for an access token
-  var base_url = "https://my.mlh.io/oauth/token";
 
   // For debugging purposes
   console.log(code);
 
-  var headers = { 'Content-Type': 'application/json' }
-  var body = {
-    'client_id': client_id,
-    'client_secret': client_secret,
-    'code': code,
-    'grant_type': "authorization_code",
-    'redirect_uri': auth_callback
-  }
+  const headers = { 'Content-Type': 'application/json' };
+  const body = {
+    client_id: client_id,
+    client_secret: client_secret,
+    code: code,
+    grant_type: 'authorization_code',
+    redirect_uri: url.resolve(req.requestedUrl, auth_callback),
+  };
 
-  return fetch(base_url, {
+  return fetch(token_url, {
 
     headers: {
       'Content-Type': 'application/json'
@@ -155,7 +166,7 @@ function getToken(code) {
 }
 
 // Take an access_token and return a promise of user info from the MyMLH api
-function getUser(access_token) {
+function getMlhUser(access_token) {
   var query = {
     access_token: access_token
   }

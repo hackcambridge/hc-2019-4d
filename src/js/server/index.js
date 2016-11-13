@@ -18,7 +18,7 @@ const auth = require('js/server/auth');
 
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
-var database = require('js/server/database');
+const { dbSynced } = require('js/server/models');
 
 require('./sockets.js')(server);
 
@@ -27,6 +27,24 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 utils.init(app);
+
+app.use(function(req, res, next) {
+  // Force https
+  if ((req.headers['x-forwarded-proto'] != 'https') && (process.env.FORCE_HTTPS == "1")) {
+    res.redirect('https://' + req.hostname + req.originalUrl);
+  } else {
+    next();
+  }
+});
+
+app.use(function (req, res, next) {
+  res.locals.title = 'Hack Cambridge';
+  const port = (app.settings.env == "development") ? ':' + req.app.settings.port : '';
+  res.locals.requestedUrl = req.requestedUrl = url.parse(
+    req.protocol + '://' + req.hostname + port + req.originalUrl
+  );
+  next();
+});
 
 auth.setUpAuth(app);
 
@@ -55,27 +73,9 @@ if (process.env.BS_SNIPPET) {
 
 // Routes
 
-app.use(function(req, res, next) {
-  // Force https
-  if ((req.headers['x-forwarded-proto'] != 'https') && (process.env.FORCE_HTTPS == "1")) {
-    res.redirect('https://' + req.hostname + req.originalUrl);
-  } else {
-    next();
-  }
-});
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
 app.use('/apply', require('./routes/apply'));
-
-app.use(function (req, res, next) {
-  res.locals.title = 'Hack Cambridge';
-  var port = (app.settings.env == "development") ? ':' + req.app.settings.port : '';
-  res.locals.requestedUrl = url.parse(
-    req.protocol + '://' + req.hostname + port + req.originalUrl
-  );
-  next();
-});
 
 function renderHome(req, res) {
   res.render('index.html', {

@@ -11,7 +11,9 @@ const auth = require('js/server/auth');
 const email = require('js/server/email');
 const utils = require('../utils.js');
 const session = require('client-sessions');
-const database = require('js/server/database');
+const statuses = require('js/shared/status-constants');
+const { Hacker } = require('js/server/models');
+const { HackerApplication } = require('js/server/models');
 
 // Set up the S3 connection
 const s3 = new aws.S3(new aws.Config({
@@ -42,7 +44,25 @@ const applyFormUpload = multer({
 
 const applyRouter = new express.Router();
 
-applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req, res) => {
+applyRouter.get('/', (req, res) => {
+  if (req.user) {
+    res.redirect(`${req.baseUrl}/dashboard`);
+    return;
+  }
+
+  res.render('apply/index.html');
+});
+
+applyRouter.use(auth.requireAuth);
+
+// Route to redirect to whatever next step is required
+applyRouter.get('/', (req, res) => {
+  res.redirect(`${req.baseUrl}/form`);
+});
+
+applyRouter.all('/form', checkHasApplied);
+
+applyRouter.post('/form', applyFormUpload.single('cv'), (req, res, next) => {
   const form = createApplicationForm();
 
   // HACK: Put all our fields in the same place by moving the file into req.body
@@ -51,56 +71,30 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
   form.handle(req.body, {
     success: (resultForm) => {
       // Store the hacker information in the database
-      const user = res.locals.user;
+      const user = req.user;
       const form = resultForm.data;
-      form.cv = req.file;
-      const applicationID = crypto.randomBytes(64).toString('hex');
-      database.Hacker.create({
-        // Personal
-        firstName: user.first_name,
-        lastName: user.last_name,
-        gender: user.gender,
-        dateOfBirth: user.date_of_birth,
-        email: user.email,
-        phoneNumber: user.phone_number,
-        // Education
-        institution: user.school.name,
-        studyLevel: user.level_of_study,
-        course: user.major,
-        // Logistics
-        shirtSize: user.shirt_size,
-        dietaryRestrictions: user.dietary_restrictions,
-        specialNeeds: user.special_needs,
-      }).then(hacker => {
-        database.HackerApplication.create({
-          // Foreign key
-          hackerID: hacker.id,
-          // Application
-          applicationID,
-          CV: form.cv.location,
-          developmentRoles: JSON.stringify(form.development),
-          learningGoal: form.learn,
-          interests: form.interests,
-          recentAccomplishment: form.accomplishment,
-          links: form.links,
-          inTeam: form.team_apply,
-          wantsTeam: form.team_placement,
-        });
-        console.log(`An application was successfully made by ${user.first_name} ${user.last_name}.`);
+      const applicationSlug = crypto.randomBytes(64).toString('hex');
+
+      HackerApplication.create({
+        // Foreign key
+        hackerId: user.id,
+        // Application
+        applicationSlug,
+        cv: form.cv.location,
+        developmentRoles: form.development,
+        learningGoal: form.learn,
+        interests: form.interests,
+        recentAccomplishment: form.accomplishment,
+        links: form.links,
+        inTeam: form.team_apply,
+        wantsTeam: form.team_placement,
+      }).then(application => {
+        console.log(`An application was successfully made by ${user.firstName} ${user.lastName}.`);
+        res.redirect(`${req.baseUrl}/form`);
       }).catch(err => {
-        console.log("Failed to add an application to the database:", err);
+        console.log('Failed to add an application to the database');
+        next(err);
       });
-
-      // email.sendEmail({
-      //   to: user.email,
-      //   contents: email.templates.applied({
-      //     name: user.first_name,
-      //     applicationId: applicationID,
-      //   }),
-      // });
-
-      // redirect to the next page but for now...
-      res.redirect('/apply/form');
     },
     error: (resultForm) => {
       renderApplyPageWithForm(res, resultForm);
@@ -111,7 +105,7 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
   });
 });
 
-applyRouter.get('/dashboard', auth.authenticate, function(req, res) {
+applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
   renderDashboard(req, res);
 })
 
@@ -121,68 +115,72 @@ applyRouter.get('/', function (req, res) {
 });
 
 // Render the form for additional applicant details
-applyRouter.get('/form', auth.authenticate, function(req, res) {
-  // TODO: If the user has already completed the form, redirect to dashboard
+applyRouter.get('/form', (req, res) => {
   renderApplyPageWithForm(res, createApplicationForm());
 });
 
 function renderDashboard(req, res) {
-  // TODO: Get these dynamically from db
-  const userHasApplied = true;
-  const userAppliedWithTeam = false;
-  const teamApplicationComplete = true;
-
-  const reviewStatus = 'pending'; // 'pending', 'rejected' or 'accepted'
-  const furtherDetailsComplete = false;
-
-  // Derive the personal application status
-  const yourApplicationStatus = userHasApplied ? 'complete' : 'incomplete';
-
-  // Derive the team application status
-  let teamApplicationStatus;
-  if (!userAppliedWithTeam)
-    teamApplicationStatus = 'na';
-  else if (!teamApplicationComplete)
-    teamApplicationStatus = 'incomplete';
-  else
-    teamApplicationStatus = 'complete';
-
-  // Derive the further application status
-  const furtherApplicationStatus = furtherDetailsComplete ? 'complete' : 'incomplete';
-
-  // Derive the overall application status
-  let overallStatus;
-  if (!userHasApplied || userAppliedWithTeam && !teamApplicationComplete)
-    overallStatus = 'incomplete';
-  else if (reviewStatus == 'pending')
-    overallStatus = 'in-review';
-  else if (reviewStatus == 'rejected')
-    overallStatus = 'rejected';
-  else if (!furtherDetailsComplete)
-    overallStatus = 'accepted-incomplete';
-  else if (furtherDetailsComplete)
-    overallStatus = 'accepted-complete';
-
   const content = utils.loadResource('dashboard');
-  console.log(content);
 
-  res.render('apply/dashboard.html', {
-    applicationStatus: yourApplicationStatus,
-    teamApplicationStatus: teamApplicationStatus,
-    furtherApplicationStatus: furtherApplicationStatus,
+  req.user.getHackerApplication().then(hackerApplication => {
+    const applicationStatus               = Promise.resolve(req.user.getApplicationStatus(hackerApplication));
+    const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
+    const furtherApplicationStatusPromise = req.user.getTeamApplicationStatus(hackerApplication);
+    const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
 
-    applicationInfo: content['your-application'][yourApplicationStatus],
-    teamApplicationInfo: content['team-application'][teamApplicationStatus],
-    furtherApplicationInfo: content['further-application'][furtherApplicationStatus],
-    statusMessage: content['status-messages'][overallStatus],
-  })
+    return Promise.all([
+      applicationStatus,
+      teamApplicationStatusPromise,
+      furtherApplicationStatusPromise,
+      responseStatusPromise,
+    ]);
+  }).then(values => {
+    const applicationStatus        = values[0]
+    const teamApplicationStatus    = values[1];
+    const furtherApplicationStatus = values[2];
+    const responseStatus           = values[3];
 
+    const overallStatus = Hacker.deriveOverallStatus(
+      applicationStatus,
+      responseStatus,
+      teamApplicationStatus,
+      furtherApplicationStatus
+    );
+
+    res.render('apply/dashboard.html', {
+      applicationStatus: applicationStatus,
+      teamApplicationStatus: teamApplicationStatus,
+      furtherApplicationStatus: furtherApplicationStatus,
+
+      applicationInfo: content['your-application'][applicationStatus],
+      teamApplicationInfo: content['team-application'][teamApplicationStatus],
+      furtherApplicationInfo: content['further-application'][furtherApplicationStatus],
+      statusMessage: content['status-messages'][overallStatus],
+    });
+  });
 }
 
 function renderApplyPageWithForm(res, form) {
   res.render('apply/form.html', {
     formHtml: form.toHTML(renderForm)
   });
+}
+
+/**
+ * Intercepts the request to check if the user has submitted an application
+ * 
+ * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
+ * as normal.
+ */
+function checkHasApplied(req, res, next) {
+  req.user.getHackerApplication().then(hackerApplication => {
+    if (hackerApplication) {
+      res.redirect(`${req.baseUrl}/dashboard`);
+      return;
+    } 
+
+    next();
+  }).catch(next);
 }
 
 module.exports = applyRouter;

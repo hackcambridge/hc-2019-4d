@@ -3,7 +3,7 @@ dashboard:
     incomplete:
       message_type: warning
       title: Your application is incomplete &nbsp; &#128533; # Awkward face emoji
-      subline: Finish it off by fixing whatever's incomplete below
+      subline: Finish it off when you're ready by completing everything below
     
     in-review:
       message_type: success
@@ -29,7 +29,7 @@ dashboard:
     incomplete:
       type: warning
       label: Incomplete
-      content: You missed a spot
+      content: You haven't completed your application yet
       action:
         title: complete your application now
         location: /apply/form
@@ -43,10 +43,12 @@ dashboard:
       type: na
       label: N/A
       content:
-        You didn't apply as part of a team. You can change this but not for long!
-      action:
-        title: Set up a team
-        location: /apply/team
+        You didn't apply as part of a team. You can [change this](/apply/team) but not for long!
+    wanting:
+      type: success
+      label: Finding
+      content:
+        You asked to be placed in a team, we'll take it from here
     incomplete:
       type: warning
       label: Incomplete

@@ -4,7 +4,7 @@
 {% block pageHeading %}Dashboard{% endblock %}
 {% block pageContent %}
 <header class="content-wrapper-center">
-  <h3>Hello, {{ user.first_name }}!</h3>
+  <h3>Hello, {{ user.firstName }}!</h3>
 </header>
 
   {# The main status banner #}
@@ -29,18 +29,20 @@
         <a href="{{ applicationInfo.action.location }}">{{ applicationInfo.action.title }} &rarr;</a><br>
       {% endif %}
     </section>
+    
+    {% if applicationInfo.label != 'Incomplete' %}
+      {# The team application status #}
+      <section class="dashboard-section">
+        <span class="{{ teamApplicationInfo.type }} float-right">{{ teamApplicationInfo.label }}</span>
+        <h3>Team Application</h3>
 
-    {# The team application status #}
-    <section class="dashboard-section">
-      <span class="{{ teamApplicationInfo.type }} float-right">{{ teamApplicationInfo.label }}</span>
-      <h3>Your Application</h3>
-
-      {{ teamApplicationInfo.content }}
-      <br>
-      {% if teamApplicationInfo.action %}
-        <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }} &rarr;</a><br>
-      {% endif %}
-    </section>
+        {{ teamApplicationInfo.content }}
+        <br>
+        {% if teamApplicationInfo.action %}
+          <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }} &rarr;</a><br>
+        {% endif %}
+      </section>
+    {% endif %}
   {% endif %}
   
   <br><br>
