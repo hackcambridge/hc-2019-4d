@@ -13,14 +13,16 @@
       <h2>{{ statusMessage.title }}</h2>
       <span>{{ statusMessage.subline }}</span>
     </div>
-  </div>
-  
-  {% if applicationSlug %}
+
+    {% if applicationSlug %}
     <div class="application-slug">
-      Your application ID is:<br>
+      Your application ID is:
       <code>{{ applicationSlug }}</code>
     </div>
   {% endif %}
+  </div>
+  
+  
   
   
   {% if applicationInfo != 'rejected' %}
