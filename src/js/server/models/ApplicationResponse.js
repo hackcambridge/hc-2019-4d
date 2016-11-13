@@ -3,7 +3,10 @@ const db = require('./db');
 const HackerApplication = require('./HackerApplication');
 
 const ApplicationResponse = module.exports = db.define('applicationResponse', {
-  response: Sequelize.ENUM('invited', 'rejected'),
+  response: {
+    type: Sequelize.ENUM('invited', 'rejected'),
+    allowNull: false,
+  },
 }, {
   tableName: 'application-responses',
 });
