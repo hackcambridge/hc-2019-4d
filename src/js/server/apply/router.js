@@ -1,14 +1,8 @@
 const express = require('express');
 const { createApplicationForm } = require('js/shared/application-form');
 const renderForm = require('js/shared/render-form');
-var querystring = require('querystring');
 var fetch = require('node-fetch');
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const crypto = require('crypto');
 const auth = require('js/server/auth');
-const email = require('js/server/email');
 const utils = require('../utils.js');
 const session = require('client-sessions');
 const statuses = require('js/shared/status-constants');
@@ -62,6 +56,10 @@ applyRouter.post('/form', fileUploadMiddleware, (req, res, next) => {
 
 applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
   renderDashboard(req, res);
+})
+
+applyRouter.get('/logout', auth.logout, function(req, res) {
+  res.redirect('/');
 })
 
 // The login page (has the login button)
