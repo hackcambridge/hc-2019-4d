@@ -165,7 +165,9 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
       console.log('Created new user');
     }
 
-    return Hacker.findOne({ mlhId: mlhUser.id });
+    return Hacker.findOne({
+      where: { mlhId: mlhUser.id }
+    });
   });
 };
 
