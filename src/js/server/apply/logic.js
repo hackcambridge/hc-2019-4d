@@ -12,6 +12,7 @@ exports.createApplicationFromForm = function (formData, user) {
     // Application
     applicationSlug,
     cv: formData.cv.location,
+    countryTravellingFrom: formData.countryTravellingFrom,
     developmentRoles: formData.development,
     learningGoal: formData.learn,
     interests: formData.interests,

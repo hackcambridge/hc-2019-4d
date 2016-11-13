@@ -33,6 +33,7 @@
     "browserify": "^12.0.1",
     "client-sessions": "^0.7.0",
     "compression": "^1.6.1",
+    "country-list": "^1.0.0",
     "css-loader": "^0.21.0",
     "del": "^2.0.2",
     "dotenv": "^1.2.0",
