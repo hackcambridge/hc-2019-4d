@@ -125,11 +125,40 @@ HackerApplication = sequelize.define('hacker-application', {
   tableName: 'hackers-applications'
 });
 
-Hacker.sync();
-HackerApplication.sync();
+Team = sequelize.define('team', { }, {
+  tableName: 'teams'
+});
+
+TeamMember = sequelize.define('team-member', {
+  // Foreign keys
+  teamID: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    references: {
+      model: Team,
+      key: 'id',
+      deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    },
+  },
+  hackerID: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    references: {
+      model: Hacker,
+      key: 'id',
+      deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
+    },
+  },
+}, {
+  tableName: 'teams-members'
+});
+
+sequelize.sync();
 
 var exports = module.exports = {
   sequelize,
   Hacker,
   HackerApplication,
+  Team,
+  TeamMember,
 };

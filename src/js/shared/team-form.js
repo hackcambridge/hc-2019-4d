@@ -2,11 +2,10 @@ const { fields, validators, widgets, create: createForm } = require('forms');
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
 const { checkboxWidget, multiCheckboxWidget } = require('./checkbox');
 
-function textField(label, maxlength, options = { }, disabled = false) {
+function textField(label, maxlength, options = { }) {
   return fields.string(Object.assign({ }, options, {
     widget: widgets.text({
       maxlength,
-      disabled,
       classes: [ 'form-control-shortform' ],
       placeholder: options.placeholder,
     }),
@@ -34,9 +33,6 @@ const requiredField = validators.required('This field is required.');
  */
 exports.createTeamForm = function createTeamForm() {
   return createForm({
-    memberA: textField('Member A (You):', 64, {
-      required: requiredField,
-    }, true),
     memberB: textField('Member B:', 64, {
       required: requiredField,
     }),

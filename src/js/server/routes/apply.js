@@ -52,8 +52,8 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
     success: (resultForm) => {
       // Store the hacker information in the database
       const user = res.locals.user;
-      const form = resultForm.data;
-      form.cv = req.file;
+      const application = resultForm.data;
+      application.cv = req.file;
       const applicationID = crypto.randomBytes(64).toString('hex');
       database.Hacker.create({
         // Personal
@@ -77,14 +77,14 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
           hackerID: hacker.id,
           // Application
           applicationID,
-          CV: form.cv.location,
-          developmentRoles: JSON.stringify(form.development),
-          learningGoal: form.learn,
-          interests: form.interests,
-          recentAccomplishment: form.accomplishment,
-          links: form.links,
-          inTeam: form.team_apply,
-          wantsTeam: form.team_placement,
+          CV: application.cv.location,
+          developmentRoles: JSON.stringify(application.development),
+          learningGoal: application.learn,
+          interests: application.interests,
+          recentAccomplishment: application.accomplishment,
+          links: application.links,
+          inTeam: application.team_apply,
+          wantsTeam: application.team_placement,
         });
         console.log(`An application was successfully made by ${user.first_name} ${user.last_name}.`);
       }).catch(err => {
@@ -114,20 +114,75 @@ applyRouter.post('/form', auth.authenticate, applyFormUpload.single('cv'), (req,
   });
 });
 
-applyRouter.post('/team', auth.authenticate, (req, res) => {
+applyRouter.post('/team', auth.authenticate, applyFormUpload.none(), (req, res) => {
   const form = createTeamForm();
 
   form.handle(req.body, {
     success: (resultForm) => {
-      console.log("Team application success.");
-      res.redirect('/apply/dashboard');
+      // Store the team information in the database
+      const application = resultForm.data;
+      // Check the database for those application IDs
+      const members = new Set(['<MY-APPLICATION-ID>']); // Start off with the current hacker's application ID — we already know they're in the team
+      const hackerIDs = [];
+      // Ensure application IDs are unique and not the applicant's own
+      new Promise((resolve, reject) => {
+        for (const applicationID of [application.memberB, application.memberC, application.memberD].map(s => s.trim()).filter(s => s !== '')) {
+          if (!members.has(applicationID)) {
+            members.add(applicationID);
+          } else {
+            throw new Error('Application IDs must be distinct.');
+          }
+        }
+        resolve();
+      }).then(() => {
+        const applicationIDs = Array.from(members);
+        if (applicationIDs.length > 1) {
+          return Promise.all(applicationIDs.map(applicationID => {
+            return database.HackerApplication.findOne({
+              where: { applicationID }
+            }).then(application => {
+              if (application === null) {
+                // The application ID was not valid
+                throw new Error('The application ID matched no hacker.');
+              }
+              return application;
+            }).then(application => {
+              hackerIDs.push(application.hackerID);
+              return database.TeamMember.findOne({
+                where: { hackerID: application.hackerID }
+              }).then(application => {
+                if (application !== null) {
+                  // The hacker is already part of another team
+                  throw new Error('A team member can\'t belong to more than one team.');
+                }
+              });
+            });
+          }));
+        } else {
+          throw new Error('You need at least two team members to form a team.');
+        }
+      }).then(() => {
+        // Create a new team
+        database.Team.create({ }).then(team => {
+          // Add the team members to the team
+          for (const hackerID of hackerIDs) {
+            database.TeamMember.create({
+              teamID: team.id,
+              hackerID
+            });
+          }
+        });
+        console.log('Team application success.');
+        res.redirect('/apply/dashboard');
+      }).catch(err => {
+        console.log('Invalid team application:', err.message);
+        renderTeamPageWithForm(res, form);
+      });
     },
     error: (resultForm) => {
-      console.log("error");
       renderTeamPageWithForm(res, resultForm);
     },
     empty: () => {
-      console.log("empty");
       renderTeamPageWithForm(res, form);
     }
   });

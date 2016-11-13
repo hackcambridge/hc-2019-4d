@@ -82,6 +82,12 @@ function disallowAmbiguousAnswersProactively($form) {
   $teamFields.change(function () {
     uncheckElements($teamFields.not(this));
   });
+
+  const $memberFields = $form.find('input[name=memberB], input[name=memberC], input[name=memberD]');
+
+  $memberFields.on('input', function () {
+    $(this).val($(this).val().replace(/\s/g, ''));
+  });
 }
 
 function processForm($form, createForm) {
