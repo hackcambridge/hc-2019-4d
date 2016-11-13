@@ -75,7 +75,7 @@ if (process.env.BS_SNIPPET) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
-app.use('/apply', require('./routes/apply'));
+app.use('/apply', require('./apply/router'));
 
 function renderHome(req, res) {
   res.render('index.html', {
