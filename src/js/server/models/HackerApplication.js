@@ -41,6 +41,13 @@ const HackerApplication = module.exports = db.define('hackerApplication', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
+  countryTravellingFrom: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   links: {
     type: Sequelize.TEXT,
     allowNull: false,

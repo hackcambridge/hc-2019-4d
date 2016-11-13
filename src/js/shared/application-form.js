@@ -1,4 +1,5 @@
 const { fields, validators, widgets, create: createForm } = require('forms');
+const countries = require('country-list')();
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
 const { checkboxWidget, multiCheckboxWidget } = require('./checkbox');
 
@@ -15,6 +16,28 @@ function textareaField(label, maxlength, options = { }) {
     ],
     cssClasses,
   }));
+}
+
+
+const countryChoices = { };
+/**
+ * Allows us to optimise the list creation by only making it once, lazily.
+ */
+let countryChoicesCreated = false;
+function createCountryChoices() {
+  if (countryChoicesCreated) {
+    return countryChoices;
+  }
+
+  countryChoices[''] = 'Choose a Country';
+
+  countries.getData().forEach(({ code, name }) => {
+    countryChoices[code] = name;
+  });
+
+  countryChoicesCreated = true;
+
+  return countryChoices;
 }
 
 exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
@@ -43,6 +66,14 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         fileTypeValidator('application/pdf', 'Please upload a PDF.'),
         fileSizeValidator(exports.maxFieldSize, 'Your CV must be no larger than 2 MB.'),
       ] : [],
+      cssClasses,
+    }),
+    countryTravellingFrom: fields.string({
+      widget: widgets.select(),
+      label: 'Where will you be travelling from before you reach Cambridge?',
+      note: 'This may or may not be where you live at the moment.',
+      required: requiredField,
+      choices: createCountryChoices(),
       cssClasses,
     }),
     development: fields.array({

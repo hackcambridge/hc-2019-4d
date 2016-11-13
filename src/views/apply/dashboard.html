@@ -15,6 +15,14 @@
     </div>
   </div>
   
+  {% if applicationSlug %}
+    <div class="application-slug">
+      Your application ID is:<br>
+      <code>{{ applicationSlug }}</code>
+    </div>
+  {% endif %}
+  
+  
   {% if applicationInfo != 'rejected' %}
     {# The user either has things still to do or would benefit from seeing their status #}
 

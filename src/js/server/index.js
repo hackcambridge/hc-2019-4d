@@ -28,20 +28,12 @@ process.on('unhandledRejection', (reason, promise) => {
 
 utils.init(app);
 
-app.use(function(req, res, next) {
-  // Force https
-  if ((req.headers['x-forwarded-proto'] != 'https') && (process.env.FORCE_HTTPS == "1")) {
-    res.redirect('https://' + req.hostname + req.originalUrl);
-  } else {
-    next();
-  }
-});
-
 app.use(function (req, res, next) {
   res.locals.title = 'Hack Cambridge';
-  const port = (app.settings.env == "development") ? ':' + req.app.settings.port : '';
+  const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
+  const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = url.parse(
-    req.protocol + '://' + req.hostname + port + req.originalUrl
+    protocol + '://' + req.hostname + port + req.originalUrl
   );
   next();
 });

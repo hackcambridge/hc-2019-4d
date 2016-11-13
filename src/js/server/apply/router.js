@@ -1,5 +1,5 @@
 const express = require('express');
-const { createApplicationForm, maxFieldSize } = require('js/shared/application-form');
+const { createApplicationForm } = require('js/shared/application-form');
 const renderForm = require('js/shared/render-form');
 var querystring = require('querystring');
 var fetch = require('node-fetch');
@@ -14,33 +14,8 @@ const session = require('client-sessions');
 const statuses = require('js/shared/status-constants');
 const { Hacker } = require('js/server/models');
 const { HackerApplication } = require('js/server/models');
-
-// Set up the S3 connection
-const s3 = new aws.S3(new aws.Config({
-  region: 'eu-west-1'
-}));
-const applyFormUpload = multer({
-  storage: multerS3({
-    s3,
-    bucket: process.env.S3_BUCKET,
-    contentType: multerS3.AUTO_CONTENT_TYPE,
-    key(req, file, callback) {
-      callback(null, crypto.randomBytes(256).toString('hex') + '.pdf');
-    }
-  }),
-  limits: {
-    fields: 20,
-    fieldSize: maxFieldSize
-  },
-  fileFilter(req, file, callback) {
-    // At this stage, we know we are only uploading a CV in PDF. Only accept PDFs
-    if (file.mimetype === 'application/pdf') {
-      callback(null, true);
-    }
-
-    callback(null, false);
-  },
-});
+const applyLogic = require('./logic');
+const fileUploadMiddleware = require('./file-upload');
 
 const applyRouter = new express.Router();
 
@@ -62,7 +37,7 @@ applyRouter.get('/', (req, res) => {
 
 applyRouter.all('/form', checkHasApplied);
 
-applyRouter.post('/form', applyFormUpload.single('cv'), (req, res, next) => {
+applyRouter.post('/form', fileUploadMiddleware, (req, res, next) => {
   const form = createApplicationForm();
 
   // HACK: Put all our fields in the same place by moving the file into req.body
@@ -70,31 +45,11 @@ applyRouter.post('/form', applyFormUpload.single('cv'), (req, res, next) => {
 
   form.handle(req.body, {
     success: (resultForm) => {
-      // Store the hacker information in the database
-      const user = req.user;
-      const form = resultForm.data;
-      const applicationSlug = crypto.randomBytes(64).toString('hex');
-
-      HackerApplication.create({
-        // Foreign key
-        hackerId: user.id,
-        // Application
-        applicationSlug,
-        cv: form.cv.location,
-        developmentRoles: form.development,
-        learningGoal: form.learn,
-        interests: form.interests,
-        recentAccomplishment: form.accomplishment,
-        links: form.links,
-        inTeam: form.team_apply,
-        wantsTeam: form.team_placement,
-      }).then(application => {
-        console.log(`An application was successfully made by ${user.firstName} ${user.lastName}.`);
-        res.redirect(`${req.baseUrl}/form`);
-      }).catch(err => {
-        console.log('Failed to add an application to the database');
-        next(err);
-      });
+      applyLogic.createApplicationFromForm(resultForm.data, req.user)
+        .then(() => {
+          res.redirect(`${req.baseUrl}/form`);
+        })
+        .catch(next);
     },
     error: (resultForm) => {
       renderApplyPageWithForm(res, resultForm);
@@ -121,24 +76,26 @@ applyRouter.get('/form', (req, res) => {
 
 function renderDashboard(req, res) {
   const content = utils.loadResource('dashboard');
+  let application;
+  let applicationStatus;
 
   req.user.getHackerApplication().then(hackerApplication => {
-    const applicationStatus               = Promise.resolve(req.user.getApplicationStatus(hackerApplication));
+    application       = hackerApplication;
+    applicationStatus = req.user.getApplicationStatus(hackerApplication);
+
     const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
     const furtherApplicationStatusPromise = req.user.getTeamApplicationStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
 
     return Promise.all([
-      applicationStatus,
       teamApplicationStatusPromise,
       furtherApplicationStatusPromise,
       responseStatusPromise,
     ]);
   }).then(values => {
-    const applicationStatus        = values[0]
-    const teamApplicationStatus    = values[1];
-    const furtherApplicationStatus = values[2];
-    const responseStatus           = values[3];
+    const teamApplicationStatus    = values[0];
+    const furtherApplicationStatus = values[1];
+    const responseStatus           = values[2];
 
     const overallStatus = Hacker.deriveOverallStatus(
       applicationStatus,
@@ -148,6 +105,7 @@ function renderDashboard(req, res) {
     );
 
     res.render('apply/dashboard.html', {
+      applicationSlug: (application === null) ? null : application.applicationSlug,
       applicationStatus: applicationStatus,
       teamApplicationStatus: teamApplicationStatus,
       furtherApplicationStatus: furtherApplicationStatus,
