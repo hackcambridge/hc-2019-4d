@@ -21,6 +21,18 @@
   </head>
 
   <body>
+    {#
+      if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
+    #}
+    {% if user.firstName %}
+      <header class="logged-in">
+        Logged in as {{ user.firstName }} {{ user.lastName }} &nbsp; <a href="/apply/logout">Logout</a>
+        {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+        {% if not is_dashboard %}
+          <a class="float-right" href="/apply/dashboard">Go to your dashboard &rarr;</a>
+        {% endif %}
+      </header>
+    {% endif %}
     {% block content %}
     {% endblock %}
 

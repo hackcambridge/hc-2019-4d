@@ -54,6 +54,20 @@ And now you can connect to it on port 5432
 psql --host=localhost --username=postgres
 ```
 
+### Migrations
+
+Before starting the app for the first time, you'll need to put the tables in the places:
+
+```
+npm run migrate
+```
+
+We are using the sequelize CLI to manage migrations. So to create your own:
+
+```
+npm run sequelize -- migration:create --name YOURMIGRATION
+```
+
 ## Build System
 
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
