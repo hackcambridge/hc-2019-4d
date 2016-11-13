@@ -12,3 +12,4 @@ const ApplicationResponse = module.exports = db.define('applicationResponse', {
 });
 
 ApplicationResponse.belongsTo(HackerApplication);
+HackerApplication.hasOne(ApplicationResponse);

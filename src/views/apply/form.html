@@ -2,8 +2,9 @@
 {% set title = 'Apply for Hack Cambridge' %}
 {% block pageHeading %}Apply{% endblock %}
 {% block pageContent %}
-<p>Hello, {{ user.firstName }}!</p>
-<p>Help us get to know you a little better.</p>
+<div class="content-wrapper-center">
+  <h2>Help us get to know you a little better, {{ user.firstName }}</h2>
+</div>
 <form class="apply-form" method="POST" enctype="multipart/form-data">
   <div class="form-content">
     {{ formHtml|safe }}

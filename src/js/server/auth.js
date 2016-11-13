@@ -50,6 +50,14 @@ exports.requireAuth = function (req, res, next) {
   }
 };
 
+exports.logout = function (req, res, next) {
+  // Delete the user session
+  if (req.userSession) {
+    req.userSession.reset();
+  }
+  next();
+}
+
 // If there is user data available in the session, make sure it is put in the request and local res objects
 function setUserFromSession(req, res, next) {
   if (req.userSession && req.userSession.id) {
@@ -91,7 +99,7 @@ function handleCallback(req, res, next) {
         }
 
         // Delete the redirect data as it's no longer needed
-        delete req.redirectTo;
+        req.redirectTo.reset();
 
         // Redirect with auth
         res.redirect(redirectTo);
@@ -101,7 +109,6 @@ function handleCallback(req, res, next) {
       });
   }, err => {
     console.log('Caught bad code', err);
-
     redirectToAuthorize(req, res);
   });
 }
