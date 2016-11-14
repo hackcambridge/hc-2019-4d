@@ -100,8 +100,10 @@ applyRouter.get('/team', (req, res) => {
     if (hackerApplication !== null) {
       req.user.getTeam().then(team => {
         if (team === null) {
+          res.locals.applicationSlug = hackerApplication.applicationSlug;
           renderTeamPageWithForm(res, createTeamForm());
         } else {
+          // User already in a team
           res.redirect('/apply/dashboard');
         }
       });

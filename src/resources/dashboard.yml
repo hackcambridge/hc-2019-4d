@@ -43,7 +43,9 @@ dashboard:
       type: na
       label: N/A
       content:
-        You didn't apply as part of a team. You can [change this](/apply/team) but not for long!
+        You didn't apply as part of a team. You can [change this](/apply/team) but not for long! Applying as
+        a team means your applications will be reviewed together and either all or none of you will be invited.
+
     wanting:
       type: success
       label: Finding
@@ -53,10 +55,10 @@ dashboard:
       type: warning
       label: Incomplete
       content: 
-        You applied as part of a team but nobody in your team has submitted a team application yet. Once one of you does this, 
-        we'll review your applications all in one.
+        Your team hasn't confirmed its members yet. Once you've chosen your teammates and they've all applied, one of you should submit a team
+        application (don't worry, it's easy!). Once one of you does this, we'll review all of your applications together.
       action:
-        title: Submit a team application
+        title: Submit a team application for your team
         location: /apply/team
     complete:
       type: success

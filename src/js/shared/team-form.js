@@ -33,11 +33,11 @@ const requiredField = validators.required('This field is required.');
  */
 exports.createTeamForm = function createTeamForm() {
   return createForm({
-    memberB: textField('Member B:', 256, {
+    memberB: textField('Member B application ID:', 256, {
       required: requiredField,
     }),
-    memberC: textField('Member C:', 256),
-    memberD: textField('Member D:', 256),
+    memberC: textField('Member C application ID:', 256),
+    memberD: textField('Member D application ID:', 256),
   }, {
     validatePastFirstError: true,
   });
