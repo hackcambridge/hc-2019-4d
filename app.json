@@ -51,6 +51,6 @@
     "PGHOST": {
       "description": "Host address used to connect to the database",
       "required": true
-    },
+    }
   }
 }
