@@ -1,10 +1,11 @@
 const $ = require('jquery');
 const { createApplicationForm } = require('js/shared/application-form');
+const { createTeamForm } = require('js/shared/team-form');
 const renderForm = require('js/shared/render-form');
 
 /**
  * jQuery's .serializeArray does not give us file input values. While we can't get useful
- * information about files' content easily, we can get it's name for validation easily.
+ * information about files' content easily, we can get its name for validation easily.
  *
  * For inspiration, see their implementation: https://github.com/jquery/jquery/blob/master/src/serialize.js
  */
@@ -45,6 +46,7 @@ function getFieldValue($field) {
       originalname: files[0].name,
       mimetype: files[0].type,
       size: files[0].size,
+      location: '',
     };
   } else {
     return $field.val();
@@ -61,10 +63,10 @@ function uncheckElements($fieldElements) {
  * Determines if user input could lead to ambiguous data, and corrects it automatically
  * based on context - e.g. what the user most recently selected.
  */
-function disallowAmbiguousAnswersProactively($applyForm) {
+function disallowAmbiguousAnswersProactively($form) {
   const notSureAnswer = 'unknown';
 
-  const $developmentStyleFields = $applyForm.find('input[name=development]');
+  const $developmentStyleFields = $form.find('input[name=development]');
 
   $developmentStyleFields.change(function () {
     const $field = $(this);
@@ -76,22 +78,28 @@ function disallowAmbiguousAnswersProactively($applyForm) {
     }
   });
 
-  const $teamFields = $applyForm.find('input[name=team_apply], input[name=team_placement]');
+  const $teamFields = $form.find('input[name=team_apply], input[name=team_placement]');
 
   $teamFields.change(function () {
     uncheckElements($teamFields.not(this));
   });
+
+  const $memberFields = $form.find('input[name=memberB], input[name=memberC], input[name=memberD]');
+
+  $memberFields.on('input', function () {
+    $(this).val($(this).val().replace(/\s/g, ''));
+  });
 }
 
-function processForm($applyForm) {
-  disallowAmbiguousAnswersProactively($applyForm);
+function processForm($form, createForm) {
+  disallowAmbiguousAnswersProactively($form);
 
   const supportsFileApi = ($('<input type="file">').get(0).files) !== undefined;
 
   const addFeedbackToForm = (form) => {
     let firstErrorFound = false;
     Object.keys(form.fields).forEach((fieldName) => {
-      const $row = $applyForm.find(`[name=${fieldName}]`).closest('.form-row');
+      const $row = $form.find(`[name=${fieldName}]`).closest('.form-row');
       const field = form.fields[fieldName];
 
       $row.removeClass('error');
@@ -104,13 +112,13 @@ function processForm($applyForm) {
           }, 500);
           firstErrorFound = true;
         }
-        $row.find('.form-label-longform').after(field.errorHTML());
+        $row.find('.form-label-shortform, .form-label-longform').after(field.errorHTML());
         $row.addClass('error');
       }
     });
   };
 
-  $applyForm.submit((event, { valid } = { }) => {
+  $form.submit((event, { valid } = { }) => {
     // Our form validation is asynchronous (but happens within a few ms).
     // This means that we have to re-submit the form after validation
     // with some kind of indicator that the validation has succeeded
@@ -121,10 +129,10 @@ function processForm($applyForm) {
 
     event.preventDefault();
     
-    createApplicationForm(supportsFileApi).handle(
-      serializeForm($applyForm),
+    createForm(supportsFileApi).handle(
+      serializeForm($form),
       {
-        success: () => $applyForm.trigger('submit', { valid: true }),
+        success: () => $form.trigger('submit', { valid: true }),
         error: addFeedbackToForm,
         empty: addFeedbackToForm,
       }
@@ -134,6 +142,9 @@ function processForm($applyForm) {
 
 module.exports = function applyPage() {
   $('.apply-form').each(function () {
-    processForm($(this));
+    processForm($(this), createApplicationForm);
+  });
+  $('.team-form').each(function () {
+    processForm($(this), createTeamForm);
   });
 };

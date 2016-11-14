@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="en">
-    <meta name="theme-color" content="#EA5143">
+    <meta name="theme-color" content="{{ colors.PRIMARY_COLOR }}">
     <script src="https://use.typekit.net/jig8uxt.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     {% if browserSync %}{{ browserSync | safe }}{% endif %}
@@ -21,6 +21,18 @@
   </head>
 
   <body>
+    {#
+      if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
+    #}
+    {% if user.firstName %}
+      <header class="logged-in clearfix">
+        <span class="long-text">Logged in as</span> {{ user.firstName }} {{ user.lastName }} &nbsp; <a href="/apply/logout">Logout</a>
+        {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+        {% if not is_dashboard %}
+          <a class="float-right" href="/apply/dashboard"><span class="long-text">Go to your dashboard</span><span class="short-text">Dashboard</span> &rarr;</a>
+        {% endif %}
+      </header>
+    {% endif %}
     {% block content %}
     {% endblock %}
 

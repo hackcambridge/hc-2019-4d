@@ -51,6 +51,14 @@ dark-background() {
   }
 }
 
+.float-right {
+  float: right;
+}
+
+hr {
+  border: 1px solid rgba(0,0,0,.1);
+}
+
 content-wrapper() {
   box-sizing: border-box;
   max-width: 100%;
@@ -92,6 +100,19 @@ content-wrapper-left() {
   margin-left: auto;
   margin-right: auto;
   width: 600px;
+}
+@media screen and (max-width: 600px) {
+  .long-text {
+    display: none;
+  }
+}
+.short-text {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .short-text {
+    display: inline;
+  }
 }
 
 /* Typography

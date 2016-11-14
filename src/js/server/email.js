@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const sendmailTransport = require('nodemailer-sendmail-transport');
 const mailgunTransport = require('nodemailer-mailgun-transport');
 const Mailgen = require('mailgen');
+const colors = require('js/shared/colors');
 
 function createTransport() {
   if (process.env.MAILGUN_API_KEY) {
@@ -27,6 +28,17 @@ const mailGenerator = new Mailgen({
   },
 });
 
+exports.makeInstruction = function ({ instructions, button: { link, text }}) {
+  return {
+    instructions,
+    button: {
+      link,
+      text,
+      color: colors.PRIMARY_COLOR,
+    },
+  };
+}
+
 /**
  * Send an email
  * 
@@ -43,6 +55,7 @@ exports.sendEmail = function sendEmail({ to, contents }) {
       html: mailGenerator.generate(contents),
     }, (error, info) => {
       if (error) {
+        console.log('Error sending email', error);
         reject(error);
         return;
       }
@@ -50,8 +63,4 @@ exports.sendEmail = function sendEmail({ to, contents }) {
       resolve(info);
     });
   });
-}
-
-exports.templates = {
-  applied: require('./applied'),
 };

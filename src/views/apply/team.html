@@ -1,0 +1,21 @@
+{% extends 'default.html' %}
+{% set title = 'Apply for Hack Cambridge' %}
+{% block pageHeading %}Form a Team{% endblock %}
+{% block pageContent %}
+<center>
+  <h2>Know who you're hacking with?</h2>
+  Enter your teammates' application IDs to confirm your team
+</center>
+<form class="team-form" method="POST" enctype="multipart/form-data">
+  <div class="field form-row form-row-margin">
+    <label for="id_memberB" class="form-label-shortform">Member A (that's you!):</label>
+    <input type="text" disabled name="memberB" id="id_memberB" class="form-control-shortform" maxlength="256" value="{{ applicationSlug }}"/>
+  </div>
+  <div class="form-content">
+    {{ formHtml|safe }}
+  </div>
+  <button type="submit" class="button submit-button">Submit</button>
+  <a href="dashboard"><button type="button" class="button secondary-button">I'll sort this out later</button></a>
+</form>
+
+{% endblock %}
