@@ -6,7 +6,6 @@ const db = require('./db');
 const getTeamApplicationStatus = function (hackerApplication) {
   if (hackerApplication === null) return null;
 
-  // User applied as part of a team
   const TeamMember = require('./TeamMember');
   return TeamMember.findOne({
     where: { hackerId: hackerApplication.hackerId }
