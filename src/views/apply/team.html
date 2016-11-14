@@ -2,9 +2,15 @@
 {% set title = 'Apply for Hack Cambridge' %}
 {% block pageHeading %}Form a Team{% endblock %}
 {% block pageContent %}
-<p>Already know who you're hacking with? Fill in their details here.</p>
-<p>(You can always finish forming a team from the <a href="dashboard">dashboard</a>.)</p>
+<center>
+  <h2>Know who you're hacking with?</h2>
+  Enter your teammates' application IDs to confirm your team
+</center>
 <form class="team-form" method="POST" enctype="multipart/form-data">
+  <div class="field form-row form-row-margin">
+    <label for="id_memberB" class="form-label-shortform">Member A (that's you!):</label>
+    <input type="text" disabled name="memberB" id="id_memberB" class="form-control-shortform" maxlength="256" value="{{ applicationSlug }}"/>
+  </div>
   <div class="form-content">
     {{ formHtml|safe }}
   </div>
