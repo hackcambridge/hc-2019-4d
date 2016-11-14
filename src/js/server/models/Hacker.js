@@ -6,25 +6,24 @@ const db = require('./db');
 const getTeamApplicationStatus = function (hackerApplication) {
   if (hackerApplication === null) return null;
 
-  const userAppliedWithTeam = hackerApplication.inTeam;
-
-  if (hackerApplication.wantsTeam) {
-    // User wants us to place them in team
-    return statuses.teamApplication.WANTS_TEAM;
-  }
-
-  if (!hackerApplication.inTeam) {
-    // User didn't apply as part of a team
-    return statuses.teamApplication.NOT_APPLICABLE;
-  }
-
-  // User applied as part of a team
-  
-  // TODO: hackerApplication.getTeamApplication().then...
-  const temporary_dummy = Promise.resolve(null);
-  return temporary_dummy.then(teamApplication => {
+  const TeamMember = require('./TeamMember');
+  return TeamMember.findOne({
+    where: { hackerId: hackerApplication.hackerId }
+  }).then(teamApplication => {
     if (teamApplication === null) {
       // User not listed in a team application yet
+      const userAppliedWithTeam = hackerApplication.inTeam;
+
+      if (hackerApplication.wantsTeam) {
+        // User wants us to place them in team
+        return statuses.teamApplication.WANTS_TEAM;
+      }
+
+      if (!hackerApplication.inTeam) {
+        // User didn't apply as part of a team
+        return statuses.teamApplication.NOT_APPLICABLE;
+      }
+      
       return statuses.teamApplication.INCOMPLETE;
     } else {
       // User is listed in a team application
@@ -33,7 +32,7 @@ const getTeamApplicationStatus = function (hackerApplication) {
   });
 }
 
-// Return a promise taht evaluates to the response status
+// Return a promise that evaluates to the response status
 const getResponseStatus = function (hackerApplication) {
   if (hackerApplication === null) return null;
 
@@ -173,7 +172,7 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
 
 // Determine the headline application status
 Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, furtherDetailsStatus) {
-  if (applicationStatus==statuses.application.INCOMPLETE || teamApplicationStatus==statuses.application.INCOMPLETE)
+  if (applicationStatus == statuses.application.INCOMPLETE || teamApplicationStatus == statuses.application.INCOMPLETE)
     return statuses.overall.INCOMPLETE;
   else if (responseStatus == statuses.response.PENDING)
     return statuses.overall.IN_REVIEW;

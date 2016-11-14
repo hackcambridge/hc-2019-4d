@@ -17,6 +17,7 @@ var utils = require('./utils');
 var app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
+const colors = require('js/shared/colors');
 
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
@@ -32,6 +33,7 @@ utils.init(app);
 
 app.use(function (req, res, next) {
   res.locals.title = 'Hack Cambridge';
+  res.locals.colors = colors;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
   const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = url.parse(

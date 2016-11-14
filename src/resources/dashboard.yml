@@ -43,7 +43,9 @@ dashboard:
       type: na
       label: N/A
       content:
-        You didn't apply as part of a team. You can [change this](/apply/team) but not for long!
+        You didn't apply as part of a team. You can [change this](/apply/team) but not for long! Applying as
+        a team means your applications will be reviewed together and either all or none of you will be invited.
+
     wanting:
       type: success
       label: Finding
@@ -52,29 +54,26 @@ dashboard:
     incomplete:
       type: warning
       label: Incomplete
-      content: 
-        You applied as part of a team but nobody in your team has submitted a team application yet. Once one of you does this, 
-        we'll review all your applications in one go.
+      content:
+        Your team hasn't confirmed its members yet. Once you've chosen your teammates and they've all applied, one of you should submit a team
+        application (don't worry, it's easy!). If you've changed your mind about choosing your own team, [let us know](mailto:team@hackcambridge.com)
       action:
-        title: Submit a team application
+        title: Submit a team application for your team
         location: /apply/team
     complete:
       type: success
       label: Complete
-      content: You've been listed in a team application. You're a true team player
-      action:
-        title: View your team application
-        location: /apply/team
+      content: "You've teamed up with these friendly folk:"
   further-application:
     incomplete:
       type: warning
       label: Incomplete
       content: 
-        We still need a few more details from you to guarantee your enjoyment of Hack Cambridge
+        We still need a few more details from you to guarantee your enjoyment of Hack Cambridge.
       action:
         title: Provide further details
         location: /apply/further
     complete:
       type: success
       label: Complete
-      content: We have everything we need from you
+      content: We have everything we need from you!
