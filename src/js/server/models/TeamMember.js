@@ -3,7 +3,7 @@ const db = require('./db');
 const Hacker = require('./Hacker');
 const Team = require('./Team');
 
-const TeamMember = module.exports = db.define('team-member', {
+const TeamMember = module.exports = db.define('teamMember', {
   // Foreign keys
   teamId: {
     type: Sequelize.INTEGER,
