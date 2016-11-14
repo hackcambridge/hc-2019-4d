@@ -46,6 +46,7 @@ function getFieldValue($field) {
       originalname: files[0].name,
       mimetype: files[0].type,
       size: files[0].size,
+      location: '',
     };
   } else {
     return $field.val();

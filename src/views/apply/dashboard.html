@@ -1,0 +1,75 @@
+{% extends 'default.html' %}
+{% set title = 'Apply for Hack Cambridge' %}
+{% set is_dashboard = true %}
+{% block pageHeading %}Dashboard{% endblock %}
+{% block pageContent %}
+<header class="content-wrapper-center">
+  <h3>Hello, {{ user.firstName }}!</h3>
+</header>
+
+  {# The main status banner #}
+  <div class="content-wrapper-center">
+    <div class="status-message {{ statusMessage.message_type }}">
+      <h2>{{ statusMessage.title }}</h2>
+      <span>{{ statusMessage.subline }}</span>
+    </div>
+
+    {% if applicationSlug %}
+    <div class="application-slug">
+      Your application ID is:
+      <code>{{ applicationSlug }}</code>
+    </div>
+  {% endif %}
+  </div>
+  
+  
+  
+  
+  {% if applicationInfo != 'rejected' %}
+    {# The user either has things still to do or would benefit from seeing their status #}
+
+    {# The personal application status #}
+    <section class="dashboard-section">
+      <span class="{{ applicationInfo.type }} float-right">{{ applicationInfo.label }}</span>
+      <h3>Your Application</h3>
+
+      {{ applicationInfo.content }}
+      <br>
+      {% if applicationInfo.action %}
+        <a href="{{ applicationInfo.action.location }}">{{ applicationInfo.action.title }} &rarr;</a><br>
+      {% endif %}
+    </section>
+    
+    {% if applicationInfo.label != 'Incomplete' %}
+      {# The team application status #}
+      <section class="dashboard-section">
+        <span class="{{ teamApplicationInfo.type }} float-right">{{ teamApplicationInfo.label }}</span>
+        <h3>Team Application</h3>
+
+        {{ teamApplicationInfo.content }}
+        <br>
+        {% if teamApplicationInfo.action %}
+          <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }} &rarr;</a><br>
+        {% endif %}
+      </section>
+    {% endif %}
+  {% endif %}
+  
+  <br><br>
+  <div class="content-wrapper-center">
+    <h2>Application FAQs</h2>
+  <div>
+    <h3>When will I hear back?</h3>
+    <p>
+      We're reviewing applications all the time.
+    </p>
+
+    <h3>What if I'm accepted and then can't attend?</h3>
+    <p>
+      Submitting your application is not a commitment to coming to Hack Cambridge (though we'd love to have you). If you get accepted and then can't make it, just let us know and we'll open up your space for somebody else.
+    </p>
+  </div>
+  </div>
+  
+
+{% endblock %}

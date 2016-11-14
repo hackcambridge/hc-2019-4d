@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>An Error Occurred</title>
+    <style>
+      body {
+        font-family: Helvetica, Roboto, Arial, sans-serif;
+      }
+
+      pre {
+        background: #eee;
+        border: 1px solid #dadada;
+        padding: 10px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>An Error Occurred</h1>
+    {% if message %}
+      <pre>{{ message }}</pre>
+    {% else %}
+      <p>We are very sorry about this. We are working on a fix - promise!</p>
+    {% endif %}
+  </body>
+</html>
