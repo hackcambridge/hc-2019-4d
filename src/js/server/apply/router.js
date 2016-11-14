@@ -7,10 +7,7 @@ const auth = require('js/server/auth');
 const utils = require('../utils.js');
 const session = require('client-sessions');
 const statuses = require('js/shared/status-constants');
-const { Hacker } = require('js/server/models');
-const { HackerApplication } = require('js/server/models');
-const { Team } = require('js/server/models');
-const { TeamMember } = require('js/server/models');
+const { Hacker, HackerApplication, Team, TeamMember } = require('js/server/models');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
 
