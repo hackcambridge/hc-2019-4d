@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { HackerApplication, Team, TeamMember } = require('js/server/models');
+const { HackerApplication, ApplicationResponse, Team, TeamMember } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
 const emailTemplates = require('./email-templates');
 const generate = require("adjective-adjective-animal");
@@ -78,11 +78,20 @@ exports.createTeamFromForm = function (formData, user) {
           hackerIds.push(application.hackerId);
           return TeamMember.findOne({
             where: { hackerId: application.hackerId }
-          }).then(application => {
-            if (application !== null) {
+          }).then(team => {
+            if (team !== null) {
               // The hacker is already part of another team
               throw new Error('A team member can\'t belong to more than one team.');
             }
+            return ApplicationResponse.findOne({
+              where: { hackerApplicationId: application.id }
+            });
+          }).then(applicationResponse => {
+            if (applicationResponse !== null) {
+              // The hacker has already been either accepted or rejected
+              throw new Error('One of the team members has already been reviewed.');
+            }
+            return applicationResponse;
           });
         });
       }));
