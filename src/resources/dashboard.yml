@@ -8,7 +8,7 @@ dashboard:
     in-review:
       message_type: success
       title: Your application is being reviewed &nbsp; &#9989; # Tick emoji
-      subline: Sit back and relax, we'll get back to you as soon as we can
+      subline: Sit back and relax — we'll get back to you as soon as we can
 
     accepted-incomplete:
       message_type: success
@@ -22,8 +22,8 @@ dashboard:
 
     rejected:
       message_type: neutral
-      title: We're sorry
-      subline: We weren't able to accept you this year
+      title: We're sorry &#128546; # Crying emoji
+      subline: We weren't able to invite you this year
 
   your-application:
     incomplete:
@@ -48,13 +48,13 @@ dashboard:
       type: success
       label: Finding
       content:
-        You asked to be placed in a team, we'll take it from here
+        You asked to be placed in a team — we'll take it from here
     incomplete:
       type: warning
       label: Incomplete
       content: 
         You applied as part of a team but nobody in your team has submitted a team application yet. Once one of you does this, 
-        we'll review your applications all in one.
+        we'll review all your applications in one go.
       action:
         title: Submit a team application
         location: /apply/team
