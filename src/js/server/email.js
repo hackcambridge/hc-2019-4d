@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const sendmailTransport = require('nodemailer-sendmail-transport');
 const mailgunTransport = require('nodemailer-mailgun-transport');
 const Mailgen = require('mailgen');
+const colors = require('js/shared/colors');
 
 function createTransport() {
   if (process.env.MAILGUN_API_KEY) {
@@ -26,6 +27,17 @@ const mailGenerator = new Mailgen({
     link: 'https://hackcambridge.com',
   },
 });
+
+exports.makeInstruction = function ({ instructions, button: { link, text }}) {
+  return {
+    instructions,
+    button: {
+      link,
+      text,
+      color: colors.PRIMARY_COLOR,
+    },
+  };
+}
 
 /**
  * Send an email
