@@ -1,13 +1,13 @@
 const express = require('express');
 const { createApplicationForm } = require('js/shared/application-form');
+const { createTeamForm } = require('js/shared/team-form');
 const renderForm = require('js/shared/render-form');
 var fetch = require('node-fetch');
 const auth = require('js/server/auth');
 const utils = require('../utils.js');
 const session = require('client-sessions');
 const statuses = require('js/shared/status-constants');
-const { Hacker } = require('js/server/models');
-const { HackerApplication } = require('js/server/models');
+const { Hacker, HackerApplication, Team, TeamMember } = require('js/server/models');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
 
@@ -31,7 +31,7 @@ applyRouter.get('/', (req, res) => {
 
 applyRouter.all('/form', checkHasApplied);
 
-applyRouter.post('/form', fileUploadMiddleware, (req, res, next) => {
+applyRouter.post('/form', fileUploadMiddleware.single('cv'), (req, res, next) => {
   const form = createApplicationForm();
 
   // HACK: Put all our fields in the same place by moving the file into req.body
@@ -54,6 +54,28 @@ applyRouter.post('/form', fileUploadMiddleware, (req, res, next) => {
   });
 });
 
+applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
+  const form = createTeamForm();
+
+  form.handle(req.body, {
+    success: (resultForm) => {
+      applyLogic.createTeamFromForm(resultForm.data, req.user).then(() => {
+        console.log('Team application success.');
+        res.redirect('/apply/dashboard');
+      }).catch(err => {
+        console.log('Invalid team application:', err.message, err);
+        renderTeamPageWithForm(res, form);
+      });
+    },
+    error: (resultForm) => {
+      renderTeamPageWithForm(res, resultForm);
+    },
+    empty: () => {
+      renderTeamPageWithForm(res, form);
+    }
+  });
+});
+
 applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
   renderDashboard(req, res);
 })
@@ -72,6 +94,23 @@ applyRouter.get('/form', (req, res) => {
   renderApplyPageWithForm(res, createApplicationForm());
 });
 
+// Render the form for team applications
+applyRouter.get('/team', (req, res) => {
+  req.user.getHackerApplication().then(hackerApplication => {
+    if (hackerApplication !== null) {
+      req.user.getTeam().then(team => {
+        if (team === null) {
+          renderTeamPageWithForm(res, createTeamForm());
+        } else {
+          res.redirect('/apply/dashboard');
+        }
+      });
+    } else {
+      res.redirect('/apply/form');
+    }
+  });
+});
+
 function renderDashboard(req, res) {
   const content = utils.loadResource('dashboard');
   let application;
@@ -82,7 +121,7 @@ function renderDashboard(req, res) {
     applicationStatus = req.user.getApplicationStatus(hackerApplication);
 
     const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
-    const furtherApplicationStatusPromise = req.user.getTeamApplicationStatus(hackerApplication);
+    const furtherApplicationStatusPromise = req.user.getFurtherDetailsStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
 
     return Promise.all([
@@ -116,10 +155,18 @@ function renderDashboard(req, res) {
   });
 }
 
-function renderApplyPageWithForm(res, form) {
-  res.render('apply/form.html', {
+function renderPageWithForm(res, path, form) {
+  res.render(path, {
     formHtml: form.toHTML(renderForm)
   });
+}
+
+function renderApplyPageWithForm(res, form) {
+  renderPageWithForm(res, 'apply/form.html', form);
+}
+
+function renderTeamPageWithForm(res, form) {
+  renderPageWithForm(res, 'apply/team.html', form);
 }
 
 /**

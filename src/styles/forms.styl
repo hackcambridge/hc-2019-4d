@@ -35,7 +35,7 @@ button($foreground, $background) {
   border: none;
   border-radius: 2px;
 
-  transition-property: background-color, transform;
+  transition-property: background-color, transform, opacity;
   transition-duration: 0.2s;
 
   buttonColor($foreground, $background);
@@ -51,6 +51,17 @@ button($foreground, $background) {
 
 .button, a.button {
   button(#fff, $colorPrimary);
+}
+
+.secondary-button {
+  button($colorPrimary, transparent);
+  border: 2px solid lighten($colorPrimary, 15%);
+  padding: 3px 13px;
+  float: right;
+  
+  &:hover, &:focus {
+    opacity: 0.7;
+  }
 }
 
 /* Fields
@@ -81,7 +92,7 @@ button($foreground, $background) {
   margin-bottom: 10px;
 }
 
-.form-label-longform {
+.form-label-shortform, .form-label-longform {
   display: block;
   font-size: 1.3em;
   margin-top: 10px;
@@ -95,7 +106,7 @@ button($foreground, $background) {
   }
 }
 
-.form-control, .form-control-longform {
+.form-control, .form-control-shortform, .form-control-longform {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -144,16 +155,23 @@ button($foreground, $background) {
   }
 }
 
-.form-control-longform {
+.form-control-shortform, .form-control-longform {
   border: 2px solid $grayLighter;
-  resize: vertical;
-  height: 100px;
 
   transition: border-color 0.2s;
+  
+  &:disabled {
+    background: alpha($grayLighter, 0.3);
+  }
 
   &:focus {
     border-color: $colorPrimary;
   }
+}
+
+.form-control-longform {
+  resize: vertical;
+  height: 100px;
 }
 
 .form-control-money {

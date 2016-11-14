@@ -77,7 +77,7 @@ function createHackerTable(queryInterface, Sequelize) {
     specialNeeds: {
       type: Sequelize.TEXT,
     },
-  })
+  });
 }
 
 function createHackerApplicationTable(queryInterface, Sequelize) {

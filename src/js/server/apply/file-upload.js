@@ -32,4 +32,4 @@ module.exports = multer({
 
     callback(null, false);
   },
-}).single('cv');
+});

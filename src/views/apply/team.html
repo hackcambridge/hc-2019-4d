@@ -1,0 +1,15 @@
+{% extends 'default.html' %}
+{% set title = 'Apply for Hack Cambridge' %}
+{% block pageHeading %}Form a Team{% endblock %}
+{% block pageContent %}
+<p>Already know who you're hacking with? Fill in their details here.</p>
+<p>(You can always finish forming a team from the <a href="dashboard">dashboard</a>.)</p>
+<form class="team-form" method="POST" enctype="multipart/form-data">
+  <div class="form-content">
+    {{ formHtml|safe }}
+  </div>
+  <button type="submit" class="button submit-button">Submit</button>
+  <a href="dashboard"><button type="button" class="button secondary-button">I'll sort this out later</button></a>
+</form>
+
+{% endblock %}
