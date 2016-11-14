@@ -9,8 +9,13 @@
 }
 .logged-in {
   padding: 10px;
-  background: $colorSecondary;
+  background: transparentify($colorSecondary, 0.6);
   color: white;
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index: 10;
 }
 .status-message {
   display: inline-block;
