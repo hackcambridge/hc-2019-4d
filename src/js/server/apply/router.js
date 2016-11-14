@@ -121,7 +121,7 @@ function renderDashboard(req, res) {
     applicationStatus = req.user.getApplicationStatus(hackerApplication);
 
     const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
-    const furtherApplicationStatusPromise = req.user.getTeamApplicationStatus(hackerApplication);
+    const furtherApplicationStatusPromise = req.user.getFurtherDetailsStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
 
     return Promise.all([

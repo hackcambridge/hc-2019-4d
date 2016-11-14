@@ -19,10 +19,10 @@ const getTeamApplicationStatus = function (hackerApplication) {
   }
 
   // User applied as part of a team
-  
-  // TODO: hackerApplication.getTeamApplication().then...
-  const temporary_dummy = Promise.resolve(null);
-  return temporary_dummy.then(teamApplication => {
+  const TeamMember = require('./TeamMember');
+  return TeamMember.findOne({
+    where: { hackerId: hackerApplication.hackerId }
+  }).then(teamApplication => {
     if (teamApplication === null) {
       // User not listed in a team application yet
       return statuses.teamApplication.INCOMPLETE;
@@ -33,7 +33,7 @@ const getTeamApplicationStatus = function (hackerApplication) {
   });
 }
 
-// Return a promise taht evaluates to the response status
+// Return a promise that evaluates to the response status
 const getResponseStatus = function (hackerApplication) {
   if (hackerApplication === null) return null;
 
@@ -173,7 +173,7 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
 
 // Determine the headline application status
 Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, furtherDetailsStatus) {
-  if (applicationStatus==statuses.application.INCOMPLETE || teamApplicationStatus==statuses.application.INCOMPLETE)
+  if (applicationStatus == statuses.application.INCOMPLETE || teamApplicationStatus == statuses.application.INCOMPLETE)
     return statuses.overall.INCOMPLETE;
   else if (responseStatus == statuses.response.PENDING)
     return statuses.overall.IN_REVIEW;

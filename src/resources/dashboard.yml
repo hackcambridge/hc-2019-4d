@@ -48,7 +48,7 @@ dashboard:
       type: success
       label: Finding
       content:
-        You asked to be placed in a team, we'll take it from here
+        You asked to be placed in a team, we'll take it from here.
     incomplete:
       type: warning
       label: Incomplete
@@ -61,20 +61,17 @@ dashboard:
     complete:
       type: success
       label: Complete
-      content: You've been listed in a team application. You're a true team player
-      action:
-        title: View your team application
-        location: /apply/team
+      content: You've been listed in a team application. You're a true team player.
   further-application:
     incomplete:
       type: warning
       label: Incomplete
       content: 
-        We still need a few more details from you to guarantee your enjoyment of Hack Cambridge
+        We still need a few more details from you to guarantee your enjoyment of Hack Cambridge.
       action:
         title: Provide further details
         location: /apply/further
     complete:
       type: success
       label: Complete
-      content: We have everything we need from you
+      content: We have everything we need from you!
