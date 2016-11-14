@@ -91,14 +91,14 @@ exports.createTeamFromForm = function (formData, user) {
     }
   }).then(() => {
     // Create a new team
-    Team.create({ }).then(team => {
+    return Team.create({ }).then(team => {
       // Add the team members to the team
-      for (const hackerId of hackerIds) {
-        TeamMember.create({
+      return Promise.all(hackerIds.map(hackerId => {
+        return TeamMember.create({
           teamId: team.id,
           hackerId
         });
-      }
+      }));
     });
   });
 };

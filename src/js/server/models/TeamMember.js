@@ -30,4 +30,4 @@ const TeamMember = module.exports = db.define('team-member', {
 TeamMember.belongsTo(Team);
 Team.hasMany(TeamMember);
 TeamMember.belongsTo(Hacker);
-Hacker.hasOne(TeamMember, { as: 'Team' });
+Hacker.hasOne(TeamMember);
