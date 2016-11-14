@@ -124,15 +124,36 @@ function renderDashboard(req, res) {
     const furtherApplicationStatusPromise = req.user.getFurtherDetailsStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
 
+    const teamMembersPromise = req.user.getTeam().then(teamMember => {
+      if (teamMember === null) {
+        return null;
+      } else {
+        const teamId = teamMember.teamId;
+        return TeamMember.findAll({
+          where: {
+            teamId: teamId,
+          }
+        })
+      }
+    }).then(teamMembers => {
+      return Promise.all(
+        teamMembers.map(member => member.getHacker())
+      )
+    });
+
     return Promise.all([
       teamApplicationStatusPromise,
       furtherApplicationStatusPromise,
       responseStatusPromise,
+      teamMembersPromise
     ]);
   }).then(values => {
     const teamApplicationStatus    = values[0];
     const furtherApplicationStatus = values[1];
     const responseStatus           = values[2];
+    const teamMembers              = values[3];
+
+    console.log(teamMembers);
 
     const overallStatus = Hacker.deriveOverallStatus(
       applicationStatus,
@@ -151,6 +172,7 @@ function renderDashboard(req, res) {
       teamApplicationInfo: content['team-application'][teamApplicationStatus],
       furtherApplicationInfo: content['further-application'][furtherApplicationStatus],
       statusMessage: content['status-messages'][overallStatus],
+      teamMembers: teamMembers,
     });
   });
 }

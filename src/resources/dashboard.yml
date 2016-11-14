@@ -61,7 +61,7 @@ dashboard:
     complete:
       type: success
       label: Complete
-      content: You've been listed in a team application. You're a true team player.
+      content: "You've teamed up with these friendly folk:"
   further-application:
     incomplete:
       type: warning
