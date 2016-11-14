@@ -47,8 +47,18 @@
         <h3>Team Application</h3>
 
         {{ teamApplicationInfo.content }}
-        <br>
+        {% if teamApplicationStatus == 'complete' %}
+          <ul class="team-list">
+            {% for hacker in teamMembers %}
+              <li>
+                {{ hacker.firstName }} {{ hacker.lastName }}
+              </li>
+            {% endfor %}
+          </ul>
+          
+        {% endif %}
         {% if teamApplicationInfo.action %}
+          <br>
           <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }} &rarr;</a><br>
         {% endif %}
       </section>
