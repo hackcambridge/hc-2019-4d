@@ -136,6 +136,9 @@ function renderDashboard(req, res) {
         })
       }
     }).then(teamMembers => {
+      if (teamMembers == null) {
+        return null;
+      }
       return Promise.all(
         teamMembers.map(member => member.getHacker())
       )
@@ -152,8 +155,6 @@ function renderDashboard(req, res) {
     const furtherApplicationStatus = values[1];
     const responseStatus           = values[2];
     const teamMembers              = values[3];
-
-    console.log(teamMembers);
 
     const overallStatus = Hacker.deriveOverallStatus(
       applicationStatus,
