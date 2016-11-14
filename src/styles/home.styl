@@ -14,11 +14,6 @@
   min-height: 100vh;
   padding: ($punit * 3) 0;
 
-  background: desaturate(darken($colorPrimary, 50%), 25%);
-  
-  background: $colorPrimary;
-  background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
-
   color: #fff;
   padding-top: 103px; /*Stop MLH logo from obscuring logo on mobile*/
 }
@@ -193,7 +188,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
 
 .landing-welcome-intro {
   overflow: hidden;
-  background: $colorPink;
+  background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
   color: #fff;
 }
 
@@ -208,6 +203,8 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   padding-bottom: ($punit * 8);
 
   text-align: center;
+  
+
 }
 
 /* ==========================================================================
