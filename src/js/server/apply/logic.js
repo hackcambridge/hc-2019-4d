@@ -46,32 +46,43 @@ exports.createApplicationFromForm = function (formData, user) {
   });
 };
 
-exports.createTeamFromForm = function (formData, user) {
+exports.createTeamFromForm = function (formData, user, errors) {
   const members = new Set();
   const hackerIds = [];
+  const applicationSlugs = {
+    'memberB': formData.memberB,
+    'memberC': formData.memberC,
+    'memberD': formData.memberD,
+  };
   // Ensure application slugs are unique and not the applicant's own
   return user.getHackerApplication().then(application => {
     // Start off with the current hacker's application slug — we already know they're in the team
     members.add(application.applicationSlug);
-  }).then(new Promise((resolve, reject) => {
-    for (const applicationSlug of [formData.memberB, formData.memberC, formData.memberD].map(s => s.trim()).filter(s => s !== '')) {
-      if (!members.has(applicationSlug)) {
-        members.add(applicationSlug);
-      } else {
-        throw new Error('Application slugs must be distinct.');
+    return new Promise((resolve, reject) => {
+      for (const field in applicationSlugs) {
+        applicationSlugs[field] = applicationSlugs[field].trim();
+        if (applicationSlugs[field] !== '') {
+          if (!members.has(applicationSlugs[field])) {
+            members.add(applicationSlugs[field]);
+          } else {
+            throw new Error(errors[field] = 'Each application ID must be distinct.');
+          }
+        } else {
+          delete applicationSlugs[field];
+        }
       }
-    }
-    resolve();
-  })).then(() => {
-    const applicationSlugs = Array.from(members);
-    if (applicationSlugs.length > 1) {
-      return Promise.all(applicationSlugs.map(applicationSlug => {
+      resolve();
+    });
+  }).then(() => {
+    if (members.size > 1) {
+      return Promise.all(Object.keys(applicationSlugs).map(field => {
+        const applicationSlug = applicationSlugs[field];
         return HackerApplication.findOne({
           where: { applicationSlug }
         }).then(application => {
           if (application === null) {
             // The application slug was not valid
-            throw new Error('The application slug matched no hacker.');
+            throw new Error(errors[field] = 'There aren\'t any applications with this ID!');
           }
           return application;
         }).then(application => {
@@ -81,7 +92,7 @@ exports.createTeamFromForm = function (formData, user) {
           }).then(team => {
             if (team !== null) {
               // The hacker is already part of another team
-              throw new Error('A team member can\'t belong to more than one team.');
+              throw new Error(errors[field] = 'This applicant is already part of a different team!');
             }
             return ApplicationResponse.findOne({
               where: { hackerApplicationId: application.id }
@@ -89,14 +100,14 @@ exports.createTeamFromForm = function (formData, user) {
           }).then(applicationResponse => {
             if (applicationResponse !== null) {
               // The hacker has already been either accepted or rejected
-              throw new Error('One of the team members has already been reviewed.');
+              throw new Error(errors[field] = 'This applicant has already been reviewed.');
             }
             return applicationResponse;
           });
         });
       }));
     } else {
-      throw new Error('You need at least two team members to form a team.');
+      throw new Error(errors['memberB'] = 'You need at least two team members to form a team.');
     }
   }).then(() => {
     // Create a new team
