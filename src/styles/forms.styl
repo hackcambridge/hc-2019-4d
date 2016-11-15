@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+ /* Buttons
+    ========================================================================== */
+
+buttonColor($foreground, $background = $grayLightest) {
+  $isdark = dark($background);
+
+  color: $foreground;
+  background-color: $background;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    if ($isdark) {
+      background-color: lighten($background, 3);
+    } else {
+      background-color: darken($background, 3);
+    }
+  }
+
+  &:active {
+    if ($isdark) {
+      background-color: lighten($background, 8);
+    } else {
+      background-color: darken($background, 8);
+    }
+  }
+}
+
+button($foreground, $background) {
+  display: inline-block;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 2px;
+
+  transition-property: background-color, transform, opacity;
+  transition-duration: 0.2s;
+
+  buttonColor($foreground, $background);
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button, a.button {
+  button(#fff, $colorPrimary);
+}
+
+.secondary-button {
+  button($colorPrimary, transparent);
+  border: 2px solid lighten($colorPrimary, 15%);
+  padding: 3px 13px;
+  float: right;
+  
+  &:hover, &:focus {
+    opacity: 0.7;
+  }
+}
+
+/* Fields
+   ========================================================================== */
+
+.form-row {
+  margin: 10px 0;
+}
+
+.form-row-margin {
+  margin: 30px 0;
+}
+
+.form-label {
+  display: block;
+  margin: 5px 0;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: $grayLight;
+}
+
+.form-control-note {
+  color: $gray;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.form-label-shortform, .form-label-longform {
+  display: block;
+  font-size: 1.3em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .form-row.required &::after {
+    color: $colorPrimary;
+    content: '*';
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+}
+
+.form-control, .form-control-shortform, .form-control-longform {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 5px 0;
+
+  border: none;
+  padding: 5px;
+
+  color: $textColor;
+  background: transparent;
+
+  &::placeholder {
+    color: $grayLighter;
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-error-message {
+  margin-bottom: 5px;
+  color: $colorPrimary;
+}
+
+.form-label-checkbox {
+  padding-left: 30px;
+  display: block;
+  position: relative;
+
+  input[type=checkbox], input[type=radio] {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+  }
+}
+
+.form-control {
+  border-bottom: 2px solid $grayLighter;
+
+  transition: border-bottom-color 0.2s;
+
+  &:focus {
+    border-bottom-color: $colorPrimary;
+  }
+}
+
+.form-control-shortform, .form-control-longform {
+  border: 2px solid $grayLighter;
+
+  transition: border-color 0.2s;
+  
+  &:disabled {
+    background: alpha($grayLighter, 0.3);
+  }
+
+  &:focus {
+    border-color: $colorPrimary;
+  }
+}
+
+.form-control-longform {
+  resize: vertical;
+  height: 100px;
+}
+
+.form-control-money {
+  padding-left: 20px;
+}
+
+.form-control-money-sign {
+  position: absolute;
+  margin-top: 6px;
+  margin-left: 5px;
+  color: $colorSecondary;
+}

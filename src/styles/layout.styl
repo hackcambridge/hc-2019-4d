@@ -1,0 +1,307 @@
+/* Universal Stuff
+   ========================================================================== */
+
+body {
+  width: 100%;
+  height: 100%;
+
+  font-family: $fontFamily;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  color: $textColor;
+
+  background-color: $backgroundColor;
+}
+
+html {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+main-background() {
+  background-image: radial-gradient(circle at top center, $backgroundColor 0%, darken($backgroundColor, 5%) 100%);
+}
+
+dark-background() {
+  background-color: $colorPrimary;
+}
+
+.clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.float-right {
+  float: right;
+}
+
+hr {
+  border: 1px solid rgba(0,0,0,.1);
+}
+
+content-wrapper() {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding-left: ($punit);
+  padding-right: ($punit);
+
+  @media only screen and (min-width: 500px) {
+    padding-left: ($punit * 2);
+    padding-right: ($punit * 2);
+  }
+}
+
+content-wrapper-left() {
+  content-wrapper()
+
+  @media only screen and (min-width: 900px) {
+    padding-left: ($punit * 6);
+  }
+}
+
+.content-wrapper-center {
+  content-wrapper();
+  text-align: center;
+}
+
+.content-wrapper {
+  content-wrapper();
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+
+.content-wrapper-standard {
+  content-wrapper();
+}
+
+.content-wrapper-thin {
+  content-wrapper();
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+}
+@media screen and (max-width: 600px) {
+  .long-text {
+    display: none;
+  }
+}
+.short-text {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .short-text {
+    display: inline;
+  }
+}
+
+/* Typography
+   ========================================================================== */
+
+margin-element() {
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+$rootSize = 1em;
+$typeScale = 1.3;
+
+h1, .grand-heading {
+  font-size: $rootSize * $typeScale * $typeScale * $typeScale;
+  line-height: 1.2;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: $rootSize * $typeScale * $typeScale;
+  line-height: 1.2;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: $rootSize * $typeScale;
+  line-height: 1.2;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: $rootSize;
+  line-height: 1.2;
+}
+
+h5 {
+  font-weight: bold;
+  font-size: $rootSize / $typeScale;
+  line-height: 1.2;
+}
+
+h6 {
+  font-weight: bold;
+  font-size: $rootSize / $typeScale / $typeScale;
+  line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, p {
+  margin-element();
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+ol, ul {
+  li > & {
+    margin-top: 20px;
+  }
+}
+
+h1, .grand-heading {
+  font-weight: 300;
+}
+
+h1, .grand-heading {
+  font-size: 2em;
+  font-weight: 100;
+
+  @media only screen and (min-width: 600px) {
+    font-size: 3em;
+  }
+}
+
+a, a:visited {
+  color: $colorPrimary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Default layout
+   ========================================================================== */
+
+.default-header {
+  padding: ($punit * 4) 0;
+  background: $colorPrimary;
+  color: #fff;
+  text-align: center;
+  margin-bottom: ($punit * 2);
+}
+
+.default-header-logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.default-header-heading {
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+.default-main {
+  margin: ($punit * 2) 0;
+}
+
+.default-footer {
+  margin: ($punit * 2) 0;
+  font-size: 0.9em;
+  color: $gray;
+  padding: 10px;
+}
+
+.embedded-form {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+}
+
+.cohost-logo-text {
+  margin-top: 5px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: lighten($colorSecondary, 40%);
+}
+
+.cohost-logo-image {
+  margin-left: 5px;
+
+  height: 12px;
+}
+
+.mlh-trust-badge {
+  position: fixed;
+  top: 0;
+  right: 50px;
+
+  max-width: 100px;
+  width: 10%;
+  min-width: 60px;
+  display: block;
+  z-index: 1000;
+
+  img {
+    width: 100%;
+  }
+}
+
+/* Default layout
+   ========================================================================== */
+
+.strike-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-align: center;
+    line-height: 1;
+
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      flex: 1 1 auto;
+      height: 2px;
+      background: $colorSecondary;
+    }
+
+    > span {
+      flex: 0 0 auto;
+      display: block;
+      margin: 0 15px;
+      opacity: 0.8;
+    }
+}

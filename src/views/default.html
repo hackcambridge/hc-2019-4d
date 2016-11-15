@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="default-header">
+  <div class="content-wrapper">
+    <a class="default-header-link" href="/">
+      <img class="default-header-logo" src="{{ asset('images/logos/hc2017-logo-horizontal-light.svg') }}" />
+    </a>
+    <h1 class="default-header-heading">
+      {% block pageHeading %}{% endblock %}
+    </h1>
+  </div>
+</header>
+<main class="default-main">
+  <div class="content-wrapper">
+    {% block pageContent %}
+    {% endblock %}
+  </div>
+</main>
+{% include 'footer.html' %}
+{% endblock %}
