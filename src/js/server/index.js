@@ -11,13 +11,34 @@ var querystring = require('querystring');
 var yaml = require('js-yaml');
 var crypto = require('crypto');
 var Countdown = require('js/shared/countdown');
+const session = require('client-sessions');
+const chalk = require('chalk');
 var utils = require('./utils');
 var app = express();
-var server = require('http').Server(app);
+const auth = require('js/server/auth');
+const errors = require('js/server/errors');
+const colors = require('js/shared/colors');
 
-require('./sockets.js')(server);
+var server = require('http').Server(app);
+var fetch = require('node-fetch');
+const { dbSynced } = require('js/server/models');
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
+});
 
 utils.init(app);
+
+app.use(function (req, res, next) {
+  res.locals.title = 'Hack Cambridge';
+  res.locals.colors = colors;
+  const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
+  const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
+  res.locals.requestedUrl = req.requestedUrl = url.parse(
+    protocol + '://' + req.hostname + port + req.originalUrl
+  );
+  next();
+});
 
 // Static file serving
 var staticOptions = { };
@@ -26,6 +47,8 @@ if (app.settings.env != 'development') {
 }
 app.use(require('compression')());
 app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOptions));
+
+auth.setUpAuth(app);
 
 // View rendering
 var nunjucksEnv = nunjucks.configure(utils.resolvePath('src/views'), {
@@ -44,25 +67,11 @@ if (process.env.BS_SNIPPET) {
 
 // Routes
 
-app.use(function(req, res, next) {
-  // Force https
-  if ((req.headers['x-forwarded-proto'] != 'https') && (process.env.FORCE_HTTPS == "1")) {
-    res.redirect('https://' + req.hostname + req.originalUrl);
-  } else {
-    next();
-  }
-});
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
+app.use('/apply', require('./apply/router'));
 
-app.use(function (req, res, next) {
-  res.locals.title = 'Hack Cambridge';
-  var port = (app.settings.env == "development") ? ':' + req.app.settings.port : '';
-  res.locals.requestedUrl = url.parse(
-    req.protocol + '://' + req.hostname + port + req.originalUrl
-  );
-  next();
-});
+
 
 function renderHome(req, res) {
   res.render('index.html', {
@@ -94,12 +103,14 @@ app.get('/volunteers', (req, res) => {
 })
 
 app.get('/favicon.ico', function (req, res) {
-  res.sendFile(path.join(__dirname, '/assets/images/favicon.ico'));
+  res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
 
 app.use((req, res) => {
   res.status(404).render('404.html');
 });
+
+app.use(errors.middleware);
 
 // Start server
 app.set('port', (process.env.PORT || 3000));

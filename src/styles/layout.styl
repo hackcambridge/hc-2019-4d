@@ -51,6 +51,14 @@ dark-background() {
   }
 }
 
+.float-right {
+  float: right;
+}
+
+hr {
+  border: 1px solid rgba(0,0,0,.1);
+}
+
 content-wrapper() {
   box-sizing: border-box;
   max-width: 100%;
@@ -77,8 +85,10 @@ content-wrapper-left() {
 }
 
 .content-wrapper {
-  content-wrapper-left();
-  width: 900px;
+  content-wrapper();
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
 }
 
 .content-wrapper-standard {
@@ -86,8 +96,23 @@ content-wrapper-left() {
 }
 
 .content-wrapper-thin {
-  content-wrapper-left();
-  width: 700px;
+  content-wrapper();
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+}
+@media screen and (max-width: 600px) {
+  .long-text {
+    display: none;
+  }
+}
+.short-text {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .short-text {
+    display: inline;
+  }
 }
 
 /* Typography
@@ -98,38 +123,41 @@ margin-element() {
   margin-bottom: 25px;
 }
 
-h1 {
-  font-size: 1.2 * 1.2 * 1.2;
+$rootSize = 1em;
+$typeScale = 1.3;
+
+h1, .grand-heading {
+  font-size: $rootSize * $typeScale * $typeScale * $typeScale;
   line-height: 1.2;
 }
 
 h2 {
   font-weight: normal;
-  font-size: 1.2 * 1.2;
+  font-size: $rootSize * $typeScale * $typeScale;
   line-height: 1.2;
 }
 
 h3 {
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: $rootSize * $typeScale;
   line-height: 1.2;
 }
 
 h4 {
   font-weight: bold;
-  font-size: 1em;
+  font-size: $rootSize;
   line-height: 1.2;
 }
 
 h5 {
   font-weight: bold;
-  font-size: 1 / 1.2;
+  font-size: $rootSize / $typeScale;
   line-height: 1.2;
 }
 
 h6 {
   font-weight: bold;
-  font-size: 1 / 1.2 / 1.2;
+  font-size: $rootSize / $typeScale / $typeScale;
   line-height: 1.2;
 }
 
@@ -173,14 +201,22 @@ a, a:visited {
    ========================================================================== */
 
 .default-header {
-  margin-top: ($punit * 4);
+  padding: ($punit * 4) 0;
+  background: $colorPrimary;
+  color: #fff;
+  text-align: center;
   margin-bottom: ($punit * 2);
+}
 
-  .header-link img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-  }
+.default-header-logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.default-header-heading {
+  margin-bottom: 0;
+  margin-top: 30px;
 }
 
 .default-main {
@@ -191,6 +227,7 @@ a, a:visited {
   margin: ($punit * 2) 0;
   font-size: 0.9em;
   color: $gray;
+  padding: 10px;
 }
 
 .embedded-form {

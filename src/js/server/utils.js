@@ -64,6 +64,22 @@ exports.loadAsset = function loadAsset(assetName) {
   return loadedAssets[assetName];
 }
 
+function markdownPropertiesRecursive(object, properties) {
+  for (var property in object) {
+    if (object.hasOwnProperty(property)) {
+      if (typeof(object[property]) === 'object') {
+        // recurse
+        markdownPropertiesRecursive(object[property], properties);
+      } else {
+        if(properties.indexOf(property) >= 0) {
+          // This is one of the properties we identified as being markdown, render it
+          object[property] = nunjucks.runtime.markSafe(markdown.renderInline(object[property]));
+        }
+      }
+    }
+  }
+}
+
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
     var loadedResource = yaml.safeLoad(
@@ -105,6 +121,9 @@ exports.loadResource = function loadResource(resourceName) {
           saturday: loadedResource.filter((event) => event.time.date() == 30),
           sunday: loadedResource.filter((event) => event.time.date() == 31)
         };
+        break;
+      case 'dashboard':
+        markdownPropertiesRecursive(loadedResource, ['content', 'title']);
     }
 
     loadedResources[resourceName] = loadedResource;
