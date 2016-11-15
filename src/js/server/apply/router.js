@@ -134,7 +134,11 @@ function renderDashboard(req, res) {
         return TeamMember.findAll({
           where: {
             teamId: teamId,
-          }
+            $not: {
+              // Exclude the current user
+              hackerId: application.hackerId,
+            }
+          },
         })
       }
     }).then(teamMembers => {
