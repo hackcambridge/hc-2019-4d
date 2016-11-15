@@ -56,7 +56,7 @@ dashboard:
       label: Incomplete
       content:
         Your team hasn't confirmed its members yet. Once you've chosen your teammates and they've all applied, one of you should submit a team
-        application (don't worry, it's easy!). If you've changed your mind about choosing your own team, [let us know](mailto:team@hackcambridge.com)
+        application (don't worry, it's easy!)
       action:
         title: Submit a team application for your team
         location: /apply/team
