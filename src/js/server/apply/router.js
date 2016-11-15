@@ -59,12 +59,16 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
 
   form.handle(req.body, {
     success: (resultForm) => {
-      applyLogic.createTeamFromForm(resultForm.data, req.user).then(() => {
+      const errors = { };
+      applyLogic.createTeamFromForm(resultForm.data, req.user, errors).then(() => {
         console.log('Team application success.');
         res.redirect('/apply/dashboard');
       }).catch(err => {
-        console.log('Invalid team application:', err.message, err);
-        renderTeamPageWithForm(res, form);
+        console.log('Invalid team application:', err.message);
+        req.user.getHackerApplication().then(hackerApplication => {
+          res.locals.applicationSlug = hackerApplication.applicationSlug;
+          renderTeamPageWithForm(res, createTeamForm(resultForm.data), errors);
+        });
       });
     },
     error: (resultForm) => {
@@ -180,18 +184,23 @@ function renderDashboard(req, res) {
   });
 }
 
-function renderPageWithForm(res, path, form) {
+function renderPageWithForm(res, path, form, errors = { }) {
   res.render(path, {
-    formHtml: form.toHTML(renderForm)
+    formHtml: form.toHTML((name, field, options = { }) => {
+      if (errors.hasOwnProperty(name)) {
+        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+      }
+      return renderForm(name, field, options);
+    })
   });
 }
 
-function renderApplyPageWithForm(res, form) {
-  renderPageWithForm(res, 'apply/form.html', form);
+function renderApplyPageWithForm(res, form, errors = { }) {
+  renderPageWithForm(res, 'apply/form.html', form, errors);
 }
 
-function renderTeamPageWithForm(res, form) {
-  renderPageWithForm(res, 'apply/team.html', form);
+function renderTeamPageWithForm(res, form, errors = { }) {
+  renderPageWithForm(res, 'apply/team.html', form, errors);
 }
 
 /**
