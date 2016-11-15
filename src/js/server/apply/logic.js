@@ -48,7 +48,7 @@ exports.createApplicationFromForm = function (formData, user) {
 
 exports.createTeamFromForm = function (formData, user, errors) {
   const members = new Set();
-  const hackerIds = [];
+  const hackerIds = [user.id];
   const applicationSlugs = {
     'memberB': formData.memberB,
     'memberC': formData.memberC,
