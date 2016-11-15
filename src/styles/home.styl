@@ -14,7 +14,6 @@
   min-height: 100vh;
   padding: ($punit * 3) 0;
 
-  background: desaturate(darken($colorPrimary, 50%), 25%);
   color: #fff;
   padding-top: 103px; /*Stop MLH logo from obscuring logo on mobile*/
 }
@@ -158,7 +157,8 @@ a.signin-link {
   width: 50%;
   width: 90vh;
   squareify();
-  background: desaturate(darken($colorPrimary, 30%), 20%);
+  // background: desaturate(darken($colorPrimary, 30%), 20%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   --diamond-scale: 1;
   transform: translate(-50%, -50%) rotate(45deg) scale(1);
   transform: translate(-50%, -50%) rotate(45deg) scale(var(--diamond-scale));
@@ -167,7 +167,8 @@ a.signin-link {
 .landing-welcome-background-box2 {
   width: 70%;
   squareify();
-  background: desaturate(darken($colorPrimary, 20%), 15%);
+  // background: desaturate(darken($colorPrimary, 20%), 15%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   position: absolute;
   left: 15%;
   top: 15%;
@@ -176,7 +177,8 @@ a.signin-link {
 .landing-welcome-background-box3 {
   width: 70%;
   squareify();
-  background: $colorPrimary;
+  // background: $colorPrimary;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   position: absolute;
   left: 15%;
   top: 15%;
@@ -186,7 +188,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
 
 .landing-welcome-intro {
   overflow: hidden;
-  background: $initialBackgroundColor;
+  background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
   color: #fff;
 }
 
@@ -201,6 +203,8 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   padding-bottom: ($punit * 8);
 
   text-align: center;
+  
+
 }
 
 /* ==========================================================================
@@ -216,7 +220,8 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   padding-bottom: ($punit * 4);
   // This gradient may look better if we arc it,
   // but that requires some geometric dexterity
-  background: linear-gradient(to bottom, transparentify($colorSecondary, 0), $colorSecondary);
+  // background: linear-gradient(to bottom, transparentify($colorSecondary, 0), $colorSecondary);
+  background: linear-gradient(5deg, $colorSecondary 50%, transparentify($colorPink, 0) 50%);
   text-align: center;
 
   display: flex;
@@ -229,6 +234,9 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   margin: 0 ($punit / 2);
   vertical-align: middle;
   flex: 0 1 auto;
+  
+  border: 3px solid white;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.5);
 
   &-small {
     width: 200px;
@@ -289,10 +297,26 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   color: #fff;
   padding-top: $punit * 4;
   padding-bottom: $punit * 4;
-
-  h2 {
-    text-align: center;
+  
+  a {
+    color: $colorLightLink;
   }
+  
+  .backed-title {
+    position: relative;
+    z-index: 50;
+    padding: 0.5em 2em;
+    text-align: center;
+    background: $colorPink;
+    transform: rotate(-2deg);
+    display: inline-block;
+    h2 {
+      z-index: 1;
+      margin: 0;
+    }
+  }
+  
+  
 
   .content-wrapper {
     width: 1000px;
@@ -308,12 +332,12 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 
   .faq-element {
-    color: $textColor;
+    color: white;
     display: inline-block;
     display: flex;
 
     width: 100%;
-    padding: ($punit);
+    padding: 5px;
     box-sizing: border-box;
     vertical-align: top;
 
@@ -321,29 +345,23 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 
   .faq-element-inner {
-    background: #fff;
     padding: ($punit);
 
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-
-    border-radius: 2px;
+    
+    width: 100%;
+    
   }
 
   h3 {
     margin-top: ($punit * 2);
   }
 
-  @media only screen and (min-width: 500px) {
-    .faq-element {
-      width: 50%;
-    }
-  }
-
   @media only screen and (min-width: 800px) {
     .faq-element {
-      width: 33.33%;
+      width: 50%;
     }
   }
 }
