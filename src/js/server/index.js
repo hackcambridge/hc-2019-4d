@@ -23,8 +23,6 @@ var server = require('http').Server(app);
 var fetch = require('node-fetch');
 const { dbSynced } = require('js/server/models');
 
-require('./sockets.js')(server);
-
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
 });
@@ -42,8 +40,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-auth.setUpAuth(app);
-
 // Static file serving
 var staticOptions = { };
 if (app.settings.env != 'development') {
@@ -51,6 +47,8 @@ if (app.settings.env != 'development') {
 }
 app.use(require('compression')());
 app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOptions));
+
+auth.setUpAuth(app);
 
 // View rendering
 var nunjucksEnv = nunjucks.configure(utils.resolvePath('src/views'), {
