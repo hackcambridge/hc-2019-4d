@@ -19,10 +19,17 @@
       {# These two links point to the same location, and do the same thing.
          But to capture the intent of the user, we're making the apparent functionality
          into two links. #}
-      <p class="apply-link-container">
-        <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-      </p>
-      <a class="signin-link" href="/apply/dashboard">Or Sign In</a>
+      
+      {% if user.firstName %}
+          <p class="apply-link-container">        
+              <a class="apply-link" href="/apply/form">Go to dashboard</a>
+          </p>
+      {% else %}
+        <p class="apply-link-container">
+          <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
+        </p>
+        <a class="signin-link" href="/apply/form">Or Sign In</a>
+      {% endif %}
     </div>
     <div class="landing-welcome-social-links">
       <p>Email us at <a href="mailto:team@hackcambridge.com">team@hackcambridge.com</a></p>
@@ -107,7 +114,7 @@
         It's simple: click on the link below.
       </p>
       <p class="apply-link-container">
-        <a class="apply-link" href="/apply">Apply with MyMLH</a>
+        <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
       </p>
     </div>
   </div>
