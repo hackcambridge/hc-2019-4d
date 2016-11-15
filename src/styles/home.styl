@@ -234,6 +234,9 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   margin: 0 ($punit / 2);
   vertical-align: middle;
   flex: 0 1 auto;
+  
+  border: 3px solid white;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.5);
 
   &-small {
     width: 200px;
@@ -294,10 +297,26 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   color: #fff;
   padding-top: $punit * 4;
   padding-bottom: $punit * 4;
-
-  h2 {
-    text-align: center;
+  
+  a {
+    color: #EC9908;
   }
+  
+  .backed-title {
+    position: relative;
+    z-index: 50;
+    padding: 0.5em 2em;
+    text-align: center;
+    background: $colorPink;
+    transform: rotate(-2deg);
+    display: inline-block;
+    h2 {
+      z-index: 1;
+      margin: 0;
+    }
+  }
+  
+  
 
   .content-wrapper {
     width: 1000px;
@@ -318,7 +337,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
     display: flex;
 
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box;
     vertical-align: top;
 
@@ -333,9 +352,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
     justify-content: flex-end;
     
     width: 100%;
-
-    border-radius: 2px;
-    border: 3px solid $colorPrimary;
+    
   }
 
   h3 {

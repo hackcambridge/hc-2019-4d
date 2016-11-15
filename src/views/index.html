@@ -57,12 +57,12 @@
   </section>
   <section class="landing-about-section" id="about">
     <div class="content-wrapper-thin">
-      <h2>We're back. Better than ever before.</h2>
+      <h2>We're going in for <code>n=2;</code></h2>
       <p>
-        Cambridge's very own hackathon returns for its second year. For 24 hours 300 of the most brilliant students from around the world will come together to push technology to its limits.
+        Cambridge's very own hackathon is back for its second year. For 24 hours, 300 wonderful students from around the world will come together to learn, build, tinker, and push technology to its limits.
       </p>
       <p>
-        This is your chance to be part of the drive for innovation.
+        We'd love you to be there.
       </p>
       <p class="apply-link-container">
         <a class="apply-link" href="/apply">Apply with MyMLH</a>
@@ -72,25 +72,29 @@
   <section class="landing-photo-section">
   {# We should hard-code the image resolutions here once we know them #}
   <div class="landing-photo landing-photo-small" src="http://placehold.it/200x400" alt="">
-    <img src="http://placehold.it/200x400" alt="" />
+    <img src="{{ asset('images/home_6.jpg') }}" alt="" />
   </div>
   <div class="landing-photo landing-photo-medium" src="http://placehold.it/200x400" alt="">
-    <img src="http://placehold.it/200x400" alt="" />
+    <img src="{{ asset('images/home_7.jpg') }}" alt="" />
   </div>
   <div class="landing-photo landing-photo-large" src="http://placehold.it/200x400" alt="">
-    <img src="http://placehold.it/200x400" alt="" />
+    <img src="{{ asset('images/home_1.jpg') }}" alt="" />
   </div>
   <div class="landing-photo landing-photo-medium" src="http://placehold.it/200x400" alt="">
-    <img src="http://placehold.it/200x400" alt="" />
+    <img src="{{ asset('images/home_8.jpg') }}" alt="" />
   </div>
   <div class="landing-photo landing-photo-small" src="http://placehold.it/200x400" alt="">
-    <img src="http://placehold.it/200x400" alt="" />
+    <img src="{{ asset('images/home_5.jpg') }}" alt="" />
   </div>
 </section>
 </div>
 <section class="landing-faqs-section" id ="faq">
   <div class="content-wrapper">
-    <h2>Frequently Asked Questions</h2>
+    <div class="backed-title">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-title-backer"></div>
+    </div>
+    
     <div class="faqs-listing"><!--
       {% for faq in faqs %}
       --><div class="faq-element">
