@@ -318,7 +318,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
     display: flex;
 
     width: 100%;
-    padding: ($punit);
+    padding: 10px;
     box-sizing: border-box;
     vertical-align: top;
 
@@ -331,6 +331,8 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    
+    width: 100%;
 
     border-radius: 2px;
     border: 3px solid $colorPrimary;
@@ -340,15 +342,9 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
     margin-top: ($punit * 2);
   }
 
-  @media only screen and (min-width: 500px) {
-    .faq-element {
-      width: 50%;
-    }
-  }
-
   @media only screen and (min-width: 800px) {
     .faq-element {
-      width: 33.33%;
+      width: 50%;
     }
   }
 }
