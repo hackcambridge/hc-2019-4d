@@ -218,7 +218,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   padding-left: ($punit / 2);
   padding-right: ($punit / 2);
   padding-bottom: ($punit * 4);
-  background: linear-gradient(5deg, $colorSecondary 50%, transparentify($colorPink, 0) 50%);
+  background: linear-gradient(5deg, $colorSecondary calc(50% - 1px), transparentify($colorSecondary, $colorSecondary, 0) 50%);
   text-align: center;
 
   display: flex;
