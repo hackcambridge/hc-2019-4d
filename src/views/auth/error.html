@@ -1,0 +1,9 @@
+{% extends 'default.html' %}
+{% set title = 'Authentication Error' %}
+{% block pageHeading %}We're Sorry{% endblock %}
+{% block pageContent %}
+{% if errorCode === 'TOO_YOUNG' %}
+<p>Unfortunately, due to legal reasons, only people who are 18 or over on the day of the hackathon can attend &#x1F61E;</p>
+<p>But don't let that put you off! We look forward to seeing you at a later event!</p>
+{% endif %}
+{% endblock %}
