@@ -449,31 +449,35 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
 
 .landing-quote-section {
   position: relative;
-  padding: ($punit * 2) ($punit * 6);
+  padding: ($punit * 2) 0;
   background: $colorPink;
   color: white;
   font-size: 1.2em;
+  text-align: center;
   
   & blockquote {
+    display: inline-block;
+    position: relative;
     quotes: none;
     text-align: justify;
+    max-width: 1050px;
   }
   
-  &::before, &::after {
+  & blockquote::before, & blockquote::after {
     position: absolute;
-    top: $punit * 2;
+    top: -0.3em;
     font-size: 3em;
     font-family: 'Georgia', serif;
   }
   
-  &::before {
+  & blockquote::before {
     content: '“';
-    left: $punit * 8;
+    left: $punit * -2;
   }
   
-  &::after {
+  & blockquote::after {
     content: '”';
-    right: $punit * 8;
+    right: $punit * -2;
   }
   
   & cite {
