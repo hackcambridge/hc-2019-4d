@@ -133,6 +133,13 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       ],
       cssClasses,
     }),
+    student_status: fields.boolean({
+      label: 'Please confirm your student status:',
+      note: '',
+      widget: checkboxWidget('I am currently a student or I graduated after January 28th 2016.'),
+      required: validators.matchValue(() => true, 'You must confirm your student status to apply.'),
+      cssClasses,
+    }),
     terms: fields.boolean({
       label: 'Do you accept our <a href="/terms" target="_blank">terms and conditions</a> and <a href="/privacy" target="_blank">privacy policy</a>?',
       note: 'This includes the <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>.',

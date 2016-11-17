@@ -1,6 +1,10 @@
 const Sequelize = require('sequelize');
 const statuses = require('js/shared/status-constants');
+const moment = require('moment');
+const dates = require('js/shared/dates');
 const db = require('./db');
+
+const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
 
 // Return a promise that evaluates to the team application status
 const getTeamApplicationStatus = function (hackerApplication) {
@@ -141,7 +145,13 @@ const Hacker = module.exports = db.define('hacker', {
   }
 });
 
+Hacker.TooYoungError = class TooYoungError extends Error { };
+
 Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
+  if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {
+    return Promise.reject(new Hacker.TooYoungError());
+  }
+
   return Hacker.upsert({
     // Personal
     mlhId: mlhUser.id,
