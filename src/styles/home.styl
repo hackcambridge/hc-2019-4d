@@ -447,6 +447,57 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 }
 
+.landing-quote-section {
+  position: relative;
+  padding: ($punit * 2) 0;
+  background: $colorPink;
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
+  
+  & blockquote {
+    display: inline-block;
+    position: relative;
+    quotes: none;
+    text-align: justify;
+    max-width: 1050px;
+  }
+  
+  & blockquote::before, & blockquote::after {
+    position: absolute;
+    top: -0.3em;
+    font-size: 3em;
+    font-family: 'Georgia', serif;
+  }
+  
+  & blockquote::before {
+    content: '“';
+    left: $punit * -2;
+  }
+  
+  & blockquote::after {
+    content: '”';
+    right: $punit * -2;
+  }
+  
+  & cite {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+  }
+  
+  & cite div::before {
+    content: "—";
+    padding-right: 8px;
+  }
+  
+  & .endorsement-logo {
+    width: $punit * 6;
+    margin-top: $punit;
+    margin-right: $punit * 0.5;
+  }
+}
+
 .landing-helpers-section {
   padding: $punit * 3 0;
 }
