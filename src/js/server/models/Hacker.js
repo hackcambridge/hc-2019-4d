@@ -141,7 +141,10 @@ const Hacker = module.exports = db.define('hacker', {
     getTeamApplicationStatus: getTeamApplicationStatus,
     getResponseStatus: getResponseStatus,
     getFurtherDetailsStatus: getFurtherDetailsStatus,
-    getApplicationStatus: getApplicationStatus
+    getApplicationStatus: getApplicationStatus,
+    log(logText) {
+      console.log(`[User ${this.id}] ${logText}`);
+    },
   }
 });
 

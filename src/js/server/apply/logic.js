@@ -30,8 +30,7 @@ exports.createApplicationFromForm = function (formData, user) {
         inTeam: application.inTeam,
       }),
     }).catch(console.log.bind(console));
-
-    console.log(`An application was successfully made by ${user.firstName} ${user.lastName}.`);
+    user.log('Application made successfully');
     return application;
   }).catch(err => {
     if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
