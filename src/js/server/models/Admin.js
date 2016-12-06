@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./db');
+const HackerApplication = require('./HackerApplication');
 
 const Admin = module.exports = db.define('admin', {
   name: {
@@ -13,4 +14,12 @@ const Admin = module.exports = db.define('admin', {
   },
 }, {
   tableName: 'admins',
+  instanceMethods: {
+    getNextApplicationToReview() {
+      // TODO: Make this return something meaningful
+      return HackerApplication.findOne({
+        order: [ Sequelize.fn('RANDOM') ],
+      });
+    },
+  }
 });

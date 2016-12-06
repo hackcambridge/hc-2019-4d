@@ -28,6 +28,8 @@ hcapi.use(bodyParser.json());
 
 // API endpoints
 hcapi.use('/tokens', require('./tokens'));
+hcapi.use('/admins', require('./admins'));
+hcapi.use('/applications', require('./applications'));
 
 // Errors
 hcapi.use(errors.middleware.notFound);
