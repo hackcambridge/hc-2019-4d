@@ -14,7 +14,8 @@ tokensRouter.get('/:token', (req, res, next) => {
     },
   }).then((token) => {
     if (!token) {
-      throw createHttpError(404, 'Not Found');
+      next();
+      return;
     }
 
     res.json({
