@@ -2,4 +2,4 @@ try {
   require('dotenv').load();
 } catch (e) { }
 
-require('js/server');
+require('js/hc-scripts');
