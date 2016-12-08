@@ -14,12 +14,4 @@ const Admin = module.exports = db.define('admin', {
   },
 }, {
   tableName: 'admins',
-  instanceMethods: {
-    getNextApplicationToReview() {
-      // TODO: Make this return something meaningful
-      return HackerApplication.findOne({
-        order: [ Sequelize.fn('RANDOM') ],
-      });
-    },
-  }
 });
