@@ -4,6 +4,16 @@ const { createHttpError } = require('./errors');
 
 const applicationsRouter = new Router();
 
+applicationsRouter.get('/', (req, res, next) => {
+  HackerApplication
+    .findAll()
+    .then((applications) => {
+      res.json({
+        applications,
+      });
+    })
+});
+
 applicationsRouter.get('/:applicationId', (req, res, next) => {
   HackerApplication
     .findOne({
