@@ -7,7 +7,7 @@ const criteriaRouter = new Router();
  * Gets all review criteria
  */
 criteriaRouter.get('/', (req, res, next) => {
-  ReviewCriterion.find().then((criteria) => {
+  ReviewCriterion.findAll().then((criteria) => {
     res.json({ criteria });
   }).catch(next);
 });
