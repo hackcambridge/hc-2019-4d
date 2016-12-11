@@ -5,6 +5,11 @@ const HackerApplication = require('./HackerApplication');
 const ApplicationResponse = require('./ApplicationResponse');
 const Team = require('./Team');
 const TeamMember = require('./TeamMember');
+const Admin = require('./Admin');
+const OauthAccessToken = require('./OauthAccessToken');
+const ApplicationReview = require('./ApplicationReview');
+const ReviewCriterion = require('./ReviewCriterion');
+const ReviewCriterionScore = require('./ReviewCriterionScore');
 
 module.exports = {
   db,
@@ -12,5 +17,10 @@ module.exports = {
   HackerApplication,
   ApplicationResponse,
   Team,
-  TeamMember
+  TeamMember,
+  OauthAccessToken,
+  Admin,
+  ApplicationReview,
+  ReviewCriterion,
+  ReviewCriterionScore,
 };

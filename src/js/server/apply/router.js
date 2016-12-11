@@ -31,28 +31,35 @@ applyRouter.get('/', (req, res) => {
 
 applyRouter.all('/form', checkHasApplied);
 
-applyRouter.post('/form', fileUploadMiddleware.single('cv'), (req, res, next) => {
-  const form = createApplicationForm();
+applyRouter.post('/form', (req, res, next) => {
+    req.user.log('Attempted to make an application');
+    next();
+  },
+  fileUploadMiddleware.single('cv'), 
+  (req, res, next) => {
+    req.user.log('Application file uploaded');
+    const form = createApplicationForm();
 
-  // HACK: Put all our fields in the same place by moving the file into req.body
-  req.body.cv = req.file;
+    // HACK: Put all our fields in the same place by moving the file into req.body
+    req.body.cv = req.file;
 
-  form.handle(req.body, {
-    success: (resultForm) => {
-      applyLogic.createApplicationFromForm(resultForm.data, req.user)
-        .then(() => {
-          res.redirect(`${req.baseUrl}/form`);
-        })
-        .catch(next);
-    },
-    error: (resultForm) => {
-      renderApplyPageWithForm(res, resultForm);
-    },
-    empty: () => {
-      renderApplyPageWithForm(res, form);
-    }
-  });
-});
+    form.handle(req.body, {
+      success: (resultForm) => {
+        applyLogic.createApplicationFromForm(resultForm.data, req.user)
+          .then(() => {
+            res.redirect(`${req.baseUrl}/form`);
+          })
+          .catch(next);
+      },
+      error: (resultForm) => {
+        renderApplyPageWithForm(res, resultForm);
+      },
+      empty: () => {
+        renderApplyPageWithForm(res, form);
+      }
+    });
+  }
+);
 
 applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
   const form = createTeamForm();

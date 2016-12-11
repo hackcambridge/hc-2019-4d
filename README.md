@@ -68,6 +68,27 @@ We are using the sequelize CLI to manage migrations. So to create your own:
 npm run sequelize -- migration:create --name YOURMIGRATION
 ```
 
+## OAuth2 API
+
+We run an API which authenticates admin users via tokens. Currently the only way to create tokens is
+through scripts. To create a user:
+
+```
+npm run hc-script -- create-admin --email email@domain.com --name UserName
+```
+
+To then create a token for that user:
+
+```
+npm run hc-script -- create-token email@domain.com
+```
+
+Once you have your token, you can use it to authenticate requests to the API in your HTTP headers:
+
+```
+Authorization: Bearer <<TOKEN GOES HERE >>
+```
+
 ## Build System
 
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
@@ -80,6 +101,7 @@ gulp watch # Watch for changes in assets and build automatically
 gulp build --prod # Build production assets (or set NODE_ENV to production)
 ```
 
-## Deploying
+## Rolling your own
 
-Deploying is done manually through Heroku interface.
+Want to run this in production? Hack Cambridge runs on [Heroku](https://heroku.com) so we recommend that. This application
+handles a lot of sensitive user data so you'll want to make sure **https is implemented and enforced**.
