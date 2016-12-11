@@ -5,6 +5,24 @@ const reviewLogic = require('js/server/review/logic');
 
 const adminsRouter = new Router();
 
+adminsRouter.get('/by-email/:email', (req, res, next) => {
+  Admin
+    .findOne({
+      where: {
+        email: req.params.email,
+      },
+    })
+    .then((admin) => {
+      if (!admin) {
+        next();
+        return;
+      }
+
+      res.json({ admin });
+    })
+    .catch(next);
+});
+
 adminsRouter.get('/:adminId/next-review-application', (req, res, next) => {
   Admin
     .findById(req.params.adminId)
