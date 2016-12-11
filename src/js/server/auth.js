@@ -39,6 +39,11 @@ exports.setUpAuth = function (app) {
 
   app.use(setUserFromSession);
   app.get('/auth/callback', handleCallback);
+  app.get('/auth/error', (req, res) => {
+    res.render('auth/error.html', {
+      errorCode: req.query.code,
+    });
+  });
 }
 
 // Ensures that there is user data available, otherwise redirects to authenticate the user
@@ -104,6 +109,11 @@ function handleCallback(req, res, next) {
         // Redirect with auth
         res.redirect(redirectTo);
       }).catch(err => {
+        if (err instanceof Hacker.TooYoungError) {
+          res.redirect('/auth/error?code=TOO_YOUNG')
+          return;
+        }
+
         console.log('Error logging a user in');
         next(err);
       });
