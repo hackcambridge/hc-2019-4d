@@ -17,6 +17,7 @@ hcapi.use(bodyParser.json());
 hcapi.use('/tokens', require('./tokens'));
 hcapi.use('/admins', require('./admins'));
 hcapi.use('/applications', require('./applications'));
+hcapi.use('/criteria', require('./criteria'));
 
 // Errors
 hcapi.use(errors.middleware.notFound);
