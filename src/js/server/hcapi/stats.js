@@ -23,7 +23,7 @@ statsRouter.get('/', (req, res, next) => {
       "SELECT \"hackerApplicationId\", COUNT(id)" + 
       "FROM \"application-reviews\"" +
       "GROUP BY \"hackerApplicationId\"" +
-    ") review_counts";
+    ") review_counts WHERE count >= 2";
 
   const applicationsReviewedCountPromise = 
   db.query(applicationsReviewedQuery, { type: db.QueryTypes.SELECT }).then((counts) => {
