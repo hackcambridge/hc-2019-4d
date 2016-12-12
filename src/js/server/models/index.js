@@ -10,6 +10,7 @@ const OauthAccessToken = require('./OauthAccessToken');
 const ApplicationReview = require('./ApplicationReview');
 const ReviewCriterion = require('./ReviewCriterion');
 const ReviewCriterionScore = require('./ReviewCriterionScore');
+const ApplicationAssignment = require('./ApplicationAssignment');
 
 module.exports = {
   db,
@@ -20,6 +21,7 @@ module.exports = {
   TeamMember,
   OauthAccessToken,
   Admin,
+  ApplicationAssignment,
   ApplicationReview,
   ReviewCriterion,
   ReviewCriterionScore,
