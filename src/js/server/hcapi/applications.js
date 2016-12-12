@@ -6,7 +6,14 @@ const applicationsRouter = new Router();
 
 applicationsRouter.get('/', (req, res, next) => {
   HackerApplication
-    .findAll()
+    .findAll({
+      include: [
+        {
+          model: Hacker,
+          required: true,
+        },
+      ],
+    })
     .then((applications) => {
       res.json({
         applications,
