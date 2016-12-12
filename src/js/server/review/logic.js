@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { ReviewCriterionScore, ApplicationReview, HackerApplication } = require('js/server/models');
+const { ReviewCriterionScore, ApplicationReview, HackerApplication, ApplicationAssignment } = require('js/server/models');
 
 exports.reviewApplication = function reviewApplication(admin, hackerApplication, reviewCriterionScores) {
   // TODO: Make this operation idempotent to allow for multiple calls to edit reviews
@@ -18,5 +18,13 @@ exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReview
   // TODO: Make this return something meaningful
   return HackerApplication.findOne({
     order: [ Sequelize.fn('RANDOM') ],
+  }).then((hackerApplication) => {
+    // Add this assignment to the assignments table
+    // Resolve to the application only when the assignment
+    // has been recorded
+    return ApplicationAssignment.create({
+      adminId: admin.id,
+      hackerApplicationId: hackerApplication.id
+    }).then(() => { return hackerApplication });
   });
 };
