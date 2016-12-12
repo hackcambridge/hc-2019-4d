@@ -80,6 +80,21 @@ adminsRouter.post('/:adminId/reviews/:applicationId', (req, res, next) => {
         });
       });
   }).catch(next);
+});
+
+adminsRouter.get('/:adminId/reviews/:applicationId', (req, res, next) => {
+  reviewLogic.getApplicationReview(req.params.adminId, req.params.applicationId)
+    .then((applicationReview) => {
+      if (!applicationReview) {
+        next();
+        return;
+      }
+
+      res.json({
+        applicationReview
+      });
+    })
+    .catch(next);
 })
 
 module.exports = adminsRouter;
