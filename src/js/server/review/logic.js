@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const { ReviewCriterionScore, ApplicationReview, HackerApplication, db } = require('js/server/models');
+const { ReviewCriterionScore, ApplicationReview, HackerApplication, ApplicationAssignment, db } = require('js/server/models');
+const fs = require('fs');
 
 function upsertCriterionScore(applicationReviewId, reviewCriterionId, score, transaction) {
   // Sequelize's upsert does not work with composite unique keys
@@ -63,8 +64,29 @@ exports.getApplicationReview = function getApplicationReview(adminId, hackerAppl
 }
 
 exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReviewForAdmin(admin) {
-  // TODO: Make this return something meaningful
-  return HackerApplication.findOne({
-    order: [ Sequelize.fn('RANDOM') ],
+  // To get an appropriate application we run the query stored at assign.sql
+  const assignmentQuery = fs.readFileSync('src/js/server/review/assign.sql', 'utf8');
+  return db.query(assignmentQuery, {
+    // There is a placeholder in the SQL file marked ':adminId', we replace it here
+    replacements: {adminId: admin.id},
+    type: Sequelize.QueryTypes.SELECT
+  }).then((applicationRecords) => {
+    // db.query returns an array, check if it contains a result
+    if (applicationRecords === undefined || applicationRecords.length == 0) {
+      console.log("Couldn't find any applications to assign to this admin");
+      return null;
+    } else {
+      // Build a HackerApplication object from the result
+      const applicationRecord = applicationRecords[0];
+      const hackerApplication = HackerApplication.build(applicationRecord, {raw: true, isNewRecord: false});
+      
+      // Add this assignment to the assignments table
+      // Resolve to the application only when the assignment
+      // has been recorded
+      return ApplicationAssignment.create({
+        adminId: admin.id,
+        hackerApplicationId: hackerApplication.id
+      }).then(() => { return hackerApplication });
+    }
   });
 };
