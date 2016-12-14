@@ -14,7 +14,15 @@ applicationsRouter.get('/', (req, res, next) => {
         },
       ],
     })
-    .then((applications) => {
+    .then(applications => Promise.all(applications.map(appl => appl.hacker.getResponseStatus(appl).then(responseStatus => ({
+      name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
+      gender: appl.hacker.gender,
+      country: appl.countryTravellingFrom,
+      inTeam: appl.inTeam,
+      rating: 0, // Temporary — will be replaced with actual score soon
+      status: responseStatus.substr(0, 1).toUpperCase() + responseStatus.substr(1)
+    })))))
+    .then(applications => {
       res.json({
         applications,
       });
