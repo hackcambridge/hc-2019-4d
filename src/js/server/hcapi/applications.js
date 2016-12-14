@@ -15,6 +15,7 @@ applicationsRouter.get('/', (req, res, next) => {
       ],
     })
     .then(applications => Promise.all(applications.map(appl => appl.hacker.getResponseStatus(appl).then(responseStatus => ({
+      id: appl.id,
       name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
       gender: appl.hacker.gender,
       country: appl.countryTravellingFrom,
