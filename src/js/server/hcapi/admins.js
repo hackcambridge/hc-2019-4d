@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Admin, HackerApplication } = require('js/server/models');
+const { Admin, HackerApplication, ApplicationReview } = require('js/server/models');
 const { createHttpError } = require('./errors');
 const reviewLogic = require('js/server/review/logic');
 
@@ -95,6 +95,29 @@ adminsRouter.get('/:adminId/reviews/:applicationId', (req, res, next) => {
       });
     })
     .catch(next);
-})
+});
+
+adminsRouter.get('/:adminId/stats', (req, res, next) => {
+  Admin
+    .findById(req.params.adminId)
+    .then((admin) => {
+      if (!admin) {
+        next();
+        return;
+      }
+
+      return Promise.all([
+        ApplicationReview.count({ where: { adminId: admin.id }}),
+        HackerApplication.count(),
+        Admin.count(),
+      ]).then(([ applicationsReviewedByAdminCount, applicationCount, adminCount ]) => {
+        res.json({
+          applicationsReviewedCount: applicationsReviewedByAdminCount,
+          applicationsReviewedGoal: applicationCount * 2 / adminCount,
+        });
+      });
+    })
+    .catch(next);
+});
 
 module.exports = adminsRouter;
