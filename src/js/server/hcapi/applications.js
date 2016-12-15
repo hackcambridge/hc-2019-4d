@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Hacker, HackerApplication } = require('js/server/models');
+const { Hacker, HackerApplication, ApplicationResponse } = require('js/server/models');
 const { createHttpError } = require('./errors');
 
 const applicationsRouter = new Router();
@@ -12,17 +12,21 @@ applicationsRouter.get('/', (req, res, next) => {
           model: Hacker,
           required: true,
         },
+        {
+          model: ApplicationResponse,
+          required: false,
+        },
       ],
     })
-    .then(applications => Promise.all(applications.map(appl => appl.hacker.getResponseStatus(appl).then(responseStatus => ({
+    .then(applications => applications.map(appl => ({
       id: appl.id,
       name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
       gender: appl.hacker.gender,
       country: appl.countryTravellingFrom,
       inTeam: appl.inTeam,
       rating: 0, // Temporary — will be replaced with actual score soon
-      status: responseStatus.substr(0, 1).toUpperCase() + responseStatus.substr(1)
-    })))))
+      status: appl.applicationResponse !== null ? (appl.applicationResponse === 'invited' ? 'Invited' : 'Not Invited') : 'Pending'
+    })))
     .then(applications => {
       res.json({
         applications,
