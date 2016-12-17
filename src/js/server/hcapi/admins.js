@@ -5,7 +5,7 @@ const reviewLogic = require('js/server/review/logic');
 
 /**
  * The amount to increase admin goals by to allow for the fact that
- * not everyone will meat their goal.
+ * not everyone will meet their goal.
  */
 const GOAL_BOOST = 1.2;
 
