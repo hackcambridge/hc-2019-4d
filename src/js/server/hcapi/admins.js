@@ -3,6 +3,12 @@ const { Admin, HackerApplication, ApplicationReview } = require('js/server/model
 const { createHttpError } = require('./errors');
 const reviewLogic = require('js/server/review/logic');
 
+/**
+ * The amount to increase admin goals by to allow for the fact that
+ * not everyone will meat their goal.
+ */
+const GOAL_BOOST = 1.2;
+
 const adminsRouter = new Router();
 
 adminsRouter.get('/by-email/:email', (req, res, next) => {
@@ -113,7 +119,7 @@ adminsRouter.get('/:adminId/stats', (req, res, next) => {
       ]).then(([ applicationsReviewedByAdminCount, applicationCount, adminCount ]) => {
         res.json({
           applicationsReviewedCount: applicationsReviewedByAdminCount,
-          applicationsReviewedGoal: applicationCount * 2 / adminCount,
+          applicationsReviewedGoal: Math.ceil(applicationCount * 2 / adminCount * GOAL_BOOST),
         });
       });
     })
