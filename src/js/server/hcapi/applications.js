@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { Hacker, HackerApplication, ApplicationResponse } = require('js/server/models');
 const { createHttpError } = require('./errors');
+const responseLogic = require('js/server/review/response-logic');
 
 const applicationsRouter = new Router();
 
@@ -58,6 +59,34 @@ applicationsRouter.get('/:applicationId', (req, res, next) => {
       });
     })
     .catch(next);
+});
+
+/**
+ * Sets a response for an individual application. Expects a response type in its body:
+ * 
+ * ```
+ * {
+ *   "response": "invited"
+ * }
+ * ```
+ */
+applicationsRouter.post('/:applicationId/response', (req, res, next) => {
+  HackerApplication.findOne({
+    where: {
+      id: req.params.applicationId,
+    },
+  }).then((application) => {
+    if (!application) {
+      next();
+      return;
+    }
+
+    return responseLogic
+      .setResponseForApplicationWithChecks(application, req.body.response)
+      .then((applicationResponse) => {
+        res.json(applicationResponse);
+      });
+  }).catch(next);
 });
 
 module.exports = applicationsRouter;
