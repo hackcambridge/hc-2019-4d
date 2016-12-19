@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
-const { ReviewCriterionScore, ApplicationReview, HackerApplication, db } = require('js/server/models');
+const { ReviewCriterionScore, ApplicationReview, HackerApplication, ApplicationAssignment, db } = require('js/server/models');
+const fs = require('fs');
+const assignmentQuery = fs.readFileSync('src/js/server/review/assign.sql', 'utf8');
 
 function upsertCriterionScore(applicationReviewId, reviewCriterionId, score, transaction) {
   // Sequelize's upsert does not work with composite unique keys
@@ -63,8 +65,36 @@ exports.getApplicationReview = function getApplicationReview(adminId, hackerAppl
 }
 
 exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReviewForAdmin(admin) {
-  // TODO: Make this return something meaningful
-  return HackerApplication.findOne({
-    order: [ Sequelize.fn('RANDOM') ],
+  // We use a transaction to make sure we don't assign an application without storing an assignment record
+  return db.transaction(function (t) {
+    // Get an application
+    return db.query(assignmentQuery, {
+      // There is a placeholder in the SQL file marked ':adminId',
+      // we replace it here with current admin Id
+      replacements: {adminId: admin.id},
+      type: Sequelize.QueryTypes.SELECT,
+      transaction: t,
+    }).then((applicationRecords) => {
+      // db.query returns an array, check if it contains a result
+      if (applicationRecords === undefined || applicationRecords.length == 0) {
+        console.log("Couldn't find any applications to assign to this admin");
+        return null;
+      } else {
+        // Build a HackerApplication object from the result
+        const applicationRecord = applicationRecords[0];
+        const hackerApplication = HackerApplication.build(applicationRecord, {raw: true, isNewRecord: false});
+        
+        // Make new assignment record 
+        return ApplicationAssignment.create({
+          adminId: admin.id,
+          hackerApplicationId: hackerApplication.id
+        }, { transaction: t }).then(() => {
+          return hackerApplication
+        });
+      }
+    });
+  }).catch(function (err) {
+    console.log("Failed to assign application to admin. Rolled back.");
+    console.log(err);
   });
 };
