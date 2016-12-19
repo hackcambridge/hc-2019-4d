@@ -31,7 +31,15 @@ statsRouter.get('/', (req, res, next) => {
     return parseInt(counts[0].count);
   });
 
-  const leaderboardQuery = `SELECT "admins"."name", COALESCE(reviews.count, 0) AS count, "admins"."id" FROM "admins" LEFT JOIN (SELECT "adminId", COUNT(DISTINCT "hackerApplicationId") FROM "application-reviews" GROUP BY "adminId") AS reviews ON "admins"."id" = "adminId" ORDER BY count DESC, "admins"."name" ASC`;
+  const leaderboardQuery =
+    `SELECT "admins"."name", COALESCE(reviews.count, 0) AS count, "admins"."id" FROM
+      "admins"
+        LEFT JOIN
+          (SELECT "adminId", COUNT(DISTINCT "hackerApplicationId") FROM
+            "application-reviews"
+          GROUP BY "adminId") AS reviews
+        ON "admins"."id" = "adminId"
+    ORDER BY count DESC, "admins"."name" ASC`;
 
   const leaderboardPromise = db.query(leaderboardQuery, { type: db.QueryTypes.SELECT });
 
