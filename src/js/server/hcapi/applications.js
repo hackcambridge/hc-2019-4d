@@ -2,7 +2,6 @@ const { Router } = require('express');
 const Sequelize = require('sequelize');
 const { Hacker, HackerApplication, ApplicationResponse, TeamMember, Team, db } = require('js/server/models');
 const { createHttpError } = require('./errors');
-const responseLogic = require('js/server/review/response-logic');
 const fs = require('fs');
 const individualScoreQuery = fs.readFileSync('src/js/server/hcapi/queries/indiv_score_unteamed.sql', 'utf8');
 
