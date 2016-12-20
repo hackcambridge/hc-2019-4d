@@ -5,7 +5,7 @@ const emailTemplates = require('./email-templates');
 
 function isApplicationScoreValid(application) {
   // TODO: Make this work
-  return Promise.resolve(true);
+  return Promise.resolve(false);
 }
 
 /**
