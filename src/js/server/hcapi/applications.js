@@ -1,8 +1,5 @@
 const { Router } = require('express');
-const Sequelize = require('sequelize');
-const { Hacker, HackerApplication, ApplicationResponse, TeamMember, Team, db } = require('js/server/models');
-const { createHttpError } = require('./errors');
-const fs = require('fs');
+const { Hacker, HackerApplication, Team } = require('js/server/models');
 const { 
   getApplicationsWithTeams,
   getIndividualScores,

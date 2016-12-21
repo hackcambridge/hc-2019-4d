@@ -3,8 +3,6 @@ const { Hacker, HackerApplication, ApplicationResponse, ApplicationReview, TeamM
 const fs = require('fs');
 const individualScoreQuery = fs.readFileSync('src/js/server/review/individual_scores.sql', 'utf8');
 
-// Want method that takes application with team, teamAverages
-
 /**
  * Takes a HackerApplication and the set of individual scores,
  * produces the validated, group averaged (if necessary) score 
