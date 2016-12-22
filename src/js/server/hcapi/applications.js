@@ -1,38 +1,41 @@
 const { Router } = require('express');
-const { Hacker, HackerApplication, ApplicationResponse } = require('js/server/models');
 const { createHttpError } = require('./errors');
 const responseLogic = require('js/server/review/response-logic');
+const { Hacker, HackerApplication, Team } = require('js/server/models');
+const { 
+  getApplicationsWithTeams,
+  getIndividualScores,
+  getTeamsWithMembers,
+  calculateScore,
+  calculateTeamAverage,
+  calculateTeamsAverages,
+} = require('js/server/review/score-logic');
 
 const applicationsRouter = new Router();
 
 applicationsRouter.get('/', (req, res, next) => {
-  HackerApplication
-    .findAll({
-      include: [
-        {
-          model: Hacker,
-          required: true,
-        },
-        {
-          model: ApplicationResponse,
-          required: false,
-        },
-      ],
-    })
-    .then(applications => applications.map(appl => ({
-      id: appl.id,
-      name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
-      gender: appl.hacker.gender,
-      country: appl.countryTravellingFrom,
-      inTeam: appl.inTeam,
-      rating: 0, // Temporary — will be replaced with actual score soon
-      status: appl.applicationResponse !== null ? (appl.applicationResponse === 'invited' ? 'Invited' : 'Not Invited') : 'Pending'
-    })))
-    .then(applications => {
-      res.json({
-        applications,
-      });
-    })
+  Promise.all([
+    getApplicationsWithTeams(),
+    getIndividualScores(),
+    getTeamsWithMembers(),
+  ]).then(([applications, individualScores, teamsArr]) => {
+    const teamScores = calculateTeamsAverages(individualScores, teamsArr);
+
+    return applications.map(application => ({
+      id: application.id,
+      name: `${application.hacker.firstName} ${application.hacker.lastName}`,
+      gender: application.hacker.gender,
+      country: application.countryTravellingFrom,
+      inTeam: application.hacker.Team !== null || application.inTeam,
+      rating: calculateScore(application, individualScores, teamScores),
+      status: application.applicationResponse !== null ? (application.applicationResponse === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
+    }))
+
+  }).then(applications => {
+    res.json({
+      applications,
+    });
+  }).catch(next)
 });
 
 applicationsRouter.get('/:applicationId', (req, res, next) => {
