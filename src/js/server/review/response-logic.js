@@ -1,6 +1,7 @@
 const { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
 const { response } = require('js/shared/status-constants');
+const { applicationHasBeenIndividuallyScored } = require('./score-logic');
 const emailTemplates = require('./email-templates');
 
 function isApplicationScoreValid(application) {
@@ -52,7 +53,7 @@ function normalizeApplicationTeams(application) {
  */
 function checkApplicationsAreScored(applications) {
   return Promise
-    .all(applications.map(isApplicationScoreValid))
+    .all(applications.map(applicationHasBeenIndividuallyScored))
     .then(applicationValidities => applicationValidities.every(validity => validity))
     .then(areApplicationsValid => {
       if (!areApplicationsValid) {
