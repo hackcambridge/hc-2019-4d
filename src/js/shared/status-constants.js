@@ -3,8 +3,9 @@ module.exports = {
     INCOMPLETE: 'incomplete',
     IN_REVIEW: 'in-review',
     REJECTED: 'rejected',
-    ACCEPTED_INCOMPLETE: 'accepted-incomplete',
-    ACCEPTED_COMPLETE: 'accepted-complete'
+    INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
+    INVITED_COMPLETE: 'invited-complete',
+    INVITED_DECLINED: 'invited-declined',
   },
   application: {
     INCOMPLETE: 'incomplete',
@@ -15,6 +16,12 @@ module.exports = {
     WANTS_TEAM: 'wanting',
     INCOMPLETE: 'incomplete',
     COMPLETE: 'complete',
+  },
+  rsvp: {
+    NOT_APPLICABLE: 'na',
+    INCOMPLETE: 'incomplete',
+    COMPLETE_YES: 'complete-yes',
+    COMPLETE_NO: 'complete-no',
   },
   furtherDetails: {
     INCOMPLETE: 'incomplete',

@@ -10,15 +10,20 @@ dashboard:
       title: Your application is being reviewed &nbsp; &#9989; # Tick emoji
       subline: Sit back and relax — we'll get back to you as soon as we can
 
-    accepted-incomplete:
+    invited-awaiting-rsvp:
       message_type: success
       title: You're in!
-      subline: We'd love to have you at Hack Cambridge 2017. A few final details...
+      subline: We'd love to have you at Hack Cambridge 2017. Please confirm your place below.
 
-    accepted-complete:
+    invited-complete:
       message_type: success
       title: See you there
-      subline: We've all we need from you. We can't wait to welcome you to Hack Cambridge 2017!
+      subline: Thanks for confirming your place. See you on January 28th!
+
+    invited-declined:
+      message_type: neutral
+      title: Thank you
+      subline: You've told us you can't make it. Thanks for your interest in Hack Cambridge Recurse.
 
     rejected:
       message_type: neutral
@@ -64,6 +69,25 @@ dashboard:
       type: success
       label: Complete
       content: "You've teamed up with these friendly folk:"
+  rsvp:
+    incomplete:
+      type: warning
+      label: Unconfirmed
+      content: 
+        Please let us know if you're committed to attending Hack Cambridge Recurse so we can confirm your place!
+    complete-yes:
+      type: success
+      label: Yes!
+      content: Your place is confirmed. We can't wait to see you at Hack Cambridge Recurse
+    complete-no:
+      type: na
+      label: Declined
+      content:
+        Thanks for letting us know that you're no longer able to attend Hack Cambridge Recurse. Your place has been opened up to somebody else.
+        If you have feedback for us, we'd be glad to hear it. Please drop us an email.
+      action:
+        title: team@hackcambridge.com
+        location: mailto:team@hackcambridge.com
   further-application:
     incomplete:
       type: warning

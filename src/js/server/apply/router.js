@@ -8,6 +8,7 @@ const utils = require('../utils.js');
 const session = require('client-sessions');
 const statuses = require('js/shared/status-constants');
 const { Hacker, HackerApplication, Team, TeamMember } = require('js/server/models');
+const { rsvpToResponse } = require('js/server/attendance/logic');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
 
@@ -87,13 +88,39 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
   });
 });
 
+applyRouter.post('/dashboard', auth.requireAuth, function(req, res) {
+  // Process the RSVP if it exists
+  const rsvp = req.body.rsvp;
+  if (rsvp) {
+    req.user.getHackerApplication().then(hackerApplication => {
+      if (hackerApplication == null) {
+        return Promise.resolve(null);
+      } else {
+        return hackerApplication.getApplicationResponse();
+      }
+    }).then(applicationResponse => {
+      if (applicationResponse != null) {
+        return rsvpToResponse(applicationResponse, rsvp);
+      } else {
+        return Promise.resolve(null);
+      }
+    }).then(() => {
+      renderDashboard(req, res);
+    }).catch(() => {
+      renderDashboard(req, res);
+    });
+  } else {
+    renderDashboard(req, res);
+  }
+})
+
 applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
   renderDashboard(req, res);
-})
+});
 
 applyRouter.get('/logout', auth.logout, function(req, res) {
   res.redirect('/');
-})
+});
 
 // The login page (has the login button)
 applyRouter.get('/', function (req, res) {
@@ -134,8 +161,8 @@ function renderDashboard(req, res) {
     applicationStatus = req.user.getApplicationStatus(hackerApplication);
 
     const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
-    const furtherApplicationStatusPromise = req.user.getFurtherDetailsStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
+    const rsvpStatusPromise               = req.user.getRsvpStatus(hackerApplication);
 
     const teamMembersPromise = req.user.getTeam().then(teamMember => {
       if (teamMember === null) {
@@ -163,34 +190,33 @@ function renderDashboard(req, res) {
 
     return Promise.all([
       teamApplicationStatusPromise,
-      furtherApplicationStatusPromise,
       responseStatusPromise,
-      teamMembersPromise
+      rsvpStatusPromise,
+      teamMembersPromise,
     ]);
-  }).then(values => {
-    const teamApplicationStatus    = values[0];
-    const furtherApplicationStatus = values[1];
-    const responseStatus           = values[2];
-    const teamMembers              = values[3];
+  }).then(([teamApplicationStatus, responseStatus, rsvpStatus, teamMembers]) => {
 
     const overallStatus = Hacker.deriveOverallStatus(
       applicationStatus,
       responseStatus,
       teamApplicationStatus,
-      furtherApplicationStatus
+      rsvpStatus
     );
 
     res.render('apply/dashboard.html', {
       applicationSlug: (application === null) ? null : application.applicationSlug,
-      applicationStatus: applicationStatus,
-      teamApplicationStatus: teamApplicationStatus,
-      furtherApplicationStatus: furtherApplicationStatus,
+      applicationStatus,
+      teamApplicationStatus,
+      rsvpStatus,
+      overallStatus,
 
       applicationInfo: content['your-application'][applicationStatus],
       teamApplicationInfo: content['team-application'][teamApplicationStatus],
-      furtherApplicationInfo: content['further-application'][furtherApplicationStatus],
+      rsvpInfo: content['rsvp'][rsvpStatus],
       statusMessage: content['status-messages'][overallStatus],
-      teamMembers: teamMembers,
+      teamMembers,
+
+      statuses,
     });
   });
 }

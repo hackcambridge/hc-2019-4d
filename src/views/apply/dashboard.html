@@ -22,12 +22,58 @@
   {% endif %}
   </center>
   
-  
-  
-  
-  {% if applicationInfo != 'rejected' %}
-    {# The user either has things still to do or would benefit from seeing their status #}
+  {# Section for info about RSVPs #}
+  {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_NO %}
+    <section class="dashboard-section rsvp-section">
+      <span class="{{ rsvpInfo.type }} float-right">{{ rsvpInfo.label }}</span>
+      <h3>RSVP</h3>
+      {{ rsvpInfo.content }}
+      <br>
+      
+      {# The RSVP form for incomplete RSVPs #}
+      {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
+        <center>
+          <form method="POST">
+            <input type="checkbox" id="rsvp-no-first-click">
+            <label for="rsvp-no-first-click" class="secondary-button">No thanks</label>
+            <button name="rsvp" class="button" value="RSVP_YES">I'll be there!</button>
+            <br>
+            <div id="decline-confirm">
+              One more click to confirm that you'd like to <strong>decline</strong> your invitation:<br><br>
+              <button name="rsvp" class="button" value="RSVP_NO">I'm sure</button>
+            </div>
+          </form>
+        </center>
+      {% endif %}
 
+      <br>
+      {% if rsvpInfo.action %}
+        <a href="{{ rsvpInfo.action.location }}">{{ rsvpInfo.action.title }} &rarr;</a><br>
+      {% endif %}
+
+    </section>
+  {% endif %}
+
+  {# An extra details section for invited, non-declined hackers #}
+  {% if rsvpStatus == statuses.rsvp.COMPLETE_YES or rsvpStatus == statuses.rsvp.INCOMPLETE %}
+    <section class="dashboard-section">
+      Here's some extra info for you...
+    </section>
+  {% endif %}
+
+  {# A call to action for filling out more info for invited, confirmed hackers #}
+  {% if overallStatus == statuses.overall.INVITED_COMPLETE %}
+    <section class="dashboard-section">
+      <h3>Extra Details</h3>
+      Please take the time to fill out the following forms so that we can make Hack Cambridge the best it can be for you:
+
+
+    </section>
+  {% endif %}
+
+  {# A section for users who are yet to be invited #}
+  {% if overallStatus == statuses.overall.INCOMPLETE or
+        overallStatus == statuses.overall.IN_REVIEW %}
     {# The personal application status #}
     <section class="dashboard-section">
       <span class="{{ applicationInfo.type }} float-right">{{ applicationInfo.label }}</span>
@@ -40,14 +86,16 @@
       {% endif %}
     </section>
     
-    {% if applicationInfo.label != 'Incomplete' %}
-      {# The team application status #}
+    {# A section to show team status and team members #}
+    {% if applicationStatus == statuses.application.COMPLETE %}
       <section class="dashboard-section">
         <span class="{{ teamApplicationInfo.type }} float-right">{{ teamApplicationInfo.label }}</span>
         <h3>Team Application</h3>
 
         {{ teamApplicationInfo.content }}
-        {% if teamApplicationStatus == 'complete' %}
+
+        {% if teamApplicationStatus == statuses.teamApplication.complete %}
+          {# Show a list of teammates #}
           <ul class="team-list">
             {% for hacker in teamMembers %}
               <li>
@@ -57,11 +105,16 @@
           </ul>
           If you need to make changes to your team, <a href="mailto:team@hackcambridge.com">get in touch with us</a>
         {% endif %}
+
         {% if teamApplicationInfo.action %}
           <br>
           <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }} &rarr;</a><br>
         {% endif %}
       </section>
     {% endif %}
+
   {% endif %}
+
+
+
 {% endblock %}
