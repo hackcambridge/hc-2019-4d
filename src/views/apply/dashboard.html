@@ -33,7 +33,7 @@
       {# The RSVP form for incomplete RSVPs #}
       {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
         <center>
-          <form method="POST">
+          <form method="POST" action="/apply/rsvp">
             <input type="checkbox" id="rsvp-no-first-click">
             <label for="rsvp-no-first-click" class="secondary-button">No thanks</label>
             <button name="rsvp" class="button" value="RSVP_YES">I'll be there!</button>

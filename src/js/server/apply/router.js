@@ -88,8 +88,8 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
   });
 });
 
-applyRouter.post('/dashboard', auth.requireAuth, function(req, res) {
-  // Process the RSVP if it exists
+// Process the RSVP response
+applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
   const rsvp = req.body.rsvp;
   if (rsvp) {
     req.user.getHackerApplication().then(hackerApplication => {
@@ -105,12 +105,12 @@ applyRouter.post('/dashboard', auth.requireAuth, function(req, res) {
         return Promise.resolve(null);
       }
     }).then(() => {
-      renderDashboard(req, res);
+      res.redirect('/apply//dashboard');
     }).catch(() => {
-      renderDashboard(req, res);
+      res.redirect('/apply/dashboard');
     });
   } else {
-    renderDashboard(req, res);
+    res.redirect('/apply/dashboard');
   }
 })
 
