@@ -14,13 +14,18 @@ function createTicket(application, transaction) {
   return ApplicationTicket.create({
     hackerApplicationId: application.id,
   }, { transaction }).then((applicationTicket) => {
-    // We aren't doing anything if the invitation fails. No recovery that we can do.
-    application.getHacker({ transaction }).then(hacker => Promise.all([
-      slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
-      sendTicketEmail(hacker)
-    ]));
+    return application.getHacker({ transaction })
+      .then(hacker => {
+        Promise.all([
+          slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
+          sendTicketEmail(hacker)
+        ]).catch((error) => {
+          // Not doing anything on error as there is no way to recover
+          console.error(error);
+        });
 
-    return applicationTicket;
+        return applicationTicket;
+      });
   });
 }
 
