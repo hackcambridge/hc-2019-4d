@@ -11,6 +11,8 @@ const ApplicationReview = require('./ApplicationReview');
 const ReviewCriterion = require('./ReviewCriterion');
 const ReviewCriterionScore = require('./ReviewCriterionScore');
 const ApplicationAssignment = require('./ApplicationAssignment');
+const ResponseRsvp = require('./ResponseRsvp');
+const ApplicationTicket = require('./ApplicationTicket');
 
 module.exports = {
   db,
@@ -25,4 +27,6 @@ module.exports = {
   ApplicationReview,
   ReviewCriterion,
   ReviewCriterionScore,
+  ResponseRsvp,
+  ApplicationTicket,
 };

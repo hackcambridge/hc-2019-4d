@@ -51,6 +51,10 @@
     "PGHOST": {
       "description": "Host address used to connect to the database",
       "required": true
+    },
+    "SLACK_API_TOKEN": {
+      "description": "API token for accessing the Slack API",
+      "required": true
     }
   }
 }
