@@ -17,7 +17,7 @@
     {% if applicationSlug %}
     <div class="application-slug">
       Your application ID is:
-      <code>{{ applicationSlug }}</code>
+      <code class="pretty-code">{{ applicationSlug }}</code>
     </div>
   {% endif %}
   </center>
@@ -54,19 +54,84 @@
     </section>
   {% endif %}
 
-  {# An extra details section for invited, non-declined hackers #}
-  {% if rsvpStatus == statuses.rsvp.COMPLETE_YES or rsvpStatus == statuses.rsvp.INCOMPLETE %}
+  {# A call to action for filling out more info for invited, confirmed hackers #}
+  {% if overallStatus == statuses.overall.HAS_TICKET %}
     <section class="dashboard-section">
-      Here's some extra info for you...
+      <h3>Extra Details</h3>
+      We will shortly have a form for you to fill out with some extra details.
+      Please take the time to complete it so that we can make Hack Cambridge: Recurse as good as it can be for you.
+
     </section>
   {% endif %}
 
-  {# A call to action for filling out more info for invited, confirmed hackers #}
-  {% if overallStatus == statuses.overall.INVITED_COMPLETE %}
+  {# An extra details section for invited, non-declined hackers #}
+  {% if rsvpStatus == statuses.rsvp.COMPLETE_YES or rsvpStatus == statuses.rsvp.INCOMPLETE %}
+    {# Date and Time #}
     <section class="dashboard-section">
-      <h3>Extra Details</h3>
-      Please take the time to fill out the following forms so that we can make Hack Cambridge the best it can be for you:
+      <h3>Date and Time</h3>
+      Friday 28th Jan 2017 - Saturday 29th Jan <br>
+      (Times TBC)
+    </section>
 
+    {# Location #}
+    <section class="dashboard-section">
+      <h3>Location</h3>
+      Cambridge Corn Exchange,<br>
+      2 Wheeler St,<br>
+      Cambridge<br>
+      CB2 3QB<br>
+      <a href="https://goo.gl/maps/6TTeXNnD7Jp" target="_blank">View on Google Maps &rarr;</a>
+    </section>
+
+    {# Travel Reimbursements #}
+    <section class="dashboard-section">
+      <h3>Travel Cost Reimbursements</h3>
+      We will be able to reimburse a small amount of your travel costs. You can apply for a travel reimbursement of 50% of your costs, up to a maximum of £60. Make sure you keep your receipts!
+      <br>
+      <strong>Note:</strong> We won’t be reimbursing parking costs or cost of travel from locations that we provide coaches for (more info and sign ups for coaches coming soon!), nor will we be reimbursing any students who study locally. We ask that you be responsible about claiming travel reimbursements and only do so if appropriate — we have limited resources!
+    </section>
+
+    <section class="dashboard-section">
+      <h3>Accommodation</h3>
+      For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the 27th of January), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early (it's mentioned in the form above) if this would be helpful for you!
+    </section>
+  {% endif %}
+
+  {# Another extra details for users with tickets #}
+  {% if overallStatus == statuses.overall.HAS_TICKET %}
+    {# Travel #}
+    <section class="dashboard-section">
+      <h3>Travel Advice</h3>
+      <section>
+        <h4>Coaches</h4>
+        We may run coaches from areas with a lot of interest from applicants. Please indicate on the form above whether you would be interested in this and we'll get more information to you at a later date. <br>
+        If you have any other questions about coaches, please email our logistics team at logistics@hackcambride.com.
+      </section>
+      <section>
+        <h4>Train</h4>
+        The nearest train station is Cambridge train station. It’s an approximately 30-minute walk from there to the venue. Which is a great way to wake you up nicely!<br>
+        <a href="https://www.google.co.uk/maps/dir/Cambridge,+Station+Rd,+Cambridge+CB1+2JW/Cambridge+Corn+Exchange,+2+Wheeler+St,+Cambridge+CB2+3QB/@52.1992886,0.1230436,16z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47d87083c513efe3:0xc3b0831300f8d3f1!2m2!1d0.1373124!2d52.1940784!1m5!1m1!1s0x47d870bd777be21d:0x54210632dfcff7b5!2m2!1d0.119639!2d52.204348!3e2">
+          View directions on Google Maps &rarr;
+        </a>
+      </section>
+      
+      <section>
+        <h4>By Car</h4>
+        We encourage you to avoid driving to Hack Cambridge if possible — parking is hard to find and isn’t cheap around the venue. If you have no choice but to drive, we recommend you park at the train station (Cambridge Station) about 30 minutes walking away (see above) to save yourself the £50 parking charge. Other alternatives can be found here:
+        http://en.parkopedia.co.uk/parking/carpark/cambridge_station/cb1/cambridge/?arriving=201701280730&leaving=201701291600
+      </section>
+      
+      <section>
+        <h4>By Air</h4>
+        If you are an international student and will be flying, we recommend you head for Stansted Airport? , as this is our closest international airport. From there, National Express offer a 50-minute coach journey to Cambridge for just £8. For more information on the coach, visit: http://coach.nationalexpress.com/nxbooking/journey-search
+      </section>
+
+    </section>
+    <section class="dashboard-section">
+      <h3>On the day</h3>
+      On the day of Hack Cambridge, you’ll be itching to see what’s on offer and start hacking. We want to get everyone signed in as efficiently as possible and we’ll need your help with that:<br>
+      <br>
+      <strong>Don’t forget to bring some form of Photo ID</strong> and have this ready at the entrance. Also keep your application ID on hand (That’s: <code class="pretty-code">{{ applicationSlug }}</code>)!
 
     </section>
   {% endif %}

@@ -84,6 +84,19 @@ const getApplicationStatus = function (hackerApplication) {
     return statuses.application.COMPLETE;
 }
 
+// Returns a promise that resolves to the ticketed status of the given application
+const getTicketStatus = function (hackerApplication) {
+  if (hackerApplication == null) return null;
+
+  return hackerApplication.getApplicationTicket().then(applicationTicket => {
+    if (applicationTicket == null) {
+      return statuses.ticket.NO_TICKET;
+    } else {
+      return statuses.ticket.HAS_TICKET;
+    }
+  });
+}
+
 const Hacker = module.exports = db.define('hacker', {
   // Personal
   mlhId: {
@@ -151,6 +164,7 @@ const Hacker = module.exports = db.define('hacker', {
     getResponseStatus,
     getApplicationStatus,
     getRsvpStatus,
+    getTicketStatus,
     log(logText) {
       console.log(`[User ${this.id}] ${logText}`);
     },
@@ -193,19 +207,22 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
 };
 
 // Determine the headline application status
-Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, rsvpStatus) {
+Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, rsvpStatus, ticketStatus) {
+
   if (applicationStatus == statuses.application.INCOMPLETE || teamApplicationStatus == statuses.application.INCOMPLETE)
     return statuses.overall.INCOMPLETE;
   else if (responseStatus == statuses.response.PENDING)
     return statuses.overall.IN_REVIEW;
   else if (responseStatus == statuses.response.REJECTED)
     return statuses.overall.REJECTED;
+  else if (ticketStatus == statuses.ticket.HAS_TICKET)
+    return statuses.overall.HAS_TICKET;
   else if (rsvpStatus == statuses.rsvp.INCOMPLETE)
     return statuses.overall.INVITED_AWAITING_RSVP;
   else if (rsvpStatus == statuses.rsvp.COMPLETE_NO)
     return statuses.overall.INVITED_DECLINED;
   else if (rsvpStatus == statuses.rsvp.COMPLETE_YES)
-    return statuses.overall.INVITED_COMPLETE;
+    return statuses.overall.INVITED_ACCEPTED;
   else {
     console.log("Couldn't derive an overall status");
     console.log({
@@ -213,6 +230,8 @@ Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamAp
       responseStatus,
       teamApplicationStatus,
       rsvpStatus,
-    })
+      ticketStatus,
+    });
+    throw new Error("Couldn't derive an overall status");
   }
 }

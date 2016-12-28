@@ -15,7 +15,12 @@ dashboard:
       title: You're in!
       subline: We'd love to have you at Hack Cambridge 2017. Please confirm your place below.
 
-    invited-complete:
+    invited-accepted:
+      message_type: neutral
+      title: You don't have a ticket
+      subline: You've accepted your invitation but do not have a ticket to Hack Cambridge. If this is unexpected, please get in touch with us.
+
+    has-ticket:
       message_type: success
       title: See you there
       subline: Thanks for confirming your place. See you on January 28th!
@@ -84,7 +89,7 @@ dashboard:
       label: Declined
       content:
         Thanks for letting us know that you're no longer able to attend Hack Cambridge Recurse. Your place has been opened up to somebody else.
-        If you have feedback for us, we'd be glad to hear it. Please drop us an email.
+        If you have feedback for us, we'd be glad to hear it. Just drop us an email.
       action:
         title: team@hackcambridge.com
         location: mailto:team@hackcambridge.com

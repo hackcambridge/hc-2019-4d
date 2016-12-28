@@ -4,8 +4,9 @@ module.exports = {
     IN_REVIEW: 'in-review',
     REJECTED: 'rejected',
     INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
-    INVITED_COMPLETE: 'invited-complete',
+    INVITED_ACCEPTED: 'invited-accepted',
     INVITED_DECLINED: 'invited-declined',
+    HAS_TICKET: 'has-ticket',
   },
   application: {
     INCOMPLETE: 'incomplete',
@@ -31,8 +32,11 @@ module.exports = {
     PENDING: 'pending',
     INVITED: 'invited',
     REJECTED: 'rejected',
-  }
-
+  },
+  ticket: {
+    NO_TICKET: 'no-ticket',
+    HAS_TICKET: 'has-ticket',
+  },
 }
 
 // Copy for the dashboard is written in YAML and as such uses the strings

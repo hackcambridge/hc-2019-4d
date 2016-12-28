@@ -92,24 +92,37 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
 applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
   const rsvp = req.body.rsvp;
   if (rsvp) {
+    // RSVP was given, store it
     req.user.getHackerApplication().then(hackerApplication => {
+
       if (hackerApplication == null) {
         return Promise.resolve(null);
       } else {
         return hackerApplication.getApplicationResponse();
       }
+
     }).then(applicationResponse => {
+
       if (applicationResponse != null) {
-        return rsvpToResponse(applicationResponse, rsvp);
+        // Found a response
+        return applicationResponse.getResponseRsvp().then(responseRsvp => {
+          if (responseRsvp != null) {
+            console.log("There was already an RSVP for this application, ignoring new");
+            return Promise.resolve(null);
+          } else {
+            return rsvpToResponse(applicationResponse, rsvp);
+          }
+        });
       } else {
+        // No response found
         return Promise.resolve(null);
       }
+
     }).then(() => {
-      res.redirect('/apply//dashboard');
-    }).catch(() => {
       res.redirect('/apply/dashboard');
     });
   } else {
+    // No RSVP given so just redirect
     res.redirect('/apply/dashboard');
   }
 })
@@ -163,6 +176,7 @@ function renderDashboard(req, res) {
     const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
     const rsvpStatusPromise               = req.user.getRsvpStatus(hackerApplication);
+    const ticketStatusPromise             = req.user.getTicketStatus(hackerApplication);
 
     const teamMembersPromise = req.user.getTeam().then(teamMember => {
       if (teamMember === null) {
@@ -193,14 +207,15 @@ function renderDashboard(req, res) {
       responseStatusPromise,
       rsvpStatusPromise,
       teamMembersPromise,
+      ticketStatusPromise,
     ]);
-  }).then(([teamApplicationStatus, responseStatus, rsvpStatus, teamMembers]) => {
-
+  }).then(([teamApplicationStatus, responseStatus, rsvpStatus, teamMembers, ticketStatus]) => {
     const overallStatus = Hacker.deriveOverallStatus(
       applicationStatus,
       responseStatus,
       teamApplicationStatus,
-      rsvpStatus
+      rsvpStatus,
+      ticketStatus
     );
 
     res.render('apply/dashboard.html', {
@@ -208,6 +223,7 @@ function renderDashboard(req, res) {
       applicationStatus,
       teamApplicationStatus,
       rsvpStatus,
+      ticketStatus,
       overallStatus,
 
       applicationInfo: content['your-application'][applicationStatus],
