@@ -3,8 +3,10 @@ module.exports = {
     INCOMPLETE: 'incomplete',
     IN_REVIEW: 'in-review',
     REJECTED: 'rejected',
-    ACCEPTED_INCOMPLETE: 'accepted-incomplete',
-    ACCEPTED_COMPLETE: 'accepted-complete'
+    INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
+    INVITED_ACCEPTED: 'invited-accepted',
+    INVITED_DECLINED: 'invited-declined',
+    HAS_TICKET: 'has-ticket',
   },
   application: {
     INCOMPLETE: 'incomplete',
@@ -16,6 +18,12 @@ module.exports = {
     INCOMPLETE: 'incomplete',
     COMPLETE: 'complete',
   },
+  rsvp: {
+    NOT_APPLICABLE: 'na',
+    INCOMPLETE: 'incomplete',
+    COMPLETE_YES: 'complete-yes',
+    COMPLETE_NO: 'complete-no',
+  },
   furtherDetails: {
     INCOMPLETE: 'incomplete',
     COMPLETE: 'complete',
@@ -24,8 +32,11 @@ module.exports = {
     PENDING: 'pending',
     INVITED: 'invited',
     REJECTED: 'rejected',
-  }
-
+  },
+  ticket: {
+    NO_TICKET: 'no-ticket',
+    HAS_TICKET: 'has-ticket',
+  },
 }
 
 // Copy for the dashboard is written in YAML and as such uses the strings

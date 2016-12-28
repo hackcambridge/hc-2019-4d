@@ -52,17 +52,26 @@ const getResponseStatus = function (hackerApplication) {
   });
 }
 
-// Return a promise that evaluates to the status of the users further details form
-const getFurtherDetailsStatus = function (hackerApplication) {
+// Return a promise that resolves to the RSVP status of the user
+const getRsvpStatus = function (hackerApplication) {
   if (hackerApplication === null) return null;
+  let responsePromise = getResponseStatus(hackerApplication);
 
-   // TODO: hackerApplication.getFurtherDetails().then...
-  const temporary_dummy = Promise.resolve(null);
-  return temporary_dummy.then(furtherDetails => {
-    if (furtherDetails === null) {
-      return statuses.furtherDetails.INCOMPLETE;
+  return hackerApplication.getApplicationResponse().then(applicationResponse => {
+    if (applicationResponse === null || applicationResponse.response == 'rejected') {
+      // User hasn't been invited, we don't need an RSVP
+      return statuses.rsvp.NA;
     } else {
-      return statuses.furtherDetails.COMPLETE;
+      return applicationResponse.getResponseRsvp().then(rsvp => {
+        if (rsvp === null) {
+          // User invited but hasn't rsvp'd
+          return statuses.rsvp.INCOMPLETE;
+        } else if (rsvp.rsvp == 'RSVP_YES') {
+          return statuses.rsvp.COMPLETE_YES;
+        } else if (rsvp.rsvp == 'RSVP_NO') {
+          return statuses.rsvp.COMPLETE_NO;
+        }
+      });
     }
   });
 }
@@ -73,6 +82,19 @@ const getApplicationStatus = function (hackerApplication) {
     return statuses.application.INCOMPLETE;
   else
     return statuses.application.COMPLETE;
+}
+
+// Returns a promise that resolves to the ticketed status of the given application
+const getTicketStatus = function (hackerApplication) {
+  if (hackerApplication == null) return null;
+
+  return hackerApplication.getApplicationTicket().then(applicationTicket => {
+    if (applicationTicket == null) {
+      return statuses.ticket.NO_TICKET;
+    } else {
+      return statuses.ticket.HAS_TICKET;
+    }
+  });
 }
 
 const Hacker = module.exports = db.define('hacker', {
@@ -138,10 +160,11 @@ const Hacker = module.exports = db.define('hacker', {
   tableName: 'hackers',
   instanceMethods: {
     // Add the instance methods
-    getTeamApplicationStatus: getTeamApplicationStatus,
-    getResponseStatus: getResponseStatus,
-    getFurtherDetailsStatus: getFurtherDetailsStatus,
-    getApplicationStatus: getApplicationStatus,
+    getTeamApplicationStatus,
+    getResponseStatus,
+    getApplicationStatus,
+    getRsvpStatus,
+    getTicketStatus,
     log(logText) {
       console.log(`[User ${this.id}] ${logText}`);
     },
@@ -184,15 +207,31 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
 };
 
 // Determine the headline application status
-Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, furtherDetailsStatus) {
+Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, rsvpStatus, ticketStatus) {
+
   if (applicationStatus == statuses.application.INCOMPLETE || teamApplicationStatus == statuses.application.INCOMPLETE)
     return statuses.overall.INCOMPLETE;
   else if (responseStatus == statuses.response.PENDING)
     return statuses.overall.IN_REVIEW;
   else if (responseStatus == statuses.response.REJECTED)
     return statuses.overall.REJECTED;
-  else if (furtherDetailsStatus == statuses.furtherDetails.INCOMPLETE)
-    return statuses.overall.ACCEPTED_INCOMPLETE;
-  else if (furtherDetailsStatus == statuses.furtherDetails.COMPLETE)
-    return statuses.overall.ACCEPTED_COMPLETE;
+  else if (ticketStatus == statuses.ticket.HAS_TICKET)
+    return statuses.overall.HAS_TICKET;
+  else if (rsvpStatus == statuses.rsvp.INCOMPLETE)
+    return statuses.overall.INVITED_AWAITING_RSVP;
+  else if (rsvpStatus == statuses.rsvp.COMPLETE_NO)
+    return statuses.overall.INVITED_DECLINED;
+  else if (rsvpStatus == statuses.rsvp.COMPLETE_YES)
+    return statuses.overall.INVITED_ACCEPTED;
+  else {
+    console.log("Couldn't derive an overall status");
+    console.log({
+      applicationStatus,
+      responseStatus,
+      teamApplicationStatus,
+      rsvpStatus,
+      ticketStatus,
+    });
+    throw new Error("Couldn't derive an overall status");
+  }
 }
