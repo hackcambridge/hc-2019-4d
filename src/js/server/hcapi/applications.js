@@ -22,6 +22,7 @@ applicationsRouter.get('/', (req, res, next) => {
       id: appl.id,
       name: `${appl.hacker.firstName} ${appl.hacker.lastName}`,
       gender: appl.hacker.gender,
+      institution: appl.hacker.institution,
       country: appl.countryTravellingFrom,
       inTeam: appl.inTeam,
       rating: 0, // Temporary — will be replaced with actual score soon
