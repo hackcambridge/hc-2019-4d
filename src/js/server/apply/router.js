@@ -8,6 +8,7 @@ const utils = require('../utils.js');
 const session = require('client-sessions');
 const statuses = require('js/shared/status-constants');
 const { Hacker, HackerApplication, Team, TeamMember } = require('js/server/models');
+const { rsvpToResponse } = require('js/server/attendance/logic');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
 
@@ -87,13 +88,52 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
   });
 });
 
+// Process the RSVP response
+applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
+  const rsvp = req.body.rsvp;
+  if (rsvp) {
+    // RSVP was given, store it
+    req.user.getHackerApplication().then(hackerApplication => {
+
+      if (hackerApplication == null) {
+        return Promise.resolve(null);
+      } else {
+        return hackerApplication.getApplicationResponse();
+      }
+
+    }).then(applicationResponse => {
+
+      if (applicationResponse != null) {
+        // Found a response
+        return applicationResponse.getResponseRsvp().then(responseRsvp => {
+          if (responseRsvp != null) {
+            console.log("There was already an RSVP for this application, ignoring new");
+            return Promise.resolve(null);
+          } else {
+            return rsvpToResponse(applicationResponse, rsvp);
+          }
+        });
+      } else {
+        // No response found
+        return Promise.resolve(null);
+      }
+
+    }).then(() => {
+      res.redirect('/apply/dashboard');
+    });
+  } else {
+    // No RSVP given so just redirect
+    res.redirect('/apply/dashboard');
+  }
+})
+
 applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
   renderDashboard(req, res);
-})
+});
 
 applyRouter.get('/logout', auth.logout, function(req, res) {
   res.redirect('/');
-})
+});
 
 // The login page (has the login button)
 applyRouter.get('/', function (req, res) {
@@ -134,8 +174,9 @@ function renderDashboard(req, res) {
     applicationStatus = req.user.getApplicationStatus(hackerApplication);
 
     const teamApplicationStatusPromise    = req.user.getTeamApplicationStatus(hackerApplication);
-    const furtherApplicationStatusPromise = req.user.getFurtherDetailsStatus(hackerApplication);
     const responseStatusPromise           = req.user.getResponseStatus(hackerApplication);
+    const rsvpStatusPromise               = req.user.getRsvpStatus(hackerApplication);
+    const ticketStatusPromise             = req.user.getTicketStatus(hackerApplication);
 
     const teamMembersPromise = req.user.getTeam().then(teamMember => {
       if (teamMember === null) {
@@ -163,34 +204,35 @@ function renderDashboard(req, res) {
 
     return Promise.all([
       teamApplicationStatusPromise,
-      furtherApplicationStatusPromise,
       responseStatusPromise,
-      teamMembersPromise
+      rsvpStatusPromise,
+      teamMembersPromise,
+      ticketStatusPromise,
     ]);
-  }).then(values => {
-    const teamApplicationStatus    = values[0];
-    const furtherApplicationStatus = values[1];
-    const responseStatus           = values[2];
-    const teamMembers              = values[3];
-
+  }).then(([teamApplicationStatus, responseStatus, rsvpStatus, teamMembers, ticketStatus]) => {
     const overallStatus = Hacker.deriveOverallStatus(
       applicationStatus,
       responseStatus,
       teamApplicationStatus,
-      furtherApplicationStatus
+      rsvpStatus,
+      ticketStatus
     );
 
     res.render('apply/dashboard.html', {
       applicationSlug: (application === null) ? null : application.applicationSlug,
-      applicationStatus: applicationStatus,
-      teamApplicationStatus: teamApplicationStatus,
-      furtherApplicationStatus: furtherApplicationStatus,
+      applicationStatus,
+      teamApplicationStatus,
+      rsvpStatus,
+      ticketStatus,
+      overallStatus,
 
       applicationInfo: content['your-application'][applicationStatus],
       teamApplicationInfo: content['team-application'][teamApplicationStatus],
-      furtherApplicationInfo: content['further-application'][furtherApplicationStatus],
+      rsvpInfo: content['rsvp'][rsvpStatus],
       statusMessage: content['status-messages'][overallStatus],
-      teamMembers: teamMembers,
+      teamMembers,
+
+      statuses,
     });
   });
 }

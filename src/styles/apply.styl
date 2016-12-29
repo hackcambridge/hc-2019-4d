@@ -6,6 +6,12 @@
   padding: 10px;
   margin-bottom: 10px;
   text-align: left;
+  section {
+    h4 {
+      margin-bottom: 0.5em;
+    }
+    margin: 1em 0;
+  }
 }
 .logged-in {
   padding: 10px;
@@ -46,7 +52,7 @@
   margin: 10px 0;
 }
 
-.application-slug code {
+.pretty-code {
   border-radius: 5px;
   background-color: white;
   padding: 5px;
@@ -63,3 +69,31 @@
   padding: 10px;
   margin-bottom: 0;
 }
+
+// RSVP Section on dashboard
+.rsvp-section {
+  form {
+    margin: 1em 0;
+  }
+  
+  #decline-confirm {
+    padding: 0.5em;
+    margin: 0.5em;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  
+  #rsvp-no-first-click {
+    opacity:0;
+  }
+  
+  input[type=checkbox]:checked ~ div#decline-confirm {
+    opacity: 1;
+    height: 7em;
+  }
+  
+
+}
+
