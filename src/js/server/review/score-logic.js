@@ -170,6 +170,38 @@ function applicationHasBeenIndividuallyScored(application) {
   }).then(result => result.count >= 2);
 }
 
+/**
+ * Gets all applications with their true score and useful extra information.
+ * 
+ * @param {Function} [weightingFunction] An optional function that takes in application
+ *   object and returns a new score.
+ */
+function getApplicationsWithScores(weightingFunction = (({ rating }) => rating)) {
+  return Promise.all([
+    getApplicationsWithTeams(),
+    getIndividualScores(),
+    getTeamsWithMembers(),
+  ]).then(([applications, individualScores, teamsArr]) => {
+    const teamScores = calculateTeamsAverages(individualScores, teamsArr);
+
+    return applications.map(application => {
+      const augmentedApplication = {
+        id: application.id,
+        name: `${application.hacker.firstName} ${application.hacker.lastName}`,
+        gender: application.hacker.gender,
+        country: application.countryTravellingFrom,
+        inTeam: application.hacker.Team !== null || application.inTeam,
+        rating: calculateScore(application, individualScores, teamScores),
+        status: application.applicationResponse !== null ? (application.applicationResponse === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
+      };
+
+      augmentedApplication.rating = weightingFunction(augmentedApplication);
+
+      return augmentedApplication;
+    });
+  });
+}
+
 module.exports = {
   getApplicationsWithTeams,
   getIndividualScores,
@@ -178,4 +210,5 @@ module.exports = {
   calculateTeamAverage,
   calculateTeamsAverages,
   applicationHasBeenIndividuallyScored,
-}
+  getApplicationsWithScores,
+};

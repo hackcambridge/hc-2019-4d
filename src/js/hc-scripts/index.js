@@ -7,5 +7,7 @@ process.on('unhandledRejection', (reason, promise) => {
 yargs
   .command(require('./create-admin'))
   .command(require('./create-token'))
+  .command(require('./suggest-responses'))
+  .command(require('./respond'))
   .help()
   .argv;

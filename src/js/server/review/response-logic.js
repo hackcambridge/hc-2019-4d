@@ -139,11 +139,15 @@ exports.setResponseForApplicationWithChecks = function setResponseForApplication
   return normalizeApplicationTeams(originalApplication)
     .then(checkApplicationsAreScored)
     .then(applications => setResponseForApplications(applications, responseStatus))
-    .then((applicationCreationStatuses) => {
-      // We do not return these promises as they are just fire and forget
-      // No way to recover on error
-      applicationCreationStatuses
-        .filter(({ isApplicationNew }) => isApplicationNew)
-        .forEach(({ application }) => sendEmailForApplicationResponse(application, responseStatus))
-    }).then(() => ({ response: responseStatus }));
+    .then(applicationCreationStatuses =>
+      Promise.all(
+        applicationCreationStatuses
+          .filter(({ isApplicationNew }) => isApplicationNew)
+          .map(({ application }) => 
+            sendEmailForApplicationResponse(application, responseStatus)
+              // No way to recover on error
+              .catch(console.error)
+          )
+      )
+    ).then(() => ({ response: responseStatus }));
 };
