@@ -10,7 +10,9 @@ buttonColor($foreground, $background = $grayLightest) {
 
   color: $foreground;
   background-color: $background;
-
+  
+  cursor: pointer;
+  
   &:hover, &:focus {
     text-decoration: none;
     if ($isdark) {
@@ -57,7 +59,6 @@ button($foreground, $background) {
   button($colorPrimary, transparent);
   border: 2px solid lighten($colorPrimary, 15%);
   padding: 3px 13px;
-  float: right;
   
   &:hover, &:focus {
     opacity: 0.7;
