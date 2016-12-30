@@ -2,37 +2,12 @@ const { Router } = require('express');
 const { createHttpError } = require('./errors');
 const responseLogic = require('js/server/review/response-logic');
 const { Hacker, HackerApplication, Team } = require('js/server/models');
-const { 
-  getApplicationsWithTeams,
-  getIndividualScores,
-  getTeamsWithMembers,
-  calculateScore,
-  calculateTeamAverage,
-  calculateTeamsAverages,
-} = require('js/server/review/score-logic');
+const { getApplicationsWithScores } = require('js/server/review/score-logic');
 
 const applicationsRouter = new Router();
 
 applicationsRouter.get('/', (req, res, next) => {
-  Promise.all([
-    getApplicationsWithTeams(),
-    getIndividualScores(),
-    getTeamsWithMembers(),
-  ]).then(([applications, individualScores, teamsArr]) => {
-    const teamScores = calculateTeamsAverages(individualScores, teamsArr);
-
-    return applications.map(application => ({
-      id: application.id,
-      name: `${application.hacker.firstName} ${application.hacker.lastName}`,
-      gender: application.hacker.gender,
-      institution: application.hacker.institution,
-      country: application.countryTravellingFrom,
-      inTeam: application.hacker.Team !== null || application.inTeam,
-      rating: calculateScore(application, individualScores, teamScores),
-      status: application.applicationResponse !== null ? (application.applicationResponse === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
-    }))
-
-  }).then(applications => {
+  getApplicationsWithScores().then(applications => {
     res.json({
       applications,
     });
