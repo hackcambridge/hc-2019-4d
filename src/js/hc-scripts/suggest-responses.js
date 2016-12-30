@@ -12,12 +12,24 @@ function getAugmentScore() {
   }
 }
 
+function getChooseApplicants() {
+  try {
+    return require('./choose-applicants');
+  } catch (error) {
+    console.error('Could not find function to choose applicants');
+    throw error;
+  }
+}
+
+
 function createComparisonFunction(inviteType) {
   if (inviteType === 'invite') {
+    // Descending order
     return ({ rating: ratingA }, { rating: ratingB }) => ratingB - ratingA;
   }
 
   if (inviteType === 'reject') {
+    // Ascending order
     return ({ rating: ratingA }, { rating: ratingB }) => ratingA - ratingB;
   }
 
@@ -34,11 +46,13 @@ module.exports = {
   handler: createHandler(({ type, limit, outputfile }) =>
     getApplicationsWithScores(getAugmentScore())
       .then(applications => {
+        // Consider only applicants whose application is pending (awaiting invitation)
+        // Sort appropriately
         const sortedApplications = applications
-          .filter(({ status, rating }) => status === 'Pending' && rating != null)
-          .sort(createComparisonFunction(type));
-        
-        return sortedApplications.slice(0, Math.min(sortedApplications.length, limit));
+                .filter(({ status, rating }) => status === 'Pending' && rating != null)
+                .sort(createComparisonFunction(type));
+
+        return getChooseApplicants()(sortedApplications, limit, type);
       })
       .then(applications => {
         fs.writeFileSync(path.resolve(process.cwd(), outputfile), JSON.stringify(applications));

@@ -113,6 +113,17 @@ It takes in a computed application object and returns an augmented score. The id
 module.exports = ({ rating }) => rating;
 ```
 
+It also makes use of a selection script stored in `src/js/hc-scripts/choose-applicants.js`
+This takes a sorted list of applications, a result count limit and an inviteType
+and returns a list of the suggested applications to invite/reject.
+E.g. to just takes the top n in the sorted list:
+
+```
+module.exports = ( (sortedApplications, n, inviteType) => {
+  return sortedApplications.slice(0, n));
+});
+```
+
 ## Build System
 
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
