@@ -25,6 +25,7 @@ applicationsRouter.get('/', (req, res, next) => {
       id: application.id,
       name: `${application.hacker.firstName} ${application.hacker.lastName}`,
       gender: application.hacker.gender,
+      institution: application.hacker.institution,
       country: application.countryTravellingFrom,
       inTeam: application.hacker.Team !== null || application.inTeam,
       rating: calculateScore(application, individualScores, teamScores),
