@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const { Router } = require('express');
-const { db, Hacker, ApplicationReview, HackerApplication } = require('js/server/models');
+const { db, Hacker, ApplicationReview, HackerApplication, ApplicationResponse, ResponseRsvp, ApplicationTicket } = require('js/server/models');
+const { response } = require('js/shared/status-constants');
 const { createHttpError } = require('./errors');
 
 const statsRouter = new Router();
@@ -17,6 +18,10 @@ statsRouter.get('/', (req, res, next) => {
   const hackerCountPromise = Hacker.count();
   const hackerApplicationCountPromise = HackerApplication.count();
   const reviewCountPromise = ApplicationReview.count();
+  const invitationsCountPromise = ApplicationResponse.count({ where: { response: response.INVITED } });
+  const rejectionsCountPromise = ApplicationResponse.count({ where: { response: response.REJECTED } });
+  const rsvpNoCountPromise = ResponseRsvp.count({ where: { rsvp: ResponseRsvp.RSVP_NO }});
+  const ticketCountPromise = ApplicationTicket.count();
 
   const applicationsReviewedQuery = 
     "SELECT COUNT(*) FROM (" + 
@@ -49,6 +54,10 @@ statsRouter.get('/', (req, res, next) => {
     reviewCountPromise,
     applicationsReviewedCountPromise,
     leaderboardPromise,
+    invitationsCountPromise,
+    rejectionsCountPromise,
+    rsvpNoCountPromise,
+    ticketCountPromise,
   ])
   .then(
     ([
@@ -57,6 +66,10 @@ statsRouter.get('/', (req, res, next) => {
       reviewCount,
       applicationsReviewedCount,
       leaderboard,
+      invitationsCount,
+      rejectionsCount,
+      rsvpNoCount,
+      ticketCount,
     ]) => {
       res.json({
         hackerCount,
@@ -64,6 +77,10 @@ statsRouter.get('/', (req, res, next) => {
         reviewCount,
         applicationsReviewedCount,
         leaderboard,
+        invitationsCount,
+        rejectionsCount,
+        rsvpNoCount,
+        ticketCount,
       });
     }
   ).catch(next);
