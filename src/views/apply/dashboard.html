@@ -5,8 +5,8 @@
 {% block pageContent %}
 
 {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSd1UuxOrLQcv2r74UGniJJjyd9h1pfWHBOZsNZPasMSUabBoQ/viewform" %}
-{% set internationalTravelForm = "https://docs.google.com/forms/d/e/1FAIpQLScLDioi-z-w0Iyn5HZq-B-dFhrbkEGI7Utjfpvh5ZuFjt9VdA/viewform" %}
-{% set domesticTravelForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
+{% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScLDioi-z-w0Iyn5HZq-B-dFhrbkEGI7Utjfpvh5ZuFjt9VdA/viewform" %}
+{% set coachesForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
 
 <header class="content-wrapper-center">
   <h3>Hello, {{ user.firstName }}!</h3>
@@ -67,8 +67,8 @@
         Please take the time to complete them so that we can make Hack Cambridge: Recurse as good as it can be for you.
         <br>
         <a href="{{ roomShareForm }}" target="_blank">Room Sharing (if you are travelling for further away)</a><br>
-        <a href="{{ domesticTravelForm }}" target="_blank">Travel Details (UK hackers)</a><br>
-        <a href="{{ internationalTravelForm }}" target="_blank">Travel Details (international hackers)</a>
+        <a href="{{ coachesForm }}" target="_blank">Register for coaches (UK hackers)</a><br>
+        <a href="{{ internationalVisaForm }}" target="_blank">Request letter for international visa</a>
       </p>
     </section>
   {% endif %}
@@ -111,9 +111,9 @@
         <strong>Note:</strong> We won’t be reimbursing parking costs or cost of travel if you have indicated that you will be travelling on one of our coaches, nor will we be reimbursing any students who study locally. We ask that you be responsible about claiming travel reimbursements and only do so if appropriate — we reserve the right to deny travel reimbursements.
       </p>
       <p>
-        If you haven't already done so, remember to fill in the travel form:<br>
-        <a href="{{ domesticTravelForm }}" target="_blank">UK hackers travel form</a><br>
-        <a href="{{ domesticTravelForm }}" target="_blank">International hackers travel form</a>
+        If you haven't already done so, remember to check the travel-related forms:<br>
+        <a href="{{ coachesForm }}" target="_blank">Register for coaches (UK)</a><br>
+        <a href="{{ internationalVisaForm }}" target="_blank">Request invitation letter for visa (international)</a>
       </p>
     </section>
     
@@ -146,7 +146,7 @@
       <section>
         <h4>Coaches</h4>
         <p>
-          If you’re from the UK, we may be able to send coaches from your city to the hackathon and back. We need to gauge interest to determine if this is useful. Do you want a coach sent to you? Express interest on <a href="{{ domesticTravelForm }}" target="_blank">this form</a> and we’ll get back to you asap. Note: If you express interest on this form and we do send a coach to your city, we will not reimburse your cost of travel.
+          If you’re from the UK, we may be able to send coaches from your city to the hackathon and back. We need to gauge interest to determine if this is useful. Do you want a coach sent to you? Express interest on <a href="{{ coachesForm }}" target="_blank">this form</a> and we’ll get back to you asap. Note: If you express interest on this form and we do send a coach to your city, we will not reimburse your cost of travel.
         </p>
       </section>
       <section>
@@ -186,7 +186,7 @@
           Don’t forget to bring some form of <strong>Photo ID</strong> and have this ready at the entrance.
         </p>
         <p>
-          Also keep your <strong>application ID</strong> on hand (That’s: <code class="pretty-code">{{ applicationSlug }}</code>)!
+          Also keep your <strong>application ID</strong> on hand (that’s: <code class="pretty-code">{{ applicationSlug }}</code>)!
         </p>
         <p>
           You’re going to be here overnight. We’ll have some quiet spaces for sleeping but we recommend you take a <strong>sleeping bag</strong> to get comfortable. For your own good, and for everyone around you, it is advisable to bring a <strong>toothbrush</strong> and possibly a spare change of clothes.
