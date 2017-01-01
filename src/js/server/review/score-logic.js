@@ -191,7 +191,7 @@ function getApplicationsWithScores(weightingFunction = (({ rating }) => rating))
         gender: application.hacker.gender,
         country: application.countryTravellingFrom,
         institution: application.hacker.institution,
-        inTeam: application.hacker.Team !== null || application.inTeam,
+        inTeam: application.hacker.Team !== null,
         rating: calculateScore(application, individualScores, teamScores),
         status: application.applicationResponse !== null ? (application.applicationResponse === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
       };
