@@ -221,7 +221,7 @@ function renderDashboard(req, res) {
     res.render('apply/dashboard.html', {
       applicationSlug: (application === null) ? null : application.applicationSlug,
       applicationStatus,
-      wantsTeam: application.wantsTeam,
+      wantsTeam: (application === null) ? null : application.wantsTeam,
       teamApplicationStatus,
       responseStatus,
       rsvpStatus,
