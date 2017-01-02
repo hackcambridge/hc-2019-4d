@@ -79,7 +79,8 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Please let us know if you're committed to attending Hack Cambridge Recurse so we can confirm your place!
+        Please let us know if you're committed to attending Hack Cambridge Recurse so we can confirm your place! Please note that if you accept and then
+        do not register on the day, this will affect your application in future iterations of Hack Cambridge, please be honest!
     complete-yes:
       type: success
       label: Yes!

@@ -90,6 +90,40 @@ Once you have your token, you can use it to authenticate requests to the API in 
 Authorization: Bearer <<TOKEN GOES HERE >>
 ```
 
+## Responses
+
+To send responses to applicants, you can use the `respond` script:
+
+```
+npm run hc-script respond invite applications.json
+```
+
+You can either `invite` or `reject`.
+
+`applications.json` refers to an applications file, which can be generated with `suggest-responses`.
+
+```
+npm run hc-script -- suggest-responses invite 50 applications.json
+```
+
+The use of this script requires a score augmentor function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
+It takes in a computed application object and returns an augmented score. The identity function (leaving the score unchanged) looks like this:
+
+```
+module.exports = ({ rating }) => rating;
+```
+
+It also makes use of a selection script stored in `src/js/hc-scripts/choose-applicants.js`
+This takes a sorted list of applications, a result count limit and an inviteType
+and returns a list of the suggested applications to invite/reject.
+E.g. to just takes the top n in the sorted list:
+
+```
+module.exports = ( (sortedApplications, n, inviteType) => {
+  return sortedApplications.slice(0, n));
+});
+```
+
 ## Build System
 
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
