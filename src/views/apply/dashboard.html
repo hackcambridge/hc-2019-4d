@@ -231,7 +231,7 @@
 
         {{ teamApplicationInfo.content }}
 
-        {% if teamApplicationStatus == statuses.teamApplication.complete %}
+        {% if teamApplicationStatus == statuses.teamApplication.COMPLETE %}
           {# Show a list of teammates #}
           <ul class="team-list">
             {% for hacker in teamMembers %}
