@@ -19,6 +19,7 @@ hcapi.use('/admins', require('./admins'));
 hcapi.use('/applications', require('./applications'));
 hcapi.use('/stats', require('./stats'));
 hcapi.use('/criteria', require('./criteria'));
+hcapi.use('/tickets', require('./tickets'));
 
 // Errors
 hcapi.use(errors.middleware.notFound);
