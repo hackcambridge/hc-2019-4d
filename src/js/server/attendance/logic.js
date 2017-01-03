@@ -1,4 +1,4 @@
-const { ResponseRsvp, ApplicationTicket, db } = require('js/server/models');
+const { ResponseRsvp, ApplicationTicket, HackerApplication, Hacker, db } = require('js/server/models');
 const slack = require('js/server/slack');
 const { sendEmail } = require('js/server/email');
 const { response } = require('js/shared/status-constants');
@@ -65,6 +65,45 @@ function rsvpToResponse(applicationResponse, rsvpStatus) {
   );
 }
 
+/**
+ * Gets all tickets with information about the applicant
+ */
+function getTicketsWithApplicantInfo() {
+  return ApplicationTicket.findAll({
+    include: [
+      {
+        model: HackerApplication,
+        required: true,
+        include: [
+          {
+            model: Hacker,
+            required: true,
+          },
+        ],
+      },
+    ],
+  }).then(tickets => tickets.map(ticket => {
+    const application = ticket.hackerApplication;
+    const hacker = application.hacker;
+
+    return {
+      slug: application.applicationSlug,
+      firstName: hacker.firstName,
+      lastName: hacker.lastName,
+      gender: hacker.gender,
+      country: application.countryTravellingFrom,
+      institution: hacker.institution,
+      email: hacker.email,
+      phoneNumber: hacker.phoneNumber,
+      shirtSize: hacker.shirtSize,
+      dietaryRestrictions: hacker.dietaryRestrictions,
+      specialNeeds: (application.hacker.specialNeeds == null) ? '' : application.hacker.specialNeeds,
+      dateOfBirth: application.hacker.dateOfBirth,
+    };
+  }));
+}
+
 module.exports = {
   rsvpToResponse,
+  getTicketsWithApplicantInfo,
 };
