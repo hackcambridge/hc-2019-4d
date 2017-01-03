@@ -49,7 +49,7 @@ function calculateTeamAverage(team, individualScores) {
   let teamMembersScores = teamMembers.map((member) => {
     let memberApplicationId = member.hacker.hackerApplication.id;
     let score = individualScores[memberApplicationId];
-    return score ? score : null;
+    return score !== undefined ? score : null;
   });
   // Check that all the teamMembers have been scored
   // Return the average of those scores
