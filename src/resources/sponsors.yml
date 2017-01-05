@@ -1,140 +1,52 @@
 sponsors:
-  cohost:
-    - name: Thales
-      website: https://www.thales-esecurity.com/
-      logo: thales-logo.svg
-      variant: wide
-
   tera:
-    - name: Darktrace
-      website: https://www.darktrace.com/
-      logo: darktrace-logo.svg
+    - name: QuantumBlack
+      website: http://www.quantumblack.com/
+      logo: quantumblack-logo.svg
       variant: wide
-    - name: Cantab Capital Partners
-      website: http://www.cantabcapital.com/
-      logo: cantab-logo.svg
-      variant: wide
-    - name: GSA Capital Partners
-      website: https://www.gsacapital.com/
-      logo: gsa-logo.svg
-      variant: tall
 
   giga:
-    - name: G-Research
-      website: http://www.gresearch.co.uk/
-      logo: gresearch-logo.svg
-      variant: tall
-    - name: Two Sigma
-      website: https://www.twosigma.com/
-      logo: twosigma-logo.svg
-      variant: wide
-    - name: Bloomberg
-      website: http://www.bloomberg.com/
-      logo: bloomberg-logo.svg
-      variant: wide
-    - name: HPE Haven OnDemand
-      website: http://havenondemand.com/
-      logo: hpehaven-logo.svg
-      variant: wide
-    - name: Improbable
-      website: http://improbable.io/
-      logo: improbable-logo.svg
-      variant: tall
-    - name: Geospock
-      website: http://www.geospock.com/
-      logo: geospock-logo.svg
-      variant: wide
-    - name: Metaswitch
-      website: http://www.metaswitch.com/
-      logo: metaswitch-logo.svg
-      variant: wide
-    - name: McKinsey & Company
-      website: http://www.mckinsey.com/
-      logo: mckinsey-logo.svg
+    - name: Microsoft
+      website: https://www.microsoft.com
+      logo: microsoft-logo.svg
       variant: wide
 
   mega:
-    - name: KCG
-      website: https://www.kcg.com/
-      logo: kcg-logo.svg
+    - name: Pusher
+      website: https://pusher.com/
+      logo: pusher-logo.svg
       variant: wide
-    - name: DE Shaw
-      website: https://www.deshaw.com/
-      logo: deshaw-logo.svg
+    - name: Argon Design
+      website: http://www.argondesign.com/
+      logo: argon-design-logo.svg
       variant: wide
     - name: Man AHL
       website: https://www.ahl.com/
-      logo: manahl-logo.svg
+      logo: man-ahl-logo.svg
       variant: wide
-    - name: Mendeley
-      website: https://www.mendeley.com/
-      logo: mendeley-logo.svg
+    - name: Sophos
+      website: https://www.sophos.com
+      logo: sophos-logo.svg
       variant: wide
-    - name: Morgan Stanley
-      website: http://morganstanley.com/
-      logo: morganstanley-logo.svg
+    - name: Frontier
+      website: http://www.frontier.co.uk/
+      logo: frontier-logo.svg
       variant: wide
-    - name: Citrix
-      website: https://www.citrix.com/
-      logo: citrix-logo.svg
+    - name: Origami Energy
+      website: http://www.origamienergy.com/
+      logo: origami-energy-logo.svg
       variant: wide
-    - name: Capital One
-      website: http://capitalonecareers.co.uk/graduates
-      logo: capitalone-logo.svg
-      variant: wide
-    - name: Palantir
-      website: https://www.palantir.com/college/
-      logo: palantir-logo.svg
-      variant: wide
-    - name: Skyscanner
-      website: http://www.skyscanner.net/
-      logo: skyscanner-logo.svg
+    - name: JetBrains
+      website: https://www.jetbrains.com/
+      logo: jetbrains-logo.svg
       variant: wide
 
   kilo:
-    - name: Costain
-      website: http://costain.com/careers/
-      logo: costain-logo.svg
+#   - name: mySircles
+#     website: http://mysircles.com/
+#     logo: mysircles-logo.svg
+#     variant: wide
+    - name: Netcraft
+      website: https://www.netcraft.com/
+      logo: netcraft-logo.png
       variant: wide
-    - name: Jane Street
-      website: https://www.janestreet.com/
-      logo: janestreet-logo.svg
-      variant: wide
-    - name: Tractable
-      website: http://tractable.io/
-      logo: tractable-logo.svg
-      variant: wide
-    - name: Square
-      website: https://squareup.com/careers
-      logo: square-logo.svg
-      variant: wide
-    - name: Mailjet
-      website: http://dev.mailjet.com/
-      logo: mailjet-logo.svg
-      variant: wide
-    - name: ARM
-      website: http://www.arm.com/careers/index.html
-      logo: arm-logo.svg
-      variant: wide
-    - name: Amazon UK
-      website: http://www.amazon.jobs/
-      logo: amazon-logo.svg
-      variant: wide
-    - name: Google
-      website: https://www.google.com/about/careers/
-      logo: google-logo.svg
-      variant: wide
-    - name: Origami Energy
-      website: http://www.origamienergy.com/careers.html
-      logo: origami-logo.svg
-      variant: wide
-    - name: Softwire
-      website: http://www.softwire.com/
-      logo: softwire-logo.svg
-      variant: wide
-    - name: Bank of America Merrill Lynch
-      website: http://www.bofaml.com/content/boaml/en_us/home.html
-      logo: baml-logo.svg
-      variant: wide
-
-
