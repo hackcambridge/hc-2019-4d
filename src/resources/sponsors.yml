@@ -4,13 +4,13 @@ sponsors:
       website: http://www.quantumblack.com/
       logo: quantumblack-logo.svg
       variant: wide
-
-  giga:
     - name: Microsoft
       website: https://www.microsoft.com
       logo: microsoft-logo.svg
       variant: wide
 
+  giga:
+    
   mega:
     - name: Pusher
       website: https://pusher.com/
