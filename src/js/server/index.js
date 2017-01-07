@@ -18,6 +18,7 @@ var app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
+const statuses = require('js/shared/status-constants');
 
 var server = require('http').Server(app);
 var fetch = require('node-fetch');
@@ -76,7 +77,8 @@ function renderHome(req, res) {
   res.render('index.html', {
     faqs: utils.loadResource('faqs'),
     sponsors: utils.loadResource('sponsors'),
-    countdown: Countdown.createStartCountdown()
+    countdown: Countdown.createStartCountdown(),
+    applicationsOpen: process.env.APPLICATIONS_OPEN_STATUS == statuses.applicationsOpen.OPEN,
   });
 }
 

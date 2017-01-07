@@ -31,10 +31,16 @@
               <a class="apply-link" href="/apply/form">Go to dashboard</a>
           </p>
       {% else %}
-        <p class="apply-link-container">
-          <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-        </p>
-        <a class="signin-link" href="/apply/form">Or Sign In</a>
+        {% if applicationsOpen %}
+          <p class="apply-link-container">
+            <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
+          </p>
+          <a class="signin-link" href="/apply/form">Or Sign In</a>
+        {% else %}
+          <p class="apply-link-container">
+            <a class="apply-link" href="/apply/dashboard">Sign in</a>
+          </p>
+        {% endif %}
       {% endif %}
     </div>
     <div class="landing-welcome-social-links">
@@ -118,15 +124,17 @@
       </div><!--
      {% endfor %}
    --></div>
-    <div class="landing-faqs-final">
-      <h2>Finally, what do I do now?</h2>
-      <p>
-        It's simple: click on the link below.
-      </p>
-      <p class="apply-link-container">
-        <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-      </p>
-    </div>
+    {% if applicationsOpen %}
+      <div class="landing-faqs-final">
+        <h2>Finally, what do I do now?</h2>
+        <p>
+          It's simple: click on the link below.
+        </p>
+        <p class="apply-link-container">
+          <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
+        </p>
+      </div>
+    {% endif %}
   </div>
 </section>
 {# We could use a fractal to stylistically split this sections apart #}

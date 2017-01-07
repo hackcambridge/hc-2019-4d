@@ -4,6 +4,11 @@ dashboard:
       message_type: warning
       title: Your application is incomplete &nbsp; &#128533; # Awkward face emoji
       subline: Finish it off when you're ready by completing everything below
+
+    incomplete-closed:
+      message_type: neutral
+      title: All good things must come to an end
+      subline: Unfortunately applications for Hack Cambridge are now closed. Keep an eye out for our future events!
     
     in-review:
       message_type: success

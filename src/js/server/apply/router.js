@@ -31,6 +31,7 @@ applyRouter.get('/', (req, res) => {
 });
 
 applyRouter.all('/form', checkHasApplied);
+applyRouter.all('/form', checkApplicationsOpen);
 
 applyRouter.post('/form', (req, res, next) => {
     req.user.log('Attempted to make an application');
@@ -61,6 +62,13 @@ applyRouter.post('/form', (req, res, next) => {
     });
   }
 );
+
+// Render the form for additional applicant details
+applyRouter.get('/form', (req, res) => {
+  renderApplyPageWithForm(res, createApplicationForm());
+});
+
+applyRouter.all('/team', checkApplicationsOpen);
 
 applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
   const form = createTeamForm();
@@ -140,11 +148,6 @@ applyRouter.get('/', function (req, res) {
   res.render('apply/index.html');
 });
 
-// Render the form for additional applicant details
-applyRouter.get('/form', (req, res) => {
-  renderApplyPageWithForm(res, createApplicationForm());
-});
-
 // Render the form for team applications
 applyRouter.get('/team', (req, res) => {
   req.user.getHackerApplication().then(hackerApplication => {
@@ -188,7 +191,7 @@ function renderDashboard(req, res) {
             teamId: teamId,
             $not: {
               // Exclude the current user
-              hackerId: application.hackerId,
+              hackerId: req.user.id,
             }
           },
         })
@@ -234,6 +237,8 @@ function renderDashboard(req, res) {
       statusMessage: content['status-messages'][overallStatus],
       teamMembers,
 
+      applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
+
       statuses,
     });
   });
@@ -273,6 +278,19 @@ function checkHasApplied(req, res, next) {
 
     next();
   }).catch(next);
+}
+
+/**
+ * Intercepts requests to check if applications are still open, redirecting to the dashbaord if not
+ */
+function checkApplicationsOpen(req, res, next) {
+  console.log(process.env.APPLICATIONS_OPEN);
+  if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
+    res.redirect(`${req.baseUrl}/dashboard`);
+    return;
+  }
+  
+  next();
 }
 
 module.exports = applyRouter;

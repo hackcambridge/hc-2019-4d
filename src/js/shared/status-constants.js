@@ -1,6 +1,7 @@
 module.exports = {
   overall: {
     INCOMPLETE: 'incomplete',
+    INCOMPLETE_CLOSED: 'incomplete-closed',
     IN_REVIEW: 'in-review',
     REJECTED: 'rejected',
     INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
@@ -36,6 +37,10 @@ module.exports = {
   ticket: {
     NO_TICKET: 'no-ticket',
     HAS_TICKET: 'has-ticket',
+  },
+  applicationsOpen: {
+    OPEN: 'open',
+    CLOSED: 'closed',
   },
 }
 
