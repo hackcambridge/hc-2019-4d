@@ -39,6 +39,7 @@ PGDATABASE=
 PGPASSWORD=
 PGPORT=
 SLACK_API_TOKEN=
+APPLICATIONS_OPEN_STATUS=
 ```
 
 ## Database
@@ -123,6 +124,10 @@ module.exports = ( (sortedApplications, n, inviteType) => {
   return sortedApplications.slice(0, n));
 });
 ```
+## Closing applications
+
+You can control whether or not applications are open using the APPLICATION_OPEN_STATUS environment variable. This takes a value of either
+`open` or `closed`.
 
 ## Build System
 

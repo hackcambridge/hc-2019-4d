@@ -210,7 +210,7 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
 Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, rsvpStatus, ticketStatus) {
 
   if (applicationStatus == statuses.application.INCOMPLETE || teamApplicationStatus == statuses.application.INCOMPLETE)
-    return statuses.overall.INCOMPLETE;
+    return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ? statuses.overall.INCOMPLETE : statuses.overall.INCOMPLETE_CLOSED;
   else if (responseStatus == statuses.response.PENDING)
     return statuses.overall.IN_REVIEW;
   else if (responseStatus == statuses.response.REJECTED)
