@@ -18,7 +18,7 @@ function createExpiryQueue(responsesToProcess, dryRun) {
 
     const response = responses.pop();
 
-    console.log(`Expiring response ${response.id}.`);
+    console.log(`Expiring response ${response.id}. Date invited: ${response.createdAt}`);
     return (dryRun ? Promise.resolve() : expireInvitation(response)).then(() => {
       console.log(`Expired ${response.id}`);
     }, (error) => {
@@ -33,11 +33,12 @@ function createExpiryQueue(responsesToProcess, dryRun) {
 }
 
 module.exports = {
-  command: 'expire-invitations [--dry-run]',
+  command: 'expire-invitations [--dryRun]',
   desc: 'Take any pending invitations that are too old and expire them',
   aliases: [],
   builder(yargs) {
-    return yargs.boolean('dryRun');
+    return yargs.boolean('dryRun')
+      .describe('dryRun', 'Display the candidates for expiry but do not expire them');
   },
   handler: createHandler(({ dryRun }) =>
     getInvitationExpiryCandidates().then((responses) => {
