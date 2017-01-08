@@ -2,6 +2,7 @@ const { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } =
 const { sendEmail } = require('js/server/email');
 const { response } = require('js/shared/status-constants');
 const { applicationHasBeenIndividuallyScored } = require('./score-logic');
+const { INVITATION_VALIDITY_DURATION } = require('./constants');
 const emailTemplates = require('./email-templates');
 
 function isApplicationScoreValid(application) {
@@ -107,7 +108,10 @@ function setResponseForApplications(applications, responseStatus) {
 
 function getEmailForApplicationResponse(hacker, responseStatus) {
   if (responseStatus === response.INVITED) {
-    return emailTemplates.invited({ name: hacker.firstName });
+    return emailTemplates.invited({ 
+      name: hacker.firstName,
+      daysValid: INVITATION_VALIDITY_DURATION.asDays(),
+    });
   }
 
   if (responseStatus === response.REJECTED) {

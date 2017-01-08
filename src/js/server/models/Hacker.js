@@ -70,6 +70,8 @@ const getRsvpStatus = function (hackerApplication) {
           return statuses.rsvp.COMPLETE_YES;
         } else if (rsvp.rsvp == 'RSVP_NO') {
           return statuses.rsvp.COMPLETE_NO;
+        } else if (rsvp.rsvp == 'RSVP_EXPIRED') {
+          return statuses.rsvp.COMPLETE_EXPIRED;
         }
       });
     }
@@ -221,6 +223,8 @@ Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamAp
     return statuses.overall.INVITED_AWAITING_RSVP;
   else if (rsvpStatus == statuses.rsvp.COMPLETE_NO)
     return statuses.overall.INVITED_DECLINED;
+  else if (rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED)
+    return statuses.overall.INVITED_EXPIRED;
   else if (rsvpStatus == statuses.rsvp.COMPLETE_YES)
     return statuses.overall.INVITED_ACCEPTED;
   else {

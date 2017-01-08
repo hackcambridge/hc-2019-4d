@@ -21,6 +21,7 @@ statsRouter.get('/', (req, res, next) => {
   const invitationsCountPromise = ApplicationResponse.count({ where: { response: response.INVITED } });
   const rejectionsCountPromise = ApplicationResponse.count({ where: { response: response.REJECTED } });
   const rsvpNoCountPromise = ResponseRsvp.count({ where: { rsvp: ResponseRsvp.RSVP_NO }});
+  const expiredCountPromise = ResponseRsvp.count(({ where: { rsvp: ResponseRsvp.RSVP_EXPIRED }}))
   const ticketCountPromise = ApplicationTicket.count();
 
   const applicationsReviewedQuery = 
@@ -58,6 +59,7 @@ statsRouter.get('/', (req, res, next) => {
     rejectionsCountPromise,
     rsvpNoCountPromise,
     ticketCountPromise,
+    expiredCountPromise,
   ])
   .then(
     ([
@@ -70,6 +72,7 @@ statsRouter.get('/', (req, res, next) => {
       rejectionsCount,
       rsvpNoCount,
       ticketCount,
+      expiredCount,
     ]) => {
       res.json({
         hackerCount,
@@ -81,6 +84,7 @@ statsRouter.get('/', (req, res, next) => {
         rejectionsCount,
         rsvpNoCount,
         ticketCount,
+        expiredCount,
       });
     }
   ).catch(next);
