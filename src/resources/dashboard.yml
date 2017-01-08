@@ -35,6 +35,11 @@ dashboard:
       title: Thank you
       subline: You've told us you can't make it. Thanks for your interest in Hack Cambridge Recurse.
 
+    invited-expired:
+      message_type: neutral
+      title: Thank you
+      subline: Your invitation for Hack Cambridge has expired, thank you for your interest.
+
     rejected:
       message_type: neutral
       title: We're sorry &#128546; # Crying emoji
@@ -95,6 +100,15 @@ dashboard:
       label: Declined
       content:
         Thanks for letting us know that you're no longer able to attend Hack Cambridge Recurse. Your place has been opened up to somebody else.
+        If you have feedback for us, we'd be glad to hear it. Just drop us an email.
+      action:
+        title: team@hackcambridge.com
+        location: mailto:team@hackcambridge.com
+    complete-expired:
+      type: na
+      label: Expired
+      content:
+        Your invitation for Hack Cambridge Recurse has expired. Your place has been opened up to somebody else.
         If you have feedback for us, we'd be glad to hear it. Just drop us an email.
       action:
         title: team@hackcambridge.com

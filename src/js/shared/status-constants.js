@@ -7,6 +7,7 @@ module.exports = {
     INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
     INVITED_ACCEPTED: 'invited-accepted',
     INVITED_DECLINED: 'invited-declined',
+    INVITED_EXPIRED: 'invited-expired',
     HAS_TICKET: 'has-ticket',
   },
   application: {
@@ -24,6 +25,7 @@ module.exports = {
     INCOMPLETE: 'incomplete',
     COMPLETE_YES: 'complete-yes',
     COMPLETE_NO: 'complete-no',
+    COMPLETE_EXPIRED: 'complete-expired',
   },
   furtherDetails: {
     INCOMPLETE: 'incomplete',
