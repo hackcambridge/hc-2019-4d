@@ -42,6 +42,10 @@ sponsors:
       variant: wide
 
   kilo:
+    - name: eLife
+      website: https://elifesciences.org
+      logo: elife-logo.svg
+      variant: wide
     - name: mySircles
       website: http://mysircles.com/
       logo: mysircles-logo.svg
