@@ -53,8 +53,23 @@ function inviteUser(email, firstName, lastName) {
   })
 }
 
+/**
+ * Gets all Slack users
+ */
+function getUsers() {
+  return makeSlackApiCall('users.list', { })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.error);
+      }
+
+      return response.members;
+    });
+}
+
 module.exports = {
   SlackApiError,
   makeSlackApiCall,
   inviteUser,
+  getUsers,
 };
