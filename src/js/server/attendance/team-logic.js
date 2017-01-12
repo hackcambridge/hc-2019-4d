@@ -25,21 +25,18 @@ function getAllApplicationsWantingTeams() {
   });
 }
 
-function applicationDevelopmentComparison(applicationA, applicationB) {
-  for (role of ROLE_ORDERING) {
-    const roleInA = applicationA.developmentRoles.includes(role);
-    const roleInB = applicationB.developmentRoles.includes(role);
-
-    if (roleInA) {
-      return roleInB ? 0 : -1;
-    }
-
-    if (roleInB) {
-      return 1;
+function getHighestPriorityRoleIndex(application) {
+  for (let roleIndex in ROLE_ORDERING) {
+    if (application.developmentRoles.includes(ROLE_ORDERING[roleIndex])) {
+      return roleIndex;
     }
   }
 
-  return 0;
+  return ROLE_ORDERING.length;
+}
+
+function applicationDevelopmentComparison(applicationA, applicationB) {
+  return getHighestPriorityRoleIndex(applicationA) - getHighestPriorityRoleIndex(applicationB);
 }
 
 function createEmptyTeams(applications) {

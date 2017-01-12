@@ -51,8 +51,8 @@ module.exports = {
       body: {
         name: 'Hackers',
         intro: [
-          'When you applied for Hack Cambridge you let us know that you wanted us to suggest you a team.',
-          'We\'ve done ths now, and here are everyone\'s details.',
+          'When you applied for Hack Cambridge, you let us know that you wanted us to suggest a team for you.',
+          'We\'ve done this now, and here are everyone\'s details:',
         ],
         dictionary: teamDictionary,
         outro: [
