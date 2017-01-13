@@ -9,5 +9,8 @@ yargs
   .command(require('./create-token'))
   .command(require('./suggest-responses'))
   .command(require('./respond'))
+  .command(require('./expire-invitations'))
+  .command(require('./teams'))
+  .demand(1, 'Supply a command.')
   .help()
   .argv;

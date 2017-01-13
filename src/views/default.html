@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+{#
+  if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
+#}
+{% if user.firstName %}
+  <header class="logged-in clearfix">
+    <span class="long-text">Logged in as</span> {{ user.firstName }} {{ user.lastName }} &nbsp; <a href="/apply/logout">Logout</a>
+    {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+    {% if not is_dashboard %}
+      <a class="float-right" href="/apply/dashboard"><span class="long-text">Go to your dashboard</span><span class="short-text">Dashboard</span> &rarr;</a>
+    {% endif %}
+  </header>
+{% endif %}
 <header class="default-header">
   <div class="content-wrapper">
     <a class="default-header-link" href="/">

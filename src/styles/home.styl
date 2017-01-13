@@ -2,6 +2,21 @@
    Welcome Section
    ========================================================================== */
 
+.mlh-trust-badge {
+  display:block;
+  max-width:100px;
+  min-width:65px;
+  position:absolute;
+  right:20px;
+  top:0;
+  width:10%;
+  z-index:10000;
+  
+  img {
+    width:100%;
+  }
+}
+
 .landing-welcome-section {
   display: flex;
   flex-direction: column;
@@ -35,6 +50,14 @@
   max-width: 400px;
   height: auto;
   margin-bottom: 2em;
+}
+
+.improbable-intro {
+  margin-left: 1.2em;
+}
+.improbable-logo {
+  vertical-align: middle;
+  height: 2em;
 }
 
 .subscribe-form-output {
@@ -375,6 +398,10 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
    ========================================================================== */
 
 // `sponsor` triggers ad blockers. Now we user `helper`
+.helper-heading {
+  margin: ($punit * 2) 0;
+}
+
 .helpers-container {
   margin: ($punit * 2);
 
@@ -400,12 +427,12 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 
   // Name, width, height, padding
-  $sponsorSizes = (cohost 1050px 800px 30px) (tera 583px 300px 20px) (giga 324px 185px 15px) (mega 180px 100px 10px) (kilo 100px 50px 5px);
-  $minSize = 45px 30px 5px
+  $sponsorSizes = (tera 590px 300px 20px) (giga 330px 185px 15px) (mega 200px 100px 10px) (kilo 120px 50px 5px);
+  $minSize = 70px 30px 10px
 
   for $sponsor in $sponsorSizes {
     &-{$sponsor[0]} {
-      $marginSize = min($minSize[2], ($sponsor[3]) / 2);
+      $marginSize = min($minSize[2], ($sponsor[3]));
 
       .helper-link-wide {
         width: max($minSize[0], $sponsor[1] / 2);

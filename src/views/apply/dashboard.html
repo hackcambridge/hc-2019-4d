@@ -28,7 +28,7 @@
   </center>
   
   {# Section for info about RSVPs #}
-  {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_NO %}
+  {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
     <section class="dashboard-section rsvp-section">
       <span class="{{ rsvpInfo.type }} float-right">{{ rsvpInfo.label }}</span>
       <h3>RSVP</h3>
@@ -75,7 +75,7 @@
 
   {# An extra details section for invited, non-declined hackers #}
 
-  {% if responseStatus == statuses.response.INVITED and rsvpStatus != statuses.rsvp.COMPLETE_NO %}
+  {% if responseStatus == statuses.response.INVITED and rsvpStatus != statuses.rsvp.COMPLETE_NO and rsvpStatus != statuses.rsvp.COMPLETE_EXPIRED %}
     {# Date and Time #}
     <section class="dashboard-section">
       <h3>Date and Time</h3>
@@ -172,7 +172,7 @@
           If you are an international student and will be flying, we recommend you head for Stansted Airport, our closest international airport, if possible. From there, National Express offer a 50-minute coach journey to Cambridge for just £8. For more information on that coach and coaches from other airports, visit <a href="http://coach.nationalexpress.com/nxbooking/journey-search">nationalexpress.com</a>
         </p>
       </section>
-      If you have any other questions about travel, please email our logistics team at <a href="mailto:logistics@hackcambride.com">logistics@hackcambride.com</a>.
+      If you have any other questions about travel, please email our logistics team at <a href="mailto:logistics@hackcambridge.com">logistics@hackcambridge.com</a>.
     </section>
 
     {# On the day #}

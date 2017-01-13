@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{# MLH Badge #}
+<a class="mlh-trust-badge" href="https://mlh.io/seasons/eu-2017/events?utm_source=eu-2017&utm_medium=TrustBadge&utm_campaign=eu-2017&utm_content=gray" target="_blank">
+  <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2017/gray.svg" alt="Major League Hacking 2017 Hackathon Season">
+</a>
+
 {# Group these two sections together as the bg needs to span both of them #}
 <div class="landing-welcome-intro">
   {# Currently our recursive motif is diamonds. These are useful because they naturally point 
@@ -15,6 +21,13 @@
     </div>
     <div class="landing-welcome-content">
       <img class="landing-welcome-logo" src="{{ asset('images/logos/hc2017-logo-full-light.svg') }}" alt="Hack Cambridge: Recurse">
+      {# Co-host #}
+      <p>
+        <div class="improbable-intro">Made possible by</div>
+        <a href="https://improbable.io">
+          <img class="improbable-logo" src="{{ asset('images/logos/improbable-logo-white.svg') }}" alt="Improbable"/>
+        </a>
+      </p>
       <p class="landing-welcome-dates">28 &ndash; 29 January 2017, University of Cambridge</p>
       {# These two links point to the same location, and do the same thing.
          But to capture the intent of the user, we're making the apparent functionality
@@ -25,10 +38,16 @@
               <a class="apply-link" href="/apply/form">Go to dashboard</a>
           </p>
       {% else %}
-        <p class="apply-link-container">
-          <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-        </p>
-        <a class="signin-link" href="/apply/form">Or Sign In</a>
+        {% if applicationsOpen %}
+          <p class="apply-link-container">
+            <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
+          </p>
+          <a class="signin-link" href="/apply/form">Or Sign In</a>
+        {% else %}
+          <p class="apply-link-container">
+            <a class="apply-link" href="/apply/dashboard">Sign in</a>
+          </p>
+        {% endif %}
       {% endif %}
     </div>
     <div class="landing-welcome-social-links">
@@ -112,15 +131,17 @@
       </div><!--
      {% endfor %}
    --></div>
-    <div class="landing-faqs-final">
-      <h2>Finally, what do I do now?</h2>
-      <p>
-        It's simple: click on the link below.
-      </p>
-      <p class="apply-link-container">
-        <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-      </p>
-    </div>
+    {% if applicationsOpen %}
+      <div class="landing-faqs-final">
+        <h2>Finally, what do I do now?</h2>
+        <p>
+          It's simple: click on the link below.
+        </p>
+        <p class="apply-link-container">
+          <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
+        </p>
+      </div>
+    {% endif %}
   </div>
 </section>
 {# We could use a fractal to stylistically split this sections apart #}
@@ -134,6 +155,20 @@
   <div class="content-wrapper-center">
     <h2>Sponsors</h2>
     <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:sponsorship@hackcambridge.com">sponsorship@hackcambridge.com</a>.</p>
+    {% for sponsorTierName, sponsorTier in sponsors %}
+      {% if sponsorTier|length != 0 %}
+        <h3 class="strike-heading helper-heading">
+        <span> {{ sponsorTierName | capitalize }} </span>
+        </h3>
+        <div class="helpers-container helpers-container-{{ sponsorTierName }}">
+          {% for sponsor in sponsorTier %}
+            <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
+              <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 </section>
 {% include 'footer.html' %}

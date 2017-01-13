@@ -1,13 +1,13 @@
 const { makeInstruction } = require('js/server/email');
 
-exports.invited = function ({ name }) {
+exports.invited = function ({ name, daysValid }) {
   return {
     subject: `${name}, you are invited to Hack Cambridge Recurse!`,
     body: {
       name,
       intro: [
         'We\'ve been blown away by your application for Hack Cambridge and we want you in the city in 2017 to create something amazing.',
-        'To guarantee your place in the hackathon, we\'ll need confirmation that you\'ll be attending within 5 days of you being invited. Otherwise, you may lose your spot. Simply let us know by RSVPing.',
+        `To guarantee your place in the hackathon, we\'ll need confirmation that you\'ll be attending within ${daysValid} days of you being invited. Otherwise, you may lose your spot. Simply let us know by RSVPing.`,
         'You probably have lots of questions about travel and accomodation, among other things. All of this information is on your dashboard and you can let us know if you have any more questions',
       ],
       action: [
@@ -35,7 +35,7 @@ exports.notInvited = function ({ name }) {
         'Due to the amount of them, we are unable to provide feedback on individual applications.',
         'Please stay tuned and apply for Hack Cambridge 2018 when it rolls around - we would love to hear from you again!',
       ],
-      outro: 'If you have any questions, please reach out to us by visiting our website.',
+      
     },
   };
 }

@@ -1,11 +1,13 @@
 module.exports = {
   overall: {
     INCOMPLETE: 'incomplete',
+    INCOMPLETE_CLOSED: 'incomplete-closed',
     IN_REVIEW: 'in-review',
     REJECTED: 'rejected',
     INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
     INVITED_ACCEPTED: 'invited-accepted',
     INVITED_DECLINED: 'invited-declined',
+    INVITED_EXPIRED: 'invited-expired',
     HAS_TICKET: 'has-ticket',
   },
   application: {
@@ -23,6 +25,7 @@ module.exports = {
     INCOMPLETE: 'incomplete',
     COMPLETE_YES: 'complete-yes',
     COMPLETE_NO: 'complete-no',
+    COMPLETE_EXPIRED: 'complete-expired',
   },
   furtherDetails: {
     INCOMPLETE: 'incomplete',
@@ -36,6 +39,10 @@ module.exports = {
   ticket: {
     NO_TICKET: 'no-ticket',
     HAS_TICKET: 'has-ticket',
+  },
+  applicationsOpen: {
+    OPEN: 'open',
+    CLOSED: 'closed',
   },
 }
 

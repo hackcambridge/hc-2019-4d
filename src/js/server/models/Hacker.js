@@ -70,6 +70,8 @@ const getRsvpStatus = function (hackerApplication) {
           return statuses.rsvp.COMPLETE_YES;
         } else if (rsvp.rsvp == 'RSVP_NO') {
           return statuses.rsvp.COMPLETE_NO;
+        } else if (rsvp.rsvp == 'RSVP_EXPIRED') {
+          return statuses.rsvp.COMPLETE_EXPIRED;
         }
       });
     }
@@ -210,7 +212,7 @@ Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
 Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamApplicationStatus, rsvpStatus, ticketStatus) {
 
   if (applicationStatus == statuses.application.INCOMPLETE || teamApplicationStatus == statuses.application.INCOMPLETE)
-    return statuses.overall.INCOMPLETE;
+    return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ? statuses.overall.INCOMPLETE : statuses.overall.INCOMPLETE_CLOSED;
   else if (responseStatus == statuses.response.PENDING)
     return statuses.overall.IN_REVIEW;
   else if (responseStatus == statuses.response.REJECTED)
@@ -221,6 +223,8 @@ Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamAp
     return statuses.overall.INVITED_AWAITING_RSVP;
   else if (rsvpStatus == statuses.rsvp.COMPLETE_NO)
     return statuses.overall.INVITED_DECLINED;
+  else if (rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED)
+    return statuses.overall.INVITED_EXPIRED;
   else if (rsvpStatus == statuses.rsvp.COMPLETE_YES)
     return statuses.overall.INVITED_ACCEPTED;
   else {
