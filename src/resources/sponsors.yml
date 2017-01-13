@@ -40,6 +40,10 @@ sponsors:
       website: https://www.jetbrains.com/
       logo: jetbrains-logo.svg
       variant: wide
+    - name: Skyscanner
+      website: https://www.skyscanner.net/
+      logo: skyscanner-logo.svg
+      variant: wide
 
   kilo:
     - name: eLife
