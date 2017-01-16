@@ -47,7 +47,7 @@ sponsors:
 
   kilo:
     - name: eLife
-      website: https://elifesciences.org
+      website: https://elifesciences.org/labs?utm_source=HackCambridge&utm_campaign=HackCambridge
       logo: elife-logo.svg
       variant: wide
     - name: mySircles
