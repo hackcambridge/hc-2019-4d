@@ -44,6 +44,10 @@ sponsors:
       website: https://www.skyscanner.net/
       logo: skyscanner-logo.svg
       variant: wide
+    - name: Studio Gobo
+      website: http://www.studiogobo.com/
+      logo: studio-gobo-logo.svg
+      variant: wide
 
   kilo:
     - name: eLife
