@@ -48,6 +48,10 @@ sponsors:
       website: http://www.studiogobo.com/
       logo: studio-gobo-logo.svg
       variant: wide
+    - name: ARM
+      website: http://www.arm.com/
+      logo: arm-logo.svg
+      variant: wide
 
   kilo:
     - name: eLife
