@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section-event-intro">
+  <div class="content-wrapper">
+    <img class="event-logo" src="{{ asset('images/logos/hc2017-logo-full-light.svg') }}" alt="Hack Cambridge" />
+    <p>2017 Event Guide<br />This page is a work in progress and will be updated as we get closer to the event.</p>
+
+    <div class="event-countdown event-timer-intro"></div>
+
+    <nav class="event-nav">
+      <a class="event-nav-button" href="#info">Info</a>
+      <a class="event-nav-button" href="#map">Map</a>
+      <a class="event-nav-button" href="#apis">APIs</a>
+      <a class="event-nav-button" href="#schedule">Schedule</a>
+      <a class="event-nav-button" href="#prizes">Prizes</a>
+    </nav>
+  </div>
+</section>
+
+<section class="section-event-info" id="info">
+  <div class="content-wrapper">
+    <h1 class="grand-heading">General Information</h1>
+    {{ markdownResource('info') }}
+  </div>
+</section>
+
+<section class="section-event-map" id="map">
+  <div class="content-wrapper-center event-tba">
+    <h1>Event map coming soon</h1>
+  </div>
+</section>
+
+<section class="section-event-apis" id="apis">
+  <div class="content-wrapper event-tba">
+    <h2 class="grand-heading">APIs &amp; Challenges</h2>
+    <p>APIs and challenges will be announced soon!</p>
+    {# {% for api in apis %}
+      <div class="event-api">
+        <h3>{{ api.name }}</h3>
+        <div class="event-api-description">
+          {{ api.description }}
+        </div>
+      </div>
+    {% endfor %} #}
+</section>
+
+<section class="section-event-timetable" id="schedule">
+  <div class="content-wrapper">
+    <h2 class="grand-heading">Schedule</h2>
+
+    {% macro render_schedule(day) %}
+      <div class="event-timetable-schedule-day event-timetable-schedule-{{ day }}">
+        <h3>{{ day | title }}</h3>
+        {% for event in schedule[day] %}
+        <div class="event-timetable-schedule-item{% if event.class %} event-timetable-schedule-item-{{ event.class }}{% endif %}">
+          <div class="event-timetable-schedule-item-time">{{ event.time.format('HH:mm') }}</div>
+          <div class="event-timetable-schedule-item-name">{{ event.event }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endmacro %}
+
+    <div class="event-timetable-schedule">
+      {{ render_schedule('saturday') }}
+      {{ render_schedule('sunday') }}
+    </div>
+
+    <div class="event-tba">
+      <h2 class="grand-heading">Workshops &amp; API Demos</h2>
+      <p>Information on workshops and API prizes will be announced soon.</p>
+    </div>
+    {# Workshops #}
+    {# General timetable #}
+    {# <div class="event-timetable-workshops">
+      {% for workshop in workshops %}
+        <div class="event-workshop">
+          <h3>{{ workshop.name }}</h3>
+          <p class="event-workshop-location">Location: {{ workshop.location }}</p>
+          <div class="event-workshop-time">
+            {% if not workshop.time.isValid() %}
+              TBA
+            {% else %}
+              {{ workshop.time.format('HH:mm') }}
+              <div class="event-workshop-decorator">until</div>
+              {{ workshop.time.clone().add(workshop.duration, 'minutes').format('HH:mm') }}
+            {% endif %}
+          </div>
+          <div class="event-workshop-description">
+            {{ workshop.description }}
+          </div>
+        </div>
+      {% endfor %}
+    </div> #}
+  </div>
+</section>
+
+<section class="section-event-prizes" id="prizes">
+  <div class="content-wrapper">
+    {% macro renderPrizes(prizes) %}
+      {% for prize in prizes %}
+        <div class="event-prize{% if prize.class %} event-prize-decorate-{{ prize.class}}{% endif %}">
+          <div class="event-prize-inner">
+            <h3>{{ prize.name }}</h3>
+            <p class="event-prize-content">{{ prize.prize }}</p>
+            {{ prize.description }}
+          </div>
+        </div>
+      {% endfor %}
+    {% endmacro %}
+
+    <div class="event-tba">
+      <h2 class="grand-heading">Prizes</h2>
+      <p>Prizes will be announced soon!</p>
+      {# <div class="event-prizes-general event-prize-container">
+        {{ renderPrizes(prizes.general) }}
+      </div> #}
+      <h2 class="grand-heading">API Prizes</h2>
+      <p>API prizes will be announced soon!</p>
+      {# <div class="event-prize-container event-prizes-api">
+        {{ renderPrizes(prizes.api) }}
+      </div> #}
+    </div>
+  </div>
+</section>
+{% endblock %}
