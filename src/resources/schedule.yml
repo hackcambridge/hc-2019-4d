@@ -1,33 +1,51 @@
 schedule:
   - event: Registration Opens
-    time: 2016-01-30 9:00:00
+    time: 2017-01-28 9:00:00
   - event: Pitching Session
-    time: 2016-01-30 9:00:00
+    time: 2017-01-28 9:00:00
   - event: Opening Ceremony
-    time: 2016-01-30 11:00:00
+    time: 2017-01-28 12:00:00
   - event: Hacking Starts
-    time: 2016-01-30 12:00:00
+    time: 2017-01-28 12:45:00
     class: emphasis
   - event: Lunch
-    time: 2016-01-30 12:00:00
+    time: 2017-01-28 13:00:00
+  - event: API Demos
+    time: 2017-01-28 14:00:00
+    class: small
+  - event: Waffles in Foyer
+    time: 2017-01-28 15:00:00
+    class: small
   - event: Workshops
-    time: 2016-01-30 13:00:00
+    time: 2017-01-28 15:15:00
+    class: small
   - event: Dinner
-    time: 2016-01-30 18:00:00
+    time: 2017-01-28 19:00:00
   - event: Bloomberg !Light Competition
-    time: 2016-01-30 20:00:00
+    time: 2017-01-28 20:00:00
+  - event: Sleeping Area Opens
+    time: 2017-01-28 22:00:00
+    class: small
 
   # Suday
-  - event: Midnight
-    time: 2016-01-31 00:00:00
+  - event: Midnight Snack
+    time: 2017-01-29 00:00:00
   - event: Breakfast
-    time: 2016-01-31 07:00:00
+    time: 2017-01-29 07:00:00
   - event: Hacking Ends
-    time: 2016-01-31 12:00:00
+    time: 2017-01-29 12:45:00
     class: emphasis
   - event: Hack Expo
-    time: 2016-01-31 13:00:00
+    time: 2017-01-29 13:30:00
+  - event: Finalists Announced
+    time: 2017-01-29 15:00:00
+    class: small
+  - event: Finalist Presentations
+    time: 2017-01-29 15:15:00
   - event: Closing Ceremony
-    time: 2016-01-31 16:15:00
+    time: 2017-01-29 17:00:00
   - event: Hack Cambridge Concludes
-    time: 2016-01-31 17:00:00
+    time: 2017-01-29 17:30:00
+  - event: Venue Closes
+    time: 2017-01-29 18:00:00
+    class: small
