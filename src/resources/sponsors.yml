@@ -24,10 +24,6 @@ sponsors:
       website: https://www.ahl.com/
       logo: man-ahl-logo.svg
       variant: wide
-    - name: Sophos
-      website: https://www.sophos.com
-      logo: sophos-logo.svg
-      variant: wide
     - name: Frontier
       website: http://www.frontier.co.uk/
       logo: frontier-logo.svg
@@ -44,11 +40,23 @@ sponsors:
       website: https://www.skyscanner.net/
       logo: skyscanner-logo.svg
       variant: wide
+    - name: Studio Gobo
+      website: http://www.studiogobo.com/
+      logo: studio-gobo-logo.svg
+      variant: wide
+    - name: ARM
+      website: http://www.arm.com/
+      logo: arm-logo.svg
+      variant: wide
 
   kilo:
     - name: eLife
-      website: https://elifesciences.org
+      website: https://elifesciences.org/labs?utm_source=HackCambridge&utm_campaign=HackCambridge
       logo: elife-logo.svg
+      variant: wide
+    - name: Lastmile
+      website: https://golastmile.com
+      logo: lastmile-logo.svg
       variant: wide
     - name: mySircles
       website: http://mysircles.com/
