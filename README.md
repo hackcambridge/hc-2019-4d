@@ -1,5 +1,9 @@
 # Hack Cambridge Website
-![alt tag](https://travis-ci.org/HackCambridge/hack-cambridge-website.svg?branch=master)
+<a href="https://travis-ci.org/HackCambridge/hack-cambridge-website">
+<img src="https://travis-ci.org/HackCambridge/hack-cambridge-website.svg?branch=master"
+alt="Master branch unit testing result." />
+</a>
+
 ## Getting Started
 
 To run the website on your machine, make sure you have [Node.js](https://nodejs.org) installed. Then inside this folder, run
