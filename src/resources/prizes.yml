@@ -32,23 +32,53 @@ prizes:
       prize: Each member of the winning team will receive Grover Sensor starter kit for mbed, ROCKI wifi music system, and a £30 Spotify gift card.
       class: hardware
   api:
-    - name: HPE Haven OnDemand API
-      prize: One "GoPro - HERO4 Session HD Waterproof Action Camera" for each member of the winning team.
-    - name: Beaker API
-      prize: £1000 pounds in gift cards split amongst the winning team
-    - name: Mailjet API
-      prize: One Nerf Gun with a Camera installed for each member of the winning team alongside 6-months Silver Premium Plan.
-    - name: Nessie by Capital One
-      prize: A Nespresso coffee machine by KRUPS for each member of the winning team
-    - name: Google Cloud Platform
-      prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
-    - name: Mendeley API
-      prize: One Parrot Jumping Race Drone JETT for each member of the winning team
-    - name: Amazon Web Services
-      prize: Power Banks
-    - name: Best domain name registered with domain.com
-      prize: Arduino Red Board
-    - name: OpenTSDB
-      prize: Vouchers for Amazon, amount TBA
-    - name: Bloomberg's Favourite Hack
-      prize: ICE Orb floating Blutooth Speaker
+    - name: QuantumBlack Challenge
+      description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
+      prize: 4 x £50 pound vouchers for Amazon
+    - name: Pusher Feeds API
+      description: |
+        Did you use Feeds at Hack Cambridge? We want to get your feedback about your experience. Hackers who complete the feedback form
+        inside the Feeds dashboard as well as include a a link to a repo (Github, Bitbucket, anything really) that uses Feeds will receive a £10 Amazon
+        voucher and enter you into a raffle to win a programmable BB8 droid!
+        
+        Send feedback on the form [here](https://docs.google.com/forms/d/e/1FAIpQLSet-xiiNurEFUwIVI6l8utjrl4kE57GBnVzULaszTp6VyyJdQ/viewform).
+      prize: £10 Amazon vouchers and BB8 Droid
+    - name: eLife Sciences API
+      description: |
+        We challenge you to transform research communication.
+        
+        Are you interested in the benefit that open access, open science and open data could bring to the world? The way that scientific research is shared
+        and evaluated still bears the legacy of a system based around print media. New technologies in the digital era present a huge opportunity to accelerate
+        discovery and make science collaborative instead of competitive. Will you help us to transform biology with technology?
+      prize: Raspberry Pi Model 3 with 16GB SD card, plus the GrovePi+ Starter Kit with an array of sensors for creating your own IoT device.
+    - name: Microsoft Cognitive Services and Bot Framework
+      description: |
+        Artificial intelligence isn't just for processing requests and synthesizing data anymore. Now, technology such as Cognitive Services allow developers
+        to understand sentiment, a trend known as affective computing. The idea is, that by understanding emotions, artificially intelligent technology could
+        predict a person's needs in drastically more human ways.
+        
+        So can you use facial expressions to determine how much user is engaged with your content or even greet them with a smile? The challenge - develop a
+        solution that Relies on the Cognitive Services or Microsoft Bot Framework and has at least one of the following
+        
+        - Use emotion detection to provide a new means of interaction with the user of the application.
+        - Solve or improve a real-world problem.
+        - Incorporate the use of a cameras (whether in phones, robots using Kinect, Realsense or Laptop/Mobile inbuilt Camera).
+        - Provided in an application for Web or iOS, Android and Windows 10
+      prize: |
+        - 1 set per team members (total 4 sets) Microsoft Azure IOT starter Kits 
+        - 1 x Raspberry Pi IOT Kit with Feather Hat and accessories
+        - 1 x Adafriut Feather IO kits and accessories
+        - 1 x T shirt
+        - Stickers 
+        - 1 x USB key 
+        - 1 x Power bank speakers and charger
+        - 1 x Selfie stick 
+        - 1 x hoodie pillow
+        - Stress toys
+    - name: Argon Design Challenge
+      description:  |
+        We challenge you to connect a speech-to-text engine to a LSTM machine learning network to a text-to-speech engine. Users can then speak to the
+        device for a while (or select a personality trained from a pre-existing corpus of text). Then I can say half a sentence and allow the “Sentence
+        Finisher” to predict and say the rest. We'll bring along some Amazon Echo Dots to provide the voice I/O and our engineers will be pitching in to
+        help teams who want to explore and create some interesting examples in this area. [See here](http://www.argondesign.com/news/2017/jan/11/hack-cambridge-2017/)
+        below for more information.
