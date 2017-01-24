@@ -1,8 +1,7 @@
 # Hack Cambridge Website
-<a href="https://travis-ci.org/HackCambridge/hack-cambridge-website">
-<img src="https://travis-ci.org/HackCambridge/hack-cambridge-website.svg?branch=master"
-alt="Master branch unit testing result." />
-</a>
+[
+  ![Master branch unit testing result](https://travis-ci.org/HackCambridge/hack-cambridge-website.svg?branch=master)
+](https://travis-ci.org/HackCambridge/hack-cambridge-website)
 
 ## Getting Started
 
