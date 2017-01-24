@@ -1,7 +1,7 @@
 workshops:
   - name: Saptial OS workshop by Improbable
     description: |
-      TODO
+      Information coming soon...
     time: 2016-01-28 15:15:00
     duration: 30 # In minutes
     location: The Guildhall
@@ -21,44 +21,34 @@ workshops:
       how you can use them to transform your applications through a simple API
       call.
 
-      About the Presenter: Presenter Details - Lilian is a Technical Evangelist
-      within the Developer Experience Group (DX) at Microsoft. She is a Computer
-      Science graduate, tech enthusiast and IoT hobbyist. Lilian has previously
-      worked as a Software Engineer developing Mobile and Web applications. Her
-      areas of interest include Cognitive Services, Messenger Bots, Xamarin and
-      Mobile Development. see http://liliankasem.com
+      About the Presenter: Lilian is a Technical Evangelist within the Developer
+      Experience Group (DX) at Microsoft. She is a Computer Science graduate,
+      tech enthusiast and IoT hobbyist. Lilian has previously worked as a
+      Software Engineer developing Mobile and Web applications. Her areas of
+      interest include Cognitive Services, Messenger Bots, Xamarin and Mobile
+      Development. See [http://liliankasem.com](http://liliankasem.com)
+
     time: 2016-01-28 16:00:00
     duration: 30 # In minutes
     location: The Guildhall
 
   - name: QuantumBlack workshop
     description: |
-      TODO
+      Information coming soon...
     time: 2016-01-28 16:45:00
     duration: 30 # In minutes
     location: The Guildhall
 
-
-  - name: Studo Gobo
+  - name: Studo Gobo workshop
     description: |
-      TODO
+      Information coming soon...
     time: 2016-01-28 17:30:00
     duration: 30 # In minutes
     location: The Guildhall
 
-  - name: How to get ahead with Continuous Integration
+  - name: Hackers at Cambridge workshop
     description: |
-      Continuous integration is a setup in which a service automatically runs on
-      new work you submit to a project. This service will then try to merge your
-      changes into the project and can do other tasks like running unit and
-      regression tests.
-
-      This workshop will show you an example of how to get set
-      up. In particular, Tom will show you how to get ahead in a hackathon and
-      exploit services available to you in order to win Hack Cambridge!
-
-      Speaker: Tom Read Cutting, Hackers at Cambridge Supreme Overlord
-      Follow Tom on Twitter [@moosichu](https://twitter.com/moosichu)
+      Information coming soon...
     time: 2016-01-28 18:00:00
     duration: 30 # In minutes
     location: The Guildhall

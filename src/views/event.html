@@ -65,13 +65,10 @@
       {{ render_schedule('sunday') }}
     </div>
 
-    <div class="event-tba">
-      <h2 class="grand-heading">Workshops &amp; API Demos</h2>
-      <p>Information on workshops and API prizes will be announced soon.</p>
-    </div>
+    <h2 class="grand-heading">Workshops &amp; API Demos</h2>
     {# Workshops #}
     {# General timetable #}
-    {# <div class="event-timetable-workshops">
+    <div class="event-timetable-workshops">
       {% for workshop in workshops %}
         <div class="event-workshop">
           <h3>{{ workshop.name }}</h3>
@@ -90,7 +87,7 @@
           </div>
         </div>
       {% endfor %}
-    </div> #}
+    </div>
   </div>
 </section>
 
