@@ -218,7 +218,7 @@
 }
 
 .event-timetable-workshops {
-  border-left: 2px solid darken($colorSecondary, 30%);
+  border-left: 2px solid white;
   padding-left: $punit;
   margin-left: 40px;
 }
@@ -231,7 +231,7 @@
   box-sizing: border-box;
   width: 50px;
   text-align: right;
-  color: lighten($colorSecondary, 20%);
+  color: white;
   letter-spacing: 0.05em;
   font-size: 0.9em;
 
@@ -240,7 +240,7 @@
     content: ' ';
     display: block;
     width: 13px;
-    border-bottom: 2px solid darken($colorSecondary, 30%);
+    border-bottom: 2px solid white;
     right: -12px;
     top: 11px;
   }
@@ -257,13 +257,16 @@
 
 .event-workshop-location {
   margin-top: -15px;
-  color: $colorSecondary;
+  color: white;
   letter-spacing: 0.05em;
   font-size: 0.9em;
 }
 
 .event-workshop-description {
-  color: lighten($colorSecondary, 50%);
+  color: white;
+  a {
+   color: $colorLightLink;
+  }
 }
 
 .event-workshop {
