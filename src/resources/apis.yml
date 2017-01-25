@@ -40,25 +40,25 @@ apis:
       accepted after peer review are published online as articles available both in HTML and PDF format. Please note the eLife API documentation is still
       under development; feedback welcome.
     documentation:  https://github.com/elifesciences/api-raml
-    prizes: Use of this API is eligible for the eLife Sciences Prize!
+    prizes: Use of this API is eligible for the eLife Challenge!
   - name: eLife API SDK for PHP
     description: |
       SDK for building on eLife resources using PHP - see above for eLife API details. Eligible for the eLife Science API Prize.
     documentation: https://github.com/elifesciences/api-sdk-php
-    prizes: Use of this API is eligible for the eLife Sciences Prize!
+    prizes: Use of this API is eligible for the eLife Challenge!
   - name: eLife Lens
     description: |
       Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. Lens is a
       stand-alone web component that can be embedded into any web page.
     documentation: https://github.com/elifesciences/lens
-    prizes: Use of this API is eligible for the eLife Sciences Prize!
+    prizes: Use of this API is eligible for the eLife Challenge!
   - name: eLife Continuum
     description: |
       eLife Continuum is the platform that we use to manage the publishing and hosting of our research content. It is composed of a set of software components
       that form a publishing and article hosting system. Continuum has been made available for any interested party to use, to encourage the adoption of open online
       continuous publishing. The platform can be used in its entirety, or users can exploit the individual components of Continuum within their own platform.
     documentation: https://github.com/elifesciences/elife-continuum-documentation
-    prizes: Use of this API is eligible for the eLife Sciences Prize!
+    prizes: Use of this API is eligible for the eLife Challenge!
   - name: LastMile rasa NLU
     description: |
       [LastMile](http://golastmile.com/) provides AI dialogue technology entirely based on machine learning: developers don't hard-code conversation flow charts. Deep
