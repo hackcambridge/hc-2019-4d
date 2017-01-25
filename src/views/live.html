@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="live-container">
+  
+  <div class="live-bar">
+    <div class="live-spotify-widget-cropper">
+      <iframe class="live-spotify-widget" src="https://embed.spotify.com/?uri=spotify:user:11124594727:playlist:5ZsAzB4swZL2Et1yaOlKAJ" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+
+    <div class="live-sponsors">
+      {% for sponsorTierName, sponsorTier in sponsors %}
+        {% if sponsorTierName == 'tera' %}
+            {% for sponsor in sponsorTier %}
+                <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
+            {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="event-countdown"></div>
+  
+  <div class="live-cohost">
+    <img class="improbable-logo" src="{{ asset('images/logos/improbable-logo-white.svg') }}" alt="Improbable"/>
+  </div>
+
+  <a class="twitter-timeline"
+    href="https://twitter.com/Hack_Cambridge"
+    data-width="300"
+    data-height="300"
+    data-chrome="noheader nofooter noborders noscrollbar transparent">
+  Tweets by @TwitterDev
+  </a>
+
+</div>
+{% endblock %}

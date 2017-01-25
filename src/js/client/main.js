@@ -1,6 +1,8 @@
 var $ = require('jquery');
 
-require('./polyfills')
+require('./polyfills');
+
+var Countdown = require('../shared/countdown');
 
 var pages = [
   require('./payment'),
@@ -97,6 +99,13 @@ $(document).ready(function () {
       }
     });
   }
+
+  $('.event-countdown').each(function () {
+    let countdown = Countdown.createChainedCountdown();
+
+    countdown.onCount = (rendered) => $(this).html(rendered);
+    countdown.start();
+  });
 
   /*var updateCountdown = function () {
     $('.application-countdown').html(createCountdownText());
