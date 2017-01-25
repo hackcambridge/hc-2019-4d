@@ -3,34 +3,20 @@ prizes:
     - name: Hack Cambridge 1st Place
       description: |
         Do you think you have what it takes to be the best at Hack Cambridge?
-      prize: Each member of the winning team will receive a Nexus 9 tablet.
-      picture: picture.png
+      prize: |
+        The team receives a unique Hack Cambridge trophy, and every team member also receives commercial licences for each team
+        member to a JetBrains product of their choice and an APEMAN Waterproof Action Camera
       class: first
     - name: Hack Cambridge 2nd Place
       description: |
-      prize: Each member of the winning team will receive a Parrot MiniDrones Airborne Cargo Drone, a mini-keyboard and a grey Logitech M185 Wireless Mouse.
+      prize: Each member of the winning team will receive a Eachine H8C Mini Quadcopter Drone.
       picture: picture.png
       class: second
     - name: Hack Cambridge 3rd Place
       description: |
-      prize: Each member of the winning team will receive a 6" Touchscreen Kindle.
+      prize: Each member of the winning team will receive a GooDee 3D Printer Pen.
       picture: picture.png
       class: third
-    - name: The Hack Cambridge People's Choice Award
-      description: |
-        Do you think you have what it takes to impress your peers? During the judging period hackers will be able to check out each other's projects and vote for their favourites.
-      prize: Each member of the winnng team will receive a Black Pebble Time smartwatch.
-      picture: picture.png
-      class: pc
-    - name: The Thales Security Challenge
-      prize: Each member of the team will received £200
-      class: security
-    - name: Best Gaming/VR Hack by Improbable
-      prize: TBA
-      class: gaming
-    - name: Best Hardware Hack by ARM
-      prize: Each member of the winning team will receive Grover Sensor starter kit for mbed, ROCKI wifi music system, and a £30 Spotify gift card.
-      class: hardware
   api:
     - name: QuantumBlack Challenge
       description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
