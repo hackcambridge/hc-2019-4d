@@ -23,6 +23,7 @@ prizes:
         Improbable are giving you early access to the new release of their (SpatialOS platform!)[https://spatialos.improbable.io/]!
 
         Their challenge isn't released yet... stay tuned!
+      class: thematic
     - name: eLife Challenge
       description: |
         Are you interested in the benefit that open access, open science and open data could bring to the world? The way that
@@ -37,10 +38,20 @@ prizes:
         science even better. Whatever you build, we'll be looking out for ideas that utilise the eLife API, showcase open
         research outputs (papers, data, code), or build on other openly-available resources in research technology.
       prize: Raspberry Pi Model 3 plus GrovePi+ IoT Starter Kit
+      class: thematic
+    - name: Argon Design Challenge
+      description:  |
+        We challenge you to connect a speech-to-text engine to a LSTM machine learning network to a text-to-speech engine. Users can then speak to the
+        device for a while (or select a personality trained from a pre-existing corpus of text). Then I can say half a sentence and allow the “Sentence
+        Finisher” to predict and say the rest. We'll bring along some Amazon Echo Dots to provide the voice I/O and our engineers will be pitching in to
+        help teams who want to explore and create some interesting examples in this area. [See here](http://www.argondesign.com/news/2017/jan/11/hack-cambridge-2017/)
+        below for more information.
+      class: challenge
   api:
     - name: QuantumBlack Challenge
       description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
       prize: 4 x £50 pound vouchers for Amazon
+      class: api
     - name: Pusher Feeds API
       description: |
         Did you use Feeds at Hack Cambridge? We want to get your feedback about your experience. Hackers who complete the feedback form
@@ -49,6 +60,7 @@ prizes:
         
         Send feedback on the form [here](https://docs.google.com/forms/d/e/1FAIpQLSet-xiiNurEFUwIVI6l8utjrl4kE57GBnVzULaszTp6VyyJdQ/viewform).
       prize: £10 Amazon vouchers and BB8 Droid
+      class: api
     - name: Microsoft Cognitive Services and Bot Framework
       description: |
         Artificial intelligence isn't just for processing requests and synthesizing data anymore. Now, technology such as Cognitive Services allow developers
@@ -73,10 +85,4 @@ prizes:
         - 1 x Selfie stick 
         - 1 x hoodie pillow
         - Stress toys
-    - name: Argon Design Challenge
-      description:  |
-        We challenge you to connect a speech-to-text engine to a LSTM machine learning network to a text-to-speech engine. Users can then speak to the
-        device for a while (or select a personality trained from a pre-existing corpus of text). Then I can say half a sentence and allow the “Sentence
-        Finisher” to predict and say the rest. We'll bring along some Amazon Echo Dots to provide the voice I/O and our engineers will be pitching in to
-        help teams who want to explore and create some interesting examples in this area. [See here](http://www.argondesign.com/news/2017/jan/11/hack-cambridge-2017/)
-        below for more information.
+      class: api
