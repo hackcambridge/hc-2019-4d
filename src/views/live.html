@@ -24,13 +24,10 @@
     <img class="improbable-logo" src="{{ asset('images/logos/improbable-logo-white.svg') }}" alt="Improbable"/>
   </div>
 
-  <a class="twitter-timeline"
-    href="https://twitter.com/Hack_Cambridge"
-    data-width="300"
-    data-height="300"
-    data-chrome="noheader nofooter noborders noscrollbar transparent">
-  Tweets by @TwitterDev
-  </a>
-
 </div>
+{% endblock %}
+{% block local_scripts %}
+  window.addEventListener('error', event => {
+    setTimeout(() => location.reload(true), 5000);
+  });
 {% endblock %}
