@@ -1,10 +1,24 @@
 apis:
-  - name: Pusher API
+  - name: SpatialOS
+    description: |
+      SpatialOS is a computation platform from (Improbable)[https://improbable.io/] that allows you to exceed the power of a
+      single game engine or server.
+    documentation: https://spatialos.improbable.io/docs/reference/9.1-alpha
+    prizes: Use of SpatialOS is eligible for the Improbable Challenge Prize, details of which will be up shortly!
+  - name: Pusher Feeds API
     description: |
       Pusher Feeds API is a simple hosted service to add realtime & resumable feeds to your hack in minutes. Simply subscribe a client to a feed, append items to it,
       and get updates in realtime. Feeds also come with a cache built in to resume where you left off.
     documentation: www.pusher.com/hack-cambridge
     prizes: Use of this API is eligible for the Pusher Feeds Prize!
+  - name: Skyscanner API
+    description: |
+      [Skyscanner](https://www.skyscanner.net/) allows users to compare millions of flights to find the cheapest deal, fast.
+      
+      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
+      combined, to build a fully-fledged travel search product.
+    documentation: http://business.skyscanner.net/portal/en-GB/Documentation/ApiOverview
+    prizes: Use of the Skyscanner API is eligible for the Improbable Challenge Prize, details of which will be up shortly!
   - name: Microsoft Cognitive - Vision, Speech, Search, Language, Knowledge 
     description: |
       Microsoft Cognitive Services (formerly Project Oxford) are a set of APIs, SDKs and services available to developers to make their applications more intelligent,
@@ -20,7 +34,7 @@ apis:
       Office 365 mail, Teams and other popular services. 
     documentation: https://docs.botframework.com/en-us/
     prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
-  - name: eLife Sciences API
+  - name: eLife API
     description: |
       [eLife](https://elifesciences.org/) is an online open-access journal for life sciences and biomedical research. Scientific manuscripts that have been
       accepted after peer review are published online as articles available both in HTML and PDF format. Please note the eLife API documentation is still
@@ -55,10 +69,3 @@ apis:
       [Man AHL](https://www.ahl.com/) are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their
       Arctic API provides a high performance datastore for time series and tick data.
     documentation: https://github.com/manahl/arctic
-  - name: Skyscanner API
-    description: |
-      [Skyscanner](https://www.skyscanner.net/) allows users to compare millions of flights to find the cheapest deal, fast.
-      
-      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
-      combined, to build a fully-fledged travel search product.
-    documentation: http://business.skyscanner.net/portal/en-GB/Documentation/ApiOverview.

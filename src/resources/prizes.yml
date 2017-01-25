@@ -4,8 +4,8 @@ prizes:
       description: |
         Do you think you have what it takes to be the best at Hack Cambridge?
       prize: |
-        The team receives a unique Hack Cambridge trophy, and every team member also receives commercial licences for each team
-        member to a JetBrains product of their choice and an APEMAN Waterproof Action Camera
+        The team receives a unique Hack Cambridge trophy, and every team member receives commercial licences to a JetBrains
+        product of their choice and an APEMAN Waterproof Action Camera
       class: first
     - name: Hack Cambridge 2nd Place
       description: |
@@ -17,6 +17,21 @@ prizes:
       prize: Each member of the winning team will receive a GooDee 3D Printer Pen.
       picture: picture.png
       class: third
+  challenges:
+    - name: eLife Challenge
+      description: |
+        Are you interested in the benefit that open access, open science and open data could bring to the world? The way that
+        scientific research is shared and evaluated still bears the legacy of a system based around print media. New technologies
+        in the digital era present a huge opportunity to accelerate discovery and make science collaborative instead of
+        competitive. Will you help us to transform biology with technology?
+
+        At Hack Cambridge, we challenge you to develop a prototype tool or technological solution that improves how scientists,
+        academics and the public interact with cutting-edge research. You could explore ways to help researchers share their own
+        work or review their peers' work in a fast, transparent and collaborative manner, your tool could enhance the
+        discoverability or accessibility of new research, or you may have a completely new idea for how we can make the best
+        science even better. Whatever you build, we'll be looking out for ideas that utilise the eLife API, showcase open
+        research outputs (papers, data, code), or build on other openly-available resources in research technology.
+      prize: Raspberry Pi Model 3 plus GrovePi+ IoT Starter Kit
   api:
     - name: QuantumBlack Challenge
       description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
@@ -29,14 +44,6 @@ prizes:
         
         Send feedback on the form [here](https://docs.google.com/forms/d/e/1FAIpQLSet-xiiNurEFUwIVI6l8utjrl4kE57GBnVzULaszTp6VyyJdQ/viewform).
       prize: £10 Amazon vouchers and BB8 Droid
-    - name: eLife Sciences API
-      description: |
-        We challenge you to transform research communication.
-        
-        Are you interested in the benefit that open access, open science and open data could bring to the world? The way that scientific research is shared
-        and evaluated still bears the legacy of a system based around print media. New technologies in the digital era present a huge opportunity to accelerate
-        discovery and make science collaborative instead of competitive. Will you help us to transform biology with technology?
-      prize: Raspberry Pi Model 3 with 16GB SD card, plus the GrovePi+ Starter Kit with an array of sensors for creating your own IoT device.
     - name: Microsoft Cognitive Services and Bot Framework
       description: |
         Artificial intelligence isn't just for processing requests and synthesizing data anymore. Now, technology such as Cognitive Services allow developers
