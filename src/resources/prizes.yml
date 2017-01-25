@@ -18,6 +18,11 @@ prizes:
       picture: picture.png
       class: third
   challenges:
+    - name: Improbable Challenge
+      description: |
+        Improbable are giving you early access to the new release of their (SpatialOS platform!)[https://spatialos.improbable.io/]!
+
+        Their challenge isn't released yet... stay tuned!
     - name: eLife Challenge
       description: |
         Are you interested in the benefit that open access, open science and open data could bring to the world? The way that
