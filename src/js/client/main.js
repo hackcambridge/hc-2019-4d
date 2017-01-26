@@ -7,6 +7,7 @@ var Countdown = require('../shared/countdown');
 var pages = [
   require('./payment'),
   require('./apply'),
+  require('./fractal'),
 ];
 
 $(document).ready(function () {
