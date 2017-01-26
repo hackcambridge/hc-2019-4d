@@ -109,9 +109,16 @@ app.get('/event', function (req, res) {
   });
 });
 
+app.get('/live', function (req, res) {
+  res.render('live.html', {
+    title: 'Hack Cambridge Recurse',
+    sponsors: utils.loadResource('sponsors'),
+  });
+});
+
 app.get('/volunteers', (req, res) => {
   res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
-})
+});
 
 app.get('/favicon.ico', function (req, res) {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
