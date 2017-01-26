@@ -47,6 +47,14 @@ prizes:
         help teams who want to explore and create some interesting examples in this area. [See here](http://www.argondesign.com/news/2017/jan/11/hack-cambridge-2017/)
         below for more information.
       class: challenge
+    - name: Cambridge Live Challenge
+      description: |
+        Produce an app to create a way for festival participants to interact with the event by becoming active part of it. Perhaps by transforming their
+        own devices into light beams themselves. Imagine a square or a stadium filled with people holding their mobile phones and having them changing
+        colours on randomly selected patterns or at the rhythm of music!
+      prize: Tickets to either the opening performance of [e-Luminate Cambridge](https://www.cambridgelivetrust.co.uk/cornex/events/e-luminate-dark-light)
+        or the [Play of Light events](https://www.cambridgelivetrust.co.uk/e-luminate/e-luminate/play-light).
+      class: challenge
   api:
     - name: QuantumBlack Challenge
       description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
