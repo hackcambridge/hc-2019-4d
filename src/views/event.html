@@ -31,17 +31,16 @@
 </section>
 
 <section class="section-event-apis" id="apis">
-  <div class="content-wrapper event-tba">
-    <h2 class="grand-heading">APIs &amp; Challenges</h2>
-    <p>APIs and challenges will be announced soon!</p>
-    {# {% for api in apis %}
+  <div class="content-wrapper">
+    <h2 class="grand-heading">APIs &amp; Services</h2>
+    {% for api in apis %}
       <div class="event-api">
         <h3>{{ api.name }}</h3>
         <div class="event-api-description">
           {{ api.description }}
         </div>
       </div>
-    {% endfor %} #}
+    {% endfor %}
 </section>
 
 <section class="section-event-timetable" id="schedule">
@@ -98,24 +97,16 @@
         <div class="event-prize{% if prize.class %} event-prize-decorate-{{ prize.class}}{% endif %}">
           <div class="event-prize-inner">
             <h3>{{ prize.name }}</h3>
-            <p class="event-prize-content">{{ prize.prize }}</p>
+            <div class="event-prize-content">{{ prize.prize }}</div>
             {{ prize.description }}
           </div>
         </div>
       {% endfor %}
     {% endmacro %}
 
-    <div class="event-tba">
-      <h2 class="grand-heading">Prizes</h2>
-      <p>Prizes will be announced soon!</p>
-      {# <div class="event-prizes-general event-prize-container">
-        {{ renderPrizes(prizes.general) }}
-      </div> #}
-      <h2 class="grand-heading">API Prizes</h2>
-      <p>API prizes will be announced soon!</p>
-      {# <div class="event-prize-container event-prizes-api">
-        {{ renderPrizes(prizes.api) }}
-      </div> #}
+    <h2 class="grand-heading">Prizes &amp; Challenges</h2>
+    <div class="event-prizes-general event-prize-container">
+      {{ renderPrizes(prizes.general) }}
     </div>
   </div>
 </section>

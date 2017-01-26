@@ -325,15 +325,31 @@
   }
 }
 
+.event-prize-inner {
+  border-radius: 5px;
+  background: #eee;
+  padding: 15px;
+  overflow: hidden;
+
+  border: 1px solid #666;
+
+  h3 {
+    margin: -15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #666;
+    color: #fff;
+  }
+}
+
 .event-prize-decorate {
   decorate($col) {
     .event-prize-inner {
-      border-radius: 10px;
-      padding: 15px;
-      background: radial-gradient(circle at top center, $col, darken($col, 5));
+      border: 1px solid $col;
 
-      color: #fff;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.01), 0 2px 2px rgba(0, 0, 0, 0.1);
+      h3 {
+        background: linear-gradient(to bottom left, $col, darken($col, 5));
+      }
     }
   }
 
@@ -349,24 +365,32 @@
     decorate(#B29872);
   }
 
-  &-pc {
-    decorate(#C15BDB);
+  &-quantumblack {
+    decorate(#333);
   }
 
-  &-security {
-    decorate(#00BADF)
+  &-pusher {
+    decorate(#549eff);
   }
 
-  &-gaming {
-    decorate(#FF2B00)
+  &-microsoft {
+    decorate(#74B500);
   }
 
-  &-machine {
-    decorate(#031022)
+  &-elife {
+    decorate(#223278);
   }
 
-  &-hardware {
-    decorate(#33cc33)
+  &-improbable {
+    decorate(#FC311D);
+  }
+
+  &-cambridgelive {
+    decorate(#D1DC00);
+  }
+
+  &-argondesign {
+    decorate(#1181C8);
   }
 }
 
@@ -375,7 +399,6 @@
 }
 
 .event-prize-content {
-  margin-top: -10px;
   letter-spacing: 0.05em;
   font-size: 0.9em;
   opacity: 0.8;

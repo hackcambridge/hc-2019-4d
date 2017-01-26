@@ -1,7 +1,7 @@
 apis:
   - name: SpatialOS
     description: |
-      SpatialOS is a computation platform from (Improbable)[https://improbable.io/] that allows you to exceed the power of a
+      SpatialOS is a computation platform from [Improbable](https://improbable.io/) that allows you to exceed the power of a
       single game engine or server.
     documentation: https://spatialos.improbable.io/docs/reference/9.1-alpha
     prizes: Use of SpatialOS is eligible for the Improbable Challenge Prize, details of which will be up shortly!
