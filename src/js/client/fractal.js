@@ -26,19 +26,39 @@ function quadratic([cr, ci]) {
   return ([r, i]) => [Math.pow(r, 2) - Math.pow(i, 2) + cr, 2 * r * i + ci];
 }
 
-module.exports = () => {
-  // Fractal constant
-  const [cr, ci] = [-0.7269, 0.1889];
-  // Viewpoint origin
-  const [or, oi] = [-(cr + 0.6), -(ci - 1.1)];
-  // Scale factor
-  const scale = 2;
-  // Fractal function
-  const f = quadratic([cr, ci]);
-  // Maximum pixel opacity
-  const alpha = 0.6;
+const fractalLibrary = [
+  [quadratic, [-0.7269, 0.1889], [0.6, -1.1], 2]
+];
 
+// How often to refresh the fractal (in seconds)
+const refresh = 60;
+// How long the fade out takes (in seconds)
+const fade = 8;
+// Maximum pixel opacity
+const alpha = 0.6;
+
+module.exports = () => {
   for (const canvas of document.querySelectorAll(".fractal-canvas")) {
+    let cr, ci, or, oi, scale, vr, vi, fractal, index = fractalLibrary.length;
+    function pickNextFractal() {
+      if (index === fractalLibrary.length) {
+        const previous = fractalLibrary[fractalLibrary.length - 1];
+        shuffleArray(fractalLibrary);
+        if (fractalLibrary[0] === previous) {
+          // Make sure we never pick the same fractal twice in a row (unless there's only one fractal in our library).
+          fractalLibrary.reverse();
+        }
+        index = 0;
+      }
+      let f;
+      [f, [cr, ci], [or, oi], scale] = fractalLibrary[index ++];
+      // Viewpoint origin
+      [vr, vi] = [-(cr + or), -(ci + oi)];
+      // Fractal function
+      fractal = f([cr, ci]);
+    }
+    pickNextFractal();
+
     canvas.classList.add("fractal-canvas");
     const size = Math.max(window.innerWidth, window.innerHeight) * window.devicePixelRatio;
     const [width, height] = [size, size];
@@ -49,7 +69,19 @@ module.exports = () => {
     const context = canvas.getContext("2d");
     context.fillStyle = "white";
 
-    let regions = [[0, 0, width, height, NaN, 0]], next = [];
+    let regions, next;
+    function begin() {
+      regions = [[0, 0, width, height, NaN, 0]], next = [];
+
+      setTimeout(() => {
+        canvas.classList.add("fade");
+        setTimeout(() => {
+          context.clearRect(0, 0, width, height);
+          canvas.classList.remove("fade");
+          begin();
+        }, fade * 1000);
+      }, refresh * 1000);
+    }
     function pushNextRegions(newRegions, cs, u) {
       for (const [x, y, w, h] of newRegions) {
         if (w >= 1 && h >= 1 && x < wlimit && y < hlimit) {
@@ -58,16 +90,21 @@ module.exports = () => {
       }
     }
 
+    begin();
+
     let interval = setInterval(() => {
       if (regions.length === 0) {
         regions = shuffleArray(next);
         next = [];
       }
       const [x, y, w, h, cs, u] = regions.shift();
-      const [checksum, value] = getFractalValue(f, [((x + w / 2) / width - 0.5) * 2 * scale + or, ((y + h / 2) / height - 0.5) * 2 * scale + oi]);
-      context.globalAlpha = value * alpha;
-      context.clearRect(x, y, w, h);
-      context.fillRect(x, y, w, h);
+      const [checksum, value] = getFractalValue(fractal, [((x + w / 2) / width - 0.5) * 2 * scale + vr, ((y + h / 2) / height - 0.5) * 2 * scale + vi]);
+      if (w < width / 2 && h < height / 2) {
+        // Avoid drawing when the regions are too large, where it can lead to an unpleasant flicker.
+        context.globalAlpha = value * alpha;
+        context.clearRect(x, y, w, h);
+        context.fillRect(x, y, w, h);
+      }
       const unchanged = Math.round(checksum * 1000) === Math.round(cs * 1000) ? u + 1 : 0;
       if (unchanged <= 1 && (w > 1 || h > 1)) {
         const [nw, nh] = [w / 2, h / 2];

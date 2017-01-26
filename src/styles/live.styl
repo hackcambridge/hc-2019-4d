@@ -83,3 +83,13 @@
 		transform: scale(1.5);
 	}
 }
+
+.fractal-canvas {
+	transition: filter 0, opacity 0;
+	
+	&.fade {
+		filter: blur(100px);
+		opacity: 0;
+		transition: filter 4s cubic-bezier(0.600, 0.040, 0.980, 0.335), opacity 6s ease-in;
+	}
+}
