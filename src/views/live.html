@@ -25,9 +25,9 @@
   </div>
 
 </div>
-{% endblock %}
-{% block local_scripts %}
+<script>
   window.addEventListener('error', event => {
     setTimeout(() => location.reload(true), 5000);
   });
+</script>
 {% endblock %}
