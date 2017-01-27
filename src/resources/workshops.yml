@@ -1,130 +1,54 @@
 workshops:
-
-  - name: Give your app an unfair advantage with HPE Haven OnDemand APIs
+  - name: Saptial OS workshop by Improbable
     description: |
-      With more than 60 powerful and easy to use APIs, HPE Haven OnDemand can crawl, index and analyze data from file systems and the web.
-      It can analyze and extract insights from text, audio, video, and image files, or be used to build prediction models and recommendation engines.
-      By combining APIs you'll be able to create powerful data transformation and enrichment workflows.
-
-      Join us for a demo, followed by Q&A.
-
-      Speaker: Tyler Nappy, Developer Evangelist
-      Follow Tyler on Twitter [@tylernappy](https://twitter.com/tylernappy)
-    time: 2016-01-30 13:00:00
+      Information coming soon...
+    time: 2016-01-28 15:15:00
     duration: 30 # In minutes
-    location: Cockcroft Lecture Theatre
+    location: The Guildhall
 
-  - name: How Mendeley can manage your course load
+  - name: Give your project a boost with the Microsoft Bot Framework
     description: |
-      What is Mendeley and why you will care in the future? For all you researchers and future Masters and PhDs, Mendeley will help clear the
-      busywork from your course load. Our tools are designed to help you discover new research, organise your reference work and connect with
-      experts and other like-minded people. Come along if you want to hear more about how Mendeley will help you in your future studies.
-    time: 2016-01-30 13:10:00
-    duration: 10
-    location: Phoenix
+      First we had the web, we were able to connect people with information
+      using mice and keyboards. Then we had apps, written natively to take
+      advantage of device sensors and operating systems. Next in the information
+      revolution is Bots, making it simpler and quicker to connect users with
+      the information and services that they need and using more natural methods
+      of interaction.
 
-  - name: Beaker in action
+      In this talk I will open up the Microsoft Bot Framework, show how to
+      develop a Bot using it and show you that you have the skills to do this
+      too. You will also be introduced to the Cognitive Services APIs and see
+      how you can use them to transform your applications through a simple API
+      call.
+
+      About the Presenter: Lilian is a Technical Evangelist within the Developer
+      Experience Group (DX) at Microsoft. She is a Computer Science graduate,
+      tech enthusiast and IoT hobbyist. Lilian has previously worked as a
+      Software Engineer developing Mobile and Web applications. Her areas of
+      interest include Cognitive Services, Messenger Bots, Xamarin and Mobile
+      Development. See [http://liliankasem.com](http://liliankasem.com)
+
+    time: 2016-01-28 16:00:00
+    duration: 30 # In minutes
+    location: The Guildhall
+
+  - name: QuantumBlack workshop
     description: |
-      Scott Draves is an award-winning software artist, VJ, and a pioneer of the open source movement.
-      His clients and exhibitions range from the likes of MoMA.org, LACMA, Google, and the Adler Planetarium to Skrillex.
-      He has a PhD in Computer Science from Carnegie Mellon and a BS in Math from Brown. Draves is currently employed as the PM and developer
-      of [the Beaker Notebook](http://beakernotebook.com/) for Two Sigma Open Source.
+      Information coming soon...
+    time: 2016-01-28 16:45:00
+    duration: 30 # In minutes
+    location: The Guildhall
 
-      This talk will motivate the design, review the architecture, and include a live demo of Beaker in action.
-    time: 2016-01-30 13:20:00
-    duration: 30
-    location: Titan
-
-  - name: Hacking with Mailjet
+  - name: Studo Gobo workshop
     description: |
-      Email is not dead! But it is changing.
-      Leverage the #1 communication channel to discuss with your users, notify them or build original hacks to innovate.
-      We'll see how developers use email in a creative way in their apps and startups.
-      We'll also cover how easy it is to send, monitor the emails you send with rich analytics, and last but not least, parse inbound emails to extract data with the Mailjet APIs.
-    time: 2016-01-30 13:30:00
-    duration: 10
-    location: Phoenix
+      Information coming soon...
+    time: 2016-01-28 17:30:00
+    duration: 30 # In minutes
+    location: The Guildhall
 
-  - name: Metaswitch on Communicating in the Cloud
+  - name: Hackers at Cambridge workshop
     description: |
-      Global communications networks are undergoing fundamental change.  Historically built on specialised, dedicated hardware, today’s
-      communication services are delivered on standard commodity computing hardware … with all the intelligence delivered in software.
-
-      This technology revolution is enabling dramatically faster innovation and has created startling potential for new services to capture 10s
-      or 100s of millions of users rapidly.
-
-      We will analyse the key technological changes that are driving this revolution, illustrate some of the complex programming challenges
-      that arise, and discuss the opportunities for software developers in this domain.
-    time: 2016-01-30 16:30:00
-    duration: 30
-    location: Titan
-
-  - name: 3 Google Cloud Platform Tools
-    description: |
-      Our API challenge is open on any piece of Google Cloud Platform, but some tools make more sense at an event like a hackathon than others.
-      We'll recommend 3 tools that can help you get your ideas out there as fast as you can this weekend.
-    time: 2016-01-30 13:50:00
-    duration: 10
-    location: Phoenix
-
-  - name: Cantab on FinTech
-    description: |
-      Finance has been a Big Data arena for decades, long before the term FinTech was coined. We will review the opportunities for programmers
-      in hedge funds and investment banks. As time permits, we will drill down on interesting implementation details involving time series data.
-      There will be some visualisations of how one trades billions of dollars a day, and how one copes with millisecond updates to the data that
-      feeds ‘black box’ trading models.
-    time: 2016-01-30 14:00:00
-    duration: 30
-    location: Titan
-
-  - name: What can you build with Skyscanner’s API in 24 hours?
-    description: |
-      Started in 2003, Skyscanner is Scotland’s first unicorn technology startup.
-      Over the years we’ve grown into one of the world’s top travel meta-search engines with more than 750 travel partnerships and over 40 million unique monthly visitors.
-      Our API is free to use for individuals and startups alike to add travel search functionality to existing products, or build fully-fledged travel search products.
-      What could you build in 24 hours?
-
-      Speakers: Iain McDonald and Matt Smith
-    time: 2016-01-30 14:10:00
-    duration: 10
-    location: Phoenix
-
-  - name: Hardware Security Modules – By Thales e-Security
-    description: |
-      This talk will describe what Hardware Security Modules are, what they are good for, why they are deployed, and some of their limitations.
-      The talk will focus on the nShield line of general purpose HSMs. We shall describe the architecture, security mechanisms including key
-      protection and policies, and discuss example applications.
-
-      Speakers: Clara Juanes Vallejo, Business Transformation Manager, and Robert Rainbird, Lead Engineer.
-    time: 2016-01-30 15:00:00
-    duration: 30
-    location: Cockcroft Lecture Theatre
-
-  - name: Workshop by Improbable
-    description: |
-      TBA
-    time: 2016-01-30 15:20:00
-    duration: 30
-    location: Titan
-
-  - name: Workshop by G-Research
-    description: |
-      TBA
-    time: 2016-01-30 16:00:00
-    duration: 30
-    location: Cockcroft Lecture Theatre
-
-  - name: Winning at APIs - Getting started working with APIs
-    description: |
-      Manthan Dave from Capital One will give an overview of how APIs work, what they’re used for and how can they be used securely. An understanding
-      and consumption of APIs is a critical skill, this is a talk not to be missed!
-    time: 2016-01-30 14:30:00
-    duration: 10
-    location: Cockroft Lecture Theatre
-  - name: Bloomberg workshop
-    description: |
-      Bloomberg are giving an awesome workshop. Details tbc...
-    time: 2016-01-30 17:00:00
-    duration: 30
-    location: Cockroft Lecture Theatre
-
+      Information coming soon...
+    time: 2016-01-28 18:00:00
+    duration: 30 # In minutes
+    location: The Guildhall

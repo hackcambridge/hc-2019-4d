@@ -1,47 +1,50 @@
 ## Getting to the Corn Exchange
 
 By now you should know how you're getting to Cambridge be it by train, coach, car or horse.
-The Cambridge Corn exchange is about a 20 minute walk from the train station. For details on
-directions, parking and cycling please see the [directions page for the Corn Exchange](https://www.cambridgelivetrust.co.uk/cornex/venue-info/directions-and-parking-0){target="_blank"}.
-We have a [map](#map) just below on this page which will give a little more context.
+The Cambridge Corn exchange is about a 20 minute walk from the train station. For more details
+you can check [your dashboard](/apply/dashboard) or see [directions page on the Corn Exchange website](https://www.cambridgelivetrust.co.uk/cornex/venue-info/directions-and-parking-0){target="_blank"}.
+
+## The Guildhall
+
+We'll be holding workshops and serving food from the Guildhall, as well as providing a sleeping space to rest during the night. The Guildhall is just a few minutes' walk from the Corn Exchange. It'll be well-signposted and we'll have volunteers to lead the way for each of the meals and workshops, so you won't have any trouble finding your way there.
 
 ## Hardware
 
-The hardware table just in front of the stage will have all of the bits and pieces
-that you need for a hardware hack while it is open. Check out [hardware.mlh.io](hardware.mlh.io){target="_blank"} for details on what you can get.
+We'll have a range of hardware for you to make use of during the event. You'll be able to sign out hardware shortly before, and during, the event kicks off &mdash; first-come first-served, so if you're particularly keen to use some of the equipment, make sure to get in there early!
+
+We currently plan to have the following hardware available to hackers:
+
+- 1&times; Alienware Desktop Set
+- 2&times; Amazon Echo
+- 2&times; Arduino 101
+- 2&times; Base Shield
+- 6&times; Estimote Beacon
+- 1&times; Amazon Fire Phone
+- 2&times; Gear VR
+- 1&times; Grove Kit
+- 7&times; Intel Edison
+- 1&times; Intel Starter Kit
+- 5&times; Leap Motion
+- 1&times; Muse
+- 2&times; Oculus Rift
+- 2&times; Pebble Time
+- 2&times; Photons
 
 ## Food &amp; Snacks
 
-Snacks are available regularly at the back of the hall, please help yourself. You can find hot drinks upstairs on the mezzanine on the right side. Meals are served at meal
-times throughout the event, and will be announced to make sure you get fed.
+We'll be providing meals throughout the event (lunch on Saturday, midnight pizza, and breakfast and lunch on Sunday), and plenty of snacks (including freshly-baked waffles!) and drinks will be available to keep you energised while you hack. Special requirements? Don't worry: we have you covered. Check out the [Schedule](#schedule) for the timing details. Meals will be served from the Guildhall, but there'll be snacks and drinks in the Corn Exchange itself.
 
 ## Emergencies
 
-In the event of an emergency, please note the UK emergency phone number, **999**.
+In the event of an emergency, please note the UK emergency phone number: **999**.
 If you need to leave the building (e.g. for a fire), please leave the building promptly
 through the nearest fire exit. Do not pick up your laptop or hardware hacks or swag.
-
-## UIS Workshops
-
-Our workshops are held in the UIS rooms, where the WiFi system is different. Before you go, please get a ticket number and password from our [WiFi page](/wifi) (you will need your Hack Cambridge ticket reference). Once at a workshop, you will need to connect to UniOfCam and enter the details you obtained from the WiFi page.
 
 ## Submitting Your Hack
 
 We are using [Devpost](http://devpost.com) for hack submissions. Never used it before? It's an online platform for sharing your projects.
 
-- All hacks must be submitted before hacking ends at 12:00:00pm
+- All hacks must be submitted before hacking ends at 12:45:00pm
 - You must submit all relevant source code for your hack
 
-**All team members** need to do the following:
-
-1. Make sure all of your team members are registered for Devpost and you know their usernames.
-2. Head over to the [Hack Cambridge Devpost](http://hackcambridge.devpost.com/), click on "Register for this hackathon".
-
-Then **just one team member** needs to:
-
-1. On the Devpost page, click "Enter a submission". Create your new project for the hackathon.
-    - Be nice and descriptive and upload pretty pictures
-    - Provide access to relevant source code in some way (GitHub is the easiest way to do this)
-    - Add all of your team members to the project
-2. In the next step, **choose all of the prizes** you want to be eligible for. If you've used someone's API or have fit a certain theme, make sure to do this or you won't be considered.
-3. Submit! We'll handle the rest.
+We'll be posting more details on this closer to the time.

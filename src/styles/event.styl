@@ -1,0 +1,423 @@
+/* ==========================================================================
+   Event Page
+   ========================================================================== */
+
+.event-tba {
+  opacity: 0.3;
+  user-select: none;
+  cursor: normal;
+}
+
+/* Intro
+   ========================================================================== */
+
+ .section-event-intro {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: left;
+   position: relative;
+
+   box-sizing: border-box;
+   width: 100%;
+   min-height: "calc(100vh - %s)" % (($punit * 6));
+   text-align: center;
+   padding: ($punit * 3) 0;
+
+   dark-background();
+   color: #fff;
+ }
+
+ .event-timer-intro {
+   font-size: 1.2em;
+   color: lighten($colorSecondary, 20%);
+ }
+
+ .event-countdown {
+   .countdown-digit {
+     width: 1.25ex;
+     text-align: center;
+     display: inline-block;
+   }
+ }
+
+ .event-logo {
+   max-width: 100%;
+   width: 400px;
+   margin-bottom: $punit;
+ }
+
+.event-nav {
+  margin: 10px -10px;
+
+  .event-nav-button {
+    color: #fff;
+    font-size: 1.2em;
+    padding: 20px 10px;
+    transition: background-color 0.2s;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      background-color: alpha($colorSecondary, 8%);
+    }
+
+    &:active {
+      background-color: alpha($colorSecondary, 15%);
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .event-timer-intro {
+    position: absolute;
+    font-weight: 100;
+    right: 100px;
+    font-size: 2em;
+    height: 50px;
+    line-height: 50px;
+    top: 50%;
+    margin-top: -25px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .event-timer-intro {
+    right: 200px;
+    font-size: 3em;
+  }
+}
+
+/* Info
+   ========================================================================== */
+
+.section-event-info {
+  padding: ($punit * 4) 0;
+  main-background();
+}
+
+/* Prizes
+   ========================================================================== */
+
+.section-event-prizes {
+  padding: $punit * 3 0;
+  main-background();
+}
+
+/* APIs
+   ========================================================================== */
+
+ .section-event-apis {
+   padding: $punit * 3 0;
+   main-background();
+ }
+
+/* Map
+   ========================================================================== */
+
+.section-event-map {
+  dark-background();
+  padding: $punit;
+
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  .section-event-map {
+    padding: $punit * 2;
+  }
+}
+
+/* APIs
+   ========================================================================== */
+
+.event-api {
+
+  &:nth-child(2n + 1) {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 5px;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+    margin-bottom: $punit;
+  }
+}
+
+/* Schedule
+   ========================================================================== */
+
+.section-event-timetable {
+  dark-background();
+  color: #fff;
+  padding: ($punit * 4) 0;
+}
+
+.event-timetable-schedule {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+
+  h3 {
+    color: #fff;
+    margin-right: $punit;
+    border-bottom: 1px solid #fff;
+    padding-bottom: ($punit / 2);
+  }
+}
+
+.event-timetable-schedule-day {
+  padding-left: 50px;
+  box-sizing: border-box;
+  margin-bottom: $punit;
+}
+
+.event-timetable-schedule-item {
+  position: relative;
+  margin: 20px 0;
+
+  &-name {
+    font-size: 1.3em;
+    opacity: 0.9;
+  }
+
+  &-time {
+    position: absolute;
+    width: 50px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    left: -50px;
+    top: 6px;
+
+    text-align: right;
+    color: darken($colorPrimary, 50%);
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+  }
+
+  &-emphasis &-time {
+    color: #fff;
+  }
+
+  &-emphasis &-name {
+    font-weight: bold;
+    opacity: 1;
+  }
+
+  &-small {
+    margin: 10px 0;
+  }
+
+  &-small &-name {
+    font-size: 1em;
+    opacity: 0.8;
+  }
+
+  &-small &-time {
+    top: 1px;
+  }
+}
+
+.event-timetable-workshops {
+  border-left: 2px solid white;
+  padding-left: $punit;
+  margin-left: 40px;
+}
+
+.event-workshop-time {
+  position: absolute;
+  left: (~$punit - 50px);
+  padding-right: 10px;
+  top: 2px;
+  box-sizing: border-box;
+  width: 50px;
+  text-align: right;
+  color: white;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+
+  &::before {
+    position: absolute;
+    content: ' ';
+    display: block;
+    width: 13px;
+    border-bottom: 2px solid white;
+    right: -12px;
+    top: 11px;
+  }
+}
+
+.event-workshop-decorator {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+  opacity: 0.5;
+  margin: 5px 0;
+  line-height: 1;
+}
+
+.event-workshop-location {
+  margin-top: -15px;
+  color: white;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+
+.event-workshop-description {
+  color: white;
+  a {
+   color: $colorLightLink;
+  }
+}
+
+.event-workshop {
+  margin-bottom: ($punit * 2);
+  position: relative;
+}
+
+@media (min-width: 600px) {
+  .event-timetable-schedule {
+    flex-direction: row;
+  }
+
+  .event-timetable-schedule-day {
+    width: 50%;
+  }
+}
+
+@media (min-width: 900px) {
+  .event-timetable-workshops {
+    margin-left: 0;
+  }
+
+  .event-timetable-schedule {
+    margin-left: -50px;
+  }
+}
+
+/* Prizes
+   ========================================================================== */
+
+.section-event-prizes {
+  .content-wrapper {
+    width: 1000px
+  }
+}
+
+.event-prize-container {
+  margin: 0 (~$punit / 2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: justify;
+  margin-bottom: $punit;
+}
+
+.event-prize {
+  width: 100%;
+  box-sizing: border-box;
+  padding: ($punit / 2);
+  flex: 0 1 100%;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    font-size: 1.5em;
+  }
+}
+
+.event-prize-inner {
+  border-radius: 5px;
+  background: #eee;
+  padding: 15px;
+  overflow: hidden;
+
+  border: 1px solid #666;
+
+  h3 {
+    margin: -15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #666;
+    color: #fff;
+  }
+}
+
+.event-prize-decorate {
+  decorate($col) {
+    .event-prize-inner {
+      border: 1px solid $col;
+
+      h3 {
+        background: linear-gradient(to bottom left, $col, darken($col, 5));
+      }
+    }
+  }
+
+  &-first {
+    decorate(#F7C717);
+  }
+
+  &-second {
+    decorate(#ACAFAF);
+  }
+
+  &-third {
+    decorate(#B29872);
+  }
+
+  &-quantumblack {
+    decorate(#333);
+  }
+
+  &-pusher {
+    decorate(#549eff);
+  }
+
+  &-microsoft {
+    decorate(#74B500);
+  }
+
+  &-elife {
+    decorate(#223278);
+  }
+
+  &-improbable {
+    decorate(#FC311D);
+  }
+
+  &-cambridgelive {
+    decorate(#D1DC00);
+  }
+
+  &-argondesign {
+    decorate(#1181C8);
+  }
+}
+
+.event-prize-inner {
+  flex: 1 0 auto;
+}
+
+.event-prize-content {
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+@media (min-width: 600px) {
+  .event-prize {
+    width: 50%;
+    flex-basis: 50%;
+  }
+}
+
+@media (min-width: 800px) {
+  .event-prize-container {
+    margin-left: ~$punit;
+    margin-right: ~$punit;
+  }
+
+  .event-prize {
+    padding: $punit;
+  }
+}

@@ -91,7 +91,7 @@ exports.loadResource = function loadResource(resourceName) {
         markdownProperties(loadedResource, ['answer']);
         break;
       case 'prizes':
-        _.forOwn(loadedResource, (item) => markdownProperties(item, ['description']));
+        _.forOwn(loadedResource, (item) => markdownProperties(item, ['description', 'prize']));
         break;
       case 'workshops':
         markdownProperties(loadedResource, ['description']);
@@ -118,8 +118,8 @@ exports.loadResource = function loadResource(resourceName) {
       case 'schedule':
         timeProperties(loadedResource, ['time']);
         loadedResource = {
-          saturday: loadedResource.filter((event) => event.time.date() == 30),
-          sunday: loadedResource.filter((event) => event.time.date() == 31)
+          saturday: loadedResource.filter((event) => event.time.date() == 28),
+          sunday: loadedResource.filter((event) => event.time.date() == 29)
         };
         break;
       case 'dashboard':
@@ -137,8 +137,8 @@ exports.loadMarkdown = function loadMarkdown(markdownName) {
   if ((!loadedMarkdowns[markdownName]) || (app.settings.env == 'development')) {
     var loadedMarkdown = nunjucks.runtime.markSafe(
       markdown.render(fs.readFileSync(exports.resolvePath(
-        `src/resources/${markdownName}.md`, 'utf8'
-      )))
+        `src/resources/${markdownName}.md`), 'utf8'
+      ))
     );
     loadedMarkdowns[markdownName] = loadedMarkdown;
   }
