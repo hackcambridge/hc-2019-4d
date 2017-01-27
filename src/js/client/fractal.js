@@ -90,7 +90,7 @@ const fractalLibrary = [
 ];
 {
   const randomProportion = 0.5;
-  const additions = fractalLibrary.length > 0 ? Math.round((randomProportion * fractalLibrary.length) / (1 - randomProportion)) : 1;
+  const additions = randomProportion > 0 ? (fractalLibrary.length > 0 ? Math.round((randomProportion * fractalLibrary.length) / (1 - randomProportion)) : 1) : 0;
   for (let i = 0; i < additions; ++ i) {
     fractalLibrary.push(randomFractal);
   }
