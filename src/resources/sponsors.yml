@@ -10,7 +10,11 @@ sponsors:
       variant: wide
 
   giga:
-    
+    - name: Featurespace
+      website: https://www.featurespace.co.uk/
+      logo: featurespace-logo.svg
+      variant: wide
+      
   mega:
     - name: Pusher
       website: https://pusher.com/
