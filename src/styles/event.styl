@@ -117,14 +117,21 @@
 
 .section-event-map {
   dark-background();
-  padding: $punit;
+  padding: 0;
+  padding-top: $punit;
 
   color: #fff;
 }
 
-@media (min-width: 600px) {
+.event-map-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 800px) {
   .section-event-map {
-    padding: $punit * 2;
+    padding: $punit;
   }
 }
 

@@ -5,7 +5,7 @@
     <img class="event-logo" src="{{ asset('images/logos/hc2017-logo-full-light.svg') }}" alt="Hack Cambridge" />
     <p>2017 Event Guide<br />This page is a work in progress and will be updated as we get closer to the event.</p>
 
-    <div class="event-countdown event-timer-intro"></div>
+    {# <div class="event-countdown event-timer-intro"></div> #}
 
     <nav class="event-nav">
       <a class="event-nav-button" href="#info">Info</a>
@@ -25,9 +25,10 @@
 </section>
 
 <section class="section-event-map" id="map">
-  <div class="content-wrapper-center event-tba">
-    <h1>Event map coming soon</h1>
+  <div class="content-wrapper-center">
+    <h1 class="grand-heading">Event Map</h1>
   </div>
+  <img class="event-map-image" alt="Hack Cambridge Map" src="{{ asset('images/recurse-map.svg') }}" />
 </section>
 
 <section class="section-event-apis" id="apis">
