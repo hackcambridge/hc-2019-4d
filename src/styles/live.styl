@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Live screen to be presented during the event
+   ========================================================================== */
+
+.live-container {
+	position: fixed;
+	left: 0; right: 0; top: 0; bottom: 0;
+	background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
+	
+	.event-countdown {
+		position: absolute;
+		left: 50%; top: 50%;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+		color: white;
+		font-size: 60pt;
+		-webkit-text-stroke: 1px alpha($colorPrimary, 0.3);
+		text-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.4);
+	}
+}
+
+.live-bar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 8pt 12pt 4pt 12pt;
+	background: #282828;
+	
+	&::before {
+		content: "Currently playing:";
+		color: white;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.live-spotify-widget-cropper {
+		display: inline-block;
+		// Cut off the cover artwork and playlist name
+		width: 220px;
+		height: 40px;
+		overflow: hidden;
+
+		.live-spotify-widget {
+			position: relative;
+			left: -80px; top: -8px;
+			border-radius: 0 0 8px 0;
+			transition: left 0.2s;
+			
+			&:hover {
+				left: 0;
+			}
+		}
+	}
+}
+
+.live-sponsors {
+	position: absolute;
+	display: inline-block;
+	left: 50%; transform: translateX(-50%);
+	filter: grayscale(100%) brightness(9001);
+	opacity: 0.8;
+	
+	img {
+		position: relative;
+		margin: 0 40pt;
+	}
+}
+
+.live-cohost {
+	position: absolute;
+	left: 50%; transform: translateX(-50%);
+	top: 70%;
+	pointer-events: none;
+	filter: drop-shadow(0 4px 4px hsla(0, 0%, 0%, 0.4));
+	
+	&::before {
+		position: absolute;
+		display: block;
+		top: -35px; left: 50px; // Manual positioning for correct visual centering
+		content: "Co-hosted by " attr(data-cohost);
+		color: white;
+	}
+	
+	.improbable-logo {
+		transform: scale(1.5);
+	}
+}
+
+.fractal-canvas {
+	transition: filter 0, opacity 0;
+	
+	&.vanish, &.fade {
+		filter: blur(100px);
+		opacity: 0;
+	}
+	
+	&.vanish {
+		transition: filter 0.4s cubic-bezier(0.600, 0.040, 0.980, 0.335), opacity 0.6s ease-in;
+	}
+	
+	&.fade {
+		transition: filter 4s cubic-bezier(0.600, 0.040, 0.980, 0.335), opacity 6s ease-in;
+	}
+}

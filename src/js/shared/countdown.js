@@ -80,9 +80,8 @@ function titleCase(str) {
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1));
 }
 
-// Countdown.hackathonStart = new Date(Date.UTC(2016, 0, 30, 12, 0, 0));
-Countdown.hackathonStart = new Date(Date.UTC(2016, 0, 30, 12, 0, 0));
-Countdown.hackathonEnd = new Date(Date.UTC(2016, 0, 31, 12, 0, 0));
+Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 12, 45, 0));
+Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 12, 45, 0));
 
 /**
  * Predefined Countdowns
@@ -91,7 +90,7 @@ Countdown.createStartCountdown = () => new Countdown({
   deadline: Countdown.hackathonStart,
   render: (difference) => {
     if (difference.asHours() >= 1) {
-      return titleCase('Starting In ' + difference.humanize()
+      return ('Starting in ' + difference.humanize()
         // HACK: Replace moment's humanised dates with more numerical ones
         .replace('an hour', '1 hour')
         .replace('a day', '1 day'));

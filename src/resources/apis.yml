@@ -1,61 +1,71 @@
 apis:
-  - name: HPE Haven OnDemand API
+  - name: SpatialOS
     description: |
-      [HPE Haven OnDemand](https://www.havenondemand.com/) is a platform for developers and businesses to build
-      cognitive computing solutions and data rich applications using text analysis, speech recognition, image analysis, indexing and search APIs.
-
-      Your challenge, should you choose to accept it, is to build the most innovative cognitive computing solution to augment human intelligence
-      using the Haven OnDemand natural language processing, machine learning, and predictive analytics APIs. There are more than 60 APIs in the
-      [catalog](https://dev.havenondemand.com/apis), and all Developers get an API key with FREE monthly quota. [Sign up here](https://www.havenondemand.com/signup.html)
-      and check out the [hackathon resources](https://community.havenondemand.com/t5/Blog/Developer-resources-for-your-hackathon/ba-p/2495) to jumpstart your projects.
-    picture: picture.png
-  - name: Beaker API
+      SpatialOS is a computation platform from [Improbable](https://improbable.io/) that allows you to exceed the power of a
+      single game engine or server.
+    documentation: https://spatialos.improbable.io/docs/reference/9.1-alpha
+    prizes: Use of SpatialOS is eligible for the Improbable Challenge Prize, details of which will be up shortly!
+  - name: Pusher Feeds API
     description: |
-      [The Beaker Notebook](http://beakernotebook.com/) is a new open source tool for collaborative data science. Beaker has an innovative UI and unique architecture to make
-      it easier for novices to get started, and enable experts to work faster. Like IPython, Beaker uses a notebook-based UI metaphor, but Beaker was
-      designed to be polyglot from the ground up. That is, a single notebook may contain cells from multiple different languages that communicate with one
-      another through a unique feature called autotranslation. You can set a variable in a Python cell and then read that variable in a subsequent R cell,
-      and everything just works – magically. Beaker comes with built-in support for Python, R, JavaScript, Java, Scala, Clojure, Julia, and more.
-
-      Each part of your problem can be solved in the language best suited to it. For example, you can scrape the web in Python, do a regression in R, and
-      then visualize it with d3.js, seamlessly and all in the same notebook.
-    picture: picture.png
-  - name: Mailjet API
+      Pusher Feeds API is a simple hosted service to add realtime & resumable feeds to your hack in minutes. Simply subscribe a client to a feed, append items to it,
+      and get updates in realtime. Feeds also come with a cache built in to resume where you left off.
+    documentation: www.pusher.com/hack-cambridge
+    prizes: Use of this API is eligible for the Pusher Feeds Prize!
+  - name: Skyscanner API
     description: |
-      Your goal is to come up with an innovative use of the Mailjet API.
-
-      Mailjet is a powerful email service provider that ensures maximum insight and deliverability results for marketing and transactional emails.
-      Our analytics tools and intelligent APIs offer the flexibility to create, send and optimize emails for all.
-
-      Let us handle the heavy lifting of sending so that so you can focus on what matters most: innovating.
-      Mailjet enables you to send transactional emails with peace of mind. We ensure a great deliverability for your emails and an end-to-end tracking.
-      You can send your emails through SMTP relay or API. Discover more at http://dev.mailjet.com/guides/.
-    picture: picture.png
-  - name: Nessie by Capital One
+      [Skyscanner](https://www.skyscanner.net/) allows users to compare millions of flights to find the cheapest deal, fast.
+      
+      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
+      combined, to build a fully-fledged travel search product.
+    documentation: http://business.skyscanner.net/portal/en-GB/Documentation/ApiOverview
+    prizes: Use of the Skyscanner API is eligible for the Improbable Challenge Prize, details of which will be up shortly!
+  - name: Microsoft Cognitive - Vision, Speech, Search, Language, Knowledge 
     description: |
-      Nessie is Capital One’s Hackathon API that gives you access to real public-facing data - such as ATM and bank locations - along with mock customer data.
-      Use HTTP requests to setup peer-to-peer transactions, simulate a weekly paycheque, or even schedule bills for customers! Have a go: api.reimaginebanking.com
-
-      Nessie is still young and we’re always looking for feedback to improve it. Grab anyone of us from Capital One to get help with Nessie, give feedback or talk
-      about how you’d reimagine banking.
-
-      Happy Hacking!
-    picture: picture.png
-  - name: Google Cloud Platform
+      Microsoft Cognitive Services (formerly Project Oxford) are a set of APIs, SDKs and services available to developers to make their applications more intelligent,
+      engaging and discoverable. Microsoft Cognitive Services expands on Microsoft’s evolving portfolio of machine learning APIs and enables developers to easily add
+      intelligent features – such as emotion and video detection; facial, speech and vision recognition; and speech and language understanding – into their
+      applications. Our vision is for more personal computing experiences and enhanced productivity aided by systems that increasingly can see, hear, speak, understand
+      and even begin to reason. You will find documentation of each product and their corresponding API references on the left navigation table.
+    documentation: https://www.microsoft.com/cognitive-services/en-us/documentation
+    prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
+  - name: Microsoft Bot Framework
     description: |
-      Our API challenge is simple - use any part of Google Cloud Platform to power your application, and your eligible. It includes App Engine,
-      Compute Engine (VMs), Cloud Storage, Datastore, Cloud SQL. Basically, if it is listed on our site (https://cloud.google.com/)  you can use it.
-    prize: £1000 in Cloud Platform credit to continue your idea after the hackathon.
-    picture: picture.png
-  - name: Mendeley API
+      Build and connect intelligent bots to interact with your users naturally wherever they are — from your website or app to text/SMS, Skype, Slack, Facebook Messenger, 
+      Office 365 mail, Teams and other popular services. 
+    documentation: https://docs.botframework.com/en-us/
+    prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
+  - name: eLife API
     description: |
-      Mendeley is a platform that allows scholars from all over the world to collaborate, and opens up science for everyone.
-      We invite you to make the best use of our API to build something great to help change research.
-      The Mendeley API provides the ability to query metadata about millions of research documents in almost any programming language.
-
-      Head over to (http://dev.mendeley.com/hackathon.html) for a quick start guide on using our API.
-  - name: OpenTSDB
+      [eLife](https://elifesciences.org/) is an online open-access journal for life sciences and biomedical research. Scientific manuscripts that have been
+      accepted after peer review are published online as articles available both in HTML and PDF format. Please note the eLife API documentation is still
+      under development; feedback welcome.
+    documentation:  https://github.com/elifesciences/api-raml
+    prizes: Use of this API is eligible for the eLife Challenge!
+  - name: eLife API SDK for PHP
     description: |
-      [OpenTSDB](http://opentsdb.net/) is a Hadoop-based time series database optimised for write performance in order to scale to over 1 million writes per second.
-      We challenge you to create compelling visualisations of data using OpenTSDB's API,  and to use them to drive discovery, analysis and
-      diagnosis of events.
+      SDK for building on eLife resources using PHP - see above for eLife API details. Eligible for the eLife Science API Prize.
+    documentation: https://github.com/elifesciences/api-sdk-php
+    prizes: Use of this API is eligible for the eLife Challenge!
+  - name: eLife Lens
+    description: |
+      Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. Lens is a
+      stand-alone web component that can be embedded into any web page.
+    documentation: https://github.com/elifesciences/lens
+    prizes: Use of this API is eligible for the eLife Challenge!
+  - name: eLife Continuum
+    description: |
+      eLife Continuum is the platform that we use to manage the publishing and hosting of our research content. It is composed of a set of software components
+      that form a publishing and article hosting system. Continuum has been made available for any interested party to use, to encourage the adoption of open online
+      continuous publishing. The platform can be used in its entirety, or users can exploit the individual components of Continuum within their own platform.
+    documentation: https://github.com/elifesciences/elife-continuum-documentation
+    prizes: Use of this API is eligible for the eLife Challenge!
+  - name: LastMile rasa NLU
+    description: |
+      [LastMile](http://golastmile.com/) provides AI dialogue technology entirely based on machine learning: developers don't hard-code conversation flow charts. Deep
+      reinforcement learning is used to automatically improve with every user interaction. The rasa NLU API provides open-source language understanding for bots.
+    documentation: https://rasa.ai/
+  - name: Man AHL Arctic
+    description: |
+      [Man AHL](https://www.ahl.com/) are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their
+      Arctic API provides a high performance datastore for time series and tick data.
+    documentation: https://github.com/manahl/arctic
