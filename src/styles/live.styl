@@ -6,6 +6,17 @@
 	position: fixed;
 	left: 0; right: 0; top: 0; bottom: 0;
 	background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
+	
+	.event-countdown {
+		position: absolute;
+		left: 50%; top: 50%;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+		color: white;
+		font-size: 60pt;
+		-webkit-text-stroke: 1px alpha($colorPrimary, 0.3);
+		text-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.4);
+	}
 }
 
 .live-bar {
@@ -42,16 +53,6 @@
 	}
 }
 
-.event-countdown {
-	position: absolute;
-	left: 50%; top: 50%;
-	transform: translate(-50%, -50%);
-	color: white;
-	font-size: 60pt;
-	-webkit-text-stroke: 1px alpha($colorPrimary, 0.3);
-	text-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.4);
-}
-
 .live-sponsors {
 	position: absolute;
 	display: inline-block;
@@ -69,6 +70,7 @@
 	position: absolute;
 	left: 50%; transform: translateX(-50%);
 	top: 70%;
+	pointer-events: none;
 	filter: drop-shadow(0 4px 4px hsla(0, 0%, 0%, 0.4));
 	
 	&::before {
@@ -87,9 +89,16 @@
 .fractal-canvas {
 	transition: filter 0, opacity 0;
 	
-	&.fade {
+	&.vanish, &.fade {
 		filter: blur(100px);
 		opacity: 0;
+	}
+	
+	&.vanish {
+		transition: filter 0.4s cubic-bezier(0.600, 0.040, 0.980, 0.335), opacity 0.6s ease-in;
+	}
+	
+	&.fade {
 		transition: filter 4s cubic-bezier(0.600, 0.040, 0.980, 0.335), opacity 6s ease-in;
 	}
 }
