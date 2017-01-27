@@ -21,7 +21,6 @@ prizes:
         Do you have what it takes to impress your fellow hackers?
       prize: Each member of the winning team will receive a GooDee 3D Printer Pen.
       class: peoples
-  challenges:
     - name: Improbable Challenge
       description: |
         Improbable are giving you early access to the new release of their [SpatialOS platform!](https://spatialos.improbable.io/)!
@@ -92,13 +91,12 @@ prizes:
       prize: Tickets to either the opening performance of [e-Luminate Cambridge](https://www.cambridgelivetrust.co.uk/cornex/events/e-luminate-dark-light)
         or the [Play of Light events](https://www.cambridgelivetrust.co.uk/e-luminate/e-luminate/play-light).
       class: cambridgelive
-  api:
     - name: Skyscanner API
       description: |
         [Skyscanner](https://www.skyscanner.net/) allows users to compare millions of flights to find the cheapest deal, fast.
       
-      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
-      combined, to build a fully-fledged travel search product. The best project using our API in any way gets our prize!
+        The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
+        combined, to build a fully-fledged travel search product. The best project using our API in any way gets our prize!
       prize: £100 Travel Voucher for each team member
       class: skyscanner
     - name: Pusher Feeds API
