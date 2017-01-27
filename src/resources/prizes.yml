@@ -74,9 +74,13 @@ prizes:
         or the [Play of Light events](https://www.cambridgelivetrust.co.uk/e-luminate/e-luminate/play-light).
       class: challenge
   api:
-    - name: QuantumBlack Challenge
-      description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
-      prize: 4 x £50 pound vouchers for Amazon
+    - name: Skyscanner API
+      description: |
+        [Skyscanner](https://www.skyscanner.net/) allows users to compare millions of flights to find the cheapest deal, fast.
+      
+      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
+      combined, to build a fully-fledged travel search product. The best project using our API in any way gets our prize!
+      prize: £100 Travel Voucher for each team member
       class: api
     - name: Pusher Feeds API
       description: |
