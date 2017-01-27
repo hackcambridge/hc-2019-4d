@@ -18,12 +18,22 @@ prizes:
       class: third
     - name: Improbable Challenge
       description: |
-        Improbable are giving you early access to the new release of their (SpatialOS platform!)[https://spatialos.improbable.io/]!
+        Improbable are giving you early access to the new release of their [SpatialOS platform!](https://spatialos.improbable.io/)!
 
         Their challenge isn't released yet... stay tuned!
       class: improbable
     - name: QuantumBlack Challenge
-      description: We're awaiting a Challenge from QuantumBlack - it'll be up shortly!
+      description: |
+        QuantumBlack has been mandated to help a national supervisory body rethink the way they assess the financial health of companies they monitor.
+        The objective is to design a data driven approach that will help predict company bankruptcies and subsequently enable identification of the
+        best remedies.
+        
+        Challenge
+        - Build a predictive model for company bankruptcies
+        - Identify optimal remedial actions to reduce 
+        - the likelihood of bankruptcies for well-defined subsets of risky companies
+
+        Find out more details at our workshop on Saturday at 4.45pm!
       prize: 4 x £50 pound vouchers for Amazon
       class: quantumblack
     - name: Microsoft Cognitive Services and Bot Framework
