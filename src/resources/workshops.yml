@@ -45,9 +45,16 @@ workshops:
     duration: 30 # In minutes
     location: The Guildhall
 
-  - name: QuantumBlack workshop
+  - name: Using financial ratios to predict company bankruptcies by QuantumBlack
     description: |
-      Information coming soon...
+      QB has been mandated to help a national supervisory body rethink the way
+      they assess the financial health of companies they monitor. The objective
+      is to design a data driven approach that will help predict company
+      bankruptcies and subsequently enable identification of the best remedies.
+
+      Our workshop will cover how you can compete in our challenge to get ahead
+      of the game at Hack Cambridge Recurse!
+
     time: 2016-01-28 16:45:00
     duration: 30 # In minutes
     location: The Guildhall
