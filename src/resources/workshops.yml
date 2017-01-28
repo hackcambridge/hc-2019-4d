@@ -72,9 +72,20 @@ workshops:
     duration: 30 # In minutes
     location: The Guildhall
 
-  - name: Hackers at Cambridge workshop
+  - name: How to survive the last 18 hours and 45 minutes of Hack Cambridge Recurse, by Hackers at Cambridge
     description: |
-      Information coming soon...
+      In this impersonal and casual workshop, Tom from Hackers at Cambridge will
+      cover what you need to do in order to survive the last 18 hours and 45
+      minutes of Hack Cambridge and answer any questions you may have, from the
+      technical to the logistical. Whether you this is your first Hackathon, or
+      you're a pro, and whether you're project is bang on target or your still
+      struggling for ideas, you're more than welcome to come.
+
+      Hackers at Cambridge is the University of Cambridge's society for people
+      passionate about tech and hacker culture. We run workshops, events and
+      hackathons in order to foster a creative community in the city that birthed
+      computing itself.
+
     time: 2016-01-28 18:00:00
     duration: 30 # In minutes
     location: The Guildhall
