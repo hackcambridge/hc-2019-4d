@@ -54,7 +54,13 @@ workshops:
 
   - name: Studo Gobo workshop
     description: |
-      Information coming soon...
+      Ever wanted to make a game but never know where to start? Feel like you
+      know what you're doing, but feel like you could always learn some more?
+      Then swing by our workshop where a professional Game Developer will walk
+      through how to make a game in the Unity game engine, covering both the
+      basics, in addition to revealing tips and tricks that you may not know
+      about, based on years of experience in the industry.
+
     time: 2016-01-28 17:30:00
     duration: 30 # In minutes
     location: The Guildhall
