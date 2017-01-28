@@ -24,3 +24,8 @@ api_demos:
     time: 2016-01-28 14:40:00
     duration: 10 # In minutes
     location: The Guildhall
+
+  - name: Featurespace Demo Workshop
+    time: 2016-01-28 14:50:00
+    duration: 10 # In minutes
+    location: The Guildhall
