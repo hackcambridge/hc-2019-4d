@@ -1,16 +1,16 @@
 api_demos:
-  - name: Intro to Skyscanner API
+  - name: Microsoft Cognitive Services Demo
     time: 2016-01-28 14:00:00
+    duration: 10 # In minutes
+    location: The Guildhall
+
+  - name: Intro to Skyscanner API
+    time: 2016-01-28 14:10:00
     duration: 10 # In minutes
     location: The Guildhall
 
   - name: How to Create an Audio Sentence Finisher using Machine Learning
     description: Hosted by Argon Design.
-    time: 2016-01-28 14:10:00
-    duration: 10 # In minutes
-    location: The Guildhall
-
-  - name: Microsoft Cognitive Services Demo
     time: 2016-01-28 14:20:00
     duration: 10 # In minutes
     location: The Guildhall
@@ -20,12 +20,12 @@ api_demos:
     duration: 10 # In minutes
     location: The Guildhall
 
-  - name: ARM Demo Workshop
+  - name: Featurespace Demo Workshop
     time: 2016-01-28 14:40:00
     duration: 10 # In minutes
     location: The Guildhall
 
-  - name: Featurespace Demo Workshop
+  - name: ARM Demo Workshop
     time: 2016-01-28 14:50:00
     duration: 10 # In minutes
     location: The Guildhall
