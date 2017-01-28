@@ -81,7 +81,7 @@ function titleCase(str) {
 }
 
 Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 0, 0));
-Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 13, 0, 0));
+Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 12, 45, 0));
 
 /**
  * Predefined Countdowns
