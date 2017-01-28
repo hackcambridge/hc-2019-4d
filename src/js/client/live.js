@@ -17,8 +17,11 @@ function initialiseLive() {
         const $socialTitle = $('<h4></h4>');
         $socialTitle.text(status.username);
         const $socialContent = $('<p></p>');
-        $socialContent.text(status.text);
+        $socialContent.html(status.text);
         $socialItem.find('.live-social-feed-item-content').append($socialTitle).append($socialContent);
+        if (status.image) {
+          $socialItem.find('.live-social-feed-item-content').css('background-image', `linear-gradient(to top, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0.2) 200px, rgba(0, 0, 0, 0)), url(${status.image})`);
+        }
         
         return $socialItem;
       }));
