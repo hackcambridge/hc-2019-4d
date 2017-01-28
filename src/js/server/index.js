@@ -113,6 +113,7 @@ app.get('/live', function (req, res) {
   res.render('live.html', {
     title: 'Hack Cambridge Recurse',
     sponsors: utils.loadResource('sponsors'),
+    pusherKey: process.env.PUSHER_KEY,
   });
 });
 

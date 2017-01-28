@@ -3,13 +3,23 @@
 <div class="live-container">
 
   <canvas class="fractal-canvas"></canvas>
-  
+
+  <div class="live-container-event-countdown">
+    <div class="event-countdown"></div>
+  </div>
+
+  <div class="live-social-feed">
+    <h2 class="live-social-feed-hashtag">#recurse</h2>
+    <div class="live-social-feed-content"></div>
+  </div>
+
   <div class="live-bar">
     <div class="live-spotify-widget-cropper">
       <iframe class="live-spotify-widget" src="https://embed.spotify.com/?uri=spotify:user:11124594727:playlist:5ZsAzB4swZL2Et1yaOlKAJ" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
     </div>
 
     <div class="live-sponsors">
+      <img src="{{ asset('images/logos/improbable-logo-white.svg') }}" alt="Improbable"/>
       {% for sponsorTierName, sponsorTier in sponsors %}
         {% if sponsorTierName == 'tera' %}
             {% for sponsor in sponsorTier %}
@@ -19,17 +29,10 @@
       {% endfor %}
     </div>
   </div>
-
-  <div class="event-countdown"></div>
-  
-  <div class="live-cohost">
-    <img class="improbable-logo" src="{{ asset('images/logos/improbable-logo-white.svg') }}" alt="Improbable"/>
-  </div>
-
 </div>
 <script>
-  window.addEventListener('error', event => {
-    setTimeout(() => location.reload(true), 5000);
-  });
+  window.liveConfig = {
+    pusherKey: "{{ pusherKey }}",
+  };
 </script>
 {% endblock %}
