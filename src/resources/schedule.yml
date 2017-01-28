@@ -32,6 +32,8 @@ schedule:
     time: 2017-01-29 00:00:00
   - event: Breakfast
     time: 2017-01-29 07:00:00
+  - event: Lunch
+    time: 2017-01-29 12:30:00
   - event: Hacking Ends
     time: 2017-01-29 12:45:00
     class: emphasis
