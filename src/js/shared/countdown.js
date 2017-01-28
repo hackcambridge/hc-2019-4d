@@ -80,8 +80,8 @@ function titleCase(str) {
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1));
 }
 
-Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 00, 0));
-Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 13, 00, 0));
+Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 0, 0));
+Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 13, 0, 0));
 
 /**
  * Predefined Countdowns
