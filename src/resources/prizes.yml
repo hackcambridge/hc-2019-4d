@@ -64,6 +64,10 @@ prizes:
         - 1 Adafriut Feather IO kits and accessories
         - T-shirt, stickers, USB key, power bank speakers and charger, selfie stick, hoodie pillow and stress toys
       class: microsoft
+    - name: ARM 
+      description: |
+        ARM will be giving a prize for their pick of the best hardware hack. Speak to the ARM mentors for advice on how to make a great hardware hack!
+      prize: Microbit kits, WiFi audio adaptors and £30 Amazon vouchers.
     - name: eLife Challenge
       description: |
         Are you interested in the benefit that open access, open science and open data could bring to the world? The way that
