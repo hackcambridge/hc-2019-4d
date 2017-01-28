@@ -65,7 +65,29 @@
       {{ render_schedule('sunday') }}
     </div>
 
-    <h2 class="grand-heading">Workshops &amp; API Demos</h2>
+    <h2 class="grand-heading">API Demos</h2>
+    <div class="event-timetable-workshops">
+      {% for api_demo in api_demos %}
+        <div class="event-workshop">
+          <h3>{{ api_demo.name }}</h3>
+          <p class="event-workshop-location">Location: {{ api_demo.location }}</p>
+          <div class="event-workshop-time">
+            {% if not api_demo.time.isValid() %}
+              TBA
+            {% else %}
+              {{ api_demo.time.format('HH:mm') }}
+              <div class="event-workshop-decorator">until</div>
+              {{ api_demo.time.clone().add(api_demo.duration, 'minutes').format('HH:mm') }}
+            {% endif %}
+          </div>
+          <div class="event-workshop-description">
+            {{ api_demo.description }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="grand-heading">Workshops</h2>
     {# Workshops #}
     {# General timetable #}
     <div class="event-timetable-workshops">

@@ -102,6 +102,7 @@ app.get('/pay', function (req, res) {
 app.get('/event', function (req, res) {
   res.render('event.html', {
     title: 'Hack Cambridge Recurse',
+    api_demos: utils.loadResource('api_demos'),
     workshops: utils.loadResource('workshops'),
     prizes: utils.loadResource('prizes'),
     schedule: utils.loadResource('schedule'),
