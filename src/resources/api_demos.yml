@@ -1,0 +1,17 @@
+api_demos:
+  - name: Intro to Skyscanner API
+    description: Hosted by Skyscanner.
+    time: 2016-01-28 14:00:00
+    duration: 10 # In minutes
+    location: The Guildhall
+
+  - name: How to Create an Audio Sentence Finisher using Machine Learning
+    description: Hosted by Argon Design.
+    time: 2016-01-28 14:10:00
+    duration: 10 # In minutes
+    location: The Guildhall
+
+  - name: Microsoft API Demo
+    time: 2016-01-28 14:20:00
+    duration: 10 # In minutes
+    location: The Guildhall
