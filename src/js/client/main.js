@@ -8,6 +8,7 @@ var pages = [
   require('./payment'),
   require('./apply'),
   require('./fractal'),
+  require('./live'),
 ];
 
 $(document).ready(function () {
