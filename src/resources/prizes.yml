@@ -23,9 +23,12 @@ prizes:
       class: peoples
     - name: Improbable Challenge
       description: |
-        Improbable are giving you early access to the new release of their [SpatialOS platform!](https://spatialos.improbable.io/)!
+        For the Improbable challenge they are looking for the most innovative use of SpatialOS in
+        ANY context. It's great for games or any type of interactive multiplayer world.
+        https://spatialos.improbable.io/get-spatialos
 
-        Their challenge isn't released yet... stay tuned!
+        Come by Improbable's workshop at 15:15:00 if you want to get a headstart
+        with SpatialOS.
       prize: 4 Amazon echo dots
       class: improbable
     - name: QuantumBlack Challenge
@@ -33,10 +36,10 @@ prizes:
         QuantumBlack has been mandated to help a national supervisory body rethink the way they assess the financial health of companies they monitor.
         The objective is to design a data driven approach that will help predict company bankruptcies and subsequently enable identification of the
         best remedies.
-        
+
         Challenge
         - Build a predictive model for company bankruptcies
-        - Identify optimal remedial actions to reduce 
+        - Identify optimal remedial actions to reduce
         - the likelihood of bankruptcies for well-defined subsets of risky companies
 
         Find out more details at our workshop on Saturday at 4.45pm!
@@ -47,16 +50,16 @@ prizes:
         Artificial intelligence isn't just for processing requests and synthesizing data anymore. Now, technology such as Cognitive Services allow developers
         to understand sentiment, a trend known as affective computing. The idea is, that by understanding emotions, artificially intelligent technology could
         predict a person's needs in drastically more human ways.
-        
+
         So can you use facial expressions to determine how much user is engaged with your content or even greet them with a smile? The challenge - develop a
         solution that Relies on the Cognitive Services or Microsoft Bot Framework and has at least one of the following
-        
+
         - Use emotion detection to provide a new means of interaction with the user of the application.
         - Solve or improve a real-world problem.
         - Incorporate the use of a cameras (whether in phones, robots using Kinect, Realsense or Laptop/Mobile inbuilt Camera).
         - Provided in an application for Web or iOS, Android and Windows 10
       prize: |
-        - 1 set per team members (total 4 sets) Microsoft Azure IOT starter Kits 
+        - 1 set per team members (total 4 sets) Microsoft Azure IOT starter Kits
         - 1 Raspberry Pi IOT Kit with Feather Hat and accessories
         - 1 Adafriut Feather IO kits and accessories
         - T-shirt, stickers, USB key, power bank speakers and charger, selfie stick, hoodie pillow and stress toys
@@ -95,7 +98,7 @@ prizes:
     - name: Skyscanner API
       description: |
         [Skyscanner](https://www.skyscanner.net/) allows users to compare millions of flights to find the cheapest deal, fast.
-      
+
         The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
         combined, to build a fully-fledged travel search product. The best project using our API in any way gets our prize!
       prize: £100 Travel Voucher for each team member
@@ -105,7 +108,7 @@ prizes:
         Did you use Feeds at Hack Cambridge? We want to get your feedback about your experience. Hackers who complete the feedback form
         inside the Feeds dashboard as well as include a a link to a repo (Github, Bitbucket, anything really) that uses Feeds will receive a £10 Amazon
         voucher and enter you into a raffle to win a programmable BB8 droid!
-        
+
         Send feedback on the form [here](https://docs.google.com/forms/d/e/1FAIpQLSet-xiiNurEFUwIVI6l8utjrl4kE57GBnVzULaszTp6VyyJdQ/viewform).
       prize: £10 Amazon vouchers and BB8 Droid
       class: pusher
