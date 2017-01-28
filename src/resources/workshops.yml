@@ -1,7 +1,20 @@
 workshops:
   - name: Spatial OS workshop by Improbable
     description: |
-      Information coming soon...
+      For the Improbable challenge we're looking for the most innovative use of SpatialOS in
+      ANY context. It's great for games or any type of interactive multiplayer world.
+      https://spatialos.improbable.io/get-spatialos
+
+      If you want to get a headstart in the challenge, and use this exciting and
+      innovative new technology; our workshop is the place to be.
+
+      In this workshop, we will cover the basics of SpatialOS, to help you get
+      up, running and going so you can really fly at Hack Cambridge.
+
+      We also someone standing by to grant last minute access to all of
+      our hackers today. Slack our "sponsor-improbable" channel ASAP if you're
+      thinking about using it. The sooner we know the better!
+
     time: 2016-01-28 15:15:00
     duration: 30 # In minutes
     location: The Guildhall
