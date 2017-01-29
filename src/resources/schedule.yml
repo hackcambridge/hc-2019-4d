@@ -31,7 +31,7 @@ schedule:
   - event: Midnight Snack
     time: 2017-01-29 00:00:00
   - event: Breakfast
-    time: 2017-01-29 08:00:00
+    time: 2017-01-29 08:30:00
   - event: Lunch
     time: 2017-01-29 12:30:00
   - event: Hacking Ends
