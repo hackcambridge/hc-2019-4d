@@ -14,11 +14,15 @@ sponsors:
       website: https://www.featurespace.co.uk/
       logo: featurespace-logo.svg
       variant: wide
-      
+
   mega:
     - name: Pusher
       website: https://pusher.com/
       logo: pusher-logo.svg
+      variant: wide
+    - name: Datascope Recruitment
+      website: http://www.datascope.co.uk
+      logo: datascope-logo.png
       variant: wide
     - name: Argon Design
       website: http://www.argondesign.com/
