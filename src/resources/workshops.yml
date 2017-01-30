@@ -1,7 +1,20 @@
 workshops:
   - name: Spatial OS workshop by Improbable
     description: |
-      Information coming soon...
+      For the Improbable challenge we're looking for the most innovative use of SpatialOS in
+      ANY context. It's great for games or any type of interactive multiplayer world.
+      https://spatialos.improbable.io/get-spatialos
+
+      If you want to get a headstart in the challenge, and use this exciting and
+      innovative new technology; our workshop is the place to be.
+
+      In this workshop, we will cover the basics of SpatialOS, to help you get
+      up, running and going so you can really fly at Hack Cambridge.
+
+      We also someone standing by to grant last minute access to all of
+      our hackers today. Slack our "sponsor-improbable" channel ASAP if you're
+      thinking about using it. The sooner we know the better!
+
     time: 2016-01-28 15:15:00
     duration: 30 # In minutes
     location: The Guildhall
@@ -32,23 +45,47 @@ workshops:
     duration: 30 # In minutes
     location: The Guildhall
 
-  - name: QuantumBlack workshop
+  - name: Using financial ratios to predict company bankruptcies by QuantumBlack
     description: |
-      Information coming soon...
+      QB has been mandated to help a national supervisory body rethink the way
+      they assess the financial health of companies they monitor. The objective
+      is to design a data driven approach that will help predict company
+      bankruptcies and subsequently enable identification of the best remedies.
+
+      Our workshop will cover how you can compete in our challenge to get ahead
+      of the game at Hack Cambridge Recurse!
+
     time: 2016-01-28 16:45:00
     duration: 30 # In minutes
     location: The Guildhall
 
-  - name: Studo Gobo workshop
+  - name: How to get ahead with Unity by Studio Gobo
     description: |
-      Information coming soon...
+      Ever wanted to make a game but never know where to start? Feel like you
+      know what you're doing, but feel like you could always learn some more?
+      Then swing by our workshop where a professional Game Developer will walk
+      through how to make a game in the Unity game engine, covering both the
+      basics, in addition to revealing tips and tricks that you may not know
+      about, based on years of experience in the industry.
+
     time: 2016-01-28 17:30:00
     duration: 30 # In minutes
     location: The Guildhall
 
-  - name: Hackers at Cambridge workshop
+  - name: How to survive the last 18 hours and 45 minutes of Hack Cambridge Recurse, by Hackers at Cambridge
     description: |
-      Information coming soon...
+      In this impersonal and casual workshop, Tom from Hackers at Cambridge will
+      cover what you need to do in order to survive the last 18 hours and 45
+      minutes of Hack Cambridge and answer any questions you may have, from the
+      technical to the logistical. Whether this is your first Hackathon or
+      you're a pro, and whether your project is bang on target or you're still
+      struggling for ideas, you're more than welcome to come.
+
+      Hackers at Cambridge is the University of Cambridge's society for people
+      passionate about tech and hacker culture. We run workshops, events and
+      hackathons in order to foster a creative community in the city that birthed
+      computing itself.
+
     time: 2016-01-28 18:00:00
     duration: 30 # In minutes
     location: The Guildhall

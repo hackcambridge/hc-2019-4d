@@ -47,4 +47,15 @@ We are using [Devpost](http://devpost.com) for hack submissions. Never used it b
 - All hacks must be submitted before hacking ends at 12:45:00pm
 - You must submit all relevant source code for your hack
 
-We'll be posting more details on this closer to the time.
+Sign up or login at [recurse.devpost.com](https://recurse.devpost.com/). Every member of your team needs to have a Devpost account. Only one
+of you needs to do the next step.
+
+Click on the big "Enter a Submission " button to enter your hack. 
+
+- You'll be asked for a description of your hack. Please give a good overview of what you've developed (screenshots are great!). Judges will
+be using this in part to assess your hack. 
+- You'll be asked to list your team members. Enter in all of the accounts for the members so we know who has created what.
+- You'll also be asked which challenges you're wanting to enter - make sure to list every challenge you want to be 
+elligible for a prize for!
+
+You'll want to put a bit of thought into how you'll be presenting your hack at our expo.

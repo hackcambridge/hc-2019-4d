@@ -45,7 +45,7 @@
 }
 
 .live-social-feed-item {
-	height: 300px;
+	height: 500px;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
@@ -54,10 +54,21 @@
 .live-social-feed-item-content {
 	background: rgba(0, 0, 0, 0.3);
 	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 	border-radius: 5px;
 	padding: 10px;
 	font-size: 1.2em;
 	color: #fff;
+	max-width: 400px;
+	background-size: cover;
+	background-position: center;
+
+	img {
+		display: block;
+		max-width: 100%;
+	}
 }
 
 .live-bar {
