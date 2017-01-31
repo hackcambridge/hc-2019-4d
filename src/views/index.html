@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="event-over-banner"><b>Hack Cambridge: Recurse</b> is now over. Thanks to everyone who attended for making this year's hackathon outstanding! We hope to see you next year.</div>
+
 {# MLH Badge #}
 <a class="mlh-trust-badge" href="https://mlh.io/seasons/eu-2017/events?utm_source=eu-2017&utm_medium=TrustBadge&utm_campaign=eu-2017&utm_content=gray" target="_blank">
   <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2017/gray.svg" alt="Major League Hacking 2017 Hackathon Season">
@@ -29,26 +31,6 @@
         </a>
       </p>
       <p class="landing-welcome-dates">28 &ndash; 29 January 2017, University of Cambridge</p>
-      {# These two links point to the same location, and do the same thing.
-         But to capture the intent of the user, we're making the apparent functionality
-         into two links. #}
-      
-      {% if user.firstName %}
-          <p class="apply-link-container">        
-              <a class="apply-link" href="/apply/form">Go to dashboard</a>
-          </p>
-      {% else %}
-        {% if applicationsOpen %}
-          <p class="apply-link-container">
-            <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-          </p>
-          <a class="signin-link" href="/apply/form">Or Sign In</a>
-        {% else %}
-          <p class="apply-link-container">
-            <a class="apply-link" href="/event">Event Guide</a>
-          </p>
-        {% endif %}
-      {% endif %}
     </div>
     <div class="landing-welcome-social-links">
       <p>Email us at <a href="mailto:team@hackcambridge.com">team@hackcambridge.com</a></p>
@@ -88,10 +70,7 @@
         Cambridge's very own hackathon is back for its second year. For 24 hours, 300 wonderful students from around the world will come together to learn, build, tinker, and push technology to its limits.
       </p>
       <p>
-        We'd love for you to be there.
-      </p>
-      <p class="apply-link-container">
-        <a class="apply-link" href="/apply">Apply with MyMLH</a>
+        Hack Cambridge has concluded for this year, but keep your eyes peeled for its return next year!
       </p>
     </div>
   </section>
@@ -114,37 +93,6 @@
   </div>
 </section>
 </div>
-<section class="landing-faqs-section" id ="faq">
-  <div class="content-wrapper">
-    <div class="backed-title">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-title-backer"></div>
-    </div>
-    
-    <div class="faqs-listing"><!--
-      {% for faq in faqs %}
-      --><div class="faq-element">
-        <div class="faq-element-inner">
-          <h3>{{ faq.question }}</h3>
-          {{ faq.answer | safe }}
-        </div>
-      </div><!--
-     {% endfor %}
-   --></div>
-    {% if applicationsOpen %}
-      <div class="landing-faqs-final">
-        <h2>Finally, what do I do now?</h2>
-        <p>
-          It's simple: click on the link below.
-        </p>
-        <p class="apply-link-container">
-          <a class="apply-link" href="/apply/form">Apply with MyMLH</a>
-        </p>
-      </div>
-    {% endif %}
-  </div>
-</section>
-{# We could use a fractal to stylistically split this sections apart #}
 <section class="landing-quote-section" id="endorsement-quote">
   <div class="content-wrapper-center">
     <blockquote>Computer technology is a key driver underpinning our modern economy and society. Hack Cambridge provides an excellent platform for teams of student coders to compete and master their digital abilities right at the heart of the Cambridge technology cluster.</blockquote>
