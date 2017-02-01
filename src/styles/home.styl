@@ -13,6 +13,10 @@
   color: white;
   background: #0b292e;
   border-bottom: 4px #c91a3d solid;
+
+  @media (max-width: 660px) {
+    position: static;
+  }
 }
 
 .mlh-trust-badge {
@@ -462,6 +466,9 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
   }
 
   @media only screen and (min-width: 600px) {
+    .landing-welcome-logo{
+      padding-top: 30px; 
+    }
     margin: ($punit * 2) (0);
 
     for $sponsor in $sponsorSizes {
