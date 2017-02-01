@@ -9,7 +9,8 @@ To run the website on your machine, make sure you have [Node.js](https://nodejs.
 
 ```bash
 npm install
-npm start
+npm install -g gulp
+gulp serve
 ```
 
 And your server will be ready to go.
@@ -45,6 +46,10 @@ SLACK_API_TOKEN=
 APPLICATIONS_OPEN_STATUS=
 PUSHER_KEY=
 ```
+
+In order to get the basic website up-and-running none of these variables need to
+be set, but the .env file does need to be present. Not all features will work
+without valid tokens for all the environment variables.
 
 ## Database
 
