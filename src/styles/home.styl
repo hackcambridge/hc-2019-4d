@@ -2,18 +2,31 @@
    Welcome Section
    ========================================================================== */
 
+.event-over-banner {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  padding: 8pt 60pt;
+  font-size: 13pt;
+  text-align: center;
+  color: white;
+  background: #0b292e;
+  border-bottom: 4px #c91a3d solid;
+}
+
 .mlh-trust-badge {
-  display:block;
-  max-width:100px;
-  min-width:65px;
-  position:absolute;
-  right:20px;
-  top:0;
-  width:10%;
-  z-index:10000;
+  display: block;
+  max-width: 80px;
+  min-width: 45px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 10%;
+  z-index: 10000;
   
   img {
-    width:100%;
+    width: 100%;
   }
 }
 
@@ -41,7 +54,7 @@
 
 .landing-welcome-dates {
   font-size: 1.2em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
   opacity: 0.9;
 }
 
@@ -477,7 +490,7 @@ $initialBackgroundColor = desaturate(darken($colorPrimary, 50%), 25%);
 .landing-quote-section {
   position: relative;
   padding: ($punit * 2) 0;
-  background: $colorPink;
+  background: $colorSecondary;
   color: white;
   font-size: 1.2em;
   text-align: center;
