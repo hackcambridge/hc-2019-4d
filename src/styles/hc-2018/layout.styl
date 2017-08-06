@@ -1,0 +1,195 @@
+/* Reset margins and padding */
+
+h1, h2, h3, h4, h5, p, ul, li, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Sections */
+
+section {
+    background-color: white;
+    padding: 28.5pt 0;
+}
+section.black, section.red {
+    color: white;
+}
+section.black {
+    background-color: black;
+}
+section.red {
+    background-color: rgb(235,51,0);
+}
+section:first-of-type {
+    padding-top: 57pt;
+}
+section.image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Character styles */
+
+.secondary {
+    color: black;
+}
+.pixel {
+    font-family: "Px Grotesk Screen", Helvetica, Arial, sans-serif;
+}
+.shadow {
+    text-shadow: 3pt -3pt black;
+}
+
+/* Paragraph styles */
+
+.tight {
+    line-height: 110%;
+}
+
+/* Hidden content */
+
+.hidden {
+    display: none;
+}
+
+/* Flexboxes */
+
+.centred {
+    align-items: center;
+}
+
+/* Typography */
+
+html > * {
+    font-family: "Px Grotesk", Helvetica, Arial, sans-serif;
+}
+h1 {
+    line-height: 95%;
+}
+h2 {
+    font-size: 36pt;
+    line-height: 95%;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+h3 {
+    font-size: 20pt;
+    font-weight: 200;
+}
+h4 {
+    font-size: 14pt;
+    font-weight: 200;
+    border-top: solid black 1pt;
+    padding-top: 7pt;
+}
+h4:not(:first-child) {
+    margin-top: 20pt;
+}
+h4:not(:last-child) {
+    margin-bottom: 10pt;
+}
+h5 {
+    font-size: 16pt;
+}
+p, li {
+    font-size: 11pt;
+    line-height: 130%;
+}
+p:not(:last-child), li:not(:last-child) {
+    margin-bottom: 6pt;
+}
+
+/* Lists */
+
+li {
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+/* Anchors */
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Objects */
+
+object {
+    width: 100%;
+}
+
+/* Media queries */
+
+@media (max-width: 595pt) {
+    
+    /* Scale padding 
+    
+    section {
+        padding: 4.789915966vw;
+    }
+    section:first-of-type {
+        padding-top: 9.579831933vw;
+    }
+    
+    */
+    
+    /* Scale shadows */
+    
+    .shadow {
+        text-shadow: 0.5042016807vw -0.5042016807vw black;
+    }
+    
+    /* Show and hide */
+    
+    .shown {
+        display: none;
+    }
+    .hidden {
+        display: initial;
+    }
+    
+    /* Scale fonts */
+    
+    h2 {
+        font-size: 6.050420168vw;
+    }
+    h3 {
+        font-size: 3.361344538vw;
+    }
+    
+    /* Margins */
+    
+    h4 {
+        margin-top: 20pt;
+    }
+    .row:first-child .column:first-child h4:first-child {
+        margin-top: 0;
+    }
+    
+    .body ~ .body h4 {
+        margin-top: 20pt;
+    }
+    
+    .container > *:not(:first-child) {
+        margin-top: 28.5pt;
+    }
+    
+    .four.small.unit.row.image {
+        min-height: 215pt;
+    }
+}
+
+@media (max-width: 416pt) {
+    h3 {
+        font-size: 14pt;
+    }
+}
+
+@media (max-width: 496pt) {
+    h2 {
+        font-size: 30pt;
+    }
+}

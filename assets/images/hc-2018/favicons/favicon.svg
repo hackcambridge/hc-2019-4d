@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="320 1422 286 286" width="286pt" height="286pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.4 
+    <dc:date>2017-07-31 12:45:43 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Logos</title>
+    <g>
+      <title>Layer 1</title>
+      <rect x="320.48387" y="1422.0968" width="285" height="285" fill="black"/>
+      <path d="M 462.9839 1564.5968 L 548.4839 1564.5948 L 505.73217 1638.639 L 420.23217 1638.641 Z" fill="black"/>
+      <path d="M 420.23217 1638.641 L 548.4839 1564.5948 L 527.1097 1527.5737 L 398.858 1601.6198 Z" fill="black"/>
+      <path d="M 441.6097 1527.5757 L 527.1097 1527.5737 L 484.358 1601.6179 L 398.858 1601.6198 Z" fill="white"/>
+      <path d="M 398.858 1601.6198 L 527.1097 1527.5737 L 505.7356 1490.5526 L 377.48387 1564.5987 Z" fill="white" fill-opacity=".954222"/>
+      <path d="M 441.60973 1527.5757 L 527.1097 1527.5737 L 484.358 1601.6179 L 398.85803 1601.6198 Z" fill="black" fill-opacity=".0479987"/>
+      <path d="M 420.2356 1490.5546 L 505.7356 1490.5526 L 462.9839 1564.5968 L 377.48387 1564.5987 Z" fill="#eb3300"/>
+    </g>
+  </g>
+</svg>
