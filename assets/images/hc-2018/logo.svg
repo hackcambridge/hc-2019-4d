@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 -1 108 95" preserveAspectRatio="xMinYMin" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.4 
+    <dc:date>2017-07-31 17:05:49 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Icon</title>
+    <g>
+      <title>Hack Cambridge Logo</title>
+      <path d="M 53.83783 46.6243 L 107.67566 46.62306 L 80.75567 93.24736 L 26.917843 93.2486 Z" fill="black"/>
+      <path d="M 26.917843 93.2486 L 107.67566 46.62306 L 94.21674 23.31153 L 13.45892 69.93707 Z" fill="black"/>
+      <path d="M 40.378906 23.31277 L 94.21674 23.31153 L 67.29675 69.93583 L 13.45892 69.93707 Z" fill="white"/>
+      <path d="M 13.45892 69.93707 L 94.21674 23.31153 L 80.75781 -21316282e-20 L 21316282e-21 46.62554 Z" fill="white" fill-opacity=".954222"/>
+      <path d="M 40.37891 23.31277 L 94.21674 23.31153 L 67.29675 69.93583 L 13.458924 69.93707 Z" fill="black" fill-opacity=".0479987"/>
+      <path d="M 26.919988 .0012394622 L 80.75781 11404211e-19 L 53.83783 46.6243 L 0 46.62554 Z" fill="#eb3300"/>
+    </g>
+  </g>
+</svg>

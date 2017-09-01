@@ -1,0 +1,349 @@
+/* Reset margins and padding */
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+
+div.container {
+    display: flex;
+    flex-direction: column;
+}
+
+div.container.a4 {
+    position: relative;
+    width: 484pt;
+    margin: 0 auto;
+}
+
+div.container.width {
+    position: absolute;
+    margin-left: 57pt;
+    margin-right: auto;
+}
+
+/* Basic grid */
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.column {
+    margin: 0;
+}
+
+/* Rows */
+div.container.width .one.unit.row {
+    min-height: 57pt;
+}
+div.container.width .two.unit.row {
+    min-height: 114pt;
+}
+div.container.width .three.unit.row {
+    min-height: 171pt;
+}
+div.container.width .four.unit.row {
+    min-height: 228pt;
+}
+div.container.width .five.unit.row {
+    min-height: 285pt;
+}
+div.container.width .six.unit.row {
+    min-height: 342pt;
+}
+div.container.width .seven.unit.row {
+    min-height: 399pt;
+}
+
+div.container.width .one.small.unit.row {
+    min-height: 44pt;
+}
+div.container.width .two.small.unit.row {
+    min-height: 101pt;
+}
+div.container.width .three.small.unit.row {
+    min-height: 158pt;
+}
+div.container.width .four.small.unit.row {
+    min-height: 215pt;
+}
+div.container.width .five.small.unit.row {
+    min-height: 272pt;
+}
+div.container.width .six.small.unit.row {
+    min-height: 329pt;
+}
+div.container.width .seven.small.unit.row {
+    min-height: 386pt;
+}
+
+div.container.width .half.unit.row {
+    min-height: 28.5pt;
+}
+div.container.width .one.half.unit.row {
+    min-height: 85.5pt;
+}
+div.container.width .two.half.unit.row {
+    min-height: 142.5pt;
+}
+div.container.width .three.half.unit.row {
+    min-height: 199.5pt;
+}
+div.container.width .four.half.unit.row {
+    min-height: 256.5pt;
+}
+div.container.width .five.half.unit.row {
+    min-height: 313.5pt;
+}
+div.container.width .six.half.unit.row {
+    min-height: 370.5pt;
+}
+
+/* Columns */
+ 
+.column {
+    flex: 1;
+}
+
+.one.unit.column {
+    flex: 57pt;
+}
+.two.unit.column {
+    flex: 114pt;
+}
+.three.unit.column {
+    flex: 171pt;
+}
+.four.unit.column {
+    flex: 228pt;
+}
+.five.unit.column {
+    flex: 285pt;
+}
+.six.unit.column {
+    flex: 342pt;
+}
+.seven.unit.column {
+    flex: 399pt;
+}
+
+.one.small.unit.column {
+    flex: 44pt;
+}
+.two.small.unit.column {
+    flex: 101pt;
+}
+.three.small.unit.column {
+    flex: 158pt;
+}
+.four.small.unit.column {
+    flex: 215pt;
+}
+.five.small.unit.column {
+    flex: 272pt;
+}
+.six.small.unit.column {
+    flex: 329pt;
+}
+.seven.small.unit.column {
+    flex: 386pt;
+}
+
+.half.unit.column {
+    flex: 28.5pt;
+}
+.one.half.unit.column {
+    flex: 85.5pt;
+}
+.two.half.unit.column {
+    flex: 142.5pt;
+}
+.three.half.unit.column {
+    flex: 199.5pt;
+}
+.four.half.unit.column {
+    flex: 256.5pt;
+}
+.five.half.unit.column {
+    flex: 313.5pt;
+}
+.six.half.unit.column {
+    flex: 370.5pt;
+}
+
+/* h-unit */
+
+.one.unit.h {
+    width: 57pt;
+}
+.two.unit.h {
+    width: 114pt;
+}
+.three.unit.h {
+    width: 171pt;
+}
+.four.unit.h {
+    width: 228pt;
+}
+.five.unit.h {
+    width: 285pt;
+}
+.six.unit.h {
+    width: 342pt;
+}
+.seven.unit.h {
+    width: 399pt;
+}
+.eight.unit.h {
+    width: 456pt;
+}
+.nine.unit.h {
+    width: 513pt;
+}
+.ten.unit.h {
+    width: 570pt;
+}
+.eleven.unit.h {
+    width: 627pt;
+}
+.twelve.unit.h {
+    width: 684pt;
+}
+.thirteen.unit.h {
+    width: 741pt;
+}
+.fourteen.unit.h {
+    width: 798pt;
+}
+
+.one.small.unit.h {
+    width: 44pt;
+}
+.two.small.unit.h {
+    width: 101pt;
+}
+.three.small.unit.h {
+    width: 158pt;
+}
+.four.small.unit.h {
+    width: 215pt;
+}
+.five.small.unit.h {
+    width: 272pt;
+}
+.six.small.unit.h {
+    width: 329pt;
+}
+.seven.small.unit.h {
+    width: 386pt;
+}
+
+.half.unit.h {
+    width: 28.5pt;
+}
+.one.half.unit.h {
+    width: 85.5pt;
+}
+.two.half.unit.h {
+    width: 142.5pt;
+}
+.three.half.unit.h {
+    width: 199.5pt;
+}
+.four.half.unit.h {
+    width: 256.5pt;
+}
+.five.half.unit.h {
+    width: 313.5pt;
+}
+.six.half.unit.h {
+    width: 370.5pt;
+}
+
+@media (max-width: 595pt) {
+    div.container.a4 {
+        width: 81.34453782vw;
+    }
+    .row {
+        flex-direction: column;
+    }
+    div:not(.body) > .row > .column:not(:first-child) {
+        margin-top: 28.5pt;
+    }
+}
+
+@media (min-width: 595pt) {
+    .column:last-child:nth-child(2) {
+        margin-left: 24pt;
+    }
+
+    /* Rows */
+
+    .one.unit.row {
+        min-height: 57pt;
+    }
+    .two.unit.row {
+        min-height: 114pt;
+    }
+    .three.unit.row {
+        min-height: 171pt;
+    }
+    .four.unit.row {
+        min-height: 228pt;
+    }
+    .five.unit.row {
+        min-height: 285pt;
+    }
+    .six.unit.row {
+        min-height: 342pt;
+    }
+    .seven.unit.row {
+        min-height: 399pt;
+    }
+
+    .one.small.unit.row {
+        min-height: 44pt;
+    }
+    .two.small.unit.row {
+        min-height: 101pt;
+    }
+    .three.small.unit.row {
+        min-height: 158pt;
+    }
+    .four.small.unit.row {
+        min-height: 215pt;
+    }
+    .five.small.unit.row {
+        min-height: 272pt;
+    }
+    .six.small.unit.row {
+        min-height: 329pt;
+    }
+    .seven.small.unit.row {
+        min-height: 386pt;
+    }
+
+    .half.unit.row {
+        min-height: 28.5pt;
+    }
+    .one.half.unit.row {
+        min-height: 85.5pt;
+    }
+    .two.half.unit.row {
+        min-height: 142.5pt;
+    }
+    .three.half.unit.row {
+        min-height: 199.5pt;
+    }
+    .four.half.unit.row {
+        min-height: 256.5pt;
+    }
+    .five.half.unit.row {
+        min-height: 313.5pt;
+    }
+    .six.half.unit.row {
+        min-height: 370.5pt;
+    }
+}

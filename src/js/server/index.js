@@ -126,6 +126,10 @@ app.get('/favicon.ico', function (req, res) {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
 
+app.get('/sponsorship', (req, res) => {
+  res.render('sponsorship.html');
+});
+
 app.use((req, res) => {
   res.status(404).render('404.html');
 });
