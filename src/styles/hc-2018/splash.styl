@@ -1,0 +1,102 @@
+@import 'grid.styl';
+
+#intro-social img {
+    max-width: 26pt;
+    padding-bottom: 2pt;
+    border-bottom: 1px solid rgba(255,255,255,0);
+}
+#intro-social img:hover {
+    border-bottom: 1px solid rgb(235,51,0);
+}
+#intro-social img:active {
+    border-bottom: 1px solid black;
+}
+#intro-social img {
+    margin-top: 13pt;
+    margin-right: 13pt;
+    height: 26.5pt;
+    max-width: 26pt;
+    clear: both;
+}
+#intro-social a {
+    font-size: 26pt;
+}
+
+@media (max-width: 911pt) {
+    #splash-intro-content {
+        flex-direction: column;
+    }
+    #intro-social {
+        width: 285pt;
+        min-height: 85.5pt;
+        margin-left: 0;
+        margin-top: var(--half);
+    }
+    #intro-social > div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #intro-social img {
+        height: 26pt;
+    }
+    #splash-intro-content .unit.h:not(:last-child) {
+        margin-right: 0;
+    }
+    input {
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 595pt) {
+    #splash-hack-cambridge-logo-object {
+        max-width: 139pt;
+    }
+    #splash-sign-up-form {
+        flex-direction: row;
+    }
+    #splash-intro-content {
+        margin-top: var(--half);
+    }
+    #intro-social {
+        width: 100%;
+    }
+    #splash-signup-form {
+        flex-direction: row;
+    }
+    #splash-signup-form .four.small.unit.h {
+        flex-basis: calc(var(--three) - var(--gutter));
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+    #splash-signup-form .small.unit.h {
+        flex-basis: var(--gutter);
+        flex-shrink: 0;
+    }
+    #splash-signup-form .one.unit.h {
+        flex-basis: var(--one);
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 342pt) {
+    #splash-signup-form {
+        flex-direction: column;
+        height: var(--one);
+    }
+    #splash-signup-form .four.small.unit.h {
+        flex-basis: auto;
+        flex-grow: 0;
+    }
+    #splash-signup-form .small.unit.h:not(.four) {
+        flex-grow: 0;
+    }
+    #splash-signup-form .one.unit.h {
+        flex-basis: auto;
+        flex-grow: 0;
+        max-width: var(--one);
+    }
+    div.container.width {
+        margin: 0 calc(57 / 342 * 100vw);
+    }
+}
