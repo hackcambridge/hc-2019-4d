@@ -47,12 +47,28 @@ section.image {
     background-attachment: fixed;
 }
 
+/* Unavailable label */
+
+div.unavailable > *:not(.label) {
+    opacity: 0.5;
+    z-index: 0;
+}
+div.unavailable .label {
+    z-index: 1;
+    margin-bottom: calc(0 - var(--one));
+    display: block;
+}
+div.unavailable .label > * {
+    text-align: right;
+    color: var(--red);
+}
+
 /* Character styles */
 
 .secondary {
     color: var(--accent-color);
 }
-.pixel {
+.pixel, .label {
     font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
     font-weight: 400;
 }
