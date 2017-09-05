@@ -19,18 +19,24 @@ section, section > *, footer, footer > * {
     --primary-color: white;
     --secondary-color: black;
     --accent-color: var(--red);
+    --secondary-primary-color: var(--accent-color);
+    --secondary-accent-color: var(--primary-color);
     background-color: var(--primary-color);
 }
 section.black, section.black > *, footer.black, footer.black > * {
     --primary-color: black;
     --secondary-color: white;
     --accent-color: var(--red);
+    --secondary-primary-color: var(--accent-color);
+    --secondary-accent-color: var(--primary-color);
     background-color: var(--primary-color);
 }
 section.red, section.red > *, footer.red, footer.red > * {
     --primary-color: var(--red);
     --secondary-color: white;
     --accent-color: black;
+    --secondary-primary-color: var(--accent-color);
+    --secondary-accent-color: var(--primary-color);
     background-color: var(--primary-color);
 }
 section, footer {
@@ -65,8 +71,9 @@ div.unavailable .label > * {
 
 /* Character styles */
 
-.secondary {
-    color: var(--accent-color);
+.secondary, .secondary * {
+    --primary-color: var(--secondary-primary-color);
+    --accent-color: var(--secondary-accent-color);
 }
 .pixel, .label {
     font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
