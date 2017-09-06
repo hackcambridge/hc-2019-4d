@@ -11,11 +11,12 @@
     flex-basis: 28.5pt;
 }
 #sponsorship-intro-text {
-    width: 311pt;
+    max-width: 311pt;
 }
 #sponsorship-university-of-cambridge-text {
     flex: auto;
     margin: 0;
+    min-width: 193.359375px;
 }
 
 @media (max-width: 595pt) {
@@ -24,6 +25,9 @@
     }
     #sponsorship-pitch-image {
         height: 215pt;
+    }
+    .unit.h:not(:first-child) {
+        margin-top: 28.5pt;
     }
 }
 
@@ -36,7 +40,6 @@
         margin-right: 0;
         margin-bottom: 24pt;
         max-height: 28.5pt;
-        height: initial;
     }
 }
 
@@ -47,7 +50,5 @@
     }
     #sponsorship-hack-cambridge-wordmark {
         font-size: 6.8906060739vw;
-        margin-top: 9.2223697238vw;
-        margin-left: 4.2403727914vw;
     }
 }
