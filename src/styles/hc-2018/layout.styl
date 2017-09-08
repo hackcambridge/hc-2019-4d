@@ -29,13 +29,19 @@ section.image {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-
+div.unavailable > *:not(.label) {
+    opacity: 0.5;
+    z-index: 0;
+}
+div.unavailable .label > * {
+    color: rgb(235,51,0);
+}
 /* Character styles */
 
 .secondary {
     color: black;
 }
-.pixel {
+.pixel, .label * {
     font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
 }
 .shadow {
@@ -81,14 +87,14 @@ h3 {
     font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
     font-size: 20pt;
     font-weight: 200;
-    line-height: 130%;
+    line-height: 120%;
 }
 h4 {
     font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
     font-size: 14pt;
     font-weight: 200;
     border-top: solid black 1pt;
-    padding-top: 7pt;
+    padding-top: 2pt;
 }
 h4:not(:first-child) {
     margin-top: 20pt;
@@ -100,12 +106,16 @@ h5 {
     font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 16pt;
     font-weight: 300;
+    line-height: 120%;
 }
 p, li {
     font-size: 11pt;
-    line-height: 130%;
+    line-height: 120%;
 }
-p:not(:last-child), li:not(:last-child) {
+p:not(:last-child) {
+    margin-bottom: 10pt;
+}
+li:not(:last-child) {
     margin-bottom: 6pt;
 }
 
@@ -123,13 +133,36 @@ a {
     text-decoration: none;
 }
 
+.secondary a {
+    color: white;
+}
+
 /* Objects */
 
 object {
     width: 100%;
 }
 
+/* Images */
+
+img {
+    align-self: left;
+}
+
 /* Media queries */
+
+@media (min-width: 595pt) {
+
+    div.unavailable .label {
+        z-index: 1;
+        margin-top: -57pt;
+        display: unset;
+    }
+    div.unavailable .label > * {
+        text-align: right;
+        color: rgb(235,51,0);
+    }
+}
 
 @media (max-width: 595pt) {
     
