@@ -1,3 +1,9 @@
+/* Webkit font scaling */
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 /* Reset margins and padding */
 
 h1, h2, h3, h4, h5, p, ul, li, body {
@@ -10,6 +16,9 @@ h1, h2, h3, h4, h5, p, ul, li, body {
 section {
     background-color: white;
     padding: 28.5pt 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 section.black, section.red {
     color: white;
@@ -24,10 +33,7 @@ section:first-of-type {
     padding-top: 57pt;
 }
 section.image {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    z-index: -1;
 }
 div.unavailable > *:not(.label) {
     opacity: 0.5;
@@ -80,6 +86,7 @@ h2 {
     font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 36pt;
     line-height: 95%;
+    font-weight: 200;
     hyphens: auto;
     -webkit-hyphens: auto;
 }
@@ -110,7 +117,7 @@ h5 {
 }
 p, li {
     font-size: 11pt;
-    line-height: 120%;
+    line-height: 140%;
 }
 p:not(:last-child) {
     margin-bottom: 10pt;
@@ -143,10 +150,25 @@ object {
     width: 100%;
 }
 
-/* Images */
+/* Images and figures */
 
 img {
     align-self: left;
+}
+section.image .wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+}
+section.image .wrapper figure {
+    background-repeat: no-repeat;
+    position: absolute;
+    background-position: center top;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-size: cover;
 }
 
 /* Media queries */
@@ -166,30 +188,13 @@ img {
 
 @media (max-width: 595pt) {
     
-    /* Scale padding 
-    
-    section {
-        padding: 4.789915966vw;
-    }
-    section:first-of-type {
-        padding-top: 9.579831933vw;
-    }
-    
-    */
-    
-    /* Scale shadows */
-    
-    .shadow {
-        text-shadow: 0.5042016807vw -0.5042016807vw black;
-    }
-    
     /* Show and hide */
     
     .shown {
         display: none;
     }
     .hidden {
-        display: initial;
+        display: block;
     }
     
     /* Scale fonts */
