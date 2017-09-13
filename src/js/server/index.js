@@ -88,6 +88,10 @@ app.get('/terms', function (req, res) {
   res.render('terms.html');
 });
 
+app.get('/splash18', function (req, res) {
+    res.render('splash.html');
+});
+
 app.get('/privacy', function (req, res) {
   res.render('privacy.html');
 });
