@@ -1,4 +1,8 @@
-@import 'grid.styl';
+/* Webkit font scaling */
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
 
 /* Colour variables */
 
@@ -15,42 +19,41 @@ h1, h2, h3, h4, h5, p, ul, li, input, form, body {
 
 /* Sections */
 
-section, section > *, footer, footer > * {
-    --primary-color: white;
-    --secondary-color: black;
-    --accent-color: var(--red);
-    --secondary-primary-color: var(--accent-color);
-    --secondary-accent-color: var(--primary-color);
-    background-color: var(--primary-color);
+section, footer {
+    --color-1: white;
+    --color-2: black;
+    --color-3: var(--red);
 }
-section.black, section.black > *, footer.black, footer.black > * {
-    --primary-color: black;
-    --secondary-color: white;
-    --accent-color: var(--red);
-    --secondary-primary-color: var(--accent-color);
-    --secondary-accent-color: var(--primary-color);
-    background-color: var(--primary-color);
+section.black, footer.black {
+    --color-1: black;
+    --color-2: white;
+    --color-3: var(--red);
 }
-section.red, section.red > *, footer.red, footer.red > * {
-    --primary-color: var(--red);
-    --secondary-color: white;
-    --accent-color: black;
-    --secondary-primary-color: var(--accent-color);
-    --secondary-accent-color: var(--primary-color);
-    background-color: var(--primary-color);
+section.red, footer.red {
+    --color-1: var(--red);
+    --color-2: white;
+    --color-3: black;
 }
 section, footer {
-    padding: 28.5pt 0;
+    --primary-color: var(--color-1);
+    --secondary-color: var(--color-2);
+    --accent-color: var(--color-3);
+    background-color: var(--primary-color);
     color: var(--secondary-color);
+    padding: 28.5pt 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+section:not(:first-of-type), footer:not(:first-of-type) {
+    border-top: 1pt solid var(--primary-color);
 }
 main section:first-of-type {
     padding-top: var(--one);
 }
 section.image {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    z-index: -1;
 }
 
 /* Unavailable label */
@@ -61,22 +64,27 @@ div.unavailable > *:not(.label) {
 }
 div.unavailable .label {
     z-index: 1;
-    margin-bottom: calc(0 - var(--one));
     display: block;
 }
-div.unavailable .label > * {
-    text-align: right;
-    color: var(--red);
+div.unavailable .label * {
+    color: var(--accent-color);
+}
+
+/* Link area */
+
+section.links:hover, section.links:hover * {
+    --primary-color: var(--color-2);
+    --secondary-color: var(--color-3);
+    --accent-color: var(--color-1);
+    border-color: var(--accent-color);
 }
 
 /* Character styles */
 
-.secondary, .secondary * {
-    --primary-color: var(--secondary-primary-color);
-    --accent-color: var(--secondary-accent-color);
-    color: var(--primary-color);
+.secondary {
+    color: var(--accent-color);
 }
-.pixel, .label {
+.pixel, .label * {
     font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
     font-weight: 400;
 }
@@ -98,9 +106,9 @@ div.unavailable .label > * {
 
 /* Animation */
 
-html *:not(h1, h2, h3, h4, h5, p, h5 *) {
+section, a, a::after, img, input, .secondary {
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
-    transition-property: color, border-color, visibility, caret-color;
+    transition-property: color, border-color, caret-color, background-color;
     transition-duration: 0.25s;
 }
 
@@ -119,21 +127,26 @@ h3, h4 {
 /* Paragraph styles */
 
 h1 {
+    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     line-height: 95%;
-    font-weight: 500;
+    font-weight: 300;
 }
-h2 {
+h2, h2 * {
+    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 36pt;
     line-height: 95%;
+    font-weight: 200;
     hyphens: auto;
     -webkit-hyphens: auto;
 }
 h3 {
+    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
     font-size: 20pt;
     font-weight: 200;
-    line-height: 130%;
+    line-height: 120%;
 }
 h4 {
+    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
     font-size: 14pt;
     font-weight: 200;
     border-top: solid var(--secondary-color) 1pt;
@@ -146,17 +159,20 @@ h4:not(:last-child) {
     margin-bottom: 10pt;
 }
 h5, h5 span {
+    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 16pt;
-    font-weight: 400;
+    font-weight: 300;
+    line-height: 120%;
 }
 p, li, a:not(h5 a) {
     font-size: 11pt;
 }
 input {
     font-size: 11pt;
+    border-radius: 0;
 }
 p, li, a:not(h5 a) {
-    line-height: 130%;
+    line-height: 140%;
 }
 p:not(:last-child) {
     margin-bottom: 10pt;
@@ -175,18 +191,54 @@ li {
 /* Anchors */
 
 a {
-    color: inherit;
+    color: var(--accent-color);
     text-decoration: none;
+}
+a::after {
+    content: " →";
+    color: var(--primary-color);
+}
+a[rel="external"]::after {
+    content:"";
 }
 
 a:hover {
+    color: var(--secondary-color);
+}
+a:hover::after {
     color: var(--accent-color);
+    visibility: visible;
 }
 
-/* Objects */
+a:active {
+    color: var(--secondary-color);
+}
+a:active::after {
+    color: var(--secondary-color);
+    visibility: visible;
+}
 
-object, img {
+/* Objects, images, and figures */
+
+object {
     width: 100%;
+}
+
+section.image .wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+ section.image .wrapper figure {
+    background-repeat: no-repeat;
+    position: absolute;
+    background-position: center top;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-size: cover;
 }
 
 /* Input */
@@ -244,26 +296,16 @@ input[type="submit"]:active{
 
 @media (min-width: 596pt) {
     
-    /* Show hidden content */
-
-    .hidden {
-        display: none;
+    div.unavailable .label * {
+        text-align: right;
+    }
+    
+    div.unavailable .label {
+        margin-top: calc(-1 * var(--one));
     }
 }
 
 @media (max-width: 595pt) {
-    
-    /* Scale shadows */
-    
-    .shadow {
-        text-shadow: 0.5042016807vw -0.5042016807vw black;
-    }
-    
-    /* Hide shown content */
-    
-    .shown {
-        display: none;
-    }
     
     /* Scale fonts */
     
@@ -274,12 +316,16 @@ input[type="submit"]:active{
         font-size: 3.361344538vw;
     }
     
-    /* Extra margins for single-column layout */
-    
-    h4 {
+    .body > .row:not(:first-child) h4 {
         margin-top: 20pt;
     }
+    
+    /* Extra margins for single-column layout */
+    
     .row:first-child .column:first-child h4:first-child {
+        margin-top: 0;
+    }
+    .container.width h4:first-child {
         margin-top: 0;
     }
     
@@ -294,6 +340,7 @@ input[type="submit"]:active{
     section.image {
         min-height: 215pt;
     }
+    
 }
 
 @media (max-width: 416pt) {

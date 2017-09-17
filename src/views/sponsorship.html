@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <title>Hack Cambridge Ternary Sponsorship</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('styles/hc-2018/sponsorship-bundle.css') }}">
-        <link rel="stylesheet" type="text/css" href="https://assets.hackcambridge.com/fonts/PxGroteskRegular-Regular.css">
-        <link rel="stylesheet" type="text/css" href="https://assets.hackcambridge.com/fonts/PxGroteskScreen-Regular.css">
-        <link rel="stylesheet" type="text/css" href="https://assets.hackcambridge.com/fonts/PxGroteskLight-Regular.css">
-        <link rel="stylesheet" type="text/css" href="https://assets.hackcambridge.com/fonts/PxGroteskBold-Regular.css">
+        <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGroteskRegular-Regular.css">
+        <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGroteskScreen-Regular.css">
+        <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGroteskLight-Regular.css">
+        <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGroteskBold-Regular.css">
         <link rel="icon" href="{{ asset('images/hc-2018/favicons/favicon.png') }}" sizes="512x512" type="image/png">
         <link rel="icon" href="{{ asset('images/hc-2018/favicons/favicon.ico') }}" sizes="16x16 24x24 32x32 48x48 64x64 96x96 128x128 256x256" type="image/vnd.microsoft.icon">
         <link rel="icon" href="{{ asset('images/hc-2018/favicons/favicon.icns') }}" sizes="16x16 24x24 32x32 48x48 64x64 96x96 128x128 256x256 512x512">
@@ -15,27 +15,41 @@
         <meta name="description" content="Opportunities for sponsorship at Hack Cambridge 2018">
         <meta name="keywords" content="hack,cambridge,ternary,sponsorship,hackathon">
         <meta name="author" content="Hack Cambridge Team">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
     </head>
     <body>
         <main>
             <section id="sponsorship-intro" class="black">
                 <div class="container a4">
                     <div class="two unit row">
-                        <div class="column">
-                            <div id="sponsorship-hack-cambridge-logo">
-                                <object id="sponsorship-hack-cambridge-logo-object" data="{{ asset('images/hc-2018/logo.svg') }}"></object>
-                                <h1 id="sponsorship-hack-cambridge-wordmark">Hack<br>Cambridge<br><span class="pixel">Ternary</span></h1>
+                        <div class="three unit column">
+                            <div class="two unit row">
+                                <img id="sponsorship-hack-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge Logo"/>
                             </div>
                         </div>
-                        <div class="column">
+                        <div id="sponsorship-intro-text" class="unit column">
+                            <h1 id="sponsorship-hack-cambridge-wordmark">Hack Cambridge<br><span class="pixel">Ternary</span></h1>
                             <p class="tight">
-                                In January 2018, Cambridge University’s annual hackathon will yet again bring together 300 top Computer Scientists and Engineers from the best universities worldwide.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+                                In January 2018, 300 top computer scientists will come together for 24 hours to push the boundaries of technology.
                             </p>
                             <p class="tight">
                                 And we want you to join us too.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section id="sponsorship-endorsement" class="red">
+                <div class="container a4">
+                    <div id="sponsorship-university-of-cambridge-endorsement" class="half unit row centred">
+                        <div class="three unit column">
+                            <div class="half unit row">
+                                <img id="sponsorship-university-of-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/university-of-cambridge-logo.svg') }}" alt="University of Cambridge Logo"/>
+                            </div>
+                        </div>
+                        <p id="sponsorship-university-of-cambridge-text">
+                            The University of Cambridge<br>endorses Hack Cambridge.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -48,7 +62,7 @@
                     </div>
                     <div class="body">
                         <div class="seven small unit row">
-                            <div class="column">
+                            <div class="columns">
                                 <h4>
                                     Recruiting
                                 </h4>
@@ -58,17 +72,8 @@
                                 <h4>
                                     Branding and Exposure
                                 </h4>
-                                <p class="shown">
-                                    Whether you’re a young company looking to increase your reputation or a large firm with a desire to hidden off your capabilities to future tech trendsetters, Hack Cambridge brings together the perfect audience for any company: the next generation of innovators and thought-leaders. Few messages about
-                                </p>
-                                <p class="hidden">
+                                <p>
                                     Whether you’re a young company looking to increase your reputation or a large firm with a desire to show off your capabilities to future tech trendsetters, Hack Cambridge brings together the perfect audience for any company: the next generation of innovators and thought-leaders. Few messages about your brand and culture resonate louder with passionate hackers than to be there, stuck in alongside them during 24 intense hours of innovation. From product demos to sponsored messages, we want to help you maximise your exposure and recognition among the people who will drive the next generation of tech growth.
-    
-                                </p>
-                            </div>
-                            <div class="column">
-                                <p class="shown">
-                                    your brand and culture resonate louder with passionate hackers than to be there, stuck in alongside them during 24 intense hours of innovation. From product demos to sponsored messages, we want to help you maximise your exposure and recognition among the people who will drive the next generation of tech growth.
                                 </p>
                                 <h4>
                                     Product Adoption and Live Testing
@@ -78,13 +83,6 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="half unit row shown"></div>
-                    <div id="sponsorship-university-of-cambridge-endorsement" class="half unit row centred">
-                        <img id="sponsorship-university-of-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/university-of-cambridge-logo.svg') }}" alt="University of Cambridge Logo"/>
-                        <p id="sponsorship-university-of-cambridge-text">
-                            The University of Cambridge<br>endorses Hack Cambridge.
-                        </p>
                     </div>
                 </div>
             </section>
@@ -102,7 +100,7 @@
                     </div>
                     <div class="body">
                         <div class="one half unit row">
-                            <div class="column">
+                            <div class="columns">
                                 <ul>
                                     <li>
                                         Work with us to plan Hack Cambridge
@@ -114,8 +112,6 @@
                                         10 minute Keynote at opening
                                     </li>
                                 </ul>
-                            </div>
-                            <div class="column">
                                 <ul>
                                     <li>
                                         Pre-event marketing
@@ -136,10 +132,15 @@
                 </div>
             </section>
             <section id="sponsorship-sponsored-meal">
-                <div class="container a4">
+                <div class="container a4 unavailable">
                     <div class="one unit row">
                         <h2>
                             Spon&shy;sored Meal
+                        </h2>
+                    </div>
+                    <div class="one unit row label">
+                        <h2>
+                            Sold out!
                         </h2>
                     </div>
                     <div class="one unit row">
@@ -149,7 +150,7 @@
                     </div>
                     <div class="body">
                         <div class="one unit row">
-                            <div class="column">
+                            <div class="columns">
                                 <ul>
                                     <li>
                                         15 Minutes pre-meal stage time
@@ -161,8 +162,6 @@
                                         Opportunity to speak to hackers over dinner
                                     </li>
                                 </ul>
-                            </div>
-                            <div class="column">
                                 <ul>
                                     <li>
                                         Hack Cambridge supplies the meal
@@ -176,7 +175,11 @@
                     </div>
                 </div>
             </section>
-            <section id="sponsorship-pitch-image" class="four small unit row image" style="background-image: url('{{ asset('images/hc-2018/pitch.jpg') }}')"></section>
+            <section id="sponsorship-pitch-image" class="four small unit row image">
+                <div class="wrapper">
+                    <figure draggable="false" style="background-image: url('{{ asset('images/hc-2018/pitch.jpg') }}')"></figure>
+                </div>
+            </section>
             <section id="sponsorship-tiers">
                 <div class="container a4">
                     <div class="one unit row">
@@ -186,12 +189,12 @@
                     </div>
                     <div class="one unit row">
                         <p>
-                            Higher tiers include the benefits of lower tiers.
+                            Higher tiers include the benefits of lower tiers.<br>All prices are exclusive of VAT unless otherwise indicated.
                         <p>
                     </div>
                     <div class="body">
-                        <div class="three unit row">
-                            <div class="column">
+                        <div class="three half unit row">
+                            <div class="columns">
                                 <h4>
                                     Tera <span class="pixel">£8,000</span>
                                 </h4>
@@ -218,8 +221,6 @@
                                         Logo on projector throughout event
                                     </li>
                                 </ul>
-                            </div>
-                            <div class="column">
                                 <h4>
                                     Giga <span class="pixel">£5,000</span>
                                 </h4>
@@ -245,9 +246,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="half unit row shown"></div>
                         <div class="three unit row">
-                            <div class="column">
+                            <div class="columns">
                                 <h4>
                                     Mega <span class="pixel">£2,500</span>
                                 </h4>
@@ -268,10 +268,8 @@
                                         Send 1 recruiter
                                     </li>
                                 </ul>
-                            </div>
-                            <div class="column">
                                 <h4>
-                                    Kilo <span class="pixel">£400</span>
+                                    Kilo <span class="pixel">£400 incl. VAT</span><br><em>For startups</em>
                                 </h4>
                                 <ul>
                                     <li>
@@ -289,14 +287,13 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
                 </div>
             </section>
-            <section id="sponsorship-contact" class="red">
+            <section id="sponsorship-contact" class="red links">
                 <div class="container a4">
                     <div class="one unit row">
                         <h5>
-                            Interested?<br><span class="secondary"><a href="mailto:sponsorship@hackcambridge.com">Contact our dedicated sponsorship team.</a></span>
+                            Interested?<br><span class="secondary"><a href="mailto:sponsorship@hackcambridge.com">Contact our dedicated sponsorship team</a></span>
                         </h5>
                     </div>
                 </div>

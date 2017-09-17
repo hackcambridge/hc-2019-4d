@@ -1,48 +1,47 @@
-#sponsorship-hack-cambridge-logo {
-    display: flex;
-}
 #sponsorship-hack-cambridge-logo-object {
-    width: 108.3242pt;
-    height: 93.8102pt;
+    height: var(--two);
 }
 #sponsorship-hack-cambridge-wordmark {
-    font-size: 21pt;
-    margin-top: 28.6354569254pt;
-    margin-left: 13.1663578947pt;
-}
-#sponsorship-pitch-image {
-    background-image: url("../images/pitch.jpg");
+    font-size: 21.3953315789pt;
+    margin-bottom: 20pt;
 }
 #sponsorship-university-of-cambridge-logo-object {
-    height: 28.5pt;
+    height: var(--half);
     width: initial;
-    margin-right: 24pt;
-    flex-basis: 28.5pt;
+    flex-basis: var(--half);
+}
+#sponsorship-intro-text {
+    max-width: 311pt;
+    margin-left: 0;
 }
 #sponsorship-university-of-cambridge-text {
     flex: auto;
     margin: 0;
+    min-width: 193.359375px;
+}
+#sponsorship-university-of-cambridge-endorsement {
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 @media (max-width: 595pt) {
-    #sponsorship-university-of-cambridge-endorsement {
-        flex-direction: row;
-    }
     #sponsorship-pitch-image {
         height: 215pt;
     }
+    .unit.h:not(:first-child) {
+        margin-top: 28.5pt;
+    }
+    
+    @media (min-width: 300px) {
+        #sponsorship-university-of-cambridge-logo-object {
+            margin-right: 24pt;
+        }
+    }
 }
 
-@media (max-width: 371.5pt) {
-    #sponsorship-university-of-cambridge-endorsement {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+@media (max-width: 502px) {
     #sponsorship-university-of-cambridge-logo-object {
-        margin-right: 0;
         margin-bottom: 24pt;
-        max-height: 28.5pt;
-        height: initial;
     }
 }
 
@@ -53,7 +52,5 @@
     }
     #sponsorship-hack-cambridge-wordmark {
         font-size: 6.8906060739vw;
-        margin-top: 9.2223697238vw;
-        margin-left: 4.2403727914vw;
     }
 }
