@@ -4,9 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>{% block pageTitle %}{{ title }}{% endblock %}</title>
-    <meta name="title" content="{{ title }}" />
-    <meta name="description" content="{{ description }}" />
-    <meta name=keywords content="{{ keywords }}">
+    <meta name="title" content="{{ title | default('Hack Cambridge') }}" />
+    <meta name="description" content="{{ description | default('Join us for 24 hours of building, breaking and creating in the heart of Cambridge from January 28 – 29.') }}" />
+    <meta name=keywords content="{{ keywords | default('hack,Cambridge,ternary 2018') }}">
     <meta name=author content="Hack Cambridge Team">
     <meta name="language" content="en">
     <meta name="viewport" content="width=device-width, user-scalable=no" />
