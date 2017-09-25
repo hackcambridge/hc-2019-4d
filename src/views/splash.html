@@ -1,0 +1,108 @@
+{% extends 'ternary-base.html' %}
+{% set title = 'Hack Cambridge Ternary' %}
+{% set description = 'Hack Cambridge Ternary 2018' %}
+{% set keywords = 'hack,Cambridge,ternary 2018' %}
+{% block content %}
+<main>
+    <section id="splash-intro">
+        <div class="container width">
+            <div class="seven unit row">
+                <div class="six unit column intro-collapses">
+                    <object id="splash-hack-cambridge-logo-object" data="{{ asset('images/hc-2018/logo.svg') }}"></object>
+                </div>
+                <div id="splash-intro-content" class="seven unit column row intro-collapses">
+                    <div class="five unit column">
+                        <div class="two unit row">
+                            <div class="five unit column">
+                                <div>
+                                    <h2 id="splash-hack-cambridge-wordmark">Hack<br>Cambridge<br><span class="pixel">Ternary</span></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="two unit row">
+                            <div class="five unit column">
+                                <h3>
+                                    Not twice, but three times.<br>Not 2D, but 3D.<br>Not binary, but ternary.
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="two unit row">
+                            <div class="five unit column">
+                                <div id="splash-intro-text">
+                                    <p>
+                                        In January 2018, Cambridge University’s annual hackathon will yet again bring together 300 top Computer Scientists and Engineers from the best universities worldwide.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+                                    </p>
+                                    <p>
+                                        Join us.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="intro-social" class="one unit column">
+                        <h4>
+                            Social
+                        </h4>
+                        <div>
+                            <a rel="external" href="https://www.facebook.com/hackcambridge">
+                                <img id="splash-facebook-logo" src="{{ asset('images/hc-2018/facebook-logo.svg') }}" alt="Facebook logo" draggable="false"/>
+                            </a>
+                            <a rel="external" href="https://twitter.com/@hack_cambridge">
+                                <img id="splash-twitter-logo" src="{{ asset('images/hc-2018/twitter-logo.svg') }}" alt="Twitter logo" draggable="false"/>
+                            </a>
+                            <a rel="external" href="https://medium.com/@HackCambridge">
+                                <img id="splash-medium-logo" src="{{ asset('images/hc-2018/medium-logo.svg') }}" alt="Medium logo" draggable="false"/>
+                            </a>
+                            <a rel="external" href="https://www.instagram.com/hack_cambridge/">
+                                <img id="splash-instagram-logo" src="{{ asset('images/hc-2018/instagram-logo.svg') }}" alt="Instagram logo" draggable="false"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="splash-signup" class="red">
+        <div class="container width">
+            <div class="one half unit row">
+                <div class="six unit column intro-collapses empty"></div>
+                <div class="seven unit column intro-collapses">
+                    <div class="one unit row">
+                        <div class="five unit column">
+                            <h5>
+                                Sign up now!<br><span class="secondary">We’ll be in touch soon.</span>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="half unit row">
+                        <div class="five unit column">
+                            <form id="splash-signup-form" class="half unit row" method="post" action="some-action">
+                                <div class="four small unit column">
+                                    <input type="email" name="signup-email" required placeholder="Enter your email address." />
+                                </div>
+                                <div class="one unit column submit">
+                                    <input type="submit" name="submit" value="Submit." />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container width">
+        <div class="half unit row">
+            <div class="six unit column intro-collapses empty"></div>
+            <div class="seven unit column intro-collapses">
+                <div class="half unit row">
+                    <div class="five unit column">
+                        {% include 'footer.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
