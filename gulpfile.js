@@ -40,7 +40,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 
-  gulp.src('src/styles/hc-2018/base.styl')
+  gulp.src('src/styles/hc-2018/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
