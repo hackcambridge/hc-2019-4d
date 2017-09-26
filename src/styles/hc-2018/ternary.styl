@@ -19,22 +19,22 @@ h1, h2, h3, h4, h5, p, ul, li, input, form, body {
 
 /* Sections */
 
-section, footer {
+section, header, footer {
     --color-1: white;
     --color-2: black;
     --color-3: var(--red);
 }
-section.black, footer.black {
+section.black, header.black, footer.black {
     --color-1: black;
     --color-2: white;
     --color-3: var(--red);
 }
-section.red, footer.red {
+section.red, header.red, footer.red {
     --color-1: var(--red);
     --color-2: white;
     --color-3: black;
 }
-section, footer {
+section, header, footer {
     --primary-color: var(--color-1);
     --secondary-color: var(--color-2);
     --accent-color: var(--color-3);
@@ -46,10 +46,13 @@ section, footer {
     overflow: hidden;
     box-sizing: border-box;
 }
-section:not(:first-of-type), footer:not(:first-of-type) {
+section {
     border-top: 1pt solid var(--primary-color);
 }
-main section:first-of-type {
+section:last-of-type:not(.black, .red) {
+    border-bottom: 1pt solid var(--secondary-color);
+}
+header {
     padding-top: var(--one);
 }
 section.image {
@@ -126,12 +129,12 @@ h3, h4 {
 
 /* Paragraph styles */
 
-h1 {
+#hack-cambridge-wordmark {
     font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     line-height: 95%;
     font-weight: 300;
 }
-h2, h2 * {
+h1, h2, h2 * {
     font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 36pt;
     line-height: 95%;
@@ -151,6 +154,7 @@ h4 {
     font-weight: 200;
     border-top: solid var(--secondary-color) 1pt;
     padding-top: 2pt;
+    width: 100%;
 }
 h4:not(:first-child) {
     margin-top: 20pt;
@@ -292,6 +296,18 @@ input[type="submit"]:active{
     border: 1px solid var(--secondary-color);
 }
 
+#hack-cambridge-logo-object {
+    height: var(--two);
+}
+#hack-cambridge-wordmark, #hack-cambridge-wordmark * {
+    font-size: 21.3953315789pt;
+    margin-bottom: 20pt;
+}
+#intro-text {
+    max-width: 311pt;
+    margin-left: 0;
+}
+
 /* Media queries */
 
 @media (min-width: 596pt) {
@@ -364,5 +380,15 @@ input[type="submit"]:active{
     
     .shadow {
         text-shadow: 2.5pt -2.5pt var(--accent-color);
+    }
+}
+
+@media (max-width: 414px) {
+    #sponsorship-hack-cambridge-logo-object {
+        width: 34.8845108696vw;
+        height: 30.2121074879vw;
+    }
+    #sponsorship-hack-cambridge-wordmark {
+        font-size: 6.8906060739vw;
     }
 }

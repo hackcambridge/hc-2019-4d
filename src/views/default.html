@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'ternary-base.html' %}
 {% block content %}
 {#
   if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
@@ -12,21 +12,44 @@
     {% endif %}
   </header>
 {% endif %}
-<header class="default-header">
-  <div class="content-wrapper">
-    <a class="default-header-link" href="/">
-      <img class="default-header-logo" src="{{ asset('images/logos/hc2017-logo-horizontal-light.svg') }}" />
-    </a>
-    <h1 class="default-header-heading">
-      {% block pageHeading %}{% endblock %}
-    </h1>
-  </div>
+<header class="black">
+    <div class="container a4">
+        <div class="two unit row">
+            <div class="three unit column">
+                <div class="two unit row">
+                    <img id="hack-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge Logo"/>
+                </div>
+            </div>
+            <div id="intro-text" class="unit column">
+                <h2 id="hack-cambridge-wordmark">Hack Cambridge<br><span class="pixel">Ternary</span></h2>
+            </div>
+        </div>
+    </div>
 </header>
-<main class="default-main">
-  <div class="content-wrapper">
-    {% block pageContent %}
-    {% endblock %}
-  </div>
+<main>
+    <section>
+        <div class="container a4">
+            <div class="two unit row">
+                <h1>
+                    {% block pageHeading %}{% endblock %}
+                </h1>
+            </div>
+            <div class="body">
+                {% block pageContent %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
 </main>
-{% include 'footer.html' %}
+{% if footer %}
+<footer>
+    <div class="container a4">
+        <div class="one half unit row">
+            <div class="column">
+                {% include 'ternary-footer.html' %}
+            </div>
+        </div>
+    </div>
+</footer>
+{% endif %}
 {% endblock %}

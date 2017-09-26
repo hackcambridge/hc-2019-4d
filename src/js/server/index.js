@@ -84,16 +84,16 @@ function renderHome(req, res) {
 
 app.get('/', renderHome);
 
-app.get('/terms', function (req, res) {
-  res.render('terms.html');
+app.get('/terms-and-conditions', function (req, res) {
+  res.render('terms-and-conditions.html');
 });
 
 app.get('/splash18', function (req, res) {
     res.render('splash.html');
 });
 
-app.get('/privacy', function (req, res) {
-  res.render('privacy.html');
+app.get('/privacy-policy', function (req, res) {
+  res.render('privacy-policy.html');
 });
 
 app.get('/pay', function (req, res) {

@@ -1,8 +1,11 @@
 {% extends 'default.html' %}
-{% set title = '404 Not Found | Hack Cambridge' %}
-{% block pageHeading %}Not Found{% endblock %}
+{% set title = 'Not Found' %}
+{% block pageHeading %}<span class="pixel">Error 404</span> Not Found{% endblock %}
 {% block pageContent %}
-<div class="content-wrapper-center">   
-  <p>Sorry, we couldn't find what you were looking for.</p>
+<div class="one unit row">
+    <p>Sorry, there doesn't appear to be a page at this location.<br>Think this is wrong? <a href="mailto:team@hackcambridge.com?subject=Missing page">Let us know</a></p>
+</div>
+<div class="half unit row">
+    <a href="./">Back to the homepage</a>
 </div>
 {% endblock %}
