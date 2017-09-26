@@ -204,6 +204,12 @@ a::after {
 a[rel="external"]::after {
     content:"";
 }
+a[rel="prev"]::after {
+    content:" ←";
+}
+a[rel="next"]::after {
+    content:" →";
+}
 
 a:hover {
     color: var(--secondary-color);
@@ -299,7 +305,7 @@ input[type="submit"]:active{
     height: var(--two);
 }
 #hack-cambridge-wordmark, #hack-cambridge-wordmark * {
-    font-size: 21.3953315789pt;
+    font-size: 24pt;
     margin-bottom: 20pt;
 }
 #intro-text {
