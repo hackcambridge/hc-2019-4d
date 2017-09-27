@@ -88,12 +88,24 @@ app.get('/terms-and-conditions', function (req, res) {
   res.render('terms-and-conditions.html');
 });
 
+// 2017 page location
+
+app.get('/terms', function (req, res) {
+  res.redirect(301, '/terms-and-conditions');
+});
+
 app.get('/splash18', function (req, res) {
     res.render('splash.html');
 });
 
 app.get('/privacy-policy', function (req, res) {
   res.render('privacy-policy.html');
+});
+
+// 2017 page location
+
+app.get('/privacy', function (req, res) {
+  res.redirect(301, '/privacy-policy');
 });
 
 app.get('/pay', function (req, res) {
