@@ -38,6 +38,17 @@
             {% endblock %}
         </div>
     </section>
+    {% block extraSections %}
+    {% endblock %}
+    {% if homeLink %}
+    <section>
+        <div class="container a4">
+            <div class="half unit row">
+                <a rel="prev" href="/">Back to the homepage</a> 
+            </div>
+        </div>
+    </section>
+    {% endif %}
 </main>
 {% if footer %}
 <footer>
