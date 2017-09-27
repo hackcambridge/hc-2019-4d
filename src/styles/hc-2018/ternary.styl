@@ -52,6 +52,12 @@ section {
 section:last-of-type:not(.black, .red) {
     border-bottom: 1pt solid var(--secondary-color);
 }
+section.home-link {
+    border-top: 1pt solid var(--secondary-color);
+}
+section.black + section.home-link, section.red + section.home-link {
+    border-top: 1pt solid var(--primary-color);
+}
 header {
     padding-top: var(--one);
 }
