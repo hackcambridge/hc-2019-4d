@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>An Error Occurred</title>
-    <style>
-      body {
-        font-family: Helvetica, Roboto, Arial, sans-serif;
-      }
-
-      pre {
-        background: #eee;
-        border: 1px solid #dadada;
-        padding: 10px;
-        border-radius: 3px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>An Error Occurred</h1>
-    {% if message %}
-      <pre>{{ message }}</pre>
-    {% else %}
-      <p>We are very sorry about this. We are working on a fix - promise!</p>
-    {% endif %}
-  </body>
+    <head>
+        <title>Error!</title>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+                width: 450pt;
+                max-width: 90vw;
+                margin: auto;
+                margin-top: 25pt;
+            }
+            pre {
+                border: 1px solid rgb(235,51,0);
+                padding: 10px;
+                color: rgb(235,51,0);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Unfortunately, an error occurred when loading the page you requested
+        </h1>
+        {% if message %}
+        <h2>
+            This is the error that occurred:
+        </h2>
+        <pre>{{ message }}</pre>
+        {% else %}
+        <p>
+            We're very sorry about this and are working on a fix!
+        </p>
+        {% endif %}
+    </body>
 </html>
