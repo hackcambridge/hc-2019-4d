@@ -1,4 +1,5 @@
 {% extends 'ternary-base.html' %}
+{% from "macros/svg.html" import singleColourIcon as singleColourIcon %}
 {% set title = 'Hack Cambridge Ternary' %}
 {% set description = 'Hack Cambridge Ternary 2018' %}
 {% set keywords = 'hack,Cambridge,ternary 2018' %}
@@ -43,18 +44,18 @@
                         <h4>
                             Social
                         </h4>
-                        <div>
+                        <div class="icons">
                             <a rel="external" href="https://www.facebook.com/hackcambridge">
-                                <img id="splash-facebook-logo" src="{{ asset('images/hc-2018/facebook-logo.svg') }}" alt="Facebook logo" draggable="false"/>
+                                {{ singleColourIcon('facebook') }}
                             </a>
                             <a rel="external" href="https://twitter.com/@hack_cambridge">
-                                <img id="splash-twitter-logo" src="{{ asset('images/hc-2018/twitter-logo.svg') }}" alt="Twitter logo" draggable="false"/>
+                                {{ singleColourIcon('twitter') }}
                             </a>
                             <a rel="external" href="https://medium.com/@HackCambridge">
-                                <img id="splash-medium-logo" src="{{ asset('images/hc-2018/medium-logo.svg') }}" alt="Medium logo" draggable="false"/>
+                                {{ singleColourIcon('medium') }}
                             </a>
                             <a rel="external" href="https://www.instagram.com/hack_cambridge/">
-                                <img id="splash-instagram-logo" src="{{ asset('images/hc-2018/instagram-logo.svg') }}" alt="Instagram logo" draggable="false"/>
+                                {{ singleColourIcon('instagram') }}
                             </a>
                         </div>
                     </div>

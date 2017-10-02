@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="{{ asset('styles/hc-2018/all-stylesheets.css') }}"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.4.3 
+    <dc:date>2017-10-02 07:20:20 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <rect fill="white" width="57" height="57.00043"/>
+    <g>
+      <title>Layer 1</title>
+      <path id="icon" d="M 30.44557 57.00043 L 30.44557 34.927033 L 23.017435 34.927033 L 23.017435 26.324484 L 30.44557 26.324484 L 30.44557 19.980425 C 30.44557 12.618069 34.94183 8.60917 41.50971 8.60917 C 44.65558 8.60917 47.35957 8.843455 48.14764 8.948104 L 48.14764 16.64213 L 43.59222 16.644267 C 40.020497 16.644267 39.32896 18.341498 39.32896 20.832136 L 39.32896 26.324484 L 47.84758 26.324484 L 46.7383 34.927033 L 39.32896 34.927033 L 39.32896 57.00043 L 53.85413 57.00043 C 55.5913 57.00043 57 55.59173 57 53.854565 L 57 3.1460813 C 57 1.4082724 55.5913 6039613e-20 53.85413 6039613e-20 L 3.1458676 6039613e-20 C 1.4080586 6039613e-20 2842171e-20 1.4082724 2842171e-20 3.1460813 L 2842171e-20 53.854565 C 2842171e-20 55.59173 1.4080586 57.00043 3.1458676 57.00043 Z"/>
+    </g>
+  </g>
+</svg>

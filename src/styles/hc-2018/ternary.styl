@@ -106,9 +106,9 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, img, input, .secondary {
+section, a, a::after, svg, input, .secondary {
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
-    transition-property: color, border-color, caret-color, background-color;
+    transition-property: color, border-color, caret-color, background-color, filter;
     transition-duration: 0.25s;
 }
 
@@ -199,7 +199,7 @@ a::after {
     color: var(--primary-color);
 }
 a[rel="external"]::after {
-    content:"";
+    content:" →";
 }
 
 a:hover {
@@ -222,6 +222,27 @@ a:active::after {
 
 object {
     width: 100%;
+}
+
+svg.icon {
+    color: var(--accent-color);
+    fill: currentColor;
+    width: var(--half);
+    height: var(--half);
+}
+
+path#icon {
+    width: 100%;
+    height: 100%;
+}
+
+a:hover svg.icon {
+    filter: saturate(0) contrast(3);
+}
+
+.icons {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 section.image .wrapper {
