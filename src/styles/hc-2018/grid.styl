@@ -96,6 +96,9 @@ div.container.width {
         width: 100%;
         column-fill: auto;
     }
+    .columns.balance {
+        column-fill: balance;
+    }
     form.row .column:not(:first-child) {
         margin-left: var(--gutter);
     }
@@ -214,9 +217,34 @@ div.container.width {
     .six.half.unit.row {
         min-height: calc(var(--six) + var(--half));
     }
+    .seven.half.unit.row {
+        min-height: calc(var(--seven) + var(--half));
+    }
+    .eight.half.unit.row {
+        min-height: calc(var(--eight) + var(--half));
+    }
+    .nine.half.unit.row {
+        min-height: calc(var(--nine) + var(--half));
+    }
+    .ten.half.unit.row {
+        min-height: calc(var(--four) + ten(--half));
+    }
+    .eleven.half.unit.row {
+        min-height: calc(var(--eleven) + var(--half));
+    }
+    .twelve.half.unit.row {
+        min-height: calc(var(--twelve) + var(--half));
+    }
+    .thirteen.half.unit.row {
+        min-height: calc(var(--thirteen) + var(--half));
+    }
     
     /* Columns */
 
+    .unit.column {
+        min-width: 100%;
+        width: 100%;
+    }
     .one.unit.column {
         min-width: var(--one);
         width: var(--one);
