@@ -225,7 +225,7 @@ object {
 }
 
 svg.icon {
-    color: var(--accent-color);
+    color: var(--red);
     fill: currentColor;
     width: var(--half);
     height: var(--half);
@@ -243,9 +243,22 @@ a:hover svg.icon {
     filter: saturate(0) contrast(3);
 }
 
+section.black a:hover svg.icon {
+    filter: saturate(0) contrast(3) invert(1);
+}
+
+section.red svg.icon {
+    filter: saturate(0) contrast(3);
+}
+
+section.red a:hover svg.icon {
+    filter: saturate(0) contrast(3) invert(1);
+}
+
 .icons {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 0 calc(0pt - var(--gutter)) 0;
 }
 
 section.image .wrapper {
