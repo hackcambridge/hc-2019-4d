@@ -231,6 +231,10 @@ svg.icon {
     height: var(--half);
 }
 
+.icons a {
+    margin: 0 var(--gutter) var(--gutter) 0;
+}
+
 symbol#icon {
     height: 57pt;
 }
@@ -386,3 +390,15 @@ input[type="submit"]:active{
         text-shadow: 2.5pt -2.5pt var(--accent-color);
     }
 }
+
+@media (pointer: coarse), (pointer: none) {
+    input[type="submit"] {
+        display: none;
+    }
+}
+@media (hover: none) {
+    a::after {
+        display: none;
+    }
+}
+

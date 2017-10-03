@@ -10,10 +10,6 @@
         width: 100%;
         margin-left: 0;
     }
-    #intro-social > div {
-        display: flex;
-        flex-wrap: wrap;
-    }
     #splash-intro-content .unit.h:not(:last-child) {
         margin-right: 0;
     }
@@ -25,9 +21,6 @@
 @media (max-width: 595pt) {
     #splash-hack-cambridge-logo-object {
         max-width: 139pt;
-    }
-    #splash-signup-form {
-        flex-direction: row;
     }
     #splash-signup-form .four.small.unit.h {
         flex-basis: calc(var(--three) - var(--gutter));
@@ -77,11 +70,5 @@
     }
     form.row .column:not(:first-child) {
         margin-top: var(--gutter);
-    }
-}
-
-@media (pointer: none) {
-    .submit {
-        display: none;
     }
 }
