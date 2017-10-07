@@ -11,8 +11,14 @@
       "error",
       "unix"
     ],
+    "no-console": [
+      "off"
+    ],
     "no-var": [
-      2
+      "error"
+    ],
+    "prefer-arrow-callback": [
+      "error"
     ],
     "quotes": [
       "error",
