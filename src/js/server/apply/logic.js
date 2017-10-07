@@ -1,4 +1,3 @@
-const crypto = require('crypto');
 const { HackerApplication, ApplicationResponse, Team, TeamMember } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
 const emailTemplates = require('./email-templates');

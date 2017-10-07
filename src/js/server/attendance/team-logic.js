@@ -73,7 +73,7 @@ function createTeamAssignments() {
 }
 
 function getSlackNameForEmail(slackUsers, email) {
-  for (user of slackUsers) {
+  for (let user of slackUsers) {
     if (user.profile.email === email) {
       return user.name;
     }

@@ -76,10 +76,6 @@ function padZero(num) {
   return chars.map((c) => `<span class="countdown-digit">${c}</span>`).join('');
 }
 
-function titleCase(str) {
-  return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1));
-}
-
 Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 0, 0));
 Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 12, 45, 0));
 
@@ -110,10 +106,6 @@ Countdown.createHackingCountdown = () => new Countdown({
     if (difference.asMilliseconds() < 0) {
       return '00:00:00';
     }
-
-    let hours = Math.floor(difference.asHours());
-    let minutes = difference.minutes();
-    let seconds = difference.seconds();
 
     return [Math.floor(difference.asHours()), difference.minutes(), difference.seconds()]
       .map((t) => padZero(t))

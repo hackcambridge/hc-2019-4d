@@ -5,12 +5,6 @@ function createExpiryQueue(responsesToProcess, dryRun) {
   // Defensive clone for mutating array
   const responses = responsesToProcess.slice(0);
 
-  const expireResponse = (response) => {
-    if (dryRun) {
-      return Promise.resolve;
-    }
-  };
-
   const processExpiryQueue = () => {
     if (responses.length === 0) {
       return Promise.resolve();

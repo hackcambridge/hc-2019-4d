@@ -3,16 +3,8 @@
 let express = require('express');
 let nunjucks = require('nunjucks');
 let bodyParser = require('body-parser');
-let path = require('path');
-let fs = require('fs');
-let _ = require('lodash');
 let url = require('url');
-let querystring = require('querystring');
-let yaml = require('js-yaml');
-let crypto = require('crypto');
 let Countdown = require('js/shared/countdown');
-const session = require('client-sessions');
-const chalk = require('chalk');
 let utils = require('./utils');
 let app = express();
 const auth = require('js/server/auth');
@@ -21,8 +13,6 @@ const colors = require('js/shared/colors');
 const statuses = require('js/shared/status-constants');
 
 let server = require('http').Server(app);
-let fetch = require('node-fetch');
-const { dbSynced } = require('js/server/models');
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
@@ -52,7 +42,7 @@ app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOption
 auth.setUpAuth(app);
 
 // View rendering
-let nunjucksEnv = nunjucks.configure(utils.resolvePath('src/views'), {
+nunjucks.configure(utils.resolvePath('src/views'), {
   autoescape: true,
   noCache: app.settings.env == 'development',
   express: app

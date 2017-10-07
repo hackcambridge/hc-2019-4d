@@ -1,5 +1,5 @@
 const tag = require('forms/lib/tag');
-const { fields, widgets } = require('forms');
+const { fields } = require('forms');
 
 exports.field = function field(userOptions = { }) {
   const uploadField = fields.string(Object.assign({ 
@@ -27,7 +27,8 @@ function inputWidget(type) {
   const dataRegExp = /^data-[a-z]+([-][a-z]+)*$/;
   const ariaRegExp = /^aria-[a-z]+$/;
   const legalAttrs = ['autocomplete', 'autocorrect', 'autofocus', 'autosuggest', 'checked', 'dirname', 'disabled', 'tabindex', 'list', 'max', 'maxlength', 'min', 'multiple', 'novalidate', 'pattern', 'placeholder', 'readonly', 'required', 'size', 'step'];
-  const ignoreAttrs = ['id', 'name', 'class', 'classes', 'type', 'value'];
+  // TODO: Why are we not using ignoreAttrs like the original function in widgets.js
+  // const ignoreAttrs = ['id', 'name', 'class', 'classes', 'type', 'value'];
   const getUserAttrs = (attributesToFilter) => Object.keys(attributesToFilter)
     .filter(key => ((legalAttrs.includes(key)) || dataRegExp.text(key) || ariaRegExp.test(key)))
     .reduce((attributes, key) => {

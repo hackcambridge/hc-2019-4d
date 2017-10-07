@@ -26,22 +26,6 @@ function quadratic([cr, ci]) {
   return ([a, b]) => [Math.pow(a, 2) - Math.pow(b, 2) + cr, 2 * a * b + ci];
 }
 
-function complexpow([a, b], n) {
-  let [A, B] = [1, 0];
-  for (let i = 0; i < n; ++ i) {
-    [A, B] = [A * a - B * b, a * B + A * b];
-  }
-  return [A, B];
-}
-
-function complexp([a, b]) {
-  return [Math.exp(a) * Math.cos(b), Math.exp(a) * Math.sin(b)];
-}
-
-function complexadd([a, b], [c, d]) {
-  return [a + c, b + d];
-}
-
 function complexrandom(radiusOuter, radiusInner = 0) {
   const angle = Math.random() * 2 * Math.PI;
   const distance = radiusInner + Math.random() * (radiusOuter - radiusInner);
@@ -104,14 +88,12 @@ const vanish = 0.8, fade = 8;
 const alpha = 0.6;
 // How many steps to run in each frame (to get around the 4 ms setInterval timeout)
 const speedup = 1;
-// What detail (in stages) is the minimum in order to not bail out early on a fractal
-const bailout = 5;
 
 module.exports = () => {
   for (const canvas of document.querySelectorAll('.fractal-canvas')) {
     let cr, ci, or, oi, scale, vr, vi, l, fractal;
     let index = fractalLibrary.length;
-    function pickNextFractal() {
+    let pickNextFractal = () => {
       if (index === fractalLibrary.length) {
         const previous = fractalLibrary[fractalLibrary.length - 1];
         shuffleArray(fractalLibrary);
@@ -132,10 +114,10 @@ module.exports = () => {
       [vr, vi] = [-(cr + or), -(ci + oi)];
       // Fractal function
       fractal = f([cr, ci]);
-    }
+    };
 
     let restart = null;
-    function newFractal(clearQuickly = false) {
+    let newFractal = (clearQuickly = false) => {
       if (restart !== null) {
         clearTimeout(restart);
       }
@@ -146,7 +128,7 @@ module.exports = () => {
         canvas.classList.remove(clearQuickly ? 'vanish' : 'fade');
         begin();
       }, (clearQuickly ? vanish : fade) * 1000);
-    }
+    };
 
     canvas.classList.add('fractal-canvas');
     canvas.addEventListener('click', event => {
@@ -164,24 +146,24 @@ module.exports = () => {
     context.fillStyle = 'white';
 
     let regions, next, depth, minValue, maxValue, bail;
-    function begin() {
+    let begin = () => {
       pickNextFractal();
       regions = [[0, 0, width, height, NaN, 0]], next = [], depth = 0, minValue = 1, maxValue = 0, bail = 0;
       restart = setTimeout(newFractal, refresh * 1000);
-    }
-    function pushNextRegions(newRegions, cs, stg) {
+    };
+    let pushNextRegions = (newRegions, cs, stg) => {
       for (const [x, y, w, h] of newRegions) {
         if (w >= 1 && h >= 1 && x < wlimit && y < hlimit) {
           next.push([x, y, w, h, cs, stg]);
         }
       }
-    }
+    };
 
     begin();
 
     const stages = 4;
 
-    let interval = setInterval(() => {
+    setInterval(() => {
       if (typeof fractal === 'undefined') {
         return;
       }

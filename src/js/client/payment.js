@@ -2,6 +2,7 @@ let $ = require('jquery');
 
 module.exports = function () {
   if ('StripeCheckout' in window) {
+    let StripeCheckout = window.StripeCheckout;
     let stripeConfig = window.stripeConfig;
 
     $('.payment-form').each(function () {
@@ -45,9 +46,7 @@ module.exports = function () {
 
       let $amount = $this.find('.payment-form-amount');
       let $reference = $this.find('.payment-form-reference');
-      let $token = $this.find('.payment-form-token');
-      var $output = $this.find('.payment-form-output');
-      let action = $this.attr('action');
+      let $output = $this.find('.payment-form-output');
 
       let getAmount = function () {
         let amount = $amount.val();

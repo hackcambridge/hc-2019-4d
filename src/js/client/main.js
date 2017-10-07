@@ -71,8 +71,8 @@ $(document).ready(() => {
         }, 3000);
       });
 
-      ga('send', 'event', 'Subscription', 'subscribed');
-      fbq('track', 'CompleteRegistration');
+      window.ga('send', 'event', 'Subscription', 'subscribed');
+      window.fbq('track', 'CompleteRegistration');
     });
   });
 

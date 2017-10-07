@@ -14,9 +14,9 @@ const user_url      = 'https://my.mlh.io/api/v2/user.json';
 const auth_callback = '/auth/callback';
 const dashboard_url = '/apply/dashboard'; // The default URL you end up at after logging in
 
-let exports = module.exports = {};
+const auth = module.exports = {};
 
-exports.setUpAuth = function (app) {
+auth.setUpAuth = function (app) {
   // Used to store actual user data to avoid always hitting the db/API
   app.use(session({
     cookieName: 'userSession',
@@ -47,7 +47,7 @@ exports.setUpAuth = function (app) {
 };
 
 // Ensures that there is user data available, otherwise redirects to authenticate the user
-exports.requireAuth = function (req, res, next) {
+auth.requireAuth = function (req, res, next) {
   if (!req.user) {
     redirectToAuthorize(req, res);
   } else {
@@ -55,7 +55,7 @@ exports.requireAuth = function (req, res, next) {
   }
 };
 
-exports.logout = function (req, res, next) {
+auth.logout = function (req, res, next) {
   // Delete the user session
   if (req.userSession) {
     req.userSession.reset();
@@ -155,7 +155,6 @@ function getToken(code, req) {
   // For debugging purposes
   console.log(code);
 
-  const headers = { 'Content-Type': 'application/json' };
   const body = {
     client_id: client_id,
     client_secret: client_secret,

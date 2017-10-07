@@ -5,11 +5,6 @@ const { applicationHasBeenIndividuallyScored } = require('./score-logic');
 const { INVITATION_VALIDITY_DURATION } = require('./constants');
 const emailTemplates = require('./email-templates');
 
-function isApplicationScoreValid(application) {
-  // TODO: Make this work
-  return Promise.resolve(false);
-}
-
 /**
  * Normalizes teams and non-teams into an array that either contains a
  * single application, or all applications from the team that the input

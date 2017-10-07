@@ -33,7 +33,7 @@ function createComparisonFunction(inviteType) {
     return ({ rating: ratingA }, { rating: ratingB }) => ratingA - ratingB;
   }
 
-  throw new Error(`Could not find comparison function for invite type ${invite}`);
+  throw new Error(`Could not find comparison function for invite type ${inviteType}`);
 }
 
 module.exports = {

@@ -1,14 +1,10 @@
 const mailchimp = require('mailchimp-api');
-let express = require('express');
-let bodyParser = require('body-parser');
-let _ = require('lodash');
-let stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-let googleSpreadsheet = require('google-spreadsheet');
+const express = require('express');
+const bodyParser = require('body-parser');
+const _ = require('lodash');
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
-let google_sheets_auth_email = process.env.GOOGLE_SHEETS_AUTH_EMAIL;
-let google_sheets_auth_key = (process.env.GOOGLE_SHEETS_AUTH_KEY || '').replace(/\\n/g, '\n');
-let google_sheets_wifi_sheet_id = process.env.GOOGLE_SHEETS_WIFI_SHEET_ID;
 
 let api = module.exports = new express.Router();
 api.use(bodyParser.json());
@@ -39,25 +35,25 @@ api.post('/subscribe', (req, res, next) => {
 
 api.post('/payment', (req, res, next) => {
   if (_.isEmpty(req.body.reference)) {
-    var err = new Error('Must provide reference');
+    const err = new Error('Must provide reference');
     err.status = 401;
     next(err);
   }
 
   if (_.isEmpty(req.body.amount)) {
-    var err = new Error('Must provide amount');
+    const err = new Error('Must provide amount');
     err.status = 401;
     next(err);
   }
 
   if (_.isEmpty(req.body.token)) {
-    var err = new Error('Must provide token');
+    const err = new Error('Must provide token');
     err.status = 401;
     next(err);
   }
 
   if (_.isEmpty(req.body.email)) {
-    var err = new Error('Must provide email');
+    const err = new Error('Must provide email');
     err.status = 401;
     next(err);
   }

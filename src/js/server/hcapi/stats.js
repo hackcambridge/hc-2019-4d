@@ -1,8 +1,6 @@
-const Sequelize = require('sequelize');
 const { Router } = require('express');
 const { db, Hacker, ApplicationReview, HackerApplication, ApplicationResponse, ResponseRsvp, ApplicationTicket } = require('js/server/models');
 const { response } = require('js/shared/status-constants');
-const { createHttpError } = require('./errors');
 
 const statsRouter = new Router();
 

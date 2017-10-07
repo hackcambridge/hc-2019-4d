@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const { OauthAccessToken } = require('js/server/models');
-const { createHttpError } = require('./errors');
 
 const tokensRouter = new Router();
 

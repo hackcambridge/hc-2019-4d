@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./db');
 
-const ReviewCriterion = module.exports = db.define('reviewCriterion', {
+module.exports = db.define('reviewCriterion', {
   maxValue: {
     type: Sequelize.INTEGER,
     allowNull: false,
