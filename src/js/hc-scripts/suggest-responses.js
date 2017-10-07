@@ -49,8 +49,8 @@ module.exports = {
         // Consider only applicants whose application is pending (awaiting invitation)
         // Sort appropriately
         const sortedApplications = applications
-                .filter(({ status, rating }) => status === 'Pending' && rating != null)
-                .sort(createComparisonFunction(type));
+          .filter(({ status, rating }) => status === 'Pending' && rating != null)
+          .sort(createComparisonFunction(type));
 
         return getChooseApplicants()(sortedApplications, limit, type);
       })

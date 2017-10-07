@@ -30,7 +30,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 utils.init(app);
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.locals.title = 'Hack Cambridge';
   res.locals.colors = colors;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
@@ -84,38 +84,38 @@ function renderHome(req, res) {
 
 app.get('/', renderHome);
 
-app.get('/terms-and-conditions', function (req, res) {
+app.get('/terms-and-conditions', (req, res) => {
   res.render('terms-and-conditions.html');
 });
 
 // 2017 page location
 
-app.get('/terms', function (req, res) {
+app.get('/terms', (req, res) => {
   res.redirect(301, '/terms-and-conditions');
 });
 
-app.get('/splash18', function (req, res) {
+app.get('/splash18', (req, res) => {
   res.render('splash.html');
 });
 
-app.get('/privacy-policy', function (req, res) {
+app.get('/privacy-policy', (req, res) => {
   res.render('privacy-policy.html');
 });
 
 // 2017 page location
 
-app.get('/privacy', function (req, res) {
+app.get('/privacy', (req, res) => {
   res.redirect(301, '/privacy-policy');
 });
 
-app.get('/pay', function (req, res) {
+app.get('/pay', (req, res) => {
   res.render('pay.html', {
     title: 'Make a payment to Hack Cambridge',
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
 });
 
-app.get('/event', function (req, res) {
+app.get('/event', (req, res) => {
   res.render('event.html', {
     title: 'Hack Cambridge Recurse',
     api_demos: utils.loadResource('api_demos'),
@@ -126,7 +126,7 @@ app.get('/event', function (req, res) {
   });
 });
 
-app.get('/live', function (req, res) {
+app.get('/live', (req, res) => {
   res.render('live.html', {
     title: 'Hack Cambridge Recurse',
     sponsors: utils.loadResource('sponsors'),
@@ -138,7 +138,7 @@ app.get('/volunteers', (req, res) => {
   res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
 });
 
-app.get('/favicon.ico', function (req, res) {
+app.get('/favicon.ico', (req, res) => {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
 
@@ -157,6 +157,6 @@ app.set('port', (process.env.PORT || 3000));
 
 module.exports = app;
 
-server.listen(app.get('port'), function() {
+server.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
 });

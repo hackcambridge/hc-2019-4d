@@ -66,7 +66,7 @@ exports.getApplicationReview = function getApplicationReview(adminId, hackerAppl
 
 exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReviewForAdmin(admin) {
   // We use a transaction to make sure we don't assign an application without storing an assignment record
-  return db.transaction(function (t) {
+  return db.transaction((t) => {
     // Get an application
     return db.query(assignmentQuery, {
       // There is a placeholder in the SQL file marked ':adminId',
@@ -93,7 +93,7 @@ exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReview
         });
       }
     });
-  }).catch(function (err) {
+  }).catch((err) => {
     console.log('Failed to assign application to admin. Rolled back.');
     console.log(err);
   });

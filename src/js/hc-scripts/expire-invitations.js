@@ -7,9 +7,9 @@ function createExpiryQueue(responsesToProcess, dryRun) {
 
   const expireResponse = (response) => {
     if (dryRun) {
-      return Promise.resolve
+      return Promise.resolve;
     }
-  }
+  };
 
   const processExpiryQueue = () => {
     if (responses.length === 0) {

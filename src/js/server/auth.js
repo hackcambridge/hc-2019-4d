@@ -88,7 +88,7 @@ function handleCallback(req, res, next) {
     redirectToAuthorize(req, res);
   }
 
-  getToken(req.query.code, req).then(function(access_token) {
+  getToken(req.query.code, req).then((access_token) => {
     return getMlhUser(access_token);
   }).then((mlhUser) => {
     Hacker
@@ -172,11 +172,11 @@ function getToken(code, req) {
     method: 'POST',
     body: JSON.stringify(body)
 
-  }).then(function(response) {
+  }).then((response) => {
 
     return response.json();
 
-  }).then(function(json) {
+  }).then((json) => {
 
     return json.access_token;
 
@@ -196,9 +196,9 @@ function getMlhUser(access_token) {
       'Content-Type': 'application/json'
     },
     method: 'GET',
-  }).then(function(response) {
+  }).then((response) => {
     return response.json();
-  }).then(function(json) {
+  }).then((json) => {
     if (json.hasOwnProperty('data')) {
       return json.data;
     } else {

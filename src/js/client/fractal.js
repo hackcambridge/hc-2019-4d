@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; -- i) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 }
@@ -108,7 +108,7 @@ const speedup = 1;
 const bailout = 5;
 
 module.exports = () => {
-  for (const canvas of document.querySelectorAll(".fractal-canvas")) {
+  for (const canvas of document.querySelectorAll('.fractal-canvas')) {
     let cr, ci, or, oi, scale, vr, vi, l, fractal;
     let index = fractalLibrary.length;
     function pickNextFractal() {
@@ -122,12 +122,12 @@ module.exports = () => {
         index = 0;
       }
       let next = fractalLibrary[index ++];
-      if (typeof next === "function") {
+      if (typeof next === 'function') {
         next = next();
       }
       let f;
       [f, [cr, ci], [or, oi], scale, l] = next;
-      console.log(JSON.stringify([f, [cr, ci], [or, oi], scale, l]).replace(/,/g, ", ").replace("null", "quadratic"));
+      console.log(JSON.stringify([f, [cr, ci], [or, oi], scale, l]).replace(/,/g, ', ').replace('null', 'quadratic'));
       // Viewpoint origin
       [vr, vi] = [-(cr + or), -(ci + oi)];
       // Fractal function
@@ -140,16 +140,16 @@ module.exports = () => {
         clearTimeout(restart);
       }
       restart = null;
-      canvas.classList.add(clearQuickly ? "vanish" : "fade");
+      canvas.classList.add(clearQuickly ? 'vanish' : 'fade');
       setTimeout(() => {
         context.clearRect(0, 0, width, height);
-        canvas.classList.remove(clearQuickly ? "vanish" : "fade");
+        canvas.classList.remove(clearQuickly ? 'vanish' : 'fade');
         begin();
       }, (clearQuickly ? vanish : fade) * 1000);
     }
 
-    canvas.classList.add("fractal-canvas");
-    canvas.addEventListener("click", event => {
+    canvas.classList.add('fractal-canvas');
+    canvas.addEventListener('click', event => {
       if (event.button === 0) {
         newFractal(true);
       }
@@ -158,10 +158,10 @@ module.exports = () => {
     const [width, height] = [size, size];
     const [wlimit, hlimit] = [window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio];
     [canvas.width, canvas.height] = [width, height];
-    canvas.style.width = "100%";
-    canvas.style.imageRendering = "pixelated";
-    const context = canvas.getContext("2d");
-    context.fillStyle = "white";
+    canvas.style.width = '100%';
+    canvas.style.imageRendering = 'pixelated';
+    const context = canvas.getContext('2d');
+    context.fillStyle = 'white';
 
     let regions, next, depth, minValue, maxValue, bail;
     function begin() {
@@ -182,7 +182,7 @@ module.exports = () => {
     const stages = 4;
 
     let interval = setInterval(() => {
-      if (typeof fractal === "undefined") {
+      if (typeof fractal === 'undefined') {
         return;
       }
       let another = 0;

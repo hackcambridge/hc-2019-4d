@@ -97,7 +97,7 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
 });
 
 // Process the RSVP response
-applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
+applyRouter.post('/rsvp', auth.requireAuth, (req, res) => {
   const rsvp = req.body.rsvp;
   if (rsvp) {
     // RSVP was given, store it
@@ -135,16 +135,16 @@ applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
   }
 });
 
-applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
+applyRouter.get('/dashboard', auth.requireAuth, (req, res) => {
   renderDashboard(req, res);
 });
 
-applyRouter.get('/logout', auth.logout, function(req, res) {
+applyRouter.get('/logout', auth.logout, (req, res) => {
   res.redirect('/');
 });
 
 // The login page (has the login button)
-applyRouter.get('/', function (req, res) {
+applyRouter.get('/', (req, res) => {
   res.render('apply/index.html');
 });
 

@@ -16,4 +16,4 @@ module.exports = function (name, field, options = { }) {
     field.errorHTML(),
     innerContent,
   ].join(''));
-}
+};

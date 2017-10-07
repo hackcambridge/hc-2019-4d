@@ -1,33 +1,33 @@
 'use strict';
 
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var argv = require('yargs').argv;
-var path = require('path');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var del = require('del');
-var browserify = require('browserify');
-var sequence = require('run-sequence');
-var bs = require('browser-sync').create();
-var nodemon = require('nodemon');
+let gulp = require('gulp');
+let $ = require('gulp-load-plugins')();
+let argv = require('yargs').argv;
+let path = require('path');
+let source = require('vinyl-source-stream');
+let buffer = require('vinyl-buffer');
+let del = require('del');
+let browserify = require('browserify');
+let sequence = require('run-sequence');
+let bs = require('browser-sync').create();
+let nodemon = require('nodemon');
 
-var prod = !!argv.prod || process.env.NODE_ENV == 'production';
+let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 console.log(argv);
 
-var onError = function onError(err) {
+let onError = function onError(err) {
   $.util.beep();
   console.log(err);
   this.emit('end');
 };
 
-gulp.task('clean', function () {
+gulp.task('clean', () => {
   return del('assets/dist');
 });
 
 // css
-gulp.task('styles', function () {
+gulp.task('styles', () => {
   gulp.src('src/styles/main.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
@@ -54,18 +54,18 @@ gulp.task('styles', function () {
 });
 
 // js
-gulp.task('scripts', function () {
-  var gulpBrowserify = function (fileIn, fileOut) {
+gulp.task('scripts', () => {
+  let gulpBrowserify = function (fileIn, fileOut) {
     return browserify({
       entries: fileIn,
       debug: !prod,
       paths: [path.dirname(fileIn), './src']
     })
-    .transform('babelify', { presets: ['es2015'] })
-    .bundle()
-    .on('error', onError)
-    .pipe(source(fileOut))
-    .pipe(buffer());
+      .transform('babelify', { presets: ['es2015'] })
+      .bundle()
+      .on('error', onError)
+      .pipe(source(fileOut))
+      .pipe(buffer());
   };
 
   return gulpBrowserify('./src/js/client/main.js', 'main.js')
@@ -73,20 +73,20 @@ gulp.task('scripts', function () {
     .pipe($.if(prod, $.uglify()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
-    .pipe(bs.stream());;
+    .pipe(bs.stream());
 });
 
-var assetPath = ['assets/**', '!assets/dist/**'];
+let assetPath = ['assets/**', '!assets/dist/**'];
 
 // other assets
-gulp.task('assets', function () {
+gulp.task('assets', () => {
   return gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
     .pipe(bs.stream({ once: true }));
 });
 
-gulp.task('rev', function () {
-  var rev = new $.revAll();
+gulp.task('rev', () => {
+  let rev = new $.revAll();
 
   return gulp.src('assets/dist/**')
     .pipe(rev.revision())
@@ -95,19 +95,19 @@ gulp.task('rev', function () {
     .pipe(gulp.dest('assets/dist'));
 });
 
-gulp.task('wait', function (cb) {
+gulp.task('wait', (cb) => {
   setTimeout(cb, 2000);
 });
 
-gulp.task('watch', ['build'], function () {
+gulp.task('watch', ['build'], () => {
   gulp.watch(['src/js/**'], ['scripts']);
   gulp.watch('src/styles/**', ['styles']);
-  gulp.watch(['src/views/**', 'src/resources/**'], bs.reload)
+  gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);
 });
 
-gulp.task('serve', ['watch'], function () {
-  var runnode = function (env = {}) {
+gulp.task('serve', ['watch'], () => {
+  let runnode = function (env = {}) {
     nodemon({
       script: 'index.js',
       ext: 'js',
@@ -116,13 +116,13 @@ gulp.task('serve', ['watch'], function () {
         NODE_PATH: './src',
       }, env),
     });
-  }
+  };
 
   if (!argv.nobs) {
     bs.init({
       port: 8000,
       logSnippet: false
-    }, function (err) {
+    }, (err) => {
       runnode({
         BS_SNIPPET: bs.getOption('snippet')
       });
@@ -134,8 +134,8 @@ gulp.task('serve', ['watch'], function () {
   }
 });
 
-gulp.task('build', function (cb) {
-  var args = ['clean', 'assets', 'scripts', 'styles'];
+gulp.task('build', (cb) => {
+  let args = ['clean', 'assets', 'scripts', 'styles'];
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd

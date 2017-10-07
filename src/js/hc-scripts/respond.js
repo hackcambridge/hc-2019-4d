@@ -25,7 +25,7 @@ function processIndividualApplication(applicationId, responseType) {
         }, error => {
           console.error(`Failed to send response for application ${application.id}.`);
           console.error(error);
-        })
+        });
     });
 }
 

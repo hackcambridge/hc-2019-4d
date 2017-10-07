@@ -44,7 +44,7 @@ module.exports = {
     OPEN: 'open',
     CLOSED: 'closed',
   },
-}
+};
 
 // Copy for the dashboard is written in YAML and as such uses the strings
 // here as the keys. If you make a change to a string that appears in 

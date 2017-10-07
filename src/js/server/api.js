@@ -14,7 +14,7 @@ let api = module.exports = new express.Router();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true }));
 
-api.post('/subscribe', function (req, res, next) {
+api.post('/subscribe', (req, res, next) => {
   if (_.isEmpty(req.body.email)) {
     let err = new Error('Must provide email');
     err.status = 401;
@@ -37,7 +37,7 @@ api.post('/subscribe', function (req, res, next) {
   });
 });
 
-api.post('/payment', function (req, res, next) {
+api.post('/payment', (req, res, next) => {
   if (_.isEmpty(req.body.reference)) {
     var err = new Error('Must provide reference');
     err.status = 401;
@@ -70,7 +70,7 @@ api.post('/payment', function (req, res, next) {
     source: req.body.token,
     receipt_email: req.body.email,
     description: req.body.reference
-  }, function (err, charge) {
+  }, (err, charge) => {
     if (err) {
       let e = new Error(err.message || 'Something went wrong with your transaction.');
       console.error(err);
@@ -83,13 +83,13 @@ api.post('/payment', function (req, res, next) {
   });
 });
 
-api.use(function (req, res, next) {
+api.use((req, res, next) => {
   let err = new Error('Not found');
   err.status = 404;
   next(err);
 });
 
-api.use(function (err, req, res, next) {
+api.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500);
   res.json({

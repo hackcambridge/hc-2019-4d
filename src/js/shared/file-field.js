@@ -37,24 +37,24 @@ function inputWidget(type) {
   return function (options = { }) {
     const userAttrs = getUserAttrs(options);
     const widget = {
-        classes: options.classes,
-        type,
-        formatValue: value => value || null,
-        toHTML(name, field = { }) {
-          return tag('input', [{
-            type,
-            name: name,
-            id: field.id === false ? false : (field.id || true),
-            classes: widget.classes,
-            value: widget.formatValue(field.value)
-          }, userAttrs, widget.attrs || { }]);
-        },
-        getDataRegExp() {
-          return dataRegExp;
-        },
-        getAriaRegExp() {
-          return ariaRegExp;
-        }
+      classes: options.classes,
+      type,
+      formatValue: value => value || null,
+      toHTML(name, field = { }) {
+        return tag('input', [{
+          type,
+          name: name,
+          id: field.id === false ? false : (field.id || true),
+          classes: widget.classes,
+          value: widget.formatValue(field.value)
+        }, userAttrs, widget.attrs || { }]);
+      },
+      getDataRegExp() {
+        return dataRegExp;
+      },
+      getAriaRegExp() {
+        return ariaRegExp;
+      }
     };
 
     return widget;
@@ -73,12 +73,12 @@ exports.typeValidator = function validator(mimetype, message = `This file must b
   };
 };
 
-exports.sizeValidator = function validator(size, message = `File is too big`) {
+exports.sizeValidator = function validator(size, message = 'File is too big') {
   return (form, field, callback) => {
     if (field.data.size <= size) {
       callback();
     } else {
       callback(message);
     }
-  }
-}
+  };
+};
