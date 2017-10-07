@@ -11,6 +11,7 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
+const eslint = require('gulp-eslint');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -85,6 +86,13 @@ gulp.task('assets', () => {
     .pipe(bs.stream({ once: true }));
 });
 
+gulp.task('lint', () => {
+  return gulp.src(['**.js', '!node_modules/**', '!assets/dist/**.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
 gulp.task('rev', () => {
   let rev = new $.revAll();
 
@@ -135,7 +143,13 @@ gulp.task('serve', ['watch'], () => {
 });
 
 gulp.task('build', (cb) => {
-  let args = ['clean', 'assets', 'scripts', 'styles'];
+  let args = ['clean'];
+
+  if (!prod) {
+    args.push('lint');
+  }
+
+  args.push('assets', 'scripts', 'styles');
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd
