@@ -11,6 +11,9 @@
       "error",
       "unix"
     ],
+    "no-var": [
+      2
+    ],
     "quotes": [
       "error",
       "single"
