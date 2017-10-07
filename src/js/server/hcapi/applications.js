@@ -11,7 +11,7 @@ applicationsRouter.get('/', (req, res, next) => {
     res.json({
       applications,
     });
-  }).catch(next)
+  }).catch(next);
 });
 
 applicationsRouter.get('/:applicationId', (req, res, next) => {

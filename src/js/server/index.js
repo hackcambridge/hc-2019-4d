@@ -1,27 +1,27 @@
 'use strict';
 
-var express = require('express');
-var nunjucks = require('nunjucks');
-var bodyParser = require('body-parser');
-var path = require('path');
-var fs = require('fs');
-var _ = require('lodash');
-var url = require('url');
-var querystring = require('querystring');
-var yaml = require('js-yaml');
-var crypto = require('crypto');
-var Countdown = require('js/shared/countdown');
+let express = require('express');
+let nunjucks = require('nunjucks');
+let bodyParser = require('body-parser');
+let path = require('path');
+let fs = require('fs');
+let _ = require('lodash');
+let url = require('url');
+let querystring = require('querystring');
+let yaml = require('js-yaml');
+let crypto = require('crypto');
+let Countdown = require('js/shared/countdown');
 const session = require('client-sessions');
 const chalk = require('chalk');
-var utils = require('./utils');
-var app = express();
+let utils = require('./utils');
+let app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
 const statuses = require('js/shared/status-constants');
 
-var server = require('http').Server(app);
-var fetch = require('node-fetch');
+let server = require('http').Server(app);
+let fetch = require('node-fetch');
 const { dbSynced } = require('js/server/models');
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -42,7 +42,7 @@ app.use(function (req, res, next) {
 });
 
 // Static file serving
-var staticOptions = { };
+let staticOptions = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
@@ -52,7 +52,7 @@ app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOption
 auth.setUpAuth(app);
 
 // View rendering
-var nunjucksEnv = nunjucks.configure(utils.resolvePath('src/views'), {
+let nunjucksEnv = nunjucks.configure(utils.resolvePath('src/views'), {
   autoescape: true,
   noCache: app.settings.env == 'development',
   express: app
@@ -95,7 +95,7 @@ app.get('/terms', function (req, res) {
 });
 
 app.get('/splash18', function (req, res) {
-    res.render('splash.html');
+  res.render('splash.html');
 });
 
 app.get('/privacy-policy', function (req, res) {

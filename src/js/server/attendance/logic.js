@@ -62,7 +62,7 @@ function getInvitationExpiryCandidates() {
         },
         response: response.INVITED,
       },
-      Sequelize.literal(`"responseRsvp" IS null`)
+      Sequelize.literal('"responseRsvp" IS null')
     ),
     include: [
       ResponseRsvp,

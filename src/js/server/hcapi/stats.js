@@ -21,15 +21,15 @@ statsRouter.get('/', (req, res, next) => {
   const invitationsCountPromise = ApplicationResponse.count({ where: { response: response.INVITED } });
   const rejectionsCountPromise = ApplicationResponse.count({ where: { response: response.REJECTED } });
   const rsvpNoCountPromise = ResponseRsvp.count({ where: { rsvp: ResponseRsvp.RSVP_NO }});
-  const expiredCountPromise = ResponseRsvp.count(({ where: { rsvp: ResponseRsvp.RSVP_EXPIRED }}))
+  const expiredCountPromise = ResponseRsvp.count(({ where: { rsvp: ResponseRsvp.RSVP_EXPIRED }}));
   const ticketCountPromise = ApplicationTicket.count();
 
   const applicationsReviewedQuery = 
-    "SELECT COUNT(*) FROM (" + 
-      "SELECT \"hackerApplicationId\", COUNT(id)" + 
-      "FROM \"application-reviews\"" +
-      "GROUP BY \"hackerApplicationId\"" +
-    ") review_counts WHERE count >= 2";
+    'SELECT COUNT(*) FROM (' + 
+      'SELECT "hackerApplicationId", COUNT(id)' + 
+      'FROM "application-reviews"' +
+      'GROUP BY "hackerApplicationId"' +
+    ') review_counts WHERE count >= 2';
 
   const applicationsReviewedCountPromise = 
   db.query(applicationsReviewedQuery, { type: db.QueryTypes.SELECT }).then((counts) => {
@@ -61,20 +61,8 @@ statsRouter.get('/', (req, res, next) => {
     ticketCountPromise,
     expiredCountPromise,
   ])
-  .then(
-    ([
-      hackerCount,
-      hackerApplicationCount,
-      reviewCount,
-      applicationsReviewedCount,
-      leaderboard,
-      invitationsCount,
-      rejectionsCount,
-      rsvpNoCount,
-      ticketCount,
-      expiredCount,
-    ]) => {
-      res.json({
+    .then(
+      ([
         hackerCount,
         hackerApplicationCount,
         reviewCount,
@@ -85,9 +73,21 @@ statsRouter.get('/', (req, res, next) => {
         rsvpNoCount,
         ticketCount,
         expiredCount,
-      });
-    }
-  ).catch(next);
+      ]) => {
+        res.json({
+          hackerCount,
+          hackerApplicationCount,
+          reviewCount,
+          applicationsReviewedCount,
+          leaderboard,
+          invitationsCount,
+          rejectionsCount,
+          rsvpNoCount,
+          ticketCount,
+          expiredCount,
+        });
+      }
+    ).catch(next);
 });
 
 module.exports = statsRouter;

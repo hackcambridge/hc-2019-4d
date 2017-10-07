@@ -99,7 +99,7 @@ function serializeTeams(teams, slackUsers) {
 
 function sendTeamEmail(team) {
   const teamIdentifier = team.map(member => member.hackerId).join(', ');
-  console.log(`Sending team email to ${teamIdentifier}`)
+  console.log(`Sending team email to ${teamIdentifier}`);
 
   return sendEmail({
     to: team.map(member => member.email),

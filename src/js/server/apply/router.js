@@ -2,7 +2,7 @@ const express = require('express');
 const { createApplicationForm } = require('js/shared/application-form');
 const { createTeamForm } = require('js/shared/team-form');
 const renderForm = require('js/shared/render-form');
-var fetch = require('node-fetch');
+let fetch = require('node-fetch');
 const auth = require('js/server/auth');
 const utils = require('../utils.js');
 const session = require('client-sessions');
@@ -34,33 +34,33 @@ applyRouter.all('/form', checkHasApplied);
 applyRouter.all('/form', checkApplicationsOpen);
 
 applyRouter.post('/form', (req, res, next) => {
-    req.user.log('Attempted to make an application');
-    next();
-  },
-  fileUploadMiddleware.single('cv'), 
-  (req, res, next) => {
-    req.user.log('Application file uploaded');
-    const form = createApplicationForm();
+  req.user.log('Attempted to make an application');
+  next();
+},
+fileUploadMiddleware.single('cv'), 
+(req, res, next) => {
+  req.user.log('Application file uploaded');
+  const form = createApplicationForm();
 
-    // HACK: Put all our fields in the same place by moving the file into req.body
-    req.body.cv = req.file;
+  // HACK: Put all our fields in the same place by moving the file into req.body
+  req.body.cv = req.file;
 
-    form.handle(req.body, {
-      success: (resultForm) => {
-        applyLogic.createApplicationFromForm(resultForm.data, req.user)
-          .then(() => {
-            res.redirect(`${req.baseUrl}/form`);
-          })
-          .catch(next);
-      },
-      error: (resultForm) => {
-        renderApplyPageWithForm(res, resultForm);
-      },
-      empty: () => {
-        renderApplyPageWithForm(res, form);
-      }
-    });
-  }
+  form.handle(req.body, {
+    success: (resultForm) => {
+      applyLogic.createApplicationFromForm(resultForm.data, req.user)
+        .then(() => {
+          res.redirect(`${req.baseUrl}/form`);
+        })
+        .catch(next);
+    },
+    error: (resultForm) => {
+      renderApplyPageWithForm(res, resultForm);
+    },
+    empty: () => {
+      renderApplyPageWithForm(res, form);
+    }
+  });
+}
 );
 
 // Render the form for additional applicant details
@@ -115,7 +115,7 @@ applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
         // Found a response
         return applicationResponse.getResponseRsvp().then(responseRsvp => {
           if (responseRsvp != null) {
-            console.log("There was already an RSVP for this application, ignoring new");
+            console.log('There was already an RSVP for this application, ignoring new');
             return Promise.resolve(null);
           } else {
             return rsvpToResponse(applicationResponse, rsvp);
@@ -133,7 +133,7 @@ applyRouter.post('/rsvp', auth.requireAuth, function(req, res) {
     // No RSVP given so just redirect
     res.redirect('/apply/dashboard');
   }
-})
+});
 
 applyRouter.get('/dashboard', auth.requireAuth, function(req, res) {
   renderDashboard(req, res);
@@ -194,7 +194,7 @@ function renderDashboard(req, res) {
               hackerId: req.user.id,
             }
           },
-        })
+        });
       }
     }).then(teamMembers => {
       if (teamMembers == null) {
@@ -202,7 +202,7 @@ function renderDashboard(req, res) {
       }
       return Promise.all(
         teamMembers.map(member => member.getHacker())
-      )
+      );
     });
 
     return Promise.all([

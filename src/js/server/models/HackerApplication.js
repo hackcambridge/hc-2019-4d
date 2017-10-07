@@ -8,10 +8,10 @@ const HackerApplication = module.exports = db.define('hackerApplication', {
     unique: true,
     allowNull: false,
     references: {
-     model: Hacker,
-     key: 'id',
-     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-   },
+      model: Hacker,
+      key: 'id',
+      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+    },
   },
   applicationSlug: {
     type: Sequelize.TEXT,

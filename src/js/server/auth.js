@@ -14,7 +14,7 @@ const user_url      = 'https://my.mlh.io/api/v2/user.json';
 const auth_callback = '/auth/callback';
 const dashboard_url = '/apply/dashboard'; // The default URL you end up at after logging in
 
-var exports = module.exports = {};
+let exports = module.exports = {};
 
 exports.setUpAuth = function (app) {
   // Used to store actual user data to avoid always hitting the db/API
@@ -44,7 +44,7 @@ exports.setUpAuth = function (app) {
       errorCode: req.query.code,
     });
   });
-}
+};
 
 // Ensures that there is user data available, otherwise redirects to authenticate the user
 exports.requireAuth = function (req, res, next) {
@@ -61,7 +61,7 @@ exports.logout = function (req, res, next) {
     req.userSession.reset();
   }
   next();
-}
+};
 
 // If there is user data available in the session, make sure it is put in the request and local res objects
 function setUserFromSession(req, res, next) {
@@ -110,7 +110,7 @@ function handleCallback(req, res, next) {
         res.redirect(redirectTo);
       }).catch(err => {
         if (err instanceof Hacker.TooYoungError) {
-          res.redirect('/auth/error?code=TOO_YOUNG')
+          res.redirect('/auth/error?code=TOO_YOUNG');
           return;
         }
 
@@ -129,7 +129,7 @@ function redirectToAuthorize(req, res) {
   console.log(`Tried to store in cookie: ${req.originalUrl}`);
 
   // Construct the query string
-  var qs = querystring.stringify({
+  let qs = querystring.stringify({
     client_id: client_id,
     redirect_uri: url.resolve(req.requestedUrl, auth_callback),
     response_type: 'code',
@@ -185,11 +185,11 @@ function getToken(code, req) {
 
 // Take an access_token and return a promise of user info from the MyMLH api
 function getMlhUser(access_token) {
-  var query = {
+  let query = {
     access_token: access_token
-  }
-  var query_string = querystring.stringify(query);
-  var full_url = user_url + "?" + query_string;
+  };
+  let query_string = querystring.stringify(query);
+  let full_url = user_url + '?' + query_string;
 
   return fetch(full_url, {
     headers: {
@@ -199,12 +199,12 @@ function getMlhUser(access_token) {
   }).then(function(response) {
     return response.json();
   }).then(function(json) {
-    if (json.hasOwnProperty("data")) {
+    if (json.hasOwnProperty('data')) {
       return json.data;
     } else {
-      console.log("Bad data");
+      console.log('Bad data');
       console.log(json);
-      throw "Couldn't get user data";
+      throw 'Couldn\'t get user data';
     }
   });
 }

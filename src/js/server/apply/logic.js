@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const { HackerApplication, ApplicationResponse, Team, TeamMember } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
 const emailTemplates = require('./email-templates');
-const generate = require("adjective-adjective-animal");
+const generate = require('adjective-adjective-animal');
 
 exports.createApplicationFromForm = function (formData, user) {
   return generate().then(slug => {
@@ -20,7 +20,7 @@ exports.createApplicationFromForm = function (formData, user) {
       links: formData.links,
       inTeam: formData.team_apply,
       wantsTeam: formData.team_placement,
-    })
+    });
   }).then(application => {
     sendEmail({
       to: user.email, 

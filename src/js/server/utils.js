@@ -1,19 +1,19 @@
-var _ = require('lodash');
-var yaml = require('js-yaml');
-var fs = require('fs');
-var moment = require('moment-timezone');
-var crypto = require('crypto');
-var markdown = require('markdown-it')({
+let _ = require('lodash');
+let yaml = require('js-yaml');
+let fs = require('fs');
+let moment = require('moment-timezone');
+let crypto = require('crypto');
+let markdown = require('markdown-it')({
   html: true,
   linkify: true,
   typographer: true
 }).use(require('markdown-it-attrs'));
-var nunjucks = require('nunjucks');
+let nunjucks = require('nunjucks');
 const path = require('path');
 
-var loadedResources = {};
-var loadedMarkdowns = {};
-var app;
+let loadedResources = {};
+let loadedMarkdowns = {};
+let app;
 
 const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../'));
 
@@ -23,7 +23,7 @@ function timeProperties(items, properties) {
 
 
 function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])) }} ));
+  items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])); }} ));
 }
 
 exports.init = function init(a) {
@@ -32,9 +32,9 @@ exports.init = function init(a) {
 
 exports.resolvePath = function resolvePath(fromProjectRoot) {
   return path.join(PROJECT_ROOT, fromProjectRoot);
-}
+};
 
-var assetsFile;
+let assetsFile;
 
 try {
   assetsFile = require(exports.resolvePath('./assets/dist/rev-manifest.json'));
@@ -44,7 +44,7 @@ try {
 
 exports.asset = function (asset, prefix) {
   if (prefix == null) {
-    prefix = '/assets/'
+    prefix = '/assets/';
   }
 
   if (_.has(assetsFile, asset)) {
@@ -54,7 +54,7 @@ exports.asset = function (asset, prefix) {
   return prefix + asset;
 };
 
-var loadedAssets = { };
+let loadedAssets = { };
 
 exports.loadAsset = function loadAsset(assetName) {
   if ((!loadedAssets[assetName]) || (app.settings.env == 'development')) {
@@ -62,10 +62,10 @@ exports.loadAsset = function loadAsset(assetName) {
   }
 
   return loadedAssets[assetName];
-}
+};
 
 function markdownPropertiesRecursive(object, properties) {
-  for (var property in object) {
+  for (let property in object) {
     if (object.hasOwnProperty(property)) {
       if (typeof(object[property]) === 'object') {
         // recurse
@@ -82,7 +82,7 @@ function markdownPropertiesRecursive(object, properties) {
 
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
-    var loadedResource = yaml.safeLoad(
+    let loadedResource = yaml.safeLoad(
       fs.readFileSync(exports.resolvePath(`src/resources/${resourceName}.yml`))
     )[resourceName];
 
@@ -99,8 +99,8 @@ exports.loadResource = function loadResource(resourceName) {
         timeProperties(loadedResource, ['time']);
 
         loadedResource = loadedResource.sort((r1, r2) => {
-          var time1 = r1.time;
-          var time2 = r2.time;
+          let time1 = r1.time;
+          let time2 = r2.time;
 
           if (time1.isValid()) {
             if (!time2.isValid()) {
@@ -111,7 +111,7 @@ exports.loadResource = function loadResource(resourceName) {
           } else {
             return (time2.isValid()) ? 1 : 0;
           }
-        })
+        });
         break;
       case 'apis':
         markdownProperties(loadedResource, ['description']);
@@ -131,12 +131,12 @@ exports.loadResource = function loadResource(resourceName) {
   }
 
   return loadedResources[resourceName];
-}
+};
 
 
 exports.loadMarkdown = function loadMarkdown(markdownName) {
   if ((!loadedMarkdowns[markdownName]) || (app.settings.env == 'development')) {
-    var loadedMarkdown = nunjucks.runtime.markSafe(
+    let loadedMarkdown = nunjucks.runtime.markSafe(
       markdown.render(fs.readFileSync(exports.resolvePath(
         `src/resources/${markdownName}.md`), 'utf8'
       ))
@@ -147,7 +147,7 @@ exports.loadMarkdown = function loadMarkdown(markdownName) {
   return loadedMarkdowns[markdownName];
 };
 
-var publicId = crypto.randomBytes(12).toString('hex');
+let publicId = crypto.randomBytes(12).toString('hex');
 
 exports.getPublicId = function () {
   return publicId;

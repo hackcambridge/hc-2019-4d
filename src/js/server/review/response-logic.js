@@ -62,7 +62,7 @@ function checkApplicationsAreScored(applications) {
       }
 
       return applications;
-    })
+    });
 }
 
 /**
@@ -101,7 +101,7 @@ function setResponseForApplications(applications, responseStatus) {
         Promise
           .all([application, setResponseForApplication(application, responseStatus, transaction)])
           .then(([ application, isApplicationNew ]) => ({ application, isApplicationNew }))
-        )
+      )
     )
   );
 }

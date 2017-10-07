@@ -1,22 +1,22 @@
 const mailchimp = require('mailchimp-api');
-var express = require('express');
-var bodyParser = require('body-parser');
-var _ = require('lodash');
-var stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-var googleSpreadsheet = require("google-spreadsheet");
+let express = require('express');
+let bodyParser = require('body-parser');
+let _ = require('lodash');
+let stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+let googleSpreadsheet = require('google-spreadsheet');
 
 const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
-var google_sheets_auth_email = process.env.GOOGLE_SHEETS_AUTH_EMAIL;
-var google_sheets_auth_key = (process.env.GOOGLE_SHEETS_AUTH_KEY || '').replace(/\\n/g, '\n');
-var google_sheets_wifi_sheet_id = process.env.GOOGLE_SHEETS_WIFI_SHEET_ID;
+let google_sheets_auth_email = process.env.GOOGLE_SHEETS_AUTH_EMAIL;
+let google_sheets_auth_key = (process.env.GOOGLE_SHEETS_AUTH_KEY || '').replace(/\\n/g, '\n');
+let google_sheets_wifi_sheet_id = process.env.GOOGLE_SHEETS_WIFI_SHEET_ID;
 
-var api = module.exports = new express.Router();
+let api = module.exports = new express.Router();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true }));
 
 api.post('/subscribe', function (req, res, next) {
   if (_.isEmpty(req.body.email)) {
-    var err = new Error('Must provide email');
+    let err = new Error('Must provide email');
     err.status = 401;
     next(err);
     return;
@@ -62,7 +62,7 @@ api.post('/payment', function (req, res, next) {
     next(err);
   }
 
-  var amount = Math.round(req.body.amount * 100);
+  let amount = Math.round(req.body.amount * 100);
 
   stripe.charges.create({
     amount: amount,
@@ -72,7 +72,7 @@ api.post('/payment', function (req, res, next) {
     description: req.body.reference
   }, function (err, charge) {
     if (err) {
-      var e = new Error(err.message || 'Something went wrong with your transaction.');
+      let e = new Error(err.message || 'Something went wrong with your transaction.');
       console.error(err);
       e.status = 500;
       next(e);
@@ -84,7 +84,7 @@ api.post('/payment', function (req, res, next) {
 });
 
 api.use(function (req, res, next) {
-  var err = new Error('Not found');
+  let err = new Error('Not found');
   err.status = 404;
   next(err);
 });

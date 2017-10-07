@@ -38,4 +38,4 @@ exports.notInvited = function ({ name }) {
       
     },
   };
-}
+};
