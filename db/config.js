@@ -1,10 +1,6 @@
 const path = require('path');
 
-try {
-  require('dotenv').load({ path: path.resolve(__dirname, '..', '.env') });
-} catch (e) {
-  // TODO: error ignored — can we handle it?
-}
+require('dotenv').load({ path: path.resolve(__dirname, '..', '.env') });
 
 module.exports = {
   development: {
