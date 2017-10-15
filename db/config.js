@@ -1,8 +1,6 @@
 const path = require('path');
 
-try {
-  require('dotenv').load({ path: path.resolve(__dirname, '..', '.env') });
-} catch (e) { }
+require('dotenv').load({ path: path.resolve(__dirname, '..', '.env') });
 
 module.exports = {
   development: {

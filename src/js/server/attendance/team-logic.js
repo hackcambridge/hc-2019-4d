@@ -73,7 +73,7 @@ function createTeamAssignments() {
 }
 
 function getSlackNameForEmail(slackUsers, email) {
-  for (user of slackUsers) {
+  for (let user of slackUsers) {
     if (user.profile.email === email) {
       return user.name;
     }
@@ -99,7 +99,7 @@ function serializeTeams(teams, slackUsers) {
 
 function sendTeamEmail(team) {
   const teamIdentifier = team.map(member => member.hackerId).join(', ');
-  console.log(`Sending team email to ${teamIdentifier}`)
+  console.log(`Sending team email to ${teamIdentifier}`);
 
   return sendEmail({
     to: team.map(member => member.email),

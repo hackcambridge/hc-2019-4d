@@ -1,5 +1,4 @@
 const { Admin } = require('js/server/models');
-const yargs = require('yargs');
 const { createHandler } = require('./utils');
 
 module.exports = {

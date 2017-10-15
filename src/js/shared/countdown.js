@@ -1,6 +1,6 @@
 'use strict';
 
-var moment = require('moment');
+let moment = require('moment');
 
 class Countdown {
   constructor(options) {
@@ -28,8 +28,8 @@ class Countdown {
       throw new Error('Must first set deadline before updating');
     }
 
-    var now = new Date();
-    var nowTime = now.getTime();
+    let now = new Date();
+    let nowTime = now.getTime();
 
     this.difference = moment.duration(this.deadlineTime - nowTime);
 
@@ -68,16 +68,12 @@ class Countdown {
 }
 
 function padZero(num) {
-  var chars = `${num}`.split('');
+  let chars = `${num}`.split('');
   if (chars.length <= 1) {
     chars.unshift('0');
   }
 
   return chars.map((c) => `<span class="countdown-digit">${c}</span>`).join('');
-}
-
-function titleCase(str) {
-  return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1));
 }
 
 Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 0, 0));
@@ -96,11 +92,11 @@ Countdown.createStartCountdown = () => new Countdown({
         .replace('a day', '1 day'));
     }
 
-    var minutes = difference.minutes();
-    var seconds = difference.seconds();
-    var deciSeconds = Math.floor(difference.milliseconds() / 100);
+    let minutes = difference.minutes();
+    let seconds = difference.seconds();
+    let deciSeconds = Math.floor(difference.milliseconds() / 100);
 
-    return `Starting in ${padZero(minutes)}:${padZero(seconds)}:${deciSeconds}`
+    return `Starting in ${padZero(minutes)}:${padZero(seconds)}:${deciSeconds}`;
   }
 });
 
@@ -111,10 +107,6 @@ Countdown.createHackingCountdown = () => new Countdown({
       return '00:00:00';
     }
 
-    var hours = Math.floor(difference.asHours());
-    var minutes = difference.minutes();
-    var seconds = difference.seconds();
-
     return [Math.floor(difference.asHours()), difference.minutes(), difference.seconds()]
       .map((t) => padZero(t))
       .join('<span class="countdown-separator">:</span>');
@@ -122,7 +114,7 @@ Countdown.createHackingCountdown = () => new Countdown({
 });
 
 Countdown.createChainedCountdown = () => {
-  var c = Countdown.createStartCountdown();
+  let c = Countdown.createStartCountdown();
   c.nextCountdown = Countdown.createHackingCountdown();
   return c;
 };

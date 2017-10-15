@@ -1,7 +1,7 @@
 const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer');
 const cors = require('cors');
-const { Admin, OauthAccessToken } = require('js/server/models');
+const { OauthAccessToken } = require('js/server/models');
 
 passport.use(new BearerStrategy((token, done) => {
   OauthAccessToken.getAdminFromTokenString(token)

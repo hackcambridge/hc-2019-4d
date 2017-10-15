@@ -33,7 +33,7 @@ function createComparisonFunction(inviteType) {
     return ({ rating: ratingA }, { rating: ratingB }) => ratingA - ratingB;
   }
 
-  throw new Error(`Could not find comparison function for invite type ${invite}`);
+  throw new Error(`Could not find comparison function for invite type ${inviteType}`);
 }
 
 module.exports = {
@@ -49,8 +49,8 @@ module.exports = {
         // Consider only applicants whose application is pending (awaiting invitation)
         // Sort appropriately
         const sortedApplications = applications
-                .filter(({ status, rating }) => status === 'Pending' && rating != null)
-                .sort(createComparisonFunction(type));
+          .filter(({ status, rating }) => status === 'Pending' && rating != null)
+          .sort(createComparisonFunction(type));
 
         return getChooseApplicants()(sortedApplications, limit, type);
       })

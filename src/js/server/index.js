@@ -1,28 +1,18 @@
 'use strict';
 
-var express = require('express');
-var nunjucks = require('nunjucks');
-var bodyParser = require('body-parser');
-var path = require('path');
-var fs = require('fs');
-var _ = require('lodash');
-var url = require('url');
-var querystring = require('querystring');
-var yaml = require('js-yaml');
-var crypto = require('crypto');
-var Countdown = require('js/shared/countdown');
-const session = require('client-sessions');
-const chalk = require('chalk');
-var utils = require('./utils');
-var app = express();
+let express = require('express');
+let nunjucks = require('nunjucks');
+let bodyParser = require('body-parser');
+let url = require('url');
+let Countdown = require('js/shared/countdown');
+let utils = require('./utils');
+let app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
 const statuses = require('js/shared/status-constants');
 
-var server = require('http').Server(app);
-var fetch = require('node-fetch');
-const { dbSynced } = require('js/server/models');
+let server = require('http').Server(app);
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
@@ -30,7 +20,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 utils.init(app);
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.locals.title = 'Hack Cambridge';
   res.locals.colors = colors;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
@@ -42,7 +32,7 @@ app.use(function (req, res, next) {
 });
 
 // Static file serving
-var staticOptions = { };
+let staticOptions = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
@@ -52,7 +42,7 @@ app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOption
 auth.setUpAuth(app);
 
 // View rendering
-var nunjucksEnv = nunjucks.configure(utils.resolvePath('src/views'), {
+nunjucks.configure(utils.resolvePath('src/views'), {
   autoescape: true,
   noCache: app.settings.env == 'development',
   express: app
@@ -84,38 +74,38 @@ function renderHome(req, res) {
 
 app.get('/', renderHome);
 
-app.get('/terms-and-conditions', function (req, res) {
+app.get('/terms-and-conditions', (req, res) => {
   res.render('terms-and-conditions.html');
 });
 
 // 2017 page location
 
-app.get('/terms', function (req, res) {
+app.get('/terms', (req, res) => {
   res.redirect(301, '/terms-and-conditions');
 });
 
-app.get('/splash18', function (req, res) {
-    res.render('splash.html');
+app.get('/splash18', (req, res) => {
+  res.render('splash.html');
 });
 
-app.get('/privacy-policy', function (req, res) {
+app.get('/privacy-policy', (req, res) => {
   res.render('privacy-policy.html');
 });
 
 // 2017 page location
 
-app.get('/privacy', function (req, res) {
+app.get('/privacy', (req, res) => {
   res.redirect(301, '/privacy-policy');
 });
 
-app.get('/pay', function (req, res) {
+app.get('/pay', (req, res) => {
   res.render('pay.html', {
     title: 'Make a payment to Hack Cambridge',
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
 });
 
-app.get('/event', function (req, res) {
+app.get('/event', (req, res) => {
   res.render('event.html', {
     title: 'Hack Cambridge Recurse',
     api_demos: utils.loadResource('api_demos'),
@@ -126,7 +116,7 @@ app.get('/event', function (req, res) {
   });
 });
 
-app.get('/live', function (req, res) {
+app.get('/live', (req, res) => {
   res.render('live.html', {
     title: 'Hack Cambridge Recurse',
     sponsors: utils.loadResource('sponsors'),
@@ -138,7 +128,7 @@ app.get('/volunteers', (req, res) => {
   res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
 });
 
-app.get('/favicon.ico', function (req, res) {
+app.get('/favicon.ico', (req, res) => {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
 
@@ -157,6 +147,6 @@ app.set('port', (process.env.PORT || 3000));
 
 module.exports = app;
 
-server.listen(app.get('port'), function() {
+server.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
 });

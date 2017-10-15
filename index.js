@@ -1,5 +1,3 @@
-try {
-  require('dotenv').load();
-} catch (e) { }
+require('dotenv').load();
 
 require('js/server');

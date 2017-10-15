@@ -44,6 +44,6 @@ OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(toke
 
     return token.admin;
   });
-}
+};
 
 module.exports = OauthAccessToken;

@@ -13,4 +13,4 @@ exports.middleware = function (err, req, res, next) {
   }
 
   res.render('error.html', locals);
-}
+};

@@ -62,8 +62,8 @@ function calculateTeamAverage(team, individualScores) {
 function averageOrNull(values) {
   let sum = 0;
   let length = values.length;
-  for (var i = 0; i < length; i++) {
-    if (values[i] === null) { return null }
+  for (let i = 0; i < length; i++) {
+    if (values[i] === null) { return null; }
     sum += values[i];
   }
   return sum / length;
