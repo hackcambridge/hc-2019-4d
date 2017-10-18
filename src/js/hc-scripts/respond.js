@@ -1,5 +1,4 @@
 const { createHandler } = require('./utils');
-const { getApplicationsWithScores } = require('js/server/review/score-logic');
 const { response } = require('js/shared/status-constants');
 const { setResponseForApplicationWithChecks } = require('js/server/review/response-logic');
 const { HackerApplication } = require('js/server/models');
@@ -25,7 +24,7 @@ function processIndividualApplication(applicationId, responseType) {
         }, error => {
           console.error(`Failed to send response for application ${application.id}.`);
           console.error(error);
-        })
+        });
     });
 }
 

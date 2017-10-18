@@ -15,9 +15,6 @@ const getTeamApplicationStatus = function (hackerApplication) {
     where: { hackerId: hackerApplication.hackerId }
   }).then(teamApplication => {
     if (teamApplication === null) {
-      // User not listed in a team application yet
-      const userAppliedWithTeam = hackerApplication.inTeam;
-
       if (hackerApplication.wantsTeam) {
         // User wants us to place them in team
         return statuses.teamApplication.WANTS_TEAM;
@@ -34,7 +31,7 @@ const getTeamApplicationStatus = function (hackerApplication) {
       return statuses.teamApplication.COMPLETE;
     }
   });
-}
+};
 
 // Return a promise that evaluates to the response status
 const getResponseStatus = function (hackerApplication) {
@@ -50,13 +47,12 @@ const getResponseStatus = function (hackerApplication) {
       return statuses.response.REJECTED;
     }
   });
-}
+};
 
 // Return a promise that resolves to the RSVP status of the user
 const getRsvpStatus = function (hackerApplication) {
   if (hackerApplication === null) return null;
-  let responsePromise = getResponseStatus(hackerApplication);
-
+  
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
     if (applicationResponse === null || applicationResponse.response == 'rejected') {
       // User hasn't been invited, we don't need an RSVP
@@ -76,7 +72,7 @@ const getRsvpStatus = function (hackerApplication) {
       });
     }
   });
-}
+};
 
 // Returns the status of the users personal application (NOTE: not a promise)
 const getApplicationStatus = function (hackerApplication) {
@@ -84,7 +80,7 @@ const getApplicationStatus = function (hackerApplication) {
     return statuses.application.INCOMPLETE;
   else
     return statuses.application.COMPLETE;
-}
+};
 
 // Returns a promise that resolves to the ticketed status of the given application
 const getTicketStatus = function (hackerApplication) {
@@ -97,7 +93,7 @@ const getTicketStatus = function (hackerApplication) {
       return statuses.ticket.HAS_TICKET;
     }
   });
-}
+};
 
 const Hacker = module.exports = db.define('hacker', {
   // Personal
@@ -228,7 +224,7 @@ Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamAp
   else if (rsvpStatus == statuses.rsvp.COMPLETE_YES)
     return statuses.overall.INVITED_ACCEPTED;
   else {
-    console.log("Couldn't derive an overall status");
+    console.log('Couldn\'t derive an overall status');
     console.log({
       applicationStatus,
       responseStatus,
@@ -236,6 +232,6 @@ Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamAp
       rsvpStatus,
       ticketStatus,
     });
-    throw new Error("Couldn't derive an overall status");
+    throw new Error('Couldn\'t derive an overall status');
   }
-}
+};

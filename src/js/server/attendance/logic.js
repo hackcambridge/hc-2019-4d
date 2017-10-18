@@ -62,7 +62,7 @@ function getInvitationExpiryCandidates() {
         },
         response: response.INVITED,
       },
-      Sequelize.literal(`"responseRsvp" IS null`)
+      Sequelize.literal('"responseRsvp" IS null')
     ),
     include: [
       ResponseRsvp,
@@ -92,7 +92,6 @@ function expireInvitation(applicationResponse) {
     sendExpiryEmail(applicationResponse.hackerApplication.hacker)
       .catch(() => {
         // Not doing anything on error as there is no way to recover
-        console.error(error);
       })
       .then(() => responseRsvp)
   );

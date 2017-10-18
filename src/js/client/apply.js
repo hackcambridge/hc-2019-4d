@@ -1,7 +1,6 @@
 const $ = require('jquery');
 const { createApplicationForm } = require('js/shared/application-form');
 const { createTeamForm } = require('js/shared/team-form');
-const renderForm = require('js/shared/render-form');
 
 /**
  * jQuery's .serializeArray does not give us file input values. While we can't get useful

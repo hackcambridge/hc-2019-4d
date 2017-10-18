@@ -1,6 +1,3 @@
-const { Admin } = require('js/server/models');
-const yargs = require('yargs');
-
 module.exports = {
   command: 'teams',
   desc: 'Operate on teams',

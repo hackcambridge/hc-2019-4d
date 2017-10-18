@@ -1,5 +1,3 @@
-const { Router } = require('express');
-
 exports.createHttpError = function createError(status, message) {
   const error = new Error(message);
   error.status = status;

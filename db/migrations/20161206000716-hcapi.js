@@ -1,5 +1,7 @@
 'use strict';
 
+let moment = require('moment');
+
 function createAdminTable(queryInterface, Sequelize) {
   return queryInterface.createTable('admins', {
     id: {

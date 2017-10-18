@@ -12,7 +12,7 @@ exports.checkboxWidget = function checkboxWidget(label, { value = 'on' } = { }) 
       }) + ` ${label}`);
     }
   };
-}
+};
 
 exports.multiCheckboxWidget = function multicheckboxWidget(options = { }) {
   return {
@@ -25,4 +25,4 @@ exports.multiCheckboxWidget = function multicheckboxWidget(options = { }) {
       }, '');
     }
   };
-}
+};

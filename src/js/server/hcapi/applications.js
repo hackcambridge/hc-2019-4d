@@ -1,7 +1,6 @@
 const { Router } = require('express');
-const { createHttpError } = require('./errors');
 const responseLogic = require('js/server/review/response-logic');
-const { Hacker, HackerApplication, Team } = require('js/server/models');
+const { Hacker, HackerApplication } = require('js/server/models');
 const { getApplicationsWithScores } = require('js/server/review/score-logic');
 
 const applicationsRouter = new Router();
@@ -11,7 +10,7 @@ applicationsRouter.get('/', (req, res, next) => {
     res.json({
       applications,
     });
-  }).catch(next)
+  }).catch(next);
 });
 
 applicationsRouter.get('/:applicationId', (req, res, next) => {

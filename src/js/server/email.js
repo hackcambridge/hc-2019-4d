@@ -37,7 +37,7 @@ exports.makeInstruction = function ({ instructions, button: { link, text }}) {
       color: colors.PRIMARY_COLOR,
     },
   };
-}
+};
 
 /**
  * Send an email
