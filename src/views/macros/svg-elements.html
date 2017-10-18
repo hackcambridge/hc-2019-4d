@@ -1,0 +1,6 @@
+{% macro singleColourIcon(name) %}
+<svg class="icon" xmlns="http://www.w3.org/2000/svg">
+  <title>{{name}}</title>
+  <use x="0" y="0" xlink:href="/assets/images/hc-2018/icons/{{name | lower}}.svg#icon"/>
+</svg>
+{% endmacro %}
