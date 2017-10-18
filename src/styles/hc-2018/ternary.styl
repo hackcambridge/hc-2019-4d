@@ -52,7 +52,7 @@ section {
 section:last-of-type:not(.black, .red) {
     border-bottom: 1pt solid var(--secondary-color);
 }
-section.home-link {
+section:not(.black):not(.red) + section:not(.black):not(.red) {
     border-top: 1pt solid var(--secondary-color);
 }
 section.black + section.home-link, section.red + section.home-link {
