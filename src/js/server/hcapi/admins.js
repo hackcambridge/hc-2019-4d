@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const { Admin, HackerApplication, ApplicationReview } = require('js/server/models');
-const { createHttpError } = require('./errors');
 const reviewLogic = require('js/server/review/logic');
 
 /**

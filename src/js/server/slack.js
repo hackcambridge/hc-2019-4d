@@ -11,7 +11,7 @@ const querystring = require('querystring');
 const SLACK_API_TOKEN = process.env.SLACK_API_TOKEN;
 const SLACK_API_BASE = 'https://slack.com/api/';
 
-class SlackApiError extends Error { };
+class SlackApiError extends Error { }
 
 /**
  * Makes a call to the Slack API.
@@ -50,7 +50,7 @@ function inviteUser(email, firstName, lastName) {
     }
 
     return response.ok;
-  })
+  });
 }
 
 /**

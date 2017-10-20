@@ -1,6 +1,4 @@
 const { fields, validators, widgets, create: createForm } = require('forms');
-const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
-const { checkboxWidget, multiCheckboxWidget } = require('./checkbox');
 
 function textField(label, maxlength, options = { }) {
   return fields.string(Object.assign({ }, options, {

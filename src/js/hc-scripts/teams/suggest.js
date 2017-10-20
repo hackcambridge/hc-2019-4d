@@ -1,5 +1,4 @@
 const { getSerializedTeamAssignments } = require('js/server/attendance/team-logic');
-const yargs = require('yargs');
 const { createHandler } = require('../utils');
 const fs = require('fs');
 const path = require('path');

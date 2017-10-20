@@ -1,23 +1,24 @@
-var $ = require('jquery');
+let $ = require('jquery');
 
 module.exports = function () {
   if ('StripeCheckout' in window) {
-    var stripeConfig = window.stripeConfig;
+    let StripeCheckout = window.StripeCheckout;
+    let stripeConfig = window.stripeConfig;
 
     $('.payment-form').each(function () {
-      var $this = $(this);
-      var loading = null;
+      let $this = $(this);
+      let loading = null;
 
-      var stripeHandler = StripeCheckout.configure({
+      let stripeHandler = StripeCheckout.configure({
         key: stripeConfig.key,
         image: stripeConfig.image,
         locale: 'auto',
         currency: 'GBP',
         token: function (token) {
-          console.log("TOKEN");
-          $output.text("Working...");
+          console.log('TOKEN');
+          $output.text('Working...');
 
-          var data = $this.serializeArray();
+          let data = $this.serializeArray();
 
           data.push({ name: 'token', value: token.id });
           data.push({ name: 'email', value: token.email });
@@ -26,31 +27,29 @@ module.exports = function () {
             method: 'POST',
             data: data
           })
-          .success(function (data) {
-            $('.payment-form').remove();
-            $('.payment-form-description').text(data.message);
-          })
-          .fail(function (jqXHR) {
-            var errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
-            $output.text(errormsg);
-            $this.find('input, button').prop('disabled', false);
-          })
-          .always(function () {
-            loading = null;
-          });
+            .success((data) => {
+              $('.payment-form').remove();
+              $('.payment-form-description').text(data.message);
+            })
+            .fail((jqXHR) => {
+              let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
+              $output.text(errormsg);
+              $this.find('input, button').prop('disabled', false);
+            })
+            .always(() => {
+              loading = null;
+            });
 
           $this.find('input, button').prop('disabled', true);
         }
       });
 
-      var $amount = $this.find('.payment-form-amount');
-      var $reference = $this.find('.payment-form-reference');
-      var $token = $this.find('.payment-form-token');
-      var $output = $this.find('.payment-form-output');
-      var action = $this.attr('action');
+      let $amount = $this.find('.payment-form-amount');
+      let $reference = $this.find('.payment-form-reference');
+      let $output = $this.find('.payment-form-output');
 
-      var getAmount = function () {
-        var amount = $amount.val();
+      let getAmount = function () {
+        let amount = $amount.val();
 
         if (isNaN(amount)) {
           return 0;
@@ -59,15 +58,15 @@ module.exports = function () {
         return amount;
       };
 
-      $this.submit(function (e) {
+      $this.submit((e) => {
         e.preventDefault();
 
         if (loading != null) {
           return;
         }
 
-        var amount = Math.round(getAmount() * 100);
-        var reference = $reference.val();
+        let amount = Math.round(getAmount() * 100);
+        let reference = $reference.val();
 
         if (amount == 0) {
           return;

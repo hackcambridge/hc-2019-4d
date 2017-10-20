@@ -1,21 +1,7 @@
-#intro-social img {
-    max-width: 26pt;
-    padding-bottom: 2pt;
-    border-bottom: 1px solid var(--primary-color);
-    margin-top: 13pt;
-    margin-right: 13pt;
-    height: 26pt;
-    max-width: 26pt;
-    clear: both;
-}
-#intro-social img:hover {
-    border-bottom: 1px solid var(--accent-color);
-}
-#intro-social img:active {
-    border-bottom: 1px solid var(--secondary-color);
-}
-
 @media (max-width: 911pt) {
+    .six.unit.column {
+        max-width: 342pt;
+    }
     #splash-intro-content {
         flex-direction: column;
     }
@@ -25,18 +11,19 @@
     }
     #intro-social {
         width: 100%;
-        min-height: 85.5pt;
         margin-left: 0;
-    }
-    #intro-social > div {
-        display: flex;
-        flex-wrap: wrap;
     }
     #splash-intro-content .unit.h:not(:last-child) {
         margin-right: 0;
     }
     #splash-intro-content > .column:not(:first-child) {
         margin-top: var(--half);
+    }
+}
+
+@media (max-width: 911pt) and (min-width: 596pt) {
+    #intro-social {
+        min-height: calc(var(--one) + var(--half));
     }
 }
 
@@ -47,16 +34,16 @@
     #splash-signup-form {
         flex-direction: row;
     }
-    #splash-signup-form .four.small.unit.h {
-        flex-basis: calc(var(--three) - var(--gutter));
+    #splash-signup-form .four.small.unit.column {
+        flex-basis: calc(var(--four) - var(--gutter));
         flex-grow: 1;
         flex-shrink: 0;
     }
-    #splash-signup-form .small.unit.h {
+    #splash-signup-form .small.unit.column {
         flex-basis: var(--gutter);
         flex-shrink: 0;
     }
-    #splash-signup-form .one.unit.h {
+    #splash-signup-form .one.unit.column {
         flex-basis: var(--one);
         flex-shrink: 0;
     }
@@ -95,11 +82,5 @@
     }
     form.row .column:not(:first-child) {
         margin-top: var(--gutter);
-    }
-}
-
-@media (pointer: none) {
-    .submit {
-        display: none;
     }
 }

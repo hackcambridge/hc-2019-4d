@@ -38,12 +38,12 @@ module.exports = {
         ],
         outro: 'If you have any questions, please reach out to us by visiting our website.',
       }
-    }
+    };
   },
   teamAllocation({ team }) {
     const teamDictionary = team.reduce((partialTeam, member) => 
       Object.assign(partialTeam, teamKeyFromMember(member)),
-      { }
+    { }
     );
 
     return {
@@ -61,7 +61,7 @@ module.exports = {
           'If you have any questions, please reach out to us by visiting our website.',
         ]
       }
-    }
+    };
   }
 };
 

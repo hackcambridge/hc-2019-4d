@@ -1,17 +1,17 @@
-var $ = require('jquery');
+let $ = require('jquery');
 
 require('./polyfills');
 
-var Countdown = require('../shared/countdown');
+let Countdown = require('../shared/countdown');
 
-var pages = [
+let pages = [
   require('./payment'),
   require('./apply'),
   require('./fractal'),
   require('./live'),
 ];
 
-$(document).ready(function () {
+$(document).ready(() => {
   pages.forEach((f) => f());
 
   $('.subscribe-form').each((index, element) => {
@@ -31,7 +31,7 @@ $(document).ready(function () {
         .slideDown();
     };
 
-    $this.submit(function (e) {
+    $this.submit((e) => {
       e.preventDefault();
 
       $this.find('.subscribe-form-output')
@@ -39,7 +39,7 @@ $(document).ready(function () {
           $(this).remove();
         });
 
-      if ($this.find('.subscribe-form-email').val().trim() === "") {
+      if ($this.find('.subscribe-form-email').val().trim() === '') {
         createFlash('Must provide email', 'subscribe-form-error');
         return;
       }
@@ -68,11 +68,11 @@ $(document).ready(function () {
         setTimeout(() => {
           loading = null;
           $submit.prop('disabled', false);
-        }, 3000)
+        }, 3000);
       });
 
-      ga('send', 'event', 'Subscription', 'subscribed');
-      fbq('track', 'CompleteRegistration');
+      window.ga('send', 'event', 'Subscription', 'subscribed');
+      window.fbq('track', 'CompleteRegistration');
     });
   });
 
@@ -81,7 +81,7 @@ $(document).ready(function () {
     $(this).find('a').children().appendTo($(this));
     $(this).find('a').remove();
 
-    $(this).click(function () {
+    $(this).click(() => {
       $('body, html').animate({ scrollTop: $('.landing-intro-section').offset().top - 40 }, 1400);
     });
   });

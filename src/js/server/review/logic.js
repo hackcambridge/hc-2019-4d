@@ -62,11 +62,11 @@ exports.getApplicationReview = function getApplicationReview(adminId, hackerAppl
     },
     include: [ ReviewCriterionScore ],
   });
-}
+};
 
 exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReviewForAdmin(admin) {
   // We use a transaction to make sure we don't assign an application without storing an assignment record
-  return db.transaction(function (t) {
+  return db.transaction((t) => {
     // Get an application
     return db.query(assignmentQuery, {
       // There is a placeholder in the SQL file marked ':adminId',
@@ -77,7 +77,7 @@ exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReview
     }).then((applicationRecords) => {
       // db.query returns an array, check if it contains a result
       if (applicationRecords === undefined || applicationRecords.length == 0) {
-        console.log("Couldn't find any applications to assign to this admin");
+        console.log('Couldn\'t find any applications to assign to this admin');
         return null;
       } else {
         // Build a HackerApplication object from the result
@@ -89,12 +89,12 @@ exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReview
           adminId: admin.id,
           hackerApplicationId: hackerApplication.id
         }, { transaction: t }).then(() => {
-          return hackerApplication
+          return hackerApplication;
         });
       }
     });
-  }).catch(function (err) {
-    console.log("Failed to assign application to admin. Rolled back.");
+  }).catch((err) => {
+    console.log('Failed to assign application to admin. Rolled back.');
     console.log(err);
   });
 };
