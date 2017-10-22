@@ -85,7 +85,9 @@ app.get('/terms', (req, res) => {
 });
 
 app.get('/splash18', (req, res) => {
-  res.render('splash.html');
+  res.render('splash.html', {
+    sponsors: utils.loadResource('sponsors'),
+  });
 });
 
 app.get('/privacy-policy', (req, res) => {

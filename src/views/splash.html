@@ -91,6 +91,28 @@
             </div>
         </div>
     </section>
+
+    <section class="landing-helpers-section" id="helpers">
+      <div class="content-wrapper-center">
+        <h2>Sponsors</h2>
+        <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:sponsorship@hackcambridge.com">sponsorship@hackcambridge.com</a>.</p>
+        {% for sponsorTierName, sponsorTier in sponsors %}
+          {% if sponsorTier|length != 0 %}
+            <h3 class="strike-heading helper-heading">
+            <span> {{ sponsorTierName | capitalize }} </span>
+            </h3>
+            <div class="helpers-container helpers-container-{{ sponsorTierName }}">
+              {% for sponsor in sponsorTier %}
+                <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
+                  <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
 </main>
 <footer>
     <div class="container width">
