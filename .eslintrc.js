@@ -1,4 +1,6 @@
-{
+const os = require('os');
+
+module.exports = {
   "rules": {
     "indent": [
       "error",
@@ -9,7 +11,7 @@
     ],
     "linebreak-style": [
       "error",
-      "unix"
+      os.platform() !== 'win32' ? "unix" : "windows"
     ],
     "no-console": [
       "off"
