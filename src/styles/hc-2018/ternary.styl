@@ -115,9 +115,9 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, img, input, .secondary {
+section, a, a::after, svg, input, .secondary {
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
-    transition-property: color, border-color, caret-color, background-color;
+    transition-property: color, border-color, caret-color, background-color, filter;
     transition-duration: 0.25s;
 }
 
@@ -202,13 +202,14 @@ li {
 a {
     color: var(--accent-color);
     text-decoration: none;
+    white-space: pre;
 }
 a::after {
     content: " →";
     color: var(--primary-color);
 }
 a[rel="external"]::after {
-    content:"";
+    content:" →";
 }
 a[rel="prev"]::after {
     content:" ←";
@@ -237,6 +238,43 @@ a:active::after {
 
 object {
     width: 100%;
+}
+
+svg.icon {
+    color: var(--red);
+    fill: currentColor;
+    width: var(--half);
+    height: var(--half);
+}
+
+.icons a {
+    margin: 0 var(--gutter) var(--gutter) 0;
+}
+
+symbol#icon {
+    height: 57pt;
+}
+
+a:hover svg.icon, a:active svg.icon {
+    filter: saturate(0) contrast(3);
+}
+
+section.black a:hover svg.icon {
+    filter: saturate(0) contrast(3) invert(1);
+}
+
+section.red svg.icon {
+    filter: saturate(0) contrast(3);
+}
+
+section.red a:hover svg.icon {
+    filter: saturate(0) contrast(3) invert(1);
+}
+
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 calc(0pt - var(--gutter)) 0;
 }
 
 section.image .wrapper {
@@ -394,12 +432,13 @@ input[type="submit"]:active{
     }
 }
 
-@media (max-width: 414px) {
-    #sponsorship-hack-cambridge-logo-object {
-        width: 34.8845108696vw;
-        height: 30.2121074879vw;
+@media (pointer: coarse), (pointer: none) {
+    input[type="submit"] {
+        display: none;
     }
-    #sponsorship-hack-cambridge-wordmark {
-        font-size: 6.8906060739vw;
+}
+@media (hover: none) {
+    a::after {
+        display: none;
     }
 }
