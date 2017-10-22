@@ -98,6 +98,7 @@
 :root {
     --cube-size: 200px;
     --from-top-needed: 50px; // the difference in height between a rotated and non-rotated cube
+    --animation-duration: 1.35s;
 }
 
 .cube-container {
@@ -135,18 +136,20 @@
     height: calc(var(--cube-size)/2);
 }
 
-#cube-logo .cube-top.top
-{
-    background: var(--red);
-}
-
 #cube-logo .cube-top.front,
 #cube-logo .cube-top.back,
 #cube-logo .cube-top.right,
 #cube-logo .cube-top.left,
 #cube-logo .cube-top.bottom
 {
-    background: rgba(255, 255, 255, .95);
+    animation-duration: var(--animation-duration);
+    animation-name: cube-color-change;
+    animation-fill-mode: forwards;
+}
+
+#cube-logo .cube-top.top
+{
+    background: var(--red);
 }
 
 #cube-logo .cube-bottom.front,
@@ -158,14 +161,8 @@
     transform: translateY( calc(var(--cube-size)/2) );
 }
 
-#cube-logo .cube-bottom.front,
-#cube-logo .cube-bottom.back,
-#cube-logo .cube-bottom.right,
-#cube-logo .cube-bottom.left,
-#cube-logo .cube-bottom.top,
-#cube-logo .cube-bottom.bottom
+#cube-logo .cube-bottom
 {
-    color: white;
     background: black;
 }
 
@@ -184,19 +181,19 @@
 #cube-logo .bottom.cube-bottom { transform: translateY( calc(var(--cube-size)/2) ) rotateX( -90deg ); }
 
 #cube-logo {
-  animation-duration: 1.35s;
-  animation-name: cube-introduction;
+  animation-duration: var(--animation-duration);
+  animation-name: cube-rotation;
   transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
   animation-fill-mode: forwards;
 }
 
 #splash-intro {
-    animation-duration: 1.35s;
-    animation-name: background-introduction;
+    animation-duration: var(--animation-duration);
+    animation-name: background-color-change;
     animation-fill-mode: forwards;
 }
 
-@keyframes cube-introduction {
+@keyframes cube-rotation {
   0% {
       transform: none;
   }
@@ -214,8 +211,35 @@
   }
 }
 
-@keyframes background-introduction {
+@keyframes cube-color-change {
     0% {
+        background: black;
+    }
+
+    24.99% {
+        background: black;
+    }
+    25% {
+        background: white;
+    }
+
+    99.99% {
+        background: white;
+    }
+    100% {
+        background: rgba(255, 255, 255, .95);
+    }
+}
+
+@keyframes background-color-change {
+    0% {
+        background: black;
+    }
+
+    24.99% {
+        background: black;
+    }
+    25% {
         background: white;
     }
 
@@ -230,11 +254,11 @@
         background: black;
     }
     75% {
-        background: red;
+        background: var(--red);
     }
 
     99.99% {
-        background: red;
+        background: var(--red);
     }
     100% {
         background: white;
