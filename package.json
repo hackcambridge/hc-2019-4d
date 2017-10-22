@@ -83,7 +83,7 @@
     "pusher-js": "^4.0.0",
     "querystring": "^0.2.0",
     "run-sequence": "^2.2.0",
-    "sequelize": "^4.15.2",
+    "sequelize": "^3.30.4",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
     "stripe": "^5.1.1",
