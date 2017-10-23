@@ -11,9 +11,10 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
-const eslint = require('gulp-eslint');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
+
+const eslint = prod ? null : require('gulp-eslint');
 
 console.log(argv);
 
