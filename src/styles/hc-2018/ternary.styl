@@ -49,10 +49,10 @@ section, header, footer {
 section {
     border-top: 1pt solid var(--primary-color);
 }
-section:last-of-type:not(.black, .red) {
+section:last-of-type:not(.black):not(.red) {
     border-bottom: 1pt solid var(--secondary-color);
 }
-section.home-link {
+section:not(.black):not(.red) + section:not(.black):not(.red) {
     border-top: 1pt solid var(--secondary-color);
 }
 section.black + section.home-link, section.red + section.home-link {
@@ -173,7 +173,13 @@ h5, h5 span {
     font-weight: 300;
     line-height: 120%;
 }
-p, li, a:not(h5 a) {
+p {
+    font-size: 11pt;
+}
+li {
+    font-size: 11pt;
+}
+a:not(h5 a) {
     font-size: 11pt;
 }
 input {
