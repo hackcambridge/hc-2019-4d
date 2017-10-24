@@ -6,3 +6,5 @@ assets/dist
 *.crt
 *.csr
 *.key
+
+npm-debug.log
