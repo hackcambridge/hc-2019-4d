@@ -63,17 +63,16 @@ app.use('/api', require('./api'));
 app.use('/apply', require('./apply/router'));
 app.use('/hcapi', require('./hcapi'));
 
-app.get('/terms-and-conditions', (req, res) => {
-  res.render('terms-and-conditions.html');
-});
-
-// 2017 page location
-
 app.get('/', (req, res) => {
   res.render('splash.html');
 });
 
+app.get('/terms-and-conditions', (req, res) => {
+  res.render('terms-and-conditions.html');
+});
+
 app.get('/terms', (req, res) => {
+  // This URL was used in 2017 and previously, redirect it to the new location
   res.redirect(301, '/terms-and-conditions');
 });
 
@@ -82,6 +81,7 @@ app.get('/privacy-policy', (req, res) => {
 });
 
 app.get('/privacy', (req, res) => {
+  // This URL was used in 2017 and previously, redirect it to the new location
   res.redirect(301, '/privacy-policy');
 });
 
