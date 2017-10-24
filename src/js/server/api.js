@@ -10,7 +10,7 @@ let api = module.exports = new express.Router();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true }));
 
-api.post('/subscribe', (req, res, next) => {
+api.post('/subscribe/interested', (req, res, next) => {
   if (_.isEmpty(req.body.email)) {
     let err = new Error('Must provide email');
     err.status = 401;
@@ -20,7 +20,7 @@ api.post('/subscribe', (req, res, next) => {
 
   // TODO: Check user is already subscribed
   MC.lists.subscribe({
-    id: process.env.MAILCHIMP_LIST_ID,
+    id: process.env.MAILCHIMP_INTERESTED_LIST_ID,
     email: { email: req.body.email },
     merge_vars: { EMAIL: req.body.email },
     update_existing: true
