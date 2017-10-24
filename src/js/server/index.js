@@ -63,36 +63,23 @@ app.use('/api', require('./api'));
 app.use('/apply', require('./apply/router'));
 app.use('/hcapi', require('./hcapi'));
 
-function renderHome(req, res) {
-  res.render('index.html', {
-    faqs: utils.loadResource('faqs'),
-    sponsors: utils.loadResource('sponsors'),
-    countdown: Countdown.createStartCountdown(),
-    applicationsOpen: process.env.APPLICATIONS_OPEN_STATUS == statuses.applicationsOpen.OPEN,
-  });
-}
-
-app.get('/', renderHome);
-
 app.get('/terms-and-conditions', (req, res) => {
   res.render('terms-and-conditions.html');
 });
 
 // 2017 page location
 
-app.get('/terms', (req, res) => {
-  res.redirect(301, '/terms-and-conditions');
+app.get('/', (req, res) => {
+  res.render('splash.html');
 });
 
-app.get('/splash18', (req, res) => {
-  res.render('splash.html');
+app.get('/terms', (req, res) => {
+  res.redirect(301, '/terms-and-conditions');
 });
 
 app.get('/privacy-policy', (req, res) => {
   res.render('privacy-policy.html');
 });
-
-// 2017 page location
 
 app.get('/privacy', (req, res) => {
   res.redirect(301, '/privacy-policy');
