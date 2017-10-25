@@ -23,7 +23,7 @@ you can do this in the `.env` file at the root of your project.
 
 ```
 MAILCHIMP_API_KEY=
-MAILCHIMP_LIST_ID=
+MAILCHIMP_INTERESTED_LIST_ID=
 APPLICATION_URL=
 TEAM_APPLICATION_URL=
 STRIPE_PUBLISH_KEY=
