@@ -64,7 +64,7 @@ app.use('/apply', require('./apply/router'));
 app.use('/hcapi', require('./hcapi'));
 
 app.get('/', (req, res) => {
-  res.render('splash.html');
+  res.render('index.html');
 });
 
 app.get('/terms-and-conditions', (req, res) => {
