@@ -14,19 +14,19 @@ let pages = [
 $(document).ready(() => {
   pages.forEach((f) => f());
 
-  $('.subscribe-form').each((index, element) => {
+  $('.signup-form').each((index, element) => {
     const $this = $(element);
     const action = $this.attr('action');
     const method = $this.attr('method');
-    const $submit = $this.find('.subscribe-form-submit');
+    const $submit = $this.find('input[type="submit"]');
     const submitText = $submit.text();
     let loading = null;
 
     const createFlash = (text, className) => {
-      return $('<p class="subscribe-form-output"></p>')
+      return $('<p class="signup-form-output"></p>')
         .text(text)
         .addClass(className)
-        .insertAfter($submit)
+        .insertAfter($this)
         .hide()
         .slideDown();
     };
@@ -34,13 +34,13 @@ $(document).ready(() => {
     $this.submit((e) => {
       e.preventDefault();
 
-      $this.find('.subscribe-form-output')
+      $('.signup-form-output')
         .slideUp(400, function () {
           $(this).remove();
         });
 
-      if ($this.find('.subscribe-form-email').val().trim() === '') {
-        createFlash('Must provide email', 'subscribe-form-error');
+      if ($this.find('input[type="email"]').val().trim() === '') {
+        createFlash('Must provide email', 'signup-form-error');
         return;
       }
 
@@ -56,11 +56,11 @@ $(document).ready(() => {
         method: method,
         data: $this.serialize()
       }).success((data) => {
-        createFlash(data.message, 'subscribe-form-success');
+        createFlash(data.message, 'signup-form-success');
       }).fail((jqXHR) => {
         const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
 
-        createFlash(errormsg, 'subscribe-form-error');
+        createFlash(errormsg, 'signup-form-error');
       }).always(() => {
         $submit
           .text(submitText);
