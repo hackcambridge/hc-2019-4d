@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    {% if browserSync %}{{ browserSync | safe }}{% endif %}
     {% block content %} {% endblock %} {% block scripts %}
     <script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
 
