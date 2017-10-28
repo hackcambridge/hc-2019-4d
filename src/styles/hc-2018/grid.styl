@@ -45,13 +45,13 @@ div.container.width {
 
 /* Basic grid */
 
-.row {
+.row:not(section) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.persistent.row {
+.persistent.row:not(section) {
     flex-direction: row;
 }
 
@@ -64,7 +64,7 @@ div.container.width {
     div.container.a4 {
         width: calc(484 / 595 * 100vw);
     }
-    .row {
+    .row:not(section) {
         flex-direction: column;
     }
     .column {
@@ -95,152 +95,159 @@ div.container.width {
 
     /* Rows */
     
-    .unit.row {
+    .unit.row:not(section) {
         margin: 0 calc(var(--half) * -1);
     }
-    form.unit.row {
+    div.row > * {
+        margin: 0 var(--half);
+    }
+    form > .column, .content > .column {
+        margin: 0 calc(var(--gutter) / 2);
+    }
+    form.unit.row, .content.unit.row {
         margin: 0 calc(var(--gutter) / 2 * -1);
     }
     
     .one.unit.row {
-        min-height: var(--one);
+        height: var(--one);
     }
     .two.unit.row {
-        min-height: var(--two);
+        height: var(--two);
     }
     .three.unit.row {
-        min-height: var(--three);
+        height: var(--three);
     }
     .four.unit.row {
-        min-height: var(--four);
+        height: var(--four);
     }
     .five.unit.row {
-        min-height: var(--five);
+        height: var(--five);
     }
     .six.unit.row {
-        min-height: var(--six);
+        height: var(--six);
     }
     .seven.unit.row {
-        min-height: var(--seven);
+        height: var(--seven);
     }
     .eight.unit.row {
-        min-height: var(--eight);
+        height: var(--eight);
     }
     .nine.unit.row {
-        min-height: var(--nine);
+        height: var(--nine);
     }
     .ten.unit.row {
-        min-height: var(--ten);
+        height: var(--ten);
     }
     .eleven.unit.row {
-        min-height: var(--eleven);
+        height: var(--eleven);
     }
     .twelve.unit.row {
-        min-height: var(--twelve);
+        height: var(--twelve);
     }
     .thirteen.unit.row {
-        min-height: var(--thirteen);
+        height: var(--thirteen);
     }
     .fourteen.unit.row {
-        min-height: var(--fourteen);
+        height: var(--fourteen);
     }
     
     .one.small.unit.row {
-        min-height: calc(var(--one) - var(--gutter));
+        height: calc(var(--one) - var(--gutter));
     }
     .two.small.unit.row {
-        min-height: calc(var(--two) - var(--gutter));
+        height: calc(var(--two) - var(--gutter));
     }
     .three.small.unit.row {
-        min-height: calc(var(--three) - var(--gutter));
+        height: calc(var(--three) - var(--gutter));
     }
     .four.small.unit.row {
-        min-height: calc(var(--four) - var(--gutter));
+        height: calc(var(--four) - var(--gutter));
     }
     .five.small.unit.row {
-        min-height: calc(var(--five) - var(--gutter));
+        height: calc(var(--five) - var(--gutter));
     }
     .six.small.unit.row {
-        min-height: calc(var(--six) - var(--gutter));
+        height: calc(var(--six) - var(--gutter));
     }
     .seven.small.unit.row {
-        min-height: calc(var(--seven) - var(--gutter));
+        height: calc(var(--seven) - var(--gutter));
     }
     
     .one.large.unit.row {
-        min-height: calc(var(--one) + var(--gutter));
+        height: calc(var(--one) + var(--gutter));
     }
     .two.large.unit.row {
-        min-height: calc(var(--two) + var(--gutter));
+        height: calc(var(--two) + var(--gutter));
     }
     .three.large.unit.row {
-        min-height: calc(var(--three) + var(--gutter));
+        height: calc(var(--three) + var(--gutter));
     }
     .four.large.unit.row {
-        min-height: calc(var(--four) + var(--gutter));
+        height: calc(var(--four) + var(--gutter));
     }
     .five.large.unit.row {
-        min-height: calc(var(--five) + var(--gutter));
+        height: calc(var(--five) + var(--gutter));
     }
     .six.large.unit.row {
-        min-height: calc(var(--six) + var(--gutter));
+        height: calc(var(--six) + var(--gutter));
     }
     .seven.large.unit.row {
-        min-height: calc(var(--seven) + var(--gutter));
+        height: calc(var(--seven) + var(--gutter));
     }
     
     .half.unit.row {
-        min-height: var(--half);
+        height: var(--half);
     }
     .one.half.unit.row {
-        min-height: calc(var(--one) + var(--half));
+        height: calc(var(--one) + var(--half));
     }
     .two.half.unit.row {
-        min-height: calc(var(--two) + var(--half));
+        height: calc(var(--two) + var(--half));
     }
     .three.half.unit.row {
-        min-height: calc(var(--three) + var(--half));
+        height: calc(var(--three) + var(--half));
     }
     .four.half.unit.row {
-        min-height: calc(var(--four) + var(--half));
+        height: calc(var(--four) + var(--half));
     }
     .five.half.unit.row {
-        min-height: calc(var(--five) + var(--half));
+        height: calc(var(--five) + var(--half));
     }
     .six.half.unit.row {
-        min-height: calc(var(--six) + var(--half));
+        height: calc(var(--six) + var(--half));
     }
     .seven.half.unit.row {
-        min-height: calc(var(--seven) + var(--half));
+        height: calc(var(--seven) + var(--half));
     }
     .eight.half.unit.row {
-        min-height: calc(var(--eight) + var(--half));
+        height: calc(var(--eight) + var(--half));
     }
     .nine.half.unit.row {
-        min-height: calc(var(--nine) + var(--half));
+        height: calc(var(--nine) + var(--half));
     }
     .ten.half.unit.row {
-        min-height: calc(var(--four) + ten(--half));
+        height: calc(var(--four) + ten(--half));
     }
     .eleven.half.unit.row {
-        min-height: calc(var(--eleven) + var(--half));
+        height: calc(var(--eleven) + var(--half));
     }
     .twelve.half.unit.row {
-        min-height: calc(var(--twelve) + var(--half));
+        height: calc(var(--twelve) + var(--half));
     }
     .thirteen.half.unit.row {
-        min-height: calc(var(--thirteen) + var(--half));
+        height: calc(var(--thirteen) + var(--half));
     }
     
     /* Columns */
-
-    .unit.column {
+    
+    .column {
         flex-grow: 0;
+    }    
+    .unit.column {
         flex-shrink: 0;
-        margin: 0 var(--half);
     }
-    form .unit.column {
-        margin: 0 calc(var(--gutter) / 2);
+    .unit.column.grows {
+        flex-grow: 1;
     }
     .one.unit.column {
         flex-basis: var(--one);
