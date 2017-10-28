@@ -73,12 +73,6 @@ div.container.width {
     .column:first-child, .empty.column + .column, form.row .column {
         margin-top: 0;
     }
-    .row {
-        margin-top: var(--half);
-    }
-    .row:first-child, .body .row {
-        margin-top: 0;
-    }
     .container .unit.column {
         width: initial;
         min-width: initial;
@@ -86,11 +80,9 @@ div.container.width {
 
 }
 
+
 @media (min-width: 595pt) {
 
-    .row:not(form) > *:not(:first-child) {
-        margin-left: var(--one);
-    }
     .columns {
         column-count: 2;
         column-gap: 24pt;
@@ -100,15 +92,15 @@ div.container.width {
     .columns.balance {
         column-fill: balance;
     }
-    form.row .column:not(:first-child) {
-        margin-left: var(--gutter);
-    }
-
-    .column:not(.unit):last-child:nth-child(2) {
-        margin-left: 24pt
-    }
 
     /* Rows */
+    
+    .unit.row {
+        margin: 0 calc(var(--half) * -1);
+    }
+    form.unit.row {
+        margin: 0 calc(var(--gutter) / 2 * -1);
+    }
     
     .one.unit.row {
         min-height: var(--one);
@@ -243,159 +235,126 @@ div.container.width {
     /* Columns */
 
     .unit.column {
-        min-width: 100%;
-        width: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 0 var(--half);
+    }
+    form .unit.column {
+        margin: 0 calc(var(--gutter) / 2);
     }
     .one.unit.column {
-        min-width: var(--one);
-        width: var(--one);
+        flex-basis: var(--one);
     }
     .two.unit.column {
-        min-width: var(--two);
-        width: var(--two);
+        flex-basis: var(--two);
     }
     .three.unit.column {
-        min-width: var(--three);
-        width: var(--three);
+        flex-basis: var(--three);
     }
     .four.unit.column {
-        min-width: var(--four);
-        width: var(--four);
+        flex-basis: var(--four);
     }
     .five.unit.column {
-        min-width: var(--five);
-        width: var(--five);
+        flex-basis: var(--five);
     }
     .six.unit.column {
-        min-width: var(--six);
-        width: var(--six);
+        flex-basis: var(--six);
     }
     .seven.unit.column {
-        min-width: var(--seven);
-        width: var(--seven);
+        flex-basis: var(--seven);
     }
     .eight.unit.column {
         min-width: var(--eight);
-        width: var(--eight);
     }
     .nine.unit.column {
-        min-width: var(--nine);
-        width: var(--nine);
+        flex-basis: var(--nine);
     }
     .ten.unit.column {
-        min-width: var(--ten);
-        width: var(--ten);
+        flex-basis: var(--ten);
     }
     .eleven.unit.column {
-        min-width: var(--eleven);
-        width: var(--eleven);
+        flex-basis: var(--eleven);
     }
     .twelve.unit.column {
-        min-width: var(--twelve);
-        width: var(--twelve);
+        flex-basis: var(--twelve);
     }
     .thirteen.unit.column {
-        min-width: var(--thirteen);
-        width: var(--thirteen);
+        flex-basis: var(--thirteen);
     }
     .fourteen.unit.column {
-        min-width: var(--fourteen);
-        width: var(--fourteen);
+        flex-basis: var(--fourteen);
     }
 
     .small.unit.column {
-        min-width: var(--gutter);
-        max-width: var(--gutter);
+        flex-basis: var(--gutter);
     }
     .one.small.unit.column {
-        min-width: calc(var(--one) - var(--gutter));
-        width: calc(var(--one) - var(--gutter));
+        flex-basis: calc(var(--one) - var(--gutter));
     }
     .two.small.unit.column {
-        min-width: calc(var(--two) - var(--gutter));
-        width: calc(var(--two) - var(--gutter));
+        flex-basis: calc(var(--two) - var(--gutter));
     }
     .three.small.unit.column {
-        min-width: calc(var(--three) - var(--gutter));
-        width: calc(var(--three) - var(--gutter));
+        flex-basis: calc(var(--three) - var(--gutter));
     }
     .four.small.unit.column {
-        min-width: calc(var(--four) - var(--gutter));
-        width: calc(var(--four) - var(--gutter));
+        flex-basis: calc(var(--four) - var(--gutter));
     }
     .five.small.unit.column {
-        min-width: calc(var(--five) - var(--gutter));
-        width: calc(var(--five) - var(--gutter));
+        flex-basis: calc(var(--five) - var(--gutter));
     }
     .six.small.unit.column {
-        min-width: calc(var(--six) - var(--gutter));
-        width: calc(var(--six) - var(--gutter));
+        flex-basis: calc(var(--six) - var(--gutter));
     }
     .seven.small.unit.column {
-        min-width: calc(var(--seven) - var(--gutter));
-        width: calc(var(--seven) - var(--gutter));
+        flex-basis: calc(var(--seven) - var(--gutter));
     }
     
     .large.unit.column {
-        min-width: var(--gutter);
-        max-width: var(--gutter);
+        flex-basis: var(--gutter);
     }
     .one.large.unit.column {
-        min-width: calc(var(--one) + var(--gutter));
-        width: calc(var(--one) + var(--gutter));
+        flex-basis: calc(var(--one) + var(--gutter));
     }
     .two.large.unit.column {
-        min-width: calc(var(--two) + var(--gutter));
-        width: calc(var(--two) + var(--gutter));
+        flex-basis: calc(var(--two) + var(--gutter));
     }
     .three.large.unit.column {
-        min-width: calc(var(--three) + var(--gutter));
-        width: calc(var(--three) + var(--gutter));
+        flex-basis: calc(var(--three) + var(--gutter));
     }
     .four.large.unit.column {
-        min-width: calc(var(--four) + var(--gutter));
-        width: calc(var(--four) + var(--gutter));
+        flex-basis: calc(var(--four) + var(--gutter));
     }
     .five.large.unit.column {
-        min-width: calc(var(--five) + var(--gutter));
-        width: calc(var(--five) + var(--gutter));
+        flex-basis: calc(var(--five) + var(--gutter));
     }
     .six.large.unit.column {
-        min-width: calc(var(--six) + var(--gutter));
-        width: calc(var(--six) + var(--gutter));
+        flex-basis: calc(var(--six) + var(--gutter));
     }
     .seven.large.unit.column {
-        min-width: calc(var(--seven) + var(--gutter));
-        width: calc(var(--seven) + var(--gutter));
+        flex-basis: calc(var(--seven) + var(--gutter));
     }
 
     .half.unit.column {
-        min-width: var(--half);
-        width: var(--half);
+        flex-basis: var(--half);
     }
     .one.half.unit.column {
-        min-width: calc(var(--one) + var(--half));
-        width: calc(var(--one) + var(--half));
+        flex-basis: calc(var(--one) + var(--half));
     }
     .two.half.unit.column {
-        min-width: calc(var(--two) + var(--half));
-        width: calc(var(--two) + var(--half));
+        flex-basis: calc(var(--two) + var(--half));
     }
     .three.half.unit.column {
-        min-width: calc(var(--three) + var(--half));
-        width: calc(var(--three) + var(--half));
+        flex-basis: calc(var(--three) + var(--half));
     }
     .four.half.unit.column {
-        min-width: calc(var(--four) + var(--half));
-        width: calc(var(--four) + var(--half));
+        flex-basis: calc(var(--four) + var(--half));
     }
     .five.half.unit.column {
-        min-width: calc(var(--five) + var(--half));
-        width: calc(var(--five) + var(--half));
+        flex-basis: calc(var(--five) + var(--half));
     }
     .six.half.unit.column {
-        min-width: calc(var(--six) + var(--half));
-        width: calc(var(--six) + var(--half));
+        flex-basis: calc(var(--six) + var(--half));
     }
 
 }
