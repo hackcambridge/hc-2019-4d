@@ -6,7 +6,7 @@ exports.invited = function ({ name, daysValid }) {
     body: {
       name,
       intro: [
-        'We\'ve been blown away by your application for Hack Cambridge and we want you in the city in 2017 to create something amazing.',
+        'We\'ve been blown away by your application for Hack Cambridge and we want you in the city in 2018 to create something amazing.',
         `To guarantee your place in the hackathon, we'll need confirmation that you'll be attending within ${daysValid} days of you being invited. Otherwise, you may lose your spot. Simply let us know by RSVPing.`,
         'You probably have lots of questions about travel and accomodation, among other things. All of this information is on your dashboard and you can let us know if you have any more questions',
       ],

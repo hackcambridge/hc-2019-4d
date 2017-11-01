@@ -18,7 +18,7 @@ dashboard:
     invited-awaiting-rsvp:
       message_type: success
       title: You're in!
-      subline: We'd love to have you at Hack Cambridge 2017. Please confirm your place below.
+      subline: We'd love to have you at Hack Cambridge 2018. Please confirm your place below.
 
     invited-accepted:
       message_type: neutral
