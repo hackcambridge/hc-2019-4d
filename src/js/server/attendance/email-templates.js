@@ -16,7 +16,7 @@ module.exports = {
         ],
         action: [
           makeInstruction({
-            instructions: 'All the information about registration, accomodation, travel and more is on your dashboard. Have a good read - there may be some extra steps for you.',
+            instructions: 'All the information about registration, accommodation, travel and more is on your dashboard. Have a good read - there may be some extra steps for you.',
             button: {
               text: 'Go to my Dashboard',
               link: 'https://hackcambridge.com/apply/dashboard',
