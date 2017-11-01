@@ -92,29 +92,6 @@ app.get('/pay', (req, res) => {
   });
 });
 
-app.get('/event', (req, res) => {
-  res.render('event.html', {
-    title: 'Hack Cambridge Recurse',
-    api_demos: utils.loadResource('api_demos'),
-    workshops: utils.loadResource('workshops'),
-    prizes: utils.loadResource('prizes'),
-    schedule: utils.loadResource('schedule'),
-    apis: utils.loadResource('apis')
-  });
-});
-
-app.get('/live', (req, res) => {
-  res.render('live.html', {
-    title: 'Hack Cambridge Recurse',
-    sponsors: utils.loadResource('sponsors'),
-    pusherKey: process.env.PUSHER_KEY,
-  });
-});
-
-app.get('/volunteers', (req, res) => {
-  res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
-});
-
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
 });
