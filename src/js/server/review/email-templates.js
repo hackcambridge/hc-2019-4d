@@ -2,7 +2,7 @@ const { makeInstruction } = require('js/server/email');
 
 exports.invited = function ({ name, daysValid }) {
   return {
-    subject: `${name}, you are invited to Hack Cambridge Recurse!`,
+    subject: `${name}, you are invited to Hack Cambridge Ternary!`,
     body: {
       name,
       intro: [

@@ -33,7 +33,7 @@ module.exports = {
       body: {
         name,
         intro: [
-          `Earlier we sent you an invitation to Hack Cambridge Recurse with ${daysValid} days to respond. We have not received a response from you and your invitation has expired.`,
+          `Earlier we sent you an invitation to Hack Cambridge Ternary with ${daysValid} days to respond. We have not received a response from you and your invitation has expired.`,
           'We hope to see you apply for the next Hack Cambridge!'
         ],
         outro: 'If you have any questions, please reach out to us by visiting our website.',
