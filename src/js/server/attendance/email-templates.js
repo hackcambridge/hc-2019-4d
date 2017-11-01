@@ -16,7 +16,7 @@ module.exports = {
         ],
         action: [
           makeInstruction({
-            instructions: 'All the information about registration, accomodation, travel and more is on your dashboard. Have a good read - there may be some extra steps for you.',
+            instructions: 'All the information about registration, accommodation, travel and more is on your dashboard. Have a good read - there may be some extra steps for you.',
             button: {
               text: 'Go to my Dashboard',
               link: 'https://hackcambridge.com/apply/dashboard',
@@ -33,7 +33,7 @@ module.exports = {
       body: {
         name,
         intro: [
-          `Earlier we sent you an invitation to Hack Cambridge Recurse with ${daysValid} days to respond. We have not received a response from you and your invitation has expired.`,
+          `Earlier we sent you an invitation to Hack Cambridge Ternary with ${daysValid} days to respond. We have not received a response from you and your invitation has expired.`,
           'We hope to see you apply for the next Hack Cambridge!'
         ],
         outro: 'If you have any questions, please reach out to us by visiting our website.',

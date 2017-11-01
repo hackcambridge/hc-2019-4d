@@ -18,7 +18,7 @@ dashboard:
     invited-awaiting-rsvp:
       message_type: success
       title: You're in!
-      subline: We'd love to have you at Hack Cambridge 2017. Please confirm your place below.
+      subline: We'd love to have you at Hack Cambridge 2018. Please confirm your place below.
 
     invited-accepted:
       message_type: neutral
@@ -33,7 +33,7 @@ dashboard:
     invited-declined:
       message_type: neutral
       title: Thank you
-      subline: You've told us you can't make it. Thanks for your interest in Hack Cambridge Recurse.
+      subline: You've told us you can't make it. Thanks for your interest in Hack Cambridge Ternary.
 
     invited-expired:
       message_type: neutral
@@ -89,17 +89,17 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Please let us know if you're committed to attending Hack Cambridge Recurse so we can confirm your place! Please note that if you accept and then
+        Please let us know if you're committed to attending Hack Cambridge Ternary so we can confirm your place! Please note that if you accept and then
         do not register on the day, this will affect your application in future iterations of Hack Cambridge, please be honest!
     complete-yes:
       type: success
       label: Yes!
-      content: Your place is confirmed. We can't wait to see you at Hack Cambridge Recurse
+      content: Your place is confirmed. We can't wait to see you at Hack Cambridge Ternary!
     complete-no:
       type: na
       label: Declined
       content:
-        Thanks for letting us know that you're no longer able to attend Hack Cambridge Recurse. Your place has been opened up to somebody else.
+        Thanks for letting us know that you're no longer able to attend Hack Cambridge Ternary. Your place has been opened up to somebody else.
         If you have feedback for us, we'd be glad to hear it. Just drop us an email.
       action:
         title: team@hackcambridge.com
@@ -108,7 +108,7 @@ dashboard:
       type: na
       label: Expired
       content:
-        Your invitation for Hack Cambridge Recurse has expired. Your place has been opened up to somebody else.
+        Your invitation for Hack Cambridge Ternary has expired. Your place has been opened up to somebody else.
         If you have feedback for us, we'd be glad to hear it. Just drop us an email.
       action:
         title: team@hackcambridge.com
