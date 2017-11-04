@@ -70,13 +70,13 @@ dashboard:
       type: success
       label: Finding
       content:
-        You asked to be placed in a team — we’ll take it from here
+        You asked to be placed in a team — we’ll take it from here.
     incomplete:
       type: warning
       label: Incomplete
       content:
         Your team hasn’t confirmed its members yet. Once you’ve chosen your teammates and they’ve all applied, one of you should submit a team
-        application (don’t worry, it’s easy!)
+        application.
       action:
         title: Submit a team application for your team
         location: /apply/team
