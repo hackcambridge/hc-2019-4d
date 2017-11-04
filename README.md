@@ -6,11 +6,11 @@
 
 ## Getting Started
 
-To run the website on your machine, make sure you have [Node.js](https://nodejs.org) installed. Then inside this folder, run
+To run the website on your machine, make sure you have [Node.js](https://nodejs.org) and [Yarn](https://yarnpkg.com/) installed. Then inside this folder, run
 
 ```bash
-npm install
-npm install -g gulp
+yarn global add gulp
+yarn install
 gulp serve
 ```
 
@@ -71,13 +71,13 @@ psql --host=localhost --username=postgres
 Before starting the app for the first time, you'll need to put the tables in the places:
 
 ```
-npm run migrate
+yarn run migrate
 ```
 
 We are using the sequelize CLI to manage migrations. So to create your own:
 
 ```
-npm run sequelize -- migration:create --name YOURMIGRATION
+yarn run sequelize -- migration:create --name YOURMIGRATION
 ```
 
 ## OAuth2 API
@@ -86,13 +86,13 @@ We run an API which authenticates admin users via tokens. Currently the only way
 through scripts. To create a user:
 
 ```
-npm run hc-script -- create-admin --email email@domain.com --name UserName
+yarn run hc-script -- create-admin --email email@domain.com --name UserName
 ```
 
 To then create a token for that user:
 
 ```
-npm run hc-script -- create-token email@domain.com
+yarn run hc-script -- create-token email@domain.com
 ```
 
 Once you have your token, you can use it to authenticate requests to the API in your HTTP headers:
@@ -106,7 +106,7 @@ Authorization: Bearer <<TOKEN GOES HERE >>
 To send responses to applicants, you can use the `respond` script:
 
 ```
-npm run hc-script respond invite applications.json
+yarn run hc-script respond invite applications.json
 ```
 
 You can either `invite` or `reject`.
@@ -114,7 +114,7 @@ You can either `invite` or `reject`.
 `applications.json` refers to an applications file, which can be generated with `suggest-responses`.
 
 ```
-npm run hc-script -- suggest-responses invite 50 applications.json
+yarn run hc-script -- suggest-responses invite 50 applications.json
 ```
 
 The use of this script requires a score augmentor function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
@@ -145,13 +145,13 @@ You can control whether or not applications are open using the APPLICATION_OPEN_
 To send team allocations for ticketed hackers that have requested them, you must first suggest some:
 
 ```
-npm run hc-script -- teams suggest teams.json
+yarn run hc-script -- teams suggest teams.json
 ```
 
 Then you can send them
 
 ```
-npm run hc-script -- teams send teams.json
+yarn run hc-script -- teams send teams.json
 ```
 
 ## Build System
@@ -159,7 +159,7 @@ npm run hc-script -- teams send teams.json
 This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
 
 ```bash
-npm install -g gulp
+yarn global add gulp
 gulp build # Build the assets
 gulp serve # Start the server, automatically build assets and reload the browser when changes are made
 gulp watch # Watch for changes in assets and build automatically
