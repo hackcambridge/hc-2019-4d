@@ -34,7 +34,6 @@ function createCountryChoices() {
 
   countries.getData().forEach(({ code, name }) => {
     countryChoices[code] = name;
-    
   });
 
   countryChoicesCreated = true;
