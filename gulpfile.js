@@ -95,12 +95,10 @@ gulp.task('lint', () => {
 });
 
 gulp.task('rev', () => {
-  let rev = new $.revAll();
-
   return gulp.src('assets/dist/**')
-    .pipe(rev.revision())
+    .pipe($.revAll.revision())
     .pipe(gulp.dest('assets/dist'))
-    .pipe(rev.manifestFile())
+    .pipe($.revAll.manifestFile())
     .pipe(gulp.dest('assets/dist'));
 });
 
