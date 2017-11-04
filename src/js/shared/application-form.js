@@ -29,10 +29,9 @@ function createCountryChoices() {
     return countryChoices;
   }
 
-  countryChoices[''] = 'Choose a Country';
-
   countries.getData().forEach(({ code, name }) => {
     countryChoices[code] = name;
+    
   });
 
   countryChoicesCreated = true;
@@ -59,8 +58,8 @@ const requiredField = validators.required('This field is required.');
 exports.createApplicationForm = function createApplicationForm(validateFile = true) {
   return createForm({
     cv: fileField({
-      label: 'Upload your CV:',
-      note: 'PDFs only — 2 MB maximum size.',
+      label: 'Upload your CV.',
+      note: 'PDF files only, and up to 2 MB.',
       required: requiredField,
       validators: validateFile ? [
         fileTypeValidator('application/pdf', 'Please upload a PDF.'),
@@ -70,14 +69,14 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
     }),
     countryTravellingFrom: fields.string({
       widget: widgets.select(),
-      label: 'Where will you be travelling from before you reach Cambridge?',
-      note: 'This may or may not be where you live at the moment.',
+      label: 'Where will you be coming from?',
+      note: 'This does not have to be your current country of residence.',
       required: requiredField,
       choices: createCountryChoices(),
       cssClasses,
     }),
     development: fields.array({
-      label: 'Where do you see yourself fitting into the development process?',
+      label: 'What role or roles in a team would you be interested in?',
       note: 'Tick all that apply.',
       widget: multiCheckboxWidget(),
       required: requiredField,
@@ -85,12 +84,12 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         development: 'Development',
         design: 'Design',
         product_management: 'Product Management',
-        unknown: 'I\'m not sure!',
+        unknown: 'I’m not sure',
       },
       validators: [
         (form, field, callback) => {
           if ((field.data.includes('unknown')) && (field.data.length > 1)) {
-            callback('You can\'t have an answer and not be sure!');
+            callback('You can’t have an answer and not be sure!');
           } else {
             callback();
           }
@@ -98,34 +97,34 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       ],
       cssClasses,
     }),
-    learn: textareaField('What do you want to learn from this event?', 500, {
+    learn: textareaField('How will the event benefit you?', 500, {
       required: requiredField,
     }),
-    interests: textareaField('What interests you?', 500, {
-      note: 'This can be anything at all — it doesn\'t have to be technology-related!',
+    interests: textareaField('What are you interested in?', 500, {
+      note: 'Mention anything you want—it doesn’t have to be technology-related!',
       required: requiredField,
     }),
-    accomplishment: textareaField('Tell us about a recent accomplishment that you\'re proud of:', 500, {
+    accomplishment: textareaField('Tell us about a recent accomplishment you’re proud of.', 500, {
       required: requiredField,
     }),
-    links: textareaField('Are there any links we can visit to get to know you better?', 500, { 
-      note: 'For example: GitHub, LinkedIn or your personal website. Please put each link on a new line.', 
+    links: textareaField('Are there any links you’d like to share so we can get to know you better?', 500, { 
+      note: 'For example GitHub, LinkedIn or your personal website. Put each link on a new line.', 
       placeholder: 'https://github.com/hackcambridge' 
     }),
     team_apply: fields.boolean({
       label: 'Are you applying as part of a team?',
-      note: 'We will not process your application until you have been entered into a team via the application form (after submitting this form).',
-      widget: checkboxWidget('Yes, I am applying as part of a team. One of our members will fill out the team application form.'),
+      note: 'We won’t process your application until you’ve been entered into a team using the application form, after submitting this form.',
+      widget: checkboxWidget('Yes, I am applying as part of a team. One team member will fill out the team application form.'),
       cssClasses,
     }),
     team_placement: fields.boolean({
-      label: 'If not, would you like us to place you in a team?',
-      note: 'We can suggest a team for you before the event. You can always change this by contacting us.',
-      widget: checkboxWidget('Yes, please place me in a team!'),
+      label: 'Would you like us to put you in a team?',
+      note: 'We can suggest a team for you before the event. You can always change team by contacting us.',
+      widget: checkboxWidget('Yes, put me in a team!'),
       validators: [
         (form, field, callback) => {
           if ((field.data) && (form.fields.team_apply.data)) {
-            callback('We can\'t place you in a team if you are already applying as part of a team!');
+            callback('We can’t put you in a team if you are already applying as part of a team!');
           } else {
             callback();
           }
@@ -134,15 +133,15 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       cssClasses,
     }),
     student_status: fields.boolean({
-      label: 'Please confirm your student status:',
+      label: 'Please confirm your student status.',
       note: '',
-      widget: checkboxWidget('I am currently a student or I graduated after January 28th 2016.'),
+      widget: checkboxWidget('I am currently a student, or I graduated after January 28th 2017.'),
       required: validators.matchValue(() => true, 'You must confirm your student status to apply.'),
       cssClasses,
     }),
     terms: fields.boolean({
-      label: 'Do you accept our <a href="/terms" target="_blank">terms and conditions</a> and <a href="/privacy" target="_blank">privacy policy</a>?',
-      note: 'This includes the <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>.',
+      label: 'Do you accept our terms and conditions, privacy policy, and the MLH Code of Conduct?<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
+      note: '',
       widget: checkboxWidget('I accept the terms and conditions and the privacy policy.'),
       required: validators.matchValue(() => true, 'You must accept our terms and conditions to apply.'),
       cssClasses,
