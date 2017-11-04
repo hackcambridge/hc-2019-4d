@@ -2,8 +2,12 @@ const { fields, validators, widgets, create: createForm } = require('forms');
 const countries = require('country-list')();
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
 const { checkboxWidget, multiCheckboxWidget } = require('./checkbox');
+const validator = require('validator');
 
 function textareaField(label, maxlength, options = { }) {
+  const stringFieldValidators = options.validators ? options.validators : [];
+  stringFieldValidators.push(validators.maxlength(maxlength));
+
   return fields.string(Object.assign({ }, options, {
     widget: widgets.textarea({
       maxlength,
@@ -11,9 +15,7 @@ function textareaField(label, maxlength, options = { }) {
       placeholder: options.placeholder,
     }),
     label,
-    validators: [
-      validators.maxlength(maxlength),
-    ],
+    validators: stringFieldValidators,
     cssClasses,
   }));
 }
@@ -110,7 +112,27 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
     }),
     links: textareaField('Are there any links we can visit to get to know you better?', 500, { 
       note: 'For example: GitHub, LinkedIn or your personal website. Please put each link on a new line.', 
-      placeholder: 'https://github.com/hackcambridge' 
+      placeholder: 'https://github.com/hackcambridge',
+      validators: [
+        (form, field, callback) => {
+          if (field.data) {
+            const links = field.data.split('\n');
+            for (const link of links) {
+              const isValidURL = validator.isURL(link, {
+                allow_underscores: true,
+                protocols: ['http', 'https']
+              });
+
+              if (!isValidURL) {
+                callback('One of these links does not appear to be valid.');
+                return;
+              }
+            }
+          }
+
+          callback();
+        }
+      ]
     }),
     team_apply: fields.boolean({
       label: 'Are you applying as part of a team?',
