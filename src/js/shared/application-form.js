@@ -140,7 +140,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       cssClasses,
     }),
     team_placement: fields.boolean({
-      label: 'Would you like us to put you in a team?',
+      label: 'If not, would you like us to put you in a team?',
       note: 'We can suggest a team for you before the event. You can always change team by contacting us.',
       widget: checkboxWidget('Yes, put me in a team!'),
       validators: [
