@@ -99,7 +99,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       ],
       cssClasses,
     }),
-    learn: textareaField('How will the event benefit you?', 500, {
+    learn: textareaField('What do you want to get out of this event?', 500, {
       required: requiredField,
     }),
     interests: textareaField('What are you interested in?', 500, {
