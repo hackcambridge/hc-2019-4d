@@ -112,7 +112,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
     }),
     links: textareaField('Are there any links you’d like to share so we can get to know you better?', 500, { 
       note: 'For example GitHub, LinkedIn or your personal website. Put each link on a new line.', 
-      placeholder: 'https://github.com/hackcambridge' 
+      placeholder: 'https://github.com/hackcambridge',
       validators: [
         (form, field, callback) => {
           if (field.data) {
