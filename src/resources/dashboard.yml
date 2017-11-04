@@ -7,7 +7,7 @@ dashboard:
 
     incomplete-closed:
       message_type: neutral
-      title: All good things must come to an end
+      title: All good things must come to an end.
       subline: Unfortunately applications for Hack Cambridge are now closed. Keep an eye out for our future events!
     
     in-review:
@@ -22,22 +22,22 @@ dashboard:
 
     invited-accepted:
       message_type: neutral
-      title: You don’t have a ticket
+      title: You don’t have a ticket.
       subline: You’ve accepted your invitation but do not have a ticket to Hack Cambridge. If this is unexpected, please get in touch with us.
 
     has-ticket:
       message_type: success
-      title: See you there
+      title: See you there!
       subline: Thanks for confirming your place. See you on January 28th!
 
     invited-declined:
       message_type: neutral
-      title: Thank you
+      title: Thank you!
       subline: You’ve told us you can’t make it. Thanks for your interest in Hack Cambridge Ternary.
 
     invited-expired:
       message_type: neutral
-      title: Thank you
+      title: Thank you!
       subline: Your invitation for Hack Cambridge has expired, thank you for your interest.
 
     rejected:
