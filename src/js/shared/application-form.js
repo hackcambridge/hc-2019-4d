@@ -133,20 +133,18 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         }
       ]
     }),
-    team_apply: fields.boolean({
-      label: 'Are you applying as part of a team?',
-      note: 'We won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted after every team member has submitted this form.',
-      widget: checkboxWidget('Yes, I am applying as part of a team. One team member will fill out the team application form.'),
-      cssClasses,
-    }),
-    team_placement: fields.boolean({
-      label: 'If not, would you like us to put you in a team?',
-      note: 'We can suggest a team for you before the event. You can always change team by contacting us.',
-      widget: checkboxWidget('Yes, put me in a team!'),
+    team: fields.array({
+      label: 'Teams',
+      note: 'If you’re applying as part of a team, we won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted by any member of the team after every team member has submitted this form.<br>Otherwise we can suggest a team for you before the event. You can always change team by contacting us.',
+      widget: multiCheckboxWidget(),
+      choices: {
+        team_apply: 'I’m applying as part of a team. One team member will fill out the team application form.',
+        team_placement: 'I’m not applying as part of a team. Put me in a team!',
+      },
       validators: [
         (form, field, callback) => {
-          if ((field.data) && (form.fields.team_apply.data)) {
-            callback('We can’t put you in a team if you are already applying as part of a team!');
+          if ((field.data) && (field.data.length > 1)) {
+            callback('You can’t have an answer and not be sure!');
           } else {
             callback();
           }
@@ -158,19 +156,24 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
      * MLH requires attendees to be students or to have graduated within the last 12 months.
      * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event
      */
-    student_status: fields.boolean({
-      label: 'Please confirm your student status.',
-      note: '',
-      widget: checkboxWidget(`I am currently a student, or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`),
-      required: validators.matchValue(() => true, 'You must confirm your student status to apply.'),
-      cssClasses,
-    }),
-    terms: fields.boolean({
-      label: 'Do you accept our terms and conditions, privacy policy, and the MLH Code of Conduct?<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
-      note: '',
-      widget: checkboxWidget('I accept the terms and conditions and the privacy policy.'),
-      required: validators.matchValue(() => true, 'You must accept our terms and conditions to apply.'),
-      cssClasses,
+    confirmations: fields.array({
+        label: 'Student status confirmation and terms and conditions',
+        note: 'If you’re applying as part of a team, we won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted by any member of the team after every team member has submitted this form.<br>Otherwise we can suggest a team for you before the event. You can always change team by contacting us.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
+        widget: multiCheckboxWidget(),
+        choices: {
+            student_status: `I’m currently a student, or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`,
+            terms: 'I accept the terms and conditions, privacy policy, and the MLH Code of Conduct',
+        },
+        validators: [
+            (form, field, callback) => {
+                if ((field.data) && (field.data.length > 1)) {
+                    callback('You can’t have an answer and not be sure!');
+                } else {
+                    callback();
+                }
+            },
+        ],
+        cssClasses,
     }),
   }, {
     validatePastFirstError: true,
