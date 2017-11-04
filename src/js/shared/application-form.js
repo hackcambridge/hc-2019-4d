@@ -135,7 +135,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
     }),
     team_apply: fields.boolean({
       label: 'Are you applying as part of a team?',
-      note: 'We won’t process your application until you’ve been entered into a team using the application form, after submitting this form.',
+      note: 'We won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted after every team member has submitted this form.',
       widget: checkboxWidget('Yes, I am applying as part of a team. One team member will fill out the team application form.'),
       cssClasses,
     }),
