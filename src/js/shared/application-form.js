@@ -61,7 +61,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
   return createForm({
     cv: fileField({
       label: 'Upload your CV.',
-      note: 'PDF files only, and up to 2 MB.',
+      note: 'PDF files only. 2 MB maximum size.',
       required: requiredField,
       validators: validateFile ? [
         fileTypeValidator('application/pdf', 'Please upload a PDF.'),
