@@ -8,10 +8,10 @@ function isMultipleField(type) {
 
 module.exports = function (name, field, options = { }) {
   const widgetHtml = field.widget.toHTML(name, field);
-  const innerContent = isMultipleField(field.widget.type) ? tag('div', { }, widgetHtml) : widgetHtml;
+  const innerContent = isMultipleField(field.widget.type) ? tag('fieldset', { }, widgetHtml) : widgetHtml;
 
-  return tag('div', { classes: field.classes(), required: !!field.required }, [
-    field.labelHTML(name, field.id),
+  return tag('fieldset', { classes: field.classes(), required: !!field.required }, [
+    tag('legend',{ classes: ['form-control-legend'] },field.label),
     field.note ? tag('p', { classes: ['form-control-note'] }, field.note) : '',
     field.errorHTML(),
     innerContent,
