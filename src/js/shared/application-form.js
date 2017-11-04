@@ -1,8 +1,9 @@
 const { fields, validators, widgets, create: createForm } = require('forms');
 const countries = require('country-list')();
+const validator = require('validator');
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
 const { checkboxWidget, multiCheckboxWidget } = require('./checkbox');
-const validator = require('validator');
+const { getHackathonStartDate } = require('./dates');
 
 function textareaField(label, maxlength, options = { }) {
   const stringFieldValidators = options.validators ? options.validators : [];
@@ -155,10 +156,14 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       ],
       cssClasses,
     }),
+    /**
+     * MLH requires attendees to be students or to have graduated within the last 12 months.
+     * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event
+     */
     student_status: fields.boolean({
       label: 'Please confirm your student status:',
       note: '',
-      widget: checkboxWidget('I am currently a student or I graduated after January 28th 2016.'),
+      widget: checkboxWidget(`I am currently a student or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`),
       required: validators.matchValue(() => true, 'You must confirm your student status to apply.'),
       cssClasses,
     }),
