@@ -4,13 +4,11 @@ let express = require('express');
 let nunjucks = require('nunjucks');
 let bodyParser = require('body-parser');
 let url = require('url');
-let Countdown = require('js/shared/countdown');
 let utils = require('./utils');
 let app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
-const statuses = require('js/shared/status-constants');
 
 let server = require('http').Server(app);
 
