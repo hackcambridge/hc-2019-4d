@@ -12,7 +12,7 @@ html {
 
 /* Reset margins and padding */
 
-h1, h2, h3, h4, h5, p, ul, li, input, form, body {
+h1, h2, h3, h4, h5, p, ul, li, input, form, body, button {
     margin: 0;
     padding: 0;
 }
@@ -184,11 +184,11 @@ li {
 }
 select {
     font-size: 11pt;
-    padding: 5pt;
+    padding: 1pt 3pt;
 }
 textarea {
     font-size: 11pt;
-    padding: 5pt;
+    padding: 3pt;
 }
 a:not(h5 a) {
     font-size: 11pt;
@@ -197,9 +197,13 @@ input {
     font-size: 11pt;
     border-radius: 0;
 }
+input[type="email"] {
+    padding: 1pt 0;
+}
 button {
     font-size: 11pt;
     border-radius: 0;
+    padding: 1pt 3pt;
 }
 p, li, a:not(h5 a) {
     line-height: 1.4;
@@ -366,7 +370,7 @@ select{
 
 textarea {
     resize: none;
-    width: 100%;
+    width: calc(100% - 3pt * 2);
     height: var(--one);
 }
 
