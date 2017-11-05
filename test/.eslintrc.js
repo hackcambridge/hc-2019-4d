@@ -1,8 +1,8 @@
-{
+module.exports = {
   "env": {
     "es6": true,
     "mocha": true,
     "node": true
   },
-  "extends": "../.eslintrc.json"
+  "extends": "../.eslintrc.js"
 }

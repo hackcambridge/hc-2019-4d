@@ -88,7 +88,7 @@ gulp.task('assets', () => {
 });
 
 gulp.task('lint', () => {
-  return gulp.src(['**.js', '!node_modules/**', '!assets/dist/**.js'])
+  return gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
