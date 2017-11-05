@@ -13,8 +13,8 @@ module.exports = function (name, field, options = { }) {
     field.note ? tag('p', { classes: ['form-control-note'] }, field.note) : '',
     innerContent
   ].join(''));
-  const fieldSet = tag('fieldset', { classes: [ field.classes(), 'unit column'], required: !!field.required }, [
-    tag('legend',{ classes: ['form-control-legend'] },field.label),
+  const fieldSet = tag('fieldset', { classes: [ field.classes().join(' '), 'unit column'], required: !!field.required }, [
+    tag('legend', { classes: ['form-control-legend'] }, field.label),
     field.errorHTML(),
     column,
   ].join(''));
