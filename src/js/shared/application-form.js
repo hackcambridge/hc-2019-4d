@@ -21,7 +21,6 @@ function textareaField(label, maxlength, options = { }) {
   }));
 }
 
-
 const countryChoices = { };
 /**
  * Allows us to optimise the list creation by only making it once, lazily.
