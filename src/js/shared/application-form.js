@@ -165,7 +165,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
      */
     confirmations: fields.array({
         label: 'Student status confirmation and terms and conditions',
-        note: 'If you’re applying as part of a team, we won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted by any member of the team after every team member has submitted this form.<br>Otherwise we can suggest a team for you before the event. You can always change team by contacting us.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
+        note: 'We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, and the MLH Code of Conduct.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
         widget: multiCheckboxWidget(),
         choices: {
             student_status: `I’m currently a student, or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`,
