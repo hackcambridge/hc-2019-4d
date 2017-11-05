@@ -149,8 +149,8 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       },
       validators: [
         (form, field, callback) => {
-          if ((field.data) && (field.data.length > 1)) {
-            callback('You can’t have an answer and not be sure!');
+          if ((field.data.includes('team_apply')) && (field.data.includes('team_placement'))) {
+            callback('You can’t both be in a team and apply to join a team!');
           } else {
             callback();
           }
@@ -171,6 +171,15 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
             student_status: `I’m currently a student, or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`,
             terms: 'I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.',
         },
+        validators: [
+            (form, field, callback) => {
+                if ((field.data.length < 2)) {
+                    callback('We need both confirmation of your student status and your acceptance of the terms and conditions, privacy policy, and the MLH Code of Conduct.');
+                } else {
+                    callback();
+                }
+            },
+        ],
         cssClasses,
         row_units: 'four',
     }),
