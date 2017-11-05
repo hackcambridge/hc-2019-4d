@@ -141,11 +141,11 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
     }),
     team: fields.array({
       label: 'Teams',
-      note: 'If you’re applying as part of a team, we won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted by any member of the team after every team member has submitted this form.<br>Otherwise we can suggest a team for you before the event. You can always change team by contacting us.',
+      note: 'If you’re applying as part of a team now, we won’t process your application until you’ve been entered into a team using the team application form. This can be submitted by any member of the team after every team member has submitted this form.<br>If you’re applying individually, but want to be part of a team, we can suggest a team for you before the event. You can always change team by contacting us.',
       widget: multiCheckboxWidget(),
       choices: {
         team_apply: 'I’m applying as part of a team. One team member will fill out the team application form.',
-        team_placement: 'I’m not applying as part of a team. Put me in a team!',
+        team_placement: 'I’m not applying as part of a team, but want to be put in a team.',
       },
       validators: [
         (form, field, callback) => {
