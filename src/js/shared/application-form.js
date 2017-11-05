@@ -2,8 +2,33 @@ const { fields, validators, widgets, create: createForm } = require('forms');
 const countries = require('country-list')();
 const validator = require('validator');
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
-const { checkboxWidget, multiCheckboxWidget } = require('./checkbox');
+const { multiCheckboxWidget } = require('./checkbox');
 const { getHackathonStartDate } = require('./dates');
+
+/**
+ * Allows us to optimise the list creation by only making it once, lazily.
+ */
+let countryChoices = null;
+function createCountryChoices() {
+  if (countryChoices == null) {
+    countryChoices = {};
+    countries.getData().forEach(({ code, name }) => {
+      countryChoices[code] = name;
+    });
+  }
+
+  return countryChoices;
+}
+
+exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
+
+const cssClasses = {
+  error: [ 'form-error-message' ],
+  label: [ 'form-label-longform' ],
+  field: [ 'form-row', 'form-row-margin' ],
+};
+
+const requiredField = validators.required('This field is required.');
 
 function textareaField(label, maxlength, options = { }) {
   const stringFieldValidators = options.validators ? options.validators : [];
@@ -20,35 +45,6 @@ function textareaField(label, maxlength, options = { }) {
     cssClasses,
   }));
 }
-
-const countryChoices = { };
-/**
- * Allows us to optimise the list creation by only making it once, lazily.
- */
-let countryChoicesCreated = false;
-function createCountryChoices() {
-  if (countryChoicesCreated) {
-    return countryChoices;
-  }
-
-  countries.getData().forEach(({ code, name }) => {
-    countryChoices[code] = name;
-  });
-
-  countryChoicesCreated = true;
-
-  return countryChoices;
-}
-
-exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
-
-const cssClasses = {
-  error: [ 'form-error-message' ],
-  label: [ 'form-label-longform' ],
-  field: [ 'form-row', 'form-row-margin' ],
-};
-
-const requiredField = validators.required('This field is required.');
 
 /**
  * Create the object representation of our application form.
@@ -164,24 +160,24 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
      * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event
      */
     confirmations: fields.array({
-        label: 'Student status confirmation and terms and conditions',
-        note: 'If you’re applying as part of a team, we won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted by any member of the team after every team member has submitted this form.<br>Otherwise we can suggest a team for you before the event. You can always change team by contacting us.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
-        widget: multiCheckboxWidget(),
-        choices: {
-            student_status: `I’m currently a student, or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`,
-            terms: 'I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.',
+      label: 'Student status confirmation and terms and conditions',
+      note: 'If you’re applying as part of a team, we won’t process your application until you’ve been entered into a team using the application form. The team application form can be submitted by any member of the team after every team member has submitted this form.<br>Otherwise we can suggest a team for you before the event. You can always change team by contacting us.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
+      widget: multiCheckboxWidget(),
+      choices: {
+        student_status: `I’m currently a student, or I graduated after ${getHackathonStartDate().subtract(1, 'year').format('LL')}.`,
+        terms: 'I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.',
+      },
+      validators: [
+        (form, field, callback) => {
+          if ((field.data) && (field.data.length > 1)) {
+            callback('You can’t have an answer and not be sure!');
+          } else {
+            callback();
+          }
         },
-        validators: [
-            (form, field, callback) => {
-                if ((field.data) && (field.data.length > 1)) {
-                    callback('You can’t have an answer and not be sure!');
-                } else {
-                    callback();
-                }
-            },
-        ],
-        cssClasses,
-        row_units: 'four',
+      ],
+      cssClasses,
+      row_units: 'four',
     }),
   }, {
     validatePastFirstError: true,
