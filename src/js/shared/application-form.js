@@ -12,6 +12,8 @@ let countryChoices = null;
 function createCountryChoices() {
   if (countryChoices == null) {
     countryChoices = {};
+    // Add United Kingdom to the top of the country choices since it is the most likely to be applicable.
+    countryChoices['GB'] = 'United Kingdom';
     countries.getData().forEach(({ code, name }) => {
       countryChoices[code] = name;
     });
