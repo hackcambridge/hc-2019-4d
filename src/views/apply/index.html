@@ -1,13 +1,12 @@
 {% extends 'default.html' %}
-{% set title = 'Apply | Hack Cambridge' %}
+{% set title = 'Apply' %}
+{% set footer = true %}
 {% block pageHeading %}Apply to Hack Cambridge{% endblock %}
 {% block pageContent %}
-<div class="content-wrapper-center">
-  To apply, or to continue your application, please log in with MyMLH:
-  <br>
-  <br>
-  <a href="/apply/form" class="button">
-    Log in with MyMLH
-  </a>
+<div class="half unit row">
+    To start or continue an application, log in with MyMLH.
+</div>
+<div class="half unit row">
+    <a href="/apply/form">Log in with MyMLH</a>
 </div>
 {% endblock %}

@@ -88,19 +88,17 @@ gulp.task('assets', () => {
 });
 
 gulp.task('lint', () => {
-  return gulp.src(['**.js', '!node_modules/**', '!assets/dist/**.js'])
+  return gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
 gulp.task('rev', () => {
-  let rev = new $.revAll();
-
   return gulp.src('assets/dist/**')
-    .pipe(rev.revision())
+    .pipe($.revAll.revision())
     .pipe(gulp.dest('assets/dist'))
-    .pipe(rev.manifestFile())
+    .pipe($.revAll.manifestFile())
     .pipe(gulp.dest('assets/dist'));
 });
 

@@ -4,13 +4,11 @@ let express = require('express');
 let nunjucks = require('nunjucks');
 let bodyParser = require('body-parser');
 let url = require('url');
-let Countdown = require('js/shared/countdown');
 let utils = require('./utils');
 let app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
-const statuses = require('js/shared/status-constants');
 
 let server = require('http').Server(app);
 
@@ -90,29 +88,6 @@ app.get('/pay', (req, res) => {
     title: 'Make a payment to Hack Cambridge',
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
-});
-
-app.get('/event', (req, res) => {
-  res.render('event.html', {
-    title: 'Hack Cambridge Recurse',
-    api_demos: utils.loadResource('api_demos'),
-    workshops: utils.loadResource('workshops'),
-    prizes: utils.loadResource('prizes'),
-    schedule: utils.loadResource('schedule'),
-    apis: utils.loadResource('apis')
-  });
-});
-
-app.get('/live', (req, res) => {
-  res.render('live.html', {
-    title: 'Hack Cambridge Recurse',
-    sponsors: utils.loadResource('sponsors'),
-    pusherKey: process.env.PUSHER_KEY,
-  });
-});
-
-app.get('/volunteers', (req, res) => {
-  res.redirect(302, 'https://goo.gl/forms/2jHTyCKiXQgGR6Jy2');
 });
 
 app.get('/favicon.ico', (req, res) => {

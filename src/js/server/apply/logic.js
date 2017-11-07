@@ -17,8 +17,8 @@ exports.createApplicationFromForm = function (formData, user) {
       interests: formData.interests,
       recentAccomplishment: formData.accomplishment,
       links: formData.links,
-      inTeam: formData.team_apply,
-      wantsTeam: formData.team_placement,
+      inTeam: formData.team.includes('team_apply'),
+      wantsTeam: formData.team.includes('team_placement'),
     });
   }).then(application => {
     sendEmail({

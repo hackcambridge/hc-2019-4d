@@ -12,7 +12,7 @@ html {
 
 /* Reset margins and padding */
 
-h1, h2, h3, h4, h5, p, ul, li, input, form, body {
+h1, h2, h3, h4, h5, p, ul, li, input, form, body, button {
     margin: 0;
     padding: 0;
 }
@@ -58,7 +58,7 @@ section:not(.black):not(.red) + section:not(.black):not(.red) {
 section.black + section.home-link, section.red + section.home-link {
     border-top: 1pt solid var(--primary-color);
 }
-header {
+header, :not(header) + main section:first-child {
     padding-top: var(--one);
 }
 section.image {
@@ -115,7 +115,7 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, svg, input, .secondary {
+section, a, a::after, svg, input, button, .secondary {
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
     transition-property: color, border-color, caret-color, background-color, filter;
     transition-duration: 0.25s;
@@ -176,8 +176,19 @@ h5, h5 span {
 p {
     font-size: 11pt;
 }
+label {
+    font-size: 11pt;
+}
 li {
     font-size: 11pt;
+}
+select {
+    font-size: 11pt;
+    padding: 1pt 3pt;
+}
+textarea {
+    font-size: 11pt;
+    padding: 3pt;
 }
 a:not(h5 a) {
     font-size: 11pt;
@@ -185,6 +196,21 @@ a:not(h5 a) {
 input {
     font-size: 11pt;
     border-radius: 0;
+}
+input[type="email"] {
+    padding: 1pt 0;
+}
+::-webkit-file-upload-button {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1pt solid var(--secondary-color);
+    font-family: "PxGroteskRegular", Helvetica, Arial, sans-serif;
+    padding: 1pt 3pt;
+}
+button {
+    font-size: 11pt;
+    border-radius: 0;
+    padding: 1pt 3pt;
 }
 p, li, a:not(h5 a) {
     line-height: 1.4;
@@ -302,7 +328,7 @@ section.image .wrapper {
 
 /* Input */
 
-input {
+input, button {
     border-width: 1px;
     border-style: solid;
     border-color: rgba(255,255,255,0);
@@ -312,6 +338,9 @@ input {
     outline: none;
     width: 100%;
     color: var(--secondary-color);
+}
+
+input[type="email"] {
     border-bottom: 1px solid var(--secondary-color);
 }
 
@@ -333,19 +362,45 @@ input:placeholder-shown {
     border-bottom: 1px solid var(--accent-color);
 }
 
-input[type="submit"]{
+input[type="submit"], input[type="checkbox"], button{
     background-color: unset;
     color: var(--accent-color);
     border: 1px solid var(--accent-color);
 }
 
-input[type="submit"]:hover{
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+textarea {
+    resize: none;
+    width: calc(100% - 3pt * 2);
+    height: var(--one);
+}
+
+fieldset {
+    border-width: 0;
+    padding: 0;
+}
+
+legend {
+    padding: 0;
+    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 200;
+    margin-bottom: var(--gutter);
+}
+
+input[type="submit"]:hover, button:hover{
     background-color: unset;
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
 }
 
-input[type="submit"]:active{
+input[type="submit"]:active, button:active{
     background-color: var(--secondary-color);
     color: var(--primary-color);
     border: 1px solid var(--secondary-color);
