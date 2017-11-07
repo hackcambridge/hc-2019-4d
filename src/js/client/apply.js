@@ -111,7 +111,7 @@ function processForm($form, createForm) {
           }, 500);
           firstErrorFound = true;
         }
-        $row.find('.form-label-shortform, .form-label-longform').after(field.errorHTML());
+        $row.find('.form-control-note').after(field.errorHTML());
         $row.addClass('error');
       }
     });
