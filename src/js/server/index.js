@@ -9,6 +9,7 @@ let app = express();
 const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
+const metadata = require('js/shared/metadata');
 
 let server = require('http').Server(app);
 
@@ -19,7 +20,8 @@ process.on('unhandledRejection', (reason, promise) => {
 utils.init(app);
 
 app.use((req, res, next) => {
-  res.locals.title = 'Hack Cambridge';
+  res.locals.title = metadata.title;
+  res.locals.description = metadata.description;
   res.locals.colors = colors;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
   const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
