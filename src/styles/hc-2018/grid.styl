@@ -131,19 +131,17 @@ div {
     padding: 0;
 }
 
-div.container {
 // Containers
+.container {
     display: flex;
     flex-direction: column;
 }
-
-div.container.a4 {
+.container.a4 {
     position: relative;
     width: 484pt;
     margin: 0 auto;
 }
-
-div.container.width {
+.container.width {
     margin: 0 var(--one);
 }
 
@@ -168,7 +166,7 @@ div.container.width {
 
 @media (max-width: 595pt) {
     
-    div.container.a4 {
+    .container.a4 {
         width: calc(484 / 595 * 100vw);
     }
     .row:not(section) {
