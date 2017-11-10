@@ -163,6 +163,9 @@ div {
 .column > *:not(.row) {
     display: block;
 }
+.columns {
+    flex-basis: 100%;
+}
 
 @media (max-width: 595pt) {
     
@@ -191,7 +194,6 @@ div {
     .columns {
         column-count: 2;
         column-gap: 24pt;
-        width: 100%;
         column-fill: auto;
     }
     .columns.balance {
