@@ -163,6 +163,12 @@ form .row, .body .row {
 .row {
     margin: calc(var(--half) * -1);
 }
+.column-gap .column:not(:empty) {
+    margin: calc(24pt / 2);
+}
+.column-gap .row {
+    margin: calc(24pt / 2 * -1);
+}
 .column {
     display: flex;
     flex-direction: column;
