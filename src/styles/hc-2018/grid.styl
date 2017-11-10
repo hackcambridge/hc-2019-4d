@@ -180,6 +180,10 @@ form.unit.row, .content.unit.row {
     margin: calc(var(--gutter) / 2 * -1);
 }
 
+.unit.column.grows:not(:empty) {
+    flex-grow: 1;
+}
+
 @media (max-width: 595pt) {
     
     .container.a4 {
