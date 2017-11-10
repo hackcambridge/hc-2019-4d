@@ -452,8 +452,8 @@ input[type="submit"]:active, button:active{
     
     /* Half-row margins between container children */
     
-    .container > *:not(:first-child) {
-        margin-top: var(--half);
+    div:not(.content) > *:not(:empty) + .row:not(:first-child), div:not(.content) > *:not(:empty) + .column:not(:first-child) {
+        margin-top: 0;
     }
     
     /* Minimum image size */
