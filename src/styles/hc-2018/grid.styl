@@ -177,7 +177,10 @@ form .row, .body .row {
     flex-basis: 100%;
 }
 
-form > .column:not(:empty), .content > * {
+form > .column:not(:empty) {
+    margin: calc(var(--gutter) / 2);
+}
+.content > * {
     margin: calc(var(--gutter) / 2);
 }
 form.unit.row, .content.unit.row {
