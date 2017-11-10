@@ -196,10 +196,12 @@ form.unit.row, .content.unit.row {
     .row:not(section) {
         flex-direction: column;
     }
-    div.row:not(:first-child) {
-        margin-top: 0;
+    .column:not(:empty), .columns:not(:empty) {
+        margin: calc(var(--half) / 2);
     }
-    
+    .row {
+        margin: calc(var(--half) / 2 * -1);
+    }
 }
 
 
