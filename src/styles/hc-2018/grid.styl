@@ -151,7 +151,6 @@ div {
     flex-direction: row;
     flex-wrap: wrap;
 }
-
 form .row, .body .row {
     display: block;
 }
@@ -221,7 +220,7 @@ form.unit.row, .content.unit.row {
     // Columns
     .column {
         flex-grow: 0;
-    }    
+    }
     .column:empty {
         margin: var(--half);
     }
@@ -235,7 +234,7 @@ form.unit.row, .content.unit.row {
     }
     .unit.column.grows {
         flex-grow: 1;
-    }
+        max-width: var(--second-base);
     }
 
 }
