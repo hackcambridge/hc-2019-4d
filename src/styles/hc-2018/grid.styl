@@ -228,6 +228,10 @@ form.unit.row, .content.unit.row {
     .unit.column {
         flex-basis: var(--base);
         flex-shrink: 0;
+        min-width: min-content;
+    }
+    .unit.column.fit {
+        min-width: max-content;
     }
     .unit.column.grows {
         flex-grow: 1;
