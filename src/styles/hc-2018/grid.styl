@@ -1,7 +1,8 @@
-/* Variables */
-
+// Variables
 :root {
+    // User-defined
     --one: 57pt;
+    // Calculated
     --two: calc(var(--one) * 2);
     --three: calc(var(--one) * 3);
     --four: calc(var(--one) * 4);
@@ -19,16 +20,16 @@
     --half: calc(var(--one) / 2);
 }
 
-/* Reset margins and padding */
+// Default unit values
 
+// Reset margins and padding
 div {
     margin: 0;
     padding: 0;
 }
 
-/* Container */
-
 div.container {
+// Containers
     display: flex;
     flex-direction: column;
 }
@@ -43,8 +44,7 @@ div.container.width {
     margin: 0 var(--one);
 }
 
-/* Basic grid */
-
+// Basic grid
 .row:not(section) {
     display: flex;
     flex-direction: row;
@@ -242,8 +242,7 @@ div.container.width {
         height: calc(var(--thirteen) + var(--half));
     }
     
-    /* Columns */
-    
+    // Columns
     .column {
         flex-grow: 0;
     }    
