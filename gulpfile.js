@@ -11,9 +11,10 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
-const eslint = require('gulp-eslint');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
+
+const eslint = prod ? null : require('gulp-eslint');
 
 console.log(argv);
 
@@ -87,19 +88,17 @@ gulp.task('assets', () => {
 });
 
 gulp.task('lint', () => {
-  return gulp.src(['**.js', '!node_modules/**', '!assets/dist/**.js'])
+  return gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
 gulp.task('rev', () => {
-  let rev = new $.revAll();
-
   return gulp.src('assets/dist/**')
-    .pipe(rev.revision())
+    .pipe($.revAll.revision())
     .pipe(gulp.dest('assets/dist'))
-    .pipe(rev.manifestFile())
+    .pipe($.revAll.manifestFile())
     .pipe(gulp.dest('assets/dist'));
 });
 

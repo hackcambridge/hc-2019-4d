@@ -1,14 +1,37 @@
 {% extends 'default.html' %}
-{% set title = 'Apply for Hack Cambridge' %}
-{% block pageHeading %}Apply{% endblock %}
+{% set title = 'Application' %}
+{% set footer = true %}
+{% block pageHeading %}Application{% endblock %}
 {% block pageContent %}
-<div class="content-wrapper-center">
-  <h2>Help us get to know you a little better, {{ user.firstName }}</h2>
+<div class="one unit row">
+    <div class="unit column grows">
+        <div>
+            Hey {{ user.firstName }}, thanks for choosing to apply.
+            <br>
+            We’d like to get to know you a bit better.
+        </div>    
+    </div>
 </div>
-<form class="apply-form" method="POST" enctype="multipart/form-data">
-  <div class="form-content">
-    {{ formHtml|safe }}
-  </div>
-  <button type="submit" class="button submit-button">Submit</button>
-</form>
+{% endblock %}
+{% block extraSections %}
+<section>
+    <div class="container a4">
+        <div class="unit row">
+            <form class="apply-form" method="POST" enctype="multipart/form-data">
+                <div class="form-content">
+                    <div class="unit column grows">
+                        {{ formHtml|safe }}
+                        <div class="one unit row">
+                            <div class="unit column grows">
+                                <div>
+                                    <button type="submit" class="button submit-button">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

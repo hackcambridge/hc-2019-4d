@@ -1,38 +1,66 @@
 {% extends 'ternary-base.html' %}
 {% block content %}
-{#
-  if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
-#}
-{% if user.firstName %}
-  <header class="logged-in clearfix">
-    <span class="long-text">Logged in as</span> {{ user.firstName }} {{ user.lastName }} &nbsp; <a href="/apply/logout">Logout</a>
-    {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
-    {% if not is_dashboard %}
-      <a class="float-right" href="/apply/dashboard"><span class="long-text">Go to your dashboard</span><span class="short-text">Dashboard</span> &rarr;</a>
-    {% endif %}
-  </header>
-{% endif %}
 <header class="black">
     <div class="container a4">
         <div class="two unit row">
-            <div class="three unit column">
+            <div class="two unit column">
                 <div class="two unit row">
-                    <img id="hack-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge Logo"/>
+                    <div class="unit column">
+                        <img id="hack-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge Logo"/>
+                    </div>
                 </div>
             </div>
-            <div id="intro-text" class="unit column">
+            <div id="intro-text" class="unit column grows">
                 <h2 id="hack-cambridge-wordmark">Hack Cambridge<br><span class="pixel">Ternary</span></h2>
             </div>
         </div>
     </div>
 </header>
 <main>
+    {#
+      if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
+    #}
+    {% if user.firstName %}
+        <section class="red">
+            <div class="container a4">
+                <div class="half unit row">
+                    <div class="unit column grows">
+                        <div>
+                            Hey {{ user.firstName }} {{ user.lastName }}!
+                        </div>
+                    </div>
+                </div>
+                <div class="one unit row">
+                    <div class="unit column grows">
+                        <a href="/apply/logout">Logout</a>
+                        {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+                        {% if not is_dashboard %}
+                            <a href="/apply/dashboard">Dashboard</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    {% if homeLink %}
+    <section class="home-link">
+        <div class="container a4">
+            <div class="half unit row">
+                <div class="unit column grows">
+                    <a rel="prev" href="/">Back to the homepage</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
     <section>
         <div class="container a4">
-            <div class="two unit row">
-                <h1>
-                    {% block pageHeading %}{% endblock %}
-                </h1>
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <h1>
+                        {% block pageHeading %}{% endblock %}
+                    </h1>
+                </div>
             </div>
             {% block pageContent %}
             {% endblock %}
@@ -40,15 +68,6 @@
     </section>
     {% block extraSections %}
     {% endblock %}
-    {% if homeLink %}
-    <section class="home-link">
-        <div class="container a4">
-            <div class="half unit row">
-                <a rel="prev" href="/">Back to the homepage</a> 
-            </div>
-        </div>
-    </section>
-    {% endif %}
 </main>
 {% if footer %}
 <footer>
