@@ -103,7 +103,7 @@ dashboard:
         Thanks for letting us know that you’re no longer able to attend Hack Cambridge Ternary. Your place has been opened up to somebody else.
         If you have feedback for us, we’d be glad to hear it. Just drop us an email.
       action:
-        title: team@hackcambridge.com
+        title: Send an email
         location: mailto:team@hackcambridge.com
     complete-expired:
       type: na
@@ -112,7 +112,7 @@ dashboard:
         Your invitation for Hack Cambridge Ternary has expired. Your place has been opened up to somebody else.
         If you have feedback for us, we’d be glad to hear it. Just drop us an email.
       action:
-        title: team@hackcambridge.com
+        title: Send an email
         location: mailto:team@hackcambridge.com
   further-application:
     incomplete:
