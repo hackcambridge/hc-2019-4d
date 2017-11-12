@@ -63,9 +63,10 @@ dashboard:
       type: na
       label: N/A
       content:
-        You didn’t apply as part of a team. You can [change this](/apply/team) but not for long! Applying as
-        a team means your applications will be reviewed together and either all or none of you will be invited.
-
+        You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
+      action:
+        title: Submit a team application (while you still can)
+        location: /apply/team
     wanting:
       type: success
       label: Finding
