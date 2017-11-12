@@ -98,6 +98,10 @@ section.links:hover, section.links:hover * {
     font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
     font-weight: 400;
 }
+strong, th {
+    font-family: "PxGroteskBold";
+    font-weight: normal;
+}
 .shadow {
     text-shadow: 3pt -3pt var(--accent-color);
 }
@@ -124,7 +128,7 @@ section, a, a::after, svg, input, button, .secondary {
 
 /* Fonts */
 
-html * {
+html *:not(strong):not(th) {
     font-family: "PxGroteskRegular", Helvetica, Arial, sans-serif;
 }
 h1, h2, h5, h5 * {
