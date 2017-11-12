@@ -2,6 +2,7 @@ const express = require('express');
 const { createApplicationForm } = require('js/shared/application-form');
 const { createTeamForm } = require('js/shared/team-form');
 const renderForm = require('js/shared/render-form');
+const renderTableForm = require('js/shared/render-table-form');
 const auth = require('js/server/auth');
 const utils = require('../utils.js');
 const statuses = require('js/shared/status-constants');
@@ -253,12 +254,23 @@ function renderPageWithForm(res, path, form, errors = { }) {
   });
 }
 
+function renderPageWithTableForm(res, path, form, errors = { }) {
+  res.render(path, {
+    formHtml: form.toHTML((name, field, options = { }) => {
+      if (errors.hasOwnProperty(name)) {
+        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+      }
+      return renderTableForm(name, field, options);
+    })
+  });
+}
+
 function renderApplyPageWithForm(res, form, errors = { }) {
   renderPageWithForm(res, 'apply/form.html', form, errors);
 }
 
 function renderTeamPageWithForm(res, form, errors = { }) {
-  renderPageWithForm(res, 'apply/team.html', form, errors);
+  renderPageWithTableForm(res, 'apply/team.html', form, errors);
 }
 
 /**
