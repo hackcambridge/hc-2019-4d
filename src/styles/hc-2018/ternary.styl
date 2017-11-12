@@ -227,8 +227,8 @@ button {
 p, *:not(h5) a {
     line-height: 1.4;
 }
-p:not(:last-child) {
-    margin-bottom: 10pt;
+:not(h4) + p:not(:first-child), :not(h4) + ul:not(:first-child) {
+    margin-top: 10pt;
 }
 li:not(:last-child) {
     margin-bottom: 6pt;
