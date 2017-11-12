@@ -16,9 +16,9 @@ function textField(label, maxlength, options = { }) {
 }
 
 const cssClasses = {
-  error: [ ],
-  label: [ ],
-  field: [ ],
+  error: [ 'error' ],
+  label: [ 'form-label-longform' ],
+  field: [ 'form-row', 'form-row-margin' ],
 };
 
 const requiredField = validators.required('This field is required.');
