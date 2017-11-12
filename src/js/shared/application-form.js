@@ -12,6 +12,9 @@ let countryChoices = null;
 function createCountryChoices() {
   if (countryChoices == null) {
     countryChoices = {};
+    // Add an invalid placeholder so that the user doesn't accidentally miss this box.
+    // The forms package does not support placeholder HTML5 attributes, so the validation enforces that this is not selected. 
+    countryChoices[''] = 'Choose a Country';
     // Add United Kingdom to the top of the country choices since it is the most likely to be applicable.
     countryChoices['GB'] = 'United Kingdom';
     countries.getData().forEach(({ code, name }) => {
