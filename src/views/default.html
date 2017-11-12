@@ -53,6 +53,7 @@
         </div>
     </section>
     {% endif %}
+    {% if not no_page_content %}
     <section>
         <div class="container a4">
             <div class="three unit row">
@@ -66,6 +67,7 @@
             {% endblock %}
         </div>
     </section>
+    {% endif %}
     {% block extraSections %}
     {% endblock %}
 </main>
