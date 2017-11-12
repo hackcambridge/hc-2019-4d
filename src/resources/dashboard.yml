@@ -71,7 +71,7 @@ dashboard:
       type: success
       label: Finding
       content:
-        You asked to be placed in a team — we’ll take it from here.
+        You asked to be placed in a team—we’ll take it from here.
     incomplete:
       type: warning
       label: Incomplete
