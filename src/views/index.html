@@ -7,56 +7,56 @@
 <main>
     <section id="splash-intro">
         <div class="container width">
-            <div class="seven unit row">
-                <div class="six unit column intro-collapses">
+            <div class="unit row">
+                <div class="two second-five unit column grows">
                     <object id="splash-hack-cambridge-logo-object" data="{{ asset('images/hc-2018/logo.svg') }}"></object>
                 </div>
-                <div id="splash-intro-content" class="seven unit column row intro-collapses">
-                    <div class="five unit column">
-                        <div class="two unit row">
-                            <div class="five unit column">
-                                <div>
-                                    <h2 id="splash-hack-cambridge-wordmark">Hack<br>Cambridge<br><span class="pixel">Ternary</span></h2>
+                <div class="five second-seven unit column grows">
+                    <div class="seven unit row">
+                        <div class="five unit column">
+                            <div class="three unit row">
+                                <div class="five unit column">
+                                    <div>
+                                        <h2 id="splash-hack-cambridge-wordmark">Hack<br>Cambridge<br><span class="pixel">Ternary</span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two half unit row">
+                                <div class="five unit column">
+                                    <h3>
+                                        Not twice, but three times.<br>Not 2D, but 3D.<br>Not binary, but ternary.
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="three half unit row">
+                                <div class="five unit column">
+                                    <div id="splash-intro-text">
+                                        <p>
+                                            In January 2018, Cambridge University’s annual hackathon will yet again bring together 300 hackers, programmers, designers and more from universities all over the world.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+                                        </p>
+                                        <p>
+                                            Join us.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="two unit row">
-                            <div class="five unit column">
-                                <h3>
-                                    Not twice, but three times.<br>Not 2D, but 3D.<br>Not binary, but ternary.
-                                </h3>
+                        <div id="intro-social" class="one second-five unit column grows">
+                            <h4>Social</h4>
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="external" href="https://www.facebook.com/hackcambridge">
+                                    {{ singleColourIcon('Facebook') }}
+                                </a>
+                                <a class="persistent row centred" rel="external" href="https://twitter.com/@hack_cambridge">
+                                    {{ singleColourIcon('Twitter') }}
+                                </a>
+                                <a class="persistent row centred" rel="external" href="https://medium.com/@HackCambridge">
+                                    {{ singleColourIcon('Medium') }}
+                                </a>
+                                <a class="persistent row centred" rel="external" href="https://www.instagram.com/hack_cambridge/">
+                                    {{ singleColourIcon('Instagram') }}
+                                </a>
                             </div>
-                        </div>
-                        <div class="two unit row">
-                            <div class="five unit column">
-                                <div id="splash-intro-text">
-                                    <p>
-                                        In January 2018, Cambridge University’s annual hackathon will yet again bring together 300 hackers, programmers, designers and more from universities all over the world.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
-                                    </p>
-                                    <p>
-                                        Join us.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="intro-social" class="one unit column">
-                        <h4>
-                            Social
-                        </h4>
-                        <div class="icons">
-                            <a class="persistent row centred" rel="external" href="https://www.facebook.com/hackcambridge">
-                                {{ singleColourIcon('Facebook') }}
-                            </a>
-                            <a class="persistent row centred" rel="external" href="https://twitter.com/@hack_cambridge">
-                                {{ singleColourIcon('Twitter') }}
-                            </a>
-                            <a class="persistent row centred" rel="external" href="https://medium.com/@HackCambridge">
-                                {{ singleColourIcon('Medium') }}
-                            </a>
-                            <a class="persistent row centred" rel="external" href="https://www.instagram.com/hack_cambridge/">
-                                {{ singleColourIcon('Instagram') }}
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
     <section id="splash-signup" class="red">
         <div class="container width">
             <div class="one half unit row">
-                <div class="six unit column intro-collapses empty"></div>
-                <div class="seven unit column intro-collapses">
-                    <div class="one unit row">
+                <div class="two second-five unit column grows"></div>
+                <div class="five second-seven unit column grows">
+                    <div class="two unit row">
                         <div class="five unit column">
                             <h5>
                                 Sign up now!<br><span class="secondary">We’ll be in touch soon.</span>
@@ -76,9 +76,9 @@
                         </div>
                     </div>
                     <div class="half unit row">
-                        <div class="five unit column">
+                        <div class="five unit column grows">
                             <form id="splash-signup-form" class="half unit persistent row signup-form" method="post" action="/api/subscribe/interested">
-                                <div class="four small unit column">
+                                <div class="four small unit column grows">
                                     <input type="email" name="email" required placeholder="Enter your email address." />
                                 </div>
                                 <div class="one unit column submit">
@@ -95,8 +95,8 @@
 <footer>
     <div class="container width">
         <div class="one half unit row">
-            <div class="six unit column intro-collapses empty"></div>
-            <div class="seven unit column intro-collapses">
+            <div class="two second-five unit column grows"></div>
+            <div class="five second-seven unit column grows">
                 <div class="one half unit row">
                     <div class="five unit column">
                         {% include 'ternary-footer.html' %}

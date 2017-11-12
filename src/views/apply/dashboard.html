@@ -10,17 +10,21 @@
     {% set coachesForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
     
     {# The main status banner #}
-    <div class="one unit row">
-        <div class="status-message {{ statusMessage.message_type }}">
-            {{ statusMessage.title }}
-        <br>
-            {{ statusMessage.subline }}
+    <div class="two unit row">
+        <div class="unit column grows">
+            <div class="status-message {{ statusMessage.message_type }}">
+                {{ statusMessage.title }}
+            <br>
+                {{ statusMessage.subline }}
+            </div>
         </div>
     </div>
     {% if applicationSlug %}
         <div class="half unit row">
-            <div class="application-slug">
-                Your application ID is <span class="pixel">{{ applicationSlug }}</span>
+            <div class="unit column grows">
+                <div class="application-slug">
+                    Your application ID is <span class="pixel">{{ applicationSlug }}</span>
+                </div>
             </div>
         </div>
     {% endif %}
@@ -174,11 +178,13 @@
     {# A section for users who are yet to be invited #}
     {% if overallStatus == statuses.overall.INCOMPLETE or overallStatus == statuses.overall.IN_REVIEW %}
         {# The personal application status #}        
-        <div class="one unit row">
-            <h3>Your Application</h3>
+        <div class="one half unit row">
+            <div class="unit column grows">
+                <h3>Your Application</h3>
+            </div>
         </div>
         <div class="one unit row">
-            <div class="unit column">
+            <div class="unit column grows">
                 {{ applicationInfo.content }}
                 {% if applicationInfo.action %}
                     <br>
@@ -189,10 +195,12 @@
         {# A section to show team status and team members #}
         {% if applicationStatus == statuses.application.COMPLETE %}
             <div class="one unit row">
-                <h3>Team Application</h3>
+                <div class="unit column grows">
+                    <h3>Team Application</h3>
+                </div>
             </div>
             <div class="one unit row">
-                <div class="unit column">
+                <div class="unit column grows">
                     {{ teamApplicationInfo.content }}
                     {% if teamApplicationInfo.action %}
                         <br>
@@ -202,17 +210,21 @@
             </div>
             {% if teamApplicationStatus == statuses.teamApplication.COMPLETE %}
                 <div class="one half unit row">
-                {# Show a list of teammates #}
-                    <ul class="team-list">
-                        {% for hacker in teamMembers %}
-                            <li>
-                                {{ hacker.firstName }} {{ hacker.lastName }}
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <div class="unit column grows">
+                        {# Show a list of teammates #}
+                        <ul class="team-list">
+                            {% for hacker in teamMembers %}
+                                <li>
+                                    {{ hacker.firstName }} {{ hacker.lastName }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
                 <div class="half unit row">
-                    If you need to make changes to your team, <a href="mailto:team@hackcambridge.com">get in touch with us</a>
+                    <div class="unit column grows">
+                        If you need to make changes to your team, <a href="mailto:team@hackcambridge.com">get in touch with us</a>
+                    </div>
                 </div>
             {% endif %}
         {% endif %}

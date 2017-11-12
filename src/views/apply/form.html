@@ -4,20 +4,32 @@
 {% block pageHeading %}Application{% endblock %}
 {% block pageContent %}
 <div class="one unit row">
-    Hey {{ user.firstName }}, thanks for choosing to apply.
-    <br>
-    We’d like to get to know you a bit better.
+    <div class="unit column grows">
+        <div>
+            Hey {{ user.firstName }}, thanks for choosing to apply.
+            <br>
+            We’d like to get to know you a bit better.
+        </div>    
+    </div>
 </div>
 {% endblock %}
 {% block extraSections %}
 <section>
     <div class="container a4">
-        <div class="fourteen unit row">
+        <div class="unit row">
             <form class="apply-form" method="POST" enctype="multipart/form-data">
                 <div class="form-content">
-                    {{ formHtml|safe }}
+                    <div class="unit column grows">
+                        {{ formHtml|safe }}
+                        <div class="one unit row">
+                            <div class="unit column grows">
+                                <div>
+                                    <button type="submit" class="button submit-button">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="button submit-button">Submit</button>
             </form>
         </div>
     </div>

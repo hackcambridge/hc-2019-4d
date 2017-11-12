@@ -68,7 +68,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         fileSizeValidator(exports.maxFieldSize, 'Your CV must be no larger than 2 MB.'),
       ] : [],
       cssClasses,
-      row_units: 'two',
+      row_units: 'three',
     }),
     countryTravellingFrom: fields.string({
       widget: widgets.select(),
@@ -77,7 +77,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       required: requiredField,
       choices: createCountryChoices(),
       cssClasses,
-      row_units: 'two',
+      row_units: 'three',
     }),
     development: fields.array({
       label: 'What role or roles in a team would you be interested in?',
@@ -100,20 +100,20 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         },
       ],
       cssClasses,
-      row_units: 'two half',
+      row_units: 'three half',
     }),
     learn: textareaField('What do you want to get out of this event?', 500, {
       required: requiredField,
-      row_units: 'two',
+      row_units: 'three',
     }),
     interests: textareaField('What are you interested in?', 500, {
       note: 'Mention anything you want—it doesn’t have to be technology-related!',
       required: requiredField,
-      row_units: 'two half',
+      row_units: 'three half',
     }),
     accomplishment: textareaField('Tell us about a recent accomplishment you’re proud of.', 500, {
       required: requiredField,
-      row_units: 'two',
+      row_units: 'three',
     }),
     links: textareaField('Are there any links you’d like to share so we can get to know you better?', 500, { 
       note: 'For example GitHub, LinkedIn or your personal website. Put each link on a new line.', 
@@ -138,7 +138,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
           callback();
         }
       ],
-      row_units: 'two half',
+      row_units: 'three half',
     }),
     team: fields.array({
       label: 'Teams',
@@ -158,7 +158,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         },
       ],
       cssClasses,
-      row_units: 'three',
+      row_units: 'four',
     }),
     confirmations: fields.array({
       label: 'Student status confirmation and terms and conditions',
