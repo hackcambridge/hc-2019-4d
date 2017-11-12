@@ -31,21 +31,53 @@
       
     {# Section for info about RSVPs #}
     {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
-        <section class="dashboard-section rsvp-section">
-        <span class="{{ rsvpInfo.type }} float-right">{{ rsvpInfo.label }}</span>
-        <h3>RSVP</h3>
-        <p>{{ rsvpInfo.content }}</p>
-        
-        {# The RSVP form for incomplete RSVPs #}
-        {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
+        <section>
             <form method="POST" action="/apply/rsvp">
-                <input type="checkbox" id="rsvp-no-first-click">
-                <label for="rsvp-no-first-click" class="secondary-button">No thanks</label>
-                <button name="rsvp" class="button" value="RSVP_YES">I'll be there!</button>
-                <br>
-                <div id="decline-confirm">
-                    One more click to confirm that you'd like to <strong>decline</strong> your invitation:<br><br>
-                    <button name="rsvp" class="button" value="RSVP_NO">I'm sure</button>
+                <div class="container a4">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>RSVP</h3>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="unit column grows">
+                            <h4><span class="pixel">{{ rsvpInfo.label }}</span></h4>
+                            <p>{{ rsvpInfo.content }}</p>
+                        </div>
+                    </div>
+                    {# The RSVP form for incomplete RSVPs #}
+                    {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
+                        <div class="two unit row">
+                            <div class="unit column grows">
+                                <div>
+                                    <input id="rsvp-yes" type="radio" name="rsvp" value="RSVP_YES" required="true" />
+                                    <label for="rsvp-yes">I’ll be attending Hack Cambridge.</label>
+                                </div>
+                                <div>
+                                    <input id="rsvp-no" type="radio" name="rsvp" value="RSVP_NO" required="true" />
+                                    <label for="rsvp-no">I <strong>won’t</strong> be attending Hack Cambridge.</label>
+                                </div>
+                                <div>
+                                    <input id="rsvp-confirmation" type="checkbox" name="confirmation" value="confirmation" required="true" />
+                                    <label for="rsvp-confirmation">I confirm my response.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one half unit row">
+                            <div class="unit column grows">
+                                <div>
+                                    <button type="submit" name="submit">Submit!</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if rsvpInfo.action %}
+                        <div class="one half unit row">
+                            <div class="unit column grows">
+                                <a href="{{ rsvpInfo.action.location }}">{{ rsvpInfo.action.title }}</a>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </form>
         {% endif %}
