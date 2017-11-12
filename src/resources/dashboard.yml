@@ -13,7 +13,7 @@ dashboard:
     in-review:
       message_type: success
       title: Your application is being reviewed…
-      subline: Sit back and relax — we’ll get back to you as soon as we can.
+      subline: Sit back and relax—we’ll get back to you as soon as we can.
 
     invited-awaiting-rsvp:
       message_type: success
