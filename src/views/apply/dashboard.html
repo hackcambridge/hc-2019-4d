@@ -4,11 +4,7 @@
 {% set is_dashboard = true %}
 {% block pageHeading %}Dashboard{% endblock %}
 {% block pageContent %}
-    
-    {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSd1UuxOrLQcv2r74UGniJJjyd9h1pfWHBOZsNZPasMSUabBoQ/viewform" %}
-    {% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScLDioi-z-w0Iyn5HZq-B-dFhrbkEGI7Utjfpvh5ZuFjt9VdA/viewform" %}
-    {% set coachesForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
-    
+
     {# The main status banner #}
     <div class="two unit row">
         <div class="unit column grows">
@@ -28,7 +24,15 @@
             </div>
         </div>
     {% endif %}
-      
+    
+{% endblock %}
+
+{% block extraSections %}
+
+    {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSd1UuxOrLQcv2r74UGniJJjyd9h1pfWHBOZsNZPasMSUabBoQ/viewform" %}
+    {% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScLDioi-z-w0Iyn5HZq-B-dFhrbkEGI7Utjfpvh5ZuFjt9VdA/viewform" %}
+    {% set coachesForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
+
     {# Section for info about RSVPs #}
     {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
         <section>
