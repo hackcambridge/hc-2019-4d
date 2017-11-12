@@ -56,7 +56,7 @@ dashboard:
     complete:
       type: success
       label: Complete
-      content: You’ve filled out your application. You’re on top _form_!
+      content: You’ve filled out your application. You’re on top form!
 
   team-application:
     na:
