@@ -4,7 +4,7 @@ function textField(label, maxlength, options = { }) {
   return fields.string(Object.assign({ }, options, {
     widget: widgets.text({
       maxlength,
-      classes: [ 'form-control-shortform' ],
+      classes: [ 'pixel' ],
       placeholder: options.placeholder,
     }),
     label,
@@ -16,8 +16,8 @@ function textField(label, maxlength, options = { }) {
 }
 
 const cssClasses = {
-  error: [ 'form-error-message' ],
-  label: [ 'form-label-shortform' ],
+  error: [ 'error' ],
+  label: [ 'form-label-longform' ],
   field: [ 'form-row', 'form-row-margin' ],
 };
 
@@ -34,9 +34,9 @@ exports.createTeamForm = function createTeamForm(defaults = { }) {
     defaults[def] = { value: defaults[def] };
   }
   return createForm({
-    memberB: textField('Member B application ID:', 256, Object.assign({ required: requiredField }, defaults.memberB)),
-    memberC: textField('Member C application ID:', 256, defaults.memberC),
-    memberD: textField('Member D application ID:', 256, defaults.memberD),
+    memberB: textField('B', 256, Object.assign({ required: requiredField, placeholder: 'Enter the Application ID' }, defaults.memberB)),
+    memberC: textField('C', 256, Object.assign({ placeholder: 'Enter the Application ID' }, defaults.memberC)),
+    memberD: textField('D', 256, Object.assign({ placeholder: 'Enter the Application ID' }, defaults.memberD)),
   }, {
     validatePastFirstError: true,
   });

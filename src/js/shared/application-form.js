@@ -28,7 +28,7 @@ function createCountryChoices() {
 exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
 
 const cssClasses = {
-  error: [ 'form-error-message' ],
+  error: [ 'error' ],
   label: [ 'form-label-longform' ],
   field: [ 'form-row', 'form-row-margin' ],
 };
@@ -100,23 +100,25 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         },
       ],
       cssClasses,
-      row_units: 'three half',
+      row_units: 'four',
     }),
     learn: textareaField('What do you want to get out of this event?', 500, {
+      note: '<span class="pixel">500 characters or less.</span>',
       required: requiredField,
-      row_units: 'three',
+      row_units: 'four',
     }),
     interests: textareaField('What are you interested in?', 500, {
-      note: 'Mention anything you want—it doesn’t have to be technology-related!',
+      note: 'Mention anything you want—it doesn’t have to be technology-related! <span class="pixel">500 characters or less.</span>',
       required: requiredField,
-      row_units: 'three half',
+      row_units: 'four',
     }),
     accomplishment: textareaField('Tell us about a recent accomplishment you’re proud of.', 500, {
+      note: '<span class="pixel">500 characters or less.</span>',
       required: requiredField,
-      row_units: 'three',
+      row_units: 'four',
     }),
     links: textareaField('Are there any links you’d like to share so we can get to know you better?', 500, { 
-      note: 'For example GitHub, LinkedIn or your personal website. Put each link on a new line.', 
+      note: 'For example GitHub, LinkedIn or your website. Put each link on a new line. <span class="pixel">500 characters or less.</span>', 
       placeholder: 'https://github.com/hackcambridge',
       validators: [
         (form, field, callback) => {
@@ -138,7 +140,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
           callback();
         }
       ],
-      row_units: 'three half',
+      row_units: 'four',
     }),
     team: fields.array({
       label: 'Teams',
@@ -158,7 +160,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         },
       ],
       cssClasses,
-      row_units: 'four',
+      row_units: 'four half',
     }),
     confirmations: fields.array({
       label: 'Student status confirmation and terms and conditions',
@@ -178,7 +180,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
         },
       ],
       cssClasses,
-      row_units: 'four',
+      row_units: 'four half',
     }),
   }, {
     validatePastFirstError: true,

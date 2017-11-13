@@ -1,21 +1,56 @@
 {% extends 'default.html' %}
-{% set title = 'Apply for Hack Cambridge' %}
-{% block pageHeading %}Form a Team{% endblock %}
-{% block pageContent %}
-<center>
-  <h2>Know who you're hacking with?</h2>
-  Enter your teammates' application IDs to confirm your team
-</center>
+{% set title = 'Team Application' %}
+{% set footer = true %}
+{% set no_page_content = true %}
+{% block extraSections %}
 <form class="team-form" method="POST" enctype="multipart/form-data">
-  <div class="field form-row form-row-margin">
-    <label for="id_memberA" class="form-label-shortform">Member A (that's you!) application ID:</label>
-    <input type="text" disabled name="memberA" id="id_memberA" class="form-control-shortform" maxlength="256" value="{{ applicationSlug }}"/>
-  </div>
-  <div class="form-content">
-    {{ formHtml|safe }}
-  </div>
-  <button type="submit" class="button submit-button">Submit</button>
-  <a href="dashboard"><button type="button" class="button secondary-button float-right">I'll sort this out later</button></a>
+    <section>
+        <div class="container a4">
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <h1>
+                        Team Application
+                    </h1>
+                </div>
+            </div>
+            <div class="one half unit row">
+                <div class="unit column grows">
+                    <p>
+                        Enter your teammates' application IDs to confirm your team.
+                    </p>
+                </div>
+            </div>
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <table>
+                        <tr>
+                            <th class="one unit">Member</th>
+                            <th>Application ID</th>
+                        </tr>
+                        <tr>
+                            <td>A</td>
+                            <td><span class="pixel">{{ applicationSlug }}</span></td>
+                        </tr>
+                        {{ formHtml|safe }}
+                    </table>
+                </div>
+            </div>
+            <div class="one half unit row">
+                <div class="unit column grows">
+                    <div>
+                        <button type="submit" class="button submit-button">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <p>
+                        You can do this later if you wish.
+                    </p>
+                    <a href="dashboard">Back to the dashboard</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </form>
-
 {% endblock %}

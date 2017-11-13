@@ -23,14 +23,14 @@
     {% if user.firstName %}
         <section class="red">
             <div class="container a4">
-                <div class="half unit row">
+                <div class="one half unit row">
                     <div class="unit column grows">
                         <div>
                             Hey {{ user.firstName }} {{ user.lastName }}!
                         </div>
                     </div>
                 </div>
-                <div class="one unit row">
+                <div class="one half unit row">
                     <div class="unit column grows">
                         <a href="/apply/logout">Logout</a>
                         {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
@@ -53,6 +53,7 @@
         </div>
     </section>
     {% endif %}
+    {% if not no_page_content %}
     <section>
         <div class="container a4">
             <div class="three unit row">
@@ -66,13 +67,14 @@
             {% endblock %}
         </div>
     </section>
+    {% endif %}
     {% block extraSections %}
     {% endblock %}
 </main>
 {% if footer %}
 <footer>
     <div class="container a4">
-        <div class="one half unit row">
+        <div class="two half unit row">
             <div class="column">
                 {% include 'ternary-footer.html' %}
             </div>
