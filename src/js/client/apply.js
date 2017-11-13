@@ -102,7 +102,7 @@ function processForm($form, createForm) {
       const field = form.fields[fieldName];
 
       $row.removeClass('error');
-      $row.find('.form-error-message').remove();
+      $row.find('.error_msg').remove();
 
       if (field.error != null) {
         if (!firstErrorFound) {
