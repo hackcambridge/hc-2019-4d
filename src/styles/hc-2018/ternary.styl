@@ -76,7 +76,7 @@ div.unavailable .label {
     z-index: 1;
     display: block;
 }
-div.unavailable .label {
+div.unavailable .label, .error {
     color: var(--accent-color);
 }
 
@@ -94,9 +94,13 @@ section.links:hover, section.links:hover * {
 .secondary {
     color: var(--accent-color);
 }
-.pixel, .label {
+.pixel:not(:placeholder-shown), .label {
     font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
     font-weight: 400;
+}
+strong, th {
+    font-family: "PxGroteskBold";
+    font-weight: normal;
 }
 .shadow {
     text-shadow: 3pt -3pt var(--accent-color);
@@ -124,7 +128,7 @@ section, a, a::after, svg, input, button, .secondary {
 
 /* Fonts */
 
-html * {
+html *:not(strong):not(h1):not(h2):not(h3):not(h5):not(span):not(a) {
     font-family: "PxGroteskRegular", Helvetica, Arial, sans-serif;
 }
 h1, h2, h5, h5 * {
@@ -177,6 +181,12 @@ h5, h5 span {
 p {
     font-size: 11pt;
 }
+th {
+    font-size: 11pt;
+}
+td {
+    font-size: 11pt;
+}
 label {
     font-size: 11pt;
 }
@@ -192,7 +202,7 @@ textarea {
     font-size: 11pt;
     padding: 3pt;
 }
-*:not(h5) a {
+*:not(span) > a {
     font-size: 11pt;
 }
 input {
@@ -217,7 +227,10 @@ button {
 p, *:not(h5) a {
     line-height: 1.4;
 }
-p:not(:last-child) {
+:not(h4):not(p) + p:not(:first-child), :not(h4):not(ul) + ul:not(:first-child) {
+    margin-top: 10pt;
+}
+p:not(:last-child), ul:not(:last-child) {
     margin-bottom: 10pt;
 }
 li:not(:last-child) {
@@ -326,6 +339,17 @@ section.image .wrapper {
     background-size: cover;
 }
 
+table {
+    width: 100%;
+}
+th {
+    text-align: left;
+}
+table, th, td {
+    padding: 0;
+    -webkit-border-horizontal-spacing: 0;
+    -webkit-border-vertical-spacing: 0;
+}
 /* Input */
 
 input, button {
@@ -339,7 +363,7 @@ input, button {
     color: var(--secondary-color);
 }
 
-input[type="email"] {
+input[type="email"], input[type="text"] {
     border-bottom: 1pt solid var(--secondary-color);
     width: 100%;
 }
