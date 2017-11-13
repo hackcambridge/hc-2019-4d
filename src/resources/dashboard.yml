@@ -65,7 +65,7 @@ dashboard:
       content:
         You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
       action:
-        title: Submit a team application (while you still can)
+        title: Submit a team application before the end of November
         location: /apply/team
     wanting:
       type: success
