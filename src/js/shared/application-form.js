@@ -123,7 +123,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       validators: [
         (form, field, callback) => {
           if (field.data) {
-            const links = field.data.split('\n');
+            const links = field.data.split(/\r?\n/);
             for (const link of links) {
               const isValidURL = validator.isURL(link, {
                 allow_underscores: true,
