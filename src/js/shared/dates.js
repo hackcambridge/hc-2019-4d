@@ -1,7 +1,7 @@
 const moment = require('moment');
 
 function getHackathonStartDate() {
-  return moment('2018-01-19');
+  return moment('2018-01-20');
 }
 
 function getHackathonEndDate() {
