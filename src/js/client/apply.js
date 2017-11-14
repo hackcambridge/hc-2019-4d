@@ -77,7 +77,7 @@ function disallowAmbiguousAnswersProactively($form) {
     }
   });
 
-  const $teamFields = $form.find('input[id=team_team_apply], input[id=team_team_placement]');
+  const $teamFields = $form.find('input[id=id_team_team_apply], input[id=id_team_team_placement]');
 
   $teamFields.change(function () {
     uncheckElements($teamFields.not(this));
