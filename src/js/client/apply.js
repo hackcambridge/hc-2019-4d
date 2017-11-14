@@ -111,7 +111,12 @@ function processForm($form, createForm) {
           }, 500);
           firstErrorFound = true;
         }
-        $row.find('.form-control-note').after(field.errorHTML());
+        if ($row.find('.form-control-note').length) {
+          $row.find('.form-control-note').after(field.errorHTML());
+        } else {
+          $row.prepend(field.errorHTML());
+        }
+        
         $row.addClass('error');
       }
     });
