@@ -8,12 +8,6 @@
     --min-width: var(--two);
 }
 
-@media (max-width: 595pt) {
-    #splash-hack-cambridge-logo-object {
-        max-width: var(--two);
-    }
-}
-
 #mlh-trust-badge {
     display: block;
     max-width: 100px;
@@ -30,6 +24,18 @@
 }
 #mlh-trust-badge::after {
     display: none;
+}
+
+@media (max-width: 595pt) {
+    #splash-hack-cambridge-logo-object {
+        max-width: var(--two);
+    }
+}
+
+@media (min-width: 1063px) and (max-width: 1280px) {
+    #mlh-trust-badge {
+        left: var(--one);
+    }
 }
 
 @media (max-width: 342pt) {
