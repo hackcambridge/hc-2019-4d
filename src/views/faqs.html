@@ -1,0 +1,20 @@
+{% extends 'ternary-base.html' %}
+{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% set title = 'Ternary' %}
+{% set description = 'Hack Cambridge Ternary 2018' %}
+{% set keywords = 'hack,Cambridge,ternary 2018' %}
+{% block content %}
+<section class="landing-faqs-section" id ="faq">
+    <div class="content-wrapper">
+      <h2 class="grand-heading">FAQs</h2>
+      <div class="faqs-listing">
+        {% for faq in faqs %}
+        <div class="faq-element">
+          <h3>{{ faq.question }}</h3>
+          {{ faq.answer | safe }}
+        </div>
+       {% endfor %}
+     </div>
+    </div>
+  </section>
+  {% endblock %}
