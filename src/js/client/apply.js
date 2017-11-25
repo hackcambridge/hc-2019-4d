@@ -103,7 +103,7 @@ function processForm($form, createForm) {
       const field = form.fields[fieldName];
 
       $row.removeClass('error');
-      $row.find('.error_msg').remove();
+      $row.find('td.error').remove();
 
       if (field.error != null) {
         if (!firstErrorFound) {
@@ -112,10 +112,10 @@ function processForm($form, createForm) {
           }, 500);
           firstErrorFound = true;
         }
-        if ($row.find('.form-control-note').length) {
+        if ($row.find('.r').length) {
           $row.find('.form-control-note').after(field.errorHTML());
         } else {
-          $row.after(tag('td', { classes: [''] }, field.errorHTML()));
+          $row.after(tag('td', { classes: ['error'] }, field.errorHTML()));
         }
         
         $row.addClass('error');
