@@ -1,7 +1,11 @@
 const { fields, validators, widgets, create: createForm } = require('forms');
 
+function extendOptions(options, newOptions) {
+  return Object.assign({ }, options, newOptions);
+}
+
 function textField(label, maxlength, options = { }) {
-  return fields.string(Object.assign({ }, options, {
+  return fields.string(extendOptions(options, {
     widget: widgets.text({
       maxlength,
       classes: [ 'pixel' ],
@@ -34,9 +38,9 @@ exports.createTeamForm = function createTeamForm(defaults = { }) {
     defaults[def] = { value: defaults[def] };
   }
   return createForm({
-    memberB: textField('B', 256, Object.assign({ required: requiredField, placeholder: 'Enter the Application ID' }, defaults.memberB)),
-    memberC: textField('C', 256, Object.assign({ placeholder: 'Enter the Application ID' }, defaults.memberC)),
-    memberD: textField('D', 256, Object.assign({ placeholder: 'Enter the Application ID' }, defaults.memberD)),
+    memberB: textField('B', 256, extendOptions(defaults.memberB, { required: requiredField, placeholder: 'Enter the Application ID' })),
+    memberC: textField('C', 256, extendOptions(defaults.memberC, { placeholder: 'Enter the Application ID' })),
+    memberD: textField('D', 256, extendOptions(defaults.memberD, { placeholder: 'Enter the Application ID' })),
   }, {
     validatePastFirstError: true,
   });
