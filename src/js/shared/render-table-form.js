@@ -11,7 +11,6 @@ module.exports = function (name, field, options = { }) {
   const innerContent = isMultipleField(field.widget.type) ? tag('td', { }, widgetHtml) : widgetHtml;
   const tableData = tag('td', { classes: [ field.classes().join(' '), ''], required: !!field.required }, [
     field.note ? tag('p', { classes: ['form-control-note'] }, field.note) : '',
-    field.errorHTML(),
     innerContent,
   ].join(''));
   return tag('tr', { classes: [ field.classes().join(' '), ''], required: !!field.required }, [

@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const { createApplicationForm } = require('js/shared/application-form');
 const { createTeamForm } = require('js/shared/team-form');
+const tag = require('forms/lib/tag');
 
 /**
  * jQuery's .serializeArray does not give us file input values. While we can't get useful
@@ -114,7 +115,7 @@ function processForm($form, createForm) {
         if ($row.find('.form-control-note').length) {
           $row.find('.form-control-note').after(field.errorHTML());
         } else {
-          $row.prepend(field.errorHTML());
+          $row.after(tag('td', { classes: [''] }, field.errorHTML()));
         }
         
         $row.addClass('error');
