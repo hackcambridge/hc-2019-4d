@@ -77,7 +77,7 @@ function disallowAmbiguousAnswersProactively($form) {
     }
   });
 
-  const $teamFields = $form.find('input[name=team_apply], input[name=team_placement]');
+  const $teamFields = $form.find('input[id=id_team_team_apply], input[id=id_team_team_placement]');
 
   $teamFields.change(function () {
     uncheckElements($teamFields.not(this));
@@ -102,7 +102,7 @@ function processForm($form, createForm) {
       const field = form.fields[fieldName];
 
       $row.removeClass('error');
-      $row.find('.form-error-message').remove();
+      $row.find('.error_msg').remove();
 
       if (field.error != null) {
         if (!firstErrorFound) {

@@ -13,7 +13,7 @@ dashboard:
     in-review:
       message_type: success
       title: Your application is being reviewed…
-      subline: Sit back and relax — we’ll get back to you as soon as we can.
+      subline: Sit back and relax—we’ll get back to you as soon as we can.
 
     invited-awaiting-rsvp:
       message_type: success
@@ -56,21 +56,22 @@ dashboard:
     complete:
       type: success
       label: Complete
-      content: You’ve filled out your application. You’re on top _form_!
+      content: You’ve filled out your application. You’re on top form!
 
   team-application:
     na:
       type: na
       label: N/A
       content:
-        You didn’t apply as part of a team. You can [change this](/apply/team) but not for long! Applying as
-        a team means your applications will be reviewed together and either all or none of you will be invited.
-
+        You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
+      action:
+        title: Submit a team application before the end of November
+        location: /apply/team
     wanting:
       type: success
       label: Finding
       content:
-        You asked to be placed in a team — we’ll take it from here.
+        You asked to be placed in a team—we’ll take it from here.
     incomplete:
       type: warning
       label: Incomplete
@@ -102,7 +103,7 @@ dashboard:
         Thanks for letting us know that you’re no longer able to attend Hack Cambridge Ternary. Your place has been opened up to somebody else.
         If you have feedback for us, we’d be glad to hear it. Just drop us an email.
       action:
-        title: team@hackcambridge.com
+        title: Send us an email
         location: mailto:team@hackcambridge.com
     complete-expired:
       type: na
@@ -111,7 +112,7 @@ dashboard:
         Your invitation for Hack Cambridge Ternary has expired. Your place has been opened up to somebody else.
         If you have feedback for us, we’d be glad to hear it. Just drop us an email.
       action:
-        title: team@hackcambridge.com
+        title: Send us an email
         location: mailto:team@hackcambridge.com
   further-application:
     incomplete:
