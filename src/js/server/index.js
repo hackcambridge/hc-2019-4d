@@ -67,6 +67,12 @@ app.get('/', (req, res) => {
   res.render('index.html');
 });
 
+app.get('/live', (req, res) => {
+  res.render('live.html', {
+    sponsors: utils.loadResource('sponsors')
+  });
+});
+
 app.get('/terms-and-conditions', (req, res) => {
   res.render('terms-and-conditions.html');
 });
