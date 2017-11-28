@@ -2,7 +2,7 @@ sponsors:
   tera:
     - name: Cambridge Consultants
       website: https://www.cambridgeconsultants.com
-      logo: cambridge-consultants.svg
+      logo: cambridge-consultants-logo.svg
       variant: wide
     - name: Improbable
       website: https://www.improbable.io
@@ -26,32 +26,32 @@ sponsors:
       variant: wide
     - name: ARM
       website: http://www.arm.com
-      logo: arm-logo.png
+      logo: arm-logo.svg
       variant: wide
     - name: Cambridge Medical Robotics
       website: http://cmedrobotics.com
-      logo: cambridge-medical-robotics-logo.png
+      logo: cambridge-medical-robotics-logo.svg
       variant: wide
     - name: Droit FinTech
       website: http://droitfintech.com
-      logo: droit-fintech-logo.png
+      logo: droit-fintech-logo.svg
       variant: wide
     - name: Facebook
       website: http://facebook.com
-      logo: facebook-logo.png
+      logo: facebook-logo.svg
       variant: wide
     - name: Featurespace
       website: https://www.featurespace.com
-      logo: featurespace-logo.png
+      logo: featurespace-logo.svg
       variant: wide
     - name: Man AHL
       website: https://www.ahl.com
-      logo: amn-ahl-logo.png
+      logo: man-ahl-logo.svg
       variant: wide
 
   kilo:
     - name: DataScope
-      website: hhttp://www.datascope.com
+      website: http://www.datascope.com
       logo: datascope-logo.svg
       variant: wide
     - name: DisplayLink
