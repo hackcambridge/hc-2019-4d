@@ -183,7 +183,7 @@ form .row, .body .row {
 form > .column:not(:empty) {
     margin: calc(var(--gutter) / 2);
 }
-.content > * {
+.content > *:not(a), .content > a > * {
     margin: calc(var(--gutter) / 2);
 }
 th, td {
