@@ -28,14 +28,14 @@ sponsors:
       website: http://www.arm.com
       logo: arm-logo.svg
       variant: wide
-    - name: Cambridge Medical Robotics
-      website: http://cmedrobotics.com
-      logo: cambridge-medical-robotics-logo.svg
-      variant: wide
-    - name: Droit FinTech
-      website: http://droitfintech.com
-      logo: droit-fintech-logo.svg
-      variant: wide
+#   - name: Cambridge Medical Robotics
+#     website: http://cmedrobotics.com
+#     logo: cambridge-medical-robotics-logo.svg
+#     variant: wide
+#   - name: Droit FinTech
+#     website: http://droitfintech.com
+#     logo: droit-fintech-logo.svg
+#     variant: wide
     - name: Facebook
       website: http://facebook.com
       logo: facebook-logo.svg
