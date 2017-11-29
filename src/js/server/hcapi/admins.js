@@ -102,6 +102,12 @@ adminsRouter.get('/:adminId/reviews/:applicationId', (req, res, next) => {
     .catch(next);
 });
 
+function getNumberOfCommittedAdmins() {
+  return Admin.count({
+    where: { lowCommittal: false }
+  });
+}
+
 adminsRouter.get('/:adminId/stats', (req, res, next) => {
   Admin
     .findById(req.params.adminId)
@@ -114,11 +120,14 @@ adminsRouter.get('/:adminId/stats', (req, res, next) => {
       return Promise.all([
         ApplicationReview.count({ where: { adminId: admin.id }}),
         HackerApplication.count(),
-        Admin.count(),
-      ]).then(([ applicationsReviewedByAdminCount, applicationCount, adminCount ]) => {
+        getNumberOfCommittedAdmins(),
+      ]).then(([ applicationsReviewedByAdminCount, applicationCount, committedAdminCount ]) => {
+        const reviewGoal = committedAdminCount == 0 ? 0 :
+          Math.ceil(applicationCount * 2 / committedAdminCount * GOAL_BOOST);
+
         res.json({
           applicationsReviewedCount: applicationsReviewedByAdminCount,
-          applicationsReviewedGoal: Math.ceil(applicationCount * 2 / adminCount * GOAL_BOOST),
+          applicationsReviewedGoal: reviewGoal,
         });
       });
     })
