@@ -32,10 +32,10 @@ sponsors:
 #     website: http://cmedrobotics.com
 #     logo: cambridge-medical-robotics-logo.svg
 #     variant: wide
-#   - name: Droit FinTech
-#     website: http://droitfintech.com
-#     logo: droit-fintech-logo.svg
-#     variant: wide
+    - name: Droit Financial Technologies
+      website: http://droitfintech.com
+      logo: droit-financial-technologies-logo.svg
+      variant: wide
     - name: Facebook
       website: http://facebook.com
       logo: facebook-logo.svg
