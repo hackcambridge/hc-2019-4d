@@ -109,19 +109,20 @@
                         </div>
                     </div>
                     {% for sponsorTierName, sponsorTier in sponsors %}
-                        {% set rowHeights = {"kilo": {"height": "four"}, "mega": {"height": "fourteen half"}, "giga": {"height": "two half"}, "tera": {"height": "three half"}} %}
                         {% if sponsorTier|length != 0 %}
                             <div class="two unit row">
-                                <div class="five unit column">
+                                <div class="unit column grows">
                                     <h4>{{ sponsorTierName | capitalize }}</h4>
                                 </div>
                             </div>
-                            <div class="{{ rowHeights[sponsorTierName] }} unit content row">
-                                {% for sponsor in sponsorTier %}
-                                    <div class="five unit column">
-                                        <a href="{{ sponsor.website }}" target="_blank"><img class="{{ sponsorTierName }}" src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/></a>
+                            <div class="{{ sponsorTier.rows }} unit persistent row">
+                                <div class="logo {{ sponsorTier.columns }} unit column grows">
+                                    <div class="unit large content column">
+                                        {% for sponsor in sponsorTier.items %}
+                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(sponsor.name, sponsorTierName) }}</a>
+                                        {% endfor %}
                                     </div>
-                                {% endfor %}
+                                </div>
                             </div>
                         {% endif %}
                     {% endfor %}
