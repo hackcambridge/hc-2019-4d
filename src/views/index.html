@@ -1,5 +1,6 @@
 {% extends 'ternary-base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% set title = 'Ternary' %}
 {% set description = 'Hack Cambridge Ternary 2018' %}
 {% set keywords = 'hack,Cambridge,ternary 2018' %}
@@ -79,6 +80,12 @@
                     <div class="half unit row">
                         <div class="five unit column grows">
                             <a href="/apply">Start or continue your application</a>
+                        <div class="one second-five unit column grows">
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="next" href="/faqs">
+                                    {{ singleColourIcon('Help') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
