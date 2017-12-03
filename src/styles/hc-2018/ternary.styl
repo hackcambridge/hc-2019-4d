@@ -435,6 +435,18 @@ input[type="submit"]:active, button:active{
     border: 1pt solid var(--secondary-color);
 }
 
+.logo.mega, .logo.kilo {
+    max-height: var(--one);
+}
+.logo.unit.column {
+    flex-basis: var(--base);
+    min-width: min-content;
+    flex-grow: 0
+}
+.logo.unit.column.grows {
+    max-width: var(--second-base);
+}
+
 #hack-cambridge-logo-object {
     height: var(--two);
 }
@@ -442,29 +454,6 @@ input[type="submit"]:active, button:active{
     font-size: 24pt;
     margin-bottom: 20pt;
 }
-
-img.kilo {
-    max-height: var(--one);
-    max-width: var(--two);
-    width: 100%;
-}
-img.mega {
-    max-height: var(--two);
-    max-width: var(--three);
-    width: 100%;
-}
-img.giga {
-    max-height: var(--three);
-    max-width: var(--four);
-    width: 100%;
-    
-}
-img.tera {
-    max-height: var(--four);
-    max-width: var(--five);
-    width: 100%;
-}
-
 /* Media queries */
 
 @media (min-width: 596pt) {
