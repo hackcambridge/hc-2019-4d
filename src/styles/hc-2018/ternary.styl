@@ -251,7 +251,7 @@ a {
     text-decoration: none;
     white-space: pre-wrap;
 }
-a::after {
+a:not(.logo)::after {
     content: " →";
     color: var(--primary-color);
 }
