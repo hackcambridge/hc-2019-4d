@@ -1,76 +1,51 @@
 sponsors:
   tera:
-    - name: QuantumBlack
-      website: http://www.quantumblack.com/
-      logo: quantumblack-logo.svg
-      variant: wide
-    - name: Microsoft
-      website: https://www.microsoft.com
-      logo: microsoft-logo.svg
-      variant: wide
-
-  giga:
-    - name: Featurespace
-      website: https://www.featurespace.co.uk/
-      logo: featurespace-logo.svg
-      variant: wide
+    items:
+      - name: Cambridge Consultants
+        website: https://www.cambridgeconsultants.com
+      - name: Improbable
+        website: https://www.improbable.io
+      - name: Microsoft
+        website: https://www.microsoft.com
+      - name: Sophos
+        website: https://www.sophos.com
+    rows: seven half
+    columns: five second-seven
+      
+# giga:
+#   items:
+#   rows: two
+#   columns: five second-six
 
   mega:
-    - name: Pusher
-      website: https://pusher.com/
-      logo: pusher-logo.svg
-      variant: wide
-    - name: Datascope Recruitment
-      website: http://www.datascope.co.uk
-      logo: datascope-logo.png
-      variant: wide
-    - name: Argon Design
-      website: http://www.argondesign.com/
-      logo: argon-design-logo.svg
-      variant: wide
-    - name: Man AHL
-      website: https://www.ahl.com/
-      logo: man-ahl-logo.svg
-      variant: wide
-    - name: Frontier
-      website: http://www.frontier.co.uk/
-      logo: frontier-logo.svg
-      variant: wide
-    - name: Origami Energy
-      website: http://www.origamienergy.com/
-      logo: origami-energy-logo.svg
-      variant: wide
-    - name: JetBrains
-      website: https://www.jetbrains.com/
-      logo: jetbrains-logo.svg
-      variant: wide
-    - name: Skyscanner
-      website: https://www.skyscanner.net/
-      logo: skyscanner-logo.svg
-      variant: wide
-    - name: Studio Gobo
-      website: http://www.studiogobo.com/
-      logo: studio-gobo-logo.svg
-      variant: wide
-    - name: ARM
-      website: http://www.arm.com/
-      logo: arm-logo.svg
-      variant: wide
+    items:
+      - name: Arista Networks
+        website: https://www.arista.com
+      - name: ARM
+        website: http://www.arm.com
+#     - name: Cambridge Medical Robotics
+#       website: http://cmedrobotics.com
+      - name: Droit Financial Technologies
+        website: http://droitfintech.com
+      - name: Facebook
+        website: http://facebook.com
+      - name: Featurespace
+        website: https://www.featurespace.com
+      - name: Man AHL
+        website: https://www.ahl.com
+      - name: J.P. Morgan
+        website: https://www.jpmorgan.com
+    rows: ten half
+    columns: three second-four
 
   kilo:
-    - name: eLife
-      website: https://elifesciences.org/labs?utm_source=HackCambridge&utm_campaign=HackCambridge
-      logo: elife-logo.svg
-      variant: wide
-    - name: Lastmile
-      website: https://golastmile.com
-      logo: lastmile-logo.svg
-      variant: wide
-    - name: mySircles
-      website: http://mysircles.com/
-      logo: mysircles-logo.svg
-      variant: wide
-    - name: Netcraft
-      website: https://www.netcraft.com/
-      logo: netcraft-logo.png
-      variant: wide
+    items:
+      - name: DataScope
+        website: http://www.datascope.com
+      - name: DisplayLink
+        website: http://www.displaylink.com
+      - name: HighRise
+        website: http://www.highrisehq.com
+    rows: four
+    columns: two second-three
+    
