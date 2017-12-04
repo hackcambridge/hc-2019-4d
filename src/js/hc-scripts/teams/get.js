@@ -1,4 +1,5 @@
 const { Hacker, HackerApplication, Team, TeamMember } = require('js/server/models');
+const { getHackerFromEmailOrApplicationSlug } = require('./utils');
 const { createHandler } = require('../utils');
 
 module.exports = {
@@ -9,29 +10,11 @@ module.exports = {
     return yargs;
   },
   handler: createHandler(({ email, applicationId }) => {
-    let userPromise = null;
-
-    if (email.includes('@')) {
-      userPromise = Hacker.findOne({
-        where: {
-          email: email
-        }
-      });
-    } else {
-      userPromise = HackerApplication.findOne({
-        where: {
-          applicationSlug: applicationId
-        },
-        include: [
-          {
-            model: Hacker,
-            required: true,
-          },
-        ]
-      }).then(hackerApplication => Promise.resolve(hackerApplication.hacker));
+    if (!email) {
+      return Promise.reject('No email or application id entered.');
     }
 
-    return userPromise.then(user => 
+    return getHackerFromEmailOrApplicationSlug(email).then(user => 
       user.getTeam().then(teamMember => {
         if (teamMember === null) {
           console.log('Hacker is not in a team.');
