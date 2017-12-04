@@ -9,15 +9,11 @@ module.exports = {
   builder(yargs) {
     return yargs;
   },
-  handler: createHandler(({ email, applicationId }) => {
-    if (!email) {
-      return Promise.reject('No email or application id entered.');
-    }
-
-    return getHackerFromEmailOrApplicationSlug(email).then(user => 
+  handler: createHandler(({ email, applicationId }) =>
+    getHackerFromEmailOrApplicationSlug(email).then(user => 
       user.getTeam().then(teamMember => {
         if (teamMember === null) {
-          console.log('Hacker is not in a team.');
+          return Promise.reject('Hacker is not in a team.');
         } else {
           const teamWithMembersPromise = Team.findOne({
             where: {
@@ -43,6 +39,6 @@ module.exports = {
           });
         }
       })
-    );
-  })
+    )
+  )
 };

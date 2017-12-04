@@ -12,7 +12,7 @@ module.exports = {
         where: { hackerId: hacker.id }
       }).then(teamMember => {
         if (teamMember !== null) {
-          console.log(`Hacker already in team ${teamMember.teamId}`);
+          return Promise.reject(`Hacker already in team ${teamMember.teamId}`);
         } else {
           return TeamMember.create({
             teamId: teamId,

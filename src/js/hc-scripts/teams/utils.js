@@ -18,7 +18,12 @@ const getHackerFromEmailOrApplicationSlug = identifier => {
           required: true,
         },
       ]
-    }).then(hackerApplication => Promise.resolve(hackerApplication.hacker));
+    }).then(hackerApplication => {
+      if (hackerApplication === null) {
+        return Promise.reject('Could not find a hacker with the specified identifier');
+      }
+      return Promise.resolve(hackerApplication.hacker);
+    });
   }
 };
 
