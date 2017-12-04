@@ -1,5 +1,6 @@
 {% extends 'ternary-base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% set title = 'Ternary' %}
 {% set description = 'Hack Cambridge Ternary 2018' %}
 {% set keywords = 'hack,Cambridge,ternary 2018' %}
@@ -66,21 +67,70 @@
     </section>
     <section id="splash-signup" class="red">
         <div class="container width">
-            <div class="two half unit row">
+            <div class="unit row">
                 <div class="two second-five unit column grows"></div>
                 <div class="five second-seven unit column grows">
                     <div class="two unit row">
                         <div class="five unit column">
-                            <h5>
-                                Applications are open!<br><span class="secondary">Submit yours now.</span>
-                            </h5>
+                            <div class="two unit row">
+                                <div class="unit column grows">
+                                    <h5>
+                                        Applications are open!<br><span class="secondary">Submit yours now.</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="one half unit row">
+                                <div class="unit column grows">
+                                    <a rel="next" href="/apply">Start or continue your application</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one second-five unit column grows">
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="next" href="/faqs">
+                                    {{ singleColourIcon('Help') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="half unit row">
-                        <div class="five unit column grows">
-                            <a href="/apply">Start or continue your application</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="splash-sponsors">
+        <div class="container width">
+            <div class="one half unit row">
+                <div class="two second-five unit column grows"></div>
+                <div class="five second-seven unit column grows">
+                    <div class="two unit row">
+                        <div class="five unit column">
+                            <h3>Sponsors</h3>
                         </div>
                     </div>
+                    <div class="two unit row">
+                        <div class="five unit column">
+                            <p>Interested in sponsoring Hack Cambridge?</p>
+                            <a href="mailto:sponsorship@hackcambridge.com">Send us an email</a>
+                        </div>
+                    </div>
+                    {% for sponsorTierName, sponsorTier in sponsors %}
+                        {% if sponsorTier|length != 0 %}
+                            <div class="two unit row">
+                                <div class="unit column grows">
+                                    <h4>{{ sponsorTierName | capitalize }}</h4>
+                                </div>
+                            </div>
+                            <div class="{{ sponsorTier.rows }} unit persistent row">
+                                <div class="logo {{ sponsorTier.columns }} unit column grows">
+                                    <div class="unit large content column">
+                                        {% for sponsor in sponsorTier.items %}
+                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(sponsor.name, sponsorTierName) }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
