@@ -227,7 +227,7 @@ button {
 p, *:not(h5) a {
     line-height: 1.4;
 }
-:not(h4):not(p) + p:not(:first-child), :not(h4):not(ul) + ul:not(:first-child) {
+:not(.content) > :not(h4):not(p) + p:not(:first-child), :not(h4):not(ul) + ul:not(:first-child) {
     margin-top: 10pt;
 }
 p:not(:last-child), ul:not(:last-child) {
@@ -249,9 +249,9 @@ li {
 a {
     color: var(--accent-color);
     text-decoration: none;
-    white-space: pre;
+    white-space: pre-wrap;
 }
-a::after {
+a:not(.logo)::after {
     content: " →";
     color: var(--primary-color);
 }
@@ -292,18 +292,10 @@ object {
 }
 
 svg.icon {
-    color: var(--red);
+    color: var(--accent-color);
     fill: currentColor;
     width: var(--half);
     height: var(--half);
-}
-
-.icons a {
-    margin: calc(var(--gutter) / 2);
-}
-
-symbol#icon {
-    height: 57pt;
 }
 
 a:hover svg.icon, a:active svg.icon {
@@ -315,11 +307,11 @@ section.black a:hover svg.icon {
 }
 
 section.red svg.icon {
-    filter: saturate(0) contrast(3);
+    filter: invert(0);
 }
 
 section.red a:hover svg.icon {
-    filter: saturate(0) contrast(3) invert(1);
+    filter: invert(1);
 }
 
 section.image .wrapper {
@@ -435,6 +427,18 @@ input[type="submit"]:active, button:active{
     border: 1pt solid var(--secondary-color);
 }
 
+.logo.mega, .logo.kilo {
+    max-height: var(--one);
+}
+.logo.unit.column {
+    flex-basis: var(--base);
+    min-width: min-content;
+    flex-grow: 0
+}
+.logo.unit.column.grows {
+    max-width: var(--second-base);
+}
+
 #hack-cambridge-logo-object {
     height: var(--two);
 }
@@ -442,7 +446,6 @@ input[type="submit"]:active, button:active{
     font-size: 24pt;
     margin-bottom: 20pt;
 }
-
 /* Media queries */
 
 @media (min-width: 596pt) {
