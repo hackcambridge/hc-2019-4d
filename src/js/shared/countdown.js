@@ -76,8 +76,8 @@ function padZero(num) {
   return chars.map((c) => `<span class="countdown-digit">${c}</span>`).join('');
 }
 
-Countdown.hackathonStart = new Date(Date.UTC(2018, 0, 20, 13, 0, 0));
-Countdown.hackathonEnd = new Date(Date.UTC(2018, 0, 21, 12, 45, 0));
+Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 0, 0));
+Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 12, 45, 0));
 
 /**
  * Predefined Countdowns
