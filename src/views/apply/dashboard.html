@@ -128,7 +128,7 @@
                 <div class="two half unit row">
                     <div class="unit column grows">
                         <p>
-                            Saturday 28th Jan 2017 (Registration opens at 9am) – Sunday 29th Jan (Closing ceremony finishes at 6pm).<br>
+                            {{ hackathonStartDate }} (Registration opens at 9am) – {{ hackathonEndDate }} (Closing ceremony finishes at 6pm).<br>
                             Times subject to change.
                         </p>
                     </div>
@@ -193,7 +193,7 @@
                 <div class="two unit row">
                     <div class="unit column grows">
                         <p>
-                            For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the 27th of January), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
+                            For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the {{ fridayBeforeHackathonDate }}), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
                             {% if overallStatus == statuses.overall.HAS_TICKET %}
                                 if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
                             </p>
