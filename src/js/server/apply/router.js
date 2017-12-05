@@ -10,6 +10,7 @@ const { Hacker, TeamMember } = require('js/server/models');
 const { rsvpToResponse } = require('js/server/attendance/logic');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
+const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
 
 const applyRouter = new express.Router();
 
@@ -220,6 +221,9 @@ function renderDashboard(req, res) {
       ticketStatus
     );
 
+    const fridayWeekday = 5;
+    const fridayBeforeHackathonDate = (getHackathonStartDate().isoWeekday() > fridayWeekday) ? getHackathonStartDate().isoWeekday(fridayWeekday) : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
+
     res.render('apply/dashboard.html', {
       applicationSlug: (application === null) ? null : application.applicationSlug,
       applicationStatus,
@@ -237,6 +241,10 @@ function renderDashboard(req, res) {
       teamMembers,
 
       applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
+
+      hackathonStartDate: getHackathonStartDate().format('dddd DDDo MMM YYYY'),
+      hackathonEndDate: getHackathonEndDate().format('dddd DDDo MMM'),
+      fridayBeforeHackathonDate: fridayBeforeHackathonDate.format('DDDo MMM'),
 
       statuses,
     });
