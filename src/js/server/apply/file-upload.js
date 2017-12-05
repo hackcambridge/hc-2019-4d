@@ -2,7 +2,7 @@ const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const crypto = require('crypto');
-const { maxFieldSize } = require('js/shared/application-form');
+const { maxFieldSize } = require('js/shared/apply/application-form');
 
 const s3 = new aws.S3(new aws.Config({
   region: 'eu-west-1'
