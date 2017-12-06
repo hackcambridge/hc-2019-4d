@@ -1,10 +1,10 @@
-import express = require('express');
-import _ = require('lodash');
-import yaml = require('js-yaml');
-import fs = require('fs');
-import moment = require('moment-timezone');
 import crypto = require('crypto');
-let markdown = require('markdown-it')({
+import express = require('express');
+import fs = require('fs');
+import yaml = require('js-yaml');
+import _ = require('lodash');
+import moment = require('moment-timezone');
+const markdown = require('markdown-it')({
   html: true,
   linkify: true,
   typographer: true
@@ -24,12 +24,11 @@ export default class Utils {
   }
 
   private static timeProperties(items, properties) {
-    items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
+    items.forEach( item => properties.forEach( prop => item[prop] = moment.tz(item[prop], 'Europe/London')));
   }
 
-
   private static markdownProperties(items, properties) {
-    items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])); }} ));
+    items.forEach( item => properties.forEach( prop => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])); }} ));
   }
 
   public static resolvePath(fromProjectRoot) {
@@ -57,13 +56,13 @@ export default class Utils {
   }
 
   private static markdownPropertiesRecursive(object, properties) {
-    for (let property in object) {
+    for (const property in object) {
       if (object.hasOwnProperty(property)) {
         if (typeof(object[property]) === 'object') {
           // recurse
           Utils.markdownPropertiesRecursive(object[property], properties);
         } else {
-          if(properties.indexOf(property) >= 0) {
+          if (properties.indexOf(property) >= 0) {
             // This is one of the properties we identified as being markdown, render it
             object[property] = nunjucks.runtime.markSafe(markdown.renderInline(object[property]));
           }
@@ -83,7 +82,7 @@ export default class Utils {
           Utils.markdownProperties(loadedResource, ['answer']);
           break;
         case 'prizes':
-          _.forOwn(loadedResource, (item) => Utils.markdownProperties(item, ['description', 'prize']));
+          _.forOwn(loadedResource, item => Utils.markdownProperties(item, ['description', 'prize']));
           break;
         case 'workshops':
         case 'api_demos':
@@ -91,8 +90,8 @@ export default class Utils {
           Utils.timeProperties(loadedResource, ['time']);
 
           loadedResource = loadedResource.sort((r1, r2) => {
-            let time1 = r1.time;
-            let time2 = r2.time;
+            const time1 = r1.time;
+            const time2 = r2.time;
 
             if (time1.isValid()) {
               if (!time2.isValid()) {
@@ -111,8 +110,8 @@ export default class Utils {
         case 'schedule':
           Utils.timeProperties(loadedResource, ['time']);
           loadedResource = {
-            saturday: loadedResource.filter((event) => event.time.date() == 28),
-            sunday: loadedResource.filter((event) => event.time.date() == 29)
+            saturday: loadedResource.filter( event => event.time.date() == 28),
+            sunday: loadedResource.filter( event => event.time.date() == 29)
           };
           break;
         case 'dashboard':
@@ -127,7 +126,7 @@ export default class Utils {
 
   public loadMarkdown(markdownName) {
     if ((!this.loadedMarkdowns[markdownName]) || (Utils.app.settings.env == 'development')) {
-      let loadedMarkdown = nunjucks.runtime.markSafe(
+      const loadedMarkdown = nunjucks.runtime.markSafe(
         markdown.render(fs.readFileSync(Utils.resolvePath(
           `src/resources/${markdownName}.md`), 'utf8'
         ))
@@ -137,8 +136,6 @@ export default class Utils {
 
     return this.loadedMarkdowns[markdownName];
   }
-
-  
 
   public getPublicId() {
     return this.publicId;

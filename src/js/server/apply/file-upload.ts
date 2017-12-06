@@ -1,8 +1,8 @@
 import aws = require('aws-sdk');
-import multer = require('multer');
-import multerS3 = require('multer-s3');
 import crypto = require('crypto');
 import express = require('express');
+import multer = require('multer');
+import multerS3 = require('multer-s3');
 const { maxFieldSize } = require('js/shared/application-form');
 
 const s3 = new aws.S3(new aws.Config({

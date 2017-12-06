@@ -10,19 +10,19 @@ import emailTemplates = require('./email-templates');
 
 /**
  * Creates a ticket for an application.
- * 
+ *
  * Sends an email and Slack invite to the user.
  */
 function createTicket(application, transaction) {
   return ApplicationTicket.create({
     hackerApplicationId: application.id,
-  }, { transaction }).then((applicationTicket) => {
+  }, { transaction }).then(applicationTicket => {
     return application.getHacker({ transaction })
       .then(hacker => {
         Promise.all([
           slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
           sendTicketEmail(hacker)
-        ]).catch((error) => {
+        ]).catch(error => {
           // Not doing anything on error as there is no way to recover
           console.error(error);
         });
@@ -76,7 +76,7 @@ function getInvitationExpiryCandidates() {
 
 /**
  * Expire an invitation and email the invitation holder about this
- * 
+ *
  * @param {Response} response - The response object to expire. Must represent an invitation
  *   and have its application with hacker hydrated.
  */
@@ -99,7 +99,7 @@ function expireInvitation(applicationResponse) {
 
 /**
  * Adds an RSVP for a particular application response.
- * 
+ *
  * If the RSVP is yes, then a ticket will be added to the application.
  */
 function rsvpToResponse(applicationResponse, rsvpStatus) {

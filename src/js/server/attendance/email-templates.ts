@@ -42,7 +42,7 @@ export function expiry({ name, daysValid }) {
 }
 
 export function teamAllocation({ team }) {
-  const teamDictionary = team.reduce((partialTeam, member) => 
+  const teamDictionary = team.reduce((partialTeam, member) =>
     Object.assign(partialTeam, teamKeyFromMember(member)),
   { }
   );

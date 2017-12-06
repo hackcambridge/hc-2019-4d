@@ -26,7 +26,7 @@ applicationsRouter.get('/:applicationId', (req, res, next) => {
         },
       ],
     })
-    .then((application) => {
+    .then(application => {
       if (!application) {
         next();
         return;
@@ -41,7 +41,7 @@ applicationsRouter.get('/:applicationId', (req, res, next) => {
 
 /**
  * Sets a response for an individual application. Expects a response type in its body:
- * 
+ *
  * ```
  * {
  *   "response": "invited"
@@ -53,7 +53,7 @@ applicationsRouter.post('/:applicationId/response', (req, res, next) => {
     where: {
       id: req.params.applicationId,
     },
-  }).then((application) => {
+  }).then(application => {
     if (!application) {
       next();
       return;
@@ -61,7 +61,7 @@ applicationsRouter.post('/:applicationId/response', (req, res, next) => {
 
     return responseLogic
       .setResponseForApplicationWithChecks(application, req.body.response)
-      .then((applicationResponse) => {
+      .then(applicationResponse => {
         res.json(applicationResponse);
       });
   }).catch(next);

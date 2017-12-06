@@ -5,28 +5,28 @@ const individualScoreQuery = fs.readFileSync('src/js/server/review/individual_sc
 
 /**
  * Takes a HackerApplication and the set of individual scores,
- * produces the validated, group averaged (if necessary) score 
+ * produces the validated, group averaged (if necessary) score
  * for that application
  *
  * Returns null if they are not 'fully scored', i.e. they are yet to recieve at least two reviews.
- * 
+ *
  * @param  {HackerApplication} application  The HackerApplication of the person to score
  * @param  {Object} individualScores        The object mapping HackerApplication IDs to individual scores
  * @param  {Object} teamScores              The object mapping Team IDs to team average scores
  * @return {Number}                         The score for this hacker, null if not fully scored
  */
 export function calculateScore(application, individualScores, teamScores) {
-  let hacker = application.hacker;
-  let teamId = hacker.Team ? hacker.Team.teamId : null;
+  const hacker = application.hacker;
+  const teamId = hacker.Team ? hacker.Team.teamId : null;
 
   if (teamId == null) {
     // The hacker isn't in a team
     // return the individual average score if it exists, null otherwise
-    let score = individualScores[application.id];
+    const score = individualScores[application.id];
     return score ? score : null;
   } else {
-    // The hacker is in a team 
-    let teamScore = teamScores[teamId];
+    // The hacker is in a team
+    const teamScore = teamScores[teamId];
     if (teamScore === undefined) {
       // Something went wrong, couldn't find the hackers team
       console.log(`Error: Could not find score for team ${teamId}`);
@@ -37,7 +37,6 @@ export function calculateScore(application, individualScores, teamScores) {
   }
 }
 
-
 /**
  * Takes a Team with associated HackerApplications and
  * the set of individual scores and calculates the teams
@@ -45,10 +44,10 @@ export function calculateScore(application, individualScores, teamScores) {
  * @return {Number}  The average score for the team, null if team has not been fully scored
  */
 export function calculateTeamAverage(team, individualScores) {
-  let teamMembers = team.teamMembers;
-  let teamMembersScores = teamMembers.map((member) => {
-    let memberApplicationId = member.hacker.hackerApplication.id;
-    let score = individualScores[memberApplicationId];
+  const teamMembers = team.teamMembers;
+  const teamMembersScores = teamMembers.map( member => {
+    const memberApplicationId = member.hacker.hackerApplication.id;
+    const score = individualScores[memberApplicationId];
     return score !== undefined ? score : null;
   });
   // Check that all the teamMembers have been scored
@@ -61,7 +60,7 @@ export function calculateTeamAverage(team, individualScores) {
  */
 function averageOrNull(values) {
   let sum = 0;
-  let length = values.length;
+  const length = values.length;
   for (let i = 0; i < length; i++) {
     if (values[i] === null) { return null; }
     sum += values[i];
@@ -146,7 +145,7 @@ export function getTeamsWithMembers() {
 }
 
 /**
- * Takes the set of individual scores and the team listings and 
+ * Takes the set of individual scores and the team listings and
  * produces a set of team average scores
  * @param  {Object} individualScores This is of the structure {'<application_id>': <score as float>, ... }
  * @param  {[Team]} teamsArr         Set of teams with the associated HackerApplication objects
@@ -172,7 +171,7 @@ export function applicationHasBeenIndividuallyScored(application): Promise<boole
 
 /**
  * Gets all applications with their true score and useful extra information.
- * 
+ *
  * @param {Function} [weightingFunction] An optional function that takes in application
  *   object and returns a new score.
  */

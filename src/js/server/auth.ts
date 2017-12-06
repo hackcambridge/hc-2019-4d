@@ -1,6 +1,6 @@
 import session     = require('client-sessions');
-import querystring = require('querystring');
 import fetch       = require('node-fetch');
+import querystring = require('querystring');
 import url         = require('url');
 
 import { Hacker } from 'js/server/models';
@@ -71,12 +71,12 @@ class Auth {
             req.user = user;
             res.locals.user = user;
           }
-  
+
           next();
         });
       return;
     }
-  
+
     next();
   }
 
@@ -86,25 +86,25 @@ class Auth {
     if (req.query.code === undefined) {
       Auth.redirectToAuthorize(req, res);
     }
-  
-    Auth.getToken(req.query.code, req).then((access_token) => {
+
+    Auth.getToken(req.query.code, req).then( access_token => {
       return Auth.getMlhUser(access_token);
-    }).then((mlhUser) => {
+    }).then( mlhUser => {
       Hacker
         .upsertAndFetchFromMlhUser(mlhUser)
         .then(user => {
           req.userSession = { id: user.id };
-  
+
           const redirectTo = req.redirectTo.url ? req.redirectTo.url : dashboard_url;
-  
+
           // For debugging
           if (!req.redirectTo) {
             console.log('No redirect URL stored');
           }
-  
+
           // Delete the redirect data as it's no longer needed
           req.redirectTo.reset();
-  
+
           // Redirect with auth
           res.redirect(redirectTo);
         }).catch(err => {
@@ -112,7 +112,7 @@ class Auth {
             res.redirect('/auth/error?code=TOO_YOUNG');
             return;
           }
-  
+
           console.log('Error logging a user in');
           next(err);
         });
@@ -126,10 +126,10 @@ class Auth {
     // Store where the user was trying to get to so we can get back there
     req.redirectTo = { url: req.originalUrl };
     console.log(`Tried to store in cookie: ${req.originalUrl}`);
-  
+
     // Construct the query string
-    let qs = querystring.stringify({
-      client_id: client_id,
+    const qs = querystring.stringify({
+      client_id,
       redirect_uri: url.resolve(req.requestedUrl, auth_callback),
       response_type: 'code',
       scope: [
@@ -142,7 +142,7 @@ class Auth {
         'event'
       ].join(' ')
     });
-  
+
     // Redirect to the authorization page on MyMLH
     res.redirect(`${authorize_url}?${qs}`);
   }
@@ -150,59 +150,59 @@ class Auth {
   // Take a code and return a promise of an access token
   private static getToken(code, req): Promise<string> {
     // Now we have an authorization code, we can exchange for an access token
-  
+
     // For debugging purposes
     console.log(code);
-  
+
     const body = {
-      client_id: client_id,
-      client_secret: client_secret,
-      code: code,
+      client_id,
+      client_secret,
+      code,
       grant_type: 'authorization_code',
       redirect_uri: url.resolve(req.requestedUrl, auth_callback),
     };
-  
+
     return fetch(token_url, {
-  
+
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'POST',
       body: JSON.stringify(body)
-  
-    }).then((response) => {
-  
+
+    }).then( response => {
+
       return response.json();
-  
-    }).then((json) => {
-  
+
+    }).then( json => {
+
       return json.access_token;
-  
+
     });
   }
 
   // Take an access_token and return a promise of user info from the MyMLH api
   private static getMlhUser(access_token: string) {
-    let query = {
-      access_token: access_token
+    const query = {
+      access_token
     };
-    let query_string = querystring.stringify(query);
-    let full_url = user_url + '?' + query_string;
+    const query_string = querystring.stringify(query);
+    const full_url = user_url + '?' + query_string;
 
     return fetch(full_url, {
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'GET',
-    }).then((response) => {
+    }).then( response => {
       return response.json();
-    }).then((json) => {
+    }).then( json => {
       if (json.hasOwnProperty('data')) {
         return json.data;
       } else {
         console.log('Bad data');
         console.log(json);
-        throw 'Couldn\'t get user data';
+        throw new Error('Couldn\'t get user data');
       }
     });
   }

@@ -17,7 +17,7 @@ adminsRouter.get('/by-email/:email', (req, res, next) => {
         email: req.params.email,
       },
     })
-    .then((admin) => {
+    .then(admin => {
       if (!admin) {
         next();
         return;
@@ -31,7 +31,7 @@ adminsRouter.get('/by-email/:email', (req, res, next) => {
 adminsRouter.get('/:adminId/next-review-application', (req, res, next) => {
   Admin
     .findById(req.params.adminId)
-    .then((admin) => {
+    .then(admin => {
       if (!admin) {
         next();
         return;
@@ -39,7 +39,7 @@ adminsRouter.get('/:adminId/next-review-application', (req, res, next) => {
 
       return reviewLogic
         .getNextApplicationToReviewForAdmin(admin)
-        .then((application) => {
+        .then(application => {
           if (!application) {
             res.json({ applicationId: null });
           } else {
@@ -79,7 +79,7 @@ adminsRouter.post('/:adminId/reviews/:applicationId', (req, res, next) => {
     }));
 
     return reviewLogic.reviewApplication(admin, hackerApplication, reviewCriterionScores)
-      .then((applicationReview) => {
+      .then(applicationReview => {
         res.json({
           applicationReview,
         });
@@ -89,7 +89,7 @@ adminsRouter.post('/:adminId/reviews/:applicationId', (req, res, next) => {
 
 adminsRouter.get('/:adminId/reviews/:applicationId', (req, res, next) => {
   reviewLogic.getApplicationReview(req.params.adminId, req.params.applicationId)
-    .then((applicationReview) => {
+    .then(applicationReview => {
       if (!applicationReview) {
         next();
         return;
@@ -111,7 +111,7 @@ function getNumberOfCommittedAdmins() {
 adminsRouter.get('/:adminId/stats', (req, res, next) => {
   Admin
     .findById(req.params.adminId)
-    .then((admin) => {
+    .then(admin => {
       if (!admin) {
         next();
         return;

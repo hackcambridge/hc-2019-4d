@@ -1,9 +1,9 @@
 const { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
 const { response } = require('js/shared/status-constants');
-import { applicationHasBeenIndividuallyScored } from './score-logic';
 import { INVITATION_VALIDITY_DURATION } from './constants';
 import emailTemplates = require('./email-templates');
+import { applicationHasBeenIndividuallyScored } from './score-logic';
 
 /**
  * Normalizes teams and non-teams into an array that either contains a
@@ -62,7 +62,7 @@ function checkApplicationsAreScored(applications) {
 
 /**
  * Sets a response for an individual application.
- * 
+ *
  * Returns a promise that resolves with whether the application is new or not
  */
 function setResponseForApplication(application, responseStatus, transaction) {
@@ -77,7 +77,7 @@ function setResponseForApplication(application, responseStatus, transaction) {
       hackerApplicationId: application.id,
     },
     transaction,
-  }).then((applicationResponse) => {
+  }).then(applicationResponse => {
     if (applicationResponse != null) {
       return applicationResponse.update(responseContent, { transaction }).then(() => false);
     }
@@ -92,7 +92,7 @@ function setResponseForApplication(application, responseStatus, transaction) {
 function setResponseForApplications(applications, responseStatus) {
   return db.transaction(transaction =>
     Promise.all(
-      applications.map(application => 
+      applications.map(application =>
         Promise
           .all([application, setResponseForApplication(application, responseStatus, transaction)])
           .then(([ application, isApplicationNew ]) => ({ application, isApplicationNew }))
@@ -103,7 +103,7 @@ function setResponseForApplications(applications, responseStatus) {
 
 function getEmailForApplicationResponse(hacker, responseStatus) {
   if (responseStatus === response.INVITED) {
-    return emailTemplates.invited({ 
+    return emailTemplates.invited({
       name: hacker.firstName,
       daysValid: INVITATION_VALIDITY_DURATION.asDays(),
     });
@@ -129,7 +129,7 @@ function sendEmailForApplicationResponse(application, responseStatus) {
 
 /**
  * Sets the response to an application while enforcing our requirements:
- * 
+ *
  * - An application must be validly scored
  * - Any applicants in the same team will receive the same status
  * - If this is the application's first response (99% of cases), an email will be sent
@@ -142,11 +142,11 @@ export function setResponseForApplicationWithChecks(originalApplication, respons
       Promise.all(
         applicationCreationStatuses
           .filter(({ isApplicationNew }) => isApplicationNew)
-          .map(({ application }) => 
+          .map(({ application }) =>
             sendEmailForApplicationResponse(application, responseStatus)
               // No way to recover on error
               .catch(console.error)
           )
       )
     ).then(() => ({ response: responseStatus }));
-};
+}

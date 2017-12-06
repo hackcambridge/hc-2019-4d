@@ -18,7 +18,7 @@ function upsertCriterionScore(applicationReviewId, reviewCriterionId, score, tra
       reviewCriterionId,
     },
     transaction,
-  }).then((reviewCriterionScore) => {
+  }).then(reviewCriterionScore => {
     if (!reviewCriterionScore) {
       return ReviewCriterionScore.create(upsertWith, { transaction });
     }
@@ -36,14 +36,14 @@ export function reviewApplication(admin, hackerApplication, reviewCriterionScore
     hackerApplicationId: hackerApplication.id,
   };
 
-  return db.transaction((transaction) => 
+  return db.transaction(transaction =>
     ApplicationReview
       .upsert(reviewKey, { transaction })
       .then(() => ApplicationReview.findOne({ where: reviewKey, transaction }))
-      .then((applicationReview) => Promise.all(
+      .then(applicationReview => Promise.all(
         reviewCriterionScores.map(({ reviewCriterionId, score }) => upsertCriterionScore(applicationReview.id, reviewCriterionId, score, transaction))
       ))
-      .then(() => ApplicationReview.findOne({ 
+      .then(() => ApplicationReview.findOne({
         where: reviewKey,
         include: [ ReviewCriterionScore ],
         transaction,
@@ -66,7 +66,7 @@ export function getApplicationReview(adminId, hackerApplicationId) {
 
 export function getNextApplicationToReviewForAdmin(admin) {
   // We use a transaction to make sure we don't assign an application without storing an assignment record
-  return db.transaction((t) => {
+  return db.transaction(t => {
     // Get an application
     return db.query(assignmentQuery, {
       // There is a placeholder in the SQL file marked ':adminId',
@@ -74,7 +74,7 @@ export function getNextApplicationToReviewForAdmin(admin) {
       replacements: {adminId: admin.id},
       type: Sequelize.QueryTypes.SELECT,
       transaction: t,
-    }).then((applicationRecords) => {
+    }).then(applicationRecords => {
       // db.query returns an array, check if it contains a result
       if (applicationRecords === undefined || applicationRecords.length == 0) {
         console.log('Couldn\'t find any applications to assign to this admin');
@@ -83,8 +83,8 @@ export function getNextApplicationToReviewForAdmin(admin) {
         // Build a HackerApplication object from the result
         const applicationRecord = applicationRecords[0];
         const hackerApplication = HackerApplication.build(applicationRecord, {raw: true, isNewRecord: false});
-        
-        // Make new assignment record 
+
+        // Make new assignment record
         return ApplicationAssignment.create({
           adminId: admin.id,
           hackerApplicationId: hackerApplication.id
@@ -93,7 +93,7 @@ export function getNextApplicationToReviewForAdmin(admin) {
         });
       }
     });
-  }).catch((err) => {
+  }).catch(err => {
     console.log('Failed to assign application to admin. Rolled back.');
     console.log(err);
   });

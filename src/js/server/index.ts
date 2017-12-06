@@ -1,15 +1,15 @@
 'use strict';
 
+import bodyParser = require('body-parser');
 import express = require('express');
 import nunjucks = require('nunjucks');
-import bodyParser = require('body-parser');
 import url = require('url');
 
-import Utils from './utils';
 import auth = require('js/server/auth');
 import errors = require('js/server/errors');
 import colors = require('js/shared/colors');
 import metadata = require('js/shared/metadata');
+import Utils from './utils';
 
 interface RequestWithRequestedUrl extends express.Request {
   requestedUrl?: url.Url;
@@ -17,7 +17,7 @@ interface RequestWithRequestedUrl extends express.Request {
 
 const app = express();
 
-let server = require('http').Server(app);
+const server = require('http').Server(app);
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
@@ -39,7 +39,7 @@ app.use((req: RequestWithRequestedUrl, res, next) => {
 });
 
 // Static file serving
-let staticOptions: any = { };
+const staticOptions: any = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
@@ -87,7 +87,7 @@ app.get('/terms', (req, res) => {
 
 app.get('/faqs', (req, res) => {
   res.render('faqs.html', {
-    faqs: utils.loadResource('faqs') 
+    faqs: utils.loadResource('faqs')
   });
 });
 

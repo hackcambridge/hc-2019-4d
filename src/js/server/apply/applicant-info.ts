@@ -25,4 +25,3 @@ export function getHackersWithUnfinishedApplications(kind) {
     )).then(hackerResults => hackerResults.filter(result => result !== null))
   );
 }
-

@@ -11,7 +11,7 @@ tokensRouter.get('/:token', (req, res, next) => {
     where: {
       token: req.params.token,
     },
-  }).then((token) => {
+  }).then(token => {
     if (!token) {
       next();
       return;

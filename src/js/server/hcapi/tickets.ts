@@ -8,7 +8,7 @@ const ticketsRouter = express.Router();
  */
 ticketsRouter.get('/', (req, res, next) => {
   getTicketsWithApplicantInfo()
-    .then((tickets) => {
+    .then(tickets => {
       res.json(tickets);
     }).catch(next);
 });

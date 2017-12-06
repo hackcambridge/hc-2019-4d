@@ -50,11 +50,11 @@ function assignApplicationsToTeams(applications) {
   let teamIndex = 0;
   const teams = createEmptyTeams(applicationsToAssign);
 
-  applications.forEach((application) => {
+  applications.forEach(application => {
     teams[teamIndex % teams.length].push(application);
     teamIndex += 1;
   });
-  
+
   return teams;
 }
 
@@ -73,7 +73,7 @@ function createTeamAssignments() {
 }
 
 function getSlackNameForEmail(slackUsers, email) {
-  for (let user of slackUsers) {
+  for (const user of slackUsers) {
     if (user.profile.email === email) {
       return user.name;
     }
@@ -104,7 +104,7 @@ function sendTeamEmail(team) {
   return sendEmail({
     to: team.map(member => member.email),
     contents: emailTemplates.teamAllocation({ team }),
-  }).catch((error) => {
+  }).catch(error => {
     console.error(`Sending team email to ${teamIdentifier} failed: `, error);
   });
 }

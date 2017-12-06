@@ -5,7 +5,7 @@ const { OauthAccessToken } = require('js/server/models');
 
 passport.use(new BearerStrategy((token, done) => {
   OauthAccessToken.getAdminFromTokenString(token)
-    .then((admin) => {
+    .then(admin => {
       if (!admin) {
         done(null, false);
         return;

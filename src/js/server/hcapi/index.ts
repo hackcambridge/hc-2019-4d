@@ -1,7 +1,7 @@
-import express = require('express');
 import bodyParser = require('body-parser');
-import errors = require('./errors');
+import express = require('express');
 import auth = require('./auth');
+import errors = require('./errors');
 
 /**
  * The hcapi is a separate express app to completely separate anything going on in our main website

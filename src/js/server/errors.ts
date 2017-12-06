@@ -14,4 +14,4 @@ export function middleware(err: ErrorWithStatus, req, res, next) {
   }
 
   res.render('error.html', locals);
-};
+}

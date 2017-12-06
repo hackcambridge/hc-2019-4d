@@ -2,7 +2,7 @@ import ErrorWithStatus from 'js/server/error-with-status';
 
 export function createError(status, message) {
   return new ErrorWithStatus(message, status);
-};
+}
 
 export const middleware = {
   notFound(req, res, next) {

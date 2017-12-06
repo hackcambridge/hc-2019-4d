@@ -1,7 +1,7 @@
 const { HackerApplication, ApplicationResponse, Team, TeamMember } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
-import emailTemplates = require('./email-templates');
 import generate = require('adjective-adjective-animal');
+import emailTemplates = require('./email-templates');
 
 class Logic {
   public static createApplicationFromForm(formData, user) {
@@ -23,7 +23,7 @@ class Logic {
       });
     }).then(application => {
       sendEmail({
-        to: user.email, 
+        to: user.email,
         contents: emailTemplates.applied({
           name: user.firstName,
           applicationSlug: application.applicationSlug,
@@ -41,7 +41,7 @@ class Logic {
         console.log('Failed to add an application to the database');
         return Promise.reject(err);
       }
-      
+
     });
   }
 
@@ -49,9 +49,9 @@ class Logic {
     const members = new Set();
     const hackerIds = [user.id];
     const applicationSlugs = {
-      'memberB': formData.memberB,
-      'memberC': formData.memberC,
-      'memberD': formData.memberD,
+      memberB: formData.memberB,
+      memberC: formData.memberC,
+      memberD: formData.memberD,
     };
     // Ensure application slugs are unique and not the applicant's own
     return user.getHackerApplication().then(application => {
@@ -106,7 +106,7 @@ class Logic {
           });
         }));
       } else {
-        throw new Error(errors['memberB'] = 'You need at least two team members to form a team.');
+        throw new Error(errors.memberB = 'You need at least two team members to form a team.');
       }
     }).then(() => {
       // Create a new team

@@ -1,15 +1,15 @@
 import express = require('express');
 const { createApplicationForm } = require('js/shared/application-form');
 const { createTeamForm } = require('js/shared/team-form');
+import auth = require('js/server/auth');
 import renderForm = require('js/shared/render-form');
 import renderTableForm = require('js/shared/render-table-form');
-import auth = require('js/server/auth');
-import Utils from '../utils';
 import statuses = require('js/shared/status-constants');
+import Utils from '../utils';
 const { Hacker, TeamMember } = require('js/server/models');
 const { rsvpToResponse } = require('js/server/attendance/logic');
-import applyLogic = require('./logic');
 import fileUploadMiddleware from './file-upload';
+import applyLogic = require('./logic');
 const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
 
 const applyRouter = express.Router();
@@ -46,7 +46,7 @@ applyRouter.post('/form', (req: AuthRequest, res, next) => {
   req.user.log('Attempted to make an application');
   next();
 },
-fileUploadMiddleware.single('cv'), 
+fileUploadMiddleware.single('cv'),
 (req: UploadRequest, res, next) => {
   req.user.log('Application file uploaded');
   const form = createApplicationForm();
@@ -55,14 +55,14 @@ fileUploadMiddleware.single('cv'),
   req.body.cv = req.file;
 
   form.handle(req.body, {
-    success: (resultForm) => {
+    success: resultForm => {
       applyLogic.createApplicationFromForm(resultForm.data, req.user)
         .then(() => {
           res.redirect(`${req.baseUrl}/form`);
         })
         .catch(next);
     },
-    error: (resultForm) => {
+    error: resultForm => {
       renderApplyPageWithForm(res, resultForm);
     },
     empty: () => {
@@ -83,7 +83,7 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req: AuthRequest, res, n
   const form = createTeamForm();
 
   form.handle(req.body, {
-    success: (resultForm) => {
+    success: resultForm => {
       const errors = { };
       applyLogic.createTeamFromForm(resultForm.data, req.user, errors).then(() => {
         console.log('Team application success.');
@@ -96,7 +96,7 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req: AuthRequest, res, n
         });
       });
     },
-    error: (resultForm) => {
+    error: resultForm => {
       renderTeamPageWithForm(res, resultForm);
     },
     empty: () => {
@@ -197,7 +197,7 @@ function renderDashboard(req, res) {
         const teamId = teamMember.teamId;
         return TeamMember.findAll({
           where: {
-            teamId: teamId,
+            teamId,
             $not: {
               // Exclude the current user
               hackerId: req.user.id,
@@ -245,7 +245,7 @@ function renderDashboard(req, res) {
 
       applicationInfo: content['your-application'][applicationStatus],
       teamApplicationInfo: content['team-application'][teamApplicationStatus],
-      rsvpInfo: content['rsvp'][rsvpStatus],
+      rsvpInfo: content.rsvp[rsvpStatus],
       statusMessage: content['status-messages'][overallStatus],
       teamMembers,
 
@@ -292,7 +292,7 @@ function renderTeamPageWithForm(res, form, errors = { }) {
 
 /**
  * Intercepts the request to check if the user has submitted an application
- * 
+ *
  * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
  * as normal.
  */
@@ -301,7 +301,7 @@ function checkHasApplied(req, res, next) {
     if (hackerApplication) {
       res.redirect(`${req.baseUrl}/dashboard`);
       return;
-    } 
+    }
 
     next();
   }).catch(next);
@@ -316,7 +316,7 @@ function checkApplicationsOpen(req, res, next) {
     res.redirect(`${req.baseUrl}/dashboard`);
     return;
   }
-  
+
   next();
 }
 
