@@ -1,9 +1,9 @@
 const { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } = require('js/server/models');
 const { sendEmail } = require('js/server/email');
 const { response } = require('js/shared/status-constants');
-const { applicationHasBeenIndividuallyScored } = require('./score-logic');
-const { INVITATION_VALIDITY_DURATION } = require('./constants');
-const emailTemplates = require('./email-templates');
+import { applicationHasBeenIndividuallyScored } from './score-logic';
+import { INVITATION_VALIDITY_DURATION } from './constants';
+import emailTemplates = require('./email-templates');
 
 /**
  * Normalizes teams and non-teams into an array that either contains a
@@ -50,7 +50,7 @@ function normalizeApplicationTeams(application) {
 function checkApplicationsAreScored(applications) {
   return Promise
     .all(applications.map(applicationHasBeenIndividuallyScored))
-    .then(applicationValidities => applicationValidities.every(validity => validity))
+    .then(applicationValidities => applicationValidities.every((validity: boolean) => validity))
     .then(areApplicationsValid => {
       if (!areApplicationsValid) {
         throw new Error('Not all applications have been scored fully');
@@ -134,7 +134,7 @@ function sendEmailForApplicationResponse(application, responseStatus) {
  * - Any applicants in the same team will receive the same status
  * - If this is the application's first response (99% of cases), an email will be sent
  */
-exports.setResponseForApplicationWithChecks = function setResponseForApplicationWithChecks(originalApplication, responseStatus) {
+export function setResponseForApplicationWithChecks(originalApplication, responseStatus) {
   return normalizeApplicationTeams(originalApplication)
     .then(checkApplicationsAreScored)
     .then(applications => setResponseForApplications(applications, responseStatus))

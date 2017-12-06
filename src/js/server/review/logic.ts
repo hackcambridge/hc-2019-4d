@@ -30,7 +30,7 @@ function upsertCriterionScore(applicationReviewId, reviewCriterionId, score, tra
 /**
  * Idempotently review an application by an admin.
  */
-exports.reviewApplication = function reviewApplication(admin, hackerApplication, reviewCriterionScores) {
+export function reviewApplication(admin, hackerApplication, reviewCriterionScores) {
   const reviewKey = {
     adminId: admin.id,
     hackerApplicationId: hackerApplication.id,
@@ -49,12 +49,12 @@ exports.reviewApplication = function reviewApplication(admin, hackerApplication,
         transaction,
       }))
   );
-};
+}
 
 /**
  * Get a review by an admin for an application.
  */
-exports.getApplicationReview = function getApplicationReview(adminId, hackerApplicationId) {
+export function getApplicationReview(adminId, hackerApplicationId) {
   return ApplicationReview.findOne({
     where: {
       adminId,
@@ -62,9 +62,9 @@ exports.getApplicationReview = function getApplicationReview(adminId, hackerAppl
     },
     include: [ ReviewCriterionScore ],
   });
-};
+}
 
-exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReviewForAdmin(admin) {
+export function getNextApplicationToReviewForAdmin(admin) {
   // We use a transaction to make sure we don't assign an application without storing an assignment record
   return db.transaction((t) => {
     // Get an application
@@ -97,4 +97,4 @@ exports.getNextApplicationToReviewForAdmin = function getNextApplicationToReview
     console.log('Failed to assign application to admin. Rolled back.');
     console.log(err);
   });
-};
+}
