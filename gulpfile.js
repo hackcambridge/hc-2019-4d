@@ -32,25 +32,26 @@ gulp.task('clean', () => {
 });
 
 // css
-gulp.task('styles', () => {
-  gulp.src('src/styles/main.styl')
+
+gulp.task('main-styles', () => {
+  return gulp.src('src/styles/main.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
-      paths: ['./node_modules'],
-
+      paths: ['./node_modules']
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
+});
 
+gulp.task('hc2018-styles', () => {
   gulp.src('src/styles/hc-2018/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
-      paths: ['./node_modules'],
-
+      paths: ['./node_modules']
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
@@ -58,8 +59,10 @@ gulp.task('styles', () => {
     .pipe(bs.stream());
 });
 
+gulp.task('styles', ['main-styles', 'hc2018-styles']);
+
 // js
-gulp.task('scripts', () => {
+gulp.task('client-scripts', () => {
   let gulpBrowserify = function (fileIn, fileOut) {
     return browserify({
       entries: fileIn,
@@ -73,17 +76,21 @@ gulp.task('scripts', () => {
       .pipe(buffer());
   };
 
-  gulpBrowserify('./src/js/client/main.js', 'main.js')
+  return gulpBrowserify('./src/js/client/main.js', 'main.js')
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
     .pipe($.if(prod, $.uglify()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
     .pipe(bs.stream());
+});
 
+gulp.task('server-scripts', () => {
   return tsProject.src()
     .pipe(tsProject())
     .js.pipe(gulp.dest('assets/dist/built'));
 });
+
+gulp.task('scripts', ['client-scripts', 'server-scripts']);
 
 let assetPath = ['assets/**', '!assets/dist/**'];
 
