@@ -1,10 +1,16 @@
-const mailchimp = require('mailchimp-api');
-const express = require('express');
-const bodyParser = require('body-parser');
-const _ = require('lodash');
+import mailchimp = require('mailchimp-api');
+import express = require('express');
+import bodyParser = require('body-parser');
+import _ = require('lodash');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
+
+class ErrorWithStatus extends Error {
+  public constructor(message: string, public status: number) {
+    super(message);
+  }
+}
 
 let api = module.exports = new express.Router();
 api.use(bodyParser.json());
@@ -12,8 +18,7 @@ api.use(bodyParser.urlencoded({ extended: true }));
 
 api.post('/subscribe/interested', (req, res, next) => {
   if (_.isEmpty(req.body.email)) {
-    let err = new Error('Must provide email');
-    err.status = 401;
+    let err = new ErrorWithStatus('Must provide email', 401);
     next(err);
     return;
   }
@@ -27,34 +32,29 @@ api.post('/subscribe/interested', (req, res, next) => {
   }, (data) => {
     res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
   }, (error) => {
-    const err = new Error('We couldn\'t add you. Please check that this is a valid email.');
-    err.status = 500;
+    const err = new ErrorWithStatus('We couldn\'t add you. Please check that this is a valid email.', 500);
     next(err);
   });
 });
 
 api.post('/payment', (req, res, next) => {
   if (_.isEmpty(req.body.reference)) {
-    const err = new Error('Must provide reference');
-    err.status = 401;
+    const err = new ErrorWithStatus('Must provide reference', 401);
     next(err);
   }
 
   if (_.isEmpty(req.body.amount)) {
-    const err = new Error('Must provide amount');
-    err.status = 401;
+    const err = new ErrorWithStatus('Must provide amount', 401);
     next(err);
   }
 
   if (_.isEmpty(req.body.token)) {
-    const err = new Error('Must provide token');
-    err.status = 401;
+    const err = new ErrorWithStatus('Must provide token', 401);
     next(err);
   }
 
   if (_.isEmpty(req.body.email)) {
-    const err = new Error('Must provide email');
-    err.status = 401;
+    const err = new ErrorWithStatus('Must provide email', 401);
     next(err);
   }
 
@@ -68,9 +68,8 @@ api.post('/payment', (req, res, next) => {
     description: req.body.reference
   }, (err, charge) => {
     if (err) {
-      let e = new Error(err.message || 'Something went wrong with your transaction.');
+      let e = new ErrorWithStatus(err.message || 'Something went wrong with your transaction.', 500);
       console.error(err);
-      e.status = 500;
       next(e);
       return;
     }
@@ -80,14 +79,13 @@ api.post('/payment', (req, res, next) => {
 });
 
 api.use((req, res, next) => {
-  let err = new Error('Not found');
-  err.status = 404;
+  let err = new ErrorWithStatus('Not found', 404);
   next(err);
 });
 
-api.use((err, req, res, next) => {
+api.use((err: Error | ErrorWithStatus, req, res, next) => {
   console.error(err.stack);
-  res.status(err.status || 500);
+  res.status((err instanceof ErrorWithStatus) ? (err.status ? err.status : 500) : 500);
   res.json({
     error: err.message || 'An error occurred'
   });
