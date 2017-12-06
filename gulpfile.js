@@ -11,6 +11,9 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
+const ts = require('gulp-typescript');
+
+const tsProject = ts.createProject('tsconfig.json');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -70,12 +73,16 @@ gulp.task('scripts', () => {
       .pipe(buffer());
   };
 
-  return gulpBrowserify('./src/js/client/main.js', 'main.js')
+  gulpBrowserify('./src/js/client/main.js', 'main.js')
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
     .pipe($.if(prod, $.uglify()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
     .pipe(bs.stream());
+
+  return tsProject.src()
+    .pipe(tsProject())
+    .js.pipe(gulp.dest('assets/dist/built'));
 });
 
 let assetPath = ['assets/**', '!assets/dist/**'];
@@ -116,11 +123,11 @@ gulp.task('watch', ['build'], () => {
 gulp.task('serve', ['watch'], () => {
   let runnode = function (env = {}) {
     nodemon({
-      script: 'index.js',
+      script: 'assets/dist/built/js/index.js',
       ext: 'js',
-      ignore: ['src/js/client/**', 'gulpfile.js'],
+      ignore: ['src/**', 'gulpfile.js', 'assets/dist/built/js/client/**'],
       env: Object.assign({
-        NODE_PATH: './src',
+        NODE_PATH: './assets/dist/built',
       }, env),
     });
   };
@@ -136,7 +143,7 @@ gulp.task('serve', ['watch'], () => {
     });
   } else {
     runnode({
-      NODE_PATH: `${process.env.NODE_PATH}:./src`,
+      NODE_PATH: `${process.env.NODE_PATH}:./assets/dist/built`,
     });
   }
 });

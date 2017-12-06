@@ -15,7 +15,7 @@ let loadedResources = {};
 let loadedMarkdowns = {};
 let app;
 
-const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../'));
+const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../../../'));
 
 function timeProperties(items, properties) {
   items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
