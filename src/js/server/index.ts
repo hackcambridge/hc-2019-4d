@@ -5,7 +5,7 @@ import nunjucks = require('nunjucks');
 import bodyParser = require('body-parser');
 import url = require('url');
 
-import utils = require('./utils');
+import Utils from './utils';
 import auth = require('js/server/auth');
 import errors = require('js/server/errors');
 import colors = require('js/shared/colors');
@@ -19,7 +19,7 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
 });
 
-utils.init(app);
+const utils = new Utils(app);
 
 app.use((req, res, next) => {
   res.locals.title = metadata.title;
@@ -39,12 +39,12 @@ if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
 app.use(require('compression')());
-app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOptions));
+app.use('/assets', express.static(Utils.resolvePath('assets/dist'), staticOptions));
 
 auth.setUpAuth(app);
 
 // View rendering
-nunjucks.configure(utils.resolvePath('src/views'), {
+nunjucks.configure(Utils.resolvePath('src/views'), {
   autoescape: true,
   noCache: app.settings.env == 'development',
   express: app
@@ -103,7 +103,7 @@ app.get('/pay', (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => {
-  res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
+  res.sendFile(Utils.resolvePath('assets/images/favicon.ico'));
 });
 
 app.get('/sponsorship', (req, res) => {
