@@ -1,4 +1,4 @@
-const { makeInstruction } = require('js/server/email');
+import { makeInstruction } from 'js/server/email';
 
 export function applied({name, applicationSlug, inTeam}) {
   const actions = [

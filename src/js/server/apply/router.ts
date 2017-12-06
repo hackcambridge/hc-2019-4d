@@ -15,15 +15,15 @@ const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates'
 const applyRouter = express.Router();
 const utils = new Utils();
 
-interface AuthRequest extends express.Request {
+interface IAuthRequest extends express.Request {
   user?: any;
 }
 
-interface UploadRequest extends AuthRequest {
+interface IUploadRequest extends IAuthRequest {
   file: any;
 }
 
-applyRouter.get('/', (req: AuthRequest, res) => {
+applyRouter.get('/', (req: IAuthRequest, res) => {
   if (req.user) {
     res.redirect(`${req.baseUrl}/dashboard`);
     return;
@@ -42,12 +42,12 @@ applyRouter.get('/', (req, res) => {
 applyRouter.all('/form', checkHasApplied);
 applyRouter.all('/form', checkApplicationsOpen);
 
-applyRouter.post('/form', (req: AuthRequest, res, next) => {
+applyRouter.post('/form', (req: IAuthRequest, res, next) => {
   req.user.log('Attempted to make an application');
   next();
 },
 fileUploadMiddleware.single('cv'),
-(req: UploadRequest, res, next) => {
+(req: IUploadRequest, res, next) => {
   req.user.log('Application file uploaded');
   const form = createApplicationForm();
 

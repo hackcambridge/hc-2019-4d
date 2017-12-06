@@ -6,13 +6,13 @@ import url         = require('url');
 import { Hacker } from 'js/server/models';
 
 // Authorisation config
-const client_id     = process.env.MYMLH_CLIENT_ID;
-const client_secret = process.env.MYMLH_CLIENT_SECRET;
-const authorize_url = 'https://my.mlh.io/oauth/authorize';
-const token_url     = 'https://my.mlh.io/oauth/token';
-const user_url      = 'https://my.mlh.io/api/v2/user.json';
-const auth_callback = '/auth/callback';
-const dashboard_url = '/apply/dashboard'; // The default URL you end up at after logging in
+const clientId     = process.env.MYMLH_CLIENT_ID;
+const clientSecret = process.env.MYMLH_CLIENT_SECRET;
+const authorizeUrl = 'https://my.mlh.io/oauth/authorize';
+const tokenUrl     = 'https://my.mlh.io/oauth/token';
+const userUrl      = 'https://my.mlh.io/api/v2/user.json';
+const authCallback = '/auth/callback';
+const dashboardUrl = '/apply/dashboard'; // The default URL you end up at after logging in
 
 class Auth {
   public static setUpAuth(app): void {
@@ -87,15 +87,15 @@ class Auth {
       Auth.redirectToAuthorize(req, res);
     }
 
-    Auth.getToken(req.query.code, req).then( access_token => {
-      return Auth.getMlhUser(access_token);
+    Auth.getToken(req.query.code, req).then(accessToken => {
+      return Auth.getMlhUser(accessToken);
     }).then( mlhUser => {
       Hacker
         .upsertAndFetchFromMlhUser(mlhUser)
         .then(user => {
           req.userSession = { id: user.id };
 
-          const redirectTo = req.redirectTo.url ? req.redirectTo.url : dashboard_url;
+          const redirectTo = req.redirectTo.url ? req.redirectTo.url : dashboardUrl;
 
           // For debugging
           if (!req.redirectTo) {
@@ -129,8 +129,8 @@ class Auth {
 
     // Construct the query string
     const qs = querystring.stringify({
-      client_id,
-      redirect_uri: url.resolve(req.requestedUrl, auth_callback),
+      clientId,
+      redirect_uri: url.resolve(req.requestedUrl, authCallback),
       response_type: 'code',
       scope: [
         // All the user details we need
@@ -144,7 +144,7 @@ class Auth {
     });
 
     // Redirect to the authorization page on MyMLH
-    res.redirect(`${authorize_url}?${qs}`);
+    res.redirect(`${authorizeUrl}?${qs}`);
   }
 
   // Take a code and return a promise of an access token
@@ -155,14 +155,14 @@ class Auth {
     console.log(code);
 
     const body = {
-      client_id,
-      client_secret,
+      clientId,
+      clientSecret,
       code,
       grant_type: 'authorization_code',
-      redirect_uri: url.resolve(req.requestedUrl, auth_callback),
+      redirect_uri: url.resolve(req.requestedUrl, authCallback),
     };
 
-    return fetch(token_url, {
+    return fetch(tokenUrl, {
 
       headers: {
         'Content-Type': 'application/json'
@@ -182,14 +182,14 @@ class Auth {
   }
 
   // Take an access_token and return a promise of user info from the MyMLH api
-  private static getMlhUser(access_token: string) {
+  private static getMlhUser(accessToken: string) {
     const query = {
-      access_token
+      accessToken
     };
-    const query_string = querystring.stringify(query);
-    const full_url = user_url + '?' + query_string;
+    const queryString = querystring.stringify(query);
+    const fullUrl = userUrl + '?' + queryString;
 
-    return fetch(full_url, {
+    return fetch(fullUrl, {
       headers: {
         'Content-Type': 'application/json'
       },
