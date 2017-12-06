@@ -1,8 +1,8 @@
-const nodemailer = require('nodemailer');
-const sendmailTransport = require('nodemailer-sendmail-transport');
-const mailgunTransport = require('nodemailer-mailgun-transport');
-const Mailgen = require('mailgen');
-const colors = require('js/shared/colors');
+import nodemailer = require('nodemailer');
+import sendmailTransport = require('nodemailer-sendmail-transport');
+import mailgunTransport = require('nodemailer-mailgun-transport');
+import Mailgen = require('mailgen');
+import colors = require('js/shared/colors');
 
 function createTransport() {
   if (process.env.MAILGUN_API_KEY) {

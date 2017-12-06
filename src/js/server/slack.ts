@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const querystring = require('querystring');
+import fetch = require('node-fetch');
+import querystring = require('querystring');
 
 /**
  * @module Module for hitting the Slack API.
@@ -19,7 +19,7 @@ class SlackApiError extends Error { }
  * All Slack API endpoints return a 200 even in the event of error. It's up to the caller
  * to interpret the "ok" and "error" values of the returned object.
  */
-function makeSlackApiCall(endpoint, params = { }) {
+function makeSlackApiCall(endpoint: string, params = { }) {
   const query = querystring.stringify(
     Object.assign({ token: SLACK_API_TOKEN }, params)
   );
@@ -37,7 +37,7 @@ function makeSlackApiCall(endpoint, params = { }) {
  * 
  * @returns a promise that resolves to whether an invite was sent or not
  */
-function inviteUser(email, firstName, lastName) {
+function inviteUser(email: string, firstName: string, lastName: string): Promise<boolean> {
   console.log(`Inviting ${email} to Slack`);
   return makeSlackApiCall('users.admin.invite', {
     email,

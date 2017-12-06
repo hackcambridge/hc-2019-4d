@@ -1,15 +1,17 @@
 'use strict';
 
-let express = require('express');
-let nunjucks = require('nunjucks');
-let bodyParser = require('body-parser');
-let url = require('url');
-let utils = require('./utils');
-let app = express();
-const auth = require('js/server/auth');
-const errors = require('js/server/errors');
-const colors = require('js/shared/colors');
-const metadata = require('js/shared/metadata');
+import express = require('express');
+import nunjucks = require('nunjucks');
+import bodyParser = require('body-parser');
+import url = require('url');
+
+import utils = require('./utils');
+import auth = require('js/server/auth');
+import errors = require('js/server/errors');
+import colors = require('js/shared/colors');
+import metadata = require('js/shared/metadata');
+
+const app = express();
 
 let server = require('http').Server(app);
 
@@ -32,7 +34,7 @@ app.use((req, res, next) => {
 });
 
 // Static file serving
-let staticOptions = { };
+let staticOptions: any = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
