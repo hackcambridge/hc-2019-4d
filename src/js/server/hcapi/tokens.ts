@@ -1,7 +1,7 @@
-const { Router } = require('express');
+import express = require('express');
 const { OauthAccessToken } = require('js/server/models');
 
-const tokensRouter = new Router();
+const tokensRouter = express.Router();
 
 /**
  * Gets information for a particular access token

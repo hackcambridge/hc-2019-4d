@@ -4,13 +4,9 @@ import bodyParser = require('body-parser');
 import _ = require('lodash');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
-const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
+import ErrorWithStatus from './error-with-status';
 
-class ErrorWithStatus extends Error {
-  public constructor(message: string, public status: number) {
-    super(message);
-  }
-}
+const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 
 let api = module.exports = express.Router();
 api.use(bodyParser.json());

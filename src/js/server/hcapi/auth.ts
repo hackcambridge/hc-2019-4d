@@ -1,6 +1,6 @@
 const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer');
-const cors = require('cors');
+import cors = require('cors');
 const { OauthAccessToken } = require('js/server/models');
 
 passport.use(new BearerStrategy((token, done) => {
@@ -16,7 +16,7 @@ passport.use(new BearerStrategy((token, done) => {
     .catch(error => done(error));
 }));
 
-exports.middleware = {
+export const middleware = {
   cors: cors({
     origin: [
       // Match an empty origin to allow external tools (like postman) to easily interact with the API

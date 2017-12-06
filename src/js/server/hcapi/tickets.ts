@@ -1,7 +1,7 @@
-const { Router } = require('express');
+import express = require('express');
 const { getTicketsWithApplicantInfo } = require('js/server/attendance/logic');
 
-const ticketsRouter = new Router();
+const ticketsRouter = express.Router();
 
 /**
  * Gets all tickets with applicant info

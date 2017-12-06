@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const responseLogic = require('js/server/review/response-logic');
+import responseLogic = require('js/server/review/response-logic');
 const { Hacker, HackerApplication } = require('js/server/models');
 const { getApplicationsWithScores } = require('js/server/review/score-logic');
 
-const applicationsRouter = new Router();
+const applicationsRouter = Router();
 
 applicationsRouter.get('/', (req, res, next) => {
   getApplicationsWithScores().then(applications => {

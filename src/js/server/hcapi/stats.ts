@@ -1,8 +1,8 @@
-const { Router } = require('express');
+import express = require('express');
 const { db, Hacker, ApplicationReview, HackerApplication, ApplicationResponse, ResponseRsvp, ApplicationTicket } = require('js/server/models');
 const { response } = require('js/shared/status-constants');
 
-const statsRouter = new Router();
+const statsRouter = express.Router();
 
 statsRouter.get('/', (req, res, next) => {
 

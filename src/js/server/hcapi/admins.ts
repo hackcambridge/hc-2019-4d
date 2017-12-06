@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Admin, HackerApplication, ApplicationReview } = require('js/server/models');
-const reviewLogic = require('js/server/review/logic');
+import reviewLogic = require('js/server/review/logic');
 
 /**
  * The amount to increase admin goals by to allow for the fact that
