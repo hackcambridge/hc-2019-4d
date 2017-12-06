@@ -12,6 +12,8 @@ let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
 const ts = require('gulp-typescript');
+const tslint = require('gulp-tslint');
+const stylish = require('tslint-stylish');
 
 const tsProject = ts.createProject('tsconfig.json');
 
@@ -101,12 +103,24 @@ gulp.task('assets', () => {
     .pipe(bs.stream({ once: true }));
 });
 
-gulp.task('lint', () => {
-  return gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
+// lint
+
+gulp.task('eslint', () =>
+  gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError())
+);
+
+gulp.task('tslint', () =>
+  gulp.src('src/**/*.ts')
+    .pipe(tslint({
+      formatter: 'verbose'
+    }))
+    .pipe(tslint.report(stylish))
+);
+
+gulp.task('lint', ['eslint', 'tslint']);
 
 gulp.task('rev', () => {
   return gulp.src('assets/dist/**')
