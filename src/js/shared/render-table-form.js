@@ -16,5 +16,6 @@ module.exports = function (name, field, options = { }) {
   return tag('tr', { classes: [ field.classes().join(' '), ''], required: !!field.required }, [
     tag('td', { classes: [''] }, field.label),
     tableData,
+    tag('td', { classes: ['error'] }, field.errorHTML()),
   ].join(''));
 };

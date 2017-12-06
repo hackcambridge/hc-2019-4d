@@ -103,7 +103,7 @@ function processForm($form, createForm) {
       const field = form.fields[fieldName];
 
       $row.removeClass('error');
-      $row.find('td.error').remove();
+      $row.find('.error').html('');
 
       if (field.error != null) {
         if (!firstErrorFound) {
@@ -115,7 +115,7 @@ function processForm($form, createForm) {
         if ($row.find('.r').length) {
           $row.find('.form-control-note').after(field.errorHTML());
         } else {
-          $row.after(tag('td', { classes: ['error'] }, field.errorHTML()));
+          $row.find('.error').html(field.errorHTML());
         }
         
         $row.addClass('error');
