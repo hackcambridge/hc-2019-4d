@@ -1,3 +1,4 @@
+import express = require('express');
 import _ = require('lodash');
 import yaml = require('js-yaml');
 import fs = require('fs');
@@ -14,9 +15,7 @@ import path = require('path');
 const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../../../'));
 
 export default class Utils {
-  public constructor(a) {
-    this.app = a;
-
+  public constructor() {
     try {
       this.assetsFile = require(Utils.resolvePath('./assets/dist/rev-manifest.json'));
     } catch (e) {
@@ -50,7 +49,7 @@ export default class Utils {
   }
 
   public loadAsset(assetName) {
-    if ((!this.loadedAssets[assetName]) || (this.app.settings.env == 'development')) {
+    if ((!this.loadedAssets[assetName]) || (Utils.app.settings.env == 'development')) {
       this.loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
     }
 
@@ -74,7 +73,7 @@ export default class Utils {
   }
 
   public loadResource(resourceName) {
-    if ((!this.loadedResources[resourceName]) || (this.app.settings.env == 'development')) {
+    if ((!this.loadedResources[resourceName]) || (Utils.app.settings.env == 'development')) {
       let loadedResource = yaml.safeLoad(
         fs.readFileSync(Utils.resolvePath(`src/resources/${resourceName}.yml`))
       )[resourceName];
@@ -127,7 +126,7 @@ export default class Utils {
   }
 
   public loadMarkdown(markdownName) {
-    if ((!this.loadedMarkdowns[markdownName]) || (this.app.settings.env == 'development')) {
+    if ((!this.loadedMarkdowns[markdownName]) || (Utils.app.settings.env == 'development')) {
       let loadedMarkdown = nunjucks.runtime.markSafe(
         markdown.render(fs.readFileSync(Utils.resolvePath(
           `src/resources/${markdownName}.md`), 'utf8'
@@ -148,7 +147,7 @@ export default class Utils {
   public assetsFile;
   private publicId = crypto.randomBytes(12).toString('hex');
 
-  private app;
+  public static app: express.Express;
   private loadedAssets = {};
   private loadedMarkdowns = {};
   private loadedResources = {};

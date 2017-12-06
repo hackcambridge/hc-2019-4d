@@ -11,6 +11,10 @@ import errors = require('js/server/errors');
 import colors = require('js/shared/colors');
 import metadata = require('js/shared/metadata');
 
+interface RequestWithRequestedUrl extends express.Request {
+  requestedUrl?: url.Url;
+}
+
 const app = express();
 
 let server = require('http').Server(app);
@@ -19,9 +23,10 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
 });
 
-const utils = new Utils(app);
+const utils = new Utils();
+Utils.app = app;
 
-app.use((req, res, next) => {
+app.use((req: RequestWithRequestedUrl, res, next) => {
   res.locals.title = metadata.title;
   res.locals.description = metadata.description;
   res.locals.colors = colors;

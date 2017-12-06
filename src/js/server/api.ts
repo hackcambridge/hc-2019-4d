@@ -12,7 +12,7 @@ class ErrorWithStatus extends Error {
   }
 }
 
-let api = module.exports = new express.Router();
+let api = module.exports = express.Router();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true }));
 

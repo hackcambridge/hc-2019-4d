@@ -6,7 +6,7 @@
       "noFallthroughCasesInSwitch": true,
       "rootDir": "src",
       "target": "es2015",
-      "types": ["node"]
+      "typeRoots": ["node_modules/@types"]
   },
   "include": [
       "src/js/**/*"
