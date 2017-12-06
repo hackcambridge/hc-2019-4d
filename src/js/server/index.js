@@ -64,7 +64,9 @@ app.use('/apply', require('./apply/router'));
 app.use('/hcapi', require('./hcapi'));
 
 app.get('/', (req, res) => {
-  res.render('index.html');
+  res.render('index.html', {
+    sponsors: utils.loadResource('sponsors'),
+  });
 });
 
 app.get('/terms-and-conditions', (req, res) => {
@@ -74,6 +76,12 @@ app.get('/terms-and-conditions', (req, res) => {
 app.get('/terms', (req, res) => {
   // This URL was used in 2017 and previously, redirect it to the new location
   res.redirect(301, '/terms-and-conditions');
+});
+
+app.get('/faqs', (req, res) => {
+  res.render('faqs.html', {
+    faqs: utils.loadResource('faqs') 
+  });
 });
 
 app.get('/privacy-policy', (req, res) => {

@@ -7,10 +7,12 @@ process.on('unhandledRejection', (reason, promise) => {
 yargs
   .command(require('./create-admin'))
   .command(require('./create-token'))
+  .command(require('./unfinished-applications'))
   .command(require('./suggest-responses'))
   .command(require('./respond'))
   .command(require('./expire-invitations'))
   .command(require('./teams'))
+  .strict()
   .demand(1, 'Supply a command.')
   .help()
   .argv;
