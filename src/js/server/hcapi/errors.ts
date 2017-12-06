@@ -1,4 +1,4 @@
-import ErrorWithStatus from "js/server/error-with-status";
+import ErrorWithStatus from 'js/server/error-with-status';
 
 export function createError(status, message) {
   return new ErrorWithStatus(message, status);
@@ -6,7 +6,7 @@ export function createError(status, message) {
 
 export const middleware = {
   notFound(req, res, next) {
-    next(exports.createHttpError(404, 'Not Found'));
+    next(createError(404, 'Not Found'));
   },
   error(error, req, res, next) {
     console.error(error);
