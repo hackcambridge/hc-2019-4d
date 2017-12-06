@@ -1,12 +1,12 @@
-const moment = require('moment');
-const Sequelize = require('sequelize');
+import moment = require('moment');
+import Sequelize = require('sequelize');
 const { ResponseRsvp, ApplicationTicket, HackerApplication, ApplicationResponse, Hacker, db } = require('js/server/models');
-const slack = require('js/server/slack');
+import slack = require('js/server/slack');
 const { sendEmail } = require('js/server/email');
 const { response } = require('js/shared/status-constants');
 const { INVITATION_VALIDITY_DURATION } = require('js/server/review/constants');
 
-const emailTemplates = require('./email-templates');
+import emailTemplates = require('./email-templates');
 
 /**
  * Creates a ticket for an application.

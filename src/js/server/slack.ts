@@ -11,7 +11,7 @@ import querystring = require('querystring');
 const SLACK_API_TOKEN = process.env.SLACK_API_TOKEN;
 const SLACK_API_BASE = 'https://slack.com/api/';
 
-class SlackApiError extends Error { }
+export class SlackApiError extends Error { }
 
 /**
  * Makes a call to the Slack API.
@@ -19,7 +19,7 @@ class SlackApiError extends Error { }
  * All Slack API endpoints return a 200 even in the event of error. It's up to the caller
  * to interpret the "ok" and "error" values of the returned object.
  */
-function makeSlackApiCall(endpoint: string, params = { }) {
+export function makeSlackApiCall(endpoint: string, params = { }) {
   const query = querystring.stringify(
     Object.assign({ token: SLACK_API_TOKEN }, params)
   );
@@ -37,7 +37,7 @@ function makeSlackApiCall(endpoint: string, params = { }) {
  * 
  * @returns a promise that resolves to whether an invite was sent or not
  */
-function inviteUser(email: string, firstName: string, lastName: string): Promise<boolean> {
+export function inviteUser(email: string, firstName: string, lastName: string): Promise<boolean> {
   console.log(`Inviting ${email} to Slack`);
   return makeSlackApiCall('users.admin.invite', {
     email,
@@ -56,7 +56,7 @@ function inviteUser(email: string, firstName: string, lastName: string): Promise
 /**
  * Gets all Slack users
  */
-function getUsers() {
+export function getUsers() {
   return makeSlackApiCall('users.list', { })
     .then(response => {
       if (!response.ok) {
@@ -66,10 +66,3 @@ function getUsers() {
       return response.members;
     });
 }
-
-module.exports = {
-  SlackApiError,
-  makeSlackApiCall,
-  inviteUser,
-  getUsers,
-};

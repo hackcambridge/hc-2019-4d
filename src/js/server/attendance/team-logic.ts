@@ -1,8 +1,8 @@
 const { HackerApplication, ApplicationTicket, Hacker } = require('js/server/models');
-const slack = require('js/server/slack');
+import slack = require('js/server/slack');
 const { sendEmail } = require('js/server/email');
 
-const emailTemplates = require('./email-templates');
+import emailTemplates = require('./email-templates');
 
 const ROLE_ORDERING = ['development', 'design', 'product_management', 'unknown'];
 const TARGET_TEAM_SIZE = 4;
@@ -25,12 +25,12 @@ function getAllApplicationsWantingTeams() {
   });
 }
 
-function getHighestPriorityRoleIndex(application) {
-  for (let roleIndex in ROLE_ORDERING) {
+function getHighestPriorityRoleIndex(application): number {
+  ROLE_ORDERING.forEach((_, roleIndex) => {
     if (application.developmentRoles.includes(ROLE_ORDERING[roleIndex])) {
       return roleIndex;
     }
-  }
+  });
 
   return ROLE_ORDERING.length;
 }
