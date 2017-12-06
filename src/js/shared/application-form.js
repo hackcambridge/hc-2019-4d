@@ -28,7 +28,7 @@ function createCountryChoices() {
 exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
 
 const cssClasses = {
-  error: [ 'error' ],
+  error: [ 'error_msg form-error-message' ],
   label: [ 'form-label-longform' ],
   field: [ 'form-row', 'form-row-margin' ],
 };
