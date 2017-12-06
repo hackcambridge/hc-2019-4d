@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "start": "export NODE_PATH=$NODE_PATH:./assets/dist/built; node ./assets/dist/built/index",
+    "start": "export NODE_PATH=$NODE_PATH:./assets/dist/built; node ./assets/dist/built/js/index",
     "postinstall": "gulp build",
     "migrate": "sequelize db:migrate",
     "sequelize": "sequelize",
