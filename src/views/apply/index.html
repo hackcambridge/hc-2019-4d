@@ -1,4 +1,5 @@
 {% extends 'default.html' %}
+{% from "macros/alerts.html" import banner as banner %}
 {% set title = 'Apply' %}
 {% set homeLink = true %}
 {% set footer = true %}
@@ -16,4 +17,7 @@
         <a href="/apply/form">Log in with MyMLH</a>
     </div>
 </div>
+{% endblock %}
+{% block extraSections %}
+{{ banner("The clock is ticking…", "You have until the 9<sup>th</sup> December to complete your application!", "two half") }}
 {% endblock %}
