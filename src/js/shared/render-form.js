@@ -12,7 +12,7 @@ module.exports = function (name, field, options = { }) {
   const fieldSet = tag('fieldset', { classes: [ field.classes().join(' '), 'unit column'], required: !!field.required }, [
     tag('legend', { classes: ['form-control-legend'] }, field.label),
     field.note ? tag('p', { classes: ['form-control-note'] }, field.note) : '',
-    field.errorHTML(),
+    tag('p', { classes: ['error'] }, field.errorHTML()),
     innerContent,
   ].join(''));
   return tag('div', { classes: [field.row_units, 'unit row'] }, [
