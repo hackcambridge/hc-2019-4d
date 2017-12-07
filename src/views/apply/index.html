@@ -1,4 +1,5 @@
 {% extends 'default.html' %}
+{% from "macros/alerts.html" import banner as banner %}
 {% set title = 'Apply' %}
 {% set homeLink = true %}
 {% set footer = true %}
@@ -17,19 +18,6 @@
     </div>
 </div>
 {% endblock %}
-{% block alertBanner %}
-    <section class="red">
-        <div class="container a4">
-            <div class="two unit row">
-                <div class="column">
-                    <h3>
-                        The clock is ticking…
-                    </h3>
-                    <p>
-                        You have until the 9<sup>th</sup> December to submit your application!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+{% block extraSections %}
+{{ banner("The clock is ticking…", "You have until the 9<sup>th</sup> December to complete your application!", "two half") }}
 {% endblock %}
