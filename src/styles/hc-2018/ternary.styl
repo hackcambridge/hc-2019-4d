@@ -333,14 +333,17 @@ section.image .wrapper {
 
 table {
     width: 100%;
+    border-spacing: var(--gutter) 0;
+    margin: calc(var(--gutter) * -1);
 }
 th {
     text-align: left;
 }
 table, th, td {
     padding: 0;
-    -webkit-border-horizontal-spacing: 0;
-    -webkit-border-vertical-spacing: 0;
+}
+td:not(:first-child) {
+    margin-left: var(--gutter);
 }
 /* Input */
 
