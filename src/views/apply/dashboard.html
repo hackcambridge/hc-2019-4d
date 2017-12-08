@@ -1,4 +1,5 @@
 {% extends 'default.html' %}
+{% from "macros/alerts.html" import banner as banner %}
 {% set title = 'Apply for Hack Cambridge' %}
 {% set footer = true %}
 {% set is_dashboard = true %}
@@ -36,6 +37,8 @@
 
     {# To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking #}
     {% set openSlackLink = "slack://open?team=T7YPKKJRZ" %}
+    
+    {{ banner("The clock is ticking…", "You have until the 9<sup>th</sup> December to complete your application!", "two half") }}
 
     {# Section for info about RSVPs #}
     {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
