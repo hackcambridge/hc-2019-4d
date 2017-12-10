@@ -3,7 +3,7 @@ const countries = require('country-list')();
 const validator = require('validator');
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
 const { multiCheckboxWidget } = require('./checkbox');
-const { getEarliestGraduationDateToAccept } = require('./dates');
+const { getEarliestGraduationDateToAccept } = require('js/shared/dates');
 
 /**
  * Allows us to optimise the list creation by only making it once, lazily.
