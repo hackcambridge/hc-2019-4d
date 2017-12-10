@@ -1,9 +1,9 @@
 import express = require('express');
-const { createApplicationForm } = require('js/shared/application-form');
-const { createTeamForm } = require('js/shared/team-form');
+const { createApplicationForm } = require('js/shared/apply/application-form');
+const { createTeamForm } = require('js/shared/apply/team-form');
 import auth = require('js/server/auth');
-import renderForm = require('js/shared/render-form');
-import renderTableForm = require('js/shared/render-table-form');
+import renderForm = require('js/shared/apply/render-form');
+import renderTableForm = require('js/shared/apply/render-table-form');
 import statuses = require('js/shared/status-constants');
 import Utils from '../utils';
 const { Hacker, TeamMember } = require('js/server/models');
@@ -11,6 +11,7 @@ const { rsvpToResponse } = require('js/server/attendance/logic');
 import fileUploadMiddleware from './file-upload';
 import applyLogic = require('./logic');
 const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
+const tag = require('forms/lib/tag');
 
 const applyRouter = express.Router();
 const utils = new Utils();
@@ -264,7 +265,7 @@ function renderPageWithForm(res, path, form, errors = { }) {
   res.render(path, {
     formHtml: form.toHTML((name, field, options = { }) => {
       if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+        field.errorHTML = () => tag('p', { classes: ['error_msg form-error-message'] }, errors[name]);
       }
       return renderForm(name, field, options);
     })
@@ -275,7 +276,7 @@ function renderPageWithTableForm(res, path, form, errors = { }) {
   res.render(path, {
     formHtml: form.toHTML((name, field, options = { }) => {
       if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+        field.errorHTML = () => tag('td', { classes: ['error_msg form-error-message'] }, errors[name]);
       }
       return renderTableForm(name, field, options);
     })

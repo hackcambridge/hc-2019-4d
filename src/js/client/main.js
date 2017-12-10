@@ -1,7 +1,5 @@
 let $ = require('jquery');
 
-require('./polyfills');
-
 let Countdown = require('../shared/countdown');
 
 let pages = [
@@ -75,32 +73,6 @@ $(document).ready(() => {
       window.fbq('track', 'CompleteRegistration');
     });
   });
-
-  $('.landing-welcome-lower-caret').each(function () {
-    // Remove the link as this isn't operating as a link anymore
-    $(this).find('a').children().appendTo($(this));
-    $(this).find('a').remove();
-
-    $(this).click(() => {
-      $('body, html').animate({ scrollTop: $('.landing-intro-section').offset().top - 40 }, 1400);
-    });
-  });
-
-  {
-    let resize = true;
-    $(window).scroll(() => {
-      if (resize) {
-        window.requestAnimationFrame(() => {
-          const diamond = document.querySelector('.landing-welcome-background-box1');
-          if (diamond !== null) {
-            diamond.style.setProperty('--diamond-scale', `${1 + window.scrollY / 1000}`);
-            resize = true;
-          }
-        });
-        resize = false;
-      }
-    });
-  }
 
   $('.event-countdown').each(function () {
     let countdown = Countdown.createChainedCountdown();

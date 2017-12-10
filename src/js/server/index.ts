@@ -108,7 +108,7 @@ app.get('/pay', (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => {
-  res.sendFile(Utils.resolvePath('assets/images/favicon.ico'));
+  res.sendFile(utils.resolvePath('assets/images/favicons/favicon.ico'));
 });
 
 app.get('/sponsorship', (req, res) => {

@@ -1,5 +1,11 @@
 const { fields, validators, widgets, create: createForm } = require('forms');
 
+const cssClasses = {
+  error: [ 'error_msg form-error-message' ],
+  label: [ 'form-label-longform' ],
+  field: [ 'form-row', 'form-row-margin' ],
+};
+
 function extendOptions(options, newOptions) {
   return Object.assign({ }, options, newOptions);
 }
@@ -18,12 +24,6 @@ function textField(label, maxlength, options = { }) {
     cssClasses,
   }));
 }
-
-const cssClasses = {
-  error: [ 'error' ],
-  label: [ 'form-label-longform' ],
-  field: [ 'form-row', 'form-row-margin' ],
-};
 
 const requiredField = validators.required('This field is required.');
 

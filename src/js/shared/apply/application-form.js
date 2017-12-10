@@ -3,7 +3,7 @@ const countries = require('country-list')();
 const validator = require('validator');
 const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
 const { multiCheckboxWidget } = require('./checkbox');
-const { getEarliestGraduationDateToAccept } = require('./dates');
+const { getEarliestGraduationDateToAccept } = require('js/shared/dates');
 
 /**
  * Allows us to optimise the list creation by only making it once, lazily.
@@ -28,12 +28,14 @@ function createCountryChoices() {
 exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
 
 const cssClasses = {
-  error: [ 'error' ],
+  error: [ 'error_msg form-error-message' ],
   label: [ 'form-label-longform' ],
   field: [ 'form-row', 'form-row-margin' ],
 };
 
 const requiredField = validators.required('This field is required.');
+const confirmationAndTermsValidationMessage = 'We need both confirmation of your student status and your acceptance\
+  of the terms and conditions, privacy policy, and the MLH Code of Conduct.';
 
 function textareaField(label, maxlength, options = { }) {
   const stringFieldValidators = options.validators ? options.validators : [];
@@ -166,14 +168,15 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       label: 'Student status confirmation and terms and conditions',
       note: 'We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, and the MLH Code of Conduct.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
       widget: multiCheckboxWidget(),
+      required: validators.required(confirmationAndTermsValidationMessage),
       choices: {
         student_status: `I’m currently a student, or I graduated after ${getEarliestGraduationDateToAccept().format('LL')}.`,
         terms: 'I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.',
       },
       validators: [
         (form, field, callback) => {
-          if ((field.data.length < 2)) {
-            callback('We need both confirmation of your student status and your acceptance of the terms and conditions, privacy policy, and the MLH Code of Conduct.');
+          if (!field.data || field.data.length < 2) {
+            callback(confirmationAndTermsValidationMessage);
           } else {
             callback();
           }
