@@ -42,10 +42,12 @@
             </div>
         </section>
     {% endif %}
+    {% block introBanner %}
+    {% endblock %}
     {% if homeLink %}
     <section class="home-link">
         <div class="container a4">
-            <div class="half unit row">
+            <div class="one half unit row">
                 <div class="unit column grows">
                     <a rel="prev" href="/">Back to the homepage</a>
                 </div>

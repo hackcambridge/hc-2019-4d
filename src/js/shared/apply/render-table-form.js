@@ -9,13 +9,13 @@ function isMultipleField(type) {
 module.exports = function (name, field, options = { }) {
   const widgetHtml = field.widget.toHTML(name, field);
   const innerContent = isMultipleField(field.widget.type) ? tag('td', { }, widgetHtml) : widgetHtml;
-  const tableData = tag('td', { classes: [ field.classes().join(' '), ''], required: !!field.required }, [
+  const tableData = tag('td', { classes: [''], required: !!field.required }, [
     field.note ? tag('p', { classes: ['form-control-note'] }, field.note) : '',
-    field.errorHTML(),
     innerContent,
   ].join(''));
   return tag('tr', { classes: [ field.classes().join(' '), ''], required: !!field.required }, [
     tag('td', { classes: [''] }, field.label),
     tableData,
+    tag('td', { classes: ['error'] }, field.errorHTML()),
   ].join(''));
 };

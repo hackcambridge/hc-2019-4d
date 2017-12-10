@@ -11,6 +11,7 @@ const { rsvpToResponse } = require('js/server/attendance/logic');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
 const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
+const tag = require('forms/lib/tag');
 
 const applyRouter = new express.Router();
 
@@ -255,7 +256,7 @@ function renderPageWithForm(res, path, form, errors = { }) {
   res.render(path, {
     formHtml: form.toHTML((name, field, options = { }) => {
       if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+        field.errorHTML = () => tag('p', { classes: ['error_msg form-error-message'] }, errors[name]);
       }
       return renderForm(name, field, options);
     })
@@ -266,7 +267,7 @@ function renderPageWithTableForm(res, path, form, errors = { }) {
   res.render(path, {
     formHtml: form.toHTML((name, field, options = { }) => {
       if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+        field.errorHTML = () => tag('td', { classes: ['error_msg form-error-message'] }, errors[name]);
       }
       return renderTableForm(name, field, options);
     })
