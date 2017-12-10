@@ -1,6 +1,6 @@
-const { HackerApplication, ApplicationTicket, Hacker } = require('js/server/models');
+import { sendEmail } from 'js/server/email';
+import { ApplicationTicket, Hacker, HackerApplication } from 'js/server/models';
 import slack = require('js/server/slack');
-const { sendEmail } = require('js/server/email');
 
 import emailTemplates = require('./email-templates');
 

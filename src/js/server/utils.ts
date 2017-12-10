@@ -48,7 +48,7 @@ export default class Utils {
   }
 
   public loadAsset(assetName) {
-    if ((!this.loadedAssets[assetName]) || (Utils.app.settings.env == 'development')) {
+    if ((!this.loadedAssets[assetName]) || (Utils.app.settings.env === 'development')) {
       this.loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
     }
 
@@ -72,7 +72,7 @@ export default class Utils {
   }
 
   public loadResource(resourceName) {
-    if ((!this.loadedResources[resourceName]) || (Utils.app.settings.env == 'development')) {
+    if ((!this.loadedResources[resourceName]) || (Utils.app.settings.env === 'development')) {
       let loadedResource = yaml.safeLoad(
         fs.readFileSync(Utils.resolvePath(`src/resources/${resourceName}.yml`))
       )[resourceName];
@@ -110,8 +110,8 @@ export default class Utils {
         case 'schedule':
           Utils.timeProperties(loadedResource, ['time']);
           loadedResource = {
-            saturday: loadedResource.filter( event => event.time.date() == 28),
-            sunday: loadedResource.filter( event => event.time.date() == 29)
+            saturday: loadedResource.filter( event => event.time.date() === 28),
+            sunday: loadedResource.filter( event => event.time.date() === 29)
           };
           break;
         case 'dashboard':
@@ -125,7 +125,7 @@ export default class Utils {
   }
 
   public loadMarkdown(markdownName) {
-    if ((!this.loadedMarkdowns[markdownName]) || (Utils.app.settings.env == 'development')) {
+    if ((!this.loadedMarkdowns[markdownName]) || (Utils.app.settings.env === 'development')) {
       const loadedMarkdown = nunjucks.runtime.markSafe(
         markdown.render(fs.readFileSync(Utils.resolvePath(
           `src/resources/${markdownName}.md`), 'utf8'

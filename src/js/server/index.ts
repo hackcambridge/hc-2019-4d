@@ -1,7 +1,9 @@
 'use strict';
 
 import bodyParser = require('body-parser');
+import compression = require('compression');
 import express = require('express');
+import http = require('http');
 import nunjucks = require('nunjucks');
 import url = require('url');
 
@@ -9,15 +11,18 @@ import auth = require('js/server/auth');
 import errors = require('js/server/errors');
 import colors = require('js/shared/colors');
 import metadata = require('js/shared/metadata');
+import apiRouter = require('./api');
+import applyRouter = require('./apply/router');
+import hcapiRouter = require('./hcapi');
 import Utils from './utils';
 
-interface RequestWithRequestedUrl extends express.Request {
+interface IRequestWithRequestedUrl extends express.Request {
   requestedUrl?: url.Url;
 }
 
 const app = express();
 
-const server = require('http').Server(app);
+const server = http.createServer(app);
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
@@ -26,12 +31,12 @@ process.on('unhandledRejection', (reason, promise) => {
 const utils = new Utils();
 Utils.app = app;
 
-app.use((req: RequestWithRequestedUrl, res, next) => {
+app.use((req: IRequestWithRequestedUrl, res, next) => {
   res.locals.title = metadata.title;
   res.locals.description = metadata.description;
   res.locals.colors = colors;
-  const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
-  const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
+  const port = (app.settings.env === 'development') ? ':' + req.app.settings.port : '';
+  const protocol = (app.settings.env === 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = url.parse(
     protocol + '://' + req.hostname + port + req.originalUrl
   );
@@ -40,10 +45,10 @@ app.use((req: RequestWithRequestedUrl, res, next) => {
 
 // Static file serving
 const staticOptions: any = { };
-if (app.settings.env != 'development') {
+if (app.settings.env !== 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
-app.use(require('compression')());
+app.use(compression());
 app.use('/assets', express.static(Utils.resolvePath('assets/dist'), staticOptions));
 
 auth.setUpAuth(app);
@@ -51,7 +56,7 @@ auth.setUpAuth(app);
 // View rendering
 nunjucks.configure(Utils.resolvePath('src/views'), {
   autoescape: true,
-  noCache: app.settings.env == 'development',
+  noCache: app.settings.env === 'development',
   express: app
 });
 
@@ -66,9 +71,9 @@ if (process.env.BS_SNIPPET) {
 // Routes
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', require('./api'));
-app.use('/apply', require('./apply/router'));
-app.use('/hcapi', require('./hcapi'));
+app.use('/api', apiRouter);
+app.use('/apply', applyRouter);
+app.use('/hcapi', hcapiRouter);
 
 app.get('/', (req, res) => {
   res.render('index.html', {

@@ -1,4 +1,4 @@
-const { makeInstruction } = require('js/server/email');
+import { makeInstruction } from 'js/server/email';
 
 function teamKeyFromMember(member) {
   return { [`${member.firstName} ${member.lastName}`]: `${member.email} (${member.slackName ? `Slack name: ${member.slackName}` : 'You haven\'t signed up for Slack yet!'})` };

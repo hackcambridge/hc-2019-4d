@@ -1,6 +1,7 @@
-const { HackerApplication, ApplicationResponse, Team, TeamMember } = require('js/server/models');
-const { sendEmail } = require('js/server/email');
 import generate = require('adjective-adjective-animal');
+
+import { sendEmail } from 'js/server/email';
+import { ApplicationResponse, HackerApplication, Team, TeamMember } from 'js/server/models';
 import emailTemplates = require('./email-templates');
 
 class Logic {
@@ -33,7 +34,7 @@ class Logic {
       user.log('Application made successfully');
       return application;
     }).catch(err => {
-      if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
+      if (err.name === 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
         // slug was not unique, try again with new slug
         console.log('Application slug collision detected');
         return exports.createApplicationFromForm(formData, user);

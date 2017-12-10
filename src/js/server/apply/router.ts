@@ -1,17 +1,18 @@
 import express = require('express');
-const { createApplicationForm } = require('js/shared/apply/application-form');
-const { createTeamForm } = require('js/shared/apply/team-form');
+import tag from 'forms/lib/tag';
+
+import { rsvpToResponse } from 'js/server/attendance/logic';
 import auth = require('js/server/auth');
+import { Hacker, TeamMember } from 'js/server/models';
+import { createApplicationForm } from 'js/shared/apply/application-form';
 import renderForm = require('js/shared/apply/render-form');
 import renderTableForm = require('js/shared/apply/render-table-form');
+import { createTeamForm } from 'js/shared/apply/team-form';
+import { getHackathonEndDate, getHackathonStartDate } from 'js/shared/dates';
 import statuses = require('js/shared/status-constants');
 import Utils from '../utils';
-const { Hacker, TeamMember } = require('js/server/models');
-const { rsvpToResponse } = require('js/server/attendance/logic');
 import fileUploadMiddleware from './file-upload';
 import applyLogic = require('./logic');
-const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
-const tag = require('forms/lib/tag');
 
 const applyRouter = express.Router();
 const utils = new Utils();
@@ -80,7 +81,7 @@ applyRouter.get('/form', (req, res) => {
 
 applyRouter.all('/team', checkApplicationsOpen);
 
-applyRouter.post('/team', fileUploadMiddleware.none(), (req: AuthRequest, res, next) => {
+applyRouter.post('/team', fileUploadMiddleware.none(), (req: IAuthRequest, res, next) => {
   const form = createTeamForm();
 
   form.handle(req.body, {
@@ -107,7 +108,7 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req: AuthRequest, res, n
 });
 
 // Process the RSVP response
-applyRouter.post('/rsvp', auth.requireAuth, (req: AuthRequest, res) => {
+applyRouter.post('/rsvp', auth.requireAuth, (req: IAuthRequest, res) => {
   const rsvp = req.body.rsvp;
   if (rsvp) {
     // RSVP was given, store it
@@ -159,7 +160,7 @@ applyRouter.get('/', (req, res) => {
 });
 
 // Render the form for team applications
-applyRouter.get('/team', (req: AuthRequest, res) => {
+applyRouter.get('/team', (req: IAuthRequest, res) => {
   req.user.getHackerApplication().then(hackerApplication => {
     if (hackerApplication !== null) {
       req.user.getTeam().then(team => {

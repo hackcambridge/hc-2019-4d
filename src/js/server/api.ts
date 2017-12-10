@@ -2,7 +2,7 @@ import bodyParser = require('body-parser');
 import express = require('express');
 import _ = require('lodash');
 import mailchimp = require('mailchimp-api');
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+import stripe = require('stripe');
 
 import ErrorWithStatus from './error-with-status';
 
@@ -56,7 +56,9 @@ api.post('/payment', (req, res, next) => {
 
   const amount = Math.round(req.body.amount * 100);
 
-  stripe.charges.create({
+  const stripeInstance = stripe(process.env.STRIPE_PRIVATE_KEY);
+
+  stripeInstance.charges.create({
     amount,
     currency: 'gbp',
     source: req.body.token,

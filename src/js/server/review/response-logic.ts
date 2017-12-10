@@ -1,6 +1,6 @@
-const { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } = require('js/server/models');
-const { sendEmail } = require('js/server/email');
-const { response } = require('js/shared/status-constants');
+import { sendEmail } from 'js/server/email';
+import { ApplicationResponse, db, Hacker, HackerApplication, Team, TeamMember } from 'js/server/models';
+import { response } from 'js/shared/status-constants';
 import { INVITATION_VALIDITY_DURATION } from './constants';
 import emailTemplates = require('./email-templates');
 import { applicationHasBeenIndividuallyScored } from './score-logic';
@@ -95,7 +95,7 @@ function setResponseForApplications(applications, responseStatus) {
       applications.map(application =>
         Promise
           .all([application, setResponseForApplication(application, responseStatus, transaction)])
-          .then(([ application, isApplicationNew ]) => ({ application, isApplicationNew }))
+          .then(([ respondedApplication, isApplicationNew ]) => ({ respondedApplication, isApplicationNew }))
       )
     )
   );
