@@ -1,34 +1,33 @@
-{% extends 'base.html' %}
-{% block content %}
-<main class="payment-page">
-  <div class="wrapper-content payment-form-container">
-    <h1 class="payment-form-heading">Make a Payment to Hack Cambridge</h1>
-    <p class="payment-form-description">
-      Please enter the amount you wish to pay, and a reference for your payment below.
-      If you are paying an invoice, indicate the invoice number and the company making the payment.
-      All payments are made securely through Stripe, we do not have access to your credit card details.
-    </p>
-
-    <form class="payment-form" action="/api/payment">
-      <div class="form-row">
-        <label class="form-label" for="payment-form-amount">Amount (GBP)</label>
-        <span class="form-control-money-sign">£</span>
-        <input class="form-control form-control-money payment-form-amount" name="amount" placeholder="500" class="payment-form-amount" id="payment-form-amount" type="number" min="1" max="99999.99" step="any" required />
-      </div>
-
-      <div class="form-row">
-        <label class="form-label" for="payment-form-reference">Reference</label>
-        <input class="form-control payment-form-reference" name="reference" placeholder="2015-02, Tech Company Inc." class="payment-form-reference" id="payment-form-reference" type="text" required />
-      </div>
-
-      <div class="form-row payment-form-output"></div>
-
-      <div class="form-row">
-        <button class="button submit-button" type="submit">Make Payment</button>
-      </div>
-    </form>
-  </div>
-</main>
+{% extends 'default.html' %}
+{% set title = 'Make a Payment' %}
+{% set footer = true %}
+{% block pageHeading %}{{ title }}{% endblock %}
+{% block pageContent %}
+<div class="two half unit row">
+    <div class="unit column grows">
+        <p class="payment-form-description">
+          Enter the amount you wish to pay, and a reference for your payment below.
+          If you are paying an invoice, indicate the invoice number and the company making the payment.
+          All payments are made securely through Stripe; we do not have access to your credit card details.
+        </p>
+    </div>
+</div>
+<div class="one half unit row">
+    <div class="unit column grows">
+        <form class="half unit persistent row" action="/api/payment">
+            <div class="form-row two unit column">
+                <input class="form-control form-control-money payment-form-amount" name="amount" placeholder="Amount (GBP)" class="payment-form-amount" id="payment-form-amount" type="number" min="1" max="99999.99" step="any" required />
+            </div>
+            <div class="form-row three unit column">
+                <input class="form-control payment-form-reference" name="reference" placeholder="Reference" class="payment-form-reference" id="payment-form-reference" type="text" required />
+            </div>
+            <div class="form-row payment-form-output"></div>
+            <div class="form-row two unit column">
+                <button class="button submit-button" type="submit">Make Payment</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
