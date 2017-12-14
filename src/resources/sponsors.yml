@@ -1,64 +1,43 @@
 sponsors:
   tera:
-    - name: Cambridge Consultants
-      website: https://www.cambridgeconsultants.com
-      logo: cambridge-consultants-logo.svg
-      variant: wide
-    - name: Improbable
-      website: https://www.improbable.io
-      logo: improbable-logo.svg
-      variant: wide
-    - name: Microsoft
-      website: https://www.microsoft.com
-      logo: microsoft-logo.svg
-      variant: wide
-    - name: Sophos
-      website: https://www.sophos.com
-      logo: sophos-logo.svg
-      variant: wide
-
-  giga:
+    items:
+      - name: Cambridge Consultants
+        website: https://www.cambridgeconsultants.com
+      - name: Improbable
+        website: https://www.improbable.io
+      - name: Microsoft
+        website: https://www.microsoft.com
+      - name: Sophos
+        website: https://www.sophos.com
+    rows: seven half
+    columns: five second-seven
 
   mega:
-    - name: Arista Networks
-      website: https://www.arista.com
-      logo: arista-logo.svg
-      variant: wide
-    - name: ARM
-      website: http://www.arm.com
-      logo: arm-logo.svg
-      variant: wide
-#   - name: Cambridge Medical Robotics
-#     website: http://cmedrobotics.com
-#     logo: cambridge-medical-robotics-logo.svg
-#     variant: wide
-    - name: Droit Financial Technologies
-      website: http://droitfintech.com
-      logo: droit-financial-technologies-logo.svg
-      variant: wide
-    - name: Facebook
-      website: http://facebook.com
-      logo: facebook-logo.svg
-      variant: wide
-    - name: Featurespace
-      website: https://www.featurespace.com
-      logo: featurespace-logo.svg
-      variant: wide
-    - name: Man AHL
-      website: https://www.ahl.com
-      logo: man-ahl-logo.svg
-      variant: wide
+    items:
+      - name: Arista Networks
+        website: https://www.arista.com
+      - name: ARM
+        website: http://www.arm.com
+      - name: Droit Financial Technologies
+        website: http://droitfintech.com
+      - name: Facebook
+        website: http://facebook.com
+      - name: Featurespace
+        website: https://www.featurespace.com
+      - name: Man AHL
+        website: https://www.ahl.com
+      - name: J.P. Morgan
+        website: https://www.jpmorgan.com
+    rows: ten half
+    columns: three second-four
 
   kilo:
-    - name: DataScope
-      website: http://www.datascope.com
-      logo: datascope-logo.svg
-      variant: wide
-    - name: DisplayLink
-      website: hhttp://www.displaylink.com
-      logo: displaylink-logo.svg
-      variant: wide
-    - name: HighRise
-      website: hhttp://www.highrisehq.com
-      logo: highrise-logo.svg
-      variant: wide
+    items:
+      - name: DataScope
+        website: http://www.datascope.com
+      - name: DisplayLink
+        website: http://www.displaylink.com
+      - name: HighRise
+        website: http://www.highrisehq.com
+    rows: four
+    columns: two second-three

@@ -146,55 +146,54 @@ div {
 }
 
 // Basic grid
-.row:not(section) {
+.row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: calc(var(--half) * -1);
 }
 form .row, .body .row {
     display: block;
 }
-.persistent.row:not(section) {
+.persistent.row {
     flex-direction: row;
 }
-.column:not(:empty), .columns:not(:empty) {
+.column, .columns {
     margin: var(--half);
-}
-.row {
-    margin: calc(var(--half) * -1);
-}
-.column-gap .column:not(:empty) {
-    margin: calc(24pt / 2);
-}
-.column-gap .row {
-    margin: calc(24pt / 2 * -1);
 }
 .column {
     display: flex;
     flex-direction: column;
 }
-.column > *:not(.row) {
-    display: block;
-}
 .columns {
     flex-basis: 100%;
 }
+.unit.column.grows {
+    flex-grow: 1;
+}
+.column > *:not(.row) {
+    display: block;
+}
 
-form > .column:not(:empty) {
+form > .column, .content > * {
     margin: calc(var(--gutter) / 2);
 }
-.content > * {
-    margin: calc(var(--gutter) / 2);
-}
-th, td {
-    min-width: var(--base);
-}
-form.unit.row, .content.unit.row {
+
+form.unit.row, .content {
     margin: calc(var(--gutter) / 2 * -1);
 }
 
-.unit.column.grows:not(:empty) {
-    flex-grow: 1;
+.large.content > * {
+    margin: calc(var(--one) / 2);
+}
+
+.large.content {
+    margin: calc(var(--one) / 2 * -1);
+  }
+
+// Tables
+th, td {
+    min-width: var(--base);
 }
 
 @media (max-width: 595pt) {
@@ -205,11 +204,8 @@ form.unit.row, .content.unit.row {
     .row:not(section) {
         flex-direction: column;
     }
-    .column:not(:empty), .columns:not(:empty) {
-        margin: calc(var(--half) / 2);
-    }
-    .row {
-        margin: calc(var(--half) / 2 * -1);
+    .column:empty {
+        display: none;
     }
 }
 
@@ -233,9 +229,6 @@ form.unit.row, .content.unit.row {
     .column {
         flex-grow: 0;
     }
-    .column:empty {
-        margin: var(--half);
-    }
     .unit.column {
         flex-basis: var(--base);
         flex-shrink: 0;
@@ -245,7 +238,6 @@ form.unit.row, .content.unit.row {
         min-width: max-content;
     }
     .unit.column.grows {
-        flex-grow: 1;
         max-width: var(--second-base);
     }
 

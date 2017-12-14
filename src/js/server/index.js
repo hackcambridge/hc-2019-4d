@@ -78,6 +78,12 @@ app.get('/terms', (req, res) => {
   res.redirect(301, '/terms-and-conditions');
 });
 
+app.get('/faqs', (req, res) => {
+  res.render('faqs.html', {
+    faqs: utils.loadResource('faqs') 
+  });
+});
+
 app.get('/privacy-policy', (req, res) => {
   res.render('privacy-policy.html');
 });
@@ -95,7 +101,7 @@ app.get('/pay', (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => {
-  res.sendFile(utils.resolvePath('assets/images/favicon.ico'));
+  res.sendFile(utils.resolvePath('assets/images/favicons/favicon.ico'));
 });
 
 app.get('/sponsorship', (req, res) => {

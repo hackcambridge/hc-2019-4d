@@ -1,51 +1,70 @@
 faqs:
-  - question: What is a hackathon?
-    answer: A hackathon is a focused 24-hour event where you and a small team get to build something new and exciting, alongside a whole bunch of likeminded people.
+  - question: What’s a hackathon?
+    answer: A hackathon is a focused 24-hour event where you and a small team get to build something new and exciting, alongside a whole bunch of like-minded people.
+    rows: two half
 
   - question: Can I attend?
-    answer: If you're 18 or over, and a student at any school or university, or were still a student after the 28<sup>th</sup> of January 2016, you're welcome to apply.
+    answer: If you’re 18 or over, and a student at any school or university, or you were still a student after the 28<sup>th</sup> of January 2017, you’re welcome to apply.
+    rows: two half
 
   - question: Do I have to be doing Computer Science or other programming-related degree to take part?
-    answer: No — we welcome everyone to apply whatever your subject or university!
+    answer: No! We welcome everyone to apply regardless of their subject or university.
+    rows: two half
 
   - question: Does this cost money?
-    answer: Entry is completely free — in fact, we'll even reimburse some of your travel costs. However, if you are arriving internationally, we won't be able to cover a significant portion of your costs.
+    answer: Entry is completely free and we’ll even reimburse some of your travel costs. However, if you are travelling internationally, we won’t be able to cover a significant part of your travelling expenses.
+    rows: three
 
   - question: Why do I need to provide a CV?
-    answer: Select sponsors will have access to your CV. This is so that you can get on their radar and they can get access to you for recruitment purposes. Win-win!
+    answer: Select sponsors will have access to your CV. This is so that you can get on their radar and they can get your contact details for recruitment purposes. It’s a win-win!
+    rows: two half
 
   - question: What will I eat?
-    answer: We'll provide the food and drinks, leaving you to concentrate on your project.
+    answer: We’ll provide food and drinks, leaving you to concentrate on your project.
+    rows: two half
 
   - question: Where will I sleep?
-    answer: We'll have a room to nap in during the event — so bring a sleeping bag just in case. If you're coming from farther away, we're working on a Host-a-Hacker scheme to provide a place to crash on the Friday evening — more information on that coming soon.
+    answer: We’ll have a room to nap in during the event—so bring a sleeping bag just in case. If you’re coming from farther away, we have a Host-a-Hacker scheme to provide a place to crash on Friday evening—more information related to this coming soon.
+    rows: three
 
   - question: What should I bring?
-    answer: You'll need a laptop for your hacking — everything else depends on your project. Bring along any hardware you might need.
+    answer: You’ll need a laptop for your hacking—everything else depends on your project. Please remember to bring along any hardware you might need.
+    rows: two half
 
   - question: What if I don’t know what I want to do?
-    answer: Joining a team is a great way to develop ideas with others, and to make sure you're making the most of the hackathon. When you apply, you can ask us to place you in a team so you can hit the ground running.
+    answer: Joining a team is a great way to develop ideas with others and to make sure you’re making the most out of the hackathon. When you apply, you can ask us to place you in a team so you can hit the ground running.
+    rows: three
 
   - question: How do I get there?
     answer: The nearest station to Hack Cambridge is the Cambridge train station. From there it’s just a 20 minute walk to the Corn Exchange.
+    rows: two half
 
-  - question: How do teams work?
-    answer: You can have teams of up to 4 members. After you submit your application, you'll be able to form a team [from the dashboard](/apply/dashboard). This team will be used to evaluate applications, but is not binding. You may later decide to work with others during the event.
+  - question: How does the teaming scheme work?
+    answer: You can have teams of up to 4 members. After you submit your application, you’ll be able to form a team from the dashboard. This team will be taken into account when evaluating the applications, but is not binding. You may decide later to work with others during the event.
+    rows: three half
+    action: "<a href='/apply/dashboard' target='_blank'>Dashboard</a>"
 
-  - question: What if not all of us get invited when applying as a team?
-    answer: Either every member of a team will be invited, or none of them will be.
+  - question: What if some people don’t get invited when applying as a team?
+    answer: Either every member of a team will be invited, or no one will.
+    rows: two half
 
-  - question: Since I'm travelling from far away, can I get an increase in reimbursement?
-    answer: We will try to make reimbursements as fair as possible. After all applications have been reviewed, all invited applicants will be contacted with specifics about reimbursement details. However, if you're travelling from outside the EU it is *unlikely* we'll be able to make a significant contribution to your travel costs.
+  - question: Since I’m travelling from far away, can I get an increase in reimbursement?
+    answer: We will try to make reimbursements as fair as possible. After all applications have been reviewed, all invited applicants will receive more details about reimbursment. However, if you’re travelling from outside the EU it is unlikely we’ll be able to make a significant contribution to your travel costs.
+    rows: three
 
   - question: What about hardware hacks?
-    answer: We love ‘em! We'll provide the basics (soldering kits, breadboards, etc...) and you do the rest. Do bring along any special equipment you might want to hack on as well.
+    answer: We love ’em! We’ll provide the basics (soldering kits, breadboards, etc.) and you do the rest. Do bring along any special equipment you might want to hack on as well.
+    rows: two half
 
   - question: When do applications close?
-    answer: Applications are now closed.
+    answer: Applications close on 9<sup>th</sup> of December 2017.
+    rows: two half
 
-  - question: When will I find out whether I have a ticket?
-    answer: We will be sending out invitations on a rolling basis as applications come in. If you're coming from far away, we'll aim to get back to you sooner to give you time to sort out travel arrangements.
+  - question: When will I find out whether I was accepted as a participant of Hack Cambridge Ternary?
+    answer: We will be sending out invitations on a rolling basis as applications come in. If you’re coming from far away, we’ll aim to get back to you as soon as possible to give you time to sort out travel arrangements.
+    rows: three half
 
-  - question: What if I still have a question that hasn't been answered?
-    answer: Contact us at [team@hackcambridge.com](mailto:team@hackcambridge.com), and we'll do our best to get back to you promptly.
+  - question: What if I still have a question that hasn’t been answered here?
+    answer: Contact us, and we’ll do our best to get back to you promptly.
+    rows: two half
+    action: "<a href='mailto:team@hackcambridge.com' target='_blank'>Contact us</a>"

@@ -1,4 +1,5 @@
 {% extends 'default.html' %}
+{% from "macros/alerts.html" import banner as banner %}
 {% set title = 'Apply for Hack Cambridge' %}
 {% set footer = true %}
 {% set is_dashboard = true %}
@@ -33,6 +34,11 @@
     {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSd1UuxOrLQcv2r74UGniJJjyd9h1pfWHBOZsNZPasMSUabBoQ/viewform" %}
     {% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScLDioi-z-w0Iyn5HZq-B-dFhrbkEGI7Utjfpvh5ZuFjt9VdA/viewform" %}
     {% set coachesForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
+
+    {# To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking #}
+    {% set openSlackLink = "slack://open?team=T7YPKKJRZ" %}
+    
+    {{ banner("The clock is ticking…", "You have until the 9<sup>th</sup> December to complete your application!", "two half") }}
 
     {# Section for info about RSVPs #}
     {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
@@ -125,7 +131,7 @@
                 <div class="two half unit row">
                     <div class="unit column grows">
                         <p>
-                            Saturday 28th Jan 2017 (Registration opens at 9am) – Sunday 29th Jan (Closing ceremony finishes at 6pm).<br>
+                            {{ hackathonStartDate }} (Registration opens at 9am) – {{ hackathonEndDate }} (Closing ceremony finishes at 6pm).<br>
                             Times subject to change.
                         </p>
                     </div>
@@ -190,11 +196,11 @@
                 <div class="two unit row">
                     <div class="unit column grows">
                         <p>
-                            For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the 27th of January), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
+                            For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the {{ fridayBeforeHackathonDate }}), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
                             {% if overallStatus == statuses.overall.HAS_TICKET %}
                                 if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
                             </p>
-                            <a href="{{ roomShareForm }}" target="_blank">Apply for accomodation</a>
+                            <a href="{{ roomShareForm }}" target="_blank">Apply for accommodation</a>
                             {% else %}
                                 using the form that will be made available to you when you accept your invitation. We will get back to you as soon as possible indicating whether we could allocate you a room or not. People coming from outside the UK will be prioritised.
                             </p>
@@ -212,7 +218,6 @@
             <div class="container a4">
                 <div class="two unit row">
                     <div class="unit column grows">
-                        {# Slack #}
                         <h3>Slack</h3>
                     </div>
                 </div>
@@ -221,7 +226,7 @@
                         <p>
                             You should have received an invite to our Slack team. Make sure you accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. If you haven’t used Slack before, that’s okay. It’s a team messaging app that will allow us all to stay in touch easily, great for getting quick answers to any questions you might have about Hack Cambridge or for meeting your teammates!
                         </p>
-                        <a href="slack://open?team=T3CJG8TH7">Go to the Slack team</a>
+                        <a href="{{ openSlackLink }}">Go to the Slack team</a>
                         <a href="https://slack.com/downloads" target="_blank">Download the mobile or desktop app</a>
                     </div>
                 </div>

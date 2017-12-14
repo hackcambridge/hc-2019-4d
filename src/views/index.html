@@ -1,16 +1,17 @@
 {% extends 'ternary-base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% set title = 'Ternary' %}
 {% set description = 'Hack Cambridge Ternary 2018' %}
 {% set keywords = 'hack,Cambridge,ternary 2018' %}
 {% block content %}
 <main>
-    <a id="mlh-trust-badge" href="https://mlh.io/seasons/eu-2017/events?utm_source=eu-2017&amp;utm_medium=TrustBadge&amp;utm_campaign=eu-2017&amp;utm_content=black" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/black.svg" alt="Major League Hacking 2017 Hackathon Season"></a>
+    <a id="mlh-trust-badge" href="https://mlh.io/seasons/eu-2018/events?utm_source=eu-2018&amp;utm_medium=TrustBadge&amp;utm_campaign=eu-2018&amp;utm_content=black" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/black.svg" alt="Major League Hacking 2018 Hackathon Season"></a>
     <section id="splash-intro">
         <div class="container width">
             <div class="unit row">
                 <div class="two second-five unit column grows">
-                    <object id="splash-hack-cambridge-logo-object" data="{{ asset('images/hc-2018/logo.svg') }}"></object>
+                    <object id="splash-hack-cambridge-logo-object" data="{{ asset('images/logo.svg') }}"></object>
                 </div>
                 <div class="five second-seven unit column grows">
                     <div class="seven unit row">
@@ -66,49 +67,78 @@
     </section>
     <section id="splash-signup" class="red">
         <div class="container width">
-            <div class="one half unit row">
+            <div class="unit row">
                 <div class="two second-five unit column grows"></div>
                 <div class="five second-seven unit column grows">
                     <div class="two unit row">
                         <div class="five unit column">
-                            <h5>
-                                Applications are open!<br><span class="secondary">Submit yours now.</span>
-                            </h5>
+                            <div class="two unit row">
+                                <div class="unit column grows">
+                                    <h5>
+                                        Applications are closing soon!<br><span class="secondary">Submit yours before 9<sup>th</sup> December.</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="one half unit row">
+                                <div class="unit column grows">
+                                    <a rel="next" href="/apply">Start or continue your application</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="half unit row">
-                        <div class="five unit column grows">
-                            <a href="/apply">Start your application</a>
+                        <div class="one second-five unit column grows">
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="next" href="/faqs">
+                                    {{ singleColourIcon('Help') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="landing-helpers-section" id="helpers">
-        <div class="content-wrapper-center">
-          <h2>Sponsors</h2>
-          <p>Interested in sponsoring Hack Cambridge? Send an email to <a href="mailto:sponsorship@hackcambridge.com">sponsorship@hackcambridge.com</a>.</p>
-          {% for sponsorTierName, sponsorTier in sponsors %}
-            {% if sponsorTier|length != 0 %}
-              <h3 class="strike-heading helper-heading">
-              <span> {{ sponsorTierName | capitalize }} </span>
-              </h3>
-              <div class="helpers-container helpers-container-{{ sponsorTierName }}">
-                {% for sponsor in sponsorTier %}
-                  <a class="helper-link helper-link-{{ sponsor.variant}}" href="{{ sponsor.website }}" target="_blank">
-                    <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
-                  </a>
-                {% endfor %}
-              </div>
-            {% endif %}
-          {% endfor %}
+    <section id="splash-sponsors">
+        <div class="container width">
+            <div class="one half unit row">
+                <div class="two second-five unit column grows"></div>
+                <div class="five second-seven unit column grows">
+                    <div class="two unit row">
+                        <div class="five unit column">
+                            <h3>Sponsors</h3>
+                        </div>
+                    </div>
+                    <div class="two unit row">
+                        <div class="five unit column">
+                            <p>Interested in sponsoring Hack Cambridge?</p>
+                            <a href="mailto:sponsorship@hackcambridge.com">Send us an email</a>
+                        </div>
+                    </div>
+                    {% for sponsorTierName, sponsorTier in sponsors %}
+                        {% if sponsorTier|length != 0 %}
+                            <div class="two unit row">
+                                <div class="unit column grows">
+                                    <h4>{{ sponsorTierName | capitalize }}</h4>
+                                </div>
+                            </div>
+                            <div class="{{ sponsorTier.rows }} unit persistent row">
+                                <div class="logo {{ sponsorTier.columns }} unit column grows">
+                                    <div class="unit large content column">
+                                        {% for sponsor in sponsorTier.items %}
+                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(sponsor.name, sponsorTierName) }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 </main>
 <footer>
     <div class="container width">
-        <div class="one half unit row">
+        <div class="three unit row">
             <div class="two second-five unit column grows"></div>
             <div class="five second-seven unit column grows">
                 <div class="one half unit row">

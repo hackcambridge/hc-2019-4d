@@ -1,0 +1,16 @@
+{% macro banner(message, heading, rows) %}
+    <section class="red">
+        <div class="container a4">
+            <div class="{{rows}} unit row">
+                <div class="column">
+                    <h3>
+                        {{heading | safe}}
+                    </h3>
+                    <p>
+                        {{message | safe}}
+                    </p>
+                </div>
+            </div>
+        </div>
+      </section>
+{% endmacro %}
