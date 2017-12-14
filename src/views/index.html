@@ -1,6 +1,5 @@
 {% extends 'ternary-base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
-{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% set title = 'Ternary' %}
 {% set description = 'Hack Cambridge Ternary 2018' %}
 {% set keywords = 'hack,Cambridge,ternary 2018' %}
@@ -124,7 +123,8 @@
                                 <div class="logo {{ sponsorTier.columns }} unit column grows">
                                     <div class="unit large content column">
                                         {% for sponsor in sponsorTier.items %}
-                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(sponsor.name, sponsorTierName) }}</a>
+                                            {% set fileName = "/assets/images/sponsors-logos/" + sponsor.name | lower | replace(" ", "-") | replace(".", "") + ".svg" %}
+                                            <a class="logo" href="{{ sponsor.website }}" target="_blank"><img class="{{ sponsorTierName }} logo" width="100%" draggable="false" alt="{{name}}" src="{{ fileName }}"/></a>
                                         {% endfor %}
                                     </div>
                                 </div>

@@ -4,6 +4,3 @@
   <use x="0" y="0" xlink:href="/assets/images/icons/{{name | lower}}.svg#icon"/>
 </svg>
 {% endmacro %}
-{% macro sponsorLogo(name, tier) %}
-<img class="{{ tier }} logo" width="100%" draggable="false" alt="{{name}}" src="/assets/images/sponsors-logos/{{name | lower | replace(" ", "-") | replace(".", "")}}.svg"/>
-{% endmacro %}
