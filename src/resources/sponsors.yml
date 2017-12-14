@@ -14,13 +14,15 @@ sponsors:
 
   giga:
     items:
+     - name: Accenture
+       website: https://accenture.com
      - name: Amazon
        website: https://amazon.co.uk
      - name: Avast
        website: https://avast.com
      - name: Google
        website: https://google.com
-    rows: eight
+    rows: ten
     columns: four second-five
 
   mega:
