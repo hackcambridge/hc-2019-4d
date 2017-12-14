@@ -22,7 +22,7 @@ sponsors:
        website: https://avast.com
      - name: Google
        website: https://google.com
-    rows: ten
+    rows: eight
     columns: four second-five
 
   mega:
@@ -54,5 +54,5 @@ sponsors:
         website: http://www.displaylink.com
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: four
+    rows: five
     columns: two second-three
