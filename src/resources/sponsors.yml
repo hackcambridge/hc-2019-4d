@@ -12,6 +12,17 @@ sponsors:
     rows: seven half
     columns: five second-seven
 
+  giga:
+    items:
+     - name: Amazon
+       website: https://amazon.co.uk
+     - name: Avast
+       website: https://avast.com
+     - name: Google
+       website: https://google.com
+    rows: eight
+    columns: four second-five
+
   mega:
     items:
       - name: Arista Networks
@@ -33,6 +44,8 @@ sponsors:
 
   kilo:
     items:
+      - name: Cubica
+        website: 
       - name: DataScope
         website: http://www.datascope.com
       - name: DisplayLink
