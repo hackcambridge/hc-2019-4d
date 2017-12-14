@@ -41,7 +41,9 @@ sponsors:
         website: https://www.ahl.com
       - name: J.P. Morgan
         website: https://www.jpmorgan.com
-    rows: ten half
+      - name: Cambridge Medical Robotics
+        website: http://cmedrobotics.com
+    rows: twelve
     columns: three second-four
 
   kilo:
