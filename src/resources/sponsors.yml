@@ -9,7 +9,7 @@ sponsors:
         website: https://www.microsoft.com
       - name: Sophos
         website: https://www.sophos.com
-    rows: seven half
+    rows: nine
     columns: five second-seven
 
   mega:
@@ -28,7 +28,7 @@ sponsors:
         website: https://www.ahl.com
       - name: J.P. Morgan
         website: https://www.jpmorgan.com
-    rows: ten half
+    rows: twelve half
     columns: three second-four
 
   kilo:
@@ -39,5 +39,5 @@ sponsors:
         website: http://www.displaylink.com
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: four
+    rows: five
     columns: two second-three
