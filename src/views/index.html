@@ -107,7 +107,7 @@
                             <h3>Sponsors</h3>
                         </div>
                     </div>
-                    <div class="two unit row">
+                    <div class="two half unit row">
                         <div class="five unit column">
                             <p>Interested in sponsoring Hack Cambridge?</p>
                             <a href="mailto:sponsorship@hackcambridge.com">Send us an email</a>
@@ -124,7 +124,7 @@
                                 <div class="logo {{ sponsorTier.columns }} unit column grows">
                                     <div class="unit large content column">
                                         {% for sponsor in sponsorTier.items %}
-                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(sponsor.name, sponsorTierName) }}</a>
+                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(asset, sponsor.name, sponsorTierName) }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
