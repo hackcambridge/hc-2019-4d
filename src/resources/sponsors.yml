@@ -12,6 +12,19 @@ sponsors:
     rows: seven half
     columns: five second-seven
 
+  giga:
+    items:
+     - name: Accenture
+       website: https://accenture.com
+     - name: Amazon
+       website: https://amazon.co.uk
+     - name: Avast
+       website: https://avast.com
+     - name: Google
+       website: https://google.com
+    rows: eight
+    columns: four second-five
+
   mega:
     items:
       - name: Arista Networks
@@ -28,16 +41,20 @@ sponsors:
         website: https://www.ahl.com
       - name: J.P. Morgan
         website: https://www.jpmorgan.com
-    rows: ten half
+      - name: Cambridge Medical Robotics
+        website: http://cmedrobotics.com
+    rows: twelve
     columns: three second-four
 
   kilo:
     items:
+      - name: Cubica
+        website: https://www.cubicatechnology.co.uk/
       - name: DataScope
-        website: http://www.datascope.com
+        website: http://www.datascope.co.uk
       - name: DisplayLink
         website: http://www.displaylink.com
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: four
+    rows: five
     columns: two second-three
