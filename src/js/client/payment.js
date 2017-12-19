@@ -29,7 +29,7 @@ module.exports = function () {
           })
             .success((data) => {
               $('.payment-form').remove();
-              $('.payment-form-description').text(data.message);
+              $('.payment-form .description').text(data.message);
             })
             .fail((jqXHR) => {
               let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
@@ -44,9 +44,9 @@ module.exports = function () {
         }
       });
 
-      let $amount = $this.find('.payment-form-amount');
-      let $reference = $this.find('.payment-form-reference');
-      let $output = $this.find('.payment-form-output');
+      let $amount = $this.find('.payment-form .amount');
+      let $reference = $this.find('.payment-form .reference');
+      let $output = $this.find('.payment-form .output');
 
       let getAmount = function () {
         let amount = $amount.val();
