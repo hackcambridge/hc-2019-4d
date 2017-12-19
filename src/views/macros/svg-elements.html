@@ -1,7 +1,7 @@
 {% macro singleColourIcon(name) %}
 <svg class="icon">
     <title>{{name}}</title>
-    <use x="0" y="0" xlink:href="/assets/images/icons/{{name | lower}}.svg#icon"/>
+    <use x="0" y="0" xlink:href="/assets/images/icons/{{name | lower | replace(" ", "-") | replace(".", "")}}.svg#icon"/>
 </svg>
 {% endmacro %}
 {% macro sponsorLogo(assetFunc, name, tier) %}
