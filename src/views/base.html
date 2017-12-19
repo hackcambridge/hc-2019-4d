@@ -2,10 +2,9 @@
 <html>
 
 <head>
-    <title>{% block pageTitle %}{{ title }}{% endblock %}</title>
-    <meta name="title" content="{{ title }}" />
+    <title>{{ title }} — Hack Cambridge</title>
     <meta name="description" content="{{ description }}" />
-    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:title" content="{{ title }} — Hack Cambridge" />
     <meta property="og:url" content="{{ requestedUrl.href }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="{{ requestedUrl.protocol }}//{{ requestedUrl.host }}{{ asset('images/fb-share.png') }}" />
