@@ -30,7 +30,7 @@
 
 {% block extraSections %}
 
-    {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSd1UuxOrLQcv2r74UGniJJjyd9h1pfWHBOZsNZPasMSUabBoQ/viewform" %}
+    {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSf7cEY2xt-Ya_VooMEAbmQMhCLDpBJ5MtHFa38ZE2rsmLvmWw/viewform" %}
     {% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScF6ZRa8oLYcZ42G3Xgx5fmKV3FWrl0Jkm4dcVLYhVBCKy1Jw/viewform" %}
 
     {# To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking #}
@@ -54,7 +54,7 @@
                     </div>
                     {# The RSVP form for incomplete RSVPs #}
                     {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
-                        <div class="two unit row">
+                        <div class="two half unit row">
                             <div class="unit column grows">
                                 <div>
                                     <input id="rsvp-yes" type="radio" name="rsvp" value="RSVP_YES" required="true" />
