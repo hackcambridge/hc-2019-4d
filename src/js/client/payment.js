@@ -16,7 +16,7 @@ module.exports = function () {
         currency: 'GBP',
         token: function (token) {
           console.log('TOKEN');
-          $output.text('Working...');
+          $output.text('Working…');
 
           let data = $this.serializeArray();
 
@@ -44,9 +44,9 @@ module.exports = function () {
         }
       });
 
-      let $amount = $this.find('.payment-form .amount');
-      let $reference = $this.find('.payment-form .reference');
-      let $output = $this.find('.payment-form .output');
+      let $amount = $this.find('[name="amount"]');
+      let $reference = $this.find('[name="reference"]');
+      let $output = $this.find('.output');
 
       let getAmount = function () {
         let amount = $amount.val();
