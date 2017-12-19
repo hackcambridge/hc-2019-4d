@@ -28,8 +28,7 @@ module.exports = function () {
             data: data
           })
             .success((data) => {
-              $('.payment-form').remove();
-              $('.payment-form .description').text(data.message);
+              $output.text(data.message);
             })
             .fail((jqXHR) => {
               let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
@@ -46,7 +45,7 @@ module.exports = function () {
 
       let $amount = $this.find('[name="amount"]');
       let $reference = $this.find('[name="reference"]');
-      let $output = $this.find('.output');
+      let $output = $('.form-status');
 
       let getAmount = function () {
         let amount = $amount.val();
