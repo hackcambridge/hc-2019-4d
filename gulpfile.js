@@ -11,6 +11,11 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
+const ts = require('gulp-typescript');
+const tslint = require('gulp-tslint');
+const stylish = require('tslint-stylish');
+
+const tsProject = ts.createProject('tsconfig.json');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -29,25 +34,26 @@ gulp.task('clean', () => {
 });
 
 // css
-gulp.task('styles', () => {
-  gulp.src('src/styles/main.styl')
+
+gulp.task('main-styles', () => {
+  return gulp.src('src/styles/main.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
-      paths: ['./node_modules'],
-
+      paths: ['./node_modules']
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
+});
 
+gulp.task('hc2018-styles', () => {
   gulp.src('src/styles/hc-2018/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
-      paths: ['./node_modules'],
-
+      paths: ['./node_modules']
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
@@ -55,8 +61,10 @@ gulp.task('styles', () => {
     .pipe(bs.stream());
 });
 
+gulp.task('styles', ['main-styles', 'hc2018-styles']);
+
 // js
-gulp.task('scripts', () => {
+gulp.task('client-scripts', () => {
   let gulpBrowserify = function (fileIn, fileOut) {
     return browserify({
       entries: fileIn,
@@ -78,6 +86,14 @@ gulp.task('scripts', () => {
     .pipe(bs.stream());
 });
 
+gulp.task('server-scripts', () => {
+  return tsProject.src()
+    .pipe(tsProject())
+    .js.pipe(gulp.dest('assets/dist/built'));
+});
+
+gulp.task('scripts', ['client-scripts', 'server-scripts']);
+
 let assetPath = ['assets/**', '!assets/dist/**'];
 
 // other assets
@@ -87,12 +103,24 @@ gulp.task('assets', () => {
     .pipe(bs.stream({ once: true }));
 });
 
-gulp.task('lint', () => {
-  return gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
+// lint
+
+gulp.task('eslint', () =>
+  gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError())
+);
+
+gulp.task('tslint', () =>
+  gulp.src('src/**/*.ts')
+    .pipe(tslint({
+      formatter: 'verbose'
+    }))
+    .pipe(tslint.report(stylish))
+);
+
+gulp.task('lint', ['eslint', 'tslint']);
 
 gulp.task('rev', () => {
   return gulp.src('assets/dist/**')
@@ -118,11 +146,11 @@ gulp.task('watch', ['build'], () => {
 gulp.task('serve', ['watch'], () => {
   let runnode = function (env = {}) {
     nodemon({
-      script: 'index.js',
+      script: 'assets/dist/built/js/index.js',
       ext: 'js',
-      ignore: ['src/js/client/**', 'gulpfile.js'],
+      ignore: ['src/**', 'gulpfile.js', 'assets/dist/built/js/client/**'],
       env: Object.assign({
-        NODE_PATH: './src',
+        NODE_PATH: './assets/dist/built',
       }, env),
     });
   };
@@ -138,7 +166,7 @@ gulp.task('serve', ['watch'], () => {
     });
   } else {
     runnode({
-      NODE_PATH: `${process.env.NODE_PATH}:./src`,
+      NODE_PATH: `${process.env.NODE_PATH}:./assets/dist/built`,
     });
   }
 });

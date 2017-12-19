@@ -1,6 +1,6 @@
 const { makeInstruction } = require('js/server/email');
 
-exports.invited = function ({ name, daysValid }) {
+export function invited({ name, daysValid }: { name: string, daysValid: number }) {
   return {
     subject: `${name}, you are invited to Hack Cambridge Ternary!`,
     body: {
@@ -22,9 +22,9 @@ exports.invited = function ({ name, daysValid }) {
       outro: 'If you have any questions or concerns, don\'t hesitate to reach out to us by visiting our website.',
     },
   };
-};
+}
 
-exports.notInvited = function ({ name }) {
+export function notInvited({ name }: { name: string }) {
   return {
     subject: 'An update on your Hack Cambridge application',
     body: {
@@ -35,7 +35,7 @@ exports.notInvited = function ({ name }) {
         'Due to the amount of them, we are unable to provide feedback on individual applications.',
         'Please stay tuned and apply for Hack Cambridge 2019 when it rolls around - we would love to hear from you again!',
       ],
-      
+
     },
   };
-};
+}

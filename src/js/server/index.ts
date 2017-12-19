@@ -1,30 +1,42 @@
 'use strict';
 
-let express = require('express');
-let nunjucks = require('nunjucks');
-let bodyParser = require('body-parser');
-let url = require('url');
-let utils = require('./utils');
-let app = express();
-const auth = require('js/server/auth');
-const errors = require('js/server/errors');
-const colors = require('js/shared/colors');
-const metadata = require('js/shared/metadata');
+import bodyParser = require('body-parser');
+import compression = require('compression');
+import express = require('express');
+import http = require('http');
+import nunjucks = require('nunjucks');
+import url = require('url');
 
-let server = require('http').Server(app);
+import auth = require('js/server/auth');
+import errors = require('js/server/errors');
+import colors = require('js/shared/colors');
+import metadata = require('js/shared/metadata');
+import apiRouter = require('./api');
+import applyRouter = require('./apply/router');
+import hcapiRouter = require('./hcapi');
+import Utils from './utils';
+
+interface IRequestWithRequestedUrl extends express.Request {
+  requestedUrl?: url.Url;
+}
+
+const app = express();
+
+const server = http.createServer(app);
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
 });
 
-utils.init(app);
+const utils = new Utils();
+Utils.app = app;
 
-app.use((req, res, next) => {
+app.use((req: IRequestWithRequestedUrl, res, next) => {
   res.locals.title = metadata.title;
   res.locals.description = metadata.description;
   res.locals.colors = colors;
-  const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
-  const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
+  const port = (app.settings.env === 'development') ? ':' + req.app.settings.port : '';
+  const protocol = (app.settings.env === 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = url.parse(
     protocol + '://' + req.hostname + port + req.originalUrl
   );
@@ -32,19 +44,19 @@ app.use((req, res, next) => {
 });
 
 // Static file serving
-let staticOptions = { };
-if (app.settings.env != 'development') {
+const staticOptions: any = { };
+if (app.settings.env !== 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
-app.use(require('compression')());
-app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOptions));
+app.use(compression());
+app.use('/assets', express.static(Utils.resolvePath('assets/dist'), staticOptions));
 
 auth.setUpAuth(app);
 
 // View rendering
-nunjucks.configure(utils.resolvePath('src/views'), {
+nunjucks.configure(Utils.resolvePath('src/views'), {
   autoescape: true,
-  noCache: app.settings.env == 'development',
+  noCache: app.settings.env === 'development',
   express: app
 });
 
@@ -59,9 +71,9 @@ if (process.env.BS_SNIPPET) {
 // Routes
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', require('./api'));
-app.use('/apply', require('./apply/router'));
-app.use('/hcapi', require('./hcapi'));
+app.use('/api', apiRouter);
+app.use('/apply', applyRouter);
+app.use('/hcapi', hcapiRouter);
 
 app.get('/', (req, res) => {
   res.render('index.html', {
@@ -80,7 +92,7 @@ app.get('/terms', (req, res) => {
 
 app.get('/faqs', (req, res) => {
   res.render('faqs.html', {
-    faqs: utils.loadResource('faqs') 
+    faqs: utils.loadResource('faqs')
   });
 });
 

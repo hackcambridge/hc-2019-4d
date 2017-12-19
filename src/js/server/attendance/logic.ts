@@ -1,28 +1,28 @@
-const moment = require('moment');
-const Sequelize = require('sequelize');
-const { ResponseRsvp, ApplicationTicket, HackerApplication, ApplicationResponse, Hacker, db } = require('js/server/models');
-const slack = require('js/server/slack');
-const { sendEmail } = require('js/server/email');
-const { response } = require('js/shared/status-constants');
-const { INVITATION_VALIDITY_DURATION } = require('js/server/review/constants');
+import moment = require('moment');
+import Sequelize = require('sequelize');
 
-const emailTemplates = require('./email-templates');
+import { sendEmail } from 'js/server/email';
+import {ApplicationResponse, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'js/server/models';
+import { INVITATION_VALIDITY_DURATION } from 'js/server/review/constants';
+import slack = require('js/server/slack');
+import { response } from 'js/shared/status-constants';
+import emailTemplates = require('./email-templates');
 
 /**
  * Creates a ticket for an application.
- * 
+ *
  * Sends an email and Slack invite to the user.
  */
 function createTicket(application, transaction) {
   return ApplicationTicket.create({
     hackerApplicationId: application.id,
-  }, { transaction }).then((applicationTicket) => {
+  }, { transaction }).then(applicationTicket => {
     return application.getHacker({ transaction })
       .then(hacker => {
         Promise.all([
           slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
           sendTicketEmail(hacker)
-        ]).catch((error) => {
+        ]).catch(error => {
           // Not doing anything on error as there is no way to recover
           console.error(error);
         });
@@ -53,7 +53,7 @@ function sendTicketEmail(hacker) {
 /**
  * Get all invitations that are old enough to expire. Responses are hydrated with application and hacker objects
  */
-function getInvitationExpiryCandidates() {
+export function getInvitationExpiryCandidates() {
   return ApplicationResponse.findAll({
     where: Sequelize.and(
       {
@@ -76,11 +76,11 @@ function getInvitationExpiryCandidates() {
 
 /**
  * Expire an invitation and email the invitation holder about this
- * 
+ *
  * @param {Response} response - The response object to expire. Must represent an invitation
  *   and have its application with hacker hydrated.
  */
-function expireInvitation(applicationResponse) {
+export function expireInvitation(applicationResponse) {
   if (applicationResponse.response !== response.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
@@ -99,10 +99,10 @@ function expireInvitation(applicationResponse) {
 
 /**
  * Adds an RSVP for a particular application response.
- * 
+ *
  * If the RSVP is yes, then a ticket will be added to the application.
  */
-function rsvpToResponse(applicationResponse, rsvpStatus) {
+export function rsvpToResponse(applicationResponse, rsvpStatus) {
   if (applicationResponse.response !== response.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
@@ -127,7 +127,7 @@ function rsvpToResponse(applicationResponse, rsvpStatus) {
 /**
  * Gets all tickets with information about the applicant
  */
-function getTicketsWithApplicantInfo() {
+export function getTicketsWithApplicantInfo() {
   return ApplicationTicket.findAll({
     include: [
       {
@@ -161,10 +161,3 @@ function getTicketsWithApplicantInfo() {
     };
   }));
 }
-
-module.exports = {
-  rsvpToResponse,
-  getTicketsWithApplicantInfo,
-  getInvitationExpiryCandidates,
-  expireInvitation,
-};

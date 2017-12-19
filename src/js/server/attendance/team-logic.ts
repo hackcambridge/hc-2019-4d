@@ -1,8 +1,8 @@
-const { HackerApplication, ApplicationTicket, Hacker } = require('js/server/models');
-const slack = require('js/server/slack');
-const { sendEmail } = require('js/server/email');
+import { sendEmail } from 'js/server/email';
+import { ApplicationTicket, Hacker, HackerApplication } from 'js/server/models';
+import slack = require('js/server/slack');
 
-const emailTemplates = require('./email-templates');
+import emailTemplates = require('./email-templates');
 
 const ROLE_ORDERING = ['development', 'design', 'product_management', 'unknown'];
 const TARGET_TEAM_SIZE = 4;
@@ -25,12 +25,12 @@ function getAllApplicationsWantingTeams() {
   });
 }
 
-function getHighestPriorityRoleIndex(application) {
-  for (let roleIndex in ROLE_ORDERING) {
+function getHighestPriorityRoleIndex(application): number {
+  ROLE_ORDERING.forEach((_, roleIndex) => {
     if (application.developmentRoles.includes(ROLE_ORDERING[roleIndex])) {
       return roleIndex;
     }
-  }
+  });
 
   return ROLE_ORDERING.length;
 }
@@ -50,11 +50,11 @@ function assignApplicationsToTeams(applications) {
   let teamIndex = 0;
   const teams = createEmptyTeams(applicationsToAssign);
 
-  applications.forEach((application) => {
+  applications.forEach(application => {
     teams[teamIndex % teams.length].push(application);
     teamIndex += 1;
   });
-  
+
   return teams;
 }
 
@@ -73,7 +73,7 @@ function createTeamAssignments() {
 }
 
 function getSlackNameForEmail(slackUsers, email) {
-  for (let user of slackUsers) {
+  for (const user of slackUsers) {
     if (user.profile.email === email) {
       return user.name;
     }
@@ -104,7 +104,7 @@ function sendTeamEmail(team) {
   return sendEmail({
     to: team.map(member => member.email),
     contents: emailTemplates.teamAllocation({ team }),
-  }).catch((error) => {
+  }).catch(error => {
     console.error(`Sending team email to ${teamIdentifier} failed: `, error);
   });
 }

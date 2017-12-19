@@ -1,6 +1,6 @@
-const { makeInstruction } = require('js/server/email');
+import { makeInstruction } from 'js/server/email';
 
-exports.applied = function ({name, applicationSlug, inTeam}) {
+export function applied({name, applicationSlug, inTeam}) {
   const actions = [
     makeInstruction({
       instructions: `Your application ID is ${applicationSlug}. View the status of your application on your dashboard.`,
@@ -35,4 +35,4 @@ exports.applied = function ({name, applicationSlug, inTeam}) {
       outro: 'If you have any questions or concerns in the meantime, don\'t hesitate to reach out to us by visiting our website.',
     },
   };
-};
+}

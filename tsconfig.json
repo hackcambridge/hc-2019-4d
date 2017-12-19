@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+      "allowJs": true,
+      "baseUrl": "src",
+      "module": "commonjs",
+      "noFallthroughCasesInSwitch": true,
+      "rootDir": "src",
+      "target": "es2015",
+      "typeRoots": ["node_modules/@types"]
+  },
+  "include": [
+      "src/js/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

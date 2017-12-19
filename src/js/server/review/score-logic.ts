@@ -5,28 +5,28 @@ const individualScoreQuery = fs.readFileSync('src/js/server/review/individual_sc
 
 /**
  * Takes a HackerApplication and the set of individual scores,
- * produces the validated, group averaged (if necessary) score 
+ * produces the validated, group averaged (if necessary) score
  * for that application
  *
  * Returns null if they are not 'fully scored', i.e. they are yet to recieve at least two reviews.
- * 
+ *
  * @param  {HackerApplication} application  The HackerApplication of the person to score
  * @param  {Object} individualScores        The object mapping HackerApplication IDs to individual scores
  * @param  {Object} teamScores              The object mapping Team IDs to team average scores
  * @return {Number}                         The score for this hacker, null if not fully scored
  */
-function calculateScore(application, individualScores, teamScores) {
-  let hacker = application.hacker;
-  let teamId = hacker.Team ? hacker.Team.teamId : null;
+export function calculateScore(application, individualScores, teamScores) {
+  const hacker = application.hacker;
+  const teamId = hacker.Team ? hacker.Team.teamId : null;
 
   if (teamId == null) {
     // The hacker isn't in a team
     // return the individual average score if it exists, null otherwise
-    let score = individualScores[application.id];
+    const score = individualScores[application.id];
     return score ? score : null;
   } else {
-    // The hacker is in a team 
-    let teamScore = teamScores[teamId];
+    // The hacker is in a team
+    const teamScore = teamScores[teamId];
     if (teamScore === undefined) {
       // Something went wrong, couldn't find the hackers team
       console.log(`Error: Could not find score for team ${teamId}`);
@@ -37,18 +37,17 @@ function calculateScore(application, individualScores, teamScores) {
   }
 }
 
-
 /**
  * Takes a Team with associated HackerApplications and
  * the set of individual scores and calculates the teams
  * average score
  * @return {Number}  The average score for the team, null if team has not been fully scored
  */
-function calculateTeamAverage(team, individualScores) {
-  let teamMembers = team.teamMembers;
-  let teamMembersScores = teamMembers.map((member) => {
-    let memberApplicationId = member.hacker.hackerApplication.id;
-    let score = individualScores[memberApplicationId];
+export function calculateTeamAverage(team, individualScores) {
+  const teamMembers = team.teamMembers;
+  const teamMembersScores = teamMembers.map( member => {
+    const memberApplicationId = member.hacker.hackerApplication.id;
+    const score = individualScores[memberApplicationId];
     return score !== undefined ? score : null;
   });
   // Check that all the teamMembers have been scored
@@ -61,7 +60,7 @@ function calculateTeamAverage(team, individualScores) {
  */
 function averageOrNull(values) {
   let sum = 0;
-  let length = values.length;
+  const length = values.length;
   for (let i = 0; i < length; i++) {
     if (values[i] === null) { return null; }
     sum += values[i];
@@ -73,7 +72,7 @@ function averageOrNull(values) {
  * Gets all applications and includes the TeamMember relation
  * @return {Promise.<[HackerApplication]>} Promise that resolves to the resulting HackerApplications
  */
-function getApplicationsWithTeams() {
+export function getApplicationsWithTeams() {
   return HackerApplication.findAll({
     include: [
       {
@@ -100,7 +99,7 @@ function getApplicationsWithTeams() {
  * This DOES NOT take into account team averages, this is an individual score
  * @return {Promise} A Promise that resolves to an object. See below for format
  */
-function getIndividualScores() {
+export function getIndividualScores() {
   // Get the individual scores (exist if reviews have been done)
   return db.query(individualScoreQuery, {
     type: Sequelize.QueryTypes.SELECT,
@@ -127,7 +126,7 @@ function getIndividualScores() {
  * Gets a list of teams with the associated HackerApplications
  * @return {Promise.[Team]} A promise that resolves to the list of teams
  */
-function getTeamsWithMembers() {
+export function getTeamsWithMembers() {
   // Get the teams with members listed
   return Team.findAll({
     include: [
@@ -146,13 +145,13 @@ function getTeamsWithMembers() {
 }
 
 /**
- * Takes the set of individual scores and the team listings and 
+ * Takes the set of individual scores and the team listings and
  * produces a set of team average scores
  * @param  {Object} individualScores This is of the structure {'<application_id>': <score as float>, ... }
  * @param  {[Team]} teamsArr         Set of teams with the associated HackerApplication objects
  * @return {Object}                  This is of the structure {'<team_id>': <average score as float>, ...}
  */
-function calculateTeamsAverages(individualScores, teamsArr) {
+export function calculateTeamsAverages(individualScores, teamsArr) {
   return teamsArr.reduce((teams, team) => Object.assign(teams, {[team.id]: calculateTeamAverage(team, individualScores)}), {});
 }
 
@@ -162,7 +161,7 @@ function calculateTeamsAverages(individualScores, teamsArr) {
  * @param  {HackerApplication} application The application to check
  * @return {boolean}             Whether or not the application is fully scored
  */
-function applicationHasBeenIndividuallyScored(application) {
+export function applicationHasBeenIndividuallyScored(application): Promise<boolean> {
   return ApplicationReview.findAndCountAll({
     where: {
       hackerApplicationId: application.id,
@@ -172,11 +171,11 @@ function applicationHasBeenIndividuallyScored(application) {
 
 /**
  * Gets all applications with their true score and useful extra information.
- * 
+ *
  * @param {Function} [weightingFunction] An optional function that takes in application
  *   object and returns a new score.
  */
-function getApplicationsWithScores(weightingFunction = (({ rating }) => rating)) {
+export function getApplicationsWithScores(weightingFunction = (({ rating }) => rating)) {
   return Promise.all([
     getApplicationsWithTeams(),
     getIndividualScores(),
@@ -202,14 +201,3 @@ function getApplicationsWithScores(weightingFunction = (({ rating }) => rating))
     });
   });
 }
-
-module.exports = {
-  getApplicationsWithTeams,
-  getIndividualScores,
-  getTeamsWithMembers,
-  calculateScore,
-  calculateTeamAverage,
-  calculateTeamsAverages,
-  applicationHasBeenIndividuallyScored,
-  getApplicationsWithScores,
-};

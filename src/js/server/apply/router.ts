@@ -1,21 +1,31 @@
-const express = require('express');
-const { createApplicationForm } = require('js/shared/apply/application-form');
-const { createTeamForm } = require('js/shared/apply/team-form');
-const renderForm = require('js/shared/apply/render-form');
-const renderTableForm = require('js/shared/apply/render-table-form');
-const auth = require('js/server/auth');
-const utils = require('../utils.js');
-const statuses = require('js/shared/status-constants');
-const { Hacker, TeamMember } = require('js/server/models');
-const { rsvpToResponse } = require('js/server/attendance/logic');
-const applyLogic = require('./logic');
-const fileUploadMiddleware = require('./file-upload');
-const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
-const tag = require('forms/lib/tag');
+import express = require('express');
+import tag from 'forms/lib/tag';
 
-const applyRouter = new express.Router();
+import { rsvpToResponse } from 'js/server/attendance/logic';
+import auth = require('js/server/auth');
+import { Hacker, TeamMember } from 'js/server/models';
+import { createApplicationForm } from 'js/shared/apply/application-form';
+import renderForm = require('js/shared/apply/render-form');
+import renderTableForm = require('js/shared/apply/render-table-form');
+import { createTeamForm } from 'js/shared/apply/team-form';
+import { getHackathonEndDate, getHackathonStartDate } from 'js/shared/dates';
+import statuses = require('js/shared/status-constants');
+import Utils from '../utils';
+import fileUploadMiddleware from './file-upload';
+import applyLogic = require('./logic');
 
-applyRouter.get('/', (req, res) => {
+const applyRouter = express.Router();
+const utils = new Utils();
+
+interface IAuthRequest extends express.Request {
+  user?: any;
+}
+
+interface IUploadRequest extends IAuthRequest {
+  file: any;
+}
+
+applyRouter.get('/', (req: IAuthRequest, res) => {
   if (req.user) {
     res.redirect(`${req.baseUrl}/dashboard`);
     return;
@@ -34,12 +44,12 @@ applyRouter.get('/', (req, res) => {
 applyRouter.all('/form', checkHasApplied);
 applyRouter.all('/form', checkApplicationsOpen);
 
-applyRouter.post('/form', (req, res, next) => {
+applyRouter.post('/form', (req: IAuthRequest, res, next) => {
   req.user.log('Attempted to make an application');
   next();
 },
-fileUploadMiddleware.single('cv'), 
-(req, res, next) => {
+fileUploadMiddleware.single('cv'),
+(req: IUploadRequest, res, next) => {
   req.user.log('Application file uploaded');
   const form = createApplicationForm();
 
@@ -47,14 +57,14 @@ fileUploadMiddleware.single('cv'),
   req.body.cv = req.file;
 
   form.handle(req.body, {
-    success: (resultForm) => {
+    success: resultForm => {
       applyLogic.createApplicationFromForm(resultForm.data, req.user)
         .then(() => {
           res.redirect(`${req.baseUrl}/form`);
         })
         .catch(next);
     },
-    error: (resultForm) => {
+    error: resultForm => {
       renderApplyPageWithForm(res, resultForm);
     },
     empty: () => {
@@ -71,11 +81,11 @@ applyRouter.get('/form', (req, res) => {
 
 applyRouter.all('/team', checkApplicationsOpen);
 
-applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
+applyRouter.post('/team', fileUploadMiddleware.none(), (req: IAuthRequest, res, next) => {
   const form = createTeamForm();
 
   form.handle(req.body, {
-    success: (resultForm) => {
+    success: resultForm => {
       const errors = { };
       applyLogic.createTeamFromForm(resultForm.data, req.user, errors).then(() => {
         console.log('Team application success.');
@@ -88,7 +98,7 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
         });
       });
     },
-    error: (resultForm) => {
+    error: resultForm => {
       renderTeamPageWithForm(res, resultForm);
     },
     empty: () => {
@@ -98,7 +108,7 @@ applyRouter.post('/team', fileUploadMiddleware.none(), (req, res, next) => {
 });
 
 // Process the RSVP response
-applyRouter.post('/rsvp', auth.requireAuth, (req, res) => {
+applyRouter.post('/rsvp', auth.requireAuth, (req: IAuthRequest, res) => {
   const rsvp = req.body.rsvp;
   if (rsvp) {
     // RSVP was given, store it
@@ -150,7 +160,7 @@ applyRouter.get('/', (req, res) => {
 });
 
 // Render the form for team applications
-applyRouter.get('/team', (req, res) => {
+applyRouter.get('/team', (req: IAuthRequest, res) => {
   req.user.getHackerApplication().then(hackerApplication => {
     if (hackerApplication !== null) {
       req.user.getTeam().then(team => {
@@ -189,7 +199,7 @@ function renderDashboard(req, res) {
         const teamId = teamMember.teamId;
         return TeamMember.findAll({
           where: {
-            teamId: teamId,
+            teamId,
             $not: {
               // Exclude the current user
               hackerId: req.user.id,
@@ -237,7 +247,7 @@ function renderDashboard(req, res) {
 
       applicationInfo: content['your-application'][applicationStatus],
       teamApplicationInfo: content['team-application'][teamApplicationStatus],
-      rsvpInfo: content['rsvp'][rsvpStatus],
+      rsvpInfo: content.rsvp[rsvpStatus],
       statusMessage: content['status-messages'][overallStatus],
       teamMembers,
 
@@ -284,7 +294,7 @@ function renderTeamPageWithForm(res, form, errors = { }) {
 
 /**
  * Intercepts the request to check if the user has submitted an application
- * 
+ *
  * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
  * as normal.
  */
@@ -293,7 +303,7 @@ function checkHasApplied(req, res, next) {
     if (hackerApplication) {
       res.redirect(`${req.baseUrl}/dashboard`);
       return;
-    } 
+    }
 
     next();
   }).catch(next);
@@ -308,7 +318,7 @@ function checkApplicationsOpen(req, res, next) {
     res.redirect(`${req.baseUrl}/dashboard`);
     return;
   }
-  
+
   next();
 }
 

@@ -1,8 +1,8 @@
-const { Router } = require('express');
+import express = require('express');
 const { db, Hacker, ApplicationReview, HackerApplication, ApplicationResponse, ResponseRsvp, ApplicationTicket } = require('js/server/models');
 const { response } = require('js/shared/status-constants');
 
-const statsRouter = new Router();
+const statsRouter = express.Router();
 
 statsRouter.get('/', (req, res, next) => {
 
@@ -22,15 +22,15 @@ statsRouter.get('/', (req, res, next) => {
   const expiredCountPromise = ResponseRsvp.count(({ where: { rsvp: ResponseRsvp.RSVP_EXPIRED }}));
   const ticketCountPromise = ApplicationTicket.count();
 
-  const applicationsReviewedQuery = 
-    'SELECT COUNT(*) FROM (' + 
-      'SELECT "hackerApplicationId", COUNT(id)' + 
+  const applicationsReviewedQuery =
+    'SELECT COUNT(*) FROM (' +
+      'SELECT "hackerApplicationId", COUNT(id)' +
       'FROM "application-reviews"' +
       'GROUP BY "hackerApplicationId"' +
     ') review_counts WHERE count >= 2';
 
-  const applicationsReviewedCountPromise = 
-  db.query(applicationsReviewedQuery, { type: db.QueryTypes.SELECT }).then((counts) => {
+  const applicationsReviewedCountPromise =
+  db.query(applicationsReviewedQuery, { type: db.QueryTypes.SELECT }).then(counts => {
     // Get the number from the object that's returned
     return parseInt(counts[0].count);
   });
