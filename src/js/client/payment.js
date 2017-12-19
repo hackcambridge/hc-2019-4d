@@ -27,7 +27,7 @@ module.exports = function () {
             method: 'POST',
             data: data
           })
-            .success((data) => {
+            .done((data) => {
               $('.payment-form').remove();
               $('.payment-form .description').text(data.message);
             })
