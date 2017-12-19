@@ -21,13 +21,28 @@
             <div class="form-row three unit column">
                 <input class="form-control" name="reference" placeholder="Reference" class="payment-form-reference" id="payment-form-reference" type="text" required />
             </div>
-            <div class="form-row output"></div>
             <div class="form-row two unit column">
                 <button class="button submit-button" type="submit">Make Payment</button>
             </div>
         </form>
     </div>
 </div>
+{% endblock %}
+{% block extraSections %}
+<section class="black pixel">
+    <div class="container a4">
+        <div class="two unit row">
+            <div class="unit column grows">
+                <h3>Status</h3>
+            </div>
+        </div>
+        <div class="three unit row">
+            <div class="unit column grows">
+                <p class="form-status">None</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 {% block scripts %}
