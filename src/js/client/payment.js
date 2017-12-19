@@ -33,6 +33,7 @@ module.exports = function () {
             .fail((jqXHR) => {
               let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
               $output.text(errormsg);
+              $('section.form-status').removeClass('black').addClass('red');
               $this.find('input, button').prop('disabled', false);
             })
             .always(() => {
@@ -45,7 +46,7 @@ module.exports = function () {
 
       let $amount = $this.find('[name="amount"]');
       let $reference = $this.find('[name="reference"]');
-      let $output = $('.form-status');
+      let $output = $('p.form-status');
 
       let getAmount = function () {
         let amount = $amount.val();
