@@ -27,7 +27,7 @@ module.exports = function () {
             method: 'POST',
             data: data
           })
-            .success((data) => {
+            .done((data) => {
               $output.text(data.message);
             })
             .fail((jqXHR) => {
