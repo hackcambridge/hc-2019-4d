@@ -8,3 +8,6 @@ assets/dist
 *.key
 
 npm-debug.log
+
+# macOS
+.DS_Store
