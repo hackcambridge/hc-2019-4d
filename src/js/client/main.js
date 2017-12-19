@@ -53,7 +53,7 @@ $(document).ready(() => {
       loading = $.ajax(action, {
         method: method,
         data: $this.serialize()
-      }).success((data) => {
+      }).done((data) => {
         createFlash(data.message, 'signup-form-success');
       }).fail((jqXHR) => {
         const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
