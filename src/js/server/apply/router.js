@@ -1,8 +1,8 @@
 const express = require('express');
-const { createApplicationForm } = require('js/shared/application-form');
-const { createTeamForm } = require('js/shared/team-form');
-const renderForm = require('js/shared/render-form');
-const renderTableForm = require('js/shared/render-table-form');
+const { createApplicationForm } = require('js/shared/apply/application-form');
+const { createTeamForm } = require('js/shared/apply/team-form');
+const renderForm = require('js/shared/apply/render-form');
+const renderTableForm = require('js/shared/apply/render-table-form');
 const auth = require('js/server/auth');
 const utils = require('../utils.js');
 const statuses = require('js/shared/status-constants');
