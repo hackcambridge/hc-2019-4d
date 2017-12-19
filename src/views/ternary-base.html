@@ -9,7 +9,7 @@
     <meta name=author content="Hack Cambridge Team">
     <meta name="language" content="en">
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:title" content="{% block pageTitle %}{{ title }} — Hack Cambridge{% endblock %}" />
     <meta property="og:url" content="{{ requestedUrl.href }}" />
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="{{ requestedUrl.protocol }}//{{ requestedUrl.host }}{{ asset('images/fb-share.png') }}" />
