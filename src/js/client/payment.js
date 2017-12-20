@@ -29,11 +29,12 @@ module.exports = function () {
           })
             .done((data) => {
               $output.text(data.message);
+              $('section.form-status.red').removeClass('red').addClass('black');
             })
             .fail((jqXHR) => {
               let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
               $output.text(errormsg);
-              $('section.form-status').removeClass('black').addClass('red');
+              $('section.form-status.black').removeClass('black').addClass('red');
               $this.find('input, button').prop('disabled', false);
             })
             .always(() => {
