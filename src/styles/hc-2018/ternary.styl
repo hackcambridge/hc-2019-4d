@@ -94,7 +94,7 @@ section.links:hover, section.links:hover * {
 .secondary {
     color: var(--accent-color);
 }
-.pixel:not(:placeholder-shown), .label {
+.pixel:not(:placeholder-shown), .pixel:not(:placeholder-shown) *, .label {
     font-family: "PxGrotesk-Screen", Helvetica, Arial, sans-serif;
     font-synthesis: none;
 }
@@ -340,7 +340,7 @@ input, button {
     color: var(--secondary-color);
 }
 
-input[type="email"], input[type="text"] {
+input[type="email"], input[type="text"], input[type="number"] {
     border-bottom: 1pt solid var(--secondary-color);
     width: 100%;
 }
@@ -399,16 +399,19 @@ legend {
     margin-bottom: var(--gutter);
 }
 
-input[type="submit"]:hover, button:hover{
+input[type="submit"]:hover:not([disabled]), button:hover:not([disabled]){
     background-color: unset;
     color: var(--secondary-color);
     border: 1pt solid var(--secondary-color);
 }
 
-input[type="submit"]:active, button:active{
+input[type="submit"]:active:not([disabled]), button:active:not([disabled]){
     background-color: var(--secondary-color);
     color: var(--primary-color);
     border: 1pt solid var(--secondary-color);
+}
+input[disabled], button[disabled] {
+    opacity: 0.5;
 }
 
 .logo.mega, .logo.kilo {
