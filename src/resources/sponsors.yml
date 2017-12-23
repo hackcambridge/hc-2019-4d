@@ -18,11 +18,13 @@ sponsors:
        website: https://accenture.com
      - name: Amazon
        website: https://amazon.co.uk
+     - name: ARK
+       website: https://ark.io
      - name: Avast
        website: https://avast.com
      - name: Google
        website: https://google.com
-    rows: eight
+    rows: twelve
     columns: four second-five
 
   mega:
