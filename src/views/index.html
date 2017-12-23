@@ -52,7 +52,7 @@
                                 <a class="persistent row centred" rel="external" href="https://twitter.com/@hack_cambridge">
                                     {{ singleColourIcon('Twitter') }}
                                 </a>
-                                <a class="persistent row centred" rel="external" href="https://medium.com/@HackCambridge">
+                                <a class="persistent row centred" rel="external" href="https://medium.com/hackers-at-cambridge/tagged/hack-cambridge">
                                     {{ singleColourIcon('Medium') }}
                                 </a>
                                 <a class="persistent row centred" rel="external" href="https://www.instagram.com/hack_cambridge/">
@@ -70,18 +70,32 @@
             <div class="unit row">
                 <div class="two second-five unit column grows"></div>
                 <div class="five second-seven unit column grows">
-                    <div class="two unit row">
+                    <div class="unit row">
                         <div class="five unit column">
                             <div class="two unit row">
                                 <div class="unit column grows">
                                     <h5>
-                                        Applications are closing soon!<br><span class="secondary">Submit yours before 9<sup>th</sup> December.</span>
+                                        Applications are now closed.<br><span class="secondary">Sign up for info about HC 2019!</span>
                                     </h5>
                                 </div>
                             </div>
-                            <div class="one half unit row">
+                            <div class="two unit row">
                                 <div class="unit column grows">
-                                    <a rel="next" href="/apply">Start or continue your application</a>
+                                    <p>
+                                        Sign up below to be notified when applications open for Hack Cambridge 2019.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="one half unit row">
+                                <div class="five unit column">
+                                    <form id="splash-signup-form" class="half unit persistent row signup-form" method="post" action="/api/subscribe/interested">
+                                        <div class="four small unit column grows">
+                                            <input type="email" name="email" required placeholder="Enter your email address." />
+                                        </div>
+                                        <div class="one unit column submit">
+                                            <input type="submit" name="submit" value="Submit." />
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -89,6 +103,9 @@
                             <div class="icons persistent row content">
                                 <a class="persistent row centred" rel="next" href="/faqs">
                                     {{ singleColourIcon('Help') }}
+                                </a>
+                                <a class="persistent row centred" rel="next" href="/apply/dashboard">
+                                    {{ singleColourIcon('Log in') }}
                                 </a>
                             </div>
                         </div>
@@ -138,10 +155,10 @@
 </main>
 <footer>
     <div class="container width">
-        <div class="three unit row">
+        <div class="unit row">
             <div class="two second-five unit column grows"></div>
             <div class="five second-seven unit column grows">
-                <div class="one half unit row">
+                <div class="three unit row">
                     <div class="five unit column">
                         {% include 'ternary-footer.html' %}
                     </div>
