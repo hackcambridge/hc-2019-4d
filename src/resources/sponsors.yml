@@ -24,7 +24,7 @@ sponsors:
        website: https://avast.com
      - name: Google
        website: https://google.com
-    rows: twelve
+    rows: ten half
     columns: four second-five
 
   mega:
