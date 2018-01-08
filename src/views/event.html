@@ -1,9 +1,12 @@
-{% extends 'ternary-base.html' %}
-{% block content %}
+{% extends 'default.html' %}
+{% set title = 'Event Guide' %}
+{% set footer = true %}
+{% set homeLink = true %}
+{% block pageHeading %}{{title}}{% endblock %}
+{% block pageContent %}
 <section class="section-event-intro">
   <div class="content-wrapper">
-    <img class="event-logo" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge" />
-    <p>2017 Event Guide<br />This page is a work in progress and will be updated as we get closer to the event.</p>
+    <p>This page is a work in progress and will be updated as we get closer to the event.</p>
 
     {# <div class="event-countdown event-timer-intro"></div> #}
 
@@ -20,7 +23,7 @@
 <section class="section-event-info" id="info">
   <div class="content-wrapper">
     <h1 class="grand-heading">General Information</h1>
-    {{ markdownResource('info') }}
+    {{ markdownResource('general_info') }}
   </div>
 </section>
 
