@@ -96,7 +96,9 @@ gulp.task('lint', () => {
 
 gulp.task('rev', () => {
   return gulp.src('assets/dist/**')
-    .pipe($.revAll.revision())
+    .pipe($.revAll.revision({
+      includeFilesInManifest: ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg']
+    }))
     .pipe(gulp.dest('assets/dist'))
     .pipe($.revAll.manifestFile())
     .pipe(gulp.dest('assets/dist'));

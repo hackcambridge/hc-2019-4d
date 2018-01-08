@@ -1,8 +1,8 @@
 const express = require('express');
-const { createApplicationForm } = require('js/shared/application-form');
-const { createTeamForm } = require('js/shared/team-form');
-const renderForm = require('js/shared/render-form');
-const renderTableForm = require('js/shared/render-table-form');
+const { createApplicationForm } = require('js/shared/apply/application-form');
+const { createTeamForm } = require('js/shared/apply/team-form');
+const renderForm = require('js/shared/apply/render-form');
+const renderTableForm = require('js/shared/apply/render-table-form');
 const auth = require('js/server/auth');
 const utils = require('../utils.js');
 const statuses = require('js/shared/status-constants');
@@ -10,6 +10,8 @@ const { Hacker, TeamMember } = require('js/server/models');
 const { rsvpToResponse } = require('js/server/attendance/logic');
 const applyLogic = require('./logic');
 const fileUploadMiddleware = require('./file-upload');
+const { getHackathonStartDate, getHackathonEndDate } = require('js/shared/dates');
+const tag = require('forms/lib/tag');
 
 const applyRouter = new express.Router();
 
@@ -220,6 +222,9 @@ function renderDashboard(req, res) {
       ticketStatus
     );
 
+    const fridayWeekday = 5;
+    const fridayBeforeHackathonDate = (getHackathonStartDate().isoWeekday() > fridayWeekday) ? getHackathonStartDate().isoWeekday(fridayWeekday) : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
+
     res.render('apply/dashboard.html', {
       applicationSlug: (application === null) ? null : application.applicationSlug,
       applicationStatus,
@@ -238,6 +243,10 @@ function renderDashboard(req, res) {
 
       applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
 
+      hackathonStartDate: getHackathonStartDate().format('dddd DDDo MMM YYYY'),
+      hackathonEndDate: getHackathonEndDate().format('dddd DDDo MMM'),
+      fridayBeforeHackathonDate: fridayBeforeHackathonDate.format('DDDo MMM'),
+
       statuses,
     });
   });
@@ -247,7 +256,7 @@ function renderPageWithForm(res, path, form, errors = { }) {
   res.render(path, {
     formHtml: form.toHTML((name, field, options = { }) => {
       if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+        field.errorHTML = () => tag('p', { classes: ['error_msg form-error-message'] }, errors[name]);
       }
       return renderForm(name, field, options);
     })
@@ -258,7 +267,7 @@ function renderPageWithTableForm(res, path, form, errors = { }) {
   res.render(path, {
     formHtml: form.toHTML((name, field, options = { }) => {
       if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => `<p class="error_msg form-error-message">${errors[name]}</p>`;
+        field.errorHTML = () => tag('td', { classes: ['error_msg form-error-message'] }, errors[name]);
       }
       return renderTableForm(name, field, options);
     })

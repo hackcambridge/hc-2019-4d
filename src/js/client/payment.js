@@ -16,7 +16,7 @@ module.exports = function () {
         currency: 'GBP',
         token: function (token) {
           console.log('TOKEN');
-          $output.text('Working...');
+          $output.text('Working…');
 
           let data = $this.serializeArray();
 
@@ -27,13 +27,14 @@ module.exports = function () {
             method: 'POST',
             data: data
           })
-            .success((data) => {
-              $('.payment-form').remove();
-              $('.payment-form-description').text(data.message);
+            .done((data) => {
+              $output.text(data.message);
+              $('section.form-status.red').removeClass('red').addClass('black');
             })
             .fail((jqXHR) => {
               let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
-              $output.text(errormsg);
+              $output.text(errormsg + ' Please try again.').append('<br>').append('<a href="mailto:team@hackcambridge.com?subject=Payment issue&body=I have encountered this error when trying to make a payment: ' + errormsg + '">Contact us</a>');
+              $('section.form-status.black').removeClass('black').addClass('red');
               $this.find('input, button').prop('disabled', false);
             })
             .always(() => {
@@ -44,9 +45,9 @@ module.exports = function () {
         }
       });
 
-      let $amount = $this.find('.payment-form-amount');
-      let $reference = $this.find('.payment-form-reference');
-      let $output = $this.find('.payment-form-output');
+      let $amount = $this.find('[name="amount"]');
+      let $reference = $this.find('[name="reference"]');
+      let $output = $('p.form-status');
 
       let getAmount = function () {
         let amount = $amount.val();

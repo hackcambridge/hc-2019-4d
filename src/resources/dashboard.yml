@@ -18,7 +18,7 @@ dashboard:
     invited-awaiting-rsvp:
       message_type: success
       title: You’re in!
-      subline: We’d love to have you at Hack Cambridge 2018. Please confirm your place below.
+      subline: We’d love to have you at Hack Cambridge Ternary. Please confirm your place below.
 
     invited-accepted:
       message_type: neutral
@@ -28,7 +28,7 @@ dashboard:
     has-ticket:
       message_type: success
       title: See you there!
-      subline: Thanks for confirming your place. See you on January 28th!
+      subline: Thanks for confirming your place. See you on January 20th!
 
     invited-declined:
       message_type: neutral
@@ -65,7 +65,7 @@ dashboard:
       content:
         You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
       action:
-        title: Submit a team application before the end of November
+        title: Submit a team application before December 9th
         location: /apply/team
     wanting:
       type: success
@@ -91,7 +91,7 @@ dashboard:
       label: Unconfirmed
       content: 
         Please let us know if you’re committed to attending Hack Cambridge Ternary so we can confirm your place! Please note that if you accept and then
-        do not register on the day, this will affect your application in future iterations of Hack Cambridge, please be honest!
+        do not register on the day, this may affect your application in future iterations of Hack Cambridge, please be honest!
     complete-yes:
       type: success
       label: Yes!
