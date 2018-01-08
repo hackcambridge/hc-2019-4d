@@ -10,7 +10,7 @@ function getHackathonEndDate() {
 
 /**
  * Returns the earliest graduation date we can accept.
- * 
+ *
  * This is due to the restriction imposed by MLH that attendees must either be students or
  * graduates who have graduated within the 12 months prior to the event.
  * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event

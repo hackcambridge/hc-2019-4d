@@ -94,13 +94,9 @@ section.links:hover, section.links:hover * {
 .secondary {
     color: var(--accent-color);
 }
-.pixel:not(:placeholder-shown), .label {
-    font-family: "PxGroteskScreen", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-}
-strong, th {
-    font-family: "PxGroteskBold";
-    font-weight: normal;
+.pixel:not(:placeholder-shown), .pixel:not(:placeholder-shown) *, .label {
+    font-family: "PxGrotesk-Screen", Helvetica, Arial, sans-serif;
+    font-synthesis: none;
 }
 .shadow {
     text-shadow: 3pt -3pt var(--accent-color);
@@ -128,41 +124,29 @@ section, a, a::after, svg, input, button, .secondary {
 
 /* Fonts */
 
-html *:not(strong):not(h1):not(h2):not(h3):not(h5):not(h4):not(span):not(a) {
-    font-family: "PxGroteskRegular", Helvetica, Arial, sans-serif;
-}
-h1, h2, h5, h5 * {
-    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
-}
-h3, h4 {
-    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
+html * {
+    font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
 }
 
 /* Paragraph styles */
 
 #hack-cambridge-wordmark {
-    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     line-height: 95%;
-    font-weight: 300;
 }
 h1, h2, h2 * {
-    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 36pt;
     line-height: 95%;
-    font-weight: 200;
     hyphens: auto;
     -webkit-hyphens: auto;
 }
 h3 {
-    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
     font-size: 20pt;
-    font-weight: 200;
     line-height: 120%;
 }
 h4 {
-    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
     font-size: 14pt;
-    font-weight: 200;
+    font-weight: lighter;
     border-top: solid var(--secondary-color) 1pt;
     padding-top: 2pt;
 }
@@ -173,9 +157,7 @@ h4:not(:last-child) {
     margin-bottom: 10pt;
 }
 h5, h5 span {
-    font-family: "PxGroteskBold", Helvetica, Arial, sans-serif;
     font-size: 16pt;
-    font-weight: 300;
     line-height: 120%;
 }
 p {
@@ -216,7 +198,7 @@ input[type="email"] {
     background: var(--primary-color);
     color: var(--secondary-color);
     border: 1pt solid var(--secondary-color);
-    font-family: "PxGroteskRegular", Helvetica, Arial, sans-serif;
+    font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
     padding: 1pt 3pt;
 }
 button {
@@ -227,7 +209,7 @@ button {
 p, *:not(h5) a {
     line-height: 1.4;
 }
-:not(h4):not(p) + p:not(:first-child), :not(h4):not(ul) + ul:not(:first-child) {
+:not(.content) > :not(h4):not(p) + p:not(:first-child), :not(h4):not(ul) + ul:not(:first-child) {
     margin-top: 10pt;
 }
 p:not(:last-child), ul:not(:last-child) {
@@ -246,12 +228,14 @@ li {
 
 /* Anchors */
 
-a {
+a:not(.logo) {
     color: var(--accent-color);
     text-decoration: none;
-    white-space: pre;
 }
 a::after {
+    white-space: pre;
+}
+a:not(.logo)::after {
     content: " →";
     color: var(--primary-color);
 }
@@ -292,18 +276,10 @@ object {
 }
 
 svg.icon {
-    color: var(--red);
+    color: var(--accent-color);
     fill: currentColor;
     width: var(--half);
     height: var(--half);
-}
-
-.icons a {
-    margin: calc(var(--gutter) / 2);
-}
-
-symbol#icon {
-    height: 57pt;
 }
 
 a:hover svg.icon, a:active svg.icon {
@@ -315,11 +291,11 @@ section.black a:hover svg.icon {
 }
 
 section.red svg.icon {
-    filter: saturate(0) contrast(3);
+    filter: invert(0);
 }
 
 section.red a:hover svg.icon {
-    filter: saturate(0) contrast(3) invert(1);
+    filter: invert(1);
 }
 
 section.image .wrapper {
@@ -341,14 +317,17 @@ section.image .wrapper {
 
 table {
     width: 100%;
+    border-spacing: var(--gutter) 0;
+    margin: calc(var(--gutter) * -1);
 }
 th {
     text-align: left;
 }
 table, th, td {
     padding: 0;
-    -webkit-border-horizontal-spacing: 0;
-    -webkit-border-vertical-spacing: 0;
+}
+td:not(:first-child) {
+    margin-left: var(--gutter);
 }
 /* Input */
 
@@ -363,7 +342,7 @@ input, button {
     color: var(--secondary-color);
 }
 
-input[type="email"], input[type="text"] {
+input[type="email"], input[type="text"], input[type="number"] {
     border-bottom: 1pt solid var(--secondary-color);
     width: 100%;
 }
@@ -417,22 +396,39 @@ fieldset {
 
 legend {
     padding: 0;
-    font-family: "PxGroteskLight", Helvetica, Arial, sans-serif;
     font-size: 14pt;
-    font-weight: 200;
+    font-weight: lighter;
     margin-bottom: var(--gutter);
 }
 
-input[type="submit"]:hover, button:hover{
+input[type="submit"]:hover:not([disabled]), button:hover:not([disabled]){
     background-color: unset;
     color: var(--secondary-color);
     border: 1pt solid var(--secondary-color);
 }
 
-input[type="submit"]:active, button:active{
+input[type="submit"]:active:not([disabled]), button:active:not([disabled]){
     background-color: var(--secondary-color);
     color: var(--primary-color);
     border: 1pt solid var(--secondary-color);
+}
+input[disabled], button[disabled] {
+    opacity: 0.5;
+}
+
+.logo.mega, .logo.kilo {
+    max-height: var(--one);
+}
+.logo.giga {
+    max-height: calc(var(--one) + var(--half));
+}
+.logo.unit.column {
+    flex-basis: var(--base);
+    min-width: min-content;
+    flex-grow: 0
+}
+.logo.unit.column.grows {
+    max-width: var(--second-base);
 }
 
 #hack-cambridge-logo-object {
@@ -442,7 +438,6 @@ input[type="submit"]:active, button:active{
     font-size: 24pt;
     margin-bottom: 20pt;
 }
-
 /* Media queries */
 
 @media (min-width: 596pt) {
