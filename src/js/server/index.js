@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/event', (req, res) => {
+app.get('/work-in-progress/event', (req, res) => {
   res.render('event.html', {
     title: 'Hack Cambridge Ternary',
     api_demos: utils.loadResource('api_demos'),
@@ -79,6 +79,7 @@ app.get('/event', (req, res) => {
     apis: utils.loadResource('apis')
   });
 });
+
 app.get('/terms-and-conditions', (req, res) => {
   res.render('terms-and-conditions.html');
 });
