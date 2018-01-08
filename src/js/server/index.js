@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/live', (req, res) => {
+app.get('/work-in-progress/live', (req, res) => {
   res.render('live.html', {
     sponsors: utils.loadResource('sponsors')
   });
