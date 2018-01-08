@@ -231,7 +231,9 @@ li {
 a:not(.logo) {
     color: var(--accent-color);
     text-decoration: none;
-    white-space: pre-wrap;
+}
+a::after {
+    white-space: pre;
 }
 a:not(.logo)::after {
     content: " →";
@@ -416,6 +418,9 @@ input[disabled], button[disabled] {
 
 .logo.mega, .logo.kilo {
     max-height: var(--one);
+}
+.logo.giga {
+    max-height: calc(var(--one) + var(--half));
 }
 .logo.unit.column {
     flex-basis: var(--base);
