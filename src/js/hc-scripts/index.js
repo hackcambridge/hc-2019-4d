@@ -12,7 +12,6 @@ yargs
   .command(require('./respond'))
   .command(require('./expire-invitations'))
   .command(require('./teams'))
-  .strict()
   .demand(1, 'Supply a command.')
   .help()
   .argv;
