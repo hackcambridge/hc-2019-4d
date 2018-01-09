@@ -114,6 +114,14 @@ app.get('/sponsorship', (req, res) => {
   res.render('sponsorship.html');
 });
 
+app.get('/favicons/browserconfig.xml', (req, res) => {
+  res.render('favicons/browserconfig.xml');
+});
+
+app.get('/favicons/manifest.json', (req, res) => {
+  res.render('favicons/manifest.json');
+});
+
 app.use((req, res) => {
   res.status(404).render('404.html');
 });
