@@ -33,7 +33,7 @@ exports.notInvited = function ({ name }) {
         'You sent an application to build with us at Hack Cambridge in January. Unfortunately, we were unable to reserve you a place at the hackathon.',
         'We received a large number of applicants from amazing people all over the world and as much as we\'d like to, we can\'t offer everyone a spot this year.',
         'Due to the amount of them, we are unable to provide feedback on individual applications.',
-        'Please stay tuned and apply for Hack Cambridge 2019 when it rolls around - we would love to hear from you again!',
+        'Please stay tuned and apply for Hack Cambridge 2019 when it rolls around — we would love to hear from you again!',
       ],
       
     },
