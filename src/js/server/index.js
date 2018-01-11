@@ -80,6 +80,12 @@ app.get('/work-in-progress/event', (req, res) => {
   });
 });
 
+app.get('/work-in-progress/live', (req, res) => {
+  res.render('live.html', {
+    sponsors: utils.loadResource('sponsors')
+  });
+});
+
 app.get('/terms-and-conditions', (req, res) => {
   res.render('terms-and-conditions.html');
 });
