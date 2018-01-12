@@ -17,25 +17,31 @@ schedule:
   - event: Amazon Alexa Demo
     time: 2018-01-20 13:00:00
     class: small
+  - event: Microsoft Cognitive Services in Action
+    time: 2018-01-20 13:15:00
+    class: small
+  - event: Avast biggest threats of 2017
+    time: 2018-01-20 13:30:00
+    class: small
   - event: Workshops
     time: 2018-01-20 14:40:00
     class: small
-  - event: Workshop 1
+  - event: Google Workshop
     time: 2018-01-20 14:40:00
     class: small
   - event: Sophos Workshop 
     time: 2018-01-20 15:15:00
     class: small
-  - event: Workshop 3
+  - event: Improbable Workshop
     time: 2018-01-20 15:50:00
     class: small
-  - event: Workshop 4
+  - event: Cambridge Consultants Workshop
     time: 2018-01-20 16:25:00
     class: small
-  - event: Workshop 5
+  - event: Microsoft Cognitive Services Workshop
     time: 2018-01-20 17:00:00
     class: small
-  - event: Workshop 6
+  - event: ARK.io How to launch your own blockchain and communicate with other chains Workshop 
     time: 2018-01-20 17:35:00
     class: small
   - event: Dinner
@@ -52,9 +58,9 @@ schedule:
   - event: Midnight Snack
     time: 2018-01-21 00:00:00
   - event: Breakfast
-    time: 2018-01-21 08:30:00 #TBC
+    time: 2018-01-21 08:30:00
   - event: Lunch
-    time: 2018-01-21 12:00:00 #TBC
+    time: 2018-01-21 12:00:00
   - event: Hacking Ends
     time: 2018-01-21 12:00:00
     class: emphasis
