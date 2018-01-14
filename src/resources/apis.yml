@@ -23,4 +23,4 @@ apis:
       Arctic API provides a high performance datastore for time series and tick data.
     documentation: https://github.com/manahl/arctic
   - name: TPP Example Public Health Data
-  - description: An example set of health record information in the CHAIR json format.
+    description: An example set of health record information in the CHAIR json format.
