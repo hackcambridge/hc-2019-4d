@@ -116,9 +116,9 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, svg, input, button, .secondary {
+section, a, a::after, svg, input, button, .secondary, .roll-up * {
+    transition-property: color, border-color, caret-color, background-color, filter, opacity;
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
-    transition-property: color, border-color, caret-color, background-color, filter;
     transition-duration: 0.25s;
 }
 
@@ -525,5 +525,30 @@ input[disabled], button[disabled] {
 @media (hover: none) {
     a::after {
         display: none;
+    }
+}
+@media (pointer: fine) {
+    /* Hidden elements */
+    
+    .roll-up > * {
+        transition-property: color, border-color, caret-color, background-color, filter, opacity, height;
+    }
+    
+    .roll-up:not(:hover) > :first-child, .roll-up:not(:hover) > :first-child * {
+        color: var(--accent-color);
+    }
+    
+    .roll-up:hover > :first-child, .roll-up:hover > :first-child * {
+        color: var(--secondary-color);
+    }
+    
+    .roll-up:not(:hover) > *:not(:first-child) {
+        opacity: 0;
+        height: var(--one);
+    }
+    
+    .roll-up > *:not(:first-child) {
+        min-height: 0;
+        height: var(--base);
     }
 }
