@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 684 684" preserveAspectRatio="xMinYMin" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.5 
+    <dc:date>2018-01-13 20:48:27 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>General map</title>
+    <g>
+      <title>Layer 1</title>
+      <rect x="0" y="0" width="684" height="684" fill="black"/>
+      <path d="M 171 114 L 427.5 114 L 427.5 199.5 L 484.5 199.5 L 484.5 427.5 L 399 427.5 L 399 456 L 313.5 456 L 313.5 427.5 L 228 427.5 L 228 399 L 142.5 399 L 142.5 370.5 L 85.5 370.5 L 85.5 285 L 114 285 L 114 199.5 L 142.5 199.5 L 142.5 114 Z" fill="white"/>
+      <rect x="513" y="171" width="171" height="114" fill="white"/>
+      <path d="M 199.5 0 L 199.5 85.5 L 484.5 85.5 L 484.5 114 L 513 114 L 513 142.5 L 684 142.5 L 684 0 Z" fill="white"/>
+      <path d="M 142.5 0 L 142.5 85.5 L 57 85.5 L 57 57 L 0 57 L 0 0 Z" fill="white"/>
+      <path d="M 0 399 L 57 399 L 57 427.5 L 114 427.5 L 114 456 L 199.5 456 L 199.5 484.5 L 256.5 484.5 L 256.5 513 L 370.5 513 L 370.5 541.5 L 456 541.5 L 456 570 L 513 570 L 513 684 L 0 684 Z" fill="white"/>
+      <path d="M 541.5 313.5 L 541.5 513 L 570 513 L 570 684 L 684 684 L 684 313.5 Z" fill="white"/>
+      <path d="M 114 142.5 L 114 171 L 142.5 171 L 142.5 142.5 Z M 114 85.5 L 114 114 L 142.5 114 L 142.5 85.5 Z M 171 85.5 L 171 114 L 199.5 114 L 199.5 85.5 Z M 228 85.5 L 228 114 L 256.5 114 L 256.5 85.5 Z M 285 85.5 L 285 114 L 313.5 114 L 313.5 85.5 Z M 342 85.5 L 342 114 L 370.5 114 L 370.5 85.5 Z M 399 85.5 L 399 114 L 427.5 114 L 427.5 85.5 Z M 456 85.5 L 456 114 L 484.5 114 L 484.5 85.5 Z M 456 142.5 L 456 171 L 484.5 171 L 484.5 142.5 Z M 484.5 199.5 L 484.5 228 L 513 228 L 513 199.5 Z" fill="#eb3300"/>
+      <path d="M 399 199.5 L 399 142.5 L 142.5 142.5 L 142.5 199.5 L 228 199.5 L 228 228 L 171 228 L 171 370.5 L 456 370.5 L 456 228 L 285 228 L 285 199.5 Z" fill="#eb3300"/>
+      <rect x="513" y="199.5" width="171" height="57" fill="#eb3300"/>
+    </g>
+  </g>
+</svg>

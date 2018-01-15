@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 684 684" preserveAspectRatio="xMinYMin" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.5 
+    <dc:date>2018-01-13 20:48:27 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Corn Exchange</title>
+    <g>
+      <title>Layer 1</title>
+      <rect x="0" y="0" width="684" height="684" fill="black"/>
+      <path d="M 427.5 456 L 427.5 570 L 541.5 570 L 541.5 456 L 684 456 L 684 228 L 0 228 L 0 456 Z" fill="#eb3300"/>
+      <path d="M 0 228 L 0 285 L 114 285 L 114 256.5 L 256.5 256.5 L 256.5 228 Z M 256.5 456 L 256.5 427.5 L 114 427.5 L 114 399 L 0 399 L 0 456 Z M 541.5 456 L 684 456 L 684 228 L 256.5 228 L 256.5 313.5 L 285 313.5 L 285 256.5 L 655.5 256.5 L 655.5 427.5 L 513 427.5 L 513 541.5 L 456 541.5 L 456 427.5 L 285 427.5 L 285 370.5 L 256.5 370.5 L 256.5 456 L 427.5 456 L 427.5 570 L 541.5 570 Z" fill="white"/>
+      <rect x="28.5" y="285" width="57" height="28.5" fill="black"/>
+      <rect x="313.5" y="256.5" width="28.5" height="57" fill="black"/>
+      <rect x="313.5" y="370.5" width="28.5" height="57" fill="black"/>
+      <rect x="627" y="313.5" width="28.5" height="57" fill="black"/>
+    </g>
+  </g>
+</svg>
