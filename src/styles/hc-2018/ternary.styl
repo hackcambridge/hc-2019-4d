@@ -80,6 +80,17 @@ div.unavailable .label, .error {
     color: var(--accent-color);
 }
 
+/* Highlights */
+
+::selection {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+-moz-::selection {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
 /* Link area */
 
 section.links:hover, section.links:hover * {
