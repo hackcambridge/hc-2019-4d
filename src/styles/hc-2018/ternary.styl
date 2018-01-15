@@ -12,7 +12,7 @@ html {
 
 /* Reset margins and padding */
 
-h1, h2, h3, h4, h5, p, ul, li, input, form, body, button {
+h1, h2, h3, h4, h5, h6, p, ul, li, input, form, body, button {
     margin: 0;
     padding: 0;
 }
@@ -150,15 +150,18 @@ h4 {
     border-top: solid var(--secondary-color) 1pt;
     padding-top: 2pt;
 }
-h4:not(:first-child) {
+h4:not(:first-child), h6:not(:first-child) {
     margin-top: 20pt;
 }
-h4:not(:last-child) {
+h4:not(:last-child), h6:not(:last-child) {
     margin-bottom: 10pt;
 }
 h5, h5 span {
     font-size: 16pt;
     line-height: 120%;
+}
+h6 {
+    font-size: 13pt;
 }
 p {
     font-size: 11pt;
