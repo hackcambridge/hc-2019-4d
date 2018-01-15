@@ -52,6 +52,9 @@ section {
 section:last-of-type:not(.black):not(.red) {
     border-bottom: 1pt solid var(--secondary-color);
 }
+header:not(.black):not(.red) + main section:first-of-type:not(.black):not(.red) {
+    border-top: 1pt solid var(--secondary-color);
+}
 section:not(.black):not(.red) + section:not(.black):not(.red) {
     border-top: 1pt solid var(--secondary-color);
 }
