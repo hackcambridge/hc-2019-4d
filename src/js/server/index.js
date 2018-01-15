@@ -65,7 +65,7 @@ app.use('/hcapi', require('./hcapi'));
 
 app.get('/', (req, res) => {
   res.render('index.html', {
-    sponsors: utils.loadResource('sponsors'),
+    sponsors: utils.loadResource('sponsors')
   });
 });
 
