@@ -235,8 +235,9 @@ li:not(:last-child) {
 
 /* Lists */
 
-li {
+ul {
     list-style-type: none;
+}
 
 ol {
     list-style-position: outside;
@@ -245,7 +246,7 @@ ol {
 
 /* Anchors */
 
-a:not(.logo) {
+a:not(.logo), a * {
     color: var(--accent-color);
     text-decoration: none;
 }
@@ -293,12 +294,14 @@ object {
 }
 
 svg.icon {
-    color: var(--accent-color);
     fill: currentColor;
     width: var(--half);
     height: var(--half);
 }
 
+a svg.icon {
+    color: var(--accent-color);
+}
 a:hover svg.icon, a:active svg.icon {
     filter: saturate(0) contrast(3);
 }
