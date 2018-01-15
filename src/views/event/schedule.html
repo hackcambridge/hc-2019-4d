@@ -1,0 +1,358 @@
+{% extends 'base.html' %}
+{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
+{% set title = 'Ternary' %}
+{% set description = 'Hack Cambridge Ternary 2018' %}
+{% set keywords = 'hack,Cambridge,ternary 2018' %}
+{% block content %}
+{% set layoutMode = "width" %}
+{% set eventPage = "schedule" %}
+{% include 'header.html' %}
+<main>
+    {% include 'event/nav.html' %}
+    <section>
+        <div class="container {{ layoutMode }}">
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <h1>Schedule</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container {{ layoutMode }}">
+            <div class="unit row">
+                <div class="seven unit column roll-up">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>Product Demos</h3>
+                        </div>
+                    </div>
+                    <div class="six unit row">
+                        <div class="unit column grows">
+                            <p>These are shorter, tech-focussed talks. We will announce each talk on stage just before it begins.</p>
+                            <ul><h6>Tentative schedule</h6>
+                                <li>13:00—Amazon</li>
+                                <li>13:15—Microsoft</li>
+                                <li>11:30—Unconfirmed</li>
+                                <li>11:45—Unconfirmed</li>
+                                <li>14:00—Unconfirmed</li>
+                                <li>14:15—Unconfirmed</li>
+                                <li>14:30—Product Demos finish</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="seven unit column roll-up">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>Workshops</h3>
+                        </div>
+                    </div>
+                    <div class="six unit row">
+                        <div class="unit column grows">
+                            <p>These are longer, tech-focussed talks. We will announce each talk on stage just before it starts.</p>
+                            <ul><h6>Tentative schedule</h6>
+                                <li>14:40—Google</li>
+                                <li>15:15—Sophos (Unconfirmed)</li>
+                                <li>15:50—Improbable</li>
+                                <li>16:25—Cambridge Consultants</li>
+                                <li>17:00—Microsoft</li>
+                                <li>17:35—ARK.io</li>
+                                <li>18:05—Workshops finish</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container {{ layoutMode }}">
+            <div class="unit row">
+                <div class="seven unit column {{ 'roll-up' if true }}">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>Saturday 20<sup>th</sup> January</h3>
+                        </div>
+                    </div>
+                    <div class="three half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">08:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Doors open to sponsors</h4>
+                            <p>You are welcome to arrive later if you wish.</p>
+                            <p>All trestle tables will already be set up for you when you arrive.</p>
+                            <p><em>The previous schedule said 08:30.</em></p>
+                        </div>
+                    </div>
+                    <div class="four unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">09:30</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Doors open to hackers</h4>
+                            <p>We expect most hackers to arrive closer to 10:00, but some will arrive early.</p>
+                            <p>Hackers tend to hang around the sponsors' area looking for swag between this time and the opening ceremony. It's a good chance to speak to them at your stalls.</p>
+                        </div>
+                    </div>
+                    <div class="six half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">11:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Opening Ceremony<br><i>Corn Exchange</i></h4>
+                            <p>Sponsors not participating are welcome to watch.</p>
+                            <ul><h6>Run of show</h6>
+                                <li>11:00—Welcome from Hack Cambridge Team</li>
+                                <li>11:05—Cambridge Consultants presentation</li>
+                                <li>11:10—Improbable presentation</li>
+                                <li>11:15—MLH presentation</li>
+                                <li>11:25—Mentoring System Explained</li>
+                                <li>11:30—Microsoft presentation</li>
+                                <li>11:35—Sophos presentation</li>
+                                <li>11:40—Winding down presentation</li>
+                                <li>11:45—Presentation ends</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="five half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">12:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Hacking begins<br><i>Corn Exchange</i></h4>
+                            <p>It's a good idea for mentors to proactively speak to hackers and offer help during hacking. There will also be a ticketing system to match hackers with mentors.</p>
+                            <h4>Lunch<br><i>Guild Hall</i></h4>
+                            <p>Lunch is served in Food Area until 13:00: this is right next to the main sponsor stalls, so you should get a lot of attention!<p>
+                        </div>
+                    </div>
+                    <div class="six unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">13:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Product Demos<br><i>Guild Hall</i></h4>
+                            <p>These are shorter, tech-focussed talks. We will announce each talk on stage just before it begins.</p>
+                            <ul><h6>Tentative schedule</h6>
+                                <li>13:00—Amazon</li>
+                                <li>13:15—Microsoft</li>
+                                <li>11:30—Unconfirmed</li>
+                                <li>11:45—Unconfirmed</li>
+                                <li>14:00—Unconfirmed</li>
+                                <li>14:15—Unconfirmed</li>
+                                <li>14:30—Product Demos finish</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="six unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">14:40</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Workshops<br><i>Guild Hall</i></h4>
+                            <p>These are longer, tech-focussed talks. We will announce each talk on stage just before it starts.</p>
+                            <ul><h6>Tentative schedule</h6>
+                                <li>14:40—Google</li>
+                                <li>15:15—Sophos (Unconfirmed)</li>
+                                <li>15:50—Improbable</li>
+                                <li>16:25—Cambridge Consultants</li>
+                                <li>17:00—Microsoft</li>
+                                <li>17:35—ARK.io</li>
+                                <li>18:05—Workshops finish</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">18:45</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>DataScope pre-dinner speech<br><i>Corn Exchange</i></h4>
+                        </div>
+                    </div>
+                    <div class="three unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">19:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Dinner<br><i>Guild Hall</i></h4>
+                            <p>Dinner is served in the Food Area next to sponsor stalls, so again, expect lots of footfall!</p>
+                        </div>
+                    </div>
+                    <div class="three half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">20:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Sponsors' reception<br><i>Corn Exchange</i></h4>
+                            <p>To say thank you to our sponsors, we're putting on a champagne reception! Join us for drinks and snacks in St John's bar.</p>
+                            <p>Hackers will be participating in the MLH Capture the Flag competition.</p>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">21:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>TPP presentation<br><i>Corn Exchange</i></h4>
+                        </div>
+                    </div>
+                    <div class="two unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">21:15</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <ul>
+                                <h4>MLH run their !Light game</h4>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="three half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">22:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Hacker Sleeping area opens<br><i>Guild Hall</i></h4>
+                            <p>The sleeping area is next to the sponsors' stalls.</p>
+                            <p>Many hackers will choose to work through the night instead.</p>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">23:45</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>FeatureSpace Midnight Snack speech<br><i>Corn Exchange</i></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="seven unit column {{ 'roll-up' if true }}">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>Sunday 21<sup>st</sup> January</h3>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">00:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Midnight Snack<br><i>Guild Hall</i></h4>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">08:30</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Breakfast<br><i>Guild Hall</i></h4>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">11:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Accenture presentation<br><i>Corn Exchange</i></h4>
+                        </div>
+                    </div>
+                    <div class="five half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">12:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Hacking stops<br><i>Corn Exchange</i></h4>
+                            <h4>Judging briefing<br><i>Corn Exchange</i></h4>
+                            <p>We will meet sponsors in St John's bar to explain how judging works for sponsors who want to participate.</p>
+                            <h4>Lunch<br><i>Guild Hall</i></h4>
+                        </div>
+                    </div>
+                    <div class="three unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">12:45</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Expo<br><i>Corn Exchange</i></h4>
+                            <p>Judging begins.</p>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">14:15</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Finalists announced<br><i>Corn Exchange</i></h4>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">14:30</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Finalist presentations<br><i>Corn Exchange</i></h4>
+                        </div>
+                    </div>
+                    <div class="three unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">16:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Deliberation<br><i>Corn Exchange</i></h4>
+                            <p>Headline judges will choose the winners and runners up.</p>
+                        </div>
+                    </div>
+                    <div class="four unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">16:15</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Closing ceremony<br><i>Corn Exchange</i></h4>
+                            <ul><h6>Tentative schedule</h6>
+                                <li>16:15—Event summary</li>
+                                <li>16:20—TBC</li>
+                                <li>16:45—Hack Cambridge winners announced</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">17:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Event finishes</h4>
+                            <li>Hackers leave. The venue completely closes to hackers at 18:00.</li>
+                        </div>
+                    </div>
+                    <div class="two unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">17:30</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Clean-up</h4>
+                        </div>
+                    </div>
+                    <div class="two unit row">
+                        <div class="one unit column">
+                            <h5 class="pixel">19:00</h5>
+                        </div>
+                        <div class="unit column grows">
+                            <h4>Venue closes</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container {{ layoutMode }}">
+        <div class="three unit row">
+            <div class="unit column grows">
+                {% include 'footer.html' %}
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
