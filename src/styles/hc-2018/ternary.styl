@@ -555,8 +555,8 @@ input[disabled], button[disabled] {
         display: none;
     }
 }
-@media (pointer: fine) {
-    /* Hidden elements */
+/*@media (pointer: fine) and (min-width: 595pt) {
+    /* Hidden elements *
     
     .roll-up > * {
         transition-property: color, border-color, caret-color, background-color, filter, opacity, height;
@@ -579,4 +579,8 @@ input[disabled], button[disabled] {
         min-height: 0;
         height: var(--base);
     }
-}
+    
+    .expands:hover {
+        min-height: min-content;
+    }
+}*/
