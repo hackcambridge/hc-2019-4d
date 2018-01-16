@@ -60,21 +60,23 @@
                         </div>
                     </div>
                     {% for workshop in workshops %}
-                        <div class="three unit row expands">
+                        <div class="two half unit row expands">
                             <div class="one unit column">
                                 <h5 class="pixel">{{ workshop.time.format('HH:mm') }}</h5>
                             </div>
                             <div class="unit column grows roll-up">
                                 <div class="two half unit row">
                                     <div class="unit column grows">
-                                        <h4>{{ workshop.name }}<br><i>Guildhall</i></h4>
+                                        <h4>{{ workshop.name | safe }}<br><i>Guildhall</i></h4>
                                     </div>
                                 </div>
-                                <div class="{{ workshop.rows }} unit row">
-                                    <div class="unit column grows">
-                                        <p>{{ workshop.description }}</p>
+                                {% if workshop.description %}
+                                    <div class="{{ workshop.rows }} unit row">
+                                        <div class="unit column grows">
+                                            <p>{{ workshop.description | safe }}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
