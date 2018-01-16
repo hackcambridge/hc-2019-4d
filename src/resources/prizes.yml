@@ -2,32 +2,52 @@ prizes:
   general:
     - name: Hack Cambridge 1st Place
       description: |
+The team judged to have produced the most innovative, technically challenging and well designed project.
       prize: |
-        The team receives a unique Hack Cambridge trophy further prizes tbc.
+        The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
       class: first
     - name: Hack Cambridge 2nd Place
       description: |
-      prize: TBC
+Runners up.
+      prize: A Rasberry Pi, developed here in Cambridge, for each team member.
       class: second
     - name: Hack Cambridge 3rd Place
       description: |
-      prize: TBC
+Runners up.
+      prize: A copy of the fantastic card game Exploding Kittens for each team member.
       class: third
     - name: Hack Cambridge People's Prize
       description: |
         Do you have what it takes to impress your fellow hackers?
-      prize: TBC
+      prize: Programming language playing cards for each team member.
+      class: peoples
+    - name: "Instagram and Twitter picture competition #ternary"
+      description: |
+        Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
+      prize: Cryptex USB Flash Drive 16GB.
       class: peoples
     - name: Microsoft Vision Cognitive Challenge 1
-      description: We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive  We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future. The team solutions will need to a built using Microsoft Cognitive Services. Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11 The use of the following APIs will be consider    Computer Vision API  Distill actionable information from images   Face API Detect, identify, analyse, organise and tag faces in photos   Content moderator Automated image, text and video moderation   Emotion API PREVIEW Personalise user experiences with emotion recognition   Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case   Video Indexer PREVIEW Unlock video insights
+      description: |
+We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive  We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future. The team solutions will need to a built using Microsoft Cognitive Services. Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11 The use of the following APIs will be consider    Computer Vision API  Distill actionable information from images   Face API Detect, identify, analyse, organise and tag faces in photos   Content moderator Automated image, text and video moderation   Emotion API PREVIEW Personalise user experiences with emotion recognition   Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case   Video Indexer PREVIEW Unlock video insights.
       prize: Xbox One X   
     - name: Microsoft Vision Cognitive Challenge 2
-      description: We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive  We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future. The team solutions will need to a built using Microsoft Cognitive Services. Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11 The use of the following APIs will be consider    Computer Vision API  Distill actionable information from images   Face API Detect, identify, analyse, organise and tag faces in photos   Content moderator Automated image, text and video moderation   Emotion API PREVIEW Personalise user experiences with emotion recognition   Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case   Video Indexer PREVIEW Unlock video insights
+      description: |
+We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive  We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future. The team solutions will need to a built using Microsoft Cognitive Services. Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11 The use of the following APIs will be consider    Computer Vision API  Distill actionable information from images   Face API Detect, identify, analyse, organise and tag faces in photos   Content moderator Automated image, text and video moderation   Emotion API PREVIEW Personalise user experiences with emotion recognition   Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case   Video Indexer PREVIEW Unlock video insights.
       prize: $100 of Azure for 3 months so a total of $300  
     - name: Arm Best Hack in Hardware
-      description: We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
+      description: |
+We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
       prize: Micro:bit inventor's kit & Amazon Gift Card
    -  name: Best use of ARK blockchain
-      description: The best project using ARK blockchain technology and APIs for IoT(preferably) or in general.
+      description: |
+The best project using ARK blockchain technology and APIs for IoT(preferably) or in general.
       prize: 3x IoT box by ADAFruit for the best team + Branded Ledges Nano S HW Wallet for team members.
+    - name: TPP's Health & Society Hack
+      description: |
+We're looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
+      prize: Each member of the team which impress us the most will take home a drone.
+    - name: Amazon API prize
+      description: |
+Prize given to the team Amazon judge to have made the best use of their apis.
+      prize: Each member of the team which impress us the most will take home an Amazon Echo.
      

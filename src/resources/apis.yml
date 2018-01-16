@@ -19,8 +19,31 @@ apis:
     documentation: https://docs.botframework.com/en-us/
   - name: Man AHL Arctic
     description: |
-      [Man AHL](https://www.ahl.com/) are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their
-      Arctic API provides a high performance datastore for time series and tick data.
+      [Man AHL](https://www.ahl.com/) are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their Arctic API provides a high performance datastore for time series and tick data.
+  - name: Man AHL PyBloqs
+    description: |
+      Lightweight open-source python reporting framework
     documentation: https://github.com/manahl/arctic
   - name: TPP Example Public Health Data
     description: An example set of health record information in the CHAIR json format.
+  - name: ARK API
+    description: |
+      Flexible and easy to use API to talk to the blockchain ecosystem.
+  - name: ARK Contract Execution Services 
+    description: |
+      Bridging two separate blockchains together and achieving true interoperability between ecosystems.
+  - name: ARK - Click-Deployable Blockchain
+    description: |
+     Ark Push.Button.Deployable custom blockchain technology, enabling users to launch their own chain with a few clicks. New blockchain remains fully ARK compatible with all the API, and other service benefits; so you can start using the new ecosystem.
+  - name: AWS All technologies
+    description: |
+The general AWS services for free.
+  - name: Amazon Elastic Transcoder
+    description: |
+Media Transcoding in the cloud.
+  - name: Amazon Alexa Skills Kit
+    description: |
+Allow users to create an Alexa Skill on the cloud.
+  - name: Amazon Lambda
+    description: |
+Framework to run a function in the cloud.
