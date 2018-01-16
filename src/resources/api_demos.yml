@@ -1,7 +1,8 @@
 api_demos:
+  - name: Amazon Alexa Demo
+    time: 2018-01-20 13:00:00
   - name: Microsoft API Demo
     time: 2018-01-20 13:15:00
-    duration: 10 # In minutes
-    location: The Guildhall
-
- 
+  - name: Avast biggest threats of 2017
+    time: 2018-01-20 13:30:00
+    

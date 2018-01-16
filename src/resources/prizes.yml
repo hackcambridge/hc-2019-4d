@@ -1,20 +1,64 @@
 prizes:
-  general:
-    - name: Hack Cambridge 1st Place
-      description: |
-      prize: |
-        The team receives a unique Hack Cambridge trophy further prizes tbc.
-      class: first
-    - name: Hack Cambridge 2nd Place
-      description: |
-      prize: TBC
-      class: second
-    - name: Hack Cambridge 3rd Place
-      description: |
-      prize: TBC
-      class: third
-    - name: Hack Cambridge People's Prize
-      description: |
-        Do you have what it takes to impress your fellow hackers?
-      prize: TBC
-      class: peoples
+  - name: Hack Cambridge 1st Place
+    description: |
+    prize: |
+      The team receives a unique Hack Cambridge trophy, further prizes TBC.
+    class: first
+    rows: two
+  - name: Hack Cambridge 2nd Place
+    description: |
+    prize: TBC
+    class: second
+    rows: two
+  - name: Hack Cambridge 3rd Place
+    description: |
+    prize: TBC
+    class: third
+    rows: two
+  - name: Hack Cambridge People's Prize
+    description: |
+      Do you have what it takes to impress your fellow hackers?
+    prize: TBC
+    class: peoples
+    rows: two half
+  - name: Microsoft Vision Cognitive Challenge 1
+    description: "We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive \
+      We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      AI, Data and pervasive technology which are driving the future. \
+      The team solutions will need to a built using Microsoft Cognitive Services. \
+      Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11. \
+      The use of the following APIs will be considered: \
+      Computer Vision API  Distill actionable information from images \
+      Face API Detect, identify, analyse, organise and tag faces in photos \
+      Content moderator Automated image, text and video moderation \
+      Emotion API PREVIEW Personalise user experiences with emotion recognition \
+      Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
+      Video Indexer PREVIEW Unlock video insights\n"
+    prize: Xbox One X
+    rows: nine
+  - name: Microsoft Vision Cognitive Challenge 2
+    description: "We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive \
+      We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      AI, Data and pervasive technology which are driving the future. \
+      The team solutions will need to a built using Microsoft Cognitive Services. \
+      Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11. \
+      The use of the following APIs will be considered: \
+      Computer Vision API  Distill actionable information from images \
+      Face API Detect, identify, analyse, organise and tag faces in photos \
+      Content moderator Automated image, text and video moderation \
+      Emotion API PREVIEW Personalise user experiences with emotion recognition \
+      Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
+      Video Indexer PREVIEW Unlock video insights\n"
+    prize: $100 of Azure for 3 months so a total of $300
+    rows: nine
+  - name: Arm Best Hack in Hardware
+    description: We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
+    prize: Micro:bit inventor's kit & Amazon Gift Card
+    rows: three
+  - name: Best use of ARK blockchain
+    description: The best project using ARK blockchain technology and APIs for IoT(preferably) or in general.
+    prize: 3x IoT box by ADAFruit for the best team + Branded Ledges Nano S HW Wallet for team members.
+    rows: three
+    
