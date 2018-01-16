@@ -88,7 +88,7 @@
                     <div class="two unit row">
                         <div class="unit column grows">
                             <ul><h4>Available hardware</h4>
-                                <li>Something</li>
+                                <li>Watch this space…</li>
                             </ul>
                         </div>
                     </div>
@@ -102,13 +102,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="two unit row">
-                        <div class="seven unit column">
-                            <ul>
-                                <li>Something</li>
-                            </ul>
+                    {% for api in apis %}
+                        <div class="two unit row expands">
+                            <div class="unit column grows roll-up">
+                                <div class="two unit row">
+                                    <div class="unit column grows">
+                                        <h4>{{ api.name }}</h4>
+                                    </div>
+                                </div>
+                                <div class="{{ api.rows | default('three') }} unit row">
+                                    <div class="unit column grows">
+                                        <p>{{ api.description }}</p>
+                                        <a href="{{ api.documentation }}">Documentation</a>
+                                        <p>{{ api.prizes }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="four half unit column roll-up">
                     <div class="two unit row">
@@ -119,13 +130,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="two unit row">
-                        <div class="seven unit column">
-                            <ul>
-                                <li>Something</li>
-                            </ul>
+                    {% for prize in prizes %}
+                        <div class="three unit row">
+                            <div class="unit column grows">
+                                <div class="two unit row">
+                                    <div class="unit column grows">
+                                        <h4>{{ prize.name }}</h4>
+                                    </div>
+                                </div>
+                                {% if prize.description or prize.prize %}
+                                    <div class="{{ prize.rows | default('two') }} unit row">
+                                        <div class="unit column grows">
+                                            {% if prize.description %}
+                                                <p>{{ prize.description }}</p>
+                                            {% endif %}
+                                            {% if prize.prize %}
+                                                <p>{{ prize.prize }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
