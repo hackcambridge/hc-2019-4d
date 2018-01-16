@@ -103,9 +103,10 @@ exports.loadResource = function loadResource(resourceName) {
         break;
       case 'schedule':
         timeProperties(loadedResource, ['time']);
+        // See https://momentjs.com/docs/#/get-set/day/
         loadedResource = {
-          saturday: loadedResource.filter((event) => event.time.date() == 28),
-          sunday: loadedResource.filter((event) => event.time.date() == 29)
+          saturday: loadedResource.filter((event) => event.time.day() === 6),
+          sunday: loadedResource.filter((event) => event.time.day() === 0)
         };
         break;
       case 'dashboard':
