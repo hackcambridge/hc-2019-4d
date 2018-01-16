@@ -26,7 +26,7 @@ sponsors:
        website: https://google.com
      - name: TPP
        website: https://www.tpp-uk.com/
-    rows: ten half
+    rows: twelve half
     columns: four second-five
 
   mega:
@@ -58,5 +58,5 @@ sponsors:
         website: http://www.displaylink.com
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: five
+    rows: four
     columns: two second-three

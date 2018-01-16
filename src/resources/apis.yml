@@ -1,9 +1,20 @@
 apis:
   - name: SpatialOS
     description: |
-      SpatialOS is a computation platform from [Improbable](https://improbable.io/) that allows you to exceed the power of a
+      SpatialOS is a computation platform from Improbable that allows you to exceed the power of a
       single game engine or server.
-  - name: Microsoft Cognitive - Vision, Speech, Search, Language, Knowledge 
+    documentation: https://spatialos.improbable.io/docs/reference/9.1-alpha
+    prizes: Use of SpatialOS is eligible for the Improbable Challenge Prize, details of which will be up shortly!
+    rows: four 
+  - name: Skyscanner API
+    description: |
+      Skyscanner allows users to compare millions of flights to find the cheapest deal, fast.    
+      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
+      combined, to build a fully-fledged travel search product.
+    documentation: http://business.skyscanner.net/portal/en-GB/Documentation/ApiOverview
+    prizes: Use of the Skyscanner API is eligible for the Improbable Challenge Prize, details of which will be up shortly!
+    rows: five
+  - name: Microsoft Cognitive — Vision, Speech, Search, Language, Knowledge 
     description: |
       Microsoft Cognitive Services (formerly Project Oxford) are a set of APIs, SDKs and services available to developers to make their applications more intelligent,
       engaging and discoverable. Microsoft Cognitive Services expands on Microsoft’s evolving portfolio of machine learning APIs and enables developers to easily add
@@ -11,19 +22,21 @@ apis:
       applications. Our vision is for more personal computing experiences and enhanced productivity aided by systems that increasingly can see, hear, speak, understand
       and even begin to reason. You will find documentation of each product and their corresponding API references on the left navigation table.
     documentation: https://www.microsoft.com/cognitive-services/en-us/documentation
-    prizes: Use of this API is eligible for the Microsoft Cognitive Services Prize!
+    prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
+    rows: seven half
   - name: Microsoft Bot Framework
     description: |
       Build and connect intelligent bots to interact with your users naturally wherever they are — from your website or app to text/SMS, Skype, Slack, Facebook Messenger, 
       Office 365 mail, Teams and other popular services. 
     documentation: https://docs.botframework.com/en-us/
+    prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
+    rows: four
   - name: Man AHL Arctic
     description: |
-      [Man AHL](https://www.ahl.com/) are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their Arctic API provides a high performance datastore for time series and tick data.
-  - name: Man AHL PyBloqs
-    description: |
-      Lightweight open-source python reporting framework
+      Man AHL are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their
+      Arctic API provides a high performance datastore for time series and tick data.
     documentation: https://github.com/manahl/arctic
+    rows: three half
   - name: TPP Example Public Health Data
     description: An example set of health record information in the CHAIR json format.
   - name: ARK API
@@ -47,3 +60,4 @@ Allow users to create an Alexa Skill on the cloud.
   - name: Amazon Lambda
     description: |
 Framework to run a function in the cloud.
+    rows: two half

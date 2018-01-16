@@ -21,11 +21,6 @@ function timeProperties(items, properties) {
   items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
 }
 
-
-function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])); }} ));
-}
-
 exports.init = function init(a) {
   app = a;
 };
@@ -87,15 +82,8 @@ exports.loadResource = function loadResource(resourceName) {
     )[resourceName];
 
     switch (resourceName) {
-      case 'faqs':
-        markdownProperties(loadedResource, ['answer']);
-        break;
-      case 'prizes':
-        _.forOwn(loadedResource, (item) => markdownProperties(item, ['description', 'prize']));
-        break;
       case 'workshops':
       case 'api_demos':
-        markdownProperties(loadedResource, ['description']);
         timeProperties(loadedResource, ['time']);
 
         loadedResource = loadedResource.sort((r1, r2) => {
@@ -112,9 +100,6 @@ exports.loadResource = function loadResource(resourceName) {
             return (time2.isValid()) ? 1 : 0;
           }
         });
-        break;
-      case 'apis':
-        markdownProperties(loadedResource, ['description']);
         break;
       case 'schedule':
         timeProperties(loadedResource, ['time']);

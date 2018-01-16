@@ -1,6 +1,6 @@
-{% macro singleColourIcon(assetFunc, name) %}
+{% macro singleColourIcon(assetFunc, name, caption = name) %}
 <svg class="icon">
-    <title>{{name}}</title>
+    <title>{{caption}}</title>
     <use x="0" y="0" xlink:href="{{ assetFunc('images/icons/' + (name | lower | replace(" ", "-") | replace(".", "")) + '.svg#icon') }}"/>
 </svg>
 {% endmacro %}

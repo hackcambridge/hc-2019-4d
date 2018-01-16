@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="/assets/styles/hc-2018/all-stylesheets.css"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 11 11" width="11pt" height="11pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.5 
+    <dc:date>2018-01-09 14:41:42 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <symbol id="icon" viewBox="0 0 11 11">
+    <g>
+      <title>Layer 1</title>
+      <path d="M 4 0 L 4 1 L 3 1 L 3 4 L 4 4 L 4 5 L 7 5 L 7 4 L 8 4 L 8 1 L 7 1 L 7 0 Z"/>
+      <path d="M 2 7 L 9 7 L 9 8 L 10 8 L 10 11 L 8 11 L 8 9 L 7 9 L 7 11 L 4 11 L 4 9 L 3 9 L 3 11 L 1 11 L 1 8 L 2 8 Z"/>
+    </g>
+  </symbol>
+</svg>

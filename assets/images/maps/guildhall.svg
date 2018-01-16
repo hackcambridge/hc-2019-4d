@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 684 684" preserveAspectRatio="xMinYMin" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.5 
+    <dc:date>2018-01-13 20:48:27 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Guildhall</title>
+    <g>
+      <title>Layer 1</title>
+      <rect x="0" y="0" width="684" height="684" fill="black"/>
+      <path d="M 570 199.5 L 570 28.5 L 0 28.5 L 0 598.5 L 171 598.5 L 171 655.5 L 342 655.5 L 342 684 L 513 684 L 513 655.5 L 684 655.5 L 684 199.5 Z" fill="#eb3300"/>
+      <path d="M 313.5 199.5 L 313.5 228 L 370.5 228 L 370.5 199.5 Z M 171 598.5 L 171 655.5 L 342 655.5 L 342 684 L 513 684 L 513 655.5 L 684 655.5 L 684 199.5 L 427.5 199.5 L 427.5 228 L 655.5 228 L 655.5 570 L 85.5 570 L 85.5 228 L 256.5 228 L 256.5 199.5 L 142.5 199.5 L 142.5 142.5 L 114 142.5 L 114 199.5 L 5684342e-20 199.5 L 5684342e-20 598.5 Z M 114 28.5 L 114 85.5 L 142.5 85.5 L 142.5 28.5 L 541.5 28.5 L 541.5 199.5 L 570 199.5 L 570 0 L 5684342e-20 0 L 5684342e-20 28.5 Z" fill="white"/>
+      <rect x="427.5" y="256.5" width="199.5" height="285" fill="black"/>
+      <path d="M 114 370.5 L 171 370.5 L 171 313.5 L 256.5 313.5 L 256.5 256.5 L 114 256.5 Z" fill="black"/>
+      <rect x="171" y="427.5" width="199.5" height="114" fill="black"/>
+      <rect x="85.5" y="28.5" width="28.5" height="57" fill="black"/>
+      <rect x="484.5" y="85.5" width="28.5" height="57" fill="black"/>
+    </g>
+  </g>
+</svg>

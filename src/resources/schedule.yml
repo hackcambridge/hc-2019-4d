@@ -1,80 +1,87 @@
 schedule:
-  # Saturday
-  - event: Registration Opens
-    time: 2018-01-20 9:00:00
-  - event: Pitching Session
-    time: 2018-01-20 9:00:00
-  - event: Opening Ceremony
-    time: 2018-01-20 11:00:00
-  - event: Hacking Starts
-    time: 2018-01-20 12:00:00
-    class: emphasis
-  - event: Lunch
-    time: 2018-01-20 12:00:00
-  - event: API Demos
-    time: 2018-01-20 13:00:00
-    class: small
-  - event: Amazon Alexa Demo
-    time: 2018-01-20 13:00:00
-    class: small
-  - event: Microsoft Cognitive Services in Action
-    time: 2018-01-20 13:15:00
-    class: small
-  - event: Avast biggest threats of 2017
-    time: 2018-01-20 13:30:00
-    class: small
-  - event: Workshops
-    time: 2018-01-20 14:40:00
-    class: small
-  - event: Google Workshop
-    time: 2018-01-20 14:40:00
-    class: small
-  - event: Sophos Workshop 
-    time: 2018-01-20 15:15:00
-    class: small
-  - event: Improbable Workshop
-    time: 2018-01-20 15:50:00
-    class: small
-  - event: Cambridge Consultants Workshop
-    time: 2018-01-20 16:25:00
-    class: small
-  - event: Microsoft Cognitive Services Workshop
-    time: 2018-01-20 17:00:00
-    class: small
-  - event: ARK.io How to launch your own blockchain and communicate with other chains Workshop 
-    time: 2018-01-20 17:35:00
-    class: small
-  - event: Dinner
-    time: 2018-01-20 19:00:00
-  - event: MLH Capture the Flag
-    time: 2018-01-20 20:00:00
-  - event: MLH !Light
-    time: 2018-01-20 21:15:00
-  - event: Sleeping Area Opens
-    time: 2018-01-20 22:00:00
-    class: small
+  - day: Saturday 20<sup>th</sup> January
+    entries:
+      - time: 2018-01-20 9:00:00
+        events:
+          - name: Registration Opens
+          - name: Pitching Session
+      - time: 2018-01-20 11:00:00
+        events:
+          - name: Opening Ceremony
+      - time: 2018-01-20 12:00:00
+        events:
+          - name: Hacking Starts
+          - name: Lunch
+      - time: 2018-01-20 13:00:00
+        events:
+          - name: API Demos
+            rows: three half
+            subevents:
+              - time: 2018-01-20 13:00:00
+                name: Amazon Alexa Demo
+              - time: 2018-01-20 13:15:00
+                name: Microsoft Cognitive Services in Action
+              - time: 2018-01-20 13:30:00
+                name: Avast biggest threats of 2017
+      - time: 2018-01-20 14:40:00
+        events:
+          - name: Workshops
+            rows: six
+            subevents:
+              - time: 2018-01-20 14:40:00
+                name: Google Workshop
+              - time: 2018-01-20 15:15:00
+                name: Sophos Workshop 
+              - time: 2018-01-20 15:50:00
+                name: Improbable Workshop
+              - time: 2018-01-20 16:25:00
+                name: Cambridge Consultants Workshop
+              - time: 2018-01-20 17:00:00
+                name: Microsoft Cognitive Services Workshop
+              - time: 2018-01-20 17:35:00
+                name: ARK.io How to launch your own blockchain and communicate with other chains Workshop 
+      - time: 2018-01-20 19:00:00
+        events:
+          - name: Dinner  
+      - time: 2018-01-20 20:00:00
+        events:
+          - name: MLH Capture the Flag
+      - time: 2018-01-20 21:15:00
+        events:
+          - name: MLH !Light
+      - time: 2018-01-20 22:00:00
+        events:
+          - name: Sleeping Area Opens
 
-  # Sunday
-  - event: Midnight Snack
-    time: 2018-01-21 00:00:00
-  - event: Breakfast
-    time: 2018-01-21 08:30:00
-  - event: Lunch
-    time: 2018-01-21 12:00:00
-  - event: Hacking Ends
-    time: 2018-01-21 12:00:00
-    class: emphasis
-  - event: Hack Expo
-    time: 2018-01-21 12:45:00
-  - event: Finalists Announced
-    time: 2018-01-21 14:15:00
-    class: small
-  - event: Finalist Presentations
-    time: 2018-01-21 14:30:00
-  - event: Closing Ceremony
-    time: 2018-01-21 16:15:00
-  - event: Hack Cambridge Concludes
-    time: 2018-01-21 17:00:00
-  - event: Venue Closes
-    time: 2018-01-21 18:00:00
-    class: small
+  - day: Sunday 21<sup>st</sup> January
+    entries:
+      - time: 2018-01-21 00:00:00
+        events:
+          - name: Midnight Snack  
+      - time: 2018-01-21 08:30:00
+        events:
+          - name: Breakfast
+      - time: 2018-01-21 12:00:00
+        events:
+          - name: Lunch
+      - time: 2018-01-21 12:00:00
+        events:
+          - name: Hacking Ends
+      - time: 2018-01-21 12:45:00
+        events:
+          - name: Hack Expo
+      - time: 2018-01-21 14:15:00
+        events:
+          - name: Finalists Announced
+      - time: 2018-01-21 14:30:00
+        events:
+          - name: Finalist Presentations
+      - time: 2018-01-21 16:15:00
+        events:
+          - name: Closing Ceremony
+      - time: 2018-01-21 17:00:00
+        events:
+          - name: Hack Cambridge Concludes
+      - time: 2018-01-21 18:00:00
+        events:
+          - name: Venue Closes
