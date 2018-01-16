@@ -80,7 +80,7 @@ app.get('/terms', (req, res) => {
 
 app.get('/faqs', (req, res) => {
   res.render('faqs.html', {
-    faqs: utils.loadResource('faqs') 
+    faqs: utils.loadResource('faqs')
   });
 });
 
