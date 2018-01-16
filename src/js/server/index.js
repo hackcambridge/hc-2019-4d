@@ -108,6 +108,29 @@ app.get('/sponsorship', (req, res) => {
   res.render('sponsorship.html');
 });
 
+app.get('/event', (req, res) => {
+  res.render('event/index.html');
+});
+
+app.get('/event/schedule', (req, res) => {
+  res.render('event/schedule.html', {
+    schedule: utils.loadResource('schedule'),
+    workshops: utils.loadResource('workshops'),
+    demos: utils.loadResource('api_demos')
+  });
+});
+
+app.get('/event/hacking', (req, res) => {
+  res.render('event/hacking.html', {
+    apis: utils.loadResource('apis'),
+    prizes: utils.loadResource('prizes')
+  });
+});
+
+app.get('/event/location', (req, res) => {
+  res.render('event/location.html');
+});
+
 app.get('/favicons/browserconfig.xml', (req, res) => {
   res.render('favicons/browserconfig.xml');
 });
