@@ -4,19 +4,22 @@ prizes:
       The team judged to have produced the most innovative, technically challenging and well designed project.
     prize: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
     class: first
-    rows: two
+    rows: three
+
   - name: Hack Cambridge 2nd Place
     description: |
       Runners up.
     prize: A Raspberry Pi, developed here in Cambridge, for each team member.
     class: second
-    rows: two
+    rows: three
+
   - name: Hack Cambridge 3rd Place
     description: |
       Runners up.
     prize: A copy of the fantastic card game Exploding Kittens for each team member.
     class: third
-    rows: two
+    rows: three
+
   - name: Hack Cambridge People's Prize
     description: |
       Do you have what it takes to impress your fellow hackers?
@@ -29,7 +32,7 @@ prizes:
       Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
     prize: Cryptex USB Flash Drive 16GB.
     class: peoples
-    rows: 2
+    rows: three
 
   - name: Microsoft Vision Cognitive Challenge 1
     description:
@@ -64,12 +67,13 @@ prizes:
       Emotion API PREVIEW Personalise user experiences with emotion recognition \
       Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
       Video Indexer PREVIEW Unlock video insights\n"
-    prize: $100 of Azure for 3 months so a total of $300  
+    prize: $100 of Azure for 3 months so a total of $300
+    rows: nine
 
   - name: Arm Best Hack in Hardware
     description: |
       We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
-    prize: Micro:bit inventor's kit & Amazon Gift Card
+    prize: Micro:bit inventor's kit & Amazon Gift Card.
     rows: three
 
   - name: Best use of ARK blockchain
@@ -82,10 +86,11 @@ prizes:
     description: |
       We're looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
     prize: Each member of the team which impress us the most will take home a drone.
-    rows: 2
+    rows: three
+
   - name: Amazon API prize
     description: |
       Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ the Cambridge Hackathon!
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
-    rows: 2
+    rows: two
 
