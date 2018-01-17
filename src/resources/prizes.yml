@@ -49,7 +49,7 @@ prizes:
       Emotion API PREVIEW Personalise user experiences with emotion recognition \
       Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
       Video Indexer PREVIEW Unlock video insights\n"
-    prize: Xbox One X
+    prize: Xbox One X.
     rows: nine
 
   - name: Microsoft Vision Cognitive Challenge 2
@@ -67,7 +67,7 @@ prizes:
       Emotion API PREVIEW Personalise user experiences with emotion recognition \
       Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
       Video Indexer PREVIEW Unlock video insights\n"
-    prize: $100 of Azure for 3 months so a total of $300
+    prize: $100 of Azure for 3 months so a total of $300.
     rows: nine
 
   - name: Arm Best Hack in Hardware
