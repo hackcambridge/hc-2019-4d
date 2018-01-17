@@ -69,17 +69,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/work-in-progress/event', (req, res) => {
-  res.render('event.html', {
-    title: 'Hack Cambridge Ternary',
-    api_demos: utils.loadResource('api_demos'),
-    workshops: utils.loadResource('workshops'),
-    prizes: utils.loadResource('prizes'),
-    schedule: utils.loadResource('schedule'),
-    apis: utils.loadResource('apis')
-  });
-});
-
 app.get('/work-in-progress/live', (req, res) => {
   res.render('live.html', {
     sponsors: utils.loadResource('sponsors')
