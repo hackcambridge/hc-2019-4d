@@ -24,7 +24,9 @@ sponsors:
        website: https://avast.com
      - name: Google
        website: https://google.com
-    rows: ten half
+     - name: TPP
+       website: https://www.tpp-uk.com/
+    rows: twelve half
     columns: four second-five
 
   mega:
@@ -50,13 +52,11 @@ sponsors:
 
   kilo:
     items:
-      - name: Cubica
-        website: https://www.cubicatechnology.co.uk/
       - name: DataScope
         website: http://www.datascope.co.uk
       - name: DisplayLink
         website: http://www.displaylink.com
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: five
+    rows: four
     columns: two second-three

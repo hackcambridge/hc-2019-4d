@@ -9,10 +9,6 @@ judges:
       and Peterhouse College. He was a founder of the [Raspberry Pi Foundation](https://www.raspberrypi.org/about/),
       a UK charity that promotes the study of computer science and electronics at the school level. He is a founder
       and director of the [lowRISC project](http://www.lowrisc.org/about/).
-  - name: Rob Whitehead
-    description: |
-      Rob Whitehead is the CTO of Improbable, a London-based technology start-up creating persistent, distributed, real-time simulations.
-      
   - name: Professor Cicilia Mascolo
     description: |
       Cecilia Mascolo is Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge, UK.
@@ -22,20 +18,15 @@ judges:
       conferences and journals in the area and her investigator experience spans projects funded by Research Councils and industry.
       She has served as organizing and programme committee member of mobile, sensor systems and networking conferences and workshops.
       She sits on the editorial boards of IEEE Pervasive Computing, IEEE Transactions on Mobile Computing and ACM Transactions on Sensor Networks.
+  - name: Lee Stott
+	description: |
+      Lee has worked for Microsoft in a number of roles over the last five years, acting as both Academic and Technical Evangelist before moving on to become Technical lead of Academic Engagements in 2016, where he now works to engage with academic institutions across the UK in the ongoing development of the Microsoft platform. Prior to this, Lee worked for the University of Manchester as the Head of Information Systems, giving him extensive experience of leading service and delivery teams across both academic and commercial markets.
 
-      More details at www.cl.cam.ac.uk/users/cm542
-  - name: Tim Fogarty
-    description: |
-      Tim is the Commissioner of [Major League Hacking](https://mlh.io/), the student hackathon league. He spends his time helping
-      support over 200 hackathons a year across North America and Europe. He used to organise HackNotts at the
-      University of Nottingham and is a keen Node.js hacker.
-  - name: William Tunstall-Pedoe
-    description: |
-      William Tunstall-Pedoe is the Founder of Evi (an Amazon company), with over 30 years of business and software development experience
-      in the high-tech space. He has solved previously-unsolved problems in AI and has taken a start-up as the sole founder from an idea
-      through multiple rounds of venture capital on to a successful exit to one of the world's top technology businesses.
-  - name: John Britton
-    description: |
-      John Britton, Education Liaison at GitHub, is a developer and community builder focused on bringing the principles of open source
-      into the classroom.
-  
+  - name: Mircea Baja
+	description: |
+      Mircea Baja is a Principal Software Engineer at Sophos. Over a decade and a half he designed, implemented and contributed to products and components that half he designed, implemented and contributed to products and components that make users and computers more secure.
+
+  - name: Nick Tikhonov
+	description: |
+      Software Engineer and Hackathon pro.
+

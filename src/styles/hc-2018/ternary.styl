@@ -12,7 +12,7 @@ html {
 
 /* Reset margins and padding */
 
-h1, h2, h3, h4, h5, p, ul, li, input, form, body, button {
+h1, h2, h3, h4, h5, h6, p, ul, li, input, form, body, button {
     margin: 0;
     padding: 0;
 }
@@ -52,6 +52,9 @@ section {
 section:last-of-type:not(.black):not(.red) {
     border-bottom: 1pt solid var(--secondary-color);
 }
+header:not(.black):not(.red) + main section:first-of-type:not(.black):not(.red) {
+    border-top: 1pt solid var(--secondary-color);
+}
 section:not(.black):not(.red) + section:not(.black):not(.red) {
     border-top: 1pt solid var(--secondary-color);
 }
@@ -80,6 +83,17 @@ div.unavailable .label, .error {
     color: var(--accent-color);
 }
 
+/* Highlights */
+
+::selection {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+-moz-::selection {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
 /* Link area */
 
 section.links:hover, section.links:hover * {
@@ -101,6 +115,10 @@ section.links:hover, section.links:hover * {
 .shadow {
     text-shadow: 3pt -3pt var(--accent-color);
 }
+.accent, .accent * {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
 
 /* Paragraph styles */
 
@@ -116,9 +134,9 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, svg, input, button, .secondary {
+section, a, a::after, svg, input, button, .secondary, .roll-up * {
+    transition-property: color, border-color, caret-color, background-color, filter, opacity;
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
-    transition-property: color, border-color, caret-color, background-color, filter;
     transition-duration: 0.25s;
 }
 
@@ -150,15 +168,18 @@ h4 {
     border-top: solid var(--secondary-color) 1pt;
     padding-top: 2pt;
 }
-h4:not(:first-child) {
+h4:not(:first-child), h6:not(:first-child) {
     margin-top: 20pt;
 }
-h4:not(:last-child) {
+h4:not(:last-child), h6:not(:last-child) {
     margin-bottom: 10pt;
 }
 h5, h5 span {
     font-size: 16pt;
     line-height: 120%;
+}
+h6 {
+    font-size: 13pt;
 }
 p {
     font-size: 11pt;
@@ -221,14 +242,18 @@ li:not(:last-child) {
 
 /* Lists */
 
-li {
+ul {
     list-style-type: none;
+}
+
+ol {
     list-style-position: outside;
+    padding-left: 0;
 }
 
 /* Anchors */
 
-a:not(.logo) {
+a:not(.logo), a * {
     color: var(--accent-color);
     text-decoration: none;
 }
@@ -276,10 +301,17 @@ object {
 }
 
 svg.icon {
-    color: var(--accent-color);
     fill: currentColor;
     width: var(--half);
     height: var(--half);
+}
+
+a svg.icon {
+    color: var(--accent-color);
+}
+
+img {
+    width: 100%;
 }
 
 a:hover svg.icon, a:active svg.icon {
@@ -318,7 +350,7 @@ section.image .wrapper {
 table {
     width: 100%;
     border-spacing: var(--gutter) 0;
-    margin: calc(var(--gutter) * -1);
+    margin: 0 calc(var(--gutter) * -1);
 }
 th {
     text-align: left;
@@ -429,10 +461,6 @@ input[disabled], button[disabled] {
 }
 .logo.unit.column.grows {
     max-width: var(--second-base);
-}
-
-#hack-cambridge-logo-object {
-    width: var(--two);
 }
 #hack-cambridge-wordmark, #hack-cambridge-wordmark * {
     font-size: 24pt;

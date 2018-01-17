@@ -8,7 +8,7 @@
         <div class="{{ faq.rows }} unit row">
             <div class="unit column grows">
                 <h4>{{ faq.question }}</h4>
-                {{ faq.answer | safe }}
+                <p>{{ faq.answer | safe }}</p>
                 {% if faq.action %}
                     {{ faq.action | safe }}
                 {% endif %}

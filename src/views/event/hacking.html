@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
+{% set title = 'Ternary' %}
+{% set description = 'Hack Cambridge Ternary 2018' %}
+{% set keywords = 'hack,Cambridge,ternary 2018' %}
+{% block content %}
+{% set layoutMode = "width" %}
+{% set eventPage = "hacking" %}
+{% include 'header.html' %}
+<main>
+    {% include 'event/nav.html' %}
+    <section>
+        <div class="container {{ layoutMode }}">
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <h1>Hacking</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="red">
+        <div class="container width">
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <div class="unit persistent row content centred">
+                        {{ singleColourIcon(asset, 'Upload', 'Submission') }}
+                        <h3>Submit your hack</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="two unit row">
+                <div class="seven unit column">
+                    <p>
+                        We use Devpost for hack submissions.
+                    </p>
+                    <a href="https://ternary.devpost.com/">To Devpost</a>
+                    <h4>How to submit your hack</h4>
+                    <ul>
+                        <li>
+                            Every member of your team needs to have a Devpost account.
+                        </li>
+                        <li>
+                            Only one person needs to submit the hack: to do this click 'Enter a Submission'.
+                        </li>
+                        <ol>
+                            <li>
+                                Provide a good overview of what you've developed in the description field. This will be used as criteria to assess your hack. Do use screenshots if you wish.
+                            </li>
+                            <li>
+                                Enter your team members' Devpost accounts.
+                            </li>
+                            <li>
+                                Choose the challenge or challenges to enter for.
+                            </li>
+                        </ol>
+                    </ul>
+                </div>
+                <div class="six unit column">
+                    <ul><h4>Rules</h4>
+                        <li>You must submit your hack before hacking ends at 12:45:00 GMT</li>
+                        <li>You must submit all relevant source code</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container width">
+            <div class="unit row">
+                <div class="four half unit column roll-up">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <div class="unit persistent row content centred">
+                                    {{ singleColourIcon(asset, 'Tech', 'Hardware') }}
+                                    <h3>Get hardware</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="four unit row">
+                        <div class="unit column grows">
+                            <h4>How to get hardware</h4>
+                            <p>
+                                We’ll have a range of hardware for you to make use of during the event. You can sign out hardware shortly before and during the event, first-come first-served. If you’re particularly keen to use some of the equipment, make sure to get in there early!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <ul><h4>Available hardware</h4>
+                                <li>Watch this space…</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="four half unit column roll-up">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <div class="unit persistent row content centred">
+                                {{ singleColourIcon(asset, 'API', 'APIs') }}
+                                <h3>Find APIs</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% for api in apis %}
+                        <div class="two unit row expands">
+                            <div class="unit column grows roll-up">
+                                <div class="two unit row">
+                                    <div class="unit column grows">
+                                        <h4>{{ api.name }}</h4>
+                                    </div>
+                                </div>
+                                <div class="{{ api.rows | default('three') }} unit row">
+                                    <div class="unit column grows">
+                                        <p>{{ api.description }}</p>
+                                        <a href="{{ api.documentation }}">Documentation</a>
+                                        <p>{{ api.prizes }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="four half unit column roll-up">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <div class="unit persistent row content centred">
+                                {{ singleColourIcon(asset, 'Trophy', 'Prizes') }}
+                                <h3>Look up prizes</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% for prize in prizes %}
+                        <div class="three unit row">
+                            <div class="unit column grows">
+                                <div class="two unit row">
+                                    <div class="unit column grows">
+                                        <h4>{{ prize.name }}</h4>
+                                    </div>
+                                </div>
+                                {% if prize.description or prize.prize %}
+                                    <div class="{{ prize.rows | default('two') }} unit row">
+                                        <div class="unit column grows">
+                                            {% if prize.description %}
+                                                <p>{{ prize.description }}</p>
+                                            {% endif %}
+                                            {% if prize.prize %}
+                                                <p>{{ prize.prize }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container {{ layoutMode }}">
+        <div class="three unit row">
+            <div class="unit column grows">
+                {% include 'footer.html' %}
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

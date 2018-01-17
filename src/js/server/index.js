@@ -65,18 +65,7 @@ app.use('/hcapi', require('./hcapi'));
 
 app.get('/', (req, res) => {
   res.render('index.html', {
-    sponsors: utils.loadResource('sponsors'),
-  });
-});
-
-app.get('/work-in-progress/event', (req, res) => {
-  res.render('event.html', {
-    title: 'Hack Cambridge Ternary',
-    api_demos: utils.loadResource('api_demos'),
-    workshops: utils.loadResource('workshops'),
-    prizes: utils.loadResource('prizes'),
-    schedule: utils.loadResource('schedule'),
-    apis: utils.loadResource('apis')
+    sponsors: utils.loadResource('sponsors')
   });
 });
 
@@ -97,7 +86,7 @@ app.get('/terms', (req, res) => {
 
 app.get('/faqs', (req, res) => {
   res.render('faqs.html', {
-    faqs: utils.loadResource('faqs') 
+    faqs: utils.loadResource('faqs')
   });
 });
 
@@ -123,6 +112,29 @@ app.get('/favicon.ico', (req, res) => {
 
 app.get('/sponsorship', (req, res) => {
   res.render('sponsorship.html');
+});
+
+app.get('/event', (req, res) => {
+  res.render('event/index.html');
+});
+
+app.get('/event/schedule', (req, res) => {
+  res.render('event/schedule.html', {
+    schedule: utils.loadResource('schedule'),
+    workshops: utils.loadResource('workshops'),
+    demos: utils.loadResource('api_demos')
+  });
+});
+
+app.get('/event/hacking', (req, res) => {
+  res.render('event/hacking.html', {
+    apis: utils.loadResource('apis'),
+    prizes: utils.loadResource('prizes')
+  });
+});
+
+app.get('/event/location', (req, res) => {
+  res.render('event/location.html');
 });
 
 app.get('/favicons/browserconfig.xml', (req, res) => {
