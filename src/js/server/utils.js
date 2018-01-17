@@ -75,6 +75,21 @@ function markdownPropertiesRecursive(object, properties) {
   }
 }
 
+function loadScheduleTimeProperties(loadedScheduleResource) {
+  loadedScheduleResource.forEach(day => {
+    console.log(day.entries);
+    timeProperties(day.entries, ['time']);
+    console.log(day.entries);
+    day.entries.forEach(entry => {
+      entry.events.forEach(event => {
+        if (event.subevents) {
+          timeProperties(event.subevents, ['time']);
+        }
+      });
+    });
+  });
+}
+
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
     let loadedResource = yaml.safeLoad(
@@ -102,12 +117,7 @@ exports.loadResource = function loadResource(resourceName) {
         });
         break;
       case 'schedule':
-        timeProperties(loadedResource, ['time']);
-        // See https://momentjs.com/docs/#/get-set/day/
-        loadedResource = {
-          saturday: loadedResource.filter((event) => event.time.day() === 6),
-          sunday: loadedResource.filter((event) => event.time.day() === 0)
-        };
+        loadScheduleTimeProperties(loadedResource);
         break;
       case 'dashboard':
         markdownPropertiesRecursive(loadedResource, ['content', 'title']);
