@@ -8,7 +8,7 @@ prizes:
   - name: Hack Cambridge 2nd Place
     description: |
         Runners up.
-    prize: A Rasberry Pi, developed here in Cambridge, for each team member.
+    prize: A Raspberry Pi, developed here in Cambridge, for each team member.
     class: second
     rows: two
   - name: Hack Cambridge 3rd Place
