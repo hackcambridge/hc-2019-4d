@@ -1,8 +1,8 @@
 workshops:
   - name: Google Workshop
     description: |
-
-    time: 2016-01-28 14:40:00
+	
+    time: 2018-01-20 14:40:00
     duration: 30 # In minutes
     location: The Guildhall
   - name: Microsoft Cognitive Services Workshop
@@ -20,13 +20,15 @@ workshops:
       Emotion API PREVIEW Personalise user experiences with emotion recognition<br>
       Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case<br>
       Video Indexer PREVIEW Unlock video insights"
-    time: 2016-01-28 15:15:00
+    time: 2018-01-20 15:15:00
   - name: Improbable Workshop
     description: |
-    time: 2016-01-28 15:50:00
+	
+    time: 2018-01-20 15:50:00
   - name: Cambridge Consultants Workshop
     description: |
-    time: 2016-01-28 16:25:00
+	
+    time: 2018-01-20 16:25:00
     duration: 30 # In minutes
     location: The Guildhall
 
@@ -46,11 +48,11 @@ workshops:
       Custom Vision Service (PREVIEW): Easily customise your own state-of-the-art computer vision models for your unique use case<br>
       Video Indexer (PREVIEW): Unlock video insights"
     rows: nine
-    time: 2016-01-28 17:00:00
+    time: 2018-01-20 17:00:00
 
   - name: ARK.io Workshop<br>How to launch your own blockchain and communicate with other chains
     description: | 
       Blockchain and IoT are a marriage made in heaven. Blockchain enables and augments a variety of application scenarios and use cases for IoT. No longer are such possibilities just futuristic dreams.
-    time: 2016-01-28 17:35:00
+    time: 2018-01-20 17:35:00
     rows: two half
   
