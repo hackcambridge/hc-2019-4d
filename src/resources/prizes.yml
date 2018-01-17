@@ -1,20 +1,20 @@
 prizes:
   - name: Hack Cambridge 1st Place
     description: |
-		The team judged to have produced the most innovative, technically challenging and well designed project.
+    The team judged to have produced the most innovative, technically challenging and well designed project.
     prize: |
       The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
     class: first
     rows: two
   - name: Hack Cambridge 2nd Place
     description: |
-		Runners up.
+    Runners up.
     prize: A Rasberry Pi, developed here in Cambridge, for each team member.
     class: second
     rows: two
   - name: Hack Cambridge 3rd Place
     description: |
-		Runners up.
+    Runners up.
     prize: A copy of the fantastic card game Exploding Kittens for each team member.
     class: third
     rows: two
@@ -30,7 +30,7 @@ prizes:
         Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
     prize: Cryptex USB Flash Drive 16GB.
     class: peoples
-	rows: 2 #At a guess?
+    rows: 2 #At a guess?
 
   - name: Microsoft Vision Cognitive Challenge 1
     description: "We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
@@ -62,10 +62,10 @@ prizes:
     description: |
 We're looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
     prize: Each member of the team which impress us the most will take home a drone.
-	rows: 2 #At a guess
+    rows: 2 #At a guess
   - name: Amazon API prize
     description: |
 Prize given to the team Amazon judge to have made the best use of their apis.
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
-	rows: 2 #At a guess
+    rows: 2 #At a guess
 
