@@ -49,15 +49,11 @@ apis:
     description: |
      Ark Push.Button.Deployable custom blockchain technology, enabling users to launch their own chain with a few clicks. New blockchain remains fully ARK compatible with all the API, and other service benefits; so you can start using the new ecosystem.
   - name: AWS All technologies
-    description: |
-The general AWS services for free.
+    description: The general AWS services for free.
   - name: Amazon Elastic Transcoder
-    description: |
-Media Transcoding in the cloud.
+    description: Media Transcoding in the cloud.
   - name: Amazon Alexa Skills Kit
-    description: |
-Allow users to create an Alexa Skill on the cloud.
+    description: Allow users to create an Alexa Skill on the cloud.
   - name: Amazon Lambda
-    description: |
-Framework to run a function in the cloud.
+    description: Framework to run a function in the cloud.
     rows: two half
