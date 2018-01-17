@@ -6,15 +6,20 @@ workshops:
     duration: 30 # In minutes
     location: The Guildhall
   - name: Microsoft Cognitive Services Workshop
-    description: |
-This workshop is aimed at supporting those interested in the Microsoft Challenge.  We will be providing a overview and demos supporting your innovative applications of Microsoft Cognitive Services http://aka.ms/cognitive. The challenge focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future. The team solutions will need to a built using Microsoft Cognitive Services. Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11 we will also provide attendees with $100 of Azure for 3 months.
-The workshop will focus on the following  Microsoft Cognitive APIs  
-Computer Vision API  Distill actionable information from images
-Face API Detect, identify, analyse, organise and tag faces in photos
-Content moderator Automated image, text and video moderation
-Emotion API PREVIEW Personalise user experiences with emotion recognition
-Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case
-Video Indexer PREVIEW Unlock video insights
+    description:
+      "This workshop is aimed at supporting those interested in the Microsoft Challenge.
+      We will be providing a overview and demos supporting your innovative applications of Microsoft Cognitive Services http://aka.ms/cognitive.
+      The challenge focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future.
+      The team solutions will need to a built using Microsoft Cognitive Services.
+      Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline,
+      starting with export to the CoreML format for iOS 11 we will also provide attendees with $100 of Azure for 3 months.
+      The workshop will focus on the following  Microsoft Cognitive APIs<br>
+      Computer Vision API  Distill actionable information from images<br>
+      Face API Detect, identify, analyse, organise and tag faces in photos<br>
+      Content moderator Automated image, text and video moderation<br>
+      Emotion API PREVIEW Personalise user experiences with emotion recognition<br>
+      Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case<br>
+      Video Indexer PREVIEW Unlock video insights"
     time: 2016-01-28 15:15:00
   - name: Improbable Workshop
     description: |
