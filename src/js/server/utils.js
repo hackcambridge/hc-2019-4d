@@ -77,9 +77,7 @@ function markdownPropertiesRecursive(object, properties) {
 
 function loadScheduleTimeProperties(loadedScheduleResource) {
   loadedScheduleResource.forEach(day => {
-    console.log(day.entries);
     timeProperties(day.entries, ['time']);
-    console.log(day.entries);
     day.entries.forEach(entry => {
       entry.events.forEach(event => {
         if (event.subevents) {
