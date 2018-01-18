@@ -6,15 +6,6 @@ apis:
     prizes: Use of SpatialOS is eligible for the Improbable Challenge Prize, details of which will be up shortly!
     rows: four
 
-  - name: Skyscanner API
-    description: |
-      Skyscanner allows users to compare millions of flights to find the cheapest deal, fast.    
-      The Skyscanner API is composed of services that can be used either individually, to add travel search functionality to an existing product, or
-      combined, to build a fully-fledged travel search product.
-    documentation: http://business.skyscanner.net/portal/en-GB/Documentation/ApiOverview
-    prizes: Use of the Skyscanner API is eligible for the Improbable Challenge Prize, details of which will be up shortly!
-    rows: five
-
   - name: Microsoft Cognitive — Vision, Speech, Search, Language, Knowledge 
     description: |
       Microsoft Cognitive Services (formerly Project Oxford) are a set of APIs, SDKs and services available to developers to make their applications more intelligent,
