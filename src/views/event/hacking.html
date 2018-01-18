@@ -113,7 +113,9 @@
                                 <div class="{{ api.rows | default('three') }} unit row">
                                     <div class="unit column grows">
                                         <p>{{ api.description }}</p>
-                                        <a href="{{ api.documentation }}">Documentation</a>
+                                        {% if api.documentation %}
+                                            <a href="{{ api.documentation }}">Documentation</a>
+                                        {% endif %}
                                         <p>{{ api.prizes }}</p>
                                     </div>
                                 </div>
