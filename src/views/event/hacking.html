@@ -142,11 +142,11 @@
                                 </div>
                                 <div class="{{ api.rows | default('three') }} unit row">
                                     <div class="unit column grows">
-                                        <p>{{ api.description }}</p>
+                                        <p>{{ api.description | safe }}</p>
                                         {% if api.documentation %}
                                             <a href="{{ api.documentation }}">Documentation</a>
                                         {% endif %}
-                                        <p>{{ api.prizes }}</p>
+                                        <p>{{ api.prizes | safe }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -174,10 +174,10 @@
                                     <div class="{{ prize.rows | default('two') }} unit row">
                                         <div class="unit column grows">
                                             {% if prize.description %}
-                                                <p>{{ prize.description }}</p>
+                                                <p>{{ prize.description | safe }}</p>
                                             {% endif %}
                                             {% if prize.prize %}
-                                                <p>{{ prize.prize }}</p>
+                                                <p>{{ prize.prize | safe }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
