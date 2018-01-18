@@ -81,13 +81,16 @@ apis:
 
   - name: AWS All technologies
     description: The general AWS services for free.
+    rows: one
 
   - name: Amazon Elastic Transcoder
     description: Media Transcoding in the cloud.
+    rows: one
 
   - name: Amazon Alexa Skills Kit
     description: Allow users to create an Alexa Skill on the cloud.
+    rows: one
 
   - name: Amazon Lambda
     description: Framework to run a function in the cloud.
-    rows: two half
+    rows: one
