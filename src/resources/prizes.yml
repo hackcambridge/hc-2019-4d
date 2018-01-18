@@ -102,42 +102,42 @@ prizes:
 
   - name: Droit Hack Challenge
     description: |
-        Natural language processing of legal texts.
+      Natural language processing of legal texts.
     prize: Macbook Air.
     rows: two
 
   - name: Best Simulation
     description: |
-        Build the best simulation/video game with clever use of data and existing technologies.
+      Build the best simulation/video game with clever use of data and existing technologies.
     prize: TBC.
     rows: two
 
   - name: MLH !Light prize
     description: |
-        An MLH side event.
+      An MLH side event.
     prize: Bluetooth Speaker.
     rows: two
 
   - name: Capture the Flag
     description: |
-        An MLH side event.
+      An MLH side event.
     prize: BlackRock Back Pack.
     rows: two
 
   - name: Best Domain Name Registered With Domain.com
     description: |
-        MLH prize.
+      MLH prize.
     prize: Raspberry Pi & PiHut Essential Kit.
     rows: two
 
   - name: Best IoT Hack Using A Qualcomm Device
     description: |
-        MLH prize.
+      MLH prize.
     prize: DragonBoard 210C & Power Source.
     rows: two
 
   - name: Best Use of Amazon Web Services
     description: |
-        MLH prize.
+      MLH prize.
     prize: $30  Amazon Gift Card.
     rows: two
