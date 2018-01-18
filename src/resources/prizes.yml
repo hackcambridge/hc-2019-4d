@@ -20,7 +20,7 @@ prizes:
   - name: Hack Cambridge People's Prize
     description: |
         Do you have what it takes to impress your fellow hackers?
-    prize: RFID blocking card holder for each team member.
+    prize: A set of programming language playing cards for each team member.
     class: peoples
     rows: two half
 
