@@ -75,6 +75,10 @@ apis:
       New blockchain remains fully ARK compatible with all the API, and other service benefits; so you can start using the new ecosystem.
     documentation: https://github.com/arkecosystem/
 
+  - name: Amazon Prime Video App
+    description: Building a simple version of a streaming app, see for inspiration 
+    documentation: https://bitbucket.org/olivif/avworkshop/src
+
   - name: AWS All technologies
     description: The general AWS services for free.
     rows: one
