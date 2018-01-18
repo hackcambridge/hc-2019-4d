@@ -1,129 +1,143 @@
 prizes:
   - name: Hack Cambridge 1st Place
     description: |
-        The team judged to have produced the most innovative, technically challenging and well designed project.
+      The team judged to have produced the most innovative, technically challenging and well designed project.
     prize: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
     class: first
-    rows: two
+    rows: three
+
   - name: Hack Cambridge 2nd Place
     description: |
-        Runners up.
-    prize: A Rasberry Pi, developed here in Cambridge, for each team member.
+      Runners up.
+    prize: A Raspberry Pi, developed here in Cambridge, for each team member.
     class: second
-    rows: two
+    rows: three
+
   - name: Hack Cambridge 3rd Place
     description: |
-        Runners up.
+      Runners up.
     prize: A copy of the fantastic card game Exploding Kittens for each team member.
     class: third
-    rows: two
+    rows: three
+
   - name: Hack Cambridge People's Prize
     description: |
-        Do you have what it takes to impress your fellow hackers?
+      Do you have what it takes to impress your fellow hackers?
     prize: A set of programming language playing cards for each team member.
     class: peoples
     rows: two half
 
   - name: "Instagram and Twitter picture competition #ternary"
     description: |
-        Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
+      Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
     prize: Cryptex USB Flash Drive 16GB.
     class: peoples
-    rows: 2
+    rows: three
 
   - name: Microsoft Vision Cognitive Challenge 1
-    description: |
-        We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
-        Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive \
-        We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
-        AI, Data and pervasive technology which are driving the future. \
-        The team solutions will need to a built using Microsoft Cognitive Services. \
-        Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11. \
-        The use of the following APIs will be considered: \
-        Computer Vision API  Distill actionable information from images \
-        Face API Detect, identify, analyse, organise and tag faces in photos \
-        Content moderator Automated image, text and video moderation \
-        Emotion API PREVIEW Personalise user experiences with emotion recognition \
-        Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
-        Video Indexer PREVIEW Unlock video insights\n
-    prize: Xbox One X
+    description:
+      "We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive \
+      We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      AI, Data and pervasive technology which are driving the future. \
+      The team solutions will need to a built using Microsoft Cognitive Services. \
+      Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11. \
+      The use of the following APIs will be considered: \
+      Computer Vision API  Distill actionable information from images \
+      Face API Detect, identify, analyse, organise and tag faces in photos \
+      Content moderator Automated image, text and video moderation \
+      Emotion API PREVIEW Personalise user experiences with emotion recognition \
+      Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
+      Video Indexer PREVIEW Unlock video insights\n"
+    prize: Xbox One X.
     rows: nine
 
   - name: Microsoft Vision Cognitive Challenge 2
-    description: |
-        We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
-        Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive \
-        We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
-        AI, Data and pervasive technology which are driving the future. \
-        The team solutions will need to a built using Microsoft Cognitive Services. \
-        Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11. \
-        The use of the following APIs will be considered: \
-        Computer Vision API  Distill actionable information from images \
-        Face API Detect, identify, analyse, organise and tag faces in photos \
-        Content moderator Automated image, text and video moderation \
-        Emotion API PREVIEW Personalise user experiences with emotion recognition \
-        Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
-        Video Indexer PREVIEW Unlock video insights\n
-    prize: $100 of Azure for 3 months so a total of $300  
+    description:
+      "We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      Challenge; The Microsoft challenge will focus on the Cognitive Services API http://aka.ms/cognitive \
+      We will be looking for innovative applications of this technology the focus will around and the Vision API sets of cognitive services. \
+      AI, Data and pervasive technology which are driving the future. \
+      The team solutions will need to a built using Microsoft Cognitive Services. \
+      Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, starting with export to the CoreML format for iOS 11. \
+      The use of the following APIs will be considered: \
+      Computer Vision API  Distill actionable information from images \
+      Face API Detect, identify, analyse, organise and tag faces in photos \
+      Content moderator Automated image, text and video moderation \
+      Emotion API PREVIEW Personalise user experiences with emotion recognition \
+      Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case \
+      Video Indexer PREVIEW Unlock video insights\n"
+    prize: $100 of Azure for 3 months so a total of $300.
+    rows: nine
 
   - name: Arm Best Hack in Hardware
     description: |
-        We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
-    prize: Micro:bit inventor's kit & Amazon Gift Card
+      We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
+    prize: Micro:bit inventor's kit & Amazon Gift Card.
     rows: three
 
   - name: Best use of ARK blockchain
     description: |
-        The best project using ARK blockchain technology and APIs for IoT(preferably) or in general.
+      The best project using ARK blockchain technology and APIs for IoT(preferably) or in general.
     prize: 3x IoT box by ADAFruit for the best team + Branded Ledges Nano S HW Wallet for team members.
     rows: three
 
   - name: TPP's Health & Society Hack
-    description: |
-        We're looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
-        We’ll be judging our prize based on:
-        1)    Potential impact on health/society
-        2)    Practicality
-        3)    Wow factor
+    description:
+      "We’re looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
+      We’ll be judging our prize based on:
+      <ol>
+        <li>Potential impact on health/society
+        <li>Practicality
+        <li>Wow factor
+      </ol>"
     prize: Each member of the team which impress us the most will take home a drone.
-    rows: 2
+    rows: three
+
   - name: Amazon API prize
     description: |
       Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ the Cambridge Hackathon!
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
-    rows: 2
+    rows: two
+
   - name: Droit Hack Challenge
     description: |
         Natural language processing of legal texts.
     prize: Macbook Air.
-    rows: 2
+    rows: two
+
   - name: Best Simulation
     description: |
         Build the best simulation/video game with clever use of data and existing technologies.
     prize: TBC.
-    rows: 2
+    rows: two
+
   - name: MLH !Light prize
     description: |
         An MLH side event.
     prize: Bluetooth Speaker.
-    rows: 2
+    rows: two
+
   - name: Capture the Flag
     description: |
         An MLH side event.
     prize: BlackRock Back Pack.
-    rows: 2
+    rows: two
+
   - name: Best Domain Name Registered With Domain.com
     description: |
         MLH prize.
     prize: Raspberry Pi & PiHut Essential Kit.
-    rows: 2
+    rows: two
+
   - name: Best IoT Hack Using A Qualcomm Device
     description: |
         MLH prize.
     prize: DragonBoard 210C & Power Source.
-    rows: 2
+    rows: two
+
   - name: Best Use of Amazon Web Services
     description: |
         MLH prize.
     prize: $30  Amazon Gift Card.
-    rows: 2
+    rows: two
