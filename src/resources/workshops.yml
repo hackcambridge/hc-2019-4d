@@ -34,9 +34,9 @@ workshops:
       Custom Vision Service PREVIEW Easily customise your own state-of-the-art computer vision models for your unique use case<br>
       Video Indexer PREVIEW Unlock video insights"
     time: 2018-01-20 15:15:00
-  - name: Improbable Workshop
+  - name: Improbable Constructing massive, multiplayer, game worlds Workshop
     description: |
-        
+        Improbable's Spatial OS platform enables developers to create huge simulated worlds, a primary application of which is games. In this 30 minute tech talk we would like to provide you insight into a project involving the creation of a huge game environment, the development process and furthermore the applications of computer science within  this.
     time: 2018-01-20 15:50:00
 
   - name: ARK.io Workshop<br>How to launch your own blockchain and communicate with other chains

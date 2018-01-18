@@ -88,4 +88,13 @@ prizes:
       Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ the Cambridge Hackathon!
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
     rows: 2
-
+  - name: Droit Hack Challenge
+    description: |
+        Natural language processing of legal texts.
+    prize: Macbook Air.
+    rows: 2
+  - name: Best Simulation
+    description: |
+        Build the best simulation/video game with clever use of data and existing technologies.
+    prize: TBC.
+    rows: 2
