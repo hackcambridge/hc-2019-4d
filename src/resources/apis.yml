@@ -94,4 +94,3 @@ apis:
   - name: Amazon Lambda
     description: Framework to run a function in the cloud.
     documentation: https://aws.amazon.com/lambda/
-    rows: two half
