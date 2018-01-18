@@ -23,7 +23,7 @@
       {% for sponsorTierName, sponsorTier in sponsors %}
         {% if sponsorTierName == 'tera' %}
           {% for sponsor in sponsorTier.items %}
-            {{ sponsorLogo(asset, sponsor.name, sponsorTierName) }}
+            <!-- {{ sponsorLogo(asset, sponsor.name, sponsorTierName) }} -->
           {% endfor %}
         {% endif %}
       {% endfor %}
