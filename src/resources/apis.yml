@@ -33,7 +33,8 @@ apis:
     rows: three half
 
   - name: TPP Example Public Health Data
-    description:
+    description: |
+
       "At TPP we have to interact with lots of different healthcare providers around the globe and we have to deal with a lot of data (6660 NHS organisations in the UK).
       We need to be able to handle data in all sorts of formats and as efficiently as possible.
       We’re providing an example set of patient data in the FHIR format for the Hack.
