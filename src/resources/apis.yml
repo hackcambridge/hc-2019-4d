@@ -30,7 +30,7 @@ apis:
       Office 365 mail, Teams and other popular services. 
     documentation: https://docs.botframework.com/en-us/
     prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
-    rows: four
+    rows: four half
   - name: Man AHL Arctic
     description: |
       Man AHL are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their
@@ -45,15 +45,19 @@ apis:
   - name: ARK Contract Execution Services 
     description: |
       Bridging two separate blockchains together and achieving true interoperability between ecosystems.
-  - name: ARK - Click-Deployable Blockchain
+  - name: ARK — Click-Deployable Blockchain
     description: |
      Ark Push.Button.Deployable custom blockchain technology, enabling users to launch their own chain with a few clicks. New blockchain remains fully ARK compatible with all the API, and other service benefits; so you can start using the new ecosystem.
+    rows: four
   - name: AWS All technologies
     description: The general AWS services for free.
+    rows: two half
   - name: Amazon Elastic Transcoder
     description: Media Transcoding in the cloud.
+    rows: two half
   - name: Amazon Alexa Skills Kit
     description: Allow users to create an Alexa Skill on the cloud.
+    rows: two half
   - name: Amazon Lambda
     description: Framework to run a function in the cloud.
     rows: two half

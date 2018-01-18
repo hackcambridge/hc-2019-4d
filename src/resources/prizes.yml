@@ -4,7 +4,7 @@ prizes:
       The team judged to have produced the most innovative, technically challenging and well designed project.
     prize: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
     class: first
-    rows: three
+    rows: three half
 
   - name: Hack Cambridge 2nd Place
     description: |
@@ -25,14 +25,14 @@ prizes:
       Do you have what it takes to impress your fellow hackers?
     prize: RFID blocking card holder for each team member.
     class: peoples
-    rows: two half
+    rows: three
 
   - name: "Instagram and Twitter picture competition #ternary"
     description: |
       Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
     prize: Cryptex USB Flash Drive 16GB.
     class: peoples
-    rows: three
+    rows: three half
 
   - name: Microsoft Vision Cognitive Challenge 1
     description:
@@ -80,17 +80,17 @@ prizes:
     description: |
       The best project using ARK blockchain technology and APIs for IoT(preferably) or in general.
     prize: 3x IoT box by ADAFruit for the best team + Branded Ledges Nano S HW Wallet for team members.
-    rows: three
+    rows: three half
 
   - name: TPP's Health & Society Hack
     description: |
       We're looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
     prize: Each member of the team which impress us the most will take home a drone.
-    rows: three
+    rows: three half
 
   - name: Amazon API prize
     description: |
       Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ the Cambridge Hackathon!
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
-    rows: two
+    rows: three half
 
