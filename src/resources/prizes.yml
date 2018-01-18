@@ -94,7 +94,7 @@ prizes:
     prize: Each member of the team which impress us the most will take home a drone.
     rows: three
 
-  - name: Amazon API prize
+  - name: "Amazon: Best use of Amazon tech"
     description: |
       Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ the Cambridge Hackathon!
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
