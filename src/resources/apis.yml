@@ -37,7 +37,17 @@ apis:
     documentation: https://github.com/manahl/arctic
     rows: three half
   - name: TPP Example Public Health Data
-    description: An example set of health record information in the CHAIR json format.
+    description: |
+        At TPP we have to interact with lots of different healthcare providers around the globe and we have to deal with a lot of data (6660 NHS organisations in the UK). We need to be able to handle data in all sorts of formats and as efficiently as possible. We’re providing an example set of patient data in the FHIR format for the Hack. FHIR stands for ‘Fast Healthcare Interoperability Resources’. It is a global standard for exchanging healthcare information electronically. It has both itss advantages its drawbacks, and is something we work with at TPP.
+        There are plenty of things you could do with this data. For example:
+        You could create a tool to analyse a full set of patient information to identify trends and predict outcomes/treatments.
+        Patients are getting more and more involved with their own healthcare. They may want a frontend to display their information, it could make suggestions to improve their health.
+        You’ll also see that this format is still quite bloated. We have to deal with a large amount of patient data every second (12,850 patient record retrievals a minute). Maybe you could come up with a way to store this information more efficiently.
+        Here are a few links which may help you get started:
+        Main site https://www.hl7.org/fhir/
+        Java http://hapifhir.io/
+        C# https://github.com/ewoutkramer/fhir-net-api
+    documentation: https://www.hl7.org/fhir/
   - name: ARK API
     description: |
       Flexible and easy to use API to talk to the blockchain ecosystem.

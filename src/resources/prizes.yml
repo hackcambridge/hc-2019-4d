@@ -81,6 +81,10 @@ prizes:
   - name: TPP's Health & Society Hack
     description: |
         We're looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
+        We’ll be judging our prize based on:
+        1)    Potential impact on health/society
+        2)    Practicality
+        3)    Wow factor
     prize: Each member of the team which impress us the most will take home a drone.
     rows: 2
   - name: Amazon API prize
