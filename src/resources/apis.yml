@@ -76,18 +76,22 @@ apis:
     documentation: https://github.com/arkecosystem/
 
   - name: Amazon Prime Video App
-    description: Building a simple version of a streaming app, see for inspiration 
+    description: Building a simple version of a streaming app, see for inspiration the docs link. 
     documentation: https://bitbucket.org/olivif/avworkshop/src
 
   - name: AWS All technologies
     description: The general AWS services for free.
+    documentation: https://aws.amazon.com/
 
   - name: Amazon Elastic Transcoder
     description: Media Transcoding in the cloud.
+    documentation: https://aws.amazon.com/elastictranscoder/
 
   - name: Amazon Alexa Skills Kit
     description: Allow users to create an Alexa Skill on the cloud.
+    documentation: https://aws.amazon.com/alexa/
 
   - name: Amazon Lambda
     description: Framework to run a function in the cloud.
+    documentation: https://aws.amazon.com/lambda/
     rows: two half
