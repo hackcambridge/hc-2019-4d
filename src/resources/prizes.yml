@@ -141,3 +141,18 @@ prizes:
       MLH prize.
     prize: $30  Amazon Gift Card.
     rows: two
+
+  - name: Accenture prize
+    description: |
+      The Accenture Team's favourite project'.
+    prize: TBC.
+    rows: two
+
+  - name: Cisco Challenge
+    description: |
+      Using the Cisco Spark development kit, build a Spark Bot to help you in your daily life.
+      Be it scheduling, voting , daily dog pic feed or anything else you can come up with. 
+      Our current fave is KernelSandersBot who helps us with our team’s fried chicken orders, let’s see if you can compete with that. 
+      Good luck and let the craziest idea win!
+    prize: £100 Amazon Voucher per team member.
+    rows: three
