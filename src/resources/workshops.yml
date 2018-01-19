@@ -1,7 +1,6 @@
 workshops:
   - name: Cambridge Consultants Workshop
     description: |
-
       Good Software, Fast: Delivering software quality on over 300 projects a year
     time: 2018-01-20 14:05:00
     duration: 30 # In minutes
