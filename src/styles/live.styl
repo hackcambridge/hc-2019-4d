@@ -76,32 +76,6 @@
 	width: 100%;
 	padding: 8pt 12pt 4pt 12pt;
 	background: black;
-	
-	&::before {
-		content: "Currently playing:";
-		color: white;
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	.live-spotify-widget-cropper {
-		display: inline-block;
-		// Cut off the cover artwork and playlist name
-		width: 220px;
-		height: 40px;
-		overflow: hidden;
-
-		.live-spotify-widget {
-			position: relative;
-			left: -80px; top: -8px;
-			border-radius: 0 0 8px 0;
-			transition: left 0.2s;
-			
-			&:hover {
-				left: 0;
-			}
-		}
-	}
 }
 
 .live-sponsors {
