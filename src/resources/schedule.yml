@@ -5,6 +5,7 @@ schedule:
         events:
           - name: Registration Opens
           - name: Pitching Session
+          - name: Travel Reimbursements in Guild Hall Open
       - time: 2018-01-20 11:00:00
         events:
           - name: Opening Ceremony
@@ -12,6 +13,7 @@ schedule:
         events:
           - name: Hacking Starts
           - name: Lunch
+          - name: Travel Reimbursements moves to Corn Exchange reception
       - time: 2018-01-20 13:00:00
         events:
           - name: API Demos
@@ -23,9 +25,14 @@ schedule:
                 name: Microsoft Cognitive Services in Action
               - time: 2018-01-20 13:30:00
                 name: Avast biggest threats of 2017
+              - time: 2018-01-20 13:45:00
+                name: FeatureSpace JavaScript Collector
       - time: 2018-01-20 13:30:00
         events:
           - name: Cambridge Consultants demo in Guild Hall starts
+      - time: 2018-01-20 14:00:00
+        events:
+          - name: Travel Reimbursements closes
       - time: 2018-01-20 14:05:00
         events:
           - name: Workshops

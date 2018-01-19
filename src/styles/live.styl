@@ -3,9 +3,10 @@
    ========================================================================== */
 
 .live-container {
+	font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
 	position: fixed;
 	left: 0; right: 0; top: 0; bottom: 0;
-	background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
+	background-color: black;
 	display: flex;
 	flex-direction: column;
 }
@@ -23,8 +24,6 @@
 		pointer-events: none;
 		color: white;
 		font-size: 60pt;
-		-webkit-text-stroke: 1px alpha($colorPrimary, 0.3);
-		text-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.4);
 	}
 }
 
@@ -40,7 +39,7 @@
 .live-social-feed-hashtag {
 	padding: 10px;
 	margin: 0;
-	color: #fff;
+	color: white;
 	font-size: 1.7em;
 }
 
@@ -52,7 +51,7 @@
 }
 
 .live-social-feed-item-content {
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(255, 255, 255, 0.6);
 	flex: 1 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -60,7 +59,7 @@
 	border-radius: 5px;
 	padding: 10px;
 	font-size: 1.2em;
-	color: #fff;
+	color: white;
 	max-width: 400px;
 	background-size: cover;
 	background-position: center;
@@ -68,75 +67,6 @@
 	img {
 		display: block;
 		max-width: 100%;
-	}
-}
-
-.live-bar {
-	width: 100%;
-	padding: 8pt 12pt 4pt 12pt;
-	background: #282828;
-	
-	&::before {
-		content: "Currently playing:";
-		color: white;
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	.live-spotify-widget-cropper {
-		display: inline-block;
-		// Cut off the cover artwork and playlist name
-		width: 220px;
-		height: 40px;
-		overflow: hidden;
-
-		.live-spotify-widget {
-			position: relative;
-			left: -80px; top: -8px;
-			border-radius: 0 0 8px 0;
-			transition: left 0.2s;
-			
-			&:hover {
-				left: 0;
-			}
-		}
-	}
-}
-
-.live-sponsors {
-	position: absolute;
-	display: inline-block;
-	left: 50%; transform: translateX(-50%);
-	text-align: center;
-	filter: grayscale(100%) brightness(9001);
-	opacity: 0.8;
-	width: 900px;
-	
-	img {
-		position: relative;
-		height: 40px;
-		margin: 0 20pt;
-		vertical-align: middle;
-	}
-}
-
-.live-cohost {
-	position: absolute;
-	left: 50%; transform: translateX(-50%);
-	top: 70%;
-	pointer-events: none;
-	filter: drop-shadow(0 4px 4px hsla(0, 0%, 0%, 0.4));
-	
-	&::before {
-		position: absolute;
-		display: block;
-		top: -35px; left: 50px; // Manual positioning for correct visual centering
-		content: "Co-hosted by " attr(data-cohost);
-		color: white;
-	}
-	
-	.improbable-logo {
-		transform: scale(1.5);
 	}
 }
 

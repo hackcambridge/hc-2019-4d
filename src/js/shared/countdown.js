@@ -1,6 +1,7 @@
 'use strict';
 
-let moment = require('moment');
+const dates = require('js/shared/dates');
+const moment = require('moment');
 
 class Countdown {
   constructor(options) {
@@ -76,8 +77,8 @@ function padZero(num) {
   return chars.map((c) => `<span class="countdown-digit">${c}</span>`).join('');
 }
 
-Countdown.hackathonStart = new Date(Date.UTC(2017, 0, 28, 13, 0, 0));
-Countdown.hackathonEnd = new Date(Date.UTC(2017, 0, 29, 12, 45, 0));
+Countdown.hackathonStart = dates.getHackingPeriodStart().toDate();
+Countdown.hackathonEnd = dates.getHackingPeriodEnd().toDate();
 
 /**
  * Predefined Countdowns

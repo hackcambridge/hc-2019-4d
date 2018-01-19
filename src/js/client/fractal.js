@@ -85,7 +85,7 @@ const refresh = 2.5 * 60;
 // How long the fade out takes (in seconds)
 const vanish = 0.8, fade = 8;
 // Maximum pixel opacity
-const alpha = 0.6;
+const alpha = 1;
 // How many steps to run in each frame (to get around the 4 ms setInterval timeout)
 const speedup = 1;
 
@@ -143,7 +143,7 @@ module.exports = () => {
     canvas.style.width = '100%';
     canvas.style.imageRendering = 'pixelated';
     const context = canvas.getContext('2d');
-    context.fillStyle = 'white';
+    context.fillStyle = 'rgb(235,51,0)';
 
     let regions, next, depth, minValue, maxValue, bail;
     let begin = () => {
