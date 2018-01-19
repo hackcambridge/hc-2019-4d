@@ -65,18 +65,17 @@
                                 <h5 class="pixel">{{ workshop.time.format('HH:mm') }}</h5>
                             </div>
                             <div class="unit column grows roll-up">
-                                <div class="two half unit row">
+                                <div class="{{ workshop.rows }} unit row">
                                     <div class="unit column grows">
                                         <h4>{{ workshop.name | safe }}<br><i>Guildhall</i></h4>
+                                        {% if workshop.description %}
+                                            <p>{{ workshop.description | safe }}</p>
+                                        {% endif %}
+                                        {% if workshop.extraDescription %}
+                                            {{ workshop.extraDescription | safe }}
+                                        {% endif %}
                                     </div>
                                 </div>
-                                {% if workshop.description %}
-                                    <div class="{{ workshop.rows }} unit row">
-                                        <div class="unit column grows">
-                                            <p>{{ workshop.description | safe }}</p>
-                                        </div>
-                                    </div>
-                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}

@@ -36,7 +36,7 @@ schedule:
       - time: 2018-01-20 14:05:00
         events:
           - name: Workshops
-            rows: five
+            rows: four
             subevents:
               - time: 2018-01-20 14:05:00
                 name: Cambridge Consultants Workshop
