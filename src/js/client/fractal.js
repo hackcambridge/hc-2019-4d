@@ -143,7 +143,7 @@ module.exports = () => {
     canvas.style.width = '100%';
     canvas.style.imageRendering = 'pixelated';
     const context = canvas.getContext('2d');
-    context.fillStyle = 'white';
+    context.fillStyle = 'rgb(235,51,0)';
 
     let regions, next, depth, minValue, maxValue, bail;
     let begin = () => {
