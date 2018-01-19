@@ -31,6 +31,7 @@ schedule:
         events:
           - name: Cambridge Consultants demo in Guild Hall starts
       - time: 2018-01-20 14:00:00
+        events:
           - name: Travel Reimbursements closes
       - time: 2018-01-20 14:05:00
         events:
