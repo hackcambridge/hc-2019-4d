@@ -98,7 +98,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="seven unit row">
+                    <div class="seven half unit row">
                         <div class="unit column grows">
                             <ul><h4>MLH equipment</h4>
                                 <li>
@@ -126,6 +126,17 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <ul><h4>Amazon equipment</h4>
+                                <li>
+                                    <ul>
+                                        <li>4 Echo dots</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
                 </div>
                 <div class="four half unit column roll-up">
                     <div class="two unit row">
@@ -139,18 +150,19 @@
                     {% for api in apis %}
                         <div class="two unit row expands">
                             <div class="unit column grows roll-up">
-                                <div class="two unit row">
-                                    <div class="unit column grows">
-                                        <h4>{{ api.name }}</h4>
-                                    </div>
-                                </div>
                                 <div class="{{ api.rows | default('three') }} unit row">
                                     <div class="unit column grows">
+                                        <h4>{{ api.name }}</h4>
                                         <p>{{ api.description | safe }}</p>
-                                        {% if api.documentation %}
-                                            <a href="{{ api.documentation }}">Documentation</a>
+                                        {% if api.extraDescription %}
+                                            {{ api.extraDescription | safe }}
                                         {% endif %}
-                                        <p>{{ api.prizes | safe }}</p>
+                                        {% if api.documentation %}
+                                            <a rel='external' href="{{ api.documentation }}">Documentation</a>
+                                        {% endif %}
+                                        {% if api.prizes %}
+                                            <p>{{ api.prizes | safe }}</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -169,23 +181,22 @@
                     {% for prize in prizes %}
                         <div class="three unit row">
                             <div class="unit column grows">
-                                <div class="two unit row">
+                                <div class="{{ prize.rows | default('two') }} unit row">
                                     <div class="unit column grows">
-                                        <h4>{{ prize.name }}</h4>
-                                    </div>
-                                </div>
-                                {% if prize.description or prize.prize %}
-                                    <div class="{{ prize.rows | default('two') }} unit row">
-                                        <div class="unit column grows">
+                                        <h4>{{ prize.name | safe }}</h4>
+                                        {% if prize.description or prize.prize %}
                                             {% if prize.description %}
                                                 <p>{{ prize.description | safe }}</p>
                                             {% endif %}
-                                            {% if prize.prize %}
-                                                <p>{{ prize.prize | safe }}</p>
+                                            {% if prize.extraDescription %}
+                                                {{ prize.extraDescription | safe }}
                                             {% endif %}
-                                        </div>
+                                            {% if prize.prize %}
+                                                <p class="accent">{{ prize.prize | safe }}</p>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
-                                {% endif %}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
