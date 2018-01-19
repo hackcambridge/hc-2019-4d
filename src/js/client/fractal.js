@@ -85,7 +85,7 @@ const refresh = 2.5 * 60;
 // How long the fade out takes (in seconds)
 const vanish = 0.8, fade = 8;
 // Maximum pixel opacity
-const alpha = 0.6;
+const alpha = 1;
 // How many steps to run in each frame (to get around the 4 ms setInterval timeout)
 const speedup = 1;
 

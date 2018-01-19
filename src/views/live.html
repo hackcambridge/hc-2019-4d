@@ -1,4 +1,5 @@
 {% extends 'recurse-base.html' %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% block content %}
 <div class="live-container">
 
@@ -19,12 +20,11 @@
     </div>
 
     <div class="live-sponsors">
-      <!--<img src="{{ asset('images/logos/improbable-logo-white.svg') }}" alt="Improbable"/>-->
       {% for sponsorTierName, sponsorTier in sponsors %}
         {% if sponsorTierName == 'tera' %}
-            {% for sponsor in sponsorTier %}
-                <img src="{{ asset('images/logos/' + sponsor.logo) }}" alt="{{ sponsor.name }}"/>
-            {% endfor %}
+          {% for sponsor in sponsorTier.items %}
+            <!-- {{ sponsorLogo(asset, sponsor.name, sponsorTierName) }} -->
+          {% endfor %}
         {% endif %}
       {% endfor %}
     </div>

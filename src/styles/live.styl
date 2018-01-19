@@ -3,9 +3,10 @@
    ========================================================================== */
 
 .live-container {
+	font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
 	position: fixed;
 	left: 0; right: 0; top: 0; bottom: 0;
-	background: linear-gradient(to bottom, $colorPrimary 30%, $colorPink 100%);
+	background-color: rgb(235,51,0);
 	display: flex;
 	flex-direction: column;
 }
@@ -23,7 +24,7 @@
 		pointer-events: none;
 		color: white;
 		font-size: 60pt;
-		-webkit-text-stroke: 1px alpha($colorPrimary, 0.3);
+		-webkit-text-stroke: 1px alpha(rgb(235,51,0), 0.3);
 		text-shadow: 0 4px 4px hsla(0, 0%, 0%, 0.4);
 	}
 }
@@ -74,7 +75,7 @@
 .live-bar {
 	width: 100%;
 	padding: 8pt 12pt 4pt 12pt;
-	background: #282828;
+	background: black;
 	
 	&::before {
 		content: "Currently playing:";
@@ -117,26 +118,6 @@
 		height: 40px;
 		margin: 0 20pt;
 		vertical-align: middle;
-	}
-}
-
-.live-cohost {
-	position: absolute;
-	left: 50%; transform: translateX(-50%);
-	top: 70%;
-	pointer-events: none;
-	filter: drop-shadow(0 4px 4px hsla(0, 0%, 0%, 0.4));
-	
-	&::before {
-		position: absolute;
-		display: block;
-		top: -35px; left: 50px; // Manual positioning for correct visual centering
-		content: "Co-hosted by " attr(data-cohost);
-		color: white;
-	}
-	
-	.improbable-logo {
-		transform: scale(1.5);
 	}
 }
 

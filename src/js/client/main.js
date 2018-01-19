@@ -1,7 +1,5 @@
 let $ = require('jquery');
 
-let Countdown = require('../shared/countdown');
-
 let pages = [
   require('./payment'),
   require('./apply'),
@@ -73,20 +71,4 @@ $(document).ready(() => {
       window.fbq('track', 'CompleteRegistration');
     });
   });
-
-  $('.event-countdown').each(function () {
-    let countdown = Countdown.createChainedCountdown();
-
-    countdown.onCount = (rendered) => $(this).html(rendered);
-    countdown.start();
-  });
-
-  /*var updateCountdown = function () {
-    $('.application-countdown').html(createCountdownText());
-  };
-
-  if ($('.application-countdown').length > 0) {
-    setInterval(updateCountdown, 500);
-    updateCountdown();
-  }*/
 });
