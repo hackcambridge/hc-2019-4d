@@ -75,9 +75,11 @@ apis:
       <p>The main goal of ARK is to help you deliver new solutions build on top of easy deployable and scalable opensource blockchain ecosystem.
       Ark Push Button-Deployable custom blockchain technology enables users to launch their own chain with a few clicks.
       The new blockchain remains fully ARK-compatible with the API and other service benefits, so you can start using the new ecosystem.
-    extraDescription: <a rel='external' href='https://github.com/ArkEcosystem'>REST specifications</a>
+    extraDescription: |
+      <a rel='external' href='https://github.com/ArkEcosystem'>REST specifications</a>
+      <a rel='external' href='https://ark.brianfaust.me'>Documentation for Node</a>
     documentation: https://github.com/arkecosystem/
-    rows: seven
+    rows: seven half
 
   - name: Amazon Prime Video App
     description: Building a simple version of a streaming app, see for inspiration the docs link. 
