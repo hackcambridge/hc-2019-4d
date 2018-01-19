@@ -29,12 +29,12 @@
                     </div>
                 </div>
             </div>
-            <div class="two unit row">
+            <div class="five unit row">
                 <div class="seven unit column">
                     <p>
                         We use Devpost for hack submissions.
                     </p>
-                    <a href="https://ternary.devpost.com/">To Devpost</a>
+                    <a href="https://ternary.devpost.com/">Go to Devpost</a>
                     <h4>How to submit your hack</h4>
                     <ul>
                         <li>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="six unit column">
                     <ul><h4>Rules</h4>
-                        <li>You must submit your hack before hacking ends at 12:45:00 GMT</li>
+                        <li>You must submit your hack before hacking ends at 12:00:00 GMT</li>
                         <li>You must submit all relevant source code</li>
                     </ul>
                 </div>
@@ -85,13 +85,58 @@
                             </p>
                         </div>
                     </div>
-                    <div class="two unit row">
+                    <div class="four half unit row">
                         <div class="unit column grows">
-                            <ul><h4>Available hardware</h4>
-                                <li>Watch this space…</li>
+                            <ul><h4>ARM equipment</h4>
+                                <li>2 St Nucleo F401RE mbed development boards and cables</li>
+                                <li>2 mbed application shields</li>
+                                <li>1 WiFi shield</li>
+                                <li>2 Grove sensor base shields</li>
+                                <li>3 Grove light sensors</li>
+                                <li>3 Grove colour sensors</li>
+                                <li>2 BBC Microbit kits</li>
                             </ul>
                         </div>
                     </div>
+                    <div class="seven half unit row">
+                        <div class="unit column grows">
+                            <ul><h4>MLH equipment</h4>
+                                <li>
+                                    <ul><h6>1 Grey Crate</h6>
+                                        <li>2 Amazon Echo</li>
+                                        <li>1 Amazon Fire Phone</li>
+                                        <li>4 Arduino 101</li>
+                                        <li>4 Base Shield</li>
+                                        <li>1 Grove Starter Kit</li>
+                                        <li>1 Intel Starter Kit</li>
+                                        <li>2 Leap Motion</li>
+                                        <li>1 Muse</li>
+                                        <li>4 Myo Armband</li>
+                                        <li>3 Pebble Time Cases</li>
+                                        <li>25 Zip ties</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul><h6>1 Red Crate</h6>
+                                        <li>1 Oculus Rift</li>
+                                        <li>1 Samsung Gear VR</li>
+                                        <li>1 Dell XPS 2-in-1</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <ul><h4>Amazon equipment</h4>
+                                <li>
+                                    <ul>
+                                        <li>4 Echo dots</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
                 </div>
                 <div class="four half unit column roll-up">
                     <div class="two unit row">
@@ -105,16 +150,19 @@
                     {% for api in apis %}
                         <div class="two unit row expands">
                             <div class="unit column grows roll-up">
-                                <div class="two unit row">
-                                    <div class="unit column grows">
-                                        <h4>{{ api.name }}</h4>
-                                    </div>
-                                </div>
                                 <div class="{{ api.rows | default('three') }} unit row">
                                     <div class="unit column grows">
-                                        <p>{{ api.description }}</p>
-                                        <a href="{{ api.documentation }}">Documentation</a>
-                                        <p>{{ api.prizes }}</p>
+                                        <h4>{{ api.name }}</h4>
+                                        <p>{{ api.description | safe }}</p>
+                                        {% if api.extraDescription %}
+                                            {{ api.extraDescription | safe }}
+                                        {% endif %}
+                                        {% if api.documentation %}
+                                            <a rel='external' href="{{ api.documentation }}">Documentation</a>
+                                        {% endif %}
+                                        {% if api.prizes %}
+                                            <p>{{ api.prizes | safe }}</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -133,23 +181,22 @@
                     {% for prize in prizes %}
                         <div class="three unit row">
                             <div class="unit column grows">
-                                <div class="two unit row">
+                                <div class="{{ prize.rows | default('two') }} unit row">
                                     <div class="unit column grows">
-                                        <h4>{{ prize.name }}</h4>
-                                    </div>
-                                </div>
-                                {% if prize.description or prize.prize %}
-                                    <div class="{{ prize.rows | default('two') }} unit row">
-                                        <div class="unit column grows">
+                                        <h4>{{ prize.name | safe }}</h4>
+                                        {% if prize.description or prize.prize %}
                                             {% if prize.description %}
-                                                <p>{{ prize.description }}</p>
+                                                <p>{{ prize.description | safe }}</p>
                                             {% endif %}
                                             {% if prize.prize %}
-                                                <p>{{ prize.prize }}</p>
+                                                <p class="accent">{{ prize.prize | safe }}</p>
                                             {% endif %}
-                                        </div>
+                                            {% if prize.extraDescription %}
+                                                {{ prize.extraDescription | safe }}
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
-                                {% endif %}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

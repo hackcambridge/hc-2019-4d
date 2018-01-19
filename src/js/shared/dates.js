@@ -19,8 +19,24 @@ function getEarliestGraduationDateToAccept() {
   return getHackathonStartDate().subtract(1, 'year');
 }
 
+/**
+ * Returns the datetime at which the hacking period begins.
+ */
+function getHackingPeriodStart() {
+  return moment('2018-01-20T12:00:00Z');
+}
+
+/**
+ * Returns the datetime at which the hacking period ends.
+ */
+function getHackingPeriodEnd() {
+  return moment('2018-01-21T12:00:00Z');
+}
+
 module.exports = {
   getHackathonStartDate,
   getHackathonEndDate,
-  getEarliestGraduationDateToAccept
+  getEarliestGraduationDateToAccept,
+  getHackingPeriodStart,
+  getHackingPeriodEnd
 };
