@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="two unit row">
+            <div class="five unit row">
                 <div class="seven unit column">
                     <p>
                         We use Devpost for hack submissions.
@@ -188,11 +188,11 @@
                                             {% if prize.description %}
                                                 <p>{{ prize.description | safe }}</p>
                                             {% endif %}
-                                            {% if prize.extraDescription %}
-                                                {{ prize.extraDescription | safe }}
-                                            {% endif %}
                                             {% if prize.prize %}
                                                 <p class="accent">{{ prize.prize | safe }}</p>
+                                            {% endif %}
+                                            {% if prize.extraDescription %}
+                                                {{ prize.extraDescription | safe }}
                                             {% endif %}
                                         {% endif %}
                                     </div>
