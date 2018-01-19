@@ -131,3 +131,35 @@ prizes:
       MLH prize.
     prize: $30  Amazon Gift Card.
     rows: two
+
+  - name: Accenture prize
+    description: |
+      The Accenture Team's favourite project.
+    prize: TBC.
+    rows: two
+
+  - name: Cisco Challenge
+    description: |
+      Using the Cisco Spark development kit, build a Spark Bot to help you in your daily life.
+      Be it scheduling, voting , daily dog pic feed or anything else you can come up with. 
+      Our current fave is KernelSandersBot who helps us with our team’s fried chicken orders, let’s see if you can compete with that. 
+      Good luck and let the craziest idea win!
+    prize: £100 Amazon Voucher per team member.
+    rows: four
+
+  - name: Avast Hack Challenge
+    description:
+      "Become a counter-intelligence agent in a Roman Legionary styled Avast Hack Challenge.
+      Find a foreign spy and recover a magical item to stop enemies from spying on you!
+      Apply your logical thinking and knowledge of PC, math, and knowledge of PC, math, cryptology and tone dialing. The ﬁrst one to send us their result gets a DJI Spark drone as a prize.
+      So let’s play!
+      RULES: 
+      <ol>
+        <li>Accept the challenge</li>
+        <li>Get your USB ﬂash drive with the game at the Avast stand in Guildhall Place</li>
+        <li>When you solve the challenge, you’ll ﬁnd out how to claim the prize</li>
+        <li>The ﬁrst correct result wins a smart dron a smart drone, the DJI Spark</li>
+      </ol>
+      Do you need help?
+      Visit the Avast stand in Guildhall Place. Michal, Petr, and Milos from Avast will help you."
+    prize: TBC.
