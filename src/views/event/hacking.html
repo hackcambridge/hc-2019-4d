@@ -58,7 +58,7 @@
                 </div>
                 <div class="six unit column">
                     <ul><h4>Rules</h4>
-                        <li>You must submit your hack before hacking ends at 12:45:00 GMT</li>
+                        <li>You must submit your hack before hacking ends at 12:00:00 GMT</li>
                         <li>You must submit all relevant source code</li>
                     </ul>
                 </div>
@@ -83,13 +83,43 @@
                             <p>
                                 We’ll have a range of hardware for you to make use of during the event. You can sign out hardware shortly before and during the event, first-come first-served. If you’re particularly keen to use some of the equipment, make sure to get in there early!
                             </p>
-                        </div>
-                    </div>
-                    <div class="two unit row">
-                        <div class="unit column grows">
-                            <ul><h4>Available hardware</h4>
-                                <li>Watch this space…</li>
-                            </ul>
+                            <p>
+                                ARM will provide:
+                                <ul>
+                                  <li>2x St Nucleo F401RE mbed development board and cable</li>
+                                  <li>2x mbed application shield</li>
+                                  <li>1x WiFi shield</li>
+                                  <li>2x Grove sensor base shield</li>
+                                  <li>3x Grove light sensor</li>
+                                  <li>3x Grove colour sensor</li>
+                                  <li>2x BBC Microbit kit</li>
+                                </ul>
+                            </p>
+                            <p>
+                                MLH will provide:
+                                <ul>
+                                  <li>One Grey Crate</li>
+                                       <ul>
+                                         <li>2 Amazon Echo</li>
+                                         <li>1 Amazon Fire Phone</li>
+                                         <li>4 Arduino 101</li>
+                                         <li>4 Base Shield</li>
+                                         <li>1 Grove Starter Kit</li>
+                                         <li>1 Intel Starter Kit</li>
+                                         <li>2 Leap Motion</li>
+                                         <li>1 Muse</li>
+                                         <li>4 Myo Armband</li>
+                                         <li>3 Pebble Time Cases</li>
+                                         <li>Zip ties (25)</li>
+                                       </ul>
+                                  <li>One Red Crate</li>
+                                       <ul>
+                                         <li>1 Oculus Rift</li>
+                                         <li>1 Samsung Gear VR</li>
+                                         <li>1 Dell XPS 2-in-1</li>
+                                       </ul>
+                                </ul>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -112,9 +142,11 @@
                                 </div>
                                 <div class="{{ api.rows | default('three') }} unit row">
                                     <div class="unit column grows">
-                                        <p>{{ api.description }}</p>
-                                        <a href="{{ api.documentation }}">Documentation</a>
-                                        <p>{{ api.prizes }}</p>
+                                        <p>{{ api.description | safe }}</p>
+                                        {% if api.documentation %}
+                                            <a href="{{ api.documentation }}">Documentation</a>
+                                        {% endif %}
+                                        <p>{{ api.prizes | safe }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -142,10 +174,10 @@
                                     <div class="{{ prize.rows | default('two') }} unit row">
                                         <div class="unit column grows">
                                             {% if prize.description %}
-                                                <p>{{ prize.description }}</p>
+                                                <p>{{ prize.description | safe }}</p>
                                             {% endif %}
                                             {% if prize.prize %}
-                                                <p>{{ prize.prize }}</p>
+                                                <p>{{ prize.prize | safe }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
