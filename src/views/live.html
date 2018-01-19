@@ -13,18 +13,6 @@
     <h2 class="live-social-feed-hashtag">#ternary</h2>
     <div class="live-social-feed-content"></div>
   </div>
-
-  <div class="live-bar">
-    <div class="live-sponsors">
-      {% for sponsorTierName, sponsorTier in sponsors %}
-        {% if sponsorTierName == 'tera' %}
-          {% for sponsor in sponsorTier.items %}
-            <!-- {{ sponsorLogo(asset, sponsor.name, sponsorTierName) }} -->
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
 </div>
 <script>
   window.liveConfig = {
