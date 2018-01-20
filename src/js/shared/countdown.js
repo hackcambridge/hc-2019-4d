@@ -74,7 +74,7 @@ function padZero(num) {
     chars.unshift('0');
   }
 
-  return chars.map((c) => `<span class="countdown-digit">${c}</span>`).join('');
+  return chars.map((c) => `${c}`).join('');
 }
 
 Countdown.hackathonStart = dates.getHackingPeriodStart().toDate();
@@ -90,7 +90,7 @@ Countdown.createStartCountdown = () => new Countdown({
       return ('Starting in ' + difference.humanize()
         // HACK: Replace moment's humanised dates with more numerical ones
         .replace('an hour', '1 hour')
-        .replace('a day', '1 day'));
+        .replace('a day', '1 day') + '…');
     }
 
     let minutes = difference.minutes();
@@ -110,7 +110,7 @@ Countdown.createHackingCountdown = () => new Countdown({
 
     return [Math.floor(difference.asHours()), difference.minutes(), difference.seconds()]
       .map((t) => padZero(t))
-      .join('<span class="countdown-separator">:</span>');
+      .join(':');
   }
 });
 

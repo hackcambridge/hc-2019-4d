@@ -1,0 +1,221 @@
+///
+/// START HC2018 CUBE ANIMATION
+/// ===========================
+
+:root {
+    --cube-size: var(--three);
+    --animation-duration: 1.35s;
+}
+
+.cube-container {
+  width: inherit;
+  height: inherit;
+  position: relative;
+  padding: 0;
+  border: none;
+  margin: 0 auto;
+}
+
+#cube-logo {
+  width: var(--cube-size);
+  height: var(--cube-size);
+  position: relative;
+  margin: auto;
+  transform-style: preserve-3d;
+  transform: rotateY(55deg) rotateZ(-45deg);
+  transition-duration: 5s;
+}
+
+#cube-logo figure {
+  margin: 0;
+  width:  var(--cube-size);
+  height: var(--cube-size);
+  display: block;
+  position: absolute;
+  border: none;
+}
+
+#cube-logo .cube-top.front,
+#cube-logo .cube-top.back,
+#cube-logo .cube-top.right,
+#cube-logo .cube-top.left
+{
+    height: calc(var(--cube-size)/2);
+}
+
+#cube-logo .cube-top.front,
+#cube-logo .cube-top.back,
+#cube-logo .cube-top.right,
+#cube-logo .cube-top.left,
+#cube-logo .cube-top.bottom
+{
+    animation-duration: var(--animation-duration);
+    animation-name: cube-color-change;
+    animation-fill-mode: forwards;
+}
+
+#cube-logo .cube-top.top
+{
+    background: var(--red);
+}
+
+#cube-logo .cube-bottom.front,
+#cube-logo .cube-bottom.back,
+#cube-logo .cube-bottom.right,
+#cube-logo .cube-bottom.left
+{
+    height: calc(var(--cube-size)/2);
+    transform: translateY( calc(var(--cube-size)/2) );
+}
+
+#cube-logo .cube-bottom
+{
+    background: black;
+}
+
+#cube-logo .front.cube-top {
+    transform: translateZ(calc(var(--cube-size)/2)) rotateY(0deg);
+}
+#cube-logo .back.cube-top {
+    transform: translateZ(calc(var(--cube-size)/-2)) rotateX(180deg);
+}
+#cube-logo .right.cube-top {
+    transform: translateX(calc(var(--cube-size)/2)) rotateY(90deg);
+}
+#cube-logo .left.cube-top {
+    transform: translateX(calc(var(--cube-size)/-2)) rotateY(-90deg);
+}
+#cube-logo .top.cube-top {
+    transform: translateY(calc(var(--cube-size)/-2)) rotateX(90deg);
+}
+#cube-logo .bottom.cube-top {
+    transform: rotateX(-90deg);
+}
+
+#cube-logo .front.cube-bottom {
+    transform: translateZ(calc(var(--cube-size)/2)) translateY( calc(var(--cube-size)/2)) rotateY(0deg);
+}
+#cube-logo .back.cube-bottom {
+    transform: translateZ(calc(var(--cube-size)/-2)) translateY( calc(var(--cube-size)/2)) rotateX(180deg);
+}
+#cube-logo .right.cube-bottom {
+    transform: translateX(calc(var(--cube-size)/2)) translateY( calc(var(--cube-size)/2)) rotateY(90deg);
+}
+#cube-logo .left.cube-bottom {
+    transform: translateX(calc(var(--cube-size)/-2)) translateY( calc(var(--cube-size)/2)) rotateY(-90deg);
+}
+#cube-logo .top.cube-bottom {
+    transform: rotateX(  90deg );
+}
+#cube-logo .bottom.cube-bottom {
+    transform: translateY( calc(var(--cube-size)/2) ) rotateX( -90deg );
+}
+
+#cube-logo {
+  animation-duration: var(--animation-duration);
+  animation-name: cube-rotation;
+  animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
+  animation-fill-mode: backwards;
+}
+
+main {
+    animation-duration: var(--animation-duration);
+    animation-name: background-color-change;
+    animation-fill-mode: forwards;
+}
+
+body *:not(div):not(figure):not(main) {
+    animation-duration: var(--animation-duration);
+    animation-name: element-opacity;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cube-rotation {
+  0% {
+      transform: none;
+  }
+
+  50% {
+      transform: none;
+  }
+
+  75% {
+    transform: rotateZ(-45deg);
+  }
+
+  100% {
+    transform: rotateY(55deg) rotateZ(-45deg);
+  }
+}
+
+@keyframes cube-color-change {
+    0% {
+        background: black;
+    }
+
+    24.99% {
+        background: black;
+    }
+    25% {
+        background: white;
+    }
+
+    99.99% {
+        background: white;
+    }
+    100% {
+        background: rgba(255, 255, 255, .95);
+    }
+}
+
+@keyframes background-color-change {
+    0% {
+        background: black;
+    }
+
+    24.99% {
+        background: black;
+    }
+    25% {
+        background: white;
+    }
+
+    49.99% {
+        background: white;
+    }
+    50% {
+        background: black;
+    }
+
+    74.99% {
+        background: black;
+    }
+    75% {
+        background: var(--red);
+    }
+
+    99.99% {
+        background: var(--red);
+    }
+    100% {
+        background: white;
+    }
+}
+
+@keyframes element-opacity {
+    0% {
+        opacity: 0;
+    }
+    
+    99.99% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
+
+///
+/// END HC2018 CUBE ANIMATION
+/// =========================
