@@ -22,7 +22,7 @@
     <section class="black">
         <div class="container {{ layoutMode }}">
             <div class="unit row">
-                <div class="seven unit column roll-up">
+                <div class="six unit column roll-up">
                     <div class="two unit row">
                         <div class="unit column grows">
                             <h3>Product Demos</h3>
@@ -48,6 +48,7 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="half unit column"></div>
                 <div class="seven unit column roll-up">
                     <div class="two unit row">
                         <div class="unit column grows">
@@ -60,11 +61,11 @@
                         </div>
                     </div>
                     {% for workshop in workshops %}
-                        <div class="two half unit row expands">
+                        <div class="two half unit row">
                             <div class="one unit column">
                                 <h5 class="pixel">{{ workshop.time.format('HH:mm') }}</h5>
                             </div>
-                            <div class="unit column grows roll-up">
+                            <div class="unit column grows">
                                 <div class="{{ workshop.rows }} unit row">
                                     <div class="unit column grows">
                                         <h4>{{ workshop.name | safe }}<br><i>Guildhall</i></h4>
@@ -87,7 +88,7 @@
         <div class="container {{ layoutMode }}">
             <div class="unit row">
                 {% for item in schedule %}
-                    <div class="seven unit column roll-up">
+                    <div class="six unit column roll-up">
                         <div class="two unit row">
                             <div class="unit column grows">
                                 <h3>{{ item.day | safe }}</h3>
@@ -100,25 +101,22 @@
                                 </div>
                                 <div class="unit column grows">
                                     {% for event in entry.events %}
-                                        <div class="two unit row">
+                                        <div class="{{ event.rows | default('two') }} unit row">
                                             <div class="unit column grows">
-                                                <h4>{{ event.name }}</h4>
-                                            </div>
-                                        </div>
-                                        {% if event.subevents %}
-                                            <div class="{{ event.rows | default('four') }} unit row">
-                                                <div class="unit column grows">
+                                                <h4>{{ event.name | safe }}</h4>
+                                                {% if event.subevents %}
                                                     {% for subevent in event.subevents %}
                                                         <p>{{ subevent.time.format('HH:mm') }}: {{ subevent.name }}</p>
                                                     {% endfor %}
-                                                </div>
+                                                {% endif %}
                                             </div>
-                                        {% endif %}
+                                        </div>
                                     {% endfor %}
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
+                    <div class="half unit column"></div>
                 {% endfor %}
             </div>
         </div>
