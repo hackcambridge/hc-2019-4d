@@ -9,6 +9,10 @@ let pages = [
 
 $(document).ready(() => {
   pages.forEach((f) => f());
+  
+  $(".roll-up h3").click(function() {
+    $(".roll-up").toggleClass("expanded");
+  });
 
   $('.signup-form').each((index, element) => {
     const $this = $(element);
