@@ -10,6 +10,7 @@ const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
 const metadata = require('js/shared/metadata');
+const currentEvent = require('js/shared/live/current-event');
 
 let server = require('http').Server(app);
 
@@ -66,6 +67,14 @@ app.use('/hcapi', require('./hcapi'));
 app.get('/', (req, res) => {
   res.render('index.html', {
     sponsors: utils.loadResource('sponsors')
+  });
+});
+
+app.get('/live-api/event-info', (req, res) => {
+  const schedule = utils.loadResource('schedule');
+  res.json({
+    currentEvents: currentEvent.getCurrentEvents(schedule),
+    nextEvents: currentEvent.getNextEvents(schedule)
   });
 });
 

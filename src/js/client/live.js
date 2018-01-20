@@ -27,12 +27,35 @@ const Countdown = require('../shared/countdown');
 
 const Pusher = require('pusher-js');
 const $ = require('jquery');
+const moment = require('moment');
+
+function eventNameList(events) {
+  return '<ul> ' + events.map(event => `<li>${event.name}</li>`).join(' ') + ' </ul>';
+}
+
+function refreshEventInfo() {
+  $.getJSON('/live-api/event-info', eventInfo => {
+    const currentEvents = eventInfo.currentEvents;
+    const nextEvents = eventInfo.nextEvents;
+
+    if (currentEvents.length > 0) {
+      $('.live-event-now').html(`${moment(currentEvents[0].time).format('HH:mm')} ${eventNameList(currentEvents)}`);
+    }
+
+    if (nextEvents.length > 0) {
+      $('.live-event-next').html(`${moment(nextEvents[0].time).format('HH:mm')} ${eventNameList(nextEvents)}`);
+    }
+  });
+}
 
 function initialiseLive() {
   const pusher = new Pusher(window.liveConfig.pusherKey, {
     encrypted: true,
     cluster: 'eu',
   });
+
+  refreshEventInfo();
+  window.setInterval(refreshEventInfo, 10000);
 
   const liveUpdates = pusher.subscribe('live-updates');
   let lastStatusId = null;
