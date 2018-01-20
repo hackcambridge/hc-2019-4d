@@ -134,7 +134,7 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, svg, input, button, .secondary, .roll-up * {
+section, a, a::after, svg, input, button, .secondary {
     transition-property: color, border-color, caret-color, background-color, filter, opacity;
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
     transition-duration: 0.25s;
@@ -551,27 +551,7 @@ input[disabled], button[disabled] {
         display: none;
     }
 }
-@media (pointer: fine) and (min-width: 595pt) {
-    .roll-up:not(:hover) > :first-child, .roll-up:not(:hover) > :first-child * {
-        color: var(--accent-color);
-    }
-    .roll-up:hover > :first-child, .roll-up:hover > :first-child * {
-        color: var(--secondary-color);
-    }
-    .roll-up:not(:hover) > *:not(:first-child) {
-        transition-property: color, border-color, caret-color, background-color, filter, opacity, height;
-    }
-    .roll-up:not(:hover) > *:not(:first-child) {
-         opacity: 0;
-         min-height: 0;
-         height: var(--one);
-    }
-    .roll-up > *:not(:first-child) {
-        height: var(--base);
-        min-height: min-content;
-    }
-      
-}
+
 @media (hover: none) {
     a::after {
         display: none;
