@@ -23,7 +23,7 @@ function getEarliestGraduationDateToAccept() {
  * Returns the datetime at which the hacking period begins.
  */
 function getHackingPeriodStart() {
-  return moment('2018-01-20T12:00:00Z');
+  return moment('2018-01-20T12:15:00Z');
 }
 
 /**
