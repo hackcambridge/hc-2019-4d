@@ -81,7 +81,6 @@ app.get('/live-api/event-info', (req, res) => {
 app.get('/live', (req, res) => {
   res.render('live.html', {
     title: 'Hack Cambridge Ternary',
-    schedule: utils.loadResource('schedule'),
     sponsors: utils.loadResource('sponsors'),
     pusherKey: process.env.PUSHER_KEY
   });
