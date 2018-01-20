@@ -1,50 +1,47 @@
 workshops:
   - name: Cambridge Consultants Workshop
-    description: "Good Software, Fast: Delivering software quality on over 300 projects a year"
+    description: "Good Software, Fast: Delivering software quality on over 300 projects a year."
     time: 2018-01-20 14:05:00
-    duration: 30 # In minutes
-    location: The Guildhall
+    rows: three
 
   - name: Google Android Wear and Winning Hackathons Workshop
-    description:
-      "<h5>Android Wear - a 10 mins Hackathon Special</h5>
+    extraDescription: |
+      <h6>Android Wear — a 10 min Hackathon Special</h6>
       <p>What if you want to beat Google and Apple at their own wearable game? Hoi will tell you why you should still use Android Wear (for now).
       Latest news and bare minimum you need to know, what are the main differences developing for Android vs Android Wear?</p>
-      <h5>Secrets to winning a Hackathon</h5>
-      <p>Prior to Google, Hoi won various prizes at 7 hackathons over 18 months including being the overall winner at the Unilever Heartage Hack and Google I/O Extended London Hackathon - what's his secret?
+      <h6>Secrets to winning a Hackathon</h6>
+      <p>Prior to Google, Hoi won various prizes at 7 hackathons over 18 months including being the overall winner at the Unilever Heartage Hack and Google I/O Extended London Hackathon—what's his secret?
       He will cover 3 hot topics: ideas, teams and the dreaded presentation.
-      Apologies for the clickbait-y title... #sorrynotsorry</p>"
+      Apologies for the clickbait-y title… #sorrynotsorry</p>
     time: 2018-01-20 14:40:00
-    duration: 30 # In minutes
-    location: The Guildhall
+    rows: eight
 
   - name: Microsoft Cognitive Services Workshop
-    description:
-      "This workshop is aimed at supporting those interested in the Microsoft Challenge.
-      We will be providing a overview and demos supporting your innovative applications of Microsoft Cognitive Services http://aka.ms/cognitive.
-      The challenge focus will around and the Vision API sets of cognitive services. AI, Data and pervasive technology which are driving the future.
-      The team solutions will need to a built using Microsoft Cognitive Services.
-      Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline,
-      starting with export to the CoreML format for iOS 11 we will also provide attendees with $100 of Azure for 3 months.
-      The workshop will focus on the following  Microsoft Cognitive APIs:
-      <ul>
+    description: |
+      This workshop is aimed at supporting those interested in the Microsoft Challenge.
+      We will be providing a overview and demos supporting your innovative applications of Microsoft Cognitive Services.
+    extraDescription: |
+      <a rel="external" href="http://aka.ms/cognitive">Microsoft Cognitive Services</a>
+      <ul><h6>Cognitive APIs in the workshop</h6>
         <li>Computer Vision API: Distill actionable information from images</li>
         <li>Face API: Detect, identify, analyse, organise and tag faces in photos</li>
         <li>Content moderator: Automated image, text and video moderation</li>
-        <li>Emotion API PREVIEW: Personalise user experiences with emotion recognition</li>
-        <li>Custom Vision Service PREVIEW: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
-        <li>Video Indexer PREVIEW: Unlock video insights</li>
-      </ul>"
+        <li>Emotion API <span class="accent">PREVIEW</span>: Personalise user experiences with emotion recognition</li>
+        <li>Custom Vision Service <span class="accent">PREVIEW</span>: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
+        <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
+      </ul>
     time: 2018-01-20 15:15:00
+    rows: eight
 
   - name: Improbable Constructing massive, multiplayer, game worlds Workshop
     description: |
         Improbable's Spatial OS platform enables developers to create huge simulated worlds, a primary application of which is games.
         In this 30 minute tech talk we would like to provide you insight into a project involving the creation of a huge game environment, the development process and furthermore the applications of computer science within this.
     time: 2018-01-20 15:50:00
+    rows: five
 
   - name: ARK.io Workshop<br>How to launch your own blockchain and communicate with other chains
     description: |
       Blockchain and IoT are a marriage made in heaven. Blockchain enables and augments a variety of application scenarios and use cases for IoT. No longer are such possibilities just futuristic dreams.
     time: 2018-01-20 17:35:00
-    rows: two half
+    rows: four
