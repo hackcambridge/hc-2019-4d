@@ -10,6 +10,7 @@ const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
 const metadata = require('js/shared/metadata');
+const currentEvent = require('js/shared/live/current-event');
 
 let server = require('http').Server(app);
 
@@ -69,9 +70,18 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/live-api/event-info', (req, res) => {
+  const schedule = utils.loadResource('schedule');
+  res.json({
+    currentEvents: currentEvent.getCurrentEvents(schedule),
+    nextEvents: currentEvent.getNextEvents(schedule)
+  });
+});
+
 app.get('/live', (req, res) => {
   res.render('live.html', {
     title: 'Hack Cambridge Ternary',
+    schedule: utils.loadResource('schedule'),
     sponsors: utils.loadResource('sponsors'),
     pusherKey: process.env.PUSHER_KEY
   });
