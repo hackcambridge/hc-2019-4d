@@ -47,9 +47,9 @@ prizes:
           <li>Computer Vision API: Distill actionable information from images</li>
           <li>Face API: Detect, identify, analyse, organise and tag faces in photos</li>
           <li>Content moderator: Automated image, text and video moderation</li>
-          <li>Emotion API: <span class="accent">PREVIEW</span> Personalise user experiences with emotion recognition</li>
-          <li>Custom Vision Service: <span class="accent">PREVIEW</span> Easily customise your own state-of-the-art computer vision models for your unique use case</li>
-          <li>Video Indexer: <span class="accent">PREVIEW</span> Unlock video insights</li>
+          <li>Emotion API <span class="accent">PREVIEW</span>: Personalise user experiences with emotion recognition</li>
+          <li>Custom Vision Service <span class="accent">PREVIEW</span>: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
+          <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
       </ul>
     prize: Xbox One X for each person.
     rows: ten half
@@ -145,21 +145,22 @@ prizes:
       Our current fave is KernelSandersBot who helps us with our team’s fried chicken orders, let’s see if you can compete with that. 
       Good luck and let the craziest idea win!
     prize: £100 Amazon Voucher per team member.
-    rows: four
+    rows: four half
 
   - name: Avast Hack Challenge
-    description:
-      "Become a counter-intelligence agent in a Roman Legionary styled Avast Hack Challenge.
+    description: |
+      Become a counter-intelligence agent in a Roman Legionary styled Avast Hack Challenge.
       Find a foreign spy and recover a magical item to stop enemies from spying on you!
       Apply your logical thinking and knowledge of PC, math, and knowledge of PC, math, cryptology and tone dialing. The ﬁrst one to send us their result gets a DJI Spark drone as a prize.
       So let’s play!
-      RULES: 
-      <ol>
+    extraDescription: | 
+      <ol><h6>Rules</h6>
         <li>Accept the challenge</li>
         <li>Get your USB ﬂash drive with the game at the Avast stand in Guildhall Place</li>
         <li>When you solve the challenge, you’ll ﬁnd out how to claim the prize</li>
         <li>The ﬁrst correct result wins a smart dron a smart drone, the DJI Spark</li>
       </ol>
-      Do you need help?
-      Visit the Avast stand in Guildhall Place. Michal, Petr, and Milos from Avast will help you."
-    prize: TBC.
+      <p>Do you need help?</p>
+      <p>Visit the Avast stand in Guildhall Place. Michal, Petr, and Milos from Avast will help you.</p>
+    prize: DJI Spark drone.
+    rows: eight half
