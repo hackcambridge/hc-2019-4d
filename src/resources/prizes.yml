@@ -51,13 +51,13 @@ prizes:
           <li>Custom Vision Service <span class="accent">PREVIEW</span>: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
           <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
       </ul>
-    prize: Xbox One X.
+    prize: Xbox One X for each person.
     rows: ten half
 
   - name: Microsoft Azure Challenge
     description: |
       We will be looking for innovative applications of the Microsoft Azure Cloud Platform
-    prize: $100 of Azure for 3 months so a total of $300, plus Microsoft Ruck Sack and Goodies
+    prize: $100 of Azure for 3 months so a total of $300, plus Microsoft Ruck Sack and Goodies for each person.
     rows: three half
 
   - name: Arm Best Hack in Hardware
@@ -93,7 +93,7 @@ prizes:
   - name: Droit Hack Challenge
     description: |
       Natural language processing of legal texts.
-    prize: Macbook Air.
+    prize: An iPad.
     rows: two
 
   - name: Best Simulation

@@ -51,8 +51,6 @@ schedule:
       - time: 2018-01-20 20:00:00
         events:
           - name: MLH Capture the Flag
-      - time: 2018-01-20 21:15:00
-        events:
           - name: MLH !Light
       - time: 2018-01-20 22:00:00
         events:
