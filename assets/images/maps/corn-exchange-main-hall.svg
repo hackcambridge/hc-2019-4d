@@ -7,11 +7,12 @@
   <defs/>
   <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
     <title>Corn Exchange 2</title>
+    <rect fill="white" width="684" height="684"/>
     <g>
       <title>Layer 1</title>
       <rect x="0" y="0" width="684" height="684" fill="black"/>
       <rect x="5684342e-20" y="114" width="684" height="456" fill="white"/>
-      <rect x="5684342e-20" y="142.5" width="684" height="399" fill="#eb3300"/>
+      <path d="M 5684342e-20 142.5 L 5684342e-20 541.5 L 313.5 541.5 L 313.5 570 L 370.5 570 L 370.5 541.5 L 684 541.5 L 684 142.5 Z" fill="#eb3300"/>
       <rect x="57" y="171" width="85.5" height="28.5" fill="black"/>
       <rect x="57" y="228" width="85.5" height="28.5" fill="black"/>
       <rect x="57" y="427.5" width="85.5" height="28.5" fill="black"/>
