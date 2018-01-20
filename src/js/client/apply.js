@@ -1,6 +1,6 @@
 const $ = require('jquery');
-const { createApplicationForm } = require('js/shared/application-form');
-const { createTeamForm } = require('js/shared/team-form');
+const { createApplicationForm } = require('js/shared/apply/application-form');
+const { createTeamForm } = require('js/shared/apply/team-form');
 
 /**
  * jQuery's .serializeArray does not give us file input values. While we can't get useful
@@ -77,7 +77,7 @@ function disallowAmbiguousAnswersProactively($form) {
     }
   });
 
-  const $teamFields = $form.find('input[name=team_apply], input[name=team_placement]');
+  const $teamFields = $form.find('input[id=id_team_team_apply], input[id=id_team_team_placement]');
 
   $teamFields.change(function () {
     uncheckElements($teamFields.not(this));
@@ -102,7 +102,7 @@ function processForm($form, createForm) {
       const field = form.fields[fieldName];
 
       $row.removeClass('error');
-      $row.find('.form-error-message').remove();
+      $row.find('.error').html('');
 
       if (field.error != null) {
         if (!firstErrorFound) {
@@ -111,7 +111,12 @@ function processForm($form, createForm) {
           }, 500);
           firstErrorFound = true;
         }
-        $row.find('.form-label-shortform, .form-label-longform').after(field.errorHTML());
+        if ($row.find('.r').length) {
+          $row.find('.form-control-note').after(field.errorHTML());
+        } else {
+          $row.find('.error').html(field.errorHTML());
+        }
+        
         $row.addClass('error');
       }
     });

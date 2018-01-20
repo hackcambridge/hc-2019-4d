@@ -1,61 +1,71 @@
-{% extends 'ternary-base.html' %}
+{% extends 'base.html' %}
 {% block content %}
-{#
-  if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
-#}
-{% if user.firstName %}
-  <header class="logged-in clearfix">
-    <span class="long-text">Logged in as</span> {{ user.firstName }} {{ user.lastName }} &nbsp; <a href="/apply/logout">Logout</a>
-    {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
-    {% if not is_dashboard %}
-      <a class="float-right" href="/apply/dashboard"><span class="long-text">Go to your dashboard</span><span class="short-text">Dashboard</span> &rarr;</a>
-    {% endif %}
-  </header>
-{% endif %}
-<header class="black">
-    <div class="container a4">
-        <div class="two unit row">
-            <div class="three unit column">
-                <div class="two unit row">
-                    <img id="hack-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge Logo"/>
+{% set headerColor = "black" %}
+{% set layoutMode = "a4" %}
+{% include 'header.html' %}
+<main>
+    {#
+      if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
+    #}
+    {% if user.firstName %}
+        <section class="red">
+            <div class="container {{ layoutMode }}">
+                <div class="one half unit row">
+                    <div class="unit column grows">
+                        <div>
+                            Hey {{ user.firstName }} {{ user.lastName }}!
+                        </div>
+                    </div>
+                </div>
+                <div class="one half unit row">
+                    <div class="unit column grows">
+                        <a href="/apply/logout">Logout</a>
+                        {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+                        {% if not is_dashboard %}
+                            <a href="/apply/dashboard">Dashboard</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-            <div id="intro-text" class="unit column">
-                <h2 id="hack-cambridge-wordmark">Hack Cambridge<br><span class="pixel">Ternary</span></h2>
-            </div>
-        </div>
-    </div>
-</header>
-<main>
+        </section>
+    {% endif %}
+    {% block introBanner %}
+    {% endblock %}
     {% if homeLink %}
     <section class="home-link">
-        <div class="container a4">
-            <div class="half unit row">
-                <a rel="prev" href="/">Back to the homepage</a> 
+        <div class="container {{ layoutMode }}">
+            <div class="one half unit row">
+                <div class="unit column grows">
+                    <a rel="prev" href="/">Back to the homepage</a>
+                </div>
             </div>
         </div>
     </section>
     {% endif %}
+    {% if not no_page_content %}
     <section>
-        <div class="container a4">
-            <div class="two unit row">
-                <h1>
-                    {% block pageHeading %}{% endblock %}
-                </h1>
+        <div class="container {{ layoutMode }}">
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <h1>
+                        {% block pageHeading %}{% endblock %}
+                    </h1>
+                </div>
             </div>
             {% block pageContent %}
             {% endblock %}
         </div>
     </section>
+    {% endif %}
     {% block extraSections %}
     {% endblock %}
 </main>
 {% if footer %}
 <footer>
-    <div class="container a4">
-        <div class="one half unit row">
+    <div class="container {{ layoutMode }}">
+        <div class="three unit row">
             <div class="column">
-                {% include 'ternary-footer.html' %}
+                {% include 'footer.html' %}
             </div>
         </div>
     </div>

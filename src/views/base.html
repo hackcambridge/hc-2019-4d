@@ -2,32 +2,40 @@
 <html>
 
 <head>
-    <title>{% block pageTitle %}{{ title }}{% endblock %}</title>
-    <meta name="title" content="{{ title }}" />
-    <meta name="description" content="Join us for 24 hours of building, breaking and creating in the heart of Cambridge from January 28 – 29." />
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:url" content="{{ requestedUrl.href }}" />
-    <meta property="og:description" content="Join us for 24 hours of building, breaking and creating in the heart of Cambridge from January 28 – 29." />
-    <meta property="og:image" content="{{ requestedUrl.protocol }}//{{ requestedUrl.host }}{{ asset('images/fb-share.jpg') }}" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{ title }} — Hack Cambridge</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name=keywords content="{{ keywords | default('hack,Cambridge,ternary 2018') }}">
+    <meta name=author content="Hack Cambridge Team">
     <meta name="language" content="en">
-    <meta name="theme-color" content="{{ colors.PRIMARY_COLOR }}">
-    <script src="https://use.typekit.net/jig8uxt.js"></script>
-    <script>
-        try {
-            Typekit.load({
-                async: true
-            });
-        } catch (e) {}
-    </script>
-    {% if browserSync %}{{ browserSync | safe }}{% endif %}
-    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/main.css') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta property="og:title" content="{{ title }} — Hack Cambridge" />
+    <meta property="og:url" content="{{ requestedUrl.href }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:image" content="{{ requestedUrl.protocol }}//{{ requestedUrl.host }}{{ asset('images/fb-share.png') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/hc-2018/all-stylesheets.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskRegular-Regular.css">
+    <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskScreen-Regular.css">
+    <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskLight-Regular.css">
+    <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskBold-Regular.css">
+    <link rel="icon" href="{{ asset('images/favicons/favicon.png') }}" sizes="512x512" type="image/png">
+    <link rel="icon" href="{{ asset('images/favicons/favicon.ico') }}" sizes="16x16 24x24 32x32 48x48 64x64 96x96 128x128 256x256" type="image/vnd.microsoft.icon">
+    <link rel="icon" href="{{ asset('images/favicons/favicon.icns') }}" sizes="16x16 24x24 32x32 48x48 64x64 96x96 128x128 256x256 512x512">
+    <link rel="icon" href="{{ asset('images/favicons/favicon.svg') }}" sizes="any" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicons/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicons/apple-touch-icon.png') }}">
+    <link rel="mask-icon" href="{{ asset('images/favicons/safari-pinned-tab.svg') }}" color="#f93822">
+    <link rel="shortcut icon" href="{{ asset('images/favicons/favicon.ico') }}">
+    <link rel="manifest" href="/favicons/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="HC Ternary">
+    <meta name="application-name" content="HC Ternary">
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
+    {% if browserSync %}{{ browserSync | safe }}{% endif %}
     {% block content %} {% endblock %} {% block scripts %}
     <script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
 

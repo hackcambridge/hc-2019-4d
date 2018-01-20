@@ -1,257 +1,367 @@
 {% extends 'default.html' %}
 {% set title = 'Apply for Hack Cambridge' %}
+{% set footer = true %}
 {% set is_dashboard = true %}
 {% block pageHeading %}Dashboard{% endblock %}
 {% block pageContent %}
 
-{% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSd1UuxOrLQcv2r74UGniJJjyd9h1pfWHBOZsNZPasMSUabBoQ/viewform" %}
-{% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScLDioi-z-w0Iyn5HZq-B-dFhrbkEGI7Utjfpvh5ZuFjt9VdA/viewform" %}
-{% set coachesForm = "https://docs.google.com/forms/d/e/1FAIpQLScQGjS722u6AYJU9_7uX2Uf3KKxAD69LHdu6Ntjg9WMMiO3ZQ/viewform" %}
-
-<header class="content-wrapper-center">
-  <h3>Hello, {{ user.firstName }}!</h3>
-</header>
-
-  {# The main status banner #}
-  <center>
-    <div class="status-message {{ statusMessage.message_type }}">
-      <h2>{{ statusMessage.title }}</h2>
-      <span>{{ statusMessage.subline }}</span>
-    </div>
-
-    {% if applicationSlug %}
-    <div class="application-slug">
-      Your application ID is:
-      <code class="pretty-code">{{ applicationSlug }}</code>
-    </div>
-  {% endif %}
-  </center>
-  
-  {# Section for info about RSVPs #}
-  {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
-    <section class="dashboard-section rsvp-section">
-      <span class="{{ rsvpInfo.type }} float-right">{{ rsvpInfo.label }}</span>
-      <h3>RSVP</h3>
-      <p>{{ rsvpInfo.content }}</p>
-      
-      {# The RSVP form for incomplete RSVPs #}
-      {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
-        <center>
-          <form method="POST" action="/apply/rsvp">
-            <input type="checkbox" id="rsvp-no-first-click">
-            <label for="rsvp-no-first-click" class="secondary-button">No thanks</label>
-            <button name="rsvp" class="button" value="RSVP_YES">I'll be there!</button>
-            <br>
-            <div id="decline-confirm">
-              One more click to confirm that you'd like to <strong>decline</strong> your invitation:<br><br>
-              <button name="rsvp" class="button" value="RSVP_NO">I'm sure</button>
+    {# The main status banner #}
+    <div class="two half unit row">
+        <div class="unit column grows">
+            <div class="status-message {{ statusMessage.message_type }}">
+                <p>{{ statusMessage.title }}</p>
+                <p>{{ statusMessage.subline }}</p>
             </div>
-          </form>
-        </center>
-      {% endif %}
-
-      <br>
-      {% if rsvpInfo.action %}
-        <a href="{{ rsvpInfo.action.location }}">{{ rsvpInfo.action.title }} &rarr;</a><br>
-      {% endif %}
-
-    </section>
-  {% endif %}
-
-  {# A call to action for filling out more info for invited, confirmed hackers #}
-  {% if overallStatus == statuses.overall.HAS_TICKET %}
-    <section class="dashboard-section">
-      <h3>Extra Details</h3>
-      <p>
-        We have a couple of forms for you to fill out with some extra details.
-        Please take the time to complete them so that we can make Hack Cambridge: Recurse as good as it can be for you.
-        <br>
-        <a href="{{ roomShareForm }}" target="_blank">Room Sharing (if you are travelling for further away)</a><br>
-        <a href="{{ coachesForm }}" target="_blank">Register for coaches (UK hackers)</a><br>
-        <a href="{{ internationalVisaForm }}" target="_blank">Request letter for international visa</a>
-      </p>
-    </section>
-  {% endif %}
-
-  {# An extra details section for invited, non-declined hackers #}
-
-  {% if responseStatus == statuses.response.INVITED and rsvpStatus != statuses.rsvp.COMPLETE_NO and rsvpStatus != statuses.rsvp.COMPLETE_EXPIRED %}
-    {# Date and Time #}
-    <section class="dashboard-section">
-      <h3>Date and Time</h3>
-      <p>
-        Saturday 28th Jan 2017 (Registration opens at 9am) - Sunday 29th Jan (Closing ceremony finishes at 6pm) <br>
-        (Times subject to change)
-      </p>
-    </section>
-
-    {# Location #}
-    <section class="dashboard-section">
-      <h3>Location</h3>
-      <p>
-        Cambridge Corn Exchange,<br>
-        2 Wheeler St,<br>
-        Cambridge<br>
-        CB2 3QB<br>
-      </p>
-      <a href="https://goo.gl/maps/6TTeXNnD7Jp" target="_blank">View on Google Maps &rarr;</a>
-    </section>
-
-    {# Travel Reimbursements #}
-    <section class="dashboard-section">
-      <h3>Travel Cost Reimbursements</h3>
-      <p>
-        We will be able to reimburse a small amount of your travel costs. The amount you will be able to claim depends on where you're coming from:<br>
-        You can apply for up to £30 for distances as far as london,<br>
-        Up to £50 for distances as far as Manchester,<br>
-        And £70 for distances further than Manchester (including international)<br>
-      </p>
-      <p>We will send more details on travel reimbursements, and we may be processing them at the event. Make sure you keep your receipts!</p>
-      <p>
-        <strong>Note:</strong> We won’t be reimbursing parking costs or cost of travel if you have indicated that you will be travelling on one of our coaches, nor will we be reimbursing any students who study locally. We ask that you be responsible about claiming travel reimbursements and only do so if appropriate — we reserve the right to deny travel reimbursements.
-      </p>
-      <p>
-        If you haven't already done so, remember to check the travel-related forms:<br>
-        <a href="{{ coachesForm }}" target="_blank">Register for coaches (UK)</a><br>
-        <a href="{{ internationalVisaForm }}" target="_blank">Request invitation letter for visa (international)</a>
-      </p>
-    </section>
-    
-    {# Accommodation #}
-    <section class="dashboard-section">
-      <h3>Accommodation</h3>
-      <p>
-        For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the 27th of January), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
-        {% if overallStatus == statuses.overall.HAS_TICKET %}
-          at <a href="{{ roomShareForm }}" target="_blank">this link</a> if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
-        {% else %}
-          using the form that will be made available to you when you accept your invitation. We will get back to you as soon as possible indicating whether we could allocate you a room or not. People coming from outside the UK will be prioritised.
-        {% endif %}
-      </p>
-    </section>
-  {% endif %}
-
-  {# Another extra details for users with tickets #}
-  {% if overallStatus == statuses.overall.HAS_TICKET %}
-    {# Slack #}
-    <section class="dashboard-section">
-      <h3>Slack</h3>
-      <p>
-        You should have received an invite to our <a href="slack://open?team=T3CJG8TH7">Slack team</a>. Make sure you accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. If you haven't used Slack before, that's okay. It's a team messaging app that will allow us all to stay in touch easily, great for getting quick answers to any questions you might have about Hack Cambridge or for meeting your teammates! You can download the mobile or desktop app <a href="https://slack.com/downloads" target="_blank">here</a>.
-      </p>
-    </section>
-    {# Travel #}
-    <section class="dashboard-section">
-      <h3>Travel Advice</h3>
-      <section>
-        <h4>Coaches</h4>
-        <p>
-          If you’re from the UK, we may be able to send coaches from your city to the hackathon and back. We need to gauge interest to determine if this is useful. Do you want a coach sent to you? Express interest on <a href="{{ coachesForm }}" target="_blank">this form</a> and we’ll get back to you asap. Note: If you express interest on this form and we do send a coach to your city, we will not reimburse your cost of travel.
-        </p>
-      </section>
-      <section>
-        <h4>Train</h4>
-        <p>
-          The nearest train station is Cambridge train station. It’s an approximately 30-minute walk from there to the venue. Which is a great way to wake you up nicely!<br>
-          <a href="https://www.google.co.uk/maps/dir/Cambridge,+Station+Rd,+Cambridge+CB1+2JW/Cambridge+Corn+Exchange,+2+Wheeler+St,+Cambridge+CB2+3QB/@52.1992886,0.1230436,16z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47d87083c513efe3:0xc3b0831300f8d3f1!2m2!1d0.1373124!2d52.1940784!1m5!1m1!1s0x47d870bd777be21d:0x54210632dfcff7b5!2m2!1d0.119639!2d52.204348!3e2">
-            View directions on Google Maps &rarr;
-          </a>
-        </p>
-      </section>
-      
-      <section>
-        <h4>By Car</h4>
-        <p>
-          We encourage you to avoid driving to Hack Cambridge if possible — parking is hard to find and isn’t cheap around the venue. If you have no choice but to drive, we recommend you park at the train station (Cambridge Station) about 30 minutes walking away (see above) to save yourself the £50 parking charge. Other alternatives can be found <a href="http://en.parkopedia.co.uk/parking/carpark/cambridge_station/cb1/cambridge/?arriving=201701280730&leaving=201701291600">here</a>.
-        </p>
-      </section>
-      
-      <section>
-        <h4>By Air</h4>
-        <p>
-          If you are an international student and will be flying, we recommend you head for Stansted Airport, our closest international airport, if possible. From there, National Express offer a 50-minute coach journey to Cambridge for just £8. For more information on that coach and coaches from other airports, visit <a href="http://coach.nationalexpress.com/nxbooking/journey-search">nationalexpress.com</a>
-        </p>
-      </section>
-      If you have any other questions about travel, please email our logistics team at <a href="mailto:logistics@hackcambridge.com">logistics@hackcambridge.com</a>.
-    </section>
-
-    {# On the day #}
-    <section class="dashboard-section">
-      <h3>On the day</h3>
-
-      {# What to bring #}
-      <section>
-        <h4>What to bring</h4>
-        <p>
-          Don’t forget to bring some form of <strong>Photo ID</strong> and have this ready at the entrance.
-        </p>
-        <p>
-          Also keep your <strong>application ID</strong> on hand (that’s: <code class="pretty-code">{{ applicationSlug }}</code>)!
-        </p>
-        <p>
-          You’re going to be here overnight. We’ll have some quiet spaces for sleeping but we recommend you take a <strong>sleeping bag</strong> to get comfortable. For your own good, and for everyone around you, it is advisable to bring a <strong>toothbrush</strong> and possibly a spare change of clothes.
-        </p>
-      </section>
-      
-      {# If not in team #}
-      {% if teamApplicationStatus != statuses.teamApplication.COMPLETE %}
-        {# Teams #}
-        <section>
-          <h4>Finding your teams</h4>
-          {% if wantsTeam %}
-            <p>You said that you wanted to have a team chosen for you for the hackathon. We’ll be sending you some allocations soon!</p>
-          {% else %}
-            <p>There’ll be opportunities to find team members on the day. We’ll be sending out more information regarding this shortly.</p>
-          {% endif %}
-        </section>
-      {% endif %}      
-    </section>
-  {% endif %}
-
-  {# A section for users who are yet to be invited #}
-  {% if overallStatus == statuses.overall.INCOMPLETE or
-        overallStatus == statuses.overall.IN_REVIEW %}
-    {# The personal application status #}
-    <section class="dashboard-section">
-      <span class="{{ applicationInfo.type }} float-right">{{ applicationInfo.label }}</span>
-      <h3>Your Application</h3>
-
-      {{ applicationInfo.content }}
-      <br>
-      {% if applicationInfo.action %}
-        <a href="{{ applicationInfo.action.location }}">{{ applicationInfo.action.title }} &rarr;</a><br>
-      {% endif %}
-    </section>
-    
-    {# A section to show team status and team members #}
-    {% if applicationStatus == statuses.application.COMPLETE %}
-      <section class="dashboard-section">
-        <span class="{{ teamApplicationInfo.type }} float-right">{{ teamApplicationInfo.label }}</span>
-        <h3>Team Application</h3>
-
-        {{ teamApplicationInfo.content }}
-
-        {% if teamApplicationStatus == statuses.teamApplication.COMPLETE %}
-          {# Show a list of teammates #}
-          <ul class="team-list">
-            {% for hacker in teamMembers %}
-              <li>
-                {{ hacker.firstName }} {{ hacker.lastName }}
-              </li>
-            {% endfor %}
-          </ul>
-          If you need to make changes to your team, <a href="mailto:team@hackcambridge.com">get in touch with us</a>
-        {% endif %}
-
-        {% if teamApplicationInfo.action %}
-          <br>
-          <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }} &rarr;</a><br>
-        {% endif %}
-      </section>
+        </div>
+    </div>
+    {% if applicationSlug %}
+        <div class="one half unit row">
+            <div class="unit column grows">
+                <div class="application-slug">
+                    <p>
+                        Your application ID is <span class="pixel">{{ applicationSlug }}</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
     {% endif %}
 
-  {% endif %}
+{% endblock %}
 
+{% block extraSections %}
 
+    {% set roomShareForm = "https://docs.google.com/forms/d/e/1FAIpQLSf7cEY2xt-Ya_VooMEAbmQMhCLDpBJ5MtHFa38ZE2rsmLvmWw/viewform" %}
+    {% set internationalVisaForm = "https://docs.google.com/forms/d/e/1FAIpQLScF6ZRa8oLYcZ42G3Xgx5fmKV3FWrl0Jkm4dcVLYhVBCKy1Jw/viewform" %}
+
+    {# To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking #}
+    {% set openSlackLink = "slack://open?team=T7YPKKJRZ" %}
+
+    {# Section for info about RSVPs #}
+    {% if rsvpStatus == statuses.rsvp.INCOMPLETE or rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED %}
+        <section>
+            <form method="POST" action="/apply/rsvp">
+                <div class="container a4">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>RSVP</h3>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="unit column grows">
+                            <h4><span class="pixel">{{ rsvpInfo.label }}</span></h4>
+                            <p>{{ rsvpInfo.content }}</p>
+                        </div>
+                    </div>
+                    {# The RSVP form for incomplete RSVPs #}
+                    {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
+                        <div class="two half unit row">
+                            <div class="unit column grows">
+                                <div>
+                                    <input id="rsvp-yes" type="radio" name="rsvp" value="RSVP_YES" required="true" />
+                                    <label for="rsvp-yes">I’ll be attending Hack Cambridge.</label>
+                                </div>
+                                <div>
+                                    <input id="rsvp-no" type="radio" name="rsvp" value="RSVP_NO" required="true" />
+                                    <label for="rsvp-no">I <strong>won’t</strong> be attending Hack Cambridge.</label>
+                                </div>
+                                <div>
+                                    <input id="rsvp-confirmation" type="checkbox" name="confirmation" value="confirmation" required="true" />
+                                    <label for="rsvp-confirmation">I confirm my response.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one half unit row">
+                            <div class="unit column grows">
+                                <div>
+                                    <button type="submit" name="submit">Submit!</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if rsvpInfo.action %}
+                        <div class="one half unit row">
+                            <div class="unit column grows">
+                                <a href="{{ rsvpInfo.action.location }}">{{ rsvpInfo.action.title }}</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </form>
+        </section>
+    {% endif %}
+
+    {# A call to action for filling out more info for invited, confirmed hackers #}
+    {% if overallStatus == statuses.overall.HAS_TICKET %}
+        <section>
+            <div class="container a4">
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        <h3>Extra Details</h3>
+                    </div>
+                </div>
+                <div class="three unit row">
+                    <div class="unit column grows">
+                        <p>
+                            We have a couple of forms for you to fill out with some extra details.
+                            Please take the time to complete them so that we can make Hack Cambridge Ternary as good as it can be for you.
+                        </p>
+                        <a href="{{ roomShareForm }}" target="_blank">Room Sharing (if you are travelling for further away)</a>
+                        <a href="{{ internationalVisaForm }}" target="_blank">Request letter for international visa</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {# An extra details section for invited, non-declined hackers #}
+    {% if responseStatus == statuses.response.INVITED and rsvpStatus != statuses.rsvp.COMPLETE_NO and rsvpStatus != statuses.rsvp.COMPLETE_EXPIRED %}
+        <section>
+            <div class="container a4">
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        {# Date and Time #}
+                        <h3>Date and Time</h3>
+                    </div>
+                </div>
+                <div class="two half unit row">
+                    <div class="unit column grows">
+                        <p>
+                            {{ hackathonStartDate }} (Registration opens at 9am) – {{ hackathonEndDate }} (Closing ceremony finishes at 6pm).<br>
+                            Times subject to change.
+                        </p>
+                    </div>
+                </div>
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        {# Location #}
+                        <h3>Location</h3>
+                    </div>
+                </div>
+                <div class="three unit row">
+                    <div class="unit column grows">
+                        <p>
+                            Cambridge Corn Exchange<br>
+                            2 Wheeler St<br>
+                            Cambridge<br>
+                            CB2 3QB<br>
+                        </p>
+                        <a href="https://goo.gl/maps/6TTeXNnD7Jp" target="_blank">View on Google Maps</a>
+                    </div>
+                </div>
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        {# Travel Reimbursements #}
+                        <h3>Travel Cost Reimbursements</h3>
+                    </div>
+                </div>
+                <div class="seven unit row">
+                    <div class="unit column grows">
+                        <ul>
+                            <p>
+                                We will aim to reimburse some of your travel costs. The amount you will be able to claim up to depends on where you’re coming from:
+                            </p>
+                            <li>
+                                You can apply for up to £30 for distances as far as London,
+                            </li>
+                            <li>
+                                Up to £50 for distances as far as Manchester,
+                            </li>
+                            <li>
+                                And £70 for distances further than Manchester (including international).
+                            </li>
+                        </ul>
+                        <p>We will be sending more details on travel reimbursements, and we may be processing them at the event so keep your receipts with you and bring them to Hack Cambridge Ternary!</p>
+                        <p>
+                            <strong>Note:</strong>
+                            We won’t be reimbursing parking costs or cost of travel if you are studying locally. We ask that you be responsible about claiming travel reimbursements and only do so if appropriate — we reserve the right to deny travel reimbursements.
+                        </p>
+                        <p>
+                            If you haven’t already done so, remember to check the travel-related forms.
+                        </p>
+                        <a href="{{ internationalVisaForm }}" target="_blank">Request invitation letter for visa (international)</a>
+                    </div>
+                </div>
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        {# Accommodation #}
+                        <h3>Accommodation</h3>
+                    </div>
+                </div>
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        <p>
+                            For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the {{ fridayBeforeHackathonDate }}), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
+                            {% if overallStatus == statuses.overall.HAS_TICKET %}
+                                if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
+                            </p>
+                            <a href="{{ roomShareForm }}" target="_blank">Apply for accommodation</a>
+                            {% else %}
+                                using the form that will be made available to you when you accept your invitation. We will get back to you as soon as possible indicating whether we could allocate you a room or not. People coming from outside the UK will be prioritised.
+                            </p>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {# Another extra details for users with tickets #}
+    {% if overallStatus == statuses.overall.HAS_TICKET %}
+        <section>
+            <div class="container a4">
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        <h3>Slack</h3>
+                    </div>
+                </div>
+                <div class="four unit row">
+                    <div class="unit column grows">
+                        <p>
+                            You should have received an invite to our Slack team. Make sure you accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. If you haven’t used Slack before, that’s okay. It’s a team messaging app that will allow us all to stay in touch easily, great for getting quick answers to any questions you might have about Hack Cambridge or for meeting your teammates!
+                        </p>
+                        <a href="{{ openSlackLink }}">Go to the Slack team</a>
+                        <a href="https://slack.com/downloads" target="_blank">Download the mobile or desktop app</a>
+                    </div>
+                </div>
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        {# Travel #}
+                        <h3>Travel Advice</h3>
+                    </div>
+                </div>
+                <div class="nine half unit row">
+                    <div class="eight unit columns grows">
+                        <h4>Train</h4>
+                        <p>
+                            The nearest train station is Cambridge train station. It’s an approximately 30-minute walk from there to the venue. Which is a great way to wake you up nicely!
+                        </p>
+                        <a href="https://www.google.co.uk/maps/dir/Cambridge,+Station+Rd,+Cambridge+CB1+2JW/Cambridge+Corn+Exchange,+2+Wheeler+St,+Cambridge+CB2+3QB/@52.1992886,0.1230436,16z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47d87083c513efe3:0xc3b0831300f8d3f1!2m2!1d0.1373124!2d52.1940784!1m5!1m1!1s0x47d870bd777be21d:0x54210632dfcff7b5!2m2!1d0.119639!2d52.204348!3e2" target="_blank">View directions on Google Maps</a>
+                        <h4>By Car</h4>
+                        <p>
+                            We encourage you to avoid driving to Hack Cambridge if possible—parking is hard to find and isn’t cheap around the venue. If you have no choice but to drive, we recommend you park at the train station (Cambridge Station) about 30 minutes walking away (see above) to save yourself the £50 parking charge.
+                        </p>
+                        <a href="http://en.parkopedia.co.uk/parking/carpark/cambridge_station/cb1/cambridge/?arriving=201801200730&leaving=201801211600" target="_blank">Find parking</a>
+                        <h4>By Air</h4>
+                        <p>
+                            If you are an international student and will be flying, we recommend you head for Stansted Airport, our closest international airport, if possible. From there, you can take a National Express coach to Cambridge (50 minutes’ journey time) for about £8, or take the train for about £10 (30 minutes’ journey time).
+                        </p>
+                        <a href="http://coach.nationalexpress.com/nxbooking/journey-search" target="_blank">Coach information</a>
+                        <br>
+                        <a href="http://ojp.nationalrail.co.uk/service/planjourney/search" target="_blank">Train information</a>
+                        <h4>Other questions</h4>
+                        <p>
+                            If you have any other questions about travel, please email our logistics team.
+                        </p>
+                        <a href="mailto:logistics@hackcambridge.com">Email the logistics team</a>
+                    </div>
+                </div>
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        {# On the day #}
+                        <h3>On the day</h3>
+                    </div>
+                </div>
+                <div class="four unit row">
+                    <div class="unit column grows">
+                        {# What to bring #}
+                        <h4>What to bring</h4>
+                        <p>
+                            Don’t forget to bring <strong>Photo ID</strong>.<br>
+                            Have this ready at the entrance.
+                        </p>
+                        <p>
+                            Keep your <strong>application ID</strong> on hand (that’s: <span class="pixel">{{ applicationSlug }}</span>)!
+                        </p>
+                        <p>
+                            Since you’re going to be here overnight, we’ll have some quiet spaces for sleeping, but we recommend you take a <strong>sleeping bag</strong> to get comfortable. Remember to bring a <strong>toothbrush</strong> and possibly a spare change of clothes.
+                        </p>
+                    </div>
+                </div>
+                {# If not in team #}
+                {% if teamApplicationStatus != statuses.teamApplication.COMPLETE %}
+                    <div class="three unit row">
+                        <div class="unit column grows">
+                            {# Teams #}
+                            <h4>Finding your teams</h4>
+                            {% if wantsTeam %}
+                                <p>You said that you wanted to have a team chosen for you for the hackathon. We’ll be sending you some allocations soon!</p>
+                            {% else %}
+                                <p>There’ll be opportunities to find team members on the day. We’ll be sending out more information regarding this shortly.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    {% endif %}
+
+    {# A section for users who are yet to be invited #}
+    {% if overallStatus == statuses.overall.INCOMPLETE or overallStatus == statuses.overall.IN_REVIEW %}
+        {# The personal application status #}
+        <section>
+            <div class="container a4">
+                <div class="two unit row">
+                    <div class="unit column grows">
+                        <h3>Your Application</h3>
+                    </div>
+                </div>
+                <div class="one half unit row">
+                    <div class="unit column grows">
+                        <p>{{ applicationInfo.content }}</p>
+                        </div>
+                </div>
+                {% if applicationInfo.action %}
+                    <div class="one half unit row">
+                        <div class="unit column grows">
+                            <a href="{{ applicationInfo.action.location }}">{{ applicationInfo.action.title }}</a><br>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+        {# A section to show team status and team members #}
+        {% if applicationStatus == statuses.application.COMPLETE %}
+            <section>
+                <div class="container a4">
+                    <div class="two unit row">
+                        <div class="unit column grows">
+                            <h3>Team Application</h3>
+                        </div>
+                    </div>
+                    <div class="two half unit row">
+                        <div class="unit column grows">
+                            <p>{{ teamApplicationInfo.content }}</p>
+                            {% if teamApplicationInfo.action %}
+                                <a href="{{ teamApplicationInfo.action.location }}">{{ teamApplicationInfo.action.title }}</a><br>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if teamApplicationStatus == statuses.teamApplication.COMPLETE %}
+                        <div class="two half unit row">
+                            <div class="unit column grows">
+                                {# Show a list of teammates #}
+                                <ul class="team-list">
+                                    {% for hacker in teamMembers %}
+                                        <li>
+                                            {{ hacker.firstName }} {{ hacker.lastName }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="two unit row">
+                            <div class="unit column grows">
+                                <p>
+                                    If you need to make changes to your team, get in touch with us.
+                                </p>
+                                <a href="mailto:team@hackcambridge.com">Get in touch</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        {% endif %}
+    {% endif %}
 
 {% endblock %}

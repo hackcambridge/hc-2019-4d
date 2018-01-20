@@ -1,3 +1,5 @@
+const Countdown = require('../shared/countdown');
+
 const Pusher = require('pusher-js');
 const $ = require('jquery');
 
@@ -26,6 +28,13 @@ function initialiseLive() {
         return $socialItem;
       }));
     });
+  });
+
+  $('.event-countdown').each(function () {
+    let countdown = Countdown.createChainedCountdown();
+
+    countdown.onCount = (rendered) => $(this).html(rendered);
+    countdown.start();
   });
 }
 

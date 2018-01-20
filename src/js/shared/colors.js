@@ -1,1 +1,1 @@
-exports.PRIMARY_COLOR = '#EA5143';
+exports.PRIMARY_COLOR = '#f93822';

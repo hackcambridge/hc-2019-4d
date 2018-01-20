@@ -21,11 +21,6 @@ function timeProperties(items, properties) {
   items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
 }
 
-
-function markdownProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => { if (item[prop]) { item[prop] = nunjucks.runtime.markSafe(markdown.render(item[prop])); }} ));
-}
-
 exports.init = function init(a) {
   app = a;
 };
@@ -80,6 +75,19 @@ function markdownPropertiesRecursive(object, properties) {
   }
 }
 
+function loadScheduleTimeProperties(loadedScheduleResource) {
+  loadedScheduleResource.forEach(day => {
+    timeProperties(day.entries, ['time']);
+    day.entries.forEach(entry => {
+      entry.events.forEach(event => {
+        if (event.subevents) {
+          timeProperties(event.subevents, ['time']);
+        }
+      });
+    });
+  });
+}
+
 exports.loadResource = function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
     let loadedResource = yaml.safeLoad(
@@ -87,15 +95,8 @@ exports.loadResource = function loadResource(resourceName) {
     )[resourceName];
 
     switch (resourceName) {
-      case 'faqs':
-        markdownProperties(loadedResource, ['answer']);
-        break;
-      case 'prizes':
-        _.forOwn(loadedResource, (item) => markdownProperties(item, ['description', 'prize']));
-        break;
       case 'workshops':
       case 'api_demos':
-        markdownProperties(loadedResource, ['description']);
         timeProperties(loadedResource, ['time']);
 
         loadedResource = loadedResource.sort((r1, r2) => {
@@ -113,15 +114,8 @@ exports.loadResource = function loadResource(resourceName) {
           }
         });
         break;
-      case 'apis':
-        markdownProperties(loadedResource, ['description']);
-        break;
       case 'schedule':
-        timeProperties(loadedResource, ['time']);
-        loadedResource = {
-          saturday: loadedResource.filter((event) => event.time.date() == 28),
-          sunday: loadedResource.filter((event) => event.time.date() == 29)
-        };
+        loadScheduleTimeProperties(loadedResource);
         break;
       case 'dashboard':
         markdownPropertiesRecursive(loadedResource, ['content', 'title']);

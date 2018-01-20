@@ -55,6 +55,14 @@
     "SLACK_API_TOKEN": {
       "description": "API token for accessing the Slack API",
       "required": true
+    },
+    "STRIPE_PRIVATE_KEY": {
+      "description": "Private key for accessing the Stripe API",
+      "required": true
+    },
+    "STRIPE_PUBLISH_KEY": {
+      "description": "Publishable key for accessing the Stripe API",
+      "required": true
     }
   }
 }

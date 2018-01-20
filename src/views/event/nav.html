@@ -1,0 +1,55 @@
+<section>
+    <nav>
+        <div class="container {{ layoutMode }}">
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h3>Key info</h3>
+                </div>
+            </div>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <div class="unit persistent row content centred">
+                        {% if eventPage != 'index'  %}
+                            <div class="two unit column">
+                                <a rel="prev" class="unit persistent row content centred" href="/event">
+                                    {{ singleColourIcon(asset, 'Back') }}
+                                    Main page
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if eventPage != 'location'  %}
+                            <div class="two unit column">
+                                <a class="unit persistent row content centred" href="/event/location">
+                                    {{ singleColourIcon(asset, 'Map', 'Map') }}
+                                    Where to?
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if eventPage != 'schedule'  %}
+                            <div class="two unit column">
+                                <a class="unit persistent row content centred" href="/event/schedule">
+                                    {{ singleColourIcon(asset, 'Events', 'Calendar') }}
+                                    Schedule
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if eventPage != 'hacking'  %}
+                            <div class="two unit column">
+                                <a class="unit persistent row content centred" href="/event/hacking">
+                                    {{ singleColourIcon(asset, 'Terminal', 'Terminal') }}
+                                    Hacking
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="two unit column">
+                            <a class="unit persistent row content centred" href="https://help.hackcambridge.com">
+                              {{ singleColourIcon(asset, 'Help') }}
+                                Help
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</section>

@@ -1,17 +1,15 @@
-{% extends 'ternary-base.html' %}
+{% extends 'base.html' %}
 {% set title = 'Sponsorship' %}
 {% set description = 'Opportunities for sponsorship at Hack Cambridge 2018' %}
 {% set keywords = 'hack,Cambridge,ternary,sponsorship,hackathon' %}
 {% block content %}
-<header id="sponsorship-intro" class="black">
+<header class="black">
     <div class="container a4">
         <div class="two unit row">
-            <div class="three unit column">
-                <div class="two unit row">
-                    <img id="hack-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/logo.svg') }}" alt="Hack Cambridge Logo"/>
-                </div>
+            <div class="two unit column">
+                <img draggable="false" src="{{ asset('images/logo.svg') }}" alt="Hack Cambridge Logo"/>
             </div>
-            <div id="intro-text" class="unit column">
+            <div id="intro-text" class="unit column grows">
                 <h1 id="hack-cambridge-wordmark">Hack Cambridge<br><span class="pixel">Ternary</span></h1>
                 <p class="tight">
                     In January 2018, 300 top computer scientists will come together for 24 hours to push the boundaries of technology.
@@ -26,12 +24,8 @@
 <main>
     <section id="sponsorship-endorsement" class="red">
         <div class="container a4">
-            <div id="sponsorship-university-of-cambridge-endorsement" class="half unit row centred">
-                <div class="three unit column">
-                    <div class="half unit row">
-                        <img id="sponsorship-university-of-cambridge-logo-object" draggable="false" src="{{ asset('images/hc-2018/university-of-cambridge-logo.svg') }}" alt="University of Cambridge Logo"/>
-                    </div>
-                </div>
+            <div id="sponsorship-university-of-cambridge-endorsement" class="half unit persistent row content centred">
+                <img id="sponsorship-university-of-cambridge-logo-object" draggable="false" src="{{ asset('images/university-of-cambridge-logo.svg') }}" alt="University of Cambridge Logo"/>
                 <p id="sponsorship-university-of-cambridge-text" class="tight">
                     The University of Cambridge<br>endorses Hack Cambridge.
                 </p>
@@ -40,146 +34,154 @@
     </section>
     <section id="sponsorship-pitch">
         <div class="container a4">
-            <div class="two unit row">
-                <h2>
-                    Why sponsor us?
-                </h2>
+            <div class="three unit row">
+                <div class="unit column grows">
+                    <h2>
+                        Why sponsor us?
+                    </h2>
+                </div>
             </div>
-            <div class="body">
-                <div class="six large unit row">
-                    <div class="columns">
-                        <h4>
-                            Recruiting
-                        </h4>
-                        <p>
-                            After reviewing each applicant’s CV at least twice, we only admit the best candidates to Hack Cambridge. We set a high standard to ensure our attendees have impressive technical prowess, a passionate entrepreneurial spirit, and a proven record of innovation. This is a truly unique opportunity for you: 24 hours straight to work with the next generation of talent, evaluating their technical abilities and cultural fit with your organisation. Bring your best recruiters and an unlimited number of mentors – with such a strong pool of candidates, you’ll be sure to find the perfect hire!
-                        </p>
-                        <h4>
-                            Branding and Exposure
-                        </h4>
-                        <p>
-                            Whether you’re a young company looking to increase your reputation or a large firm with a desire to show off your capabilities to future tech trendsetters, Hack Cambridge brings together the perfect audience for any company: the next generation of innovators and thought-leaders. Few messages about your brand and culture resonate louder with passionate hackers than to be there, stuck in alongside them during 24 intense hours of innovation. From product demos to sponsored messages, we want to help you maximise your exposure and recognition among the people who will drive the next generation of tech growth.
-                        </p>
-                        <h4>
-                            Product Adoption and Live Testing
-                        </h4>
-                        <p>
-                            Show off your new product or demo your flagship hero service, and let the hackers at it for the ultimate test! Hackers love to experiment. They will test the robustness, functionality, market fit, and user-friendliness of any system presented to them in clever and unexpected ways. You’ll be sure to leave with invaluable feedback on how to improve your product and lasting mindshare amongst upcoming leaders.
-                        </p>
-                    </div>
+            <div class="eight half unit row">
+                <div class="seven half unit columns">
+                    <h4>
+                        Recruiting
+                    </h4>
+                    <p>
+                        After reviewing each applicant’s CV at least twice, we only admit the best candidates to Hack Cambridge. We set a high standard to ensure our attendees have impressive technical prowess, a passionate entrepreneurial spirit, and a proven record of innovation. This is a truly unique opportunity for you: 24 hours straight to work with the next generation of talent, evaluating their technical abilities and cultural fit with your organisation. Bring your best recruiters and an unlimited number of mentors – with such a strong pool of candidates, you’ll be sure to find the perfect hire!
+                    </p>
+                    <h4>
+                        Branding and Exposure
+                    </h4>
+                    <p>
+                        Whether you’re a young company looking to increase your reputation or a large firm with a desire to show off your capabilities to future tech trendsetters, Hack Cambridge brings together the perfect audience for any company: the next generation of innovators and thought-leaders. Few messages about your brand and culture resonate louder with passionate hackers than to be there, stuck in alongside them during 24 intense hours of innovation. From product demos to sponsored messages, we want to help you maximise your exposure and recognition among the people who will drive the next generation of tech growth.
+                    </p>
+                    <h4>
+                        Product Adoption and Live Testing
+                    </h4>
+                    <p>
+                        Show off your new product or demo your flagship hero service, and let the hackers at it for the ultimate test! Hackers love to experiment. They will test the robustness, functionality, market fit, and user-friendliness of any system presented to them in clever and unexpected ways. You’ll be sure to leave with invaluable feedback on how to improve your product and lasting mindshare amongst upcoming leaders.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
     <section id="sponsorship-co-host" class="red">
         <div class="container a4">
-            <div class="one unit row">
-                <h2>
-                    <span class="shadow">Co-Host</span>
-                </h2>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h2>
+                        <span class="shadow">Co-Host</span>
+                    </h2>
+                </div>
             </div>
-            <div class="one unit row">
-                <h3>
-                    Be our third dimension.<br>Place a bid with the sponsorship team.
-                </h3>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h3>
+                        Be our third dimension.<br>Place a bid with the sponsorship team.
+                    </h3>
+                </div>
             </div>
-            <div class="body">
-                <div class="one half unit row">
-                    <div class="columns">
-                        <ul>
-                            <li>
-                                Work with us to plan Hack Cambridge
-                            </li>
-                            <li>
-                                All reasonable special requests accommodated
-                            </li>
-                            <li>
-                                10 minute Keynote at opening
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                Pre-event marketing
-                            </li>
-                            <li>
-                                Send unlimited recruiters
-                            </li>
-                            <li>
-                                Blurb on website
-                            </li>
-                            <li>
-                                All Tera benefits
-                            </li>
-                        </ul>
-                    </div>
+            <div class="two half unit row">
+                <div class="one half unit columns">
+                    <ul>
+                        <li>
+                            Work with us to plan Hack Cambridge
+                        </li>
+                        <li>
+                            All reasonable special requests accommodated
+                        </li>
+                        <li>
+                            10 minute Keynote at opening
+                        </li>
+                        <li>
+                            Pre-event marketing
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            Send unlimited recruiters
+                        </li>
+                        <li>
+                            Blurb on website
+                        </li>
+                        <li>
+                            All Tera benefits
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
     <section id="sponsorship-sponsored-meal">
         <div class="container a4 unavailable">
-            <div class="one unit row">
-                <h2>
-                    Spon&shy;sored Meal
-                </h2>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h2>
+                        Spon&shy;sored Meal 
+                    </h2>
+                </div>
+                <div class="unit column fit">
+                    <h2 class="label">
+                        Sold out!
+                    </h2>
+                </div>
             </div>
-            <div class="one unit row label">
-                <h2>
-                    Sold out!
-                </h2>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h3>
+                        Dinner or Midnight Snack<br><span class="pixel">£1000</span>
+                    </h3>
+                </div>
             </div>
-            <div class="one unit row">
-                <h3>
-                    Dinner or Midnight Snack<br><span class="pixel">£1000</span>
-                </h3>
-            </div>
-            <div class="body">
-                <div class="one unit row">
-                    <div class="columns">
-                        <ul>
-                            <li>
-                                15 Minutes pre-meal stage time
-                            </li>
-                            <li>
-                                Branded dining area
-                            </li>
-                            <li>
-                                Opportunity to speak to hackers over dinner
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                Hack Cambridge supplies the meal
-                            </li>
-                            <li>
-                                Available to all sponsors
-                            </li>
-                        </ul>
-                    </div>
+            <div class="two unit row">
+                <div class="one unit columns">
+                    <ul>
+                        <li>
+                            15 Minutes pre-meal stage time
+                        </li>
+                        <li>
+                            Branded dining area
+                        </li>
+                        <li>
+                            Opportunity to speak to hackers over dinner
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            Hack Cambridge supplies the meal
+                        </li>
+                        <li>
+                            Available to all sponsors
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
-    <section id="sponsorship-pitch-image" class="four small unit row image">
+    <section id="sponsorship-pitch-image" class="four small unit image">
         <div class="wrapper">
-            <figure draggable="false" style="background-image: url('{{ asset('images/hc-2018/pitch.jpg') }}')"></figure>
+            <figure draggable="false" style="background-image: url('{{ asset('images/pitch.jpg') }}')"></figure>
         </div>
     </section>
     <section id="sponsorship-tiers">
         <div class="container a4">
-            <div class="one unit row">
-                <h2>
-                    Sponsorship Tiers
-                </h2>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h2>
+                        Sponsorship Tiers
+                    </h2>
+                </div>
             </div>
-            <div class="one unit row">
-                <p>
-                    Higher tiers include the benefits of lower tiers.<br>All prices are exclusive of VAT unless otherwise indicated.
-                <p>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <p>
+                        Higher tiers include the benefits of lower tiers.<br>All prices are exclusive of VAT unless otherwise indicated.
+                    <p>
+                </div>
             </div>
-            <div class="body">
-                <div class="three half unit row">
-                    <div class="columns">
+            <div class="column-gap">
+                <div class="four unit row">
+                    <div class="unit column grows">
                         <h4>
                             Tera <span class="pixel">£8,000</span>
                         </h4>
@@ -206,6 +208,8 @@
                                 Logo on projector throughout event
                             </li>
                         </ul>
+                    </div>
+                    <div class="unit column grows">
                         <h4>
                             Giga <span class="pixel">£5,000</span>
                         </h4>
@@ -231,8 +235,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="three unit row">
-                    <div class="columns">
+                <div class="four unit row">
+                    <div class="unit column grows">
                         <h4>
                             Mega <span class="pixel">£2,500</span>
                         </h4>
@@ -253,23 +257,27 @@
                                 Send 1 recruiter
                             </li>
                         </ul>
-                        <h4>
-                            Kilo <span class="pixel">£400 incl. VAT</span><br><em>For startups</em>
-                        </h4>
-                        <ul>
-                            <li>
-                                Bring hardware and list APIs
-                            </li>
-                            <li>
-                                Logo on website
-                            </li>
-                            <li>
-                                Send unlimited number of mentors
-                            </li>
-                            <li>
-                                Announcement on social media
-                            </li>
-                        </ul>
+                    </div>
+                    <div class="unit column grows">
+                        <div>
+                            <h4>
+                                Kilo <span class="pixel">£400 incl. VAT</span><br><em>For startups</em>
+                            </h4>
+                            <ul>
+                                <li>
+                                    Bring hardware and list APIs
+                                </li>
+                                <li>
+                                    Logo on website
+                                </li>
+                                <li>
+                                    Send unlimited number of mentors
+                                </li>
+                                <li>
+                                    Announcement on social media
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -277,10 +285,12 @@
     </section>
     <section id="sponsorship-contact" class="red links">
         <div class="container a4">
-            <div class="one unit row">
-                <h5>
-                    Interested?<br><span class="secondary"><a href="mailto:sponsorship@hackcambridge.com">Contact our dedicated sponsorship team</a></span>
-                </h5>
+            <div class="two unit row">
+                <div class="unit column grows">
+                    <h5>
+                        Interested?<br><span class="secondary"><a href="mailto:sponsorship@hackcambridge.com" target="_blank">Contact our dedicated sponsorship team</a></span>
+                    </h5>
+                </div>
             </div>
         </div>
     </section>

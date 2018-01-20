@@ -1,91 +1,47 @@
 workshops:
-  - name: Spatial OS workshop by Improbable
+  - name: Cambridge Consultants Workshop
+    description: "Good Software, Fast: Delivering software quality on over 300 projects a year."
+    time: 2018-01-20 14:05:00
+    rows: three
+
+  - name: Google Android Wear and Winning Hackathons Workshop
+    extraDescription: |
+      <h6>Android Wear — a 10 min Hackathon Special</h6>
+      <p>What if you want to beat Google and Apple at their own wearable game? Hoi will tell you why you should still use Android Wear (for now).
+      Latest news and bare minimum you need to know, what are the main differences developing for Android vs Android Wear?</p>
+      <h6>Secrets to winning a Hackathon</h6>
+      <p>Prior to Google, Hoi won various prizes at 7 hackathons over 18 months including being the overall winner at the Unilever Heartage Hack and Google I/O Extended London Hackathon—what's his secret?
+      He will cover 3 hot topics: ideas, teams and the dreaded presentation.
+      Apologies for the clickbait-y title… #sorrynotsorry</p>
+    time: 2018-01-20 14:40:00
+    rows: eight
+
+  - name: Microsoft Cognitive Services Workshop
     description: |
-      For the Improbable challenge we're looking for the most innovative use of SpatialOS in
-      ANY context. It's great for games or any type of interactive multiplayer world.
-      https://spatialos.improbable.io/get-spatialos
+      This workshop is aimed at supporting those interested in the Microsoft Challenge.
+      We will be providing a overview and demos supporting your innovative applications of Microsoft Cognitive Services.
+    extraDescription: |
+      <a rel="external" href="http://aka.ms/cognitive">Microsoft Cognitive Services</a>
+      <ul><h6>Cognitive APIs in the workshop</h6>
+        <li>Computer Vision API: Distill actionable information from images</li>
+        <li>Face API: Detect, identify, analyse, organise and tag faces in photos</li>
+        <li>Content moderator: Automated image, text and video moderation</li>
+        <li>Emotion API <span class="accent">PREVIEW</span>: Personalise user experiences with emotion recognition</li>
+        <li>Custom Vision Service <span class="accent">PREVIEW</span>: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
+        <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
+      </ul>
+    time: 2018-01-20 15:15:00
+    rows: eight
 
-      If you want to get a headstart in the challenge, and use this exciting and
-      innovative new technology; our workshop is the place to be.
-
-      In this workshop, we will cover the basics of SpatialOS, to help you get
-      up, running and going so you can really fly at Hack Cambridge.
-
-      We also someone standing by to grant last minute access to all of
-      our hackers today. Slack our "sponsor-improbable" channel ASAP if you're
-      thinking about using it. The sooner we know the better!
-
-    time: 2016-01-28 15:15:00
-    duration: 30 # In minutes
-    location: The Guildhall
-
-  - name: Give your project a boost with the Microsoft Bot Framework
+  - name: Improbable Constructing massive, multiplayer, game worlds Workshop
     description: |
-      First we had the web, we were able to connect people with information
-      using mice and keyboards. Then we had apps, written natively to take
-      advantage of device sensors and operating systems. Next in the information
-      revolution is Bots, making it simpler and quicker to connect users with
-      the information and services that they need and using more natural methods
-      of interaction.
+        Improbable's Spatial OS platform enables developers to create huge simulated worlds, a primary application of which is games.
+        In this 30 minute tech talk we would like to provide you insight into a project involving the creation of a huge game environment, the development process and furthermore the applications of computer science within this.
+    time: 2018-01-20 15:50:00
+    rows: five
 
-      In this talk I will open up the Microsoft Bot Framework, show how to
-      develop a Bot using it and show you that you have the skills to do this
-      too. You will also be introduced to the Cognitive Services APIs and see
-      how you can use them to transform your applications through a simple API
-      call.
-
-      About the Presenter: Lilian is a Technical Evangelist within the Developer
-      Experience Group (DX) at Microsoft. She is a Computer Science graduate,
-      tech enthusiast and IoT hobbyist. Lilian has previously worked as a
-      Software Engineer developing Mobile and Web applications. Her areas of
-      interest include Cognitive Services, Messenger Bots, Xamarin and Mobile
-      Development. See [http://liliankasem.com](http://liliankasem.com)
-
-    time: 2016-01-28 16:00:00
-    duration: 30 # In minutes
-    location: The Guildhall
-
-  - name: Using financial ratios to predict company bankruptcies by QuantumBlack
+  - name: ARK.io Workshop<br>How to launch your own blockchain and communicate with other chains
     description: |
-      QB has been mandated to help a national supervisory body rethink the way
-      they assess the financial health of companies they monitor. The objective
-      is to design a data driven approach that will help predict company
-      bankruptcies and subsequently enable identification of the best remedies.
-
-      Our workshop will cover how you can compete in our challenge to get ahead
-      of the game at Hack Cambridge Recurse!
-
-    time: 2016-01-28 16:45:00
-    duration: 30 # In minutes
-    location: The Guildhall
-
-  - name: How to get ahead with Unity by Studio Gobo
-    description: |
-      Ever wanted to make a game but never know where to start? Feel like you
-      know what you're doing, but feel like you could always learn some more?
-      Then swing by our workshop where a professional Game Developer will walk
-      through how to make a game in the Unity game engine, covering both the
-      basics, in addition to revealing tips and tricks that you may not know
-      about, based on years of experience in the industry.
-
-    time: 2016-01-28 17:30:00
-    duration: 30 # In minutes
-    location: The Guildhall
-
-  - name: How to survive the last 18 hours and 45 minutes of Hack Cambridge Recurse, by Hackers at Cambridge
-    description: |
-      In this impersonal and casual workshop, Tom from Hackers at Cambridge will
-      cover what you need to do in order to survive the last 18 hours and 45
-      minutes of Hack Cambridge and answer any questions you may have, from the
-      technical to the logistical. Whether this is your first Hackathon or
-      you're a pro, and whether your project is bang on target or you're still
-      struggling for ideas, you're more than welcome to come.
-
-      Hackers at Cambridge is the University of Cambridge's society for people
-      passionate about tech and hacker culture. We run workshops, events and
-      hackathons in order to foster a creative community in the city that birthed
-      computing itself.
-
-    time: 2016-01-28 18:00:00
-    duration: 30 # In minutes
-    location: The Guildhall
+      Blockchain and IoT are a marriage made in heaven. Blockchain enables and augments a variety of application scenarios and use cases for IoT. No longer are such possibilities just futuristic dreams.
+    time: 2018-01-20 17:35:00
+    rows: four

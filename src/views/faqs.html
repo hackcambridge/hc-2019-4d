@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+{% set title = 'FAQs' %}
+{% set footer = true %}
+{% set homeLink = true %}
+{% block pageHeading %}{{title}}{% endblock %}
+{% block pageContent %}
+    {% for faq in faqs %}
+        <div class="{{ faq.rows }} unit row">
+            <div class="unit column grows">
+                <h4>{{ faq.question }}</h4>
+                <p>{{ faq.answer | safe }}</p>
+                {% if faq.action %}
+                    {{ faq.action | safe }}
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

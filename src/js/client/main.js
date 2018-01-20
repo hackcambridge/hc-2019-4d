@@ -1,9 +1,5 @@
 let $ = require('jquery');
 
-require('./polyfills');
-
-let Countdown = require('../shared/countdown');
-
 let pages = [
   require('./payment'),
   require('./apply'),
@@ -55,7 +51,7 @@ $(document).ready(() => {
       loading = $.ajax(action, {
         method: method,
         data: $this.serialize()
-      }).success((data) => {
+      }).done((data) => {
         createFlash(data.message, 'signup-form-success');
       }).fail((jqXHR) => {
         const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
@@ -75,46 +71,4 @@ $(document).ready(() => {
       window.fbq('track', 'CompleteRegistration');
     });
   });
-
-  $('.landing-welcome-lower-caret').each(function () {
-    // Remove the link as this isn't operating as a link anymore
-    $(this).find('a').children().appendTo($(this));
-    $(this).find('a').remove();
-
-    $(this).click(() => {
-      $('body, html').animate({ scrollTop: $('.landing-intro-section').offset().top - 40 }, 1400);
-    });
-  });
-
-  {
-    let resize = true;
-    $(window).scroll(() => {
-      if (resize) {
-        window.requestAnimationFrame(() => {
-          const diamond = document.querySelector('.landing-welcome-background-box1');
-          if (diamond !== null) {
-            diamond.style.setProperty('--diamond-scale', `${1 + window.scrollY / 1000}`);
-            resize = true;
-          }
-        });
-        resize = false;
-      }
-    });
-  }
-
-  $('.event-countdown').each(function () {
-    let countdown = Countdown.createChainedCountdown();
-
-    countdown.onCount = (rendered) => $(this).html(rendered);
-    countdown.start();
-  });
-
-  /*var updateCountdown = function () {
-    $('.application-countdown').html(createCountdownText());
-  };
-
-  if ($('.application-countdown').length > 0) {
-    setInterval(updateCountdown, 500);
-    updateCountdown();
-  }*/
 });

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 285 285" width="285pt" height="285pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.5 
+    <dc:date>2017-12-20 21:11:12 +0000</dc:date>
+  </metadata>
+  <defs/>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Icons</title>
+    <g>
+      <title>Layer 1</title>
+      <rect x="0" y="0" width="285" height="285" fill="black"/>
+    </g>
+    <g>
+      <title>Layer 4</title>
+      <path d="M 142.5 142.5 L 228 142.49803 L 185.2483 216.5422 L 99.7483 216.54417 Z" fill="black"/>
+      <path d="M 99.7483 216.54417 L 228 142.49803 L 206.62586 105.47693 L 78.37415 179.52307 Z" fill="black"/>
+      <path d="M 121.12585 105.4789 L 206.62586 105.47693 L 163.87415 179.5211 L 78.37415 179.52307 Z" fill="white"/>
+      <path d="M 78.37415 179.52307 L 206.62586 105.47693 L 185.2517 68.45583 L 57 142.50197 Z" fill="white" fill-opacity=".954222"/>
+      <path d="M 121.12586 105.4789 L 206.62586 105.47693 L 163.87415 179.5211 L 78.37415 179.52307 Z" fill="black" fill-opacity=".0479987"/>
+      <path d="M 99.7517 68.4578 L 185.2517 68.45583 L 142.5 142.5 L 57 142.50197 Z" fill="#eb3300"/>
+    </g>
+  </g>
+</svg>

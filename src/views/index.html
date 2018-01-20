@@ -1,92 +1,183 @@
-{% extends 'ternary-base.html' %}
+{% extends 'base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% set title = 'Ternary' %}
 {% set description = 'Hack Cambridge Ternary 2018' %}
 {% set keywords = 'hack,Cambridge,ternary 2018' %}
 {% block content %}
 <main>
+    <a id="mlh-trust-badge" href="https://mlh.io/seasons/eu-2018/events?utm_source=eu-2018&amp;utm_medium=TrustBadge&amp;utm_campaign=eu-2018&amp;utm_content=black" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/black.svg" alt="Major League Hacking 2018 Hackathon Season"></a>
     <section id="splash-intro">
         <div class="container width">
-            <div class="seven unit row">
-                <div class="six unit column intro-collapses">
-                    <object id="splash-hack-cambridge-logo-object" data="{{ asset('images/hc-2018/logo.svg') }}"></object>
+            <div class="unit row">
+                <div class="two second-five unit column grows">
+                    <object id="splash-hack-cambridge-logo-object" data="{{ asset('images/logo.svg') }}"></object>
                 </div>
-                <div id="splash-intro-content" class="seven unit column row intro-collapses">
-                    <div class="five unit column">
-                        <div class="two unit row">
-                            <div class="five unit column">
-                                <div>
-                                    <h2 id="splash-hack-cambridge-wordmark">Hack<br>Cambridge<br><span class="pixel">Ternary</span></h2>
+                <div class="five second-seven unit column grows">
+                    <div class="seven unit row">
+                        <div class="five unit column">
+                            <div class="three unit row">
+                                <div class="five unit column">
+                                    <div>
+                                        <h2 id="splash-hack-cambridge-wordmark">Hack<br>Cambridge<br><span class="pixel">Ternary</span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two half unit row">
+                                <div class="five unit column">
+                                    <h3>
+                                        Not twice, but three times.<br>Not 2D, but 3D.<br>Not binary, but ternary.
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="three half unit row">
+                                <div class="five unit column">
+                                    <div id="splash-intro-text">
+                                        <p>
+                                            From the 20<sup>th</sup> to the 21<sup>st</sup> of January 2018, Cambridge University’s annual hackathon will yet again bring together 300 hackers, programmers, designers and more from universities all over the world.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+                                        </p>
+                                        <p>
+                                            Join us.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="two unit row">
-                            <div class="five unit column">
-                                <h3>
-                                    Not twice, but three times.<br>Not 2D, but 3D.<br>Not binary, but ternary.
-                                </h3>
+                        <div id="intro-social" class="one second-five unit column grows">
+                            <h4>Social</h4>
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="external" href="https://www.facebook.com/hackcambridge">
+                                    {{ singleColourIcon(asset, 'Facebook') }}
+                                </a>
+                                <a class="persistent row centred" rel="external" href="https://twitter.com/@hack_cambridge">
+                                    {{ singleColourIcon(asset, 'Twitter') }}
+                                </a>
+                                <a class="persistent row centred" rel="external" href="https://medium.com/hackers-at-cambridge/tagged/hack-cambridge">
+                                    {{ singleColourIcon(asset, 'Medium') }}
+                                </a>
+                                <a class="persistent row centred" rel="external" href="https://www.instagram.com/hack_cambridge/">
+                                    {{ singleColourIcon(asset, 'Instagram') }}
+                                </a>
                             </div>
-                        </div>
-                        <div class="two unit row">
-                            <div class="five unit column">
-                                <div id="splash-intro-text">
-                                    <p>
-                                        In January 2018, Cambridge University’s annual hackathon will yet again bring together 300 hackers, programmers, designers and more from universities all over the world.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
-                                    </p>
-                                    <p>
-                                        Join us.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="intro-social" class="one unit column">
-                        <h4>
-                            Social
-                        </h4>
-                        <div class="icons">
-                            <a class="persistent row centred" rel="external" href="https://www.facebook.com/hackcambridge">
-                                {{ singleColourIcon('Facebook') }}
-                            </a>
-                            <a class="persistent row centred" rel="external" href="https://twitter.com/@hack_cambridge">
-                                {{ singleColourIcon('Twitter') }}
-                            </a>
-                            <a class="persistent row centred" rel="external" href="https://medium.com/@HackCambridge">
-                                {{ singleColourIcon('Medium') }}
-                            </a>
-                            <a class="persistent row centred" rel="external" href="https://www.instagram.com/hack_cambridge/">
-                                {{ singleColourIcon('Instagram') }}
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section id="splash-signup" class="red">
+    <section class="red">
+        <div class="container width">
+            <div class="unit row">
+                <div class="two second-five unit column grows"></div>
+                <div class="five second-seven unit column grows">
+                    <div class="unit row">
+                        <div class="five unit column">
+                            <div class="one half unit row">
+                                <div class="unit column grows">
+                                    <h5>
+                                        Welcome hackers!
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="one half unit row">
+                                <div class="unit column grows">
+                                    <p>We can't wait to meet you!</p>
+                                    <a href="/event">Find all the information you need on the event page</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one second-five unit column grows">
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="next" href="/apply/dashboard">
+                                    {{ singleColourIcon(asset, 'Log in') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container width">
+            <div class="unit row">
+                <div class="two second-five unit column grows"></div>
+                <div class="five second-seven unit column grows">
+                    <div class="unit row">
+                        <div class="five unit column">
+                            <div class="two half unit row">
+                                <div class="unit column grows">
+                                    <h5>
+                                        Applications for Hack Cambridge Ternary are now closed.<br><span class="secondary">Sign up for info about HC 2019!</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="two unit row">
+                                <div class="unit column grows">
+                                    <p>
+                                        Sign up below to be notified when applications open for Hack Cambridge 2019.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="one half unit row">
+                                <div class="five unit column">
+                                    <form id="splash-signup-form" class="half unit persistent row signup-form" method="post" action="/api/subscribe/interested">
+                                        <div class="four small unit column grows">
+                                            <input type="email" name="email" required placeholder="Enter your email address." />
+                                        </div>
+                                        <div class="one unit column submit">
+                                            <input type="submit" name="submit" value="Submit." />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one second-five unit column grows">
+                            <div class="icons persistent row content">
+                                <a class="persistent row centred" rel="next" href="/faqs">
+                                    {{ singleColourIcon(asset, 'Help') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="splash-sponsors">
         <div class="container width">
             <div class="one half unit row">
-                <div class="six unit column intro-collapses empty"></div>
-                <div class="seven unit column intro-collapses">
-                    <div class="one unit row">
+                <div class="two second-five unit column grows"></div>
+                <div class="five second-seven unit column grows">
+                    <div class="two unit row">
                         <div class="five unit column">
-                            <h5>
-                                Sign up now!<br><span class="secondary">We’ll be in touch soon.</span>
-                            </h5>
+                            <h3>Sponsors</h3>
                         </div>
                     </div>
-                    <div class="half unit row">
+                    <div class="two half unit row">
                         <div class="five unit column">
-                            <form id="splash-signup-form" class="half unit persistent row signup-form" method="post" action="/api/subscribe/interested">
-                                <div class="four small unit column">
-                                    <input type="email" name="email" required placeholder="Enter your email address." />
-                                </div>
-                                <div class="one unit column submit">
-                                    <input type="submit" name="submit" value="Submit." />
-                                </div>
-                            </form>
+                            <p>Interested in sponsoring Hack Cambridge?</p>
+                            <a href="mailto:sponsorship@hackcambridge.com">Send us an email</a>
                         </div>
                     </div>
+                    {% for sponsorTierName, sponsorTier in sponsors %}
+                        {% if sponsorTier|length != 0 %}
+                            <div class="two unit row">
+                                <div class="unit column grows">
+                                    <h4>{{ sponsorTierName | capitalize }}</h4>
+                                </div>
+                            </div>
+                            <div class="{{ sponsorTier.rows }} unit persistent row">
+                                <div class="logo {{ sponsorTier.columns }} unit column grows">
+                                    <div class="unit large content column">
+                                        {% for sponsor in sponsorTier.items %}
+                                            <a class="logo" href="{{ sponsor.website }}" target="_blank">{{ sponsorLogo(asset, sponsor.name, sponsorTierName) }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -94,12 +185,12 @@
 </main>
 <footer>
     <div class="container width">
-        <div class="one half unit row">
-            <div class="six unit column intro-collapses empty"></div>
-            <div class="seven unit column intro-collapses">
-                <div class="one half unit row">
+        <div class="unit row">
+            <div class="two second-five unit column grows"></div>
+            <div class="five second-seven unit column grows">
+                <div class="three unit row">
                     <div class="five unit column">
-                        {% include 'ternary-footer.html' %}
+                        {% include 'footer.html' %}
                     </div>
                 </div>
             </div>

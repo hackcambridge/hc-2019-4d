@@ -1,93 +1,42 @@
-#intro-social img {
-    max-width: 26pt;
-    padding-bottom: 2pt;
-    border-bottom: 1px solid var(--primary-color);
-    margin-top: 13pt;
-    margin-right: 13pt;
-    height: 26pt;
-    max-width: 26pt;
-    clear: both;
+#splash-hack-cambridge-logo-object {
+    --min-width: var(--two);
 }
-#intro-social img:hover {
-    border-bottom: 1px solid var(--accent-color);
-}
-#intro-social img:active {
-    border-bottom: 1px solid var(--secondary-color);
-}
+#mlh-trust-badge {
+    display: block;
+    max-width: 100px;
+    min-width: 60px;
+    position: fixed;
+    right: var(--one);
+    top: 0;
+    width: 10%;
+    z-index: 10000;
 
-@media (max-width: 911pt) {
-    .six.unit.column {
-        max-width: 342pt;
+    img {
+        width: 100%
     }
-    #splash-intro-content {
-        flex-direction: column;
-    }
-    .container.width .intro-collapses {
-        min-width: initial;
-        width: 100%;
-    }
-    #intro-social {
-        width: 100%;
-        min-height: 85.5pt;
-        margin-left: 0;
-    }
-    #intro-social > div {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    #splash-intro-content .unit.h:not(:last-child) {
-        margin-right: 0;
-    }
-    #splash-intro-content > .column:not(:first-child) {
-        margin-top: var(--half);
-    }
+}
+#mlh-trust-badge::after {
+    display: none;
 }
 
 @media (max-width: 595pt) {
     #splash-hack-cambridge-logo-object {
-        max-width: 139pt;
+        max-width: var(--two);
     }
-    #splash-signup-form {
-        flex-direction: row;
-        margin: calc((var(--gutter) / 2) * -1);
-        width: calc(100%+var(--gutter));
-    }
-    #splash-signup-form > * {
-        margin: calc(var(--gutter) / 2);
-    }
-    #splash-signup-form .four.small.unit.column {
-        flex-basis: calc(var(--four) - var(--gutter));
-        flex-grow: 1;
-        flex-shrink: 1;
-    }
-    #splash-signup-form .one.unit.column {
-        flex-basis: var(--one);
-        flex-shrink: 0;
-    }
-    form.row, form.row .unit.column {
-        width: 100%;
-        min-width: 0;
-    }
-    form.row .unit.column.submit {
-        width: var(--one);
+}
+
+@media (min-width: 1063px) and (max-width: 1280px) {
+    #mlh-trust-badge {
+        left: var(--one);
     }
 }
 
 @media (max-width: 342pt) {
-    #splash-signup-form .four.small.unit.h {
-        flex-basis: auto;
-        flex-grow: 0;
-    }
-    #splash-signup-form .small.unit.h:not(.four) {
-        flex-grow: 0;
-    }
-    #splash-signup-form .one.unit.h {
-        flex-basis: auto;
-        flex-grow: 0;
-        max-width: var(--one);
-    }
     div.container.width {
         margin: 0 calc(57 / 342 * 100vw);
+    }
+    #mlh-trust-badge {
+        right: calc(57 / 342 * 100vw);
     }
 }
 
