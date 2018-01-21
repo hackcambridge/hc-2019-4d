@@ -30,18 +30,6 @@ gulp.task('clean', () => {
 
 // css
 gulp.task('styles', () => {
-  gulp.src('src/styles/main.styl')
-    .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.stylus({
-      'include css': true,
-      paths: ['./node_modules'],
-
-    }))
-    .pipe($.autoprefixer())
-    .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles'))
-    .pipe(bs.stream());
-
   gulp.src('src/styles/hc-2018/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
@@ -53,6 +41,7 @@ gulp.task('styles', () => {
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles/hc-2018'))
     .pipe(bs.stream());
+
   gulp.src('src/styles/hc-2018/ternary-cube.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
