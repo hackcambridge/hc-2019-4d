@@ -14,6 +14,7 @@
     <meta property="og:description" content="{{ description }}" />
     <meta property="og:image" content="{{ requestedUrl.protocol }}//{{ requestedUrl.host }}{{ asset('images/fb-share.png') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/hc-2018/all-stylesheets.css') }}">
+    {% block extraStyles %} {% endblock %}
     <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskRegular-Regular.css">
     <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskScreen-Regular.css">
     <link rel="stylesheet" type="text/css" href="https://hackcambridgeassets.s3.amazonaws.com/fonts/PxGrotesk/PxGroteskLight-Regular.css">
