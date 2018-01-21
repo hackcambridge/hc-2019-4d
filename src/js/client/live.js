@@ -108,11 +108,11 @@ function initialiseLive() {
     }, 1800000);
   });
   
-  $('#cube-logo').each(setInterval(rotateCube, 5000));
-  
   $('.event-countdown').each(function () {
     let countdown = Countdown.createChainedCountdown();
     countdown.onCount = (rendered) => $(this).html(rendered);
     countdown.start();
   });
+  
+  $('#cube-logo').each(setInterval(rotateCube, 5000));
 }
