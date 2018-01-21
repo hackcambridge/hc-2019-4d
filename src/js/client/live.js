@@ -57,6 +57,15 @@ function refreshEventInfo() {
   });
 }
 
+function setBackground() {
+  let time = new Date();
+  if (time.getHours() > 18 || time.getHours() < 6) {
+    if (! $('main').hasClass('black')) {
+      $('main').addClass('black');
+    }
+  }
+}
+
 module.exports = () => {
   if (window.liveConfig) {
     initialiseLive();
@@ -84,12 +93,6 @@ function initialiseLive() {
       }
     });
   });
-
-  $('.event-countdown').each(function () {
-    let countdown = Countdown.createChainedCountdown();
-    countdown.onCount = (rendered) => $(this).html(rendered);
-    countdown.start();
-  });
   
   function rotateCube() {
     const x = Math.random() * 360;
@@ -99,20 +102,14 @@ function initialiseLive() {
   }
   
   $('main').each(() => {
-    let time = new Date();
-    if (time.getHours() > 18 || time.getHours() < 6) {
-      if (! $('main').hasClass('black')) {
-        $('main').addClass('black');
-      }
-    }
-    setInterval(() => {
-      time = new Date();
-      if (time.getHours() > 18 || time.getHours() < 6) {
-        if (! $('main').hasClass('black')) {
-          $('main').addClass('black');
-        }
-      }
-    }, 1800000);
+    setBackground();
+    setInterval(setBackground, 1800000);
+  });
+  
+  $('.event-countdown').each(function () {
+    let countdown = Countdown.createChainedCountdown();
+    countdown.onCount = (rendered) => $(this).html(rendered);
+    countdown.start();
   });
   
   $('#cube-logo').each(setInterval(rotateCube, 5000));
