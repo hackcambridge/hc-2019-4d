@@ -19,6 +19,10 @@ h1, h2, h3, h4, h5, h6, p, ul, li, input, form, body, button {
 
 /* Sections */
 
+main:not(header + main) {
+    height: 100%;
+}
+
 section, header, footer, main {
     --color-1: white;
     --color-2: black;
@@ -40,11 +44,13 @@ section, header, footer, main {
     --accent-color: var(--color-3);
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    padding: 28.5pt 0;
     position: relative;
     z-index: 1;
     overflow: hidden;
     box-sizing: border-box;
+}
+section, header, footer {
+    padding: 28.5pt 0;
 }
 section {
     border-top: 1pt solid var(--primary-color);
