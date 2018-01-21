@@ -1,9 +1,10 @@
 function generateFeedItem (status) {
-  const $socialItem = $('<div class="live-social-feed-item four unit row"><div class="live-social-feed-item-content unit column grows"></div></div>');
-  const $socialTitle = $('<h4></h4>');
+  const $socialItem = $('<div class="live-social-feed-item five unit row"><div class="live-social-feed-item-content unit column grows"></div></div>');
+  const $socialTitle = $('<h6></h6>');
   $socialTitle.text(status.username);
   const $socialContent = $('<p></p>');
-  $socialContent.html(status.text);
+  const statusText = status.text.split(' ').slice(0, -1).join(' ');
+  $socialContent.html(statusText);
   $socialItem.find('.live-social-feed-item-content').append($socialTitle).append($socialContent);
   if (status.image) {
     $socialItem.find('.live-social-feed-item-content').css('background-image', `linear-gradient(to top, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0.2) 200px, rgba(0, 0, 0, 0)), url(${status.image})`);
@@ -13,12 +14,9 @@ function generateFeedItem (status) {
 
 function cycleFeedItems (statuses, element) {
   for (const statusData in statuses) {
-    function feedItem(statuses) {
-      return generateFeedItem(statuses[statusData]);
-    };
-    setTimeout(function () {
+    setTimeout(() => {
       $(element).children().remove();
-      $(element).append(feedItem(statuses));
+      $(element).append(generateFeedItem(statuses[statusData]));
     }, 5000);
   }
 }
@@ -48,6 +46,10 @@ function refreshEventInfo() {
   });
 }
 
+/*function setBackground() {
+  
+}*/
+
 function initialiseLive() {
   const pusher = new Pusher(window.liveConfig.pusherKey, {
     encrypted: true,
@@ -60,7 +62,7 @@ function initialiseLive() {
   const liveUpdates = pusher.subscribe('live-updates');
   let lastStatusId = null;
 
-  $('.live-social-feed-content').each(function () {
+  $('.live-social-feed-content').each(() => {
     liveUpdates.bind('social', data => {
       if (data.statuses[0].id_str !== lastStatusId) {
         lastStatusId = data.statuses[0].id_str;
