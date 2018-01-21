@@ -59,9 +59,13 @@ function refreshEventInfo() {
 
 function setBackground() {
   let time = new Date();
-  if (time.getHours() > 18 || time.getHours() < 6) {
+  if (time.getHours() > 18 || time.getHours() < 8) {
     if (! $('main').hasClass('black')) {
       $('main').addClass('black');
+    }
+  } else if (time.getDate() == '21' && time.getHours() >= 12) {
+    if (! $('main').hasClass('red')) {
+      $('main').addClass('red');
     }
   }
 }
