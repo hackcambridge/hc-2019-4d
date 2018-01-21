@@ -47,22 +47,25 @@ const $ = require('jquery');
 const moment = require('moment');
 
 function eventNameList(events) {
-  return events.map(event => `${event.name}`).join(' ');
+  return events.map(event => `<h4>${event.name}</h4>`).join(' ');
 }
 
+let previousEventInfo = null;
+
 function refreshEventInfo() {
-  $.getJSON('/live-api/event-info', eventInfo => {
-    const currentEvents = eventInfo.currentEvents;
-    const nextEvents = eventInfo.nextEvents;
-
-    if (currentEvents.length > 0) {
-      $('.live-event-now-time').html(`${moment(currentEvents[0].time).format('HH:mm')}`);
-      $('.live-event-now-text').html(`${eventNameList(currentEvents)}`);
-    }
-
-    if (nextEvents.length > 0) {
-      $('.live-event-next-time').html(`${moment(nextEvents[0].time).format('HH:mm')}`);
-      $('.live-event-next-text').html(`${eventNameList(nextEvents)}`);
+  $.getJSON('/live-api/event-info', newEventInfo => {
+    if (JSON.stringify(newEventInfo) != JSON.stringify(previousEventInfo)) {
+      const currentEvents = newEventInfo.currentEvents;
+      const nextEvents = newEventInfo.nextEvents;
+      if (currentEvents.length > 0) {
+        $('.live-event-now-time').html(`${moment(currentEvents[0].time).format('HH:mm')}`);
+        $('.live-event-now-text-container').html(`${eventNameList(currentEvents)}`);
+      }
+      if (nextEvents.length > 0) {
+        $('.live-event-next-time').html(`${moment(nextEvents[0].time).format('HH:mm')}`);
+        $('.live-event-next-text-container').html(`${eventNameList(nextEvents)}`);
+      }
+      previousEventInfo = newEventInfo;
     }
   });
 }
@@ -93,11 +96,16 @@ function initialiseLive() {
   });
 
   refreshEventInfo();
-  window.setInterval(refreshEventInfo, 10000);
+  setInterval(() => {
+    refreshEventInfo();
+  ;
+  }, 10000);
+  
+  setBackground();
+  setInterval(setBackground, 300000);
 
   const liveUpdates = pusher.subscribe('live-updates');
   let lastStatusId = null;
-
   $('.live-social-feed-content').each(() => {
     liveUpdates.bind('social', data => {
       if (data.statuses[0].id_str !== lastStatusId) {
@@ -114,11 +122,6 @@ function initialiseLive() {
     const z = Math.random() * 360;
     $('#cube-logo').css('transform', 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)');
   }
-  
-  $('main').each(() => {
-    setBackground();
-    setInterval(setBackground, 1800000);
-  });
   
   $('.event-countdown').each(function () {
     let countdown = Countdown.createChainedCountdown();
