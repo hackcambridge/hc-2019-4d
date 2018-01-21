@@ -65,6 +65,13 @@ function refreshEventInfo() {
         $('.live-event-next-time').html(`${moment(nextEvents[0].time).format('HH:mm')}`);
         $('.live-event-next-text-container').html(`${eventNameList(nextEvents)}`);
       }
+      if (JSON.stringify(newEventInfo).search('Expo') > -1) {
+        $('.social-column').css('display', 'none');
+        $('.map-column').css('display', 'flex');
+      } else {
+        $('.social-column').css('display', 'flex');
+        $('.map-column').css('display', 'none');
+      }
       previousEventInfo = newEventInfo;
     }
   });
