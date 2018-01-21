@@ -30,7 +30,7 @@ gulp.task('clean', () => {
 
 // css
 gulp.task('styles', () => {
-  gulp.src('src/styles/main.styl')
+  gulp.src('src/styles/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
@@ -42,7 +42,7 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 
-  gulp.src('src/styles/hc-2018/all-stylesheets.styl')
+  gulp.src('src/styles/ternary-cube.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
@@ -51,18 +51,7 @@ gulp.task('styles', () => {
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles/hc-2018'))
-    .pipe(bs.stream());
-  gulp.src('src/styles/hc-2018/ternary-cube.styl')
-    .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.stylus({
-      'include css': true,
-      paths: ['./node_modules'],
-
-    }))
-    .pipe($.autoprefixer())
-    .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles/hc-2018'))
+    .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 });
 
