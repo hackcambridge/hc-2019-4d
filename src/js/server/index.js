@@ -10,7 +10,7 @@ const auth = require('js/server/auth');
 const errors = require('js/server/errors');
 const colors = require('js/shared/colors');
 const metadata = require('js/shared/metadata');
-const currentEvent = require('js/shared/live/current-event');
+const currentEvent = require('js/server/live/current-event');
 
 let server = require('http').Server(app);
 
