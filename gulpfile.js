@@ -39,7 +39,7 @@ gulp.task('styles', () => {
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles/hc-2018'))
+    .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 
   gulp.src('src/styles/ternary-cube.styl')
@@ -51,7 +51,7 @@ gulp.task('styles', () => {
     }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles/hc-2018'))
+    .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 });
 
