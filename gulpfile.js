@@ -30,7 +30,7 @@ gulp.task('clean', () => {
 
 // css
 gulp.task('styles', () => {
-  gulp.src('src/styles/hc-2018/all-stylesheets.styl')
+  gulp.src('src/styles/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
@@ -42,7 +42,7 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('assets/dist/styles/hc-2018'))
     .pipe(bs.stream());
 
-  gulp.src('src/styles/hc-2018/ternary-cube.styl')
+  gulp.src('src/styles/ternary-cube.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
       'include css': true,
