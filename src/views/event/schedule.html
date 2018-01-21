@@ -103,7 +103,7 @@
                                     {% for event in entry.events %}
                                         <div class="{{ event.rows | default('two') }} unit row">
                                             <div class="unit column grows">
-                                                <h4>{{ event.name | safe }}</h4>
+                                                <h4 class="event">{{ event.name | safe }}</h4>
                                                 {% if event.subevents %}
                                                     {% for subevent in event.subevents %}
                                                         <p>{{ subevent.time.format('HH:mm') }}: {{ subevent.name }}</p>
