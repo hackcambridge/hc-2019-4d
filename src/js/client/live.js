@@ -4,24 +4,24 @@ function setFeedItem(status) {
   $('.social-content').html(statusText);
   if (status.image) {
     if (! $('.social-image-inner-container').hasClass('five')) {
-        $('.social-image-inner-container').addClass('five');
+      $('.social-image-inner-container').addClass('five');
     }
     if (! $('.social-image-outer-container').hasClass('five')) {
-        $('.social-image-outer-container').addClass('five');
+      $('.social-image-outer-container').addClass('five');
     }
     if (! $('.social-image-outer-container').hasClass('half')) {
-        $('.social-image-outer-container').addClass('half');
+      $('.social-image-outer-container').addClass('half');
     }
     $('.social-image').css('background-image', `url(${status.image})`).css('background-size', 'cover');
   } else {
     if ($('.social-image-inner-container').hasClass('five')) {
-        $('.social-image-inner-container').removeClass('five');
+      $('.social-image-inner-container').removeClass('five');
     }
     if ($('.social-image-outer-container').hasClass('five')) {
-        $('.social-image-outer-container').removeClass('five');
+      $('.social-image-outer-container').removeClass('five');
     }
     if ($('.social-image-outer-container').hasClass('half')) {
-        $('.social-image-outer-container').removeClass('half');
+      $('.social-image-outer-container').removeClass('half');
     }
   }
 }
