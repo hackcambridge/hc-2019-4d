@@ -93,12 +93,6 @@ function initialiseLive() {
       }
     });
   });
-
-  $('.event-countdown').each(function () {
-    let countdown = Countdown.createChainedCountdown();
-    countdown.onCount = (rendered) => $(this).html(rendered);
-    countdown.start();
-  });
   
   function rotateCube() {
     const x = Math.random() * 360;
@@ -115,4 +109,10 @@ function initialiseLive() {
   });
   
   $('#cube-logo').each(setInterval(rotateCube, 5000));
+  
+  $('.event-countdown').each(function () {
+    let countdown = Countdown.createChainedCountdown();
+    countdown.onCount = (rendered) => $(this).html(rendered);
+    countdown.start();
+  });
 }
