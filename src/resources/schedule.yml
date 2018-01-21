@@ -79,10 +79,10 @@ schedule:
       - time: 2018-01-21 12:45:00
         events:
           - name: Hack Expo
-      - time: 2018-01-21 14:15:00
+      - time: 2018-01-21 14:45:00
         events:
           - name: Finalists Announced
-      - time: 2018-01-21 14:30:00
+      - time: 2018-01-21 15:00:00
         events:
           - name: Finalist Presentations
       - time: 2018-01-21 16:15:00
