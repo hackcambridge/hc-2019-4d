@@ -5,7 +5,7 @@ schedule:
         events:
           - name: Registration Opens
           - name: Pitching Session
-          - name: Travel Reimbursements<br><i>Guildhall</i>
+          - name: Travel Reimburse<wbr>ments<br><i>Guildhall</i>
       - time: 2018-01-20 11:00:00
         events:
           - name: Opening Ceremony
@@ -13,7 +13,7 @@ schedule:
         events:
           - name: Hacking Starts
           - name: Lunch
-          - name: Travel Reimbursements<br><i>Corn Exchange Reception</i>
+          - name: Travel Reimburse<wbr>ments<br><i>Corn Exchange Reception</i>
       - time: 2018-01-20 13:00:00
         events:
           - name: API Demos
@@ -69,7 +69,7 @@ schedule:
           - name: Breakfast Ends
       - time: 2018-01-21 11:30:00
         events:
-          - name: Submit your hack on Devpost<br>ternary.devpost.com
+          - name: Submit your hack on Devpost<br>ternary.<wbr>devpost.<wbr>com
       - time: 2018-01-21 12:00:00
         events:
           - name: Lunch
