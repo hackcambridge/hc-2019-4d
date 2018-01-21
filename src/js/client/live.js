@@ -47,7 +47,7 @@ const $ = require('jquery');
 const moment = require('moment');
 
 function eventNameList(events) {
-  return events.map(event => `${event.name}`).join(' ');
+  return events.map(event => `<h4>${event.name}</h4>`).join(' ');
 }
 
 function refreshEventInfo() {
@@ -57,12 +57,12 @@ function refreshEventInfo() {
 
     if (currentEvents.length > 0) {
       $('.live-event-now-time').html(`${moment(currentEvents[0].time).format('HH:mm')}`);
-      $('.live-event-now-text').html(`${eventNameList(currentEvents)}`);
+      $('.live-event-now-text-container').html(`${eventNameList(currentEvents)}`);
     }
 
     if (nextEvents.length > 0) {
       $('.live-event-next-time').html(`${moment(nextEvents[0].time).format('HH:mm')}`);
-      $('.live-event-next-text').html(`${eventNameList(nextEvents)}`);
+      $('.live-event-next-text-container').html(`${eventNameList(nextEvents)}`);
     }
   });
 }
