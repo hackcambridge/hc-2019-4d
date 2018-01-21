@@ -1,4 +1,4 @@
-function generateFeedItem (status) {
+function generateFeedItem(status) {
   const $socialItem = $('<div class="live-social-feed-item unit row"><div class="live-social-feed-item-content unit column grows"><div class="five unit row social-image-container"><div class="unit column grows social-image"></div></div></div></div>');
   const $socialTitle = $('<h6></h6>');
   $socialTitle.html(status.username);
@@ -15,8 +15,8 @@ function generateFeedItem (status) {
   return $socialItem;
 }
 
-function cycleFeedItems (statuses, element) {
-  var i = 0;
+function cycleFeedItems(statuses, element) {
+  let i = 0;
   $(element).append(generateFeedItem(statuses[i]));
   i++;
   setInterval(() => {
@@ -27,7 +27,7 @@ function cycleFeedItems (statuses, element) {
     } else {
       i++;
     }
-  }, 5000);
+  }, 30000);
 }
 
 const Countdown = require('../shared/countdown');
@@ -57,9 +57,11 @@ function refreshEventInfo() {
   });
 }
 
-/*function setBackground() {
-  
-}*/
+module.exports = () => {
+  if (window.liveConfig) {
+    initialiseLive();
+  }
+};
 
 function initialiseLive() {
   const pusher = new Pusher(window.liveConfig.pusherKey, {
@@ -96,11 +98,22 @@ function initialiseLive() {
     $('#cube-logo').css('transform', 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)');
   }
   
+  $('main').each(() => {
+    let time = new Date();
+    if (time.getHours() > 18 || time.getHours() < 6) {
+      if (! $('main').hasClass('black')) {
+        $('main').addClass('black');
+      }
+    }
+    setInterval(() => {
+      time = new Date();
+      if (time.getHours() > 18 || time.getHours() < 6) {
+        if (! $('main').hasClass('black')) {
+          $('main').addClass('black');
+        }
+      }
+    }, 1800000);
+  });
+  
   $('#cube-logo').each(setInterval(rotateCube, 5000));
 }
-
-module.exports = () => {
-  if (window.liveConfig) {
-    initialiseLive();
-  }
-};
