@@ -68,6 +68,7 @@ function refreshEventInfo() {
       if (JSON.stringify(newEventInfo).search('Expo') > -1) {
         $('.social-column').css('display', 'none');
         $('.map-column').css('display', 'flex');
+        $('main').removeClass().addClass('black');
       } else {
         $('.social-column').css('display', 'flex');
         $('.map-column').css('display', 'none');
@@ -81,10 +82,16 @@ function setBackground() {
   let time = new Date();
   if (time.getHours() > 18 || time.getHours() < 8) {
     if (! $('main').hasClass('black')) {
+      if ($('main').hasClass('red')) {
+        $('main').removeClass('red');
+      }
       $('main').addClass('black');
     }
   } else if (time.getDate() == '21' && time.getHours() >= 12) {
     if (! $('main').hasClass('red')) {
+      if ($('main').hasClass('black')) {
+        $('main').removeClass('black');
+      }
       $('main').addClass('red');
     }
   }
