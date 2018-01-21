@@ -64,6 +64,12 @@ schedule:
       - time: 2018-01-21 08:30:00
         events:
           - name: Breakfast
+      - time: 2018-01-21 09:45:00
+        events:
+          - name: Breakfast Ends
+      - time: 2018-01-21 11:30:00
+        events:
+          - name: Submit your hack on Devpost<br>ternary.devpost.com
       - time: 2018-01-21 12:00:00
         events:
           - name: Lunch
