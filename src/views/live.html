@@ -1,29 +1,77 @@
-{% extends 'recurse-base.html' %}
+{% extends 'base.html' %}
 {% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
 {% block content %}
-<div class="live-container">
-
-  <canvas class="fractal-canvas"></canvas>
-
-  <div class="live-container-event-countdown">
-    <div class="event-countdown"></div>
-  </div>
-
-  <div class="live-social-feed">
-    <h2 class="live-social-feed-hashtag">#ternary</h2>
-    <div class="live-social-feed-content">
-      <div class="live-social-feed-item live-social-feed-item-event">
-        <div class="live-social-feed-item-content">
-          <h2>What's on</h4>
-          <h4>On now</h4>
-          <p class="live-event-now"></p>
-          <h4>Up next</h4>
-          <p class="live-event-next"></p>
+<main class="height" id="test">
+    <div class="container spaced">
+        <div class="unit row">
+            <div class="four unit column">
+                <div class="cube-container">
+                    <div id="cube-logo" class="centred animate">
+                        <figure class="front cube-top"></figure>
+                        <figure class="back cube-top"></figure>
+                        <figure class="right cube-top"></figure>
+                        <figure class="left cube-top"></figure>
+                        <figure class="top cube-top"></figure>
+                        <figure class="bottom cube-top"></figure>
+                        <figure class="front cube-bottom"></figure>
+                        <figure class="back cube-bottom"></figure>
+                        <figure class="right cube-bottom"></figure>
+                        <figure class="left cube-bottom"></figure>
+                        <figure class="top cube-bottom"></figure>
+                        <figure class="bottom cube-bottom"></figure>
+                    </div>
+                </div>
+            </div>
+            <div class="unit column grows">
+                <div class="unit row">
+                    <div class="four unit column">
+                        <div class="two half unit row">
+                            <div class="unit column grows">
+                                <h2 class="event-countdown pixel"></h2>
+                            </div>
+                        </div>
+                        <div class="two unit row">
+                            <div class="unit column grows">
+                                <h3>On now</h3>
+                            </div>
+                        </div>
+                        <div class="two half unit row">
+                            <div class="one unit column">
+                                <h5 class="live-event-now-time pixel"></h5>
+                            </div>
+                            <div class="two unit column">
+                                <h4 class="live-event-now-text"></h5>
+                            </div>
+                        </div>
+                        <div class="two unit row">
+                            <div class="unit column grows">
+                                <h3>Up next</h3>
+                            </div>
+                        </div>
+                        <div class="two half unit row">
+                            <div class="one unit column">
+                                <h5 class="live-event-next-time pixel"></h5>
+                            </div>
+                            <div class="two unit column">
+                                <h4 class="live-event-next-text"></h5>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="four unit column">
+                        <div class="two half unit row">
+                            <div class="unit column grows">
+                                <h3 class="accent">#ternary</h3>
+                            </div>
+                        </div>
+                        <div class="five unit row">
+                            <div class="live-social-feed-content unit column grows"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
         </div>
-      </div> 
     </div>
-  </div>
-</div>
+</main>
 <script>
   window.liveConfig = {
     pusherKey: "{{ pusherKey }}",

@@ -19,22 +19,22 @@ h1, h2, h3, h4, h5, h6, p, ul, li, input, form, body, button {
 
 /* Sections */
 
-section, header, footer {
+section, header, footer, main {
     --color-1: white;
     --color-2: black;
     --color-3: var(--red);
 }
-section.black, header.black, footer.black {
+section.black, header.black, footer.black, main.black {
     --color-1: black;
     --color-2: white;
     --color-3: var(--red);
 }
-section.red, header.red, footer.red {
+section.red, header.red, footer.red, main.red {
     --color-1: var(--red);
     --color-2: white;
     --color-3: black;
 }
-section, header, footer {
+section, header, footer, main {
     --primary-color: var(--color-1);
     --secondary-color: var(--color-2);
     --accent-color: var(--color-3);
@@ -134,8 +134,8 @@ section.links:hover, section.links:hover * {
 
 /* Animation */
 
-section, a, a::after, svg, input, button, .secondary {
-    transition-property: color, border-color, caret-color, background-color, filter, opacity;
+section, a, a::after, svg, input, button, .secondary, main {
+    transition-property: color, border-color, caret-color, background-color, filter, opacity, transform;
     transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
     transition-duration: 0.25s;
 }
