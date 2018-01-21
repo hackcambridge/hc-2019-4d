@@ -98,7 +98,6 @@ function initialiseLive() {
   refreshEventInfo();
   setInterval(() => {
     refreshEventInfo();
-  ;
   }, 10000);
   
   setBackground();
