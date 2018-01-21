@@ -103,9 +103,7 @@ function initialiseLive() {
   
   $('main').each(() => {
     setBackground();
-    setInterval(() => {
-      setBackground();
-    }, 1800000);
+    setInterval(setBackground, 1800000);
   });
   
   $('.event-countdown').each(function () {
