@@ -23,6 +23,10 @@ function getCurrentEvents(schedule) {
   const previousAndCurrentEvents = individualEvents.filter(event => 
     event.time.isBefore(now));
 
+  if (previousAndCurrentEvents.length == 0) {
+    return [];
+  }
+
   const currentEventTime = previousAndCurrentEvents[previousAndCurrentEvents.length - 1].time;
 
   // Get all the events occuring at this time — there may be multiple concurrent events
@@ -35,6 +39,10 @@ function getNextEvents(schedule) {
   const now = moment();
   const futureEvents = individualEvents.filter(event => 
     event.time.isAfter(now));
+
+  if (futureEvents.length == 0) {
+    return [];
+  }
 
   const nextEventTime = futureEvents[0].time;
 
