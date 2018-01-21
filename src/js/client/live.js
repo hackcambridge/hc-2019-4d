@@ -57,6 +57,15 @@ function refreshEventInfo() {
   });
 }
 
+function setBackground() {
+  let time = new Date();
+  if (time.getHours() > 18 || time.getHours() < 6) {
+    if (! $('main').hasClass('black')) {
+      $('main').addClass('black');
+    }
+  }
+}
+
 module.exports = () => {
   if (window.liveConfig) {
     initialiseLive();
@@ -99,19 +108,9 @@ function initialiseLive() {
   }
   
   $('main').each(() => {
-    let time = new Date();
-    if (time.getHours() > 18 || time.getHours() < 6) {
-      if (! $('main').hasClass('black')) {
-        $('main').addClass('black');
-      }
-    }
+    setBackground();
     setInterval(() => {
-      time = new Date();
-      if (time.getHours() > 18 || time.getHours() < 6) {
-        if (! $('main').hasClass('black')) {
-          $('main').addClass('black');
-        }
-      }
+      setBackground();
     }, 1800000);
   });
   
