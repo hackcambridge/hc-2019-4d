@@ -1,27 +1,37 @@
-function generateFeedItem(status) {
-  const $socialItem = $('<div class="live-social-feed-item unit row"><div class="live-social-feed-item-content unit column grows"><div class="five unit row social-image-container"><div class="unit column grows social-image"></div></div></div></div>');
-  const $socialTitle = $('<h6></h6>');
-  $socialTitle.html(status.username);
-  const $socialContent = $('<p></p>');
+function setFeedItem(status) {
+  $('.social-title').html(status.username);
   const statusText = status.text.split(' ').slice(0, -1).join(' ');
-  $socialContent.html(statusText);
-  $socialItem.find('.live-social-feed-item-content').append($socialTitle).append($socialContent);
+  $('.social-content').html(statusText);
   if (status.image) {
-    $socialItem.find('.social-image').css('background-image', `url(${status.image})`).css('background-size', 'cover');
+    if (! $('.social-image-inner-container').hasClass('five')) {
+      $('.social-image-inner-container').addClass('five');
+    }
+    if (! $('.social-image-outer-container').hasClass('five')) {
+      $('.social-image-outer-container').addClass('five');
+    }
+    if (! $('.social-image-outer-container').hasClass('half')) {
+      $('.social-image-outer-container').addClass('half');
+    }
+    $('.social-image').css('background-image', `url(${status.image})`).css('background-size', 'cover');
+  } else {
+    if ($('.social-image-inner-container').hasClass('five')) {
+      $('.social-image-inner-container').removeClass('five');
+    }
+    if ($('.social-image-outer-container').hasClass('five')) {
+      $('.social-image-outer-container').removeClass('five');
+    }
+    if ($('.social-image-outer-container').hasClass('half')) {
+      $('.social-image-outer-container').removeClass('half');
+    }
   }
-  if (! status.image) {
-    $socialItem.find('.social-image-container').css('display', 'none');
-  }
-  return $socialItem;
 }
 
 function cycleFeedItems(statuses, element) {
   let i = 0;
-  $(element).append(generateFeedItem(statuses[i]));
+  setFeedItem(statuses[i]);
   i++;
   setInterval(() => {
-    $(element).children().remove();
-    $(element).append(generateFeedItem(statuses[i]));
+    setFeedItem(statuses[i]);
     if (i == statuses.length - 1) {
       i = 0;
     } else {
