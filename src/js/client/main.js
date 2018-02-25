@@ -3,7 +3,6 @@ let $ = require('jquery');
 let pages = [
   require('./payment'),
   require('./apply'),
-  require('./fractal'),
   require('./live'),
 ];
 
