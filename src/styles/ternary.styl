@@ -45,9 +45,6 @@ section, header, footer, main {
     overflow: hidden;
     box-sizing: border-box;
 }
-section, header, footer {
-    padding: 28.5pt 0;
-}
 section {
     border-top: 1pt solid var(--primary-color);
 }
@@ -62,9 +59,6 @@ section:not(.black):not(.red) + section:not(.black):not(.red) {
 }
 section.black + section.home-link, section.red + section.home-link {
     border-top: 1pt solid var(--primary-color);
-}
-header, :not(header) + main section:first-of-type {
-    padding-top: var(--one);
 }
 section.image {
     z-index: -1;
@@ -252,7 +246,9 @@ ol {
 }
 
 /* Anchors */
-
+a {
+    display: block;
+}
 a:not(.logo), a * {
     color: var(--accent-color);
     text-decoration: none;

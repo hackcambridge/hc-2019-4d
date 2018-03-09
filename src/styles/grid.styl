@@ -1,128 +1,60 @@
 // Variables
 :root {
     // User-defined
-    --one: 57pt;
+    --unit: 57pt;
     --gutter: 13pt;
-    // Calculated
-    --two: calc(var(--one) * 2);
-    --three: calc(var(--one) * 3);
-    --four: calc(var(--one) * 4);
-    --five: calc(var(--one) * 5);
-    --six: calc(var(--one) * 6);
-    --seven: calc(var(--one) * 7);
-    --eight: calc(var(--one) * 8);
-    --nine: calc(var(--one) * 9);
-    --ten: calc(var(--one) * 10);
-    --eleven: calc(var(--one) * 11);
-    --twelve: calc(var(--one) * 12);
-    --thirteen: calc(var(--one) * 13);
-    --fourteen: calc(var(--one) * 14);
-    --half: calc(var(--one) / 2);
+    --span: auto;
 }
 
-// Default unit values
-.unit {
-    --initial: 0;
-    --second-initial: 100%;
-    --base: var(--initial);
-    --second-base: var(--second-initial);
-}
 // Standard units
-.one.unit {
-    --initial: var(--one);
+.one {
+    --base: span 1;
 }
-.two.unit {
-    --initial: var(--two);
+.two {
+    --base: span 2;
 }
-.three.unit {
-    --initial: var(--three);
+.three {
+    --base: span 3;
 }
-.four.unit {
-    --initial: var(--four);
+.four {
+    --base: span 4;
 }
-.five.unit {
-    --initial: var(--five);
+.five {
+    --base: span 5;
 }
-.six.unit {
-    --initial: var(--six);
+.six {
+    --base: span 6;
 }
-.seven.unit {
-    --initial: var(--seven);
+.seven {
+    --base: span 7;
 }
-.eight.unit {
-    --initial: var(--eight);
+.eight {
+    --base: span 8;
 }
-.nine.unit {
-    --initial: var(--nine);
+.nine {
+    --base: span 9;
 }
-.ten.unit {
-    --initial: var(--ten);
+.ten {
+    --base: span 10;
 }
-.eleven.unit {
-    --initial: var(--eleven);
+.eleven {
+    --base: span 11;
 }
-.twelve.unit {
-    --initial: var(--twelve);
+.twelve {
+    --base: span 12;
 }
-.thirteen.unit {
-    --initial: var(--thirteen);
+.thirteen {
+    --base: span 13;
 }
-.fourteen.unit {
-    --initial: var(--fourteen);
+.fourteen {
+    --base: span 14;
 }
-// Second standard units
-.second-one.unit {
-    --second-initial: var(--one);
+
+.column:not(.column *) {
+    --columns: var(--base);
 }
-.second-two.unit {
-    --second-initial: var(--two);
-}
-.second-three.unit {
-    --second-initial: var(--three);
-}
-.second-four.unit {
-    --second-initial: var(--four);
-}
-.second-five.unit {
-    --second-initial: var(--five);
-}
-.second-six.unit {
-    --second-initial: var(--six);
-}
-.second-seven.unit {
-    --second-initial: var(--seven);
-}
-.second-eight.unit {
-    --second-initial: var(--eight);
-}
-.second-nine.unit {
-    --second-initial: var(--nine);
-}
-.second-ten.unit {
-    --second-initial: var(--ten);
-}
-.second-eleven.unit {
-    --second-initial: var(--eleven);
-}
-.second-twelve.unit {
-    --second-initial: var(--twelve);
-}
-.second-thirteen.unit {
-    --second-initial: var(--thirteen);
-}
-.second-fourteen.unit {
-    --second-initial: var(--fourteen);
-}
-// Extra units: combining
-.small.unit {
-    --base: calc(var(--initial) - var(--gutter));
-}
-.large.unit {
-    --base: calc(var(--initial) + var(--gutter));
-}
-// Extra units: combining and standalone
-.half.unit {
-    --base: calc(var(--initial) + var(--half));
+.row:not(.row *) {
+    --rows: var(--base);
 }
 
 // Reset margins and padding
@@ -132,89 +64,22 @@ div {
 }
 
 // Containers
-.container {
-    display: flex;
-    flex-direction: column;
-}
-.container.a4 {
-    position: relative;
-    width: 484pt;
-    margin: 0 auto;
-}
-.container.width {
-    margin: 0 var(--one);
-}
-.spaced {
-    padding: var(--two);
-}
-.height {
-    height: 100%;
-}
-html, body, .height {
-    height: 100%;
+.container, .container > .column {
+    display: grid;
 }
 
-// Basic grid
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: calc(var(--half) * -1);
-}
-form .row, .body .row {
-    display: block;
-}
-.persistent.row {
-    flex-direction: row;
-}
-.column, .columns {
-    margin: var(--half);
-}
-.column {
-    display: flex;
-    flex-direction: column;
-}
-.columns {
-    flex-basis: 100%;
-}
-.unit.column.grows {
-    flex-grow: 1;
-}
-.column > *:not(.row) {
-    display: block;
+header {
+    padding-top: var(--unit);
 }
 
-form > .column, .content > * {
-    margin: calc(var(--gutter) / 2);
-}
-
-form.unit.row, .content {
-    margin: calc(var(--gutter) / 2 * -1);
-}
-
-.large.content > * {
-    margin: calc(var(--one) / 2);
-}
-
-.large.content {
-    margin: calc(var(--one) / 2 * -1);
-  }
-
-// Tables
-th, td {
-    min-width: var(--base);
+section, header, footer {
+    padding: calc(var(--unit) / 2) 0;
 }
 
 @media (max-width: 595pt) {
     
     .container.a4 {
         width: calc(484 / 595 * 100vw);
-    }
-    .row:not(section) {
-        flex-direction: column;
-    }
-    .column:empty {
-        display: none;
     }
 }
 
@@ -225,29 +90,21 @@ th, td {
         column-count: 2;
         column-gap: 24pt;
         column-fill: auto;
-        max-height: var(--base);
     }
     .columns.balance {
         column-fill: balance;
     }
-    .unit.row {
-        min-height: var(--base);
+    .container {
+        margin: 0 var(--unit);
+        grid-template-columns: repeat(auto-fit, 57pt);
+        grid-gap: var(--unit);
     }
-    
-    // Columns
     .column {
-        flex-grow: 0;
+        grid-template-rows: 57pt;
+        grid-auto-rows: 35.8pt;
+        grid-column: var(--columns);
     }
-    .unit.column {
-        flex-basis: var(--base);
-        flex-shrink: 0;
-        min-width: min-content;
+    .row {
+        grid-row: var(--rows);
     }
-    .unit.column.fit {
-        min-width: max-content;
-    }
-    .unit.column.grows {
-        max-width: var(--second-base);
-    }
-
 }
