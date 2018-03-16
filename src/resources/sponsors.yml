@@ -58,7 +58,9 @@ sponsors:
         website: http://www.datascope.co.uk
       - name: DisplayLink
         website: http://www.displaylink.com
+      - name: Pipers
+        website: http://www.pipers.co.uk
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: four
+    rows: five half
     columns: two second-three
