@@ -1,4 +1,4 @@
-const { getHackathonStartDate, getHackathonEndDate } = require('./dates');
+import { getHackathonStartDate, getHackathonEndDate } from './dates';
 
 function createDescription() {
   if (!getHackathonStartDate().isSame(getHackathonEndDate(), 'month')) {

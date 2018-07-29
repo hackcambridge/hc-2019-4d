@@ -1,10 +1,10 @@
-const moment = require('moment');
+import * as moment from 'moment';
 
-function getHackathonStartDate() {
+export function getHackathonStartDate() {
   return moment('2018-01-20');
 }
 
-function getHackathonEndDate() {
+export function getHackathonEndDate() {
   return getHackathonStartDate().add(1, 'day');
 }
 
@@ -15,28 +15,20 @@ function getHackathonEndDate() {
  * graduates who have graduated within the 12 months prior to the event.
  * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event
  */
-function getEarliestGraduationDateToAccept() {
+export function getEarliestGraduationDateToAccept() {
   return getHackathonStartDate().subtract(1, 'year');
 }
 
 /**
  * Returns the datetime at which the hacking period begins.
  */
-function getHackingPeriodStart() {
+export function getHackingPeriodStart() {
   return moment('2018-01-20T12:00:00Z');
 }
 
 /**
  * Returns the datetime at which the hacking period ends.
  */
-function getHackingPeriodEnd() {
+export function getHackingPeriodEnd() {
   return moment('2018-01-21T12:00:00Z');
 }
-
-module.exports = {
-  getHackathonStartDate,
-  getHackathonEndDate,
-  getEarliestGraduationDateToAccept,
-  getHackingPeriodStart,
-  getHackingPeriodEnd
-};

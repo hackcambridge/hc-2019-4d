@@ -132,11 +132,11 @@ gulp.task('watch', ['build'], () => {
 gulp.task('serve', ['watch'], () => {
   let runnode = function (env = {}) {
     nodemon({
-      script: 'index.js',
+      script: 'dist/index.js',
       ext: 'js',
-      ignore: ['src/js/client/**', 'gulpfile.js'],
+      ignore: ['dist/js/client/**', 'gulpfile.js'],
       env: Object.assign({
-        NODE_PATH: './src',
+        NODE_PATH: './dist',
       }, env),
     });
   };

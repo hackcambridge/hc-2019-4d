@@ -2,10 +2,10 @@
   "name": "hack-cambridge-website",
   "version": "0.0.0",
   "description": "Website for Hack Cambridge",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "start": "export NODE_PATH=$NODE_PATH:./src; node ./index",
+    "start": "export NODE_PATH=$NODE_PATH:./src; node dist/index",
     "postinstall": "gulp build",
     "migrate": "sequelize db:migrate",
     "sequelize": "sequelize",
