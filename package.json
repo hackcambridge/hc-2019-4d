@@ -1,6 +1,5 @@
 {
   "name": "hack-cambridge-website",
-  "version": "0.0.0",
   "description": "Website for Hack Cambridge",
   "main": "dist/index.js",
   "scripts": {
