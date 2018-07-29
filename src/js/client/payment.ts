@@ -1,4 +1,12 @@
-let $ = require('jquery');
+import $ from 'jquery';
+
+// Add globals for Stripe
+declare global {
+  interface Window {
+    StripeCheckout: any;
+    stripeConfig: any;
+  }
+}
 
 module.exports = function () {
   if ('StripeCheckout' in window) {
@@ -49,15 +57,15 @@ module.exports = function () {
       let $reference = $this.find('[name="reference"]');
       let $output = $('p.form-status');
 
-      let getAmount = function () {
-        let amount = $amount.val();
+      function getAmount(): number {
+        const amount: number = <number>$amount.val();
 
         if (isNaN(amount)) {
           return 0;
         }
 
         return amount;
-      };
+      }
 
       $this.submit((e) => {
         e.preventDefault();

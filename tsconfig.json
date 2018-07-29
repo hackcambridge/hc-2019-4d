@@ -1,0 +1,11 @@
+{
+  "files": [
+    "src/**/*.ts"
+  ],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "target": "es6"
+  }
+}

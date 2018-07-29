@@ -15,6 +15,7 @@ let nodemon = require('nodemon');
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 const eslint = prod ? null : require('gulp-eslint');
+const ts = require('gulp-typescript');
 
 console.log(argv);
 
@@ -25,7 +26,7 @@ let onError = function onError(err) {
 };
 
 gulp.task('clean', () => {
-  return del('assets/dist');
+  return del(['dist', 'assets/dist']);
 });
 
 // css
@@ -61,7 +62,7 @@ gulp.task('scripts', () => {
     return browserify({
       entries: fileIn,
       debug: !prod,
-      paths: [path.dirname(fileIn), './src']
+      paths: [path.dirname(fileIn), './dist']
     })
       .transform('babelify', { presets: ['es2015'] })
       .bundle()
@@ -70,12 +71,25 @@ gulp.task('scripts', () => {
       .pipe(buffer());
   };
 
-  return gulpBrowserify('./src/js/client/main.js', 'main.js')
+  return gulpBrowserify('./dist/js/client/main.js', 'main.js')
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
     .pipe($.if(prod, $.uglify()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
     .pipe(bs.stream());
+});
+
+gulp.task('compile', () => {
+  const tsProject = ts.createProject('tsconfig.json');
+  return tsProject.src()
+    .pipe(tsProject())
+    .js.pipe(gulp.dest('dist/typescript')); // TODO: why do the outputted files go up a directory?
+});
+
+gulp.task('copy', () => {
+  const paths = ['src/**', '!src/**/*.ts'];
+  return gulp.src(paths)
+    .pipe(gulp.dest('dist'));
 });
 
 let assetPath = ['assets/**', '!assets/dist/**'];
@@ -150,7 +164,7 @@ gulp.task('build', (cb) => {
     args.push('lint');
   }
 
-  args.push('assets', 'scripts', 'styles');
+  args.push('assets', 'compile', 'copy', 'scripts', 'styles');
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd

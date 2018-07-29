@@ -1,6 +1,8 @@
-const $ = require('jquery');
-const { createApplicationForm } = require('js/shared/apply/application-form');
-const { createTeamForm } = require('js/shared/apply/team-form');
+import $ from 'jquery';
+
+import { createApplicationForm } from 'js/shared/apply/application-form';
+import { createTeamForm } from 'js/shared/apply/team-form';
+
 
 /**
  * jQuery's .serializeArray does not give us file input values. While we can't get useful
@@ -52,8 +54,8 @@ function getFieldValue($field) {
   }
 }
 
-function uncheckElements($fieldElements) {
-  $fieldElements.each(function () {
+function uncheckElements(this, $fieldElements) {
+  $fieldElements.each(function (this) {
     this.checked = false;
   });
 }
@@ -62,12 +64,12 @@ function uncheckElements($fieldElements) {
  * Determines if user input could lead to ambiguous data, and corrects it automatically
  * based on context - e.g. what the user most recently selected.
  */
-function disallowAmbiguousAnswersProactively($form) {
+function disallowAmbiguousAnswersProactively(this, $form) {
   const notSureAnswer = 'unknown';
 
   const $developmentStyleFields = $form.find('input[name=development]');
 
-  $developmentStyleFields.change(function () {
+  $developmentStyleFields.change(function (this) {
     const $field = $(this);
     
     if ($field.attr('value') === notSureAnswer) {
@@ -79,21 +81,22 @@ function disallowAmbiguousAnswersProactively($form) {
 
   const $teamFields = $form.find('input[id=id_team_team_apply], input[id=id_team_team_placement]');
 
-  $teamFields.change(function () {
+  $teamFields.change(function (this) {
     uncheckElements($teamFields.not(this));
   });
 
   const $memberFields = $form.find('input[name=memberB], input[name=memberC], input[name=memberD]');
 
-  $memberFields.on('input', function () {
-    $(this).val($(this).val().replace(/\s/g, ''));
+  $memberFields.on('input', function (this) {
+    // TODO: Fix unsafe cast
+    (<string><any>$(this).val($(this).val())).replace(/\s/g, '');
   });
 }
 
 function processForm($form, createForm) {
   disallowAmbiguousAnswersProactively($form);
 
-  const supportsFileApi = ($('<input type="file">').get(0).files) !== undefined;
+  const supportsFileApi = (<HTMLInputElement>$('<input type="file">').get(0)).files !== undefined;
 
   const addFeedbackToForm = (form) => {
     let firstErrorFound = false;
@@ -122,7 +125,7 @@ function processForm($form, createForm) {
     });
   };
 
-  $form.submit((event, { valid } = { }) => {
+  $form.submit((event, { valid } = { valid: false }) => {
     // Our form validation is asynchronous (but happens within a few ms).
     // This means that we have to re-submit the form after validation
     // with some kind of indicator that the validation has succeeded
@@ -144,11 +147,11 @@ function processForm($form, createForm) {
   });
 }
 
-module.exports = function applyPage() {
-  $('.apply-form').each(function () {
+module.exports = function applyPage(this) {
+  $('.apply-form').each(function (this) {
     processForm($(this), createApplicationForm);
   });
-  $('.team-form').each(function () {
+  $('.team-form').each(function (this) {
     processForm($(this), createTeamForm);
   });
 };

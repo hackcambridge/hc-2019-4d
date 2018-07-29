@@ -1,4 +1,4 @@
-let $ = require('jquery');
+import $ from 'jquery';
 
 let pages = [
   require('./apply'),

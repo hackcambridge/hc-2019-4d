@@ -1,3 +1,16 @@
+import $ from 'jquery';
+import Pusher from 'pusher-js';
+import moment from 'moment';
+
+import Countdown from '../shared/countdown';
+
+// Add globals for Pusher config
+declare global {
+  interface Window {
+    liveConfig: any;
+  }
+}
+
 function setFeedItem(status) {
   $('.social-title').html(status.username);
   const statusText = status.text.split(' ').slice(0, -1).join(' ');
@@ -40,12 +53,6 @@ function cycleFeedItems(statuses, element) {
   }, 30000);
 }
 
-const Countdown = require('../shared/countdown');
-
-const Pusher = require('pusher-js');
-const $ = require('jquery');
-const moment = require('moment');
-
 function eventNameList(events) {
   return events.map(event => `<h4>${event.name}</h4>`).join(' ');
 }
@@ -87,7 +94,7 @@ function setBackground() {
       }
       $('main').addClass('black');
     }
-  } else if (time.getDate() == '21' && time.getHours() >= 12) {
+  } else if (time.getDate() == 21 && time.getHours() >= 12) {
     if (! $('main').hasClass('red')) {
       if ($('main').hasClass('black')) {
         $('main').removeClass('black');
@@ -142,5 +149,7 @@ function initialiseLive() {
     countdown.start();
   });
   
-  $('#cube-logo').each(setInterval(rotateCube, 5000));
+  $('#cube-logo').each(_ => {
+    setInterval(rotateCube, 5000)
+  });
 }

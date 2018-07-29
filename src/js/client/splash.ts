@@ -1,4 +1,12 @@
-let $ = require('jquery');
+import $ from 'jquery';
+
+// Add globals for Facebook and Google Analytics
+declare global {
+  interface Window {
+    fbq: any;
+    ga: any;
+  }
+}
 
 module.exports = () => {
   $('.signup-form').each((index, element) => {
@@ -26,7 +34,7 @@ module.exports = () => {
           $(this).remove();
         });
 
-      if ($this.find('input[type="email"]').val().trim() === '') {
+      if ((<string>$this.find('input[type="email"]').val()).trim() === '') {
         createFlash('Must provide email', 'signup-form-error');
         return;
       }
