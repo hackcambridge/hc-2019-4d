@@ -1,6 +1,6 @@
-const { Hacker, HackerApplication } = require('js/server/models');
+import { Hacker, HackerApplication } from 'js/server/models';
 
-const getHackerFromEmailOrApplicationSlug = identifier => {
+export function getHackerFromEmailOrApplicationSlug(identifier: string) {
   if (identifier.includes('@')) {
     return Hacker.findOne({
       where: {
@@ -25,6 +25,4 @@ const getHackerFromEmailOrApplicationSlug = identifier => {
       return Promise.resolve(hackerApplication.hacker);
     });
   }
-};
-
-module.exports = { getHackerFromEmailOrApplicationSlug };
+}

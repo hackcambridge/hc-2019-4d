@@ -1,7 +1,8 @@
-const { getSerializedTeamAssignments } = require('js/server/attendance/team-logic');
-const { createHandler } = require('../utils');
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { getSerializedTeamAssignments } from 'js/server/attendance/team-logic';
+import { createHandler } from '../utils';
 
 module.exports = {
   command: 'suggest <outputfile>',

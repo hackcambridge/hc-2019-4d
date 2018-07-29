@@ -1,6 +1,6 @@
-const { TeamMember } = require('js/server/models');
-const { getHackerFromEmailOrApplicationSlug } = require('./utils');
-const { createHandler } = require('../utils');
+import { TeamMember } from 'js/server/models';
+import { getHackerFromEmailOrApplicationSlug } from './utils';
+import { createHandler } from '../utils';
 
 module.exports = {
   command: 'add-member teamId <email|applicationId>',

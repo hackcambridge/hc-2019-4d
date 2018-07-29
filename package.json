@@ -5,11 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "start": "export NODE_PATH=$NODE_PATH:./src; node dist/index",
+    "start": "export NODE_PATH=$NODE_PATH:./dist; node dist/index",
     "postinstall": "gulp build",
     "migrate": "sequelize db:migrate",
     "sequelize": "sequelize",
-    "hc-script": "export NODE_PATH=$NODE_PATH:./src; node ./dist/js/hc-scripts/index"
+    "hc-script": "export NODE_PATH=$NODE_PATH:./dist; node ./dist/js/hc-scripts/index"
   },
   "repository": {
     "type": "git",
