@@ -83,7 +83,7 @@ gulp.task('compile', () => {
   const tsProject = ts.createProject('tsconfig.json');
   return tsProject.src()
     .pipe(tsProject())
-    .js.pipe(gulp.dest('dist/typescript')); // TODO: why do the outputted files go up a directory?
+    .js.pipe(gulp.dest('dist'));
 });
 
 gulp.task('copy', () => {
