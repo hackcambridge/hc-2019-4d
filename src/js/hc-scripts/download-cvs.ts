@@ -1,9 +1,9 @@
-const { getAllApplicationsWithTickets } = require('js/server/attendance/attendee-info');
-const { createHandler } = require('./utils');
+import * as fs from 'fs';
+import * as https from 'https';
+import * as path from 'path';
 
-const fs = require('fs');
-const https = require('https');
-const path = require('path');
+import { getAllApplicationsWithTickets } from 'js/server/attendance/attendee-info';
+import { createHandler } from './utils';
 
 const simultaneousRequests = 10;
 
@@ -17,7 +17,7 @@ function downloadCv(application, destPath) {
     });
 
     request.on('error', error => {
-      fs.unlink(destPath);
+      fs.unlink(destPath, _ => {});
       reject(`Could not download CV for application ID ${application.id} (error ${error})`);
     });
   });
@@ -37,7 +37,8 @@ function downloadCvs(basePath) {
         let promiseFunctionChunk = cvPromiseFunctions.slice(i, i + simultaneousRequests);
         promiseChain = promiseChain.then(_ => {
           console.log(`Downloading CVs ${i + 1} to ${i + promiseFunctionChunk.length}...`);
-          return Promise.all(promiseFunctionChunk.map(promiseFunc => promiseFunc()));
+          return Promise.all(promiseFunctionChunk.map(promiseFunc => promiseFunc()))
+            .then(_ => {});
         });
       }
       

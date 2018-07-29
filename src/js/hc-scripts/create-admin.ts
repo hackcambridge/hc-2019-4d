@@ -1,5 +1,5 @@
-const { Admin } = require('js/server/models');
-const { createHandler } = require('./utils');
+import { Admin } from 'js/server/models';
+import { createHandler } from './utils';
 
 module.exports = {
   command: 'create-admin',

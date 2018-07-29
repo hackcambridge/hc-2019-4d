@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 
 // Add globals for Facebook and Google Analytics
 declare global {
@@ -8,12 +8,12 @@ declare global {
   }
 }
 
-module.exports = () => {
+export function start() {
   $('.signup-form').each((index, element) => {
-    const $this = $(element);
-    const action = $this.attr('action');
-    const method = $this.attr('method');
-    const $submit = $this.find('input[type="submit"]');
+    const $element = $(element);
+    const action = $element.attr('action');
+    const method = $element.attr('method');
+    const $submit = $element.find('input[type="submit"]');
     const submitText = $submit.text();
     let loading = null;
 
@@ -21,12 +21,12 @@ module.exports = () => {
       return $('<p class="signup-form-output"></p>')
         .text(text)
         .addClass(className)
-        .insertAfter($this)
+        .insertAfter($element)
         .hide()
         .slideDown();
     };
 
-    $this.submit((e) => {
+    $element.submit((e) => {
       e.preventDefault();
 
       $('.signup-form-output')
@@ -34,7 +34,7 @@ module.exports = () => {
           $(this).remove();
         });
 
-      if ((<string>$this.find('input[type="email"]').val()).trim() === '') {
+      if ((<string>$element.find('input[type="email"]').val()).trim() === '') {
         createFlash('Must provide email', 'signup-form-error');
         return;
       }
@@ -49,7 +49,7 @@ module.exports = () => {
 
       loading = $.ajax(action, {
         method: method,
-        data: $this.serialize()
+        data: $element.serialize()
       }).done((data) => {
         createFlash(data.message, 'signup-form-success');
       }).fail((jqXHR) => {

@@ -123,7 +123,7 @@ gulp.task('wait', (cb) => {
 });
 
 gulp.task('watch', ['build'], () => {
-  gulp.watch(['src/js/**'], ['scripts']);
+  gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
   gulp.watch('src/styles/**', ['styles']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);

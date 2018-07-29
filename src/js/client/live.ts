@@ -1,13 +1,19 @@
-import $ from 'jquery';
-import Pusher from 'pusher-js';
-import moment from 'moment';
+import * as $ from 'jquery';
+import * as Pusher from 'pusher-js';
+import * as moment from 'moment';
 
-import Countdown from 'js/shared/countdown';
+import * as Countdown from 'js/shared/countdown';
 
 // Add globals for Pusher config
 declare global {
   interface Window {
     liveConfig: any;
+  }
+}
+
+export function start() {
+  if (window.liveConfig) {
+    initialiseLive();
   }
 }
 
@@ -103,12 +109,6 @@ function setBackground() {
     }
   }
 }
-
-module.exports = () => {
-  if (window.liveConfig) {
-    initialiseLive();
-  }
-};
 
 function initialiseLive() {
   const pusher = new Pusher(window.liveConfig.pusherKey, {

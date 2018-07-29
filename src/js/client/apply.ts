@@ -1,7 +1,12 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 
 import { createApplicationForm } from 'js/shared/apply/application-form';
 import { createTeamForm } from 'js/shared/apply/team-form';
+
+export function start() {
+  $('.apply-form').each((_, form: HTMLFormElement) => processForm($(form), createApplicationForm));
+  $('.team-form').each((_, form: HTMLFormElement) => processForm($(form), createTeamForm));
+}
 
 
 /**
@@ -54,9 +59,9 @@ function getFieldValue($field) {
   }
 }
 
-function uncheckElements(this, $fieldElements) {
-  $fieldElements.each(function (this) {
-    this.checked = false;
+function uncheckElements($fieldElements) {
+  $fieldElements.each((_, element) => {
+    element.checked = false;
   });
 }
 
@@ -64,13 +69,13 @@ function uncheckElements(this, $fieldElements) {
  * Determines if user input could lead to ambiguous data, and corrects it automatically
  * based on context - e.g. what the user most recently selected.
  */
-function disallowAmbiguousAnswersProactively(this, $form) {
+function disallowAmbiguousAnswersProactively($form: JQuery<HTMLFormElement>) {
   const notSureAnswer = 'unknown';
 
   const $developmentStyleFields = $form.find('input[name=development]');
 
-  $developmentStyleFields.change(function (this) {
-    const $field = $(this);
+  $developmentStyleFields.change(e => {
+    const $field = $(e.target);
     
     if ($field.attr('value') === notSureAnswer) {
       uncheckElements($developmentStyleFields.not(`[value=${notSureAnswer}]`));
@@ -81,19 +86,15 @@ function disallowAmbiguousAnswersProactively(this, $form) {
 
   const $teamFields = $form.find('input[id=id_team_team_apply], input[id=id_team_team_placement]');
 
-  $teamFields.change(function (this) {
-    uncheckElements($teamFields.not(this));
-  });
+  $teamFields.change(e => uncheckElements($teamFields.not(e.target)));
 
   const $memberFields = $form.find('input[name=memberB], input[name=memberC], input[name=memberD]');
 
-  $memberFields.on('input', function (this) {
-    // TODO: Fix unsafe cast
-    (<string><any>$(this).val($(this).val())).replace(/\s/g, '');
-  });
+  $memberFields.on('input', e =>
+    $(e.target).val((<string>$(e.target).val()).replace(/\s/g, '')));
 }
 
-function processForm($form, createForm) {
+function processForm($form: JQuery<HTMLFormElement>, createForm) {
   disallowAmbiguousAnswersProactively($form);
 
   const supportsFileApi = (<HTMLInputElement>$('<input type="file">').get(0)).files !== undefined;
@@ -146,12 +147,3 @@ function processForm($form, createForm) {
     );
   });
 }
-
-module.exports = function applyPage(this) {
-  $('.apply-form').each(function (this) {
-    processForm($(this), createApplicationForm);
-  });
-  $('.team-form').each(function (this) {
-    processForm($(this), createTeamForm);
-  });
-};

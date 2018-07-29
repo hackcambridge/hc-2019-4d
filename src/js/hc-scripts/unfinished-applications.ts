@@ -1,5 +1,5 @@
-const { createHandler } = require('./utils');
-const { getHackersWithUnfinishedApplications } = require('js/server/apply/applicant-info');
+import { createHandler } from './utils';
+import { getHackersWithUnfinishedApplications } from 'js/server/apply/applicant-info';
 
 function getEmailsOfHackersWithUnfinishedApplications(kind) {
   return getHackersWithUnfinishedApplications(kind).then(hackers => {

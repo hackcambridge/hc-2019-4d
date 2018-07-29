@@ -1,7 +1,8 @@
-const { createHandler } = require('./utils');
-const { getApplicationsWithScores } = require('js/server/review/score-logic');
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { createHandler } from './utils';
+import { getApplicationsWithScores } from 'js/server/review/score-logic';
 
 function getAugmentScore() {
   try {

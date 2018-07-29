@@ -1,9 +1,10 @@
-const { createHandler } = require('./utils');
-const { response } = require('js/shared/status-constants');
-const { setResponseForApplicationWithChecks } = require('js/server/review/response-logic');
-const { HackerApplication } = require('js/server/models');
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { createHandler } from './utils';
+import { response } from 'js/shared/status-constants';
+import { setResponseForApplicationWithChecks } from 'js/server/review/response-logic';
+import { HackerApplication } from 'js/server/models';
 
 const responseTypeMap = {
   invite: response.INVITED,
@@ -53,7 +54,7 @@ module.exports = {
   },
   handler: createHandler(({ type, inputfile }) =>
     processResponseQueue(
-      JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputfile))),
+      JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputfile)).toString()),
       responseTypeMap[type]
     ).then(() => {
       console.log('Done!');

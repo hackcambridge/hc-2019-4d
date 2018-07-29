@@ -3,7 +3,7 @@
     "src/**/*.ts"
   ],
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
     "moduleResolution": "node",
     "baseUrl": "src",
     "target": "es6"

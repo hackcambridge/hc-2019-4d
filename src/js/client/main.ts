@@ -1,12 +1,12 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 
-let pages = [
-  require('./apply'),
-  require('./live'),
-  require('./payment'),
-  require('./splash')
-];
+import * as apply from './apply';
+import * as live from './live';
+import * as payment from './payment';
+import * as splash from './splash';
+
+let pages = [apply, live, payment, splash];
 
 $(document).ready(() => {
-  pages.forEach((f) => f());
+  pages.forEach((f) => f.start());
 });

@@ -1,4 +1,7 @@
-const yargs = require('yargs');
+import * as dotenv from 'dotenv';
+import * as yargs from 'yargs';
+
+dotenv.load();
 
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);

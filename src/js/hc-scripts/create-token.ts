@@ -1,5 +1,5 @@
-const { Admin, OauthAccessToken } = require('js/server/models');
-const { createHandler } = require('./utils');
+import { Admin, OauthAccessToken } from 'js/server/models';
+import { createHandler } from './utils';
 
 module.exports = {
   command: 'create-token <email>',

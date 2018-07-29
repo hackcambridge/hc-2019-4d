@@ -1,5 +1,5 @@
-const { createHandler } = require('./utils');
-const { getInvitationExpiryCandidates, expireInvitation } = require('js/server/attendance/logic');
+import { createHandler } from './utils';
+import { getInvitationExpiryCandidates, expireInvitation } from 'js/server/attendance/logic';
 
 function createExpiryQueue(responsesToProcess, dryRun) {
   // Defensive clone for mutating array
