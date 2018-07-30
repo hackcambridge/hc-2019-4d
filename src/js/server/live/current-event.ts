@@ -1,4 +1,4 @@
-const moment = require('moment');
+import * as moment from 'moment';
 
 function flatten(arr) {
   return [].concat.apply([], arr);
@@ -16,7 +16,7 @@ function getSortedIndividualEvents(schedule) {
   ));
 }
 
-function getCurrentEvents(schedule) {
+export function getCurrentEvents(schedule) {
   const individualEvents = getSortedIndividualEvents(schedule);
   
   const now = moment();
@@ -33,7 +33,7 @@ function getCurrentEvents(schedule) {
   return previousAndCurrentEvents.filter(event => event.time.isSame(currentEventTime));
 }
 
-function getNextEvents(schedule) {
+export function getNextEvents(schedule) {
   const individualEvents = getSortedIndividualEvents(schedule);
   
   const now = moment();
@@ -49,8 +49,3 @@ function getNextEvents(schedule) {
   // Get all the events occuring at this time — there may be multiple concurrent events
   return futureEvents.filter(event => event.time.isSame(nextEventTime));
 }
-
-module.exports = {
-  getCurrentEvents,
-  getNextEvents
-};

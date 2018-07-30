@@ -1,19 +1,21 @@
-let _ = require('lodash');
-let yaml = require('js-yaml');
-let fs = require('fs');
-let moment = require('moment-timezone');
-let crypto = require('crypto');
-let markdown = require('markdown-it')({
+import * as crypto from 'crypto';
+import { Express } from 'express';
+import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+import * as _ from 'lodash';
+import * as markdown_module from 'markdown-it';
+import * as moment from 'moment-timezone';
+import * as nunjucks from 'nunjucks';
+import * as path from 'path';
+
+const markdown = markdown_module({
   html: true,
   linkify: true,
   typographer: true
 }).use(require('markdown-it-attrs'));
-let nunjucks = require('nunjucks');
-const path = require('path');
 
-let loadedResources = {};
-let loadedMarkdowns = {};
-let app;
+const loadedResources = {};
+let app: Express;
 
 const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../'));
 
@@ -21,13 +23,13 @@ function timeProperties(items, properties) {
   items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
 }
 
-exports.init = function init(a) {
+export function init(a) {
   app = a;
-};
+}
 
-exports.resolvePath = function resolvePath(fromProjectRoot) {
+export function resolvePath(fromProjectRoot) {
   return path.join(PROJECT_ROOT, fromProjectRoot);
-};
+}
 
 let assetsFile;
 
@@ -37,7 +39,7 @@ try {
   assetsFile = { };
 }
 
-exports.asset = function (asset, prefix) {
+export function asset(asset, prefix) {
   if (prefix == null) {
     prefix = '/assets/';
   }
@@ -49,16 +51,6 @@ exports.asset = function (asset, prefix) {
   return prefix + asset;
 };
 
-let loadedAssets = { };
-
-exports.loadAsset = function loadAsset(assetName) {
-  if ((!loadedAssets[assetName]) || (app.settings.env == 'development')) {
-    loadedAssets[assetName] = fs.readFileSync(exports.asset(assetName, 'assets/dist/'));
-  }
-
-  return loadedAssets[assetName];
-};
-
 function markdownPropertiesRecursive(object, properties) {
   for (let property in object) {
     if (object.hasOwnProperty(property)) {
@@ -68,7 +60,7 @@ function markdownPropertiesRecursive(object, properties) {
       } else {
         if(properties.indexOf(property) >= 0) {
           // This is one of the properties we identified as being markdown, render it
-          object[property] = nunjucks.runtime.markSafe(markdown.renderInline(object[property]));
+          object[property] = nunjucks.renderString(markdown.renderInline(object[property]), {});
         }
       }
     }
@@ -88,10 +80,10 @@ function loadScheduleTimeProperties(loadedScheduleResource) {
   });
 }
 
-exports.loadResource = function loadResource(resourceName) {
+export function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
     let loadedResource = yaml.safeLoad(
-      fs.readFileSync(exports.resolvePath(`src/resources/${resourceName}.yml`))
+      fs.readFileSync(resolvePath(`src/resources/${resourceName}.yml`)).toString()
     )[resourceName];
 
     switch (resourceName) {
@@ -127,22 +119,14 @@ exports.loadResource = function loadResource(resourceName) {
   return loadedResources[resourceName];
 };
 
-
-exports.loadMarkdown = function loadMarkdown(markdownName) {
-  if ((!loadedMarkdowns[markdownName]) || (app.settings.env == 'development')) {
-    let loadedMarkdown = nunjucks.runtime.markSafe(
-      markdown.render(fs.readFileSync(exports.resolvePath(
-        `src/resources/${markdownName}.md`), 'utf8'
-      ))
-    );
-    loadedMarkdowns[markdownName] = loadedMarkdown;
-  }
-
-  return loadedMarkdowns[markdownName];
-};
-
 let publicId = crypto.randomBytes(12).toString('hex');
 
-exports.getPublicId = function () {
+export function getPublicId() {
   return publicId;
-};
+}
+
+export class ErrorWithStatus extends Error {
+  constructor(name: string, public status: number) {
+    super(name);
+  }
+}

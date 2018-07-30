@@ -1,9 +1,9 @@
-const session     = require('client-sessions');
-const querystring = require('querystring');
-const fetch       = require('node-fetch');
-const url         = require('url');
+import * as session from 'client-sessions';
+import fetch from 'node-fetch';
+import * as querystring from 'querystring';
+import * as url from 'url';
 
-const { Hacker } = require('js/server/models');
+import { Hacker } from 'js/server/models';
 
 // Authorisation config
 const client_id     = process.env.MYMLH_CLIENT_ID;
@@ -14,27 +14,25 @@ const user_url      = 'https://my.mlh.io/api/v2/user.json';
 const auth_callback = '/auth/callback';
 const dashboard_url = '/apply/dashboard'; // The default URL you end up at after logging in
 
-const auth = module.exports = {};
-
-auth.setUpAuth = function (app) {
+export function setUpAuth(app) {
   // Used to store actual user data to avoid always hitting the db/API
   app.use(session({
     cookieName: 'userSession',
     secret: process.env.AUTH_SESSION_SECRET,
     duration: 2 * 60 * 60 * 1000, // lives for 2 hours
     activeDuration: 15 * 60 * 1000, // Gets refreshed for 15 mins on use
-    httpOnly: true,
-    // secure: true,
-    ephemeral: true
+    cookie: {
+      httpOnly: true
+    }
   }));
   // Used to store the users intended destination
   app.use(session({
     cookieName: 'redirectTo',
     secret: process.env.AUTH_SESSION_SECRET,
     duration: 2 * 60 * 1000, // lives for 2 minutes
-    httpOnly: true,
-    // secure: true,
-    ephemeral: true
+    cookie: {
+      httpOnly: true
+    }
   }));
 
   app.use(setUserFromSession);
@@ -44,24 +42,24 @@ auth.setUpAuth = function (app) {
       errorCode: req.query.code,
     });
   });
-};
+}
 
 // Ensures that there is user data available, otherwise redirects to authenticate the user
-auth.requireAuth = function (req, res, next) {
+export function requireAuth(req, res, next) {
   if (!req.user) {
     redirectToAuthorize(req, res);
   } else {
     next();
   }
-};
+}
 
-auth.logout = function (req, res, next) {
+export function logout(req, res, next) {
   // Delete the user session
   if (req.userSession) {
     req.userSession.reset();
   }
   next();
-};
+}
 
 // If there is user data available in the session, make sure it is put in the request and local res objects
 function setUserFromSession(req, res, next) {

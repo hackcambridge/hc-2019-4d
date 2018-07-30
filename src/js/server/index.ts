@@ -1,17 +1,17 @@
-'use strict';
+import * as express from 'express';
+import * as nunjucks from 'nunjucks';
+import * as bodyParser from 'body-parser';
+import * as url from 'url';
+import * as utils from './utils';
 
-let express = require('express');
-let nunjucks = require('nunjucks');
-let bodyParser = require('body-parser');
-let url = require('url');
-let utils = require('./utils');
-let app = express();
-const auth = require('js/server/auth');
-const errors = require('js/server/errors');
-const colors = require('js/shared/colors');
-const metadata = require('js/shared/metadata');
-const currentEvent = require('js/server/live/current-event');
+import * as auth from 'js/server/auth';
+import * as errors from 'js/server/errors';
+import * as colors from 'js/shared/colors';
+import * as metadata from 'js/shared/metadata';
+import * as currentEvent from 'js/server/live/current-event';
+import { ServeStaticOptions } from '../../../node_modules/@types/serve-static';
 
+const app = express();
 let server = require('http').Server(app);
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -20,7 +20,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 utils.init(app);
 
-app.use((req, res, next) => {
+app.use((req: any, res, next) => {
   res.locals.title = metadata.title;
   res.locals.description = metadata.description;
   res.locals.colors = colors;
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 // Static file serving
-let staticOptions = { };
+let staticOptions: ServeStaticOptions = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
@@ -50,8 +50,6 @@ nunjucks.configure(utils.resolvePath('src/views'), {
 });
 
 app.locals.asset = utils.asset;
-app.locals.loadAsset = utils.loadAsset;
-app.locals.markdownResource = utils.loadMarkdown;
 
 if (process.env.BS_SNIPPET) {
   app.locals.browserSync = process.env.BS_SNIPPET;
