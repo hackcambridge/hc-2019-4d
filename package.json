@@ -21,7 +21,7 @@
     "url": "https://github.com/hackcambridge/hack-cambridge-website/issues"
   },
   "engines": {
-    "node": "6.11.*"
+    "node": "8.11.*"
   },
   "homepage": "https://github.com/hackcambridge/hack-cambridge-website#readme",
   "dependencies": {
@@ -38,7 +38,6 @@
     "compression": "^1.6.1",
     "cors": "^2.8.1",
     "country-list": "^1.0.0",
-    "css-loader": "^0.28.7",
     "del": "^3.0.0",
     "dotenv": "^4.0.0",
     "express": "^4.13.3",
@@ -57,7 +56,6 @@
     "gulp-stylus": "^2.1.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.7",
-    "gutils": "0.0.5",
     "jquery": "^3.2.1",
     "js-yaml": "^3.4.3",
     "lodash": "^4.17.4",
@@ -74,11 +72,9 @@
     "nodemailer-mailgun-transport": "^1.2.2",
     "nodemailer-sendmail-transport": "^1.0.0",
     "nodemon": "^1.8.1",
-    "normalize.css": "^7.0.0",
     "nunjucks": "^3.0.1",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
-    "pepjs": "^0.4.1",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "pusher-js": "^4.0.0",
