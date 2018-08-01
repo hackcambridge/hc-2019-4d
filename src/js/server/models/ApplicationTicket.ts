@@ -1,15 +1,16 @@
 import * as Sequelize from 'sequelize';
 
 import db from './db';
-import HackerApplication from './HackerApplication';
+import HackerApplication, { HackerApplicationInstance } from './HackerApplication';
 
 interface ApplicationTicketAttributes {
   id?: number;
   hackerApplicationId: number;
 }
 
-export type ApplicationTicketInstance = Sequelize.Instance<ApplicationTicketAttributes>
-  & ApplicationTicketAttributes;
+export interface ApplicationTicketInstance extends Sequelize.Instance<ApplicationTicketAttributes>, ApplicationTicketAttributes {
+  hackerApplication?: HackerApplicationInstance;
+}
 
 const attributes: SequelizeAttributes<ApplicationTicketAttributes> = {
   hackerApplicationId: {

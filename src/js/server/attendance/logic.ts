@@ -1,12 +1,12 @@
-const moment = require('moment');
-const Sequelize = require('sequelize');
-const { ResponseRsvp, ApplicationTicket, HackerApplication, ApplicationResponse, Hacker, db } = require('js/server/models');
-const slack = require('js/server/slack');
-const { sendEmail } = require('js/server/email');
-const { response } = require('js/shared/status-constants');
-const { INVITATION_VALIDITY_DURATION } = require('js/server/review/constants');
+import * as moment from 'moment';
+import * as Sequelize from 'sequelize';
 
-const emailTemplates = require('./email-templates');
+import { ResponseRsvp, ApplicationTicket, HackerApplication, ApplicationResponse, Hacker, db } from 'js/server/models';
+import * as slack from 'js/server/slack';
+import { sendEmail } from 'js/server/email';
+import { response } from 'js/shared/status-constants';
+import { INVITATION_VALIDITY_DURATION } from 'js/server/review/constants';
+import * as emailTemplates from './email-templates';
 
 /**
  * Creates a ticket for an application.
@@ -53,9 +53,9 @@ function sendTicketEmail(hacker) {
 /**
  * Get all invitations that are old enough to expire. Responses are hydrated with application and hacker objects
  */
-function getInvitationExpiryCandidates() {
+export function getInvitationExpiryCandidates() {
   return ApplicationResponse.findAll({
-    where: Sequelize.and(
+    where: <any>Sequelize.and(
       {
         createdAt: {
           $lt: moment().subtract(INVITATION_VALIDITY_DURATION).toDate(),
@@ -80,7 +80,7 @@ function getInvitationExpiryCandidates() {
  * @param {Response} response - The response object to expire. Must represent an invitation
  *   and have its application with hacker hydrated.
  */
-function expireInvitation(applicationResponse) {
+export function expireInvitation(applicationResponse) {
   if (applicationResponse.response !== response.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
@@ -102,7 +102,7 @@ function expireInvitation(applicationResponse) {
  * 
  * If the RSVP is yes, then a ticket will be added to the application.
  */
-function rsvpToResponse(applicationResponse, rsvpStatus) {
+export function rsvpToResponse(applicationResponse, rsvpStatus) {
   if (applicationResponse.response !== response.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
@@ -127,7 +127,7 @@ function rsvpToResponse(applicationResponse, rsvpStatus) {
 /**
  * Gets all tickets with information about the applicant
  */
-function getTicketsWithApplicantInfo() {
+export function getTicketsWithApplicantInfo() {
   return ApplicationTicket.findAll({
     include: [
       {
@@ -161,10 +161,3 @@ function getTicketsWithApplicantInfo() {
     };
   }));
 }
-
-module.exports = {
-  rsvpToResponse,
-  getTicketsWithApplicantInfo,
-  getInvitationExpiryCandidates,
-  expireInvitation,
-};

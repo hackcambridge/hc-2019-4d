@@ -1,11 +1,22 @@
-const { HackerApplication, ApplicationTicket, Hacker } = require('js/server/models');
-const slack = require('js/server/slack');
-const { sendEmail } = require('js/server/email');
-
-const emailTemplates = require('./email-templates');
+import { HackerApplication, ApplicationTicket, Hacker } from 'js/server/models';
+import * as slack from 'js/server/slack';
+import { sendEmail } from 'js/server/email';
+import * as emailTemplates from './email-templates';
+import { HackerApplicationInstance } from '../models/HackerApplication';
 
 const ROLE_ORDERING = ['development', 'design', 'product_management', 'unknown'];
 const TARGET_TEAM_SIZE = 4;
+
+export interface TeamMemberDetails {
+  applicationId: number;
+  hackerId: number;
+  ticketId: number;
+  roles: string[];
+  email: string;
+  firstName: string;
+  lastName: string;
+  slackName: string;
+}
 
 function getAllApplicationsWantingTeams() {
   return HackerApplication.findAll({
@@ -25,13 +36,12 @@ function getAllApplicationsWantingTeams() {
   });
 }
 
-function getHighestPriorityRoleIndex(application) {
-  for (let roleIndex in ROLE_ORDERING) {
-    if (application.developmentRoles.includes(ROLE_ORDERING[roleIndex])) {
+function getHighestPriorityRoleIndex(application: HackerApplicationInstance) {
+  ROLE_ORDERING.forEach((role, roleIndex) => {
+    if (application.developmentRoles.includes(role)) {
       return roleIndex;
     }
-  }
-
+  });
   return ROLE_ORDERING.length;
 }
 
@@ -39,13 +49,13 @@ function applicationDevelopmentComparison(applicationA, applicationB) {
   return getHighestPriorityRoleIndex(applicationA) - getHighestPriorityRoleIndex(applicationB);
 }
 
-function createEmptyTeams(applications) {
+function createEmptyTeams(applications: HackerApplicationInstance[]): HackerApplicationInstance[][] {
   const teamCount = Math.ceil(applications.length / TARGET_TEAM_SIZE);
 
   return new Array(teamCount).fill(0).map(() => []);
 }
 
-function assignApplicationsToTeams(applications) {
+function assignApplicationsToTeams(applications: HackerApplicationInstance[]) {
   const applicationsToAssign = applications.slice(0);
   let teamIndex = 0;
   const teams = createEmptyTeams(applicationsToAssign);
@@ -58,7 +68,7 @@ function assignApplicationsToTeams(applications) {
   return teams;
 }
 
-function getApplicationsSortedByRole(unsortedApplications) {
+function getApplicationsSortedByRole(unsortedApplications: HackerApplicationInstance[]) {
   const sortedApplications = unsortedApplications.slice(0);
 
   sortedApplications.sort(applicationDevelopmentComparison);
@@ -66,13 +76,13 @@ function getApplicationsSortedByRole(unsortedApplications) {
   return sortedApplications;
 }
 
-function createTeamAssignments() {
+function createTeamAssignments(): PromiseLike<HackerApplicationInstance[][]> {
   return getAllApplicationsWantingTeams()
     .then(getApplicationsSortedByRole)
     .then(assignApplicationsToTeams);
 }
 
-function getSlackNameForEmail(slackUsers, email) {
+function getSlackNameForEmail(slackUsers, email): string {
   for (let user of slackUsers) {
     if (user.profile.email === email) {
       return user.name;
@@ -82,7 +92,7 @@ function getSlackNameForEmail(slackUsers, email) {
   return null;
 }
 
-function serializeTeams(teams, slackUsers) {
+function serializeTeams(teams, slackUsers): TeamMemberDetails[][] {
   return teams.map(team => team.map(
     application => ({
       applicationId: application.id,
@@ -97,7 +107,7 @@ function serializeTeams(teams, slackUsers) {
   ));
 }
 
-function sendTeamEmail(team) {
+export function sendTeamEmail(team) {
   const teamIdentifier = team.map(member => member.hackerId).join(', ');
   console.log(`Sending team email to ${teamIdentifier}`);
 
@@ -109,14 +119,9 @@ function sendTeamEmail(team) {
   });
 }
 
-function getSerializedTeamAssignments() {
+export function getSerializedTeamAssignments() {
   return Promise.all([
     createTeamAssignments(),
     slack.getUsers(),
   ]).then(([teams, slackUsers]) => serializeTeams(teams, slackUsers));
 }
-
-module.exports = {
-  getSerializedTeamAssignments,
-  sendTeamEmail,
-};
