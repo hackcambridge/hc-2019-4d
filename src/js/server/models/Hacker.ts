@@ -1,13 +1,16 @@
-const Sequelize = require('sequelize');
-const statuses = require('js/shared/status-constants');
-const moment = require('moment');
-const dates = require('js/shared/dates');
-const db = require('./db');
+import * as Sequelize from 'sequelize';
+import * as moment from 'moment';
+
+import db from './db';
+import * as statuses from 'js/shared/status-constants';
+import * as dates from 'js/shared/dates';
+import { HackerApplicationInstance } from './HackerApplication';
+import { TeamMemberInstance } from './TeamMember';
 
 const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
 
 // Return a promise that evaluates to the team application status
-const getTeamApplicationStatus = function (hackerApplication) {
+export function getTeamApplicationStatus(hackerApplication) {
   if (hackerApplication === null) return null;
 
   const TeamMember = require('./TeamMember');
@@ -34,7 +37,7 @@ const getTeamApplicationStatus = function (hackerApplication) {
 };
 
 // Return a promise that evaluates to the response status
-const getResponseStatus = function (hackerApplication) {
+function getResponseStatus(hackerApplication) {
   if (hackerApplication === null) return null;
 
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
@@ -50,13 +53,13 @@ const getResponseStatus = function (hackerApplication) {
 };
 
 // Return a promise that resolves to the RSVP status of the user
-const getRsvpStatus = function (hackerApplication) {
+function getRsvpStatus(hackerApplication) {
   if (hackerApplication === null) return null;
   
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
     if (applicationResponse === null || applicationResponse.response == 'rejected') {
       // User hasn't been invited, we don't need an RSVP
-      return statuses.rsvp.NA;
+      return statuses.rsvp.NOT_APPLICABLE;
     } else {
       return applicationResponse.getResponseRsvp().then(rsvp => {
         if (rsvp === null) {
@@ -75,7 +78,7 @@ const getRsvpStatus = function (hackerApplication) {
 };
 
 // Returns the status of the users personal application (NOTE: not a promise)
-const getApplicationStatus = function (hackerApplication) {
+export function getApplicationStatus(hackerApplication: HackerApplicationInstance) {
   if (hackerApplication === null)
     return statuses.application.INCOMPLETE;
   else
@@ -83,7 +86,7 @@ const getApplicationStatus = function (hackerApplication) {
 };
 
 // Returns a promise that resolves to the ticketed status of the given application
-const getTicketStatus = function (hackerApplication) {
+export function getTicketStatus(hackerApplication: HackerApplicationInstance) {
   if (hackerApplication == null) return null;
 
   return hackerApplication.getApplicationTicket().then(applicationTicket => {
@@ -95,7 +98,38 @@ const getTicketStatus = function (hackerApplication) {
   });
 };
 
-const Hacker = module.exports = db.define('hacker', {
+export class TooYoungError extends Error { }
+
+interface HackerAttributes {
+  id?: number;
+  mlhId: number;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  dateOfBirth: Date;
+  email: string;
+  phoneNumber: string;
+  institution: string;
+  studyLevel: string;
+  course: string;
+  shirtSize: string;
+  dietaryRestrictions: string;
+  specialNeeds?: string;
+}
+
+export interface HackerInstance extends Sequelize.Instance<HackerAttributes>, HackerAttributes {
+  getHackerApplication: () => Promise<HackerApplicationInstance>;
+  hackerApplication?: HackerApplicationInstance;
+
+  getTeam: () => Promise<TeamMemberInstance>;
+}
+
+interface Hacker extends Sequelize.Model<HackerInstance, HackerAttributes> {
+  upsertAndFetchFromMlhUser?: (mlhUser: any) => any;
+  deriveOverallStatus?: (...args: any[]) => any;
+}
+
+const attributes: SequelizeAttributes<HackerAttributes> = {
   // Personal
   mlhId: {
     type: Sequelize.INTEGER,
@@ -154,7 +188,9 @@ const Hacker = module.exports = db.define('hacker', {
   specialNeeds: {
     type: Sequelize.TEXT,
   },
-}, {
+};
+
+const Hacker: Hacker = db.define<HackerInstance, HackerAttributes>('hacker', attributes, {
   tableName: 'hackers',
   instanceMethods: {
     // Add the instance methods
@@ -169,11 +205,9 @@ const Hacker = module.exports = db.define('hacker', {
   }
 });
 
-Hacker.TooYoungError = class TooYoungError extends Error { };
-
 Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
   if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {
-    return Promise.reject(new Hacker.TooYoungError());
+    return Promise.reject(new TooYoungError());
   }
 
   return Hacker.upsert({
@@ -235,3 +269,5 @@ Hacker.deriveOverallStatus = function (applicationStatus, responseStatus, teamAp
     throw new Error('Couldn\'t derive an overall status');
   }
 };
+
+export default Hacker;

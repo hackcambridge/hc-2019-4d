@@ -193,7 +193,7 @@ function renderDashboard(req, res) {
       } else {
         const teamId = teamMember.teamId;
         return TeamMember.findAll({
-          where: {
+          where: <any>{
             teamId: teamId,
             $not: {
               // Exclude the current user

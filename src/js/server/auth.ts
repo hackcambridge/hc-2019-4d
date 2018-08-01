@@ -4,6 +4,7 @@ import * as querystring from 'querystring';
 import * as url from 'url';
 
 import { Hacker } from 'js/server/models';
+import { TooYoungError } from './models/Hacker';
 
 // Authorisation config
 const client_id     = process.env.MYMLH_CLIENT_ID;
@@ -107,7 +108,7 @@ function handleCallback(req, res, next) {
         // Redirect with auth
         res.redirect(redirectTo);
       }).catch(err => {
-        if (err instanceof Hacker.TooYoungError) {
+        if (err instanceof TooYoungError) {
           res.redirect('/auth/error?code=TOO_YOUNG');
           return;
         }

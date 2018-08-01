@@ -1,9 +1,20 @@
-const Sequelize = require('sequelize');
-const moment = require('moment');
-const db = require('./db');
-const Admin = require('./Admin');
+import * as Sequelize from 'sequelize';
+import * as moment from 'moment';
 
-const OauthAccessToken = module.exports = db.define('oauthAccessToken', {
+import db from './db';
+import Admin from './Admin';
+
+interface OauthAccessTokenAttributes {
+  id?: number;
+  token: string;
+  expiresOn: Date;
+  adminId: number;
+}
+
+type OauthAccessTokenInstance = Sequelize.Instance<OauthAccessTokenAttributes>
+  & OauthAccessTokenAttributes;
+
+const attributes: SequelizeAttributes<OauthAccessTokenAttributes> = {
   token: {
     type: Sequelize.UUID,
     unique: true,
@@ -20,9 +31,12 @@ const OauthAccessToken = module.exports = db.define('oauthAccessToken', {
     allowNull: false,
     type: Sequelize.INTEGER,
   },
-}, {
-  tableName: 'oauth-access-tokens',
-});
+};
+
+const OauthAccessToken: any =
+  db.define<OauthAccessTokenInstance, OauthAccessTokenAttributes>('oauthAccessToken', attributes, {
+    tableName: 'oauth-access-tokens',
+  });
 
 OauthAccessToken.belongsTo(Admin);
 
@@ -46,4 +60,4 @@ OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(toke
   });
 };
 
-module.exports = OauthAccessToken;
+export default OauthAccessToken;

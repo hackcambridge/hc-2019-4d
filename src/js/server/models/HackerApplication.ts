@@ -1,8 +1,33 @@
-const Sequelize = require('sequelize');
-const db = require('./db');
-const Hacker = require('./Hacker');
+import * as Sequelize from 'sequelize';
 
-const HackerApplication = module.exports = db.define('hackerApplication', {
+import db from './db';
+import Hacker from './Hacker';
+import { HackerInstance } from './Hacker'
+import { ApplicationTicketInstance } from './ApplicationTicket';
+
+interface HackerApplicationAttributes {
+  id?: number;
+  hackerId: number;
+  applicationSlug: string;
+  cv: string;
+  developmentRoles: string[];
+  learningGoal: string;
+  interests: string;
+  recentAccomplishment: string;
+  countryTravellingFrom: string;
+  links: string;
+  inTeam: boolean;
+  wantsTeam: boolean;
+}
+
+export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
+  getApplicationTicket: () => Promise<ApplicationTicketInstance>;
+
+  hacker?: HackerInstance;
+  hackerApplication?: HackerApplicationInstance;
+}
+
+const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
   hackerId: {
     type: Sequelize.INTEGER,
     unique: true,
@@ -62,9 +87,14 @@ const HackerApplication = module.exports = db.define('hackerApplication', {
     allowNull: false,
     defaultValue: false
   },
-}, {
-  tableName: 'hackers-applications'
-});
+};
+
+const HackerApplication =
+  db.define<HackerApplicationInstance, HackerApplicationAttributes>('hackerApplication', attributes, {
+    tableName: 'hackers-applications'
+  });
 
 HackerApplication.belongsTo(Hacker);
 Hacker.hasOne(HackerApplication);
+
+export default HackerApplication;
