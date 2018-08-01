@@ -1,6 +1,6 @@
-const { makeInstruction } = require('js/server/email');
+import { makeInstruction } from 'js/server/email';
 
-exports.invited = function ({ name, daysValid }) {
+export function invited({ name, daysValid }) {
   return {
     subject: `${name}, you are invited to Hack Cambridge Ternary!`,
     body: {
@@ -22,9 +22,9 @@ exports.invited = function ({ name, daysValid }) {
       outro: 'If you have any questions or concerns, don\'t hesitate to reach out to us by visiting our website.',
     },
   };
-};
+}
 
-exports.notInvited = function ({ name }) {
+export function notInvited({ name }) {
   return {
     subject: 'An update on your Hack Cambridge application',
     body: {
@@ -38,4 +38,4 @@ exports.notInvited = function ({ name }) {
       
     },
   };
-};
+}

@@ -1,16 +1,18 @@
-const { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } = require('js/server/models');
-const { sendEmail } = require('js/server/email');
-const { response } = require('js/shared/status-constants');
-const { applicationHasBeenIndividuallyScored } = require('./score-logic');
-const { INVITATION_VALIDITY_DURATION } = require('./constants');
-const emailTemplates = require('./email-templates');
+import { HackerApplication, ApplicationResponse, Team, TeamMember, Hacker, db } from 'js/server/models';
+import { sendEmail } from 'js/server/email';
+import { response } from 'js/shared/status-constants';
+import { applicationHasBeenIndividuallyScored } from './score-logic';
+import { INVITATION_VALIDITY_DURATION } from './constants';
+import * as emailTemplates from './email-templates';
+import { HackerApplicationInstance } from '../models/HackerApplication';
+import { HackerInstance } from '../models/Hacker';
 
 /**
  * Normalizes teams and non-teams into an array that either contains a
  * single application, or all applications from the team that the input
  * belongs to.
  */
-function normalizeApplicationTeams(application) {
+function normalizeApplicationTeams(application: HackerApplicationInstance): Promise<HackerApplicationInstance[]> {
   return application.getHacker().then(hacker => {
     return TeamMember.findOne({
       where: {
@@ -47,7 +49,7 @@ function normalizeApplicationTeams(application) {
  * Returns a promise that resolves with the applications if all applications have been scored,
  * and rejects if any one of them have not been.
  */
-function checkApplicationsAreScored(applications) {
+function checkApplicationsAreScored(applications: HackerApplicationInstance[]): Promise<HackerApplicationInstance[]> {
   return Promise
     .all(applications.map(applicationHasBeenIndividuallyScored))
     .then(applicationValidities => applicationValidities.every(validity => validity))
@@ -65,7 +67,7 @@ function checkApplicationsAreScored(applications) {
  * 
  * Returns a promise that resolves with whether the application is new or not
  */
-function setResponseForApplication(application, responseStatus, transaction) {
+function setResponseForApplication(application: HackerApplicationInstance, responseStatus, transaction) {
   console.log(`Setting response for application ${application.id} to "${responseStatus}"`);
   const responseContent = {
     response: responseStatus,
@@ -89,7 +91,7 @@ function setResponseForApplication(application, responseStatus, transaction) {
 /**
  * Sets the response for a set of applications in an ACID-safe way
  */
-function setResponseForApplications(applications, responseStatus) {
+function setResponseForApplications(applications: HackerApplicationInstance[], responseStatus): PromiseLike<{ application: HackerApplicationInstance, isApplicationNew: boolean }[]> {
   return db.transaction(transaction =>
     Promise.all(
       applications.map(application => 
@@ -101,7 +103,7 @@ function setResponseForApplications(applications, responseStatus) {
   );
 }
 
-function getEmailForApplicationResponse(hacker, responseStatus) {
+function getEmailForApplicationResponse(hacker: HackerInstance, responseStatus) {
   if (responseStatus === response.INVITED) {
     return emailTemplates.invited({ 
       name: hacker.firstName,
@@ -116,7 +118,7 @@ function getEmailForApplicationResponse(hacker, responseStatus) {
   throw new Error(`Could not find template for response "${responseStatus}"`);
 }
 
-function sendEmailForApplicationResponse(application, responseStatus) {
+function sendEmailForApplicationResponse(application: HackerApplicationInstance, responseStatus) {
   console.log(`Sending response email for application ${application.id}`);
 
   return application.getHacker().then(hacker =>
@@ -134,7 +136,7 @@ function sendEmailForApplicationResponse(application, responseStatus) {
  * - Any applicants in the same team will receive the same status
  * - If this is the application's first response (99% of cases), an email will be sent
  */
-exports.setResponseForApplicationWithChecks = function setResponseForApplicationWithChecks(originalApplication, responseStatus) {
+export function setResponseForApplicationWithChecks(originalApplication, responseStatus) {
   return normalizeApplicationTeams(originalApplication)
     .then(checkApplicationsAreScored)
     .then(applications => setResponseForApplications(applications, responseStatus))

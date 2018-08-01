@@ -23,7 +23,8 @@ interface HackerApplicationAttributes {
 
 export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
   getApplicationResponse: () => Promise<ApplicationResponseInstance>;
-  
+  applicationResponse?: ApplicationResponseInstance;
+
   getApplicationTicket: () => Promise<ApplicationTicketInstance>;
 
   getHacker: () => Promise<HackerInstance>;

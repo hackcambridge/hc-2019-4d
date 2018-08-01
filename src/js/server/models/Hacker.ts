@@ -126,6 +126,7 @@ export interface HackerInstance extends Sequelize.Instance<HackerAttributes>, Ha
   hackerApplication?: HackerApplicationInstance;
 
   getTeam: () => Promise<TeamMemberInstance>;
+  Team?: TeamMemberInstance; // TODO: check should be uppercase
 }
 
 interface Hacker extends Sequelize.Model<HackerInstance, HackerAttributes> {
