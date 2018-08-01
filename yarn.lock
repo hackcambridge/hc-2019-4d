@@ -84,6 +84,10 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/forms@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@types/forms/-/forms-1.3.0.tgz#128b63e41bc409e18c9cf84b90a5f52db30e56e4"
+
 "@types/geojson@^1.0.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.5.tgz#ef9f12277233399c7f32086818a56a84c8952f8f"
@@ -127,6 +131,19 @@
   resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
   dependencies:
     moment "*"
+
+"@types/multer-s3@^2.7.6":
+  version "2.7.6"
+  resolved "https://registry.yarnpkg.com/@types/multer-s3/-/multer-s3-2.7.6.tgz#632a0aff4b3ee1df83761a330188189e071d49a4"
+  dependencies:
+    "@types/multer" "*"
+    aws-sdk "^2.37.0"
+
+"@types/multer@*", "@types/multer@^1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@types/multer/-/multer-1.3.7.tgz#9fe1de9f44f401ff2eaf0d4468cf16935a9c6866"
+  dependencies:
+    "@types/express" "*"
 
 "@types/node-fetch@^2.1.2":
   version "2.1.2"
@@ -179,7 +196,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/validator@*":
+"@types/validator@*", "@types/validator@^9.4.1":
   version "9.4.1"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-9.4.1.tgz#bea5a290e61f1cbf12af3fd878706aeec2ba0087"
 
@@ -625,6 +642,20 @@ autoprefixer@^7.0.0:
     num2fraction "^1.2.2"
     postcss "^6.0.13"
     postcss-value-parser "^3.2.3"
+
+aws-sdk@^2.37.0:
+  version "2.284.1"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.284.1.tgz#1f0d2a6081613c6c9756c0cc7ec21b99495ca7c8"
+  dependencies:
+    buffer "4.9.1"
+    events "1.1.1"
+    ieee754 "1.1.8"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.1.0"
+    xml2js "0.4.19"
 
 aws-sdk@^2.6.15:
   version "2.138.0"
@@ -2062,9 +2093,9 @@ cors@^2.8.1:
     object-assign "^4"
     vary "^1"
 
-country-list@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/country-list/-/country-list-1.1.0.tgz#3ea3608857e17458657d129e1d737e4c2f79775b"
+"country-list@https://github.com/mbale/country-list/archive/ce7f1f3a66a6b4e56879dad5f45886c71174ae30.tar.gz":
+  version "2.1.0"
+  resolved "https://github.com/mbale/country-list/archive/ce7f1f3a66a6b4e56879dad5f45886c71174ae30.tar.gz#f955f233d0623bbc6fbf222b048cde8e5934d831"
 
 crc@3.4.4:
   version "3.4.4"
@@ -2993,7 +3024,7 @@ eventemitter3@1.x.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
 
-events@^1.0.0, events@^1.1.1, events@~1.1.0:
+events@1.1.1, events@^1.0.0, events@^1.1.1, events@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
 
@@ -4267,7 +4298,7 @@ iconv-lite@^0.4.4:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-ieee754@^1.1.4:
+ieee754@1.1.8, ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
@@ -8976,11 +9007,22 @@ xml2js@0.4.17, xml2js@~0.4.0:
     sax ">=0.6.0"
     xmlbuilder "^4.1.0"
 
+xml2js@0.4.19:
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "~9.0.1"
+
 xmlbuilder@4.2.1, xmlbuilder@^4.1.0:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-4.2.1.tgz#aa58a3041a066f90eaa16c2f5389ff19f3f461a5"
   dependencies:
     lodash "^4.0.0"
+
+xmlbuilder@~9.0.1:
+  version "9.0.7"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
 
 xmlhttprequest-ssl@1.5.3:
   version "1.5.3"

@@ -1,8 +1,9 @@
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const crypto = require('crypto');
-const { maxFieldSize } = require('js/shared/apply/application-form');
+import * as aws from 'aws-sdk';
+import * as multer from 'multer';
+import * as multerS3 from 'multer-s3';
+import * as crypto from 'crypto';
+
+import { maxFieldSize } from 'js/shared/apply/application-form';
 
 const s3 = new aws.S3(new aws.Config({
   region: 'eu-west-1'
@@ -11,9 +12,9 @@ const s3 = new aws.S3(new aws.Config({
 /**
  * Middleware that will upload a given CV to S3 in PDF format
  */
-module.exports = multer({
+export default multer({
   storage: multerS3({
-    s3,
+    s3: <any>s3,
     bucket: process.env.S3_BUCKET,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key(req, file, callback) {

@@ -1,9 +1,10 @@
-const { HackerApplication, ApplicationResponse, Team, TeamMember } = require('js/server/models');
-const { sendEmail } = require('js/server/email');
-const emailTemplates = require('./email-templates');
-const generate = require('adjective-adjective-animal');
+import * as generate from 'adjective-adjective-animal';
 
-exports.createApplicationFromForm = function (formData, user) {
+import { HackerApplication, ApplicationResponse, Team, TeamMember } from 'js/server/models';
+import { sendEmail } from 'js/server/email';
+import * as emailTemplates from './email-templates';
+
+export function createApplicationFromForm(formData, user) {
   return generate().then(slug => {
     return HackerApplication.create({
       // Foreign key
@@ -42,9 +43,9 @@ exports.createApplicationFromForm = function (formData, user) {
     }
     
   });
-};
+}
 
-exports.createTeamFromForm = function (formData, user, errors) {
+export function createTeamFromForm(formData, user, errors) {
   const members = new Set();
   const hackerIds = [user.id];
   const applicationSlugs = {
@@ -119,4 +120,4 @@ exports.createTeamFromForm = function (formData, user, errors) {
       }));
     });
   });
-};
+}

@@ -1,4 +1,4 @@
-const { fields, validators, widgets, create: createForm } = require('forms');
+import { fields, validators, widgets, create as createForm } from 'forms';
 
 const cssClasses = {
   error: [ 'error_msg form-error-message' ],
@@ -10,9 +10,9 @@ function extendOptions(options, newOptions) {
   return Object.assign({ }, options, newOptions);
 }
 
-function textField(label, maxlength, options = { }) {
+function textField(label, maxlength, options: any = { }) {
   return fields.string(extendOptions(options, {
-    widget: widgets.text({
+    widget: widgets.text(<any>{
       maxlength,
       classes: [ 'pixel' ],
       placeholder: options.placeholder,
@@ -33,7 +33,7 @@ const requiredField = validators.required('This field is required.');
  * To support client side validation in browsers that don't have sufficient APIs, there is
  * an option to disable file validation.
  */
-exports.createTeamForm = function createTeamForm(defaults = { }) {
+export function createTeamForm(defaults: any = { }) {
   for (const def in defaults) {
     defaults[def] = { value: defaults[def] };
   }
@@ -44,4 +44,4 @@ exports.createTeamForm = function createTeamForm(defaults = { }) {
   }, {
     validatePastFirstError: true,
   });
-};
+}

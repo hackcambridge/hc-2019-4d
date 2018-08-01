@@ -1,7 +1,7 @@
-const tag = require('forms/lib/tag');
-const { fields } = require('forms');
+import * as tag from 'forms/lib/tag';
+import { fields } from 'forms';
 
-exports.field = function field(userOptions = { }) {
+export function field(userOptions: any = { }) {
   const uploadField = fields.string(Object.assign({ 
     widget: exports.widget(userOptions.attrs)
   }, userOptions));
@@ -30,18 +30,18 @@ function inputWidget(type) {
   // TODO: Why are we not using ignoreAttrs like the original function in widgets.js
   // const ignoreAttrs = ['id', 'name', 'class', 'classes', 'type', 'value'];
   const getUserAttrs = (attributesToFilter) => Object.keys(attributesToFilter)
-    .filter(key => ((legalAttrs.includes(key)) || dataRegExp.text(key) || ariaRegExp.test(key)))
+    .filter(key => ((legalAttrs.includes(key)) || dataRegExp.test(key) || ariaRegExp.test(key)))
     .reduce((attributes, key) => {
       attributes[key] = attributesToFilter[key];
       return attributes;
     }, { });
-  return function (options = { }) {
+  return function (options: any = { }) {
     const userAttrs = getUserAttrs(options);
-    const widget = {
+    const widget: any = {
       classes: options.classes,
       type,
       formatValue: value => value || null,
-      toHTML(name, field = { }) {
+      toHTML(name, field: any = { }) {
         return tag('input', [{
           type,
           name: name,
@@ -62,9 +62,9 @@ function inputWidget(type) {
   };
 }
 
-exports.widget = inputWidget('file');
+export const widget = inputWidget('file');
 
-exports.typeValidator = function validator(mimetype, message = `This file must be of type ${mimetype}`) {
+export function typeValidator(mimetype, message = `This file must be of type ${mimetype}`) {
   return (form, field, callback) => {
     if (field.data.mimetype === mimetype) {
       callback();
@@ -74,7 +74,7 @@ exports.typeValidator = function validator(mimetype, message = `This file must b
   };
 };
 
-exports.sizeValidator = function validator(size, message = 'File is too big') {
+export function sizeValidator(size, message = 'File is too big') {
   return (form, field, callback) => {
     if (field.data.size <= size) {
       callback();

@@ -1,14 +1,17 @@
-const { fields, validators, widgets, create: createForm } = require('forms');
-const countries = require('country-list')();
-const validator = require('validator');
-const { field: fileField, typeValidator: fileTypeValidator, sizeValidator: fileSizeValidator } = require('./file-field');
-const { multiCheckboxWidget } = require('./checkbox');
-const { getEarliestGraduationDateToAccept } = require('js/shared/dates');
+import { fields, validators, widgets, create as createForm, FieldParameters } from 'forms';
+import countryList from 'country-list';
+import * as validator from 'validator';
+
+import { field as fileField, typeValidator as fileTypeValidator, sizeValidator as fileSizeValidator } from './file-field';
+import { multiCheckboxWidget } from './checkbox';
+import { getEarliestGraduationDateToAccept } from 'js/shared/dates';
+
+const countries = countryList();
 
 /**
  * Allows us to optimise the list creation by only making it once, lazily.
  */
-let countryChoices = null;
+let countryChoices: { [id: string]: string } = null;
 function createCountryChoices() {
   if (countryChoices == null) {
     countryChoices = {};
@@ -25,7 +28,7 @@ function createCountryChoices() {
   return countryChoices;
 }
 
-exports.maxFieldSize = 1024 * 1024 * 2; // 2mb
+export const maxFieldSize = 1024 * 1024 * 2; // 2mb
 
 const cssClasses = {
   error: [ 'error_msg form-error-message' ],
@@ -37,12 +40,12 @@ const requiredField = validators.required('This field is required.');
 const confirmationAndTermsValidationMessage = 'We need both confirmation of your student status and your acceptance\
   of the terms and conditions, privacy policy, and the MLH Code of Conduct.';
 
-function textareaField(label, maxlength, options = { }) {
+function textareaField(label, maxlength, options: any = { }) {
   const stringFieldValidators = options.validators ? options.validators : [];
   stringFieldValidators.push(validators.maxlength(maxlength));
 
   return fields.string(Object.assign({ }, options, {
-    widget: widgets.textarea({
+    widget: widgets.textarea(<any>{
       maxlength,
       classes: [ 'form-control-longform' ],
       placeholder: options.placeholder,
@@ -59,7 +62,7 @@ function textareaField(label, maxlength, options = { }) {
  * To support client side validation in browsers that don't have sufficient APIs, there is
  * an option to disable file validation.
  */
-exports.createApplicationForm = function createApplicationForm(validateFile = true) {
+export function createApplicationForm(validateFile = true) {
   return createForm({
     cv: fileField({
       label: 'Upload your CV.',
@@ -72,7 +75,7 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       cssClasses,
       row_units: 'three',
     }),
-    countryTravellingFrom: fields.string({
+    countryTravellingFrom: fields.string(<FieldParameters>{
       widget: widgets.select(),
       label: 'Where will you be coming from?',
       note: 'This does not have to be your current country of residence.',
@@ -81,10 +84,10 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       cssClasses,
       row_units: 'three',
     }),
-    development: fields.array({
+    development: fields.array(<FieldParameters>{
       label: 'What role or roles in a team would you be interested in?',
       note: 'Tick all that apply.',
-      widget: multiCheckboxWidget(),
+      widget: <any>multiCheckboxWidget(),
       required: requiredField,
       choices: {
         development: 'Development',
@@ -144,10 +147,10 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       ],
       row_units: 'four',
     }),
-    team: fields.array({
+    team: fields.array(<FieldParameters>{
       label: 'Teams',
       note: 'If you’re applying as part of a team now, we won’t process your application until you’ve been entered into a team using the team application form. This can be submitted by any member of the team after every team member has submitted this form.<br>If you’re applying individually, but want to be part of a team, we can suggest a team for you before the event. You can always change team by contacting us.',
-      widget: multiCheckboxWidget(),
+      widget: <any>multiCheckboxWidget(),
       choices: {
         team_apply: 'I’m applying as part of a team. One team member will fill out the team application form.',
         team_placement: 'I’m not applying as part of a team, but want to be put in a team.',
@@ -164,10 +167,10 @@ exports.createApplicationForm = function createApplicationForm(validateFile = tr
       cssClasses,
       row_units: 'four half',
     }),
-    confirmations: fields.array({
+    confirmations: fields.array(<FieldParameters>{
       label: 'Student status confirmation and terms and conditions',
       note: 'We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, and the MLH Code of Conduct.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>',
-      widget: multiCheckboxWidget(),
+      widget: <any>multiCheckboxWidget(),
       required: validators.required(confirmationAndTermsValidationMessage),
       choices: {
         student_status: `I’m currently a student, or I graduated after ${getEarliestGraduationDateToAccept().format('LL')}.`,

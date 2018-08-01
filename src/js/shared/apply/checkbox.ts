@@ -1,6 +1,6 @@
-const tag = require('forms/lib/tag');
+import * as tag from 'forms/lib/tag';
 
-exports.checkboxWidget = function checkboxWidget(label, { value = 'on' } = { }) {
+export function checkboxWidget(label, { value = 'on' } = { }) {
   return {
     toHTML(name, field) {
       return tag('label', { classes: [ 'form-label-checkbox' ]}, tag('input', {
@@ -14,7 +14,7 @@ exports.checkboxWidget = function checkboxWidget(label, { value = 'on' } = { }) 
   };
 };
 
-exports.multiCheckboxWidget = function multicheckboxWidget(options = { }) {
+export function multiCheckboxWidget(options = { }) {
   return {
     toHTML(name, field) {
       return Object.keys(field.choices).reduce((result, choiceKey) => {

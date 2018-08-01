@@ -1,9 +1,9 @@
-const { Hacker } = require('js/server/models');
-const statuses = require('js/shared/status-constants');
+import { Hacker } from 'js/server/models';
+import * as statuses from 'js/shared/status-constants';
 
-const unfinishedApplicationKind = { INDIVIDUAL: 'individual', TEAM_ONLY: 'team-only' };
+export const unfinishedApplicationKind = { INDIVIDUAL: 'individual', TEAM_ONLY: 'team-only' };
 
-function getHackersWithUnfinishedApplications(kind) {
+export function getHackersWithUnfinishedApplications(kind) {
   return Hacker.findAll().then(hackers =>
     Promise.all(hackers.map(hacker =>
       hacker.getHackerApplication().then(hackerApplication =>
@@ -25,5 +25,3 @@ function getHackersWithUnfinishedApplications(kind) {
     )).then(hackerResults => hackerResults.filter(result => result !== null))
   );
 }
-
-module.exports = { unfinishedApplicationKind, getHackersWithUnfinishedApplications };
