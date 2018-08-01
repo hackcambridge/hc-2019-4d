@@ -10,34 +10,31 @@ import { TeamMemberInstance } from './TeamMember';
 const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
 
 // Return a promise that evaluates to the team application status
-export function getTeamApplicationStatus(hackerApplication) {
+export async function getTeamApplicationStatus(hackerApplication: HackerApplicationInstance) {
   if (hackerApplication === null) return null;
 
-  const TeamMember = require('./TeamMember');
-  return TeamMember.findOne({
-    where: { hackerId: hackerApplication.hackerId }
-  }).then(teamApplication => {
-    if (teamApplication === null) {
-      if (hackerApplication.wantsTeam) {
-        // User wants us to place them in team
-        return statuses.teamApplication.WANTS_TEAM;
-      }
-
-      if (!hackerApplication.inTeam) {
-        // User didn't apply as part of a team
-        return statuses.teamApplication.NOT_APPLICABLE;
-      }
-      
-      return statuses.teamApplication.INCOMPLETE;
-    } else {
-      // User is listed in a team application
-      return statuses.teamApplication.COMPLETE;
+  const hacker = await hackerApplication.getHacker();
+  const team = await hacker.getTeam();
+  if (team === null) {
+    if (hackerApplication.wantsTeam) {
+      // User wants us to place them in team
+      return statuses.teamApplication.WANTS_TEAM;
     }
-  });
-};
+
+    if (!hackerApplication.inTeam) {
+      // User didn't apply as part of a team
+      return statuses.teamApplication.NOT_APPLICABLE;
+    }
+    
+    return statuses.teamApplication.INCOMPLETE;
+  } else {
+    // User is listed in a team application
+    return statuses.teamApplication.COMPLETE;
+  }
+}
 
 // Return a promise that evaluates to the response status
-function getResponseStatus(hackerApplication) {
+function getResponseStatus(hackerApplication: HackerApplicationInstance) {
   if (hackerApplication === null) return null;
 
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
@@ -50,10 +47,10 @@ function getResponseStatus(hackerApplication) {
       return statuses.response.REJECTED;
     }
   });
-};
+}
 
 // Return a promise that resolves to the RSVP status of the user
-function getRsvpStatus(hackerApplication) {
+function getRsvpStatus(hackerApplication: HackerApplicationInstance) {
   if (hackerApplication === null) return null;
   
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
@@ -75,7 +72,7 @@ function getRsvpStatus(hackerApplication) {
       });
     }
   });
-};
+}
 
 // Returns the status of the users personal application (NOTE: not a promise)
 export function getApplicationStatus(hackerApplication: HackerApplicationInstance) {
@@ -83,7 +80,7 @@ export function getApplicationStatus(hackerApplication: HackerApplicationInstanc
     return statuses.application.INCOMPLETE;
   else
     return statuses.application.COMPLETE;
-};
+}
 
 // Returns a promise that resolves to the ticketed status of the given application
 export function getTicketStatus(hackerApplication: HackerApplicationInstance) {
@@ -96,7 +93,7 @@ export function getTicketStatus(hackerApplication: HackerApplicationInstance) {
       return statuses.ticket.HAS_TICKET;
     }
   });
-};
+}
 
 export class TooYoungError extends Error { }
 
@@ -118,6 +115,13 @@ interface HackerAttributes {
 }
 
 export interface HackerInstance extends Sequelize.Instance<HackerAttributes>, HackerAttributes {
+  getTeamApplicationStatus: (hackerApplication: HackerApplicationInstance) => string, // TODO: refine
+  getResponseStatus: (hackerApplication: HackerApplicationInstance) => string, // TODO: refine
+  getApplicationStatus: (hackerApplication: HackerApplicationInstance) => string, // TODO: refine
+  getRsvpStatus: (hackerApplication: HackerApplicationInstance) => string, // TODO: refine
+  getTicketStatus: (hackerApplication: HackerApplicationInstance) => string, // TODO: refine
+  log: (logText: string) => void;
+
   getHackerApplication: () => Promise<HackerApplicationInstance>;
   hackerApplication?: HackerApplicationInstance;
 

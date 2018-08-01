@@ -13,11 +13,12 @@ import { rsvpToResponse } from 'js/server/attendance/logic';
 import * as applyLogic from './logic';
 import fileUploadMiddleware from './file-upload';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
+import { HackerInstance } from '../models/Hacker.js';
 
 const applyRouter = express.Router();
 
 interface UserRequest extends express.Request {
-  user: any;
+  user: HackerInstance;
 }
 
 applyRouter.get('/', (req: UserRequest, res) => {
@@ -141,7 +142,7 @@ applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
   }
 });
 
-applyRouter.get('/dashboard', auth.requireAuth, (req, res) => {
+applyRouter.get('/dashboard', auth.requireAuth, (req: UserRequest, res) => {
   renderDashboard(req, res);
 });
 
@@ -173,7 +174,7 @@ applyRouter.get('/team', (req: UserRequest, res) => {
   });
 });
 
-function renderDashboard(req, res) {
+function renderDashboard(req: UserRequest, res) {
   const content = utils.loadResource('dashboard');
   let application;
   let applicationStatus;

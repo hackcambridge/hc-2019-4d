@@ -13,7 +13,7 @@ interface ResponseRsvpAttributes {
   applicationResponseId: number;
 }
 
-type ResponseRsvpInstance = Sequelize.Instance<ResponseRsvpAttributes>
+export type ResponseRsvpInstance = Sequelize.Instance<ResponseRsvpAttributes>
   & ResponseRsvpAttributes;
 
 const attributes: SequelizeAttributes<ResponseRsvpAttributes> = {

@@ -3,6 +3,7 @@ import * as Sequelize from 'sequelize';
 import db from './db';
 import HackerApplication from './HackerApplication';
 import { response } from 'js/shared/status-constants';
+import { ResponseRsvpInstance } from './ResponseRsvp';
 
 interface ApplicationResponseAttributes {
   id?: number;
@@ -10,8 +11,9 @@ interface ApplicationResponseAttributes {
   hackerApplicationId?: number;
 }
 
-type ApplicationResponseInstance = Sequelize.Instance<ApplicationResponseAttributes> &
-  ApplicationResponseAttributes;
+export interface ApplicationResponseInstance extends Sequelize.Instance<ApplicationResponseAttributes>, ApplicationResponseAttributes {
+  getResponseRsvp: () => Promise<ResponseRsvpInstance>;
+}
 
 const attributes: SequelizeAttributes<ApplicationResponseAttributes> = {
   response: {
