@@ -1,8 +1,9 @@
-const { Router } = require('express');
-const { db, Hacker, ApplicationReview, HackerApplication, ApplicationResponse, ResponseRsvp, ApplicationTicket } = require('js/server/models');
-const { response } = require('js/shared/status-constants');
+import { Router } from 'express';
 
-const statsRouter = new Router();
+import { db, Hacker, ApplicationReview, HackerApplication, ApplicationResponse, ResponseRsvp, ApplicationTicket } from 'js/server/models';
+import { response } from 'js/shared/status-constants';
+
+const statsRouter = Router();
 
 statsRouter.get('/', (req, res, next) => {
 
@@ -88,4 +89,4 @@ statsRouter.get('/', (req, res, next) => {
     ).catch(next);
 });
 
-module.exports = statsRouter;
+export default statsRouter;

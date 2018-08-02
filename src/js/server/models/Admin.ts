@@ -9,7 +9,7 @@ interface AdminAttributes {
   lowCommittal?: boolean; // false by default
 }
 
-type AdminInstance = Sequelize.Instance<AdminAttributes> & AdminAttributes;
+export type AdminInstance = Sequelize.Instance<AdminAttributes> & AdminAttributes;
 
 const attributes: SequelizeAttributes<AdminAttributes> = {
   name: {

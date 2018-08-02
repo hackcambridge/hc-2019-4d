@@ -1,14 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const errors = require('./errors');
-const auth = require('./auth');
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+
+import * as errors from './errors';
+import * as auth from './auth';
 
 /**
  * The hcapi is a separate express app to completely separate anything going on in our main website
  */
 const hcapi = express();
 
-hcapi.options(auth.middleware.cors);
+hcapi.options('*', auth.middleware.cors);
 hcapi.use(auth.middleware.cors);
 hcapi.use(auth.middleware.bearer);
 hcapi.use(bodyParser.json());
@@ -25,4 +26,4 @@ hcapi.use('/tickets', require('./tickets'));
 hcapi.use(errors.middleware.notFound);
 hcapi.use(errors.middleware.error);
 
-module.exports = hcapi;
+export default hcapi;

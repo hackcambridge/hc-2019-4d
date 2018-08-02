@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const { OauthAccessToken } = require('js/server/models');
+import { Router } from 'express';
+import { OauthAccessToken } from 'js/server/models';
 
-const tokensRouter = new Router();
+const tokensRouter = Router();
 
 /**
  * Gets information for a particular access token
@@ -23,4 +23,4 @@ tokensRouter.get('/:token', (req, res, next) => {
   }).catch(next);
 });
 
-module.exports = tokensRouter;
+export default tokensRouter;

@@ -1,6 +1,7 @@
-const { Router } = require('express');
-const { Admin, HackerApplication, ApplicationReview } = require('js/server/models');
-const reviewLogic = require('js/server/review/logic');
+import { Router } from 'express';
+
+import { Admin, HackerApplication, ApplicationReview } from 'js/server/models';
+import * as reviewLogic from 'js/server/review/logic';
 
 /**
  * The amount to increase admin goals by to allow for the fact that
@@ -8,7 +9,7 @@ const reviewLogic = require('js/server/review/logic');
  */
 const GOAL_BOOST = 1.2;
 
-const adminsRouter = new Router();
+const adminsRouter = Router();
 
 adminsRouter.get('/by-email/:email', (req, res, next) => {
   Admin
@@ -134,4 +135,4 @@ adminsRouter.get('/:adminId/stats', (req, res, next) => {
     .catch(next);
 });
 
-module.exports = adminsRouter;
+export default adminsRouter;

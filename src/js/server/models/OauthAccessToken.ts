@@ -2,7 +2,7 @@ import * as Sequelize from 'sequelize';
 import * as moment from 'moment';
 
 import db from './db';
-import Admin from './Admin';
+import Admin, { AdminInstance } from './Admin';
 
 interface OauthAccessTokenAttributes {
   id?: number;
@@ -11,8 +11,13 @@ interface OauthAccessTokenAttributes {
   adminId: number;
 }
 
-type OauthAccessTokenInstance = Sequelize.Instance<OauthAccessTokenAttributes>
-  & OauthAccessTokenAttributes;
+interface OauthAccessTokenInstance extends Sequelize.Instance<OauthAccessTokenAttributes>, OauthAccessTokenAttributes {
+  admin?: AdminInstance;
+}
+
+interface OauthAccessToken extends Sequelize.Model<OauthAccessTokenInstance, OauthAccessTokenAttributes> {
+  getAdminFromTokenString?: (token: string) => PromiseLike<AdminInstance>;
+}
 
 const attributes: SequelizeAttributes<OauthAccessTokenAttributes> = {
   token: {
@@ -33,7 +38,7 @@ const attributes: SequelizeAttributes<OauthAccessTokenAttributes> = {
   },
 };
 
-const OauthAccessToken: any =
+const OauthAccessToken: OauthAccessToken =
   db.define<OauthAccessTokenInstance, OauthAccessTokenAttributes>('oauthAccessToken', attributes, {
     tableName: 'oauth-access-tokens',
   });

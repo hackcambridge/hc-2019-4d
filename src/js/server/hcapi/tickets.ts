@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const { getTicketsWithApplicantInfo } = require('js/server/attendance/logic');
+import { Router } from 'express';
+import { getTicketsWithApplicantInfo } from 'js/server/attendance/logic';
 
-const ticketsRouter = new Router();
+const ticketsRouter = Router();
 
 /**
  * Gets all tickets with applicant info
@@ -13,4 +13,4 @@ ticketsRouter.get('/', (req, res, next) => {
     }).catch(next);
 });
 
-module.exports = ticketsRouter;
+export default ticketsRouter;

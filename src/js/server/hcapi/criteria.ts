@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const { ReviewCriterion } = require('js/server/models');
+import { Router } from 'express';
+import { ReviewCriterion } from 'js/server/models';
 
-const criteriaRouter = new Router();
+const criteriaRouter = Router();
 
 /**
  * Gets all review criteria
@@ -12,4 +12,4 @@ criteriaRouter.get('/', (req, res, next) => {
   }).catch(next);
 });
 
-module.exports = criteriaRouter;
+export default criteriaRouter;

@@ -1,9 +1,10 @@
-const { Router } = require('express');
-const responseLogic = require('js/server/review/response-logic');
-const { Hacker, HackerApplication } = require('js/server/models');
-const { getApplicationsWithScores } = require('js/server/review/score-logic');
+import { Router } from 'express';
 
-const applicationsRouter = new Router();
+import * as responseLogic from 'js/server/review/response-logic';
+import { Hacker, HackerApplication } from 'js/server/models';
+import { getApplicationsWithScores } from 'js/server/review/score-logic';
+
+const applicationsRouter = Router();
 
 applicationsRouter.get('/', (req, res, next) => {
   getApplicationsWithScores().then(applications => {
@@ -67,4 +68,4 @@ applicationsRouter.post('/:applicationId/response', (req, res, next) => {
   }).catch(next);
 });
 
-module.exports = applicationsRouter;
+export default applicationsRouter;
