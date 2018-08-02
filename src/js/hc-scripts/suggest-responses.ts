@@ -37,7 +37,7 @@ function createComparisonFunction(inviteType) {
   throw new Error(`Could not find comparison function for invite type ${inviteType}`);
 }
 
-module.exports = {
+export default {
   command: 'suggest-responses <type> <limit> <outputfile>',
   desc: 'Suggest a set of people to respond to and saves them to a file',
   aliases: [],

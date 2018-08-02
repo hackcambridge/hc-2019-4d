@@ -318,4 +318,4 @@ function checkApplicationsOpen(req, res, next) {
   next();
 }
 
-module.exports = applyRouter;
+export default applyRouter;

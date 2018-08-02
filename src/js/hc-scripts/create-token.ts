@@ -1,7 +1,7 @@
 import { Admin, OauthAccessToken } from 'js/server/models';
 import { createHandler } from './utils';
 
-module.exports = {
+export default {
   command: 'create-token <email>',
   desc: 'Create an oauth token for an admin',
   aliases: [],

@@ -23,7 +23,7 @@ function createTeamQueue(teamsToProcess) {
   };
 }
 
-module.exports = {
+export default {
   command: 'send <inputfile>',
   desc: 'Take any pending invitations that are too old and expire them',
   aliases: [],

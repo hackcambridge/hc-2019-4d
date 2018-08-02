@@ -45,7 +45,7 @@ function processResponseQueue(applications, responseType) {
     });
 }
 
-module.exports = {
+export default {
   command: 'respond <type> <inputfile>',
   desc: 'Takes a set of applications from a file and responds to them',
   aliases: [],

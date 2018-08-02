@@ -26,7 +26,7 @@ function createExpiryQueue(responsesToProcess, dryRun) {
   };
 }
 
-module.exports = {
+export default {
   command: 'expire-invitations [--dryRun]',
   desc: 'Take any pending invitations that are too old and expire them',
   aliases: [],

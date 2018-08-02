@@ -163,8 +163,8 @@ app.use(errors.middleware);
 // Start server
 app.set('port', (process.env.PORT || 3000));
 
-module.exports = app;
-
 server.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
 });
+
+export default app;

@@ -14,7 +14,7 @@ function getEmailsOfHackersWithUnfinishedApplications(kind) {
   });
 }
 
-module.exports = {
+export default {
   command: 'unfinished-applications <kind>',
   desc: 'Get emails of all hackers who started an application but didn\'t finish it',
   aliases: [],

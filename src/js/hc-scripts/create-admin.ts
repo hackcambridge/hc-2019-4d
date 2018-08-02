@@ -1,7 +1,7 @@
 import { Admin } from 'js/server/models';
 import { createHandler } from './utils';
 
-module.exports = {
+export default {
   command: 'create-admin',
   desc: 'Create a new admin user',
   aliases: [],

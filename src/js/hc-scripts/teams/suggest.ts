@@ -4,7 +4,7 @@ import * as path from 'path';
 import { getSerializedTeamAssignments } from 'js/server/attendance/team-logic';
 import { createHandler } from '../utils';
 
-module.exports = {
+export default {
   command: 'suggest <outputfile>',
   desc: 'Suggest allocations for teams',
   aliases: [],

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   command: 'teams',
   desc: 'Operate on teams',
   aliases: [],

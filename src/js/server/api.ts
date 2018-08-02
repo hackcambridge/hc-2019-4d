@@ -11,7 +11,7 @@ const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
 const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 
-const api = module.exports = express.Router();
+const api = express.Router();
 api.use(bodyParser.json());
 api.use(bodyParser.urlencoded({ extended: true }));
 
@@ -78,3 +78,5 @@ api.use((err, req, res, next) => {
     error: err.message || 'An error occurred'
   });
 });
+
+export default api;

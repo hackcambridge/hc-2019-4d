@@ -46,7 +46,7 @@ function downloadCvs(basePath) {
     });
 }
 
-module.exports = {
+export default {
   command: 'download-cvs <outputfolder>',
   desc: 'Downloads CVs for ticketed hackers to a folder',
   aliases: [],

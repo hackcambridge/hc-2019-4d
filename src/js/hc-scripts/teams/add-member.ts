@@ -2,7 +2,7 @@ import { TeamMember } from 'js/server/models';
 import { getHackerFromEmailOrApplicationSlug } from './utils';
 import { createHandler } from '../utils';
 
-module.exports = {
+export default {
   command: 'add-member teamId <email|applicationId>',
   desc: 'Add a hacker to a team',
   aliases: [],
