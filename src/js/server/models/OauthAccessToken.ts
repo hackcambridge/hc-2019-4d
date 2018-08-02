@@ -6,8 +6,8 @@ import Admin, { AdminInstance } from './Admin';
 
 interface OauthAccessTokenAttributes {
   id?: number;
-  token: string;
-  expiresOn: Date;
+  token?: string;
+  expiresOn?: Date;
   adminId: number;
 }
 
