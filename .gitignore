@@ -9,6 +9,7 @@ assets/dist
 *.key
 
 npm-debug.log
+yarn-error.log
 
 # macOS
 .DS_Store

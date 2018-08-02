@@ -120,7 +120,6 @@
     "yargs": "^9.0.1"
   },
   "devDependencies": {
-    "eslint": "^4.8.0",
     "gulp-eslint": "^4.0.0",
     "mocha": "^4.0.1",
     "sequelize-cli": "^3.0.0"

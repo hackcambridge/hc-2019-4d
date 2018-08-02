@@ -14,7 +14,6 @@ let nodemon = require('nodemon');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
-const eslint = prod ? null : require('gulp-eslint');
 const ts = require('gulp-typescript');
 
 console.log(argv);
@@ -101,13 +100,6 @@ gulp.task('assets', () => {
     .pipe(bs.stream({ once: true }));
 });
 
-gulp.task('lint', () => {
-  return gulp.src(['**/*.js', '!node_modules/**', '!assets/dist/**.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
-
 gulp.task('rev', () => {
   return gulp.src('assets/dist/**')
     .pipe($.revAll.revision({
@@ -158,13 +150,7 @@ gulp.task('serve', ['watch'], () => {
 });
 
 gulp.task('build', (cb) => {
-  let args = ['clean'];
-
-  if (!prod) {
-    args.push('lint');
-  }
-
-  args.push('assets', 'compile', 'copy', 'scripts', 'styles');
+  let args = ['clean', 'assets', 'compile', 'copy', 'scripts', 'styles'];
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd
