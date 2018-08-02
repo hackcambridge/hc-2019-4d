@@ -1,5 +1,13 @@
 import * as dotenv from 'dotenv';
 import * as yargs from 'yargs';
+import createAdmin from './create-admin';
+import createToken from './create-token';
+import unfinishedApplications from './unfinished-applications';
+import suggestResponses from './suggest-responses';
+import respond from './respond';
+import expireInvitations from './expire-invitations';
+import downloadCvs from './download-cvs';
+import teams from './teams';
 
 dotenv.load();
 
@@ -8,14 +16,14 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 yargs
-  .command(require('./create-admin'))
-  .command(require('./create-token'))
-  .command(require('./unfinished-applications'))
-  .command(require('./suggest-responses'))
-  .command(require('./respond'))
-  .command(require('./expire-invitations'))
-  .command(require('./download-cvs'))
-  .command(require('./teams'))
+  .command(createAdmin)
+  .command(createToken)
+  .command(unfinishedApplications)
+  .command(suggestResponses)
+  .command(respond)
+  .command(expireInvitations)
+  .command(downloadCvs)
+  .command(teams)
   .demand(1, 'Supply a command.')
   .help()
   .argv;

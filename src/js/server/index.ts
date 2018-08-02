@@ -10,6 +10,9 @@ import * as colors from 'js/shared/colors';
 import * as metadata from 'js/shared/metadata';
 import * as currentEvent from 'js/server/live/current-event';
 import { ServeStaticOptions } from '../../../node_modules/@types/serve-static';
+import apiRouter from './api';
+import applyRouter from './apply/router';
+import hcapiRouter from './hcapi';
 
 const app = express();
 let server = require('http').Server(app);
@@ -58,9 +61,9 @@ if (process.env.BS_SNIPPET) {
 // Routes
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', require('./api'));
-app.use('/apply', require('./apply/router'));
-app.use('/hcapi', require('./hcapi'));
+app.use('/api', apiRouter);
+app.use('/apply', applyRouter);
+app.use('/hcapi', hcapiRouter);
 
 app.get('/', (req, res) => {
   res.render('index.html', {
