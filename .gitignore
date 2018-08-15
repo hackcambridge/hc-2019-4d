@@ -1,5 +1,6 @@
 .env
 node_modules
+dist
 assets/dist
 *~
 
@@ -8,6 +9,7 @@ assets/dist
 *.key
 
 npm-debug.log
+yarn-error.log
 
 # macOS
 .DS_Store
