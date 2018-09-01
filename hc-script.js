@@ -1,3 +1,3 @@
 require('dotenv').load();
 
-require('js/hc-scripts');
+require('./dist/js/hc-scripts');
