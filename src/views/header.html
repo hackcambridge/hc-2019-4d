@@ -1,12 +1,6 @@
-<header class="{{ headerColor }}">
-    <div class="container {{ layoutMode }}">
-        <div class="two unit row">
-            <div class="two unit column">
-                <img draggable="false" src="{{ asset('images/logo.svg') }}" alt="Hack Cambridge Logo"/>
-            </div>
-            <div id="intro-text" class="unit column grows">
-                <h2 id="hack-cambridge-wordmark">Hack Cambridge<br><span class="pixel">Ternary</span></h2>
-            </div>
-        </div>
-    </div>
+<header color="{{ headerColor }}" layout="{{ layoutMode }}" grid="grid" rows="2.5">
+  <img columns="3.0" draggable="false" src="{{ asset('images/logo.svg') }}" alt="Hack Cambridge Logo"/>
+  <div columns="5.5">
+    <h1 id="wordmark">Hack Cambridge</h1>
+  </div>
 </header>
