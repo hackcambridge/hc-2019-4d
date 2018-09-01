@@ -1,6 +1,3 @@
-#splash-hack-cambridge-logo-object {
-    --min-width: var(--two);
-}
 #mlh-trust-badge {
     display: block;
     max-width: 100px;
@@ -19,12 +16,6 @@
     display: none;
 }
 
-@media (max-width: 595pt) {
-    #splash-hack-cambridge-logo-object {
-        max-width: var(--two);
-    }
-}
-
 @media (min-width: 1063px) and (max-width: 1280px) {
     #mlh-trust-badge {
         left: var(--one);
@@ -32,16 +23,7 @@
 }
 
 @media (max-width: 342pt) {
-    div.container.width {
-        margin: 0 calc(57 / 342 * 100vw);
-    }
     #mlh-trust-badge {
         right: calc(57 / 342 * 100vw);
-    }
-}
-
-@media (pointer: coarse) {
-    .submit {
-        display: none;
     }
 }

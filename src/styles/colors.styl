@@ -1,0 +1,53 @@
+/* Colour variables */
+
+:root {
+  --red: rgb(235,51,0);
+}
+
+/* Sections */
+
+section, header, footer {
+  --color-1: white;
+  --color-2: black;
+  --color-3: var(--red);
+}
+section[color="black"], header[color="black"], footer[color="black"] {
+  --color-1: black;
+  --color-2: white;
+  --color-3: var(--red);
+}
+section[color="red"], header[color="red"], footer[color="red"] {
+  --color-1: var(--red);
+  --color-2: white;
+  --color-3: black;
+}
+section, header, footer {
+  --primary-color: var(--color-1);
+  --secondary-color: var(--color-2);
+  --accent-color: var(--color-3);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/* Selections */
+
+::selection {
+  background: var(--accent-color);
+  color: var(--primary-color);
+}
+-moz-::selection {
+  background: var(--accent-color);
+  color: var(--primary-color);
+}
+
+/* Link area */
+
+section.links:hover, section.links:hover * {
+  --primary-color: var(--color-2);
+  --secondary-color: var(--color-3);
+  --accent-color: var(--color-1);
+}
+
+h4 {
+  border-top-color: var(--secondary-color);
+}
