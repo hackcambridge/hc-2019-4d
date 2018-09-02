@@ -3,7 +3,7 @@
 :root {
   --unit: 57pt;
   --gutter: 13pt;
-  --column-gutter: 24pt
+  --column-gutter: 24pt;
   --rows: 0;
   --half-row: 0;
   --columns: 0;
