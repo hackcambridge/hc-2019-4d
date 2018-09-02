@@ -31,7 +31,7 @@ gulp.task('clean', () => {
 
 // css
 gulp.task('styles', () => {
-  gulp.src('assets/**/*.css')
+  gulp.src('assets/styles/*.css')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.concatCss("styles/all-stylesheets.css"))
     .pipe($.autoprefixer())
@@ -101,7 +101,7 @@ gulp.task('wait', (cb) => {
 
 gulp.task('watch', ['build'], () => {
   gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
-  gulp.watch('assets/**/*.css', ['styles']);
+  gulp.watch('assets/styles/**', ['styles']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);
 });
