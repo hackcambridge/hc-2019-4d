@@ -11,6 +11,7 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
+let concatCss = require('gulp-concat-css');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -30,25 +31,9 @@ gulp.task('clean', () => {
 
 // css
 gulp.task('styles', () => {
-  gulp.src('src/styles/all-stylesheets.styl')
+  gulp.src('assets/**/*.css')
     .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.stylus({
-      'include css': true,
-      paths: ['./node_modules'],
-
-    }))
-    .pipe($.autoprefixer())
-    .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles'))
-    .pipe(bs.stream());
-
-  gulp.src('src/styles/ternary-cube.styl')
-    .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.stylus({
-      'include css': true,
-      paths: ['./node_modules'],
-
-    }))
+    .pipe($.concatCss("styles/all-stylesheets.css"))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
@@ -116,7 +101,7 @@ gulp.task('wait', (cb) => {
 
 gulp.task('watch', ['build'], () => {
   gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
-  gulp.watch('src/styles/**', ['styles']);
+  gulp.watch('assets/**/*.css', ['styles']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);
 });
