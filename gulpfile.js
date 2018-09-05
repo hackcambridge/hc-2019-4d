@@ -11,6 +11,7 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
+let yaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -53,6 +54,12 @@ gulp.task('styles', () => {
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
+});
+
+// YAML
+gulp.task('yaml', () => {
+  gulp.src('./src/resources/*.yml')
+    .pipe(yaml({ html: false }));
 });
 
 // js
@@ -150,7 +157,7 @@ gulp.task('serve', ['watch'], () => {
 });
 
 gulp.task('build', (cb) => {
-  let args = ['clean', 'assets', 'compile', 'copy', 'scripts', 'styles'];
+  let args = ['clean', 'assets', 'compile', 'copy', 'scripts', 'styles', 'yaml'];
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd
