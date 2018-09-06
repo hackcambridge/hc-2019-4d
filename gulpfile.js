@@ -25,12 +25,12 @@ let onError = function onError(err) {
   this.emit('end');
 };
 
-gulp.task('clean', () => {
+gulp.task('clobber-assets', () => {
   return del(['dist', 'assets/dist']);
 });
 
 // css
-gulp.task('styles', () => {
+gulp.task('preprocess-css', () => {
   gulp.src('src/styles/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe($.stylus({
@@ -57,13 +57,13 @@ gulp.task('styles', () => {
 });
 
 // YAML
-gulp.task('yaml', () => {
+gulp.task('validate-yaml', () => {
   gulp.src('./src/resources/*.yml')
     .pipe(yaml({ html: false }));
 });
 
 // js
-gulp.task('scripts', () => {
+gulp.task('browserify', () => {
   let gulpBrowserify = function (fileIn, fileOut) {
     return browserify({
       entries: fileIn,
@@ -85,14 +85,14 @@ gulp.task('scripts', () => {
     .pipe(bs.stream());
 });
 
-gulp.task('compile', () => {
+gulp.task('compile-typescript', () => {
   const tsProject = ts.createProject('tsconfig.json');
   return tsProject.src()
     .pipe(tsProject())
     .js.pipe(gulp.dest('dist'));
 });
 
-gulp.task('copy', () => {
+gulp.task('copy-source', () => {
   const paths = ['src/**', '!src/**/*.ts'];
   return gulp.src(paths)
     .pipe(gulp.dest('dist'));
@@ -101,13 +101,13 @@ gulp.task('copy', () => {
 let assetPath = ['assets/**', '!assets/dist/**'];
 
 // other assets
-gulp.task('assets', () => {
+gulp.task('copy-assets', () => {
   return gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
     .pipe(bs.stream({ once: true }));
 });
 
-gulp.task('rev', () => {
+gulp.task('rev-assets', () => {
   return gulp.src('assets/dist/**')
     .pipe($.revAll.revision({
       includeFilesInManifest: ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg']
@@ -121,14 +121,14 @@ gulp.task('wait', (cb) => {
   setTimeout(cb, 2000);
 });
 
-gulp.task('watch', ['build'], () => {
+gulp.task('watch-source', ['build'], () => {
   gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
   gulp.watch('src/styles/**', ['styles']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);
 });
 
-gulp.task('serve', ['watch'], () => {
+gulp.task('serve', ['watch-source'], () => {
   let runnode = function (env = {}) {
     nodemon({
       script: 'dist/index.js',
@@ -157,12 +157,12 @@ gulp.task('serve', ['watch'], () => {
 });
 
 gulp.task('build', (cb) => {
-  let args = ['clean', 'assets', 'compile', 'copy', 'scripts', 'styles', 'yaml'];
+  let args = ['clobber-assets', 'copy-assets', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd
     args.push('wait');
-    args.push('rev');
+    args.push('rev-assets');
   }
 
   args.push(cb);
