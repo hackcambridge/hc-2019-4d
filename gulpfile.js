@@ -31,7 +31,8 @@ gulp.task('clobber-assets', () => {
   return del(['dist', 'assets/dist']);
 });
 
-// css
+// CSS
+
 gulp.task('preprocess-css', () => {
   gulp.src('src/styles/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
@@ -59,12 +60,14 @@ gulp.task('preprocess-css', () => {
 });
 
 // YAML
+
 gulp.task('validate-yaml', () => {
   gulp.src('./src/resources/*.yml')
     .pipe(yaml({ html: false }));
 });
 
-// js
+// JS
+
 gulp.task('browserify', () => {
   let gulpBrowserify = function (fileIn, fileOut) {
     return browserify({
@@ -100,8 +103,8 @@ gulp.task('copy-source', () => {
     .pipe(gulp.dest('dist'));
 });
 
+// Other assets
 
-// other assets
 gulp.task('copy-assets', () => {
   return gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
