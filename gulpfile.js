@@ -15,6 +15,8 @@ let yaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
+let assetPath = ['assets/**', '!assets/dist/**'];
+
 const ts = require('gulp-typescript');
 
 console.log(argv);
@@ -98,7 +100,6 @@ gulp.task('copy-source', () => {
     .pipe(gulp.dest('dist'));
 });
 
-let assetPath = ['assets/**', '!assets/dist/**'];
 
 // other assets
 gulp.task('copy-assets', () => {
