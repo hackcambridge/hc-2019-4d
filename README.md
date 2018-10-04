@@ -8,7 +8,7 @@
 
 To run the website on your machine, first make sure you have [Node.js](https://nodejs.org), [Yarn](https://yarnpkg.com/), and [Docker](https://www.docker.com) installed.  Then [clone this repository from GitHub](https://help.github.com/articles/cloning-a-repository/):
 
-```
+```bash
 git clone https://github.com/hackcambridge/hack-cambridge-website.git
 ```
 
@@ -18,7 +18,7 @@ Certain environment variables need to be available for features to work. These v
 
 To get started, create a `.env` file at the root of your project with the following contents:
 
-```
+```text
 AUTH_SESSION_SECRET=auth_session_secret_placeholder
 PGDATABASE=postgres
 PGHOST=127.0.0.1
@@ -51,13 +51,13 @@ Leaving most of these variables undefined is sufficient to get the basic website
 
 To use our database in development, you'll first need to start it by running:
 
-```
+```bash
 docker-compose up
 ```
 
 Before starting the app for the first time, you'll need to setup the tables:
 
-```
+```bash
 yarn run migrate
 ```
 
@@ -78,19 +78,19 @@ And you will be able to access the site at [http://localhost:3000](http://localh
 We run an API which authenticates admin users via tokens. Currently the only way to create tokens is
 through scripts. To create a user:
 
-```
+```bash
 yarn run hc-script -- create-admin --email email@domain.com --name UserName
 ```
 
 To then create a token for that user:
 
-```
+```bash
 yarn run hc-script -- create-token email@domain.com
 ```
 
 Once you have your token, you can use it to authenticate requests to the API in your HTTP headers:
 
-```
+```text
 Authorization: Bearer <<TOKEN GOES HERE >>
 ```
 
@@ -98,7 +98,7 @@ Authorization: Bearer <<TOKEN GOES HERE >>
 
 To send responses to applicants, you can use the `respond` script:
 
-```
+```bash
 yarn run hc-script respond invite applications.json
 ```
 
@@ -106,14 +106,14 @@ You can either `invite` or `reject`.
 
 `applications.json` refers to an applications file, which can be generated with `suggest-responses`.
 
-```
+```bash
 yarn run hc-script -- suggest-responses invite 50 applications.json
 ```
 
 The use of this script requires a score augmentor function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
 It takes in a computed application object and returns an augmented score. The identity function (leaving the score unchanged) looks like this:
 
-```
+```typescript
 module.exports = ({ rating }) => rating;
 ```
 
@@ -122,7 +122,7 @@ This takes a sorted list of applications, a result count limit and an inviteType
 and returns a list of the suggested applications to invite/reject.
 E.g. to just takes the top n in the sorted list:
 
-```
+```typescript
 module.exports = ( (sortedApplications, n, inviteType) => {
   return sortedApplications.slice(0, n));
 });
@@ -137,13 +137,13 @@ You can control whether or not applications are open using the APPLICATION_OPEN_
 
 To send team allocations for ticketed hackers that have requested them, you must first suggest some:
 
-```
+```bash
 yarn run hc-script -- teams suggest teams.json
 ```
 
 Then you can send them
 
-```
+```bash
 yarn run hc-script -- teams send teams.json
 ```
 
@@ -163,7 +163,7 @@ gulp build --prod # Build production assets (or set NODE_ENV to production)
 
 We are using the sequelize CLI to manage migrations. So to create your own:
 
-```
+```bash
 yarn run sequelize -- migration:create --name YOURMIGRATION
 ```
 
