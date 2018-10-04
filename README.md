@@ -18,14 +18,6 @@ Then [clone this repository from GitHub](https://help.github.com/articles/clonin
 git clone https://github.com/hackcambridge/hack-cambridge-website.git
 ```
 
-### Dependencies
-
-We use [Yarn](https://yarnpkg.com/lang/en/) to manage dependencies.  To install the dependencies of the Hack Cambridge website, run:
-
-```bash
-yarn install
-```
-
 ### Environment variables
 
 Certain environment variables need to be available for features to work. These variables are stored in the `.env` file at the root of the repository.
@@ -60,6 +52,14 @@ TEAM_APPLICATION_URL=
 ```
 
 Leaving most of these variables undefined is sufficient to get the basic website up-and-running, but not all features will work without valid tokens for all the environment variables.  If you're working on the Hack Cambridge committee, you can ask for these tokens on the #development_and_web channel on Slack, but we're looking to improve this process.
+
+### Dependencies
+
+We use [Yarn](https://yarnpkg.com/lang/en/) to manage dependencies.  To install the dependencies of the Hack Cambridge website, run:
+
+```bash
+yarn install
+```
 
 ### Starting the database
 
