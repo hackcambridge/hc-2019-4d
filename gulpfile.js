@@ -11,7 +11,7 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
-let yaml = require('gulp-yaml-validate');
+let validateYaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -27,7 +27,7 @@ let onError = function onError(err) {
   this.emit('end');
 };
 
-gulp.task('clobber-assets', () => {
+gulp.task('clean', () => {
   return del(['dist', 'assets/dist']);
 });
 
@@ -63,7 +63,7 @@ gulp.task('preprocess-css', () => {
 
 gulp.task('validate-yaml', () => {
   gulp.src('./src/resources/*.yml')
-    .pipe(yaml({ html: false }));
+    .pipe(validateYaml({ html: false }));
 });
 
 // JS
@@ -125,14 +125,28 @@ gulp.task('wait', (cb) => {
   setTimeout(cb, 2000);
 });
 
-gulp.task('watch-source', ['build'], () => {
+gulp.task('build', (cb) => {
+  let args = ['clean', 'copy-assets', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
+
+  if (prod) {
+    // HACK: Waiting for a little bit means all of the assets actually get rev'd
+    args.push('wait');
+    args.push('rev-assets');
+  }
+
+  args.push(cb);
+
+  sequence.apply(null, args);
+});
+
+gulp.task('watch', ['build'], () => {
   gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
   gulp.watch('src/styles/**', ['styles']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);
 });
 
-gulp.task('serve', ['watch-source'], () => {
+gulp.task('serve', ['watch'], () => {
   let runnode = function (env = {}) {
     nodemon({
       script: 'dist/index.js',
@@ -158,18 +172,4 @@ gulp.task('serve', ['watch-source'], () => {
       NODE_PATH: `${process.env.NODE_PATH}:./src`,
     });
   }
-});
-
-gulp.task('build', (cb) => {
-  let args = ['clobber-assets', 'copy-assets', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
-
-  if (prod) {
-    // HACK: Waiting for a little bit means all of the assets actually get rev'd
-    args.push('wait');
-    args.push('rev-assets');
-  }
-
-  args.push(cb);
-
-  sequence.apply(null, args);
 });
