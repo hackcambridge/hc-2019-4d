@@ -6,10 +6,24 @@
 
 ## Getting started
 
-To run the website on your machine, first make sure you have [Node.js](https://nodejs.org), [Yarn](https://yarnpkg.com/), and [Docker](https://www.docker.com) installed.  Then [clone this repository from GitHub](https://help.github.com/articles/cloning-a-repository/):
+To run the website on your machine, first make sure you have the following things installed:
+
+- [Node.js](https://nodejs.org) v8 LTS.  If you need to keep multiple versions of Node installed, you might find [Node Version Manager](https://github.com/creationix/nvm) helpful.
+- [Yarn](https://yarnpkg.com/)
+- [Docker](https://www.docker.com)
+
+Then [clone this repository from GitHub](https://help.github.com/articles/cloning-a-repository/):
 
 ```bash
 git clone https://github.com/hackcambridge/hack-cambridge-website.git
+```
+
+### Dependencies
+
+We use [Yarn](https://yarnpkg.com/lang/en/) to manage dependencies.  To install the dependencies of the Hack Cambridge website, run:
+
+```bash
+yarn install
 ```
 
 ### Environment variables
@@ -67,7 +81,6 @@ To start the web server, run:
 
 ```bash
 yarn global add gulp
-yarn install
 gulp serve
 ```
 
