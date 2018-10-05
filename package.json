@@ -120,6 +120,7 @@
   },
   "devDependencies": {
     "gulp-eslint": "^4.0.0",
+    "gulp-yaml-validate": "^1.0.2",
     "mocha": "^4.0.1",
     "sequelize-cli": "^3.0.0"
   }

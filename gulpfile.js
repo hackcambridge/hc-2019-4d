@@ -11,9 +11,11 @@ let browserify = require('browserify');
 let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
-let concatCss = require('gulp-concat-css');
+let validateYaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
+
+let assetPath = ['assets/**', '!assets/dist/**'];
 
 const ts = require('gulp-typescript');
 
@@ -29,19 +31,44 @@ gulp.task('clean', () => {
   return del(['dist', 'assets/dist']);
 });
 
-// css
-gulp.task('styles', () => {
-  gulp.src('assets/styles/*.css')
+// CSS
+
+gulp.task('preprocess-css', () => {
+  gulp.src('src/styles/all-stylesheets.styl')
     .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.concatCss("styles/all-stylesheets.css"))
+    .pipe($.stylus({
+      'include css': true,
+      paths: ['./node_modules'],
+
+    }))
+    .pipe($.autoprefixer())
+    .pipe($.if(!prod, $.sourcemaps.write()))
+    .pipe(gulp.dest('assets/dist/styles'))
+    .pipe(bs.stream());
+
+  gulp.src('src/styles/ternary-cube.styl')
+    .pipe($.if(!prod, $.sourcemaps.init()))
+    .pipe($.stylus({
+      'include css': true,
+      paths: ['./node_modules'],
+
+    }))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 });
 
-// js
-gulp.task('scripts', () => {
+// YAML
+
+gulp.task('validate-yaml', () => {
+  gulp.src('./src/resources/*.yml')
+    .pipe(validateYaml({ html: false }));
+});
+
+// JS
+
+gulp.task('browserify', () => {
   let gulpBrowserify = function (fileIn, fileOut) {
     return browserify({
       entries: fileIn,
@@ -63,29 +90,28 @@ gulp.task('scripts', () => {
     .pipe(bs.stream());
 });
 
-gulp.task('compile', () => {
+gulp.task('compile-typescript', () => {
   const tsProject = ts.createProject('tsconfig.json');
   return tsProject.src()
     .pipe(tsProject())
     .js.pipe(gulp.dest('dist'));
 });
 
-gulp.task('copy', () => {
+gulp.task('copy-source', () => {
   const paths = ['src/**', '!src/**/*.ts'];
   return gulp.src(paths)
     .pipe(gulp.dest('dist'));
 });
 
-let assetPath = ['assets/**', '!assets/dist/**'];
+// Other assets
 
-// other assets
-gulp.task('assets', () => {
+gulp.task('copy-assets', () => {
   return gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
     .pipe(bs.stream({ once: true }));
 });
 
-gulp.task('rev', () => {
+gulp.task('rev-assets', () => {
   return gulp.src('assets/dist/**')
     .pipe($.revAll.revision({
       includeFilesInManifest: ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg']
@@ -99,9 +125,23 @@ gulp.task('wait', (cb) => {
   setTimeout(cb, 2000);
 });
 
+gulp.task('build', (cb) => {
+  let args = ['clean', 'copy-assets', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
+
+  if (prod) {
+    // HACK: Waiting for a little bit means all of the assets actually get rev'd
+    args.push('wait');
+    args.push('rev-assets');
+  }
+
+  args.push(cb);
+
+  sequence.apply(null, args);
+});
+
 gulp.task('watch', ['build'], () => {
   gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
-  gulp.watch('assets/styles/**', ['styles']);
+  gulp.watch('src/styles/**', ['styles']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['assets']);
 });
@@ -132,18 +172,4 @@ gulp.task('serve', ['watch'], () => {
       NODE_PATH: `${process.env.NODE_PATH}:./src`,
     });
   }
-});
-
-gulp.task('build', (cb) => {
-  let args = ['clean', 'assets', 'compile', 'copy', 'scripts', 'styles'];
-
-  if (prod) {
-    // HACK: Waiting for a little bit means all of the assets actually get rev'd
-    args.push('wait');
-    args.push('rev');
-  }
-
-  args.push(cb);
-
-  sequence.apply(null, args);
 });
