@@ -16,7 +16,7 @@ a column
 }
 [sidebar] > :nth-last-child(3n) {
   grid-column-end: calc(-3 - (var(--columns) * 2) + var(--half-column));
-  grid-column-start: 1;
+  grid-column-start: -32;
 }
 [fixed] {
   margin-top: calc(var(--unit) / 2);
