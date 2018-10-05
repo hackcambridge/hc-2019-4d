@@ -1,2 +1,15 @@
+# This YAML file contains the list of sponsors that gets displayed on the splash page.
+# Progressive indentations should be two spaces each. Inconsistent indentation will invalidate the YAML.
+# If you're not building the app locally, you may want to run any new YAML though a validator first.
+#
+# Example:
+#
+# sponsors:
+#   tera:
+#     items:
+#       - name: Acme Development
+#         website: https://www.acmedevelopment.com
+#     rows: 6.0 (the number of rows the items will take up)
+#     columns: 5.0 (the maximum number of columns the items should span)
 
 sponsors:
