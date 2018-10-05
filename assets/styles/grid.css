@@ -11,7 +11,7 @@ body, div {
   display: grid;
 }
 [grid="grid"], [grid="columns"] {
-  grid-template-columns: repeat(auto-fill, calc(var(--unit) / 2));
+  grid-template-columns: repeat(auto-fit, calc(var(--unit) / 2));
 }
 [grid="grid"] > *, [grid="columns"] > * {
   grid-column: span calc(var(--columns) * 2 + var(--half-column));
