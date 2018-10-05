@@ -97,18 +97,20 @@
           <p>Interested in sponsoring Hack Cambridge?</p>
           <a href="mailto:sponsorship@hackcambridge.com">Send us an email</a>
         </div>
-        {% for sponsorTierName, sponsorTier in sponsors %}
-          {% if sponsorTier|length != 0 %}
-            <h4 rows="1.0">{{ sponsorTierName | capitalize }}</h4>
-            <div class="content" rows="{{ sponsorTier.rows }}">
-              {% for sponsor in sponsorTier.items %}
-                <div grid="columns">
-                  <a columns="{{ sponsorTier.columns }}" href="{{ sponsor.website }}" target="_blank" rel="external">{{ sponsorLogo(asset, sponsor.name, sponsorTierName) }}</a>
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endfor %}
+        {% if sponsors %}
+          {% for sponsorTierName, sponsorTier in sponsors %}
+            {% if sponsorTier|length != 0 %}
+              <h4 rows="1.0">{{ sponsorTierName | capitalize }}</h4>
+              <div class="content" rows="{{ sponsorTier.rows }}">
+                {% for sponsor in sponsorTier.items %}
+                  <div grid="columns">
+                    <a columns="{{ sponsorTier.columns }}" href="{{ sponsor.website }}" target="_blank" rel="external">{{ sponsorLogo(asset, sponsor.name, sponsorTierName) }}</a>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       </div>
       <div></div>
     </section>
