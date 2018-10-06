@@ -98,7 +98,7 @@ a.icon::after {
 }
 
 a:hover {
-  color: var(--secondary-color);
+  color: var(--subtle-accent-color);
 }
 a:hover::after {
   color: var(--accent-color);
