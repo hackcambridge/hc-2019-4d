@@ -108,9 +108,8 @@ input[disabled], button[disabled] {
 
 section:not([color]) + section:not([color]),
 section[color="red"] + section[color="red"],
-section[color="black"] + section[color="black"],
-section:not(.links) + section.links,
-header:not([color]) + main section:first-child,
+section[color="blue"] + section[color="blue"],
+header:not([color]) + main section:first-child:not([color]),
 footer {
   overflow: hidden;
   border-top: var(--border) var(--subtle-accent-color);

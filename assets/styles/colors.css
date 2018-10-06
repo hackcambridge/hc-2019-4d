@@ -45,14 +45,6 @@ section, header, footer {
   color: var(--primary-color);
 }
 
-/* Link area */
-
-section.links:hover, section.links:hover * {
-  --primary-color: var(--color-2);
-  --secondary-color: var(--color-3);
-  --accent-color: var(--color-1);
-}
-
 h4 {
   border-top-color: var(--accent-color);
 }
