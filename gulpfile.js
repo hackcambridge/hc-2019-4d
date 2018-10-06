@@ -16,7 +16,7 @@ let concatCss = require('gulp-concat-css');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
-let assetPath = ['assets/**', '!assets/dist/**'];
+let assetPath = ['assets/**', '!assets/dist/**', '!assets/styles/**'];
 
 const ts = require('gulp-typescript');
 
@@ -35,9 +35,9 @@ gulp.task('clean', () => {
 // CSS
 
 gulp.task('preprocess-css', () => {
-  gulp.src('assets/**/*.css')
+  gulp.src('assets/styles/all-stylesheets.css')
     .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.concatCss("styles/all-stylesheets.css"))
+    .pipe($.concatCss('all-stylesheets.css'))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
