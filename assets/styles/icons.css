@@ -4,17 +4,6 @@ svg.icon {
 a svg.icon {
   color: var(--accent-color);
 }
-
-section[color="red"] svg.icon {
-  filter: invert(0);
-}
-
 a:hover svg.icon, a:active svg.icon {
-  filter: saturate(0) contrast(3);
-}
-section[color="black"] a:hover svg.icon {
-  filter: saturate(0) contrast(3) invert(1);
-}
-section[color="red"] a:hover svg.icon {
-  filter: invert(1);
+  color: var(--secondary-accent-color);
 }
