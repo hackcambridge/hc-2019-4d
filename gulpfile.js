@@ -128,7 +128,7 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
   gulp.watch('assets/**/*.css', ['preprocess-css']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
-  gulp.watch(assetPath, ['assets']);
+  gulp.watch(assetPath, ['copy-assets']);
 });
 
 gulp.task('serve', ['watch'], () => {
