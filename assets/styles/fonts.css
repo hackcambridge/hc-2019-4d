@@ -55,12 +55,6 @@ a {
 :not(p) strong {
   font-size: 16pt;
 }
-
-#wordmark {
-  font-size: 24pt;
-  margin-bottom: 18pt;
-  line-height: 0.8;
-}
 header p {
   margin-bottom: 10pt;
 }
