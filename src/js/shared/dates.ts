@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 
 export function getHackathonStartDate() {
-  return moment('2018-01-20');
+  return moment('2019-01-19');
 }
 
 export function getHackathonEndDate() {
@@ -23,12 +23,12 @@ export function getEarliestGraduationDateToAccept() {
  * Returns the datetime at which the hacking period begins.
  */
 export function getHackingPeriodStart() {
-  return moment('2018-01-20T12:00:00Z');
+  return moment('2019-01-19T12:00:00Z');
 }
 
 /**
  * Returns the datetime at which the hacking period ends.
  */
 export function getHackingPeriodEnd() {
-  return moment('2018-01-21T12:00:00Z');
+  return moment('2019-01-20T12:00:00Z');
 }
