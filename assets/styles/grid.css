@@ -62,6 +62,11 @@ footer[grid="columns"] > *:not(:last-child),
 header[grid="grid"] > *:not(:last-child),
 main [grid="grid"] > *:not(:last-child),
 footer[grid="grid"] > *:not(:last-child) {
+  margin-right: var(--unit);
+}
+
+form[grid="columns"] > *:not(:last-child),
+form[grid="grid"] > *:not(:last-child) {
   margin-right: calc(var(--unit) / 2);
 }
 
