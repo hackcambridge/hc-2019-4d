@@ -1,0 +1,150 @@
+/* Reset margins and padding */
+
+body, div {
+  margin: unset;
+  padding: unset;
+}
+
+/* Grids */
+
+[grid] {
+  display: grid;
+}
+[grid="grid"], [grid="columns"] {
+  grid-template-columns: repeat(auto-fit, calc(var(--unit) / 2));
+}
+[grid="grid"] > *, [grid="columns"] > * {
+  grid-column: span calc(var(--columns) * 2 + var(--half-column));
+}
+
+[align-last="right"] > :last-child {
+  grid-column-end: -1;
+  grid-column-start: calc(-1 - (var(--columns) * 2 + var(--half-column)));
+}
+[align-last="right"] > :first-child {
+  grid-column-start: 1;
+  grid-column-end: calc(-1 - (var(--columns) * 2 + var(--half-column)));
+}
+
+/* Header, section, and footer padding for width */
+
+header[layout="width"],
+main[layout="width"] > *,
+footer[layout="width"] {
+  padding-left: var(--unit);
+  padding-right: var(--unit);
+}
+
+/* Content items */
+
+.content > *:not(:first-child) {
+  margin-top: calc(var(--unit) / 2);
+}
+
+/* Alignment */
+
+html * {
+  align-items: start;
+}
+
+/* Margins between rows in A4 layout */
+
+[layout="a4"][grid="rows"] > *:not(:first-child),
+[layout="a4"] > [grid="rows"] > *:not(:first-child) {
+  margin-top: calc(var(--unit) / 2);
+}
+
+/* Margins between top-level elements */
+
+header[grid="columns"] > *:not(:last-child),
+main [grid="columns"] > *:not(:last-child),
+footer[grid="columns"] > *:not(:last-child),
+header[grid="grid"] > *:not(:last-child),
+main [grid="grid"] > *:not(:last-child),
+footer[grid="grid"] > *:not(:last-child) {
+  margin-right: var(--unit);
+}
+
+form[grid="columns"] > *:not(:last-child),
+form[grid="grid"] > *:not(:last-child) {
+  margin-right: calc(var(--unit) / 2);
+}
+
+/* Flow */
+
+[layout="width"] [grid="grid"],
+[layout="width"][grid="grid"],
+[layout="width"] [grid="columns"],
+[layout="width"][grid="columns"] {
+  grid-auto-flow: column;
+}
+
+/* Sections */
+
+section, header, footer {
+  padding-top: calc(var(--unit) / 2);
+  padding-bottom: calc(var(--unit) / 2);
+}
+
+header {
+  padding-top: var(--unit);
+}
+:not(header) + main {
+  padding-top: calc(var(--unit)/2);
+}
+
+@media (max-width: calc(482pt + (57pt * 2) - 1pt)) {
+  
+  /* Header, section, and footer padding */
+  
+  header,
+  main section,
+  footer {
+    padding-left: calc((100vw - 88vw )/ 2);
+    padding-right: calc((100vw - 88vw )/ 2);
+    max-width: 88vw;
+  }
+  
+  /* Margins between top-level elements */
+  
+  [grid="rows"] > *:not(:first-child) {
+    margin-top: calc(var(--unit) / 2);
+  }
+}
+
+@media (max-width: calc(482pt + 69pt)) {
+  
+  /* Margins between top-level elements */
+  
+  [layout="a4"] > *:not(:first-child),
+  [layout="a4"] > section > *:not(:first-child) {
+    margin-top: calc(var(--unit) / 2);
+  }
+}
+
+@media (min-width: calc(482pt + (57pt * 2))) {
+  
+  /* Header, section, and footer padding for A4 */
+  
+  header[layout="a4"],
+  main[layout="a4"] section,
+  footer[layout="a4"] {
+    padding-left: calc((100vw - 484pt)/2);
+    padding-right: calc((100vw - 484pt)/2);
+  }
+  
+  /* Grid rows */
+  
+  [grid="grid"], [grid="rows"] {
+    grid-auto-rows: calc(var(--unit) / 2);
+  }
+  [grid="grid"] > *, [grid="rows"] > * {
+    grid-row: span calc(var(--rows) * 2 + var(--half-row));
+  }
+  
+  /* Flow */
+  
+  [grid="grid"], [grid="columns"] {
+    grid-auto-flow: column;
+  }
+}

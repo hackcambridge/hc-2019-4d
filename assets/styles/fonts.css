@@ -1,0 +1,135 @@
+/* Fonts */
+
+:root, input {
+  font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
+}
+
+/* Paragraph styles */
+
+h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: unset;
+}
+h1, h2, h3, h4, h5, h6, :not(p) strong {
+  line-height: 1.2;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+h1, h2 {
+  font-size: 36pt;
+  line-height: 1.0;
+}
+h3 {
+  font-size: 20pt;
+  font-weight: lighter;
+}
+h4 {
+  font-size: 14pt;
+  font-weight: lighter;
+  border-top: solid 1pt;
+  margin-bottom: 6pt;
+}
+h4:not(:first-child) {
+  margin-top: 12pt;
+}
+h5 {
+  font-size: 16pt;
+}
+h6 {
+  font-size: 13pt;
+}
+p, li, th, td, label, select, textarea, input, button, :not(span) > a {
+  font-size: 11pt;
+}
+p, li, th, td, label, select, textarea, button, :not(span) > a {
+  line-height: 1.25;
+}
+li {
+  margin-bottom: 6pt;
+}
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+:not(p) strong {
+  font-size: 16pt;
+}
+
+#wordmark {
+  font-size: 24pt;
+  margin-bottom: 18pt;
+  line-height: 0.8;
+}
+header p {
+  margin-bottom: 10pt;
+}
+
+span.pixel {
+  font-family: "PxGrotesk-Screen"
+}
+
+/* Lists */
+ul, ol {
+  padding-left: unset;
+}
+ul {
+  list-style-type: none;
+}
+ol {
+  list-style-position: outside;
+}
+
+/* Anchors */
+
+a {
+  color: var(--accent-color);
+}
+a::after {
+  color: var(--primary-color);
+  white-space: pre;
+  content: " →";
+}
+a[rel="external"]::after {
+  content: none;
+}
+a[rel="prev"]::after {
+  content: " ←";
+}
+a[rel="next"]::after {
+  content: " →";
+}
+a.icon::after {
+  content: none;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+a:hover::after {
+  color: var(--accent-color);
+  visibility: visible;
+}
+
+a:active {
+  color: var(--secondary-color);
+}
+a:active::after {
+  color: var(--secondary-color);
+  visibility: visible;
+}
+
+/* Hide on touch devices */
+
+@media (hover: none) {
+  a::after {
+    display: none;
+  }
+}
+
+/* Text inflation */
+
+html {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: 100%;
+}

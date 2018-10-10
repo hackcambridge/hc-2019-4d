@@ -9,8 +9,8 @@ sponsors:
         website: https://www.microsoft.com
       - name: Sophos
         website: https://www.sophos.com
-    rows: seven half
-    columns: five second-seven
+    rows: 6.0
+    columns: 5.0
 
   giga:
     items:
@@ -28,8 +28,8 @@ sponsors:
        website: https://www.tpp-uk.com/
      - name: Cisco
        website: https://www.cisco.com/c/en_uk/index.html
-    rows: fourteen half
-    columns: four second-five
+    rows: 13.0
+    columns: 4.0
 
   mega:
     items:
@@ -49,8 +49,8 @@ sponsors:
         website: https://www.jpmorgan.com
       - name: Cambridge Medical Robotics
         website: http://cmedrobotics.com
-    rows: twelve
-    columns: three second-four
+    rows: 11.0
+    columns: 3.0
 
   kilo:
     items:
@@ -62,5 +62,5 @@ sponsors:
         website: http://www.pipers.co.uk
       - name: HighRise
         website: http://www.highrisehq.com
-    rows: five half
-    columns: two second-three
+    rows: 5.0
+    columns: 2.0

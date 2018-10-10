@@ -1,0 +1,127 @@
+/* Variables */
+
+:root {
+  --unit: 57pt;
+  --gutter: 13pt;
+  --column-gutter: 24pt;
+  --rows: 0;
+  --half-row: 0;
+  --columns: 0;
+  --half-column: 0;
+}
+
+/* Hopefully, the following can eventually be replaced with `attr(rows)` and `attr(columns)` */
+
+/* Rows */
+
+[rows^="0"] {
+  --rows: 0;
+}
+[rows^="1"] {
+  --rows: 1;
+}
+[rows^="2"] {
+  --rows: 2;
+}
+[rows^="3"] {
+  --rows: 3;
+}
+[rows^="4"] {
+  --rows: 4;
+}
+[rows^="5"] {
+  --rows: 5;
+}
+[rows^="6"] {
+  --rows: 6;
+}
+[rows^="7"] {
+  --rows: 7;
+}
+[rows^="8"] {
+  --rows: 8;
+}
+[rows^="9"] {
+  --rows: 9;
+}
+[rows^="10"] {
+  --rows: 10;
+}
+[rows^="11"] {
+  --rows: 11;
+}
+[rows^="12"] {
+  --rows: 12;
+}
+[rows^="13"] {
+  --rows: 13;
+}
+[rows^="14"] {
+  --rows: 14;
+}
+[rows^="15"] {
+  --rows: 15;
+}
+[rows^="16"] {
+  --rows: 16;
+}
+[rows$=".0"] {
+  --half-row: 0;
+}
+[rows$=".5"] {
+  --half-row: 1;
+}
+
+/* Columns */
+
+[columns^="0"] {
+  --columns: 0;
+}
+[columns^="1"] {
+  --columns: 1;
+}
+[columns^="2"] {
+  --columns: 2;
+}
+[columns^="3"] {
+  --columns: 3;
+}
+[columns^="4"] {
+  --columns: 4;
+}
+[columns^="5"] {
+  --columns: 5;
+}
+[columns^="6"] {
+  --columns: 6;
+}
+[columns^="7"] {
+  --columns: 7;
+}
+[columns^="8"] {
+  --columns: 8;
+}
+[columns^="9"] {
+  --columns: 9;
+}
+[columns^="10"] {
+  --columns: 10;
+}
+[columns^="11"] {
+  --columns: 11;
+}
+[columns^="12"] {
+  --columns: 12;
+}
+[columns^="13"] {
+  --columns: 13;
+}
+[columns^="14"] {
+  --columns: 14;
+}
+[columns$=".0"] {
+  --half-column: 0;
+}
+[columns$=".5"] {
+  --half-column: 1;
+}
