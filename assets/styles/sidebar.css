@@ -32,7 +32,7 @@ a column
 @media (min-width: calc(57pt * 12 + 1pt)) {
   
   [fixed] {
-    position: fixed;
+    position: absolute;
     width: -webkit-fill-available;
     width: -moz-available;
     width: stretch;
