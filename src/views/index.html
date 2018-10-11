@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
 {% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
-{% set title = 'Ternary' %}
-{% set description = 'Hack Cambridge Ternary 2018' %}
-{% set keywords = 'hack,Cambridge,ternary 2018' %}
+{% import "macros/dates.html" as dates %}
+{% set title = event.theme.name %}
+{% set description = 'Hack Cambridge ' + event.theme.name + ' ' + event.dates.start.getFullYear() %}
+{% set keywords = 'hack,cambridge,' + event.theme.name.toLowerCase() + ',' + event.dates.start.getFullYear() %}
 {% set layoutMode = 'width' %}
 {% block content %}
   <main layout="{{ layoutMode }}">
@@ -20,7 +21,7 @@
         </h1>
         <div rows="1.5">
           <p>
-            Hack Cambridge is back! From the 19<sup>th</sup> to the 20<sup>th</sup> January 2019, the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+            Hack Cambridge is back! From the {{ dates.dayWithSuperscript(event.dates.start) }} to the {{ dates.shortDateWithSuperscript(event.dates.end) }}, the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
           </p>
           <p>
             Thank you for joining us.

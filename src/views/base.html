@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>{{ title }} — Hack Cambridge</title>
     <meta name="description" content="{{ description }}" />
-    <meta name=keywords content="{{ keywords | default('hack,Cambridge,ternary 2018') }}">
+    <meta name=keywords content="{{ keywords | default('hack,cambridge,' + event.theme.name.toLowerCase() + ',' + event.dates.start.getFullYear()) }}">
     <meta name=author content="Hack Cambridge Team">
     <meta name="language" content="en">
     <meta name="viewport" content="width=device-width, user-scalable=no" />
@@ -29,8 +29,8 @@
     <link rel="mask-icon" href="{{ asset('images/favicons/safari-pinned-tab.svg') }}" color="#f93822">
     <link rel="shortcut icon" href="{{ asset('images/favicons/favicon.ico') }}">
     <link rel="manifest" href="/favicons/manifest.json">
-    <meta name="apple-mobile-web-app-title" content="HC Ternary">
-    <meta name="application-name" content="HC Ternary">
+    <meta name="apple-mobile-web-app-title" content="HC {{ event.theme.name }}">
+    <meta name="application-name" content="HC {{ event.theme.name }}">
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 </head>
