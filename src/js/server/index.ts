@@ -51,6 +51,7 @@ const env = nunjucks.configure(utils.resolvePath('src/views'), {
   noCache: app.settings.env == 'development',
   express: app
 });
+env.addGlobal('now', new Date);
 env.addGlobal('event', (() => {
   return utils.loadResource('event');
 })());
