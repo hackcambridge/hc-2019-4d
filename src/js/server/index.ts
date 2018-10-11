@@ -49,7 +49,8 @@ auth.setUpAuth(app);
 const env = nunjucks.configure(utils.resolvePath('src/views'), {
   autoescape: true,
   noCache: app.settings.env == 'development',
-  express: app
+  express: app,
+  throwOnUndefined: true
 });
 env.addGlobal('now', new Date);
 env.addGlobal('event', (() => {
