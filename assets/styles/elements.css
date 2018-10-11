@@ -90,14 +90,14 @@ legend {
 }
 
 input[type="submit"]:hover:not([disabled]), button:hover:not([disabled]){
-  background-color: unset;
-  color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   border: var(--border) var(--secondary-color);
 }
 
 input[type="submit"]:active:not([disabled]), button:active:not([disabled]){
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: unset;
+  color: var(--secondary-color);
   border: var(--border) var(--secondary-color);
 }
 input[disabled], button[disabled] {
