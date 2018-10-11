@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
 {% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
-{% import "macros/dates.html" as dates %}
 {% set title = event.theme.name %}
 {% set description = 'Hack Cambridge ' + event.theme.name + ' ' + event.dates.start.getFullYear() %}
 {% set keywords = 'hack,cambridge,' + event.theme.name.toLowerCase() + ',' + event.dates.start.getFullYear() %}
