@@ -46,11 +46,14 @@ app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOption
 auth.setUpAuth(app);
 
 // View rendering
-nunjucks.configure(utils.resolvePath('src/views'), {
+const env = nunjucks.configure(utils.resolvePath('src/views'), {
   autoescape: true,
   noCache: app.settings.env == 'development',
   express: app
 });
+env.addGlobal('event', (() => {
+  return utils.loadResource('event');
+})());
 
 app.locals.asset = utils.asset;
 
