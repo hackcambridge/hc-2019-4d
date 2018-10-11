@@ -1,7 +1,10 @@
 {% macro singleColourIcon(assetFunc, name, caption = name) %}
-  <svg width="28.5pt" height="28.5pt" class="icon">
-      <title>{{caption}}</title>
+  <svg width="28.5pt" height="28.5pt" viewbox="0 0 11 11" preserveAspectRatio="xMidYMid" class="icon">
+    <title>{{caption}}</title>
+    <clipPath id="{{(name | lower) + 'Clip'}}">
       <use x="0" y="0" xlink:href="{{ assetFunc('images/icons/' + (name | lower | replace(" ", "-") | replace(".", "")) + '.svg#icon') }}"/>
+    </clipPath>
+    <use x="0" y="0" clip-path="url(#{{(name | lower) + 'Clip'}})" xlink:href="{{ assetFunc('images/icons/' + (name | lower | replace(" ", "-") | replace(".", "")) + '.svg#icon') }}"/>
   </svg>
 {% endmacro %}
 {% macro sponsorLogo(assetFunc, name, tier) %}
