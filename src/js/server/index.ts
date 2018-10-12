@@ -53,9 +53,7 @@ const env = nunjucks.configure(utils.resolvePath('src/views'), {
   throwOnUndefined: true
 });
 env.addGlobal('now', new Date);
-env.addGlobal('event', (() => {
-  return utils.loadResource('event');
-})());
+env.addGlobal('event', (_ => utils.loadResource('event'))());
 
 app.locals.asset = utils.asset;
 
