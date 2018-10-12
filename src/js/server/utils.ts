@@ -95,7 +95,7 @@ function renderNunjucksInDashboard(dashboardResource, context) {
 }
 
 export function loadResource(resourceName) {
-  if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
+  if ((!loadedResources[resourceName]) || app === undefined || app.settings.env === 'development') {
     let loadedResource = yaml.safeLoad(
       fs.readFileSync(resolvePath(`src/resources/${resourceName}.yml`)).toString()
     )[resourceName];

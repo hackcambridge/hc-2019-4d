@@ -1,11 +1,12 @@
 import * as moment from 'moment';
+import { loadResource } from '../server/utils';
 
-export function getHackathonStartDate() {
-  return moment('2019-01-19');
+export function getHackathonStartDate(): moment.Moment {
+  return moment(loadResource('event').dates.start);
 }
 
-export function getHackathonEndDate() {
-  return getHackathonStartDate().add(1, 'day');
+export function getHackathonEndDate(): moment.Moment {
+  return moment(loadResource('event').dates.end);
 }
 
 /**
@@ -23,19 +24,19 @@ export function getEarliestGraduationDateToAccept() {
  * Returns the datetime at which the hacking period begins.
  */
 export function getHackingPeriodStart() {
-  return moment('2019-01-19T12:00:00Z');
+  return moment(loadResource('event').dates.hackingStart);
 }
 
 /**
  * Returns the datetime at which the hacking period ends.
  */
 export function getHackingPeriodEnd() {
-  return moment('2019-01-20T12:00:00Z');
+  return moment(loadResource('event').dates.hackingEnd);
 }
 
 /**
  * Returns the datetime when applications close.
  */
 export function getApplicationsCloseDate() {
-  return moment('2019-12-01T00:00:00Z');
+  return moment(loadResource('event').dates.applicationsClose);
 }
