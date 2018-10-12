@@ -1,11 +1,12 @@
 import * as moment from 'moment';
+import { loadResource } from '../server/utils';
 
-export function getHackathonStartDate() {
-  return moment('2018-01-20');
+export function getHackathonStartDate(): moment.Moment {
+  return moment(loadResource('event').dates.start);
 }
 
-export function getHackathonEndDate() {
-  return getHackathonStartDate().add(1, 'day');
+export function getHackathonEndDate(): moment.Moment {
+  return moment(loadResource('event').dates.end);
 }
 
 /**
@@ -15,20 +16,27 @@ export function getHackathonEndDate() {
  * graduates who have graduated within the 12 months prior to the event.
  * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event
  */
-export function getEarliestGraduationDateToAccept() {
+export function getEarliestGraduationDateToAccept(): moment.Moment {
   return getHackathonStartDate().subtract(1, 'year');
 }
 
 /**
  * Returns the datetime at which the hacking period begins.
  */
-export function getHackingPeriodStart() {
-  return moment('2018-01-20T12:00:00Z');
+export function getHackingPeriodStart(): moment.Moment {
+  return moment(loadResource('event').dates.hackingStart);
 }
 
 /**
  * Returns the datetime at which the hacking period ends.
  */
-export function getHackingPeriodEnd() {
-  return moment('2018-01-21T12:00:00Z');
+export function getHackingPeriodEnd(): moment.Moment {
+  return moment(loadResource('event').dates.hackingEnd);
+}
+
+/**
+ * Returns the datetime when applications close.
+ */
+export function getApplicationsCloseDate(): moment.Moment {
+  return moment(loadResource('event').dates.applicationsClose);
 }

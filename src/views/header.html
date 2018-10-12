@@ -1,6 +1,6 @@
-<header color="{{ headerColor }}" layout="{{ layoutMode }}" grid="grid" rows="2.5">
+<header {% if headerColor %} color="{{ headerColor }}" {% endif %} layout="{{ layoutMode }}" grid="grid" rows="2.5">
   <img columns="3.0" draggable="false" src="{{ asset('images/logo.svg') }}" alt="Hack Cambridge Logo"/>
   <div columns="5.5">
-    <h1 id="wordmark">Hack Cambridge</h1>
+    <h1>Hack Cambridge<br><span class="pixel">4D</span></h1>
   </div>
 </header>

@@ -1,0 +1,9 @@
+event:
+  dates:
+    applicationsClose: 2018-12-01T00:00:00Z
+    start: 2019-01-19
+    end: 2019-01-20
+    hackingStart: 2019-01-19T12:00:00Z
+    hackingEnd: 2019-01-20T12:00:00Z
+  theme:
+    name: 4D

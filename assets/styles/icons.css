@@ -1,20 +1,16 @@
-svg.icon {
-  fill: currentColor;
+svg {
+  overflow: visible;
 }
 a svg.icon {
-  color: var(--accent-color);
+  stroke: var(--accent-color);
+  stroke-opacity: 0;
+  stroke-width: 2;
+  fill: var(--accent-color);
+  fill-opacity: 0;
 }
-
-section[color="red"] svg.icon {
-  filter: invert(0);
+a:not(:hover) svg.icon, a:active svg.icon {
+  stroke-opacity: 1;
 }
-
-a:hover svg.icon, a:active svg.icon {
-  filter: saturate(0) contrast(3);
-}
-section[color="black"] a:hover svg.icon {
-  filter: saturate(0) contrast(3) invert(1);
-}
-section[color="red"] a:hover svg.icon {
-  filter: invert(1);
+a:hover:not(:active) svg.icon {
+  fill-opacity: 1;
 }

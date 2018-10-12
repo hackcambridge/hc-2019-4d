@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% set title = 'Sponsorship' %}
-{% set description = 'Opportunities for sponsorship at Hack Cambridge 2018' %}
+{% set description = 'Opportunities for sponsorship at Hack Cambridge ' + event.theme.getEventName() %}
 {% set keywords = 'hack,Cambridge,ternary,sponsorship,hackathon' %}
 {% set layoutMode = 'a4' %}
 {% block content %}
   <header layout="{{ layoutMode }}" grid="grid" rows="2.5">
     <img columns="3.0" draggable="false" src="{{ asset('images/logo.svg') }}" alt="Hack Cambridge Logo"/>
-    <div columns="5.5">
-      <h1 id="wordmark">Hack Cambridge</h1>
-      <p>
-        In January 2019, 300 top computer scientists will come together for 24 hours to push the boundaries of technology.
-      </p>
-      <p>
-        And we want you to join us too.
-      </p>
+    <div columns="5.5" grid="rows">
+      <h1 id="wordmark" rows="0.5">Hack Cambridge</h1>
+      <div>
+        <p>
+          In January 2019, 300 top computer scientists will come together for 24 hours to push the boundaries of technology.
+        </p>
+        <p>
+          And we want you to join us too.
+        </p>
+      </div>
     </div>
   </header>
   <main layout="{{ layoutMode }}">
-    <section color="black" grid="grid">
+    <section color="blue" grid="grid">
       <img columns="3.0" draggable="false" src="{{ asset('images/university-of-cambridge-logo.svg') }}" alt="University of Cambridge Logo"/>
       <div grid="columns" columns="5.5">
         <p columns="3.0">
@@ -45,7 +47,7 @@
         </p>
       </div>
     </section>
-    <section color="black" grid="rows">
+    <section color="red" grid="rows">
       <div grid="rows" rows="2">
         <h2 rows="1">
           <span>Co-Host</span>
@@ -112,7 +114,7 @@
         </ul>
       </div>
     </section>
-    <section color="black" grid="rows">
+    <section color="blue" grid="rows">
       <h2 rows="1">
         Coffee
       </h2>
@@ -217,7 +219,7 @@
         </ul>
       </div>
     </section>
-    <section color="black" grid="rows" class="links">
+    <section grid="rows">
       <strong rows="1">
         Interested?<br><span class="secondary"><a href="mailto:sponsorship@hackcambridge.com" target="_blank">Contact our dedicated sponsorship team</a></span>
       </strong>

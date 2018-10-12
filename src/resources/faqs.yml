@@ -3,7 +3,13 @@ faqs:
     answer: A hackathon is a focused 24-hour event where you and a small team get to build something new and exciting, alongside a whole bunch of like-minded people.
 
   - question: Can I attend?
-    answer: If you’re 18 or over, and a student at any school or university, or you were still a student after the 28<sup>th</sup> of January 2017, you’re welcome to apply.
+    # Moment doesn't give us a way to get the ordinal of a date (the "st"/"nd"/"rd"/"th" part),
+    # but they do give us a way to get the day and the ordinal e.g. "11th"/"22nd".
+    # The string splitting of `d.format('Do')` is a hack to extract the ordinal for the date
+    # so we can put it in superscript.
+    answer: "{% set d = dates.getEarliestGraduationDateToAccept() %}
+    {% set formattedDate = d.format('D') + '<sup>' + d.format('Do').split(d.format('D'))[1] + '</sup> of ' + d.format('MMMM YYYY') %}
+    If you’re 18 or over, and a student at any school or university, or you were still a student after the {{ formattedDate | safe }}, you’re welcome to apply."
 
   - question: Do I have to be doing Computer Science or other programming-related degree to take part?
     answer: No! We welcome everyone to apply regardless of their subject or university.
@@ -43,9 +49,9 @@ faqs:
     answer: We love ’em! We’ll provide the basics (soldering kits, breadboards, etc.) and you do the rest. Do bring along any special equipment you might want to hack on as well.
 
   - question: When do applications close?
-    answer: Applications close in December 2018.
+    answer: Applications close in {{ dates.getApplicationsCloseDate().format('MMMM YYYY') }}.
 
-  - question: When will I find out whether I was accepted as a participant of Hack Cambridge Ternary?
+  - question: When will I find out whether I was accepted as a participant of Hack Cambridge {{ theme.getEventName() }}?
     answer: We will be sending out invitations on a rolling basis as applications come in. If you’re coming from far away, we’ll aim to get back to you as soon as possible to give you time to sort out travel arrangements.
 
   - question: What if I still have a question that hasn’t been answered here?
