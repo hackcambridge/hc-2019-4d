@@ -32,3 +32,10 @@ export function getHackingPeriodStart() {
 export function getHackingPeriodEnd() {
   return moment('2019-01-20T12:00:00Z');
 }
+
+/**
+ * Returns the datetime when applications close.
+ */
+export function getApplicationsCloseDate() {
+  return moment('2019-12-01T00:00:00Z');
+}
