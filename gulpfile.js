@@ -13,6 +13,7 @@ let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
 let validateYaml = require('gulp-yaml-validate');
 let concatCss = require('gulp-concat-css');
+const terser = require('gulp-terser');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -37,7 +38,7 @@ gulp.task('clean', () => {
 gulp.task('preprocess-css', () => {
   gulp.src('assets/styles/all-stylesheets.css')
     .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.concatCss('all-stylesheets.css'))
+    .pipe(concatCss('all-stylesheets.css'))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
@@ -69,7 +70,7 @@ gulp.task('browserify', () => {
 
   return gulpBrowserify('./dist/js/client/main.js', 'main.js')
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
-    .pipe($.if(prod, $.uglify()))
+    .pipe($.if(prod, terser()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
     .pipe(bs.stream());
