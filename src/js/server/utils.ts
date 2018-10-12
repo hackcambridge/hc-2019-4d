@@ -8,6 +8,8 @@ import * as moment from 'moment-timezone';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 
+import * as dates from 'js/shared/dates';
+
 const markdown = markdown_module({
   html: true,
   linkify: true,
@@ -80,6 +82,18 @@ function loadScheduleTimeProperties(loadedScheduleResource) {
   });
 }
 
+function renderNunjucksInFaqs(faqsResource, context) {
+  faqsResource.forEach(faq => {
+    faq.answer = nunjucks.renderString(faq.answer, context);
+    faq.question = nunjucks.renderString(faq.question, context);
+  });
+}
+
+function renderNunjucksInDashboard(dashboardResource, context) {
+  const message = dashboardResource['status-messages']['has-ticket'];
+  message.subline = nunjucks.renderString(message.subline, context);
+}
+
 export function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || (app.settings.env == 'development')) {
     let loadedResource = yaml.safeLoad(
@@ -111,6 +125,17 @@ export function loadResource(resourceName) {
         break;
       case 'dashboard':
         markdownPropertiesRecursive(loadedResource, ['content', 'title']);
+        renderNunjucksInDashboard(loadedResource, {
+          dates
+        });
+        break;
+      case 'faqs':
+        renderNunjucksInFaqs(loadedResource, {
+          dates,
+          event: loadResource('event'),
+          moment
+        });
+        break;
     }
 
     loadedResources[resourceName] = loadedResource;
