@@ -16,27 +16,27 @@ export function getHackathonEndDate(): moment.Moment {
  * graduates who have graduated within the 12 months prior to the event.
  * https://mlh.io/faq#i-just-graduated-can-i-still-come-to-an-event
  */
-export function getEarliestGraduationDateToAccept() {
+export function getEarliestGraduationDateToAccept(): moment.Moment {
   return getHackathonStartDate().subtract(1, 'year');
 }
 
 /**
  * Returns the datetime at which the hacking period begins.
  */
-export function getHackingPeriodStart() {
+export function getHackingPeriodStart(): moment.Moment {
   return moment(loadResource('event').dates.hackingStart);
 }
 
 /**
  * Returns the datetime at which the hacking period ends.
  */
-export function getHackingPeriodEnd() {
+export function getHackingPeriodEnd(): moment.Moment {
   return moment(loadResource('event').dates.hackingEnd);
 }
 
 /**
  * Returns the datetime when applications close.
  */
-export function getApplicationsCloseDate() {
+export function getApplicationsCloseDate(): moment.Moment {
   return moment(loadResource('event').dates.applicationsClose);
 }
