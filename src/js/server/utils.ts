@@ -9,6 +9,7 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 
 import * as dates from 'js/shared/dates';
+import * as theme from 'js/shared/theme';
 
 const markdown = markdown_module({
   html: true,
@@ -132,8 +133,8 @@ export function loadResource(resourceName) {
       case 'faqs':
         renderNunjucksInFaqs(loadedResource, {
           dates,
-          event: loadResource('event'),
-          moment
+          moment,
+          theme
         });
         break;
     }

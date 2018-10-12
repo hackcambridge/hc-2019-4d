@@ -1,3 +1,4 @@
+{% import "macros/dates.html" as datesMacros %}
 {% extends 'default.html' %}
 {% set title = 'Terms and Conditions' %}
 {% set footer = true %}
@@ -7,7 +8,7 @@
 {% block pageContent %}
   <ul rows="3.5">
     <li>
-      Hack Cambridge is an event taking place from {{ dates.dayWithSuperscript(event.dates.start) }} to the {{ dates.shortDateWithSuperscript(event.dates.end) }} in Cambridge, UK. It will henceforth be referred to as ‘the Event’ or ‘Hack Cambridge’.
+      Hack Cambridge is an event taking place from {{ datesMacros.dayWithSuperscript(event.dates.getHackathonStartDate()) }} to the {{ datesMacros.shortDateWithSuperscript(event.dates.getHackathonEndDate()) }} in Cambridge, UK. It will henceforth be referred to as ‘the Event’ or ‘Hack Cambridge’.
     </li>
     <li>
       The Organisers of Hack Cambridge, henceforth referred to as ‘the Organisers’ in this T&amp;C, refer to any or all of the individuals involved with organising the Event in any capacity.

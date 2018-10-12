@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% import 'macros/dates.html' as dates %}
 {% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
 {% from "macros/svg-elements.html" import sponsorLogo as sponsorLogo %}
-{% set title = event.theme.name %}
-{% set description = 'Hack Cambridge ' + event.theme.name + ' ' + event.dates.start.getFullYear() %}
-{% set keywords = 'hack,cambridge,' + event.theme.name.toLowerCase() + ',' + event.dates.start.getFullYear() %}
+{% set title = event.theme.getEventName() %}
+{% set description = 'Hack Cambridge ' + event.theme.getEventName() + ' ' + event.dates.getHackathonStartDate().year() %}
+{% set keywords = 'hack,cambridge,' + event.theme.getEventName().toLowerCase() + ',' + event.dates.getHackathonStartDate().year() %}
 {% set layoutMode = 'width' %}
 {% block content %}
   <main layout="{{ layoutMode }}">
@@ -20,7 +21,7 @@
         </h1>
         <div rows="1.5">
           <p>
-            Hack Cambridge is back! From the {{ dates.dayWithSuperscript(event.dates.start) }} to the {{ dates.shortDateWithSuperscript(event.dates.end) }}, the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+            Hack Cambridge is back! From the {{ dates.dayWithSuperscript(event.dates.getHackathonStartDate()) }} to the {{ dates.shortDateWithSuperscript(event.dates.getHackathonEndDate()) }}, the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.<br>For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
           </p>
           <p>
             Thank you for joining us.

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% set title = 'Sponsorship' %}
-{% set description = 'Opportunities for sponsorship at Hack Cambridge ' + event.theme.name %}
+{% set description = 'Opportunities for sponsorship at Hack Cambridge ' + event.theme.getEventName() %}
 {% set keywords = 'hack,Cambridge,ternary,sponsorship,hackathon' %}
 {% set layoutMode = 'a4' %}
 {% block content %}

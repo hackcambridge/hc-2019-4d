@@ -51,7 +51,7 @@ faqs:
   - question: When do applications close?
     answer: Applications close in {{ dates.getApplicationsCloseDate().format('MMMM YYYY') }}.
 
-  - question: When will I find out whether I was accepted as a participant of Hack Cambridge {{ event.theme.name }}?
+  - question: When will I find out whether I was accepted as a participant of Hack Cambridge {{ theme.getEventName() }}?
     answer: We will be sending out invitations on a rolling basis as applications come in. If you’re coming from far away, we’ll aim to get back to you as soon as possible to give you time to sort out travel arrangements.
 
   - question: What if I still have a question that hasn’t been answered here?

@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as nunjucks from 'nunjucks';
 import * as bodyParser from 'body-parser';
 import * as url from 'url';
-import * as utils from './utils';
+import * as moment from 'moment';
 
 import * as auth from 'js/server/auth';
 import * as errors from 'js/server/errors';
@@ -13,6 +13,9 @@ import { ServeStaticOptions } from '../../../node_modules/@types/serve-static';
 import apiRouter from './api';
 import applyRouter from './apply/router';
 import hcapiRouter from './hcapi';
+import * as utils from './utils';
+import * as dates from 'js/shared/dates';
+import * as theme from 'js/shared/theme';
 
 const app = express();
 let server = require('http').Server(app);
@@ -52,8 +55,8 @@ const env = nunjucks.configure(utils.resolvePath('src/views'), {
   express: app,
   throwOnUndefined: true
 });
-env.addGlobal('now', new Date);
-env.addGlobal('event', (_ => utils.loadResource('event'))());
+env.addGlobal('moment', moment);
+env.addGlobal('event', { dates, theme });
 
 app.locals.asset = utils.asset;
 
