@@ -28,6 +28,9 @@ a column
 [sidebar] :last-child a::after {
   display: none;
 }
+[sidebar] ul li {
+  display: inline-block;
+}
 
 @media (min-width: calc(57 * 12 * 1.45px)) {
   
@@ -60,5 +63,19 @@ a column
   }
   [fixed] {
     display: none;
+  }
+}
+
+@media (max-width: calc((482 + (57 * 2)) * 1.45px)) {
+  [sidebar] > :last-child, 
+  [sidebar] > :nth-last-child(2n),
+  [sidebar] > :nth-last-child(3n) {
+    grid-column: 1 / -1;
+  }
+  [sidebar] > :last-child {
+    margin-top: calc(var(--unit) / 2);
+  }
+  [sidebar] > :nth-last-child(3n) {
+    margin-bottom: calc(var(--unit) / 2);
   }
 }
