@@ -138,4 +138,9 @@ td:not(:first-child) {
   input[type="submit"] {
     display: none;
   }
+  
+  form[grid="columns"] > *:nth-last-child(2n)),
+  form[grid="grid"] > *:nth-last-child(2n) {
+    margin-right: unset;
+  }
 }
