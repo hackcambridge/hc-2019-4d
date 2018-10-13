@@ -111,6 +111,24 @@ header {
   }
 }
 
+@media (max-width: calc(320 * 1.45px)) {
+  [align-last] > *,
+  [align-last] > :first-child,
+  [align-last] > :last-child {
+    grid-column: 1 / -1;
+  }
+  
+  form[grid="columns"] > *:not(:last-child),
+  form[grid="grid"] > *:not(:last-child) {
+    margin-right: unset;
+  }
+  
+  form[grid="columns"] > *:not(:first-child),
+  form[grid="grid"] > *:not(:first-child) {
+    margin-top: var(--gutter);
+  }
+}
+
 @media (min-width: calc((482 + (57 * 2)) * 1.45px)) {
   
   /* Header, section, and footer padding for A4 */
