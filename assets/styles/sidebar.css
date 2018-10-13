@@ -28,7 +28,7 @@ a column
 [sidebar] :last-child a::after {
   display: none;
 }
-[sidebar] ul li {
+ul.icons li {
   display: inline-block;
 }
 
