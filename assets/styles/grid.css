@@ -88,7 +88,10 @@ header {
   
   header,
   main section,
-  footer {
+  footer,
+  header[layout="width"],
+  main[layout="width"] > *,
+  footer[layout="width"]  {
     padding-left: calc((100vw - 88vw )/ 2);
     padding-right: calc((100vw - 88vw )/ 2);
     max-width: 88vw;
