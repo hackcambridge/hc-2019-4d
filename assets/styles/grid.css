@@ -112,7 +112,7 @@ header {
   }
 }
 
-@media (max-width: calc(482pt + 69pt)) {
+@media (max-width: calc((482 + 69) * 1.45px)) {
   
   /* Margins between top-level elements */
   

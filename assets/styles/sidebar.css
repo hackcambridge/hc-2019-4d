@@ -29,7 +29,7 @@ a column
   display: none;
 }
 
-@media (min-width: calc(57pt * 12 + 1pt)) {
+@media (min-width: calc(57 * 12 * 1.45px)) {
   
   [fixed] {
     position: absolute;
@@ -45,7 +45,7 @@ a column
   }
 }
 
-@media (max-width: calc(57pt * 12)) {
+@media (max-width: calc(57 * 12 * 1.45px)) {
   
   [sidebar] > :nth-last-child(2n) {
     grid-column-start: 1;
