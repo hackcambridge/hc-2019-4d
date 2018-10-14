@@ -32,6 +32,11 @@ ul.icons li {
   display: inline-block;
 }
 
+[sidebar] > img:nth-last-child(3n) {
+  object-fit: contain;
+  object-position: top;
+}
+
 @media (min-width: calc(57 * 12 * 1.45px)) {
   
   [fixed] {
