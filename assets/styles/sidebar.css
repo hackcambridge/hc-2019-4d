@@ -11,11 +11,11 @@ a column
   position: sticky;
 }
 [sidebar] > :nth-last-child(2n) {
-  grid-column-start: calc(-3 - (var(--columns) * 2) + var(--half-column));
+  grid-column-start: calc(-3 - (var(--columns) * 2) - var(--half-column));
   grid-column-end: -2;
 }
 [sidebar] > :nth-last-child(3n) {
-  grid-column-end: calc(-3 - (var(--columns) * 2) + var(--half-column));
+  grid-column-end: calc(-3 - (var(--columns) * 2) - var(--half-column));
   grid-column-start: -26;
 }
 [fixed] {
@@ -29,7 +29,7 @@ a column
   display: none;
 }
 
-@media (min-width: calc(57pt * 12 + 1pt)) {
+@media (min-width: calc(57 * 12 * 1.45px)) {
   
   [fixed] {
     position: absolute;
@@ -45,7 +45,7 @@ a column
   }
 }
 
-@media (max-width: calc(57pt * 12)) {
+@media (max-width: calc(57 * 12 * 1.45px)) {
   
   [sidebar] > :nth-last-child(2n) {
     grid-column-start: 1;

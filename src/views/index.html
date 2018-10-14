@@ -8,12 +8,12 @@
 {% set layoutMode = 'width' %}
 {% block content %}
   <main layout="{{ layoutMode }}">
-    <div fixed grid="columns" sidebar columns="7.0">
+    <div fixed grid="columns" sidebar columns="7.5">
       <img draggable="false" src="{{ asset('images/logo.svg') }}"/>
       <div></div>
       <div></div>
     </div>
-    <section grid="grid" sidebar columns="7.0" rows="4.5">
+    <section grid="grid" sidebar columns="7.5" rows="4.5">
       <img draggable="false" src="{{ asset('images/logo.svg') }}"/>
       <div grid="rows">
         <h1 rows="2.0">
@@ -51,7 +51,7 @@
         </li>
       </ul>
     </section>
-    <section grid="grid" sidebar columns="7.0">
+    <section grid="grid" sidebar columns="7.5">
       <div></div>
       <div grid="rows" rows="1.5">
         <strong rows="0.5">
@@ -64,7 +64,7 @@
       </div>
       <div></div>
     </section>
-    <section grid="grid" sidebar columns="7.0" color="red">
+    <section grid="grid" sidebar columns="7.5" color="red">
       <div></div>
       <div grid="rows" rows="1.5">
         <strong rows="0.5">
@@ -86,7 +86,7 @@
         </li>
       </il>
     </section>
-    <section grid="columns" sidebar columns="7.0">
+    <section grid="columns" sidebar columns="7.5">
       <div></div>
       <div grid="rows">
         <h2 rows="1.0">
@@ -115,7 +115,7 @@
       <div></div>
     </section>
   </main>
-  <footer grid="grid" sidebar columns="7.0" layout="{{ layoutMode }}">
+  <footer grid="grid" sidebar columns="7.5" layout="{{ layoutMode }}">
     <div></div>
     <div rows="2.0">
       {% include 'footer.html' %}
