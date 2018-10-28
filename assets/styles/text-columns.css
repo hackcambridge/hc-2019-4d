@@ -1,0 +1,12 @@
+@media (min-width: calc(482pt + (57pt * 2))) {
+  
+  /* Text columns */
+  
+  .text-columns {
+    column-count: 2;
+    column-gap: var(--column-gutter);
+  }
+  .text-columns > .span {
+    column-span: all;
+  }
+}

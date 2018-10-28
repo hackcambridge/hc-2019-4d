@@ -1,0 +1,86 @@
+/*
+Sidebar
+Supports three elements, and setting `columns` on the container
+determines the fixed span of the middle element. The sidebar is half
+a column
+*/
+
+[sidebar] > :last-child {
+  grid-column-start: -2;
+  top: var(--unit);
+  position: sticky;
+}
+[sidebar] > :nth-last-child(2n) {
+  grid-column-start: calc(-3 - (var(--columns) * 2) - var(--half-column));
+  grid-column-end: -2;
+}
+[sidebar] > :nth-last-child(3n) {
+  grid-column-end: calc(-3 - (var(--columns) * 2) - var(--half-column));
+  grid-column-start: -26;
+}
+[fixed] {
+  margin-top: calc(var(--unit) / 2);
+}
+[fixed] {
+  visibility: collapse;
+}
+
+[sidebar] :last-child a::after {
+  display: none;
+}
+ul.icons li {
+  display: inline-block;
+}
+
+[sidebar] > img:nth-last-child(3n) {
+  object-fit: contain;
+  object-position: top;
+}
+
+@media (min-width: calc(57 * 12 * 1.45px)) {
+  
+  [fixed] {
+    position: absolute;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
+  }
+  [fixed] > :nth-last-child(3n) {
+    visibility: visible;
+  }
+  [fixed] + section img:nth-last-child(3n) {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: calc(57 * 12 * 1.45px)) {
+  
+  [sidebar] > :nth-last-child(2n) {
+    grid-column-start: 1;
+  }
+  [sidebar] > img:nth-last-child(3n) {
+    grid-column-end: span 5;
+    grid-column-start: 1;
+    grid-row: span 5;
+  }
+  [sidebar] > :nth-last-child(3n):empty:not(img) {
+    display: none;
+  }
+  [fixed] {
+    display: none;
+  }
+}
+
+@media (max-width: calc((482 + (57 * 2)) * 1.45px)) {
+  [sidebar] > :last-child, 
+  [sidebar] > :nth-last-child(2n),
+  [sidebar] > :nth-last-child(3n) {
+    grid-column: 1 / -1;
+  }
+  [sidebar] > :last-child {
+    margin-top: calc(var(--unit) / 2);
+  }
+  [sidebar] > :nth-last-child(3n) {
+    margin-bottom: calc(var(--unit) / 2);
+  }
+}
