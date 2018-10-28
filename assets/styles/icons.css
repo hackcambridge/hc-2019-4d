@@ -1,0 +1,16 @@
+svg {
+  overflow: visible;
+}
+a svg.icon {
+  stroke: var(--accent-color);
+  stroke-opacity: 0;
+  stroke-width: 2;
+  fill: var(--accent-color);
+  fill-opacity: 0;
+}
+a:not(:hover) svg.icon, a:active svg.icon {
+  stroke-opacity: 1;
+}
+a:hover:not(:active) svg.icon {
+  fill-opacity: 1;
+}

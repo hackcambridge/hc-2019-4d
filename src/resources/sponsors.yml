@@ -1,66 +1,15 @@
+# This YAML file contains the list of sponsors that gets displayed on the splash page.
+# Progressive indentations should be two spaces each. Inconsistent indentation will invalidate the YAML.
+# If you're not building the app locally, you may want to run any new YAML though a validator first.
+#
+# Example:
+#
+# sponsors:
+#   tera:
+#     items:
+#       - name: Acme Development
+#         website: https://www.acmedevelopment.com
+#     rows: 6.0 (the number of rows the items will take up)
+#     columns: 5.0 (the maximum number of columns the items should span)
+
 sponsors:
-  tera:
-    items:
-      - name: Cambridge Consultants
-        website: https://www.cambridgeconsultants.com
-      - name: Improbable
-        website: https://www.improbable.io
-      - name: Microsoft
-        website: https://www.microsoft.com
-      - name: Sophos
-        website: https://www.sophos.com
-    rows: seven half
-    columns: five second-seven
-
-  giga:
-    items:
-     - name: Accenture
-       website: https://accenture.com
-     - name: Amazon
-       website: https://amazon.co.uk
-     - name: ARK
-       website: https://ark.io
-     - name: Avast
-       website: https://avast.com
-     - name: Google
-       website: https://google.com
-     - name: TPP
-       website: https://www.tpp-uk.com/
-     - name: Cisco
-       website: https://www.cisco.com/c/en_uk/index.html
-    rows: fourteen half
-    columns: four second-five
-
-  mega:
-    items:
-      - name: Arista Networks
-        website: https://www.arista.com
-      - name: ARM
-        website: http://www.arm.com
-      - name: Droit Financial Technologies
-        website: http://droitfintech.com
-      - name: Facebook
-        website: http://facebook.com
-      - name: Featurespace
-        website: https://www.featurespace.com
-      - name: Man AHL
-        website: https://www.ahl.com
-      - name: J.P. Morgan
-        website: https://www.jpmorgan.com
-      - name: Cambridge Medical Robotics
-        website: http://cmedrobotics.com
-    rows: twelve
-    columns: three second-four
-
-  kilo:
-    items:
-      - name: DataScope
-        website: http://www.datascope.co.uk
-      - name: DisplayLink
-        website: http://www.displaylink.com
-      - name: Pipers
-        website: http://www.pipers.co.uk
-      - name: HighRise
-        website: http://www.highrisehq.com
-    rows: five half
-    columns: two second-three

@@ -12,10 +12,12 @@ let sequence = require('run-sequence');
 let bs = require('browser-sync').create();
 let nodemon = require('nodemon');
 let validateYaml = require('gulp-yaml-validate');
+let concatCss = require('gulp-concat-css');
+const terser = require('gulp-terser');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
-let assetPath = ['assets/**', '!assets/dist/**'];
+let assetPath = ['assets/**', '!assets/dist/**', '!assets/styles/**'];
 
 const ts = require('gulp-typescript');
 
@@ -34,25 +36,9 @@ gulp.task('clean', () => {
 // CSS
 
 gulp.task('preprocess-css', () => {
-  gulp.src('src/styles/all-stylesheets.styl')
+  gulp.src('assets/styles/all-stylesheets.css')
     .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.stylus({
-      'include css': true,
-      paths: ['./node_modules'],
-
-    }))
-    .pipe($.autoprefixer())
-    .pipe($.if(!prod, $.sourcemaps.write()))
-    .pipe(gulp.dest('assets/dist/styles'))
-    .pipe(bs.stream());
-
-  gulp.src('src/styles/ternary-cube.styl')
-    .pipe($.if(!prod, $.sourcemaps.init()))
-    .pipe($.stylus({
-      'include css': true,
-      paths: ['./node_modules'],
-
-    }))
+    .pipe(concatCss('all-stylesheets.css'))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
@@ -84,7 +70,7 @@ gulp.task('browserify', () => {
 
   return gulpBrowserify('./dist/js/client/main.js', 'main.js')
     .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
-    .pipe($.if(prod, $.uglify()))
+    .pipe($.if(prod, terser()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
     .pipe(bs.stream());
@@ -140,10 +126,10 @@ gulp.task('build', (cb) => {
 });
 
 gulp.task('watch', ['build'], () => {
-  gulp.watch(['src/js/**'], ['compile', 'copy', 'scripts']);
-  gulp.watch('src/styles/**', ['styles']);
+  gulp.watch(['src/js/**'], ['compile-typescript', 'copy-source', 'browserify']);
+  gulp.watch('assets/styles/**.css', ['preprocess-css']);
   gulp.watch(['src/views/**', 'src/resources/**'], bs.reload);
-  gulp.watch(assetPath, ['assets']);
+  gulp.watch(assetPath, ['copy-assets']);
 });
 
 gulp.task('serve', ['watch'], () => {

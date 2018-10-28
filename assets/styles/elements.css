@@ -1,0 +1,145 @@
+:root {
+  --border: 1pt solid;
+}
+
+figure {
+  margin: unset;
+}
+
+img {
+  justify-self: stretch;
+}
+
+/* Forms */
+
+input, form, body, button {
+  margin: unset;
+  padding: unset;
+}
+
+input {
+  color: var(--secondary-color);
+  background-color: unset;
+  border: var(--border) rgba(255,255,255,0);
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: unset;
+}
+
+input[placeholder]{
+  text-overflow: ellipsis;
+}
+
+input:placeholder-shown {
+  border-bottom: var(--border) var(--accent-color);
+}
+
+input[type="submit"], input[type="checkbox"], button {
+  background-color: unset;
+  color: var(--accent-color);
+  border: var(--border) var(--accent-color);
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="number"] {
+  border-bottom: var(--border) var(--secondary-color);
+  border-left: unset;
+  border-right: unset;
+  text-indent: 0.75pt;
+}
+
+input[type="email"]:-webkit-autofill {
+  -webkit-text-fill-color: var(--primary-color);
+  border-bottom: var(--border) var(--accent-color);
+}
+
+input::placeholder {
+  color: var(--accent-color);
+}
+
+::-moz-placeholder {
+  opacity: 1;
+}
+
+textarea {
+  resize: none;
+  width: calc(100% - 3pt * 2);
+  height: var(--one);
+  border: var(--border) var(--secondary-color);
+}
+
+fieldset {
+  border-width: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+  font-size: 14pt;
+  font-weight: lighter;
+  margin-bottom: var(--gutter);
+}
+
+input[type="submit"]:hover:not([disabled]), button:hover:not([disabled]){
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: var(--border) var(--secondary-color);
+}
+
+input[type="submit"]:active:not([disabled]), button:active:not([disabled]){
+  background-color: unset;
+  color: var(--secondary-color);
+  border: var(--border) var(--secondary-color);
+}
+input[disabled], button[disabled] {
+  opacity: 0.5;
+}
+
+/* Sections */
+
+section:not([color]) + section:not([color]),
+section[color="red"] + section[color="red"],
+section[color="blue"] + section[color="blue"],
+header:not([color]) + main section:first-child:not([color]),
+footer {
+  overflow: hidden;
+  border-top: var(--border) var(--subtle-accent-color);
+}
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-spacing: var(--gutter) 0;
+  margin: 0 calc(var(--gutter) * -1);
+}
+th {
+  text-align: left;
+}
+table, th, td {
+  padding: 0;
+}
+td:not(:first-child) {
+  margin-left: var(--gutter);
+}
+
+/* Hide submit button on touch devices (since the keyboard will have one) */
+
+@media (pointer: coarse), (pointer: none) {
+  input[type="submit"] {
+    display: none;
+  }
+  
+  form[grid="columns"] > *:nth-last-child(2n)),
+  form[grid="grid"] > *:nth-last-child(2n) {
+    margin-right: unset;
+  }
+}

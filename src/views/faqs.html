@@ -4,15 +4,13 @@
 {% set homeLink = true %}
 {% block pageHeading %}{{title}}{% endblock %}
 {% block pageContent %}
+  <div rows="15.5" class="text-columns">
     {% for faq in faqs %}
-        <div class="{{ faq.rows }} unit row">
-            <div class="unit column grows">
-                <h4>{{ faq.question }}</h4>
-                <p>{{ faq.answer | safe }}</p>
-                {% if faq.action %}
-                    {{ faq.action | safe }}
-                {% endif %}
-            </div>
-        </div>
+      <h4>{{ faq.question }}</h4>
+      <p>{{ faq.answer | safe }}</p>
+      {% if faq.action %}
+        {{ faq.action | safe }}
+      {% endif %}
     {% endfor %}
+  </div>
 {% endblock %}
