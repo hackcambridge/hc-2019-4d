@@ -34,7 +34,10 @@ input:placeholder-shown {
   border-bottom: var(--border) var(--accent-color);
 }
 
-input[type="submit"], input[type="checkbox"], button {
+input[type="submit"],
+input[type="checkbox"],
+button,
+input[type="button"] {
   background-color: unset;
   color: var(--accent-color);
   border: var(--border) var(--accent-color);
@@ -69,11 +72,19 @@ input::placeholder {
   opacity: 1;
 }
 
+input[type="button"], button, select {
+  padding: 0 4px;
+}
+
 textarea {
   resize: none;
   width: calc(100% - 3pt * 2);
   height: var(--one);
   border: var(--border) var(--secondary-color);
+}
+
+label {
+  display: block;
 }
 
 fieldset {
@@ -88,18 +99,23 @@ legend {
   margin-bottom: var(--gutter);
 }
 
-input[type="submit"]:hover:not([disabled]), button:hover:not([disabled]){
+input[type="submit"]:hover:not([disabled]),
+input[type="button"]:hover:not([disabled]),
+button:hover:not([disabled]){
   background-color: var(--secondary-color);
   color: var(--primary-color);
   border: var(--border) var(--secondary-color);
 }
 
-input[type="submit"]:active:not([disabled]), button:active:not([disabled]){
+input[type="submit"]:active:not([disabled]),
+input[type="button"]:active:not([disabled]),
+button:active:not([disabled]){
   background-color: unset;
   color: var(--secondary-color);
   border: var(--border) var(--secondary-color);
 }
-input[disabled], button[disabled] {
+input[disabled],
+button[disabled] {
   opacity: 0.5;
 }
 

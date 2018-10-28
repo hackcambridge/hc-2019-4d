@@ -1,6 +1,6 @@
 /* Fonts */
 
-:root, input {
+:root, input, button, input, select, textarea {
   font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
 }
 
