@@ -4,53 +4,32 @@
 {% set no_page_content = true %}
 {% block extraSections %}
 <form class="team-form" method="POST" enctype="multipart/form-data">
-    <section>
-        <div class="container a4">
-            <div class="three unit row">
-                <div class="unit column grows">
-                    <h1>
-                        Team Application
-                    </h1>
-                </div>
-            </div>
-            <div class="two unit row">
-                <div class="unit column grows">
-                    <p>
-                        Enter your teammates’ application IDs to confirm your team.
-                    </p>
-                </div>
-            </div>
-            <div class="three half unit row">
-                <div class="unit column grows">
-                    <table>
-                        <tr>
-                            <th class="one unit">Member</th>
-                            <th>Application ID</th>
-                        </tr>
-                        <tr>
-                            <td>A</td>
-                            <td><span class="pixel">{{ applicationSlug }}</span></td>
-                        </tr>
-                        {{ formHtml|safe }}
-                    </table>
-                </div>
-            </div>
-            <div class="two unit row">
-                <div class="unit column grows">
-                    <div>
-                        <button type="submit" class="button submit-button">Submit</button>
-                    </div>
-                </div>
-            </div>
-            <div class="two unit row">
-                <div class="unit column grows">
-                    <p>
-                        You can do this later if you wish.
-                    </p>
-                    <a href="dashboard">Back to the dashboard</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section grid="rows">
+    <h1 rows="1.0">
+      Team Application
+    </h1>
+    <p rows="0.5">
+      Enter your teammates’ application IDs to confirm your team.
+    </p>
+    <table rows="2.0">
+      <tr>
+        <th class="one unit">Member</th>
+        <th>Application ID</th>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td><span class="pixel">{{ applicationSlug }}</span></td>
+      </tr>
+      {{ formHtml|safe }}
+    </table>
+      <div rows="0.5">
+        <button type="submit" class="button submit-button">Submit</button>
+      </div>
+      <p rows="0.5">
+        You can do this later if you wish.
+      </p>
+      <a rows="0.5" href="dashboard">Back to the dashboard</a>
+    </div>
+  </section>
 </form>
 {% endblock %}

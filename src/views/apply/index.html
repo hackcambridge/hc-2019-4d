@@ -4,29 +4,13 @@
 {% set footer = true %}
 {% block pageHeading %}Apply to Hack Cambridge{% endblock %}
 {% block introBanner %}
-    <section class="red">
-        <div class="container a4">
-            <div class="one half unit row">
-                <div class="unit column grows">
-                    <div>
-                        <a href="/" rel="prev">Find out more about Hack Cambridge</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section color="blue" grid="rows">
+    <a rows="0.5" href="/" rel="prev">Find out more about Hack Cambridge</a>
+  </section>
 {% endblock %}
 {% block pageContent %}
-<div class="one half unit row">
-    <div class="unit column grows">
-        <div>
-            To start or continue an application, log in with MyMLH.
-        </div>
-    </div>
-</div>
-<div class="one half unit row">
-    <div class="unit column grows">
-        <a href="/apply/form">Log in with MyMLH</a>
-    </div>
-</div>
+  <div rows="0.5">
+    To start or continue an application, log in with MyMLH.
+  </div>
+  <a href="/apply/form" rows="1.0">Log in with MyMLH</a>
 {% endblock %}

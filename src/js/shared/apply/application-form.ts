@@ -66,14 +66,14 @@ export function createApplicationForm(validateFile = true) {
   return createForm({
     cv: fileField({
       label: 'Upload your CV.',
-      note: 'PDF files only. 2 MB maximum size.',
+      note: '<span class="pixel">PDF files only. 2 MB maximum size.</span>',
       required: requiredField,
       validators: validateFile ? [
         fileTypeValidator('application/pdf', 'Please upload a PDF.'),
         fileSizeValidator(exports.maxFieldSize, 'Your CV must be no larger than 2 MB.'),
       ] : [],
       cssClasses,
-      row_units: 'three',
+      row_units: '1.5',
     }),
     countryTravellingFrom: fields.string(<FieldParameters>{
       widget: widgets.select(),
@@ -82,7 +82,7 @@ export function createApplicationForm(validateFile = true) {
       required: requiredField,
       choices: createCountryChoices(),
       cssClasses,
-      row_units: 'three',
+      row_units: '1.5',
     }),
     development: fields.array(<FieldParameters>{
       label: 'What role or roles in a team would you be interested in?',
@@ -105,25 +105,25 @@ export function createApplicationForm(validateFile = true) {
         },
       ],
       cssClasses,
-      row_units: 'four',
+      row_units: '2.5',
     }),
     learn: textareaField('What do you want to get out of this event?', 500, {
       note: '<span class="pixel">500 characters or less.</span>',
       required: requiredField,
-      row_units: 'four',
+      row_units: '2.0',
     }),
     interests: textareaField('What are you interested in?', 500, {
-      note: 'Mention anything you want—it doesn’t have to be technology-related! <span class="pixel">500 characters or less.</span>',
+      note: 'Mention anything you want—it doesn’t have to be technology-related! <br><span class="pixel">500 characters or less.</span>',
       required: requiredField,
-      row_units: 'four',
+      row_units: '2.0',
     }),
     accomplishment: textareaField('Tell us about a recent accomplishment you’re proud of.', 500, {
       note: '<span class="pixel">500 characters or less.</span>',
       required: requiredField,
-      row_units: 'four',
+      row_units: '2.0',
     }),
     links: textareaField('Are there any links you’d like to share so we can get to know you better?', 500, { 
-      note: 'For example GitHub, LinkedIn or your website. Put each link on a new line. <span class="pixel">500 characters or less.</span>', 
+      note: 'For example GitHub, LinkedIn or your website. Put each link on a new line. <br><span class="pixel">500 characters or less.</span>', 
       placeholder: 'https://github.com/hackcambridge',
       validators: [
         (form, field, callback) => {
@@ -145,7 +145,7 @@ export function createApplicationForm(validateFile = true) {
           callback();
         }
       ],
-      row_units: 'four',
+      row_units: '2.0',
     }),
     team: fields.array(<FieldParameters>{
       label: 'Teams',
@@ -165,7 +165,7 @@ export function createApplicationForm(validateFile = true) {
         },
       ],
       cssClasses,
-      row_units: 'four half',
+      row_units: '3.0',
     }),
     confirmations: fields.array(<FieldParameters>{
       label: 'Student status confirmation and terms and conditions',
@@ -186,7 +186,7 @@ export function createApplicationForm(validateFile = true) {
         },
       ],
       cssClasses,
-      row_units: 'four half',
+      row_units: '3.0',
     }),
   }, {
     validatePastFirstError: true,
