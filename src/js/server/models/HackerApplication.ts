@@ -28,21 +28,21 @@ interface HackerApplicationAttributes {
   graduationDate: Date;
   wantsMailingList: boolean;
   needsVisa: boolean;
-  visaNeededBy ? : Date;
-  otherInfo ? : string;
+  visaNeededBy?: Date;
+  otherInfo?: string;
 }
 
-export interface HackerApplicationInstance extends Sequelize.Instance < HackerApplicationAttributes > , HackerApplicationAttributes {
-  getApplicationResponse: () => Promise < ApplicationResponseInstance > ;
-  applicationResponse ? : ApplicationResponseInstance;
+export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
+  getApplicationResponse: () => Promise<ApplicationResponseInstance>;
+  applicationResponse?: ApplicationResponseInstance;
 
-  getApplicationTicket: () => Promise < ApplicationTicketInstance > ;
+  getApplicationTicket: () => Promise<ApplicationTicketInstance>;
 
-  getHacker: () => Promise < HackerInstance > ;
-  hacker ? : HackerInstance;
+  getHacker: () => Promise<HackerInstance>;
+  hacker?: HackerInstance;
 }
 
-const attributes: SequelizeAttributes < HackerApplicationAttributes > = {
+const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
   hackerId: {
     type: Sequelize.INTEGER,
     unique: true,
@@ -125,8 +125,7 @@ const attributes: SequelizeAttributes < HackerApplicationAttributes > = {
 };
 
 const HackerApplication =
-  db.define < HackerApplicationInstance,
-  HackerApplicationAttributes > ('hackerApplication', attributes, {
+  db.define<HackerApplicationInstance,HackerApplicationAttributes>('hackerApplication', attributes, {
     tableName: 'hackers-applications'
   });
 
