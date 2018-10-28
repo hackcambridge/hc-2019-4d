@@ -7,15 +7,13 @@
         if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
       #}
       {% if user.firstName %}
-        <section color="red" grid="rows">
-          <div rows="1.5">
+        <section color="blue" grid="rows">
+          <div rows="1.0">
             Hey {{ user.firstName }} {{ user.lastName }}!
-          </div>
-          <div rows="1.5">
-            <a href="/apply/logout">Logout</a>
+            <br><a href="/apply/logout">Logout</a>
             {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
             {% if not is_dashboard %}
-              <a href="/apply/dashboard">Dashboard</a>
+              <br><a href="/apply/dashboard">Dashboard</a>
             {% endif %}
           </div>
         </section>
