@@ -13,7 +13,7 @@ import {
 } from './ApplicationResponse';
 
 interface HackerApplicationAttributes {
-  id ? : number;
+  id?: number;
   hackerId: number;
   applicationSlug: string;
   cv: string;
@@ -125,7 +125,7 @@ const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
 };
 
 const HackerApplication =
-  db.define<HackerApplicationInstance,HackerApplicationAttributes>('hackerApplication', attributes, {
+  db.define<HackerApplicationInstance, HackerApplicationAttributes>('hackerApplication', attributes, {
     tableName: 'hackers-applications'
   });
 
