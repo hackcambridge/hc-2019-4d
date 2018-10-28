@@ -20,6 +20,9 @@ export function createApplicationFromForm(formData, user) {
       links: formData.links,
       inTeam: formData.team.includes('team_apply'),
       wantsTeam: formData.team.includes('team_placement'),
+      graduationDate: new Date("1980-01-01"),
+      needsVisa: false,
+      wantsMailingList: false
     });
   }).then(application => {
     sendEmail({
