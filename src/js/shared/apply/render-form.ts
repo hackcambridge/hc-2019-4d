@@ -15,7 +15,7 @@ export default function (name, field, options = { }) {
     tag('p', { classes: ['error'] }, field.errorHTML()),
     innerContent,
   ].join(''));
-  return tag('div', { classes: [field.row_units, 'unit row'] }, [
+  return tag('div', { rows: [field.row_units] }, [
     fieldSet
   ].join(''));
 };
