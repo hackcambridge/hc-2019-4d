@@ -11,6 +11,7 @@ interface TeamMemberAttributes {
 }
 
 export interface TeamMemberInstance extends Sequelize.Instance<TeamMemberAttributes>, TeamMemberAttributes {
+  getTeam: () => Promise<TeamInstance>;
   team?: TeamInstance;
 
   getHacker: () => Promise<HackerInstance>;
