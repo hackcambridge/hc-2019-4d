@@ -7,12 +7,12 @@ interface TeamServiceConfig {
 
 interface TeamServiceInterface {
   /**
-   * Takes a hacker in an arbitrary state and converts them to the "wants to be allocated to a team" state.
+   * Takes a hacker who has applied and converts them to the "wants to be allocated to a team" state.
    */
   convertHackerToWantsTeam(hacker: HackerInstance): Promise<void>;
 
   /**
-   * Takes a hacker in an arbitrary state and converts them to the "applying on their own" state.
+   * Takes a hacker who has applied and converts them to the "applying on their own" state.
    */
   convertHackerToApplyingOnOwn(hacker: HackerInstance): Promise<void>;
 
