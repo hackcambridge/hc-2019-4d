@@ -73,7 +73,11 @@ class TeamService implements TeamServiceInterface {
    * Upgrades all the unregistered invitee instances for the hacker's email into registered
    * invitee instances.
    */
-  upgradeUnregisteredInvitee(): Promise<void> {
+  async upgradeUnregisteredInvitees(): Promise<void> {
     throw new Error('unimplemented');
   }
+}
+
+export function createTeamService(): TeamServiceInterface {
+  return new TeamService();
 }
