@@ -1,5 +1,4 @@
 import { HackerInstance } from "../models/Hacker";
-import { TeamInstance } from "../models/Team";
 
 interface TeamServiceConfig {
   sendUserLeftTeamEmail(emailRecipient: string, emailLeaving: string);
@@ -15,6 +14,12 @@ interface TeamServiceInterface {
    * Takes a hacker who has applied and converts them to the "applying on their own" state.
    */
   convertHackerToApplyingOnOwn(hacker: HackerInstance): Promise<void>;
+
+  /**
+   * Upgrades all the unregistered invitee instances for the hacker's email into registered
+   * invitee instances.
+   */
+  upgradeUnregisteredInvitees(hacker: HackerInstance): Promise<void>;
 
   /**
    * Takes a hacker and removes them from their team, notifying any other members of the team and
@@ -61,6 +66,14 @@ class TeamService implements TeamServiceInterface {
    * removing the team if there are no remaining members.
    */
   leaveTeam(hacker: HackerInstance): Promise<void> {
+    throw new Error('unimplemented');
+  }
+
+  /**
+   * Upgrades all the unregistered invitee instances for the hacker's email into registered
+   * invitee instances.
+   */
+  upgradeUnregisteredInvitee(): Promise<void> {
     throw new Error('unimplemented');
   }
 }
