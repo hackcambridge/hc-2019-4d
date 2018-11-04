@@ -23,7 +23,8 @@ interface HackerApplicationAttributes {
   recentAccomplishment: string;
   countryTravellingFrom: string;
   links: string;
-  inTeam: boolean;
+  /** Boolean for if the hacker said they wanted to make a team application */
+  inTeam: boolean; 
   wantsTeam: boolean;
   graduationDate: Date;
   wantsMailingList: boolean;

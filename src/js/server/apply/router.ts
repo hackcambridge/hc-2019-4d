@@ -8,12 +8,13 @@ import renderTableForm from 'js/shared/apply/render-table-form';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
-import { Hacker, TeamMember } from 'js/server/models';
+import { Hacker, TeamMember, HackerApplication } from 'js/server/models';
 import { rsvpToResponse } from 'js/server/attendance/logic';
 import * as applyLogic from './logic';
 import fileUploadMiddleware from './file-upload';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 import { HackerInstance } from '../models/Hacker.js';
+import { HackerApplicationInstance } from '../models/HackerApplication';
 
 const applyRouter = express.Router();
 
@@ -295,8 +296,13 @@ function renderTeamPageWithForm(res, form, errors = { }) {
  * as normal.
  */
 function checkHasApplied(req, res, next) {
-  req.user.getHackerApplication().then(hackerApplication => {
+  req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
     if (hackerApplication) {
+      //If the hacker wants to create a team, redirect to the team page otherwise send them to the dashboard
+      if (hackerApplication.inTeam) {
+        res.redirect(`${req.baseUrl}/team`);
+        return;
+      }
       res.redirect(`${req.baseUrl}/dashboard`);
       return;
     } 
@@ -306,7 +312,7 @@ function checkHasApplied(req, res, next) {
 }
 
 /**
- * Intercepts requests to check if applications are still open, redirecting to the dashbaord if not
+ * Intercepts requests to check if applications are still open, redirecting to the dashboard if not
  */
 function checkApplicationsOpen(req, res, next) {
   console.log(process.env.APPLICATIONS_OPEN);
