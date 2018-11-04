@@ -1,4 +1,7 @@
-import { HackerInstance } from "../models/Hacker";
+import Hacker, { HackerInstance } from "../models/Hacker";
+import UnregisteredInvitee, { UnregisteredInviteeInstance } from "../models/UnregisteredInvitee"
+import RegisteredInvitee from "../models/RegisteredInvitee";
+import db from "../models/db"
 
 interface TeamServiceConfig {
   sendUserLeftTeamEmail(emailRecipient: string, emailLeaving: string);
@@ -73,8 +76,17 @@ class TeamService implements TeamServiceInterface {
    * Upgrades all the unregistered invitee instances for the hacker's email into registered
    * invitee instances.
    */
-  async upgradeUnregisteredInvitees(): Promise<void> {
-    throw new Error('unimplemented');
+  async upgradeUnregisteredInvitees(hacker: HackerInstance): Promise<void> {
+    return db.transaction( (t) => {
+      return UnregisteredInvitee.findAll({where: {email: hacker.email}, transaction: t})
+        .then((unregistered) => unregistered.forEach(element => {
+          RegisteredInvitee.create({hackerId: hacker.id, teamId: element.teamId}, {transaction: t});
+          element.destroy({transaction: t});
+        }));
+    })
+    .then((result) => {})
+    .catch((err) => {});
+    
   }
 }
 

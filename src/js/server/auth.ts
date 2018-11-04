@@ -5,6 +5,7 @@ import * as url from 'url';
 
 import { Hacker } from 'js/server/models';
 import { TooYoungError } from './models/Hacker';
+import { createTeamService } from './apply/team-service';
 
 // Authorisation config
 const client_id     = process.env.MYMLH_CLIENT_ID;
@@ -94,7 +95,9 @@ function handleCallback(req, res, next) {
       .upsertAndFetchFromMlhUser(mlhUser)
       .then(user => {
         req.userSession = { id: user.id };
-
+        
+        const teamService = createTeamService();
+        teamService.upgradeUnregisteredInvitees(user);
         const redirectTo = req.redirectTo.url ? req.redirectTo.url : dashboard_url;
 
         // For debugging
@@ -107,7 +110,7 @@ function handleCallback(req, res, next) {
 
         // Redirect with auth
         res.redirect(redirectTo);
-      }).catch(err => {
+      }, err => {
         if (err instanceof TooYoungError) {
           res.redirect('/auth/error?code=TOO_YOUNG');
           return;

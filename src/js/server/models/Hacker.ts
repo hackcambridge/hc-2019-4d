@@ -130,7 +130,7 @@ export interface HackerInstance extends Sequelize.Instance<HackerAttributes>, Ha
 }
 
 interface Hacker extends Sequelize.Model<HackerInstance, HackerAttributes> {
-  upsertAndFetchFromMlhUser?: (mlhUser: any) => any;
+  upsertAndFetchFromMlhUser?: (mlhUser: any) => PromiseLike<HackerInstance>;
   deriveOverallStatus?: (...args: any[]) => any;
 }
 
