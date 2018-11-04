@@ -25,7 +25,7 @@ interface HackerApplicationAttributes {
   links: string;
   inTeam: boolean;
   wantsTeam: boolean;
-  graduationDate: Date;
+  graduationYear: string;
   wantsMailingList: boolean;
   needsVisa: boolean;
   visaNeededBy?: Date;
@@ -102,7 +102,7 @@ const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
     allowNull: false,
     defaultValue: false
   },
-  graduationDate: {
+  graduationYear: {
     type: Sequelize.DATE,
     allowNull: false
   },

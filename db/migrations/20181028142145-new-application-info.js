@@ -4,8 +4,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn(
       'hackers-applications',
-      'graduationDate', {
-        type: Sequelize.DATE,
+      'graduationYear', {
+        type: Sequelize.TEXT,
         allowNull: false,
       }
     );
@@ -44,7 +44,7 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeColumn(
       'hackers-applications',
-      'graduationDate'
+      'graduationYear'
     );
     await queryInterface.removeColumn(
       'hackers-applications',

@@ -3,7 +3,7 @@ import countryList from 'country-list';
 import * as validator from 'validator';
 
 import { field as fileField, typeValidator as fileTypeValidator, sizeValidator as fileSizeValidator } from './file-field';
-import { multiCheckboxWidget } from './checkbox';
+import { multiCheckboxWidget, checkboxWidget } from './checkbox';
 import { getEarliestGraduationDateToAccept } from 'js/shared/dates';
 
 const countries = countryList();
@@ -166,6 +166,53 @@ export function createApplicationForm(validateFile = true) {
       ],
       cssClasses,
       row_units: '3.0',
+    }),
+    graduationYear: fields.string(<FieldParameters>{
+      label: 'What is your graduation year?',
+      required: requiredField,
+      validators: [
+        (form, field, callback) => {
+          Number(field.data)
+          if (field.data.length != 4 || isNaN(Number(field.data))) {
+            callback("Invalid date format")
+          } else if (field.data < getEarliestGraduationDateToAccept().year()) {
+            callback(`You must be graduating after ${getEarliestGraduationDateToAccept().format('LL')} to be eligible.`)
+          } else {
+            callback()
+          }
+        }
+      ],
+      row_units: '1.0',
+      cssClasses
+    }),
+    needsVisa: fields.boolean(<FieldParameters>{
+      label: 'Do you require a visa?',
+      widget: <any>checkboxWidget('I will require a visa in order to attend.'),
+      row_units: '1.0',
+      cssClasses
+    }),
+    needsVisaBy: fields.date(<FieldParameters>{
+      label: 'When do you need a visa by?',
+      validators: [
+        (form, field, callback) => {
+          if (!form.data.needsVisa.includes('needs_visa')) {
+            callback('Please tick the \"do you require a visa\" box if you need a visa');
+          } else if (field.data < new Date()) {
+            callback('Date must be in the future');
+          } else {
+            callback();
+          }
+        }
+      ],
+      row_units: '1.0',
+      cssClasses
+    }),
+    mailingList: fields.boolean(<FieldParameters>{
+      label: 'Would you like to be added to the mailing list?',
+      note: '',
+      widget: <any>checkboxWidget('I would like to be kept up to date about Hack Cambridge'),
+      row_units: '1.0',
+      cssClasses
     }),
     confirmations: fields.array(<FieldParameters>{
       label: 'Student status confirmation and terms and conditions',
