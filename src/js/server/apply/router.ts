@@ -1,4 +1,4 @@
-import * as express from 'express';
+import { Router, Request } from 'express';
 import * as tag from 'forms/lib/tag';
 
 import { createApplicationForm } from 'js/shared/apply/application-form';
@@ -15,9 +15,9 @@ import fileUploadMiddleware from './file-upload';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 import { HackerInstance } from '../models/Hacker.js';
 
-const applyRouter = express.Router();
+const applyRouter = Router();
 
-interface UserRequest extends express.Request {
+export interface UserRequest extends Request {
   user: HackerInstance;
 }
 
