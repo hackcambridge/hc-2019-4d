@@ -1,6 +1,7 @@
 import { Router, Request } from 'express';
 import * as tag from 'forms/lib/tag';
 
+import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
 import { createApplicationForm } from 'js/shared/apply/application-form';
 import { createTeamForm } from 'js/shared/apply/team-form';
 import renderForm from 'js/shared/apply/render-form';
@@ -22,12 +23,7 @@ export interface UserRequest extends Request {
 }
 
 applyRouter.get('/', (req: UserRequest, res) => {
-  if (req.user) {
-    res.redirect(`${req.baseUrl}/dashboard`);
-    return;
-  }
-
-  res.render('apply/index.html');
+  req.user ? res.redirect(`${req.baseUrl}/dashboard`) : res.render('apply/index.html');
 });
 
 applyRouter.use(auth.requireAuth);
@@ -40,7 +36,7 @@ applyRouter.get('/', (req, res) => {
 applyRouter.all('/form', checkHasApplied);
 applyRouter.all('/form', checkApplicationsOpen);
 
-applyRouter.post('/form', (req: UserRequest, res, next) => {
+/*applyRouter.post('/form', (req: UserRequest, res, next) => {
   req.user.log('Attempted to make an application');
   next();
 },
@@ -68,12 +64,13 @@ fileUploadMiddleware.single('cv'),
     }
   });
 }
-);
+);*/
+
+applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
 
 // Render the form for additional applicant details
-applyRouter.get('/form', (req, res) => {
-  renderApplyPageWithForm(res, createApplicationForm());
-});
+
+applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
 
 applyRouter.all('/team', checkApplicationsOpen);
 
