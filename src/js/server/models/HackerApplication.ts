@@ -2,9 +2,15 @@ import * as Sequelize from 'sequelize';
 
 import db from './db';
 import Hacker from './Hacker';
-import { HackerInstance } from './Hacker'
-import { ApplicationTicketInstance } from './ApplicationTicket';
-import { ApplicationResponseInstance } from './ApplicationResponse';
+import {
+  HackerInstance
+} from './Hacker'
+import {
+  ApplicationTicketInstance
+} from './ApplicationTicket';
+import {
+  ApplicationResponseInstance
+} from './ApplicationResponse';
 
 interface HackerApplicationAttributes {
   id?: number;
@@ -17,8 +23,14 @@ interface HackerApplicationAttributes {
   recentAccomplishment: string;
   countryTravellingFrom: string;
   links: string;
-  inTeam: boolean;
+  /** Boolean for if the hacker said they wanted to make a team application */
+  inTeam: boolean; 
   wantsTeam: boolean;
+  graduationDate: Date;
+  wantsMailingList: boolean;
+  needsVisa: boolean;
+  visaNeededBy?: Date;
+  otherInfo?: string;
 }
 
 export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
@@ -90,6 +102,26 @@ const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false
+  },
+  graduationDate: {
+    type: Sequelize.DATE,
+    allowNull: false
+  },
+  wantsMailingList: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  needsVisa: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  visaNeededBy: {
+    type: Sequelize.DATE,
+    allowNull: true
+  },
+  otherInfo: {
+    type: Sequelize.TEXT,
+    allowNull: true
   },
 };
 
