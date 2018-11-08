@@ -1,5 +1,13 @@
 import * as moment from 'moment';
 
+export function getApplicationsStart(): moment.Moment {
+  return moment('2018-11-10T00:00:00Z');
+}
+
+export function getApplicationsEnd(): moment.Moment {
+  return getHackathonStartDate();
+}
+
 export function getHackathonStartDate(): moment.Moment {
   return moment('2019-01-19');
 }

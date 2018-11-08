@@ -68,15 +68,48 @@
       <div></div>
       <div grid="rows" rows="1.5">
         <strong rows="0.5">
-          Applications for Hack Cambridge 2019 open soon.
+          {% if moment().isBefore(event.dates.getApplicationsStart()) %}
+            {% if moment().isBefore(event.dates.getApplicationsStart().subtract(1, 'weeks')) %}
+              Applications for Hack Cambridge 2019 open soon.
+            {% else %}
+              Applications open this {{ event.dates.getApplicationsStart().format('dddd') }}!
+            {% endif %}
+          {% elif moment().isBefore(event.dates.getApplicationsEnd()) %}
+            Applications are open!
+          {% elif moment().isBefore(event.dates.getHackathonEndDate()) %}
+            Applications have closed for this year.
+          {% else %}
+            Hack Cambridge is finished for this year.
+          {% endif %}
         </strong>
-        <p rows="0.5">
-          Sign up to stay in the loop!
-        </p>
-        <form class="signup-form" grid="columns" method="post" action="/api/subscribe/interested" rows="0.5" columns="1.0" align-last="right">
-          <input type="email" name="email" required placeholder="email@domain.com"/>
-          <input type="submit" name="submit" value="Submit."/>
-        </form>
+        {% if moment().isBefore(event.dates.getApplicationsStart()) %}
+          <p rows="0.5">
+            {% if moment().isBefore(event.dates.getApplicationsStart().subtract(1, 'weeks')) %}
+              Sign up to stay in the loop!
+            {% else %}
+              Sign up to be reminded.
+            {% endif %}
+          </p>
+          <form class="signup-form" grid="columns" method="post" action="/api/subscribe/interested" rows="0.5" columns="1.0" align-last="right">
+            <input type="email" name="email" required placeholder="email@domain.com"/>
+            <input type="submit" name="submit" value="Submit."/>
+          </form>
+        {% elif moment().isBefore(event.dates.getApplicationsEnd()) %}
+          <p rows="0.5">
+            <a rel="next" href="/apply">
+              {{ singleColourIcon(asset, 'Log in') }}<br>
+              Start or continue your application
+            </a>
+          </p>
+        {% else %}
+          <p rows="0.5">
+            Sign up for information about next year!
+          </p>
+          <form class="signup-form" grid="columns" method="post" action="/api/subscribe/interested" rows="0.5" columns="1.0" align-last="right">
+            <input type="email" name="email" required placeholder="email@domain.com"/>
+            <input type="submit" name="submit" value="Submit."/>
+          </form>
+        {% endif %}
       </div>
       <ul rows="0.5">
         <li>
