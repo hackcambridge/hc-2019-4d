@@ -59,6 +59,10 @@ input[type="number"] {
   text-indent: 0.75pt;
 }
 
+label {
+  display: inline;
+}
+
 input[type="email"]:-webkit-autofill {
   -webkit-text-fill-color: var(--primary-color);
   border-bottom: var(--border) var(--accent-color);
@@ -81,10 +85,6 @@ textarea {
   width: calc(100% - 3pt * 2);
   height: var(--one);
   border: var(--border) var(--secondary-color);
-}
-
-label {
-  display: block;
 }
 
 fieldset {
