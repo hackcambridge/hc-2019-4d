@@ -1,30 +1,33 @@
 'use strict';
 
-let gulp = require('gulp');
-let $ = require('gulp-load-plugins')();
-let argv = require('yargs').argv;
-let path = require('path');
-let source = require('vinyl-source-stream');
-let buffer = require('vinyl-buffer');
-let del = require('del');
-let browserify = require('browserify');
-let sequence = require('run-sequence');
-let bs = require('browser-sync').create();
-let nodemon = require('nodemon');
-let validateYaml = require('gulp-yaml-validate');
-let concatCss = require('gulp-concat-css');
+const gulp = require('gulp');
+const argv = require('yargs').argv;
+const path = require('path');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const del = require('del');
+const browserify = require('browserify');
+const sequence = require('run-sequence');
+const bs = require('browser-sync').create();
+const nodemon = require('nodemon');
+
+const autoprefixer = require('autoprefixer');
+const concatCss = require('gulp-concat-css');
+const gulpIf = require('gulp-if');
+const postcss = require('gulp-postcss');
+const revAll = require('gulp-rev-all');
+const sourcemaps = require('gulp-sourcemaps');
 const terser = require('gulp-terser');
+const ts = require('gulp-typescript');
+const util = require('gulp-util');
+const validateYaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 let assetPath = ['assets/**', '!assets/dist/**', '!assets/styles/**'];
 
-const ts = require('gulp-typescript');
-
-console.log(argv);
-
 let onError = function onError(err) {
-  $.util.beep();
+  util.beep();
   console.log(err);
   this.emit('end');
 };
@@ -37,10 +40,10 @@ gulp.task('clean', () => {
 
 gulp.task('preprocess-css', () => {
   gulp.src('assets/styles/all-stylesheets.css')
-    .pipe($.if(!prod, $.sourcemaps.init()))
+    .pipe(gulpIf(!prod, sourcemaps.init()))
     .pipe(concatCss('all-stylesheets.css'))
-    .pipe($.autoprefixer())
-    .pipe($.if(!prod, $.sourcemaps.write()))
+    .pipe(postcss([ autoprefixer() ]))
+    .pipe(gulpIf(!prod, sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
     .pipe(bs.stream());
 });
@@ -69,9 +72,9 @@ gulp.task('browserify', () => {
   };
 
   return gulpBrowserify('./dist/js/client/main.js', 'main.js')
-    .pipe($.if(!prod, $.sourcemaps.init({ loadMaps: true })))
-    .pipe($.if(prod, terser()))
-    .pipe($.if(!prod, $.sourcemaps.write()))
+    .pipe(gulpIf(!prod, sourcemaps.init({ loadMaps: true })))
+    .pipe(gulpIf(prod, terser()))
+    .pipe(gulpIf(!prod, sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
     .pipe(bs.stream());
 });
@@ -99,11 +102,11 @@ gulp.task('copy-assets', () => {
 
 gulp.task('rev-assets', () => {
   return gulp.src('assets/dist/**')
-    .pipe($.revAll.revision({
+    .pipe(revAll.revision({
       includeFilesInManifest: ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg']
     }))
     .pipe(gulp.dest('assets/dist'))
-    .pipe($.revAll.manifestFile())
+    .pipe(revAll.manifestFile())
     .pipe(gulp.dest('assets/dist'));
 });
 
