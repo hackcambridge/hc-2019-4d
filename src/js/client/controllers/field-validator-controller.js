@@ -1,6 +1,6 @@
 import { Controller } from 'stimulus'
 
-export default class extends Controller {
+export default class FieldValidatorController extends Controller {
   static get targets() {
     return ['field']
   }
