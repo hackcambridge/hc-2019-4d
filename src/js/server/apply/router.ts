@@ -2,6 +2,7 @@ import { Router, Request } from 'express';
 import * as tag from 'forms/lib/tag';
 
 import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
+import * as teamsController from 'js/server/controllers/teams-controller';
 import * as dashboardController from 'js/server/controllers/dashboard-controller';
 import { createApplicationForm } from 'js/shared/apply/application-form';
 import { createTeamForm } from 'js/shared/apply/team-form';
