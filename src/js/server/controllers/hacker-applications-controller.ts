@@ -122,6 +122,11 @@ const schema: ValidationSchema = {
     exists: true,
     isISO8601: true,
   },
+  needsVisaBy: {
+    in: 'body',
+    optional: true,
+    isISO8601: true,
+  },
 };
 
 const pdfUpload = s3Upload({
@@ -191,9 +196,11 @@ export async function createApplicationFromForm(body, user: HackerInstance, file
       links: body.links,
       inTeam: body.teamMembership.includes('apply'),
       wantsTeam: body.teamMembership.includes('placement'),
-      needsVisa: Boolean(body.needsVisa),
+      needsVisa: Boolean(body.needsVisaBy),
+      needsVisaBy: body.needsVisaBy,
       wantsMailingList: Boolean(body.wantsMailingList),
       graduationDate: body.graduationMonth,
+      otherInfo: body.otherInfo || null,
     });
 
     await sendEmail({
