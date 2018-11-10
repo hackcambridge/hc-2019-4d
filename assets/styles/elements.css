@@ -118,6 +118,18 @@ input[disabled],
 button[disabled] {
   opacity: 0.5;
 }
+[data-field-validator-error] input,
+[data-field-validator-error] textarea,
+[data-field-validator-error] select,
+input:invalid,
+textarea:invalid,
+select:invalid{
+  outline: 1px solid var(--accent-color);
+  outline-offset: 4px;
+}
+[data-field-validator-error] .requirement {
+  color: var(--accent-color);
+}
 
 /* Sections */
 

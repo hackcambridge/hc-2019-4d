@@ -11,103 +11,117 @@
 {% endblock %}
 {% block extraSections %}
   <section>
-    <form class="apply-form" enctype="multipart/form-data" method="POST" grid="rows">
+    <form class="apply-form" action="form" enctype="multipart/form-data" method="POST" grid="rows">
       <div rows="1.5">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.cv %}data-field-validator-error="{{ errors.cv.msg }}"{% endif %}>
           <legend>Upload your CV.</legend>
-          <p><span class="pixel">PDF files only. 2 MB maximum size.</span></p>
-          <input requiredf type="file" name="cv" id="cv">
+          <p><span class="pixel requirement">PDF files only. 2 MB maximum size.</span></p>
+          <input data-target="field-validator.field" data-action="field-validator#setValid" accept="application/pdf" required type="file" name="cv" id="cv">
         </fieldset>
       </div>
       <div rows="1.5">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.countryTravellingFrom %}data-field-validator-error="{{ errors.countryTravellingFrom.msg }}"{% endif %}>
           <legend>Where will you be coming from?</legend>
           <p>This does not have to be your current country of residence.</p>
-          <select requiredf name="countryTravellingFrom" id="countryTravellingFrom">
+          <select data-target="field-validator.field" data-action="field-validator#setValid" required name="countryTravellingFrom" id="countryTravellingFrom">
             {% for countryCode, countryName in countryChoices %}
-              <option value="{{ countryCode }}">{{ countryName }}</option>
+              <option value="{{ countryCode }}" {{ 'selected' if formData.countryTravellingFrom === countryCode }}>{{ countryName }}</option>
             {% endfor %}
           </select>
         </fieldset>
       </div>
+      <div rows="1.5">
+        <fieldset data-controller="field-validator" {% if errors.needsVisa %}data-field-validator-error="{{ errors.needsVisa.msg }}"{% endif %}>
+          <legend>Will you need a visa to enter the UK?</legend>
+          <input data-target="field-validator.field" data-action="field-validator#setValid" type="checkbox" value="needsVisa" id="needsVisa" name="needsVisa" {% if formData.needsVisa %}checked{% endif %}>
+          <label for="needsVisa">I will require a visa to enter the UK.</label>
+        </fieldset>
+      </div>
       <div rows="2.5">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.roles %}data-field-validator-error="{{ errors.roles.msg }}"{% endif %}>
           <legend>If you already know, what role or roles in a team would you be interested in?</legend>
           <p>Tick all that apply.</p>
           <div>
-            <input type="checkbox" value="development" id="roles_development" name="roles[]">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" type="checkbox" value="development" id="roles_development" name="roles[]" value="{{ formData.roles[development] | default('') }}">
             <label for="roles_development">Development</label>
           </div>
           <div>
-            <input type="checkbox" value="design" id="roles_design" name="roles[]">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" type="checkbox" value="design" id="roles_design" name="roles[]" value="{{ formData.roles[design] | default('') }}">
             <label for="roles_design">Design</label>
           </div>
           <div>
-            <input type="checkbox" value="productManagement" id="roles_productManagement" name="roles[]">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" type="checkbox" value="productManagement" id="roles_productManagement" name="roles[]" value="{{ formData.roles[productManagement] | default('') }}">
             <label for="roles_productManagement">Product Management</label>
           </div>
         </fieldset>
       </div>
       <div rows="2.0">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.goals %}data-field-validator-error="{{ errors.goals.msg }}"{% endif %}>
           <legend>What do you want to get out of this event?</legend>
-          <p><span class="pixel">500 characters or less.</span></p>
-          <textarea requiredf name="goals" id="goals" maxlength="500"></textarea>
+          <p><span class="pixel requirement">500 characters or less.</span></p>
+          <textarea data-target="field-validator.field" data-action="field-validator#setValid" required name="goals" id="goals" maxlength="500">{{ formData.goals | default('') }}</textarea>
         </fieldset>
       </div>
       <div rows="2.0">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.interests %}data-field-validator-error="{{ errors.interests.msg }}"{% endif %}>
           <legend>What are you interested in?</legend>
-          <p>Mention anything you want—it doesn’t have to be technology-related! <br><span class="pixel">500 characters or less.</span></p>
-          <textarea requiredf name="interests" id="interests" maxlength="500"></textarea>
+          <p>Mention anything you want—it doesn’t have to be technology-related! <br><span class="pixel requirement">500 characters or less.</span></p>
+          <textarea data-target="field-validator.field" data-action="field-validator#setValid" required name="interests" id="interests" maxlength="500">{{ formData.interests | default('') }}</textarea>
         </fieldset>
       </div>
       <div rows="2.0">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.accomplishment %}data-field-validator-error="{{ errors.accomplishment.msg }}"{% endif %}>
           <legend>Tell us about a recent accomplishment you’re proud of.</legend>
-          <p><span class="pixel">500 characters or less.</span></p>
-          <textarea requiredf name="accomplishment" id="accomplishment" maxlength="500"></textarea>
+          <p><span class="pixel requirement">500 characters or less.</span></p>
+          <textarea data-target="field-validator.field" data-action="field-validator#setValid" required name="accomplishment" id="accomplishment" maxlength="500">{{ formData.accomplishment | default('') }}</textarea>
         </fieldset>
       </div>
       <div rows="2.0">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.links %}data-field-validator-error="{{ errors.links.msg }}"{% endif %}>
           <legend>Are there any links you’d like to share so we can get to know you better?</legend>
-          <p>For example GitHub, LinkedIn or your website. Put each link on a new line. <br><span class="pixel">500 characters or less.</span></p>
-          <textarea name="links" id="links" maxlength="500" placeholder="https://github.com/hackcambridge"></textarea>
+          <p>For example GitHub, LinkedIn or your website. Put each link on a new line. <br><span class="pixel requirement">500 characters or less.</span></p>
+          <textarea data-target="field-validator.field" data-action="field-validator#setValid" name="links" id="links" maxlength="500" placeholder="https://github.com/hackcambridge">{{ formData.links | default('') }}</textarea>
         </fieldset>
       </div>
       <div rows="3.0">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.teamMembership %}data-field-validator-error="{{ errors.teamMembership.msg }}"{% endif %}>
           <legend>Teams</legend>
           <p>
             If you’re applying as part of a team now, we won’t process your application until you’ve been entered into a team using the team application form. This can be submitted by any member of the team after every team member has submitted this form.<br>If you’re applying individually, but want to be part of a team, we can suggest a team for you before the event. You can always change team by contacting us.
           </p>
           <div>
-            <input requiredf type="radio" value="apply" id="teamMembership_apply" name="teamMembership">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="radio" value="apply" id="teamMembership_apply" name="teamMembership" {{ 'checked' if formData.teamMembership === 'apply' }}>
             <label for="teamMembership_apply">I’m applying as part of a team. One team member will fill out the team application form.</label>
           </div>
           <div>
-            <input requiredf type="radio" value="placement" id="teamMembership_placement" name="teamMembership">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="radio" value="placement" id="teamMembership_placement" name="teamMembership" {{ 'checked' if formData.teamMembership === 'placement' }}>
             <label for="teamMembership_placement">I’m not applying as part of a team, but want to be put in a team.</label>
           </div>
           <div>
-            <input requiredf type="radio" value="" id="teamMembership_none" name="teamMembership">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="radio" value="" id="teamMembership_none" name="teamMembership" {{ 'checked' if formData.teamMembership === '' }}>
             <label for="teamMembership_none">I don’t want to be in a team.</label>
           </div>
         </fieldset>
       </div>
       <div rows="3.0">
-        <fieldset>
+        <fieldset data-controller="field-validator" {% if errors.confirmations %}data-field-validator-error="{{ errors.confirmations.msg }}"{% endif %}>
           <legend>Student status confirmation and terms and conditions</legend>
           <p>We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, and the MLH Code of Conduct.<br><a href="/terms-and-conditions" target="_blank">Terms and conditions</a><br><a href="/privacy-policy" target="_blank">Privacy policy</a><br><a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a></p>
           <div>
-            <input requiredf type="checkbox" value="studentStatus" id="confirmations_studentStatus" name="confirmations[]">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="checkbox" value="studentStatus" id="confirmations_studentStatus" name="confirmations[]" {% if formData.confirmations[1] or formData.confirmations[0] === 'studentStatus' %}checked{% endif %}>
             <label for="confirmations_studentStatus">I’m currently a student, or I graduated after January 19, 2018.</label>
           </div>
           <div>
-            <input requiredf type="checkbox" value="termsAndConditions" id="confirmations_termsAndConditions" name="confirmations[]">
+            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="checkbox" value="termsAndConditions" id="confirmations_termsAndConditions" name="confirmations[]" {% if formData.confirmations[1] or formData.confirmations[0] === 'termsAndConditions' %}checked{% endif %}>
             <label for="confirmations_termsAndConditions">I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.</label>
           </div>
+        </fieldset>
+      </div>
+      <div rows="1.5">
+        <fieldset data-controller="field-validator" {% if errors.wantsMailingList %}data-field-validator-error="{{ errors.wantsMailingList.msg }}"{% endif %}>
+          <legend>Want to know about next year’s event?</legend>
+          <input data-target="field-validator.field" data-action="field-validator#setValid" type="checkbox" value="wantsMailingList" id="wantsMailingList" name="wantsMailingList" {% if formData.wantsMailingList %}checked{% endif %}>
+          <label for="wantsMailingList">Sign up to the mailing list.</label>
         </fieldset>
       </div>
       <div rows="0.5">
