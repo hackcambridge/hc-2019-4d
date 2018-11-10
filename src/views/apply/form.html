@@ -124,7 +124,7 @@
       <div rows="1.5">
         <fieldset data-controller="field-validator" {% if errors.graduationMonth %}data-field-validator-error="{{ errors.graduationMonth.msg }}"{% endif %}>
           <legend>What month do you plan to graduate?</legend>
-          <input data-target="field-validator.field" data-action="field-validator#setValid" type="month" id="graduationMonth" name="graduationMonth" {% if formData.graduationMonth %}value="{{formData.graduationMonth}}"{% endif %} placeholder="2019-05">
+          <input data-target="field-validator.field" data-action="field-validator#setValid" required type="month" id="graduationMonth" name="graduationMonth" {% if formData.graduationMonth %}value="{{formData.graduationMonth}}"{% endif %} placeholder="2019-05">
         </fieldset>
       </div>
       <div rows="2.0">
