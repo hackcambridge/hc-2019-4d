@@ -1,12 +1,8 @@
 import { ErrorWithStatus } from "../utils";
 
-export function createError(status, message) {
-  return new ErrorWithStatus(message, status);
-};
-
 export const middleware = {
   notFound(req, res, next) {
-    next(exports.createHttpError(404, 'Not Found'));
+    next(new ErrorWithStatus('Not Found', 404));
   },
   error(error: ErrorWithStatus, req, res, next) {
     console.error(error);
