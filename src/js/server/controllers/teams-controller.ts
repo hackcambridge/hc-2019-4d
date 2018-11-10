@@ -6,13 +6,6 @@ import { sendEmail } from 'js/server/email';
 import * as emailTemplates from 'js/server/apply/email-templates';
 
 const schema: ValidationSchema = {
-  'members.a': {
-    in: 'body',
-    exists: {
-      options: { checkFalsy: true },
-      errorMessage: 'Fill out this field',
-    },
-  },
   'members.b': {
     in: 'body',
     exists: {
@@ -21,6 +14,13 @@ const schema: ValidationSchema = {
     },
   },
   'members.c': {
+    in: 'body',
+    exists: {
+      options: { checkFalsy: true },
+      errorMessage: 'Fill out this field',
+    },
+  },
+  'members.d': {
     in: 'body',
     exists: {
       options: { checkFalsy: true },
@@ -46,13 +46,11 @@ export function newTeam(req: UserRequest, res) {
 }
 
 export const createTeam = [
-  (req: UserRequest, res, next) => {
-    checkSchema(schema);
-    next();
-  },
+  checkSchema(schema),
   (req: UserRequest, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(req);
       res.render('apply/team.html', {
         errors: errors.mapped(),
         formData: req.body,

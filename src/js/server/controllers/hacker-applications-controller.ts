@@ -145,10 +145,7 @@ export const createHackerApplication = [
       }
     });
   },
-  (req: UserRequest, res, next) => {
-    checkSchema(schema);
-    next();
-  },
+  checkSchema(schema),
   (req: UserRequest, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
