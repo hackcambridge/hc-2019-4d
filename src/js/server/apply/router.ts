@@ -33,11 +33,11 @@ applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboar
 
 applyRouter.all('/form', checkHasApplied, checkApplicationsOpen);
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
-applyRouter.post('/form', hackerApplicationsController.createHackerApplication);
+applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
 
 applyRouter.all('/team', checkApplicationsOpen);
 applyRouter.get('/team', teamsController.newTeam);
-applyRouter.post('/team', teamsController.createTeam);
+applyRouter.post('/team', ...teamsController.createTeam);
 
 // Process the RSVP response
 applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
