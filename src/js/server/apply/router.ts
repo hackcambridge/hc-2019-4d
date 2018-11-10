@@ -34,8 +34,9 @@ applyRouter.get('/', (req, res) => {
   res.redirect(`${req.baseUrl}/form`);
 });
 
-applyRouter.all('/form', checkHasApplied);
-applyRouter.all('/form', checkApplicationsOpen);
+applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
+
+applyRouter.all('/form', checkHasApplied, checkApplicationsOpen);
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
 applyRouter.post('/form', hackerApplicationsController.createHackerApplication);
 
@@ -82,31 +83,9 @@ applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
   }
 });
 
-applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
-
 applyRouter.get('/logout', auth.logout, (req, res) => res.redirect('/'));
 
 // The login page (has the login button)
-applyRouter.get('/', (req, res) => res.render('apply/index.html'));
-
-// Render the form for team applications
-applyRouter.get('/team', (req: UserRequest, res) => {
-  req.user.getHackerApplication().then(hackerApplication => {
-    if (hackerApplication !== null) {
-      req.user.getTeam().then(team => {
-        if (team === null) {
-          res.locals.applicationSlug = hackerApplication.applicationSlug;
-          renderTeamPageWithForm(res, createTeamForm());
-        } else {
-          // User already in a team
-          res.redirect('/apply/dashboard');
-        }
-      });
-    } else {
-      res.redirect('/apply/form');
-    }
-  });
-});
 
 applyRouter.get('/', (req, res) => res.render('apply/index.html'));
 
@@ -132,9 +111,8 @@ function checkHasApplied(req, res, next) {
   }).catch(next);
 }
 
-/**
- * Intercepts requests to check if applications are still open, redirecting to the dashboard if not
- */
+// Intercepts requests to check if applications are still open, redirecting to the dashboard if not
+
 function checkApplicationsOpen(req, res, next) {
   console.log(process.env.APPLICATIONS_OPEN);
   if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
