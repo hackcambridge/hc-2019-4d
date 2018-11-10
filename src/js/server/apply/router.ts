@@ -4,16 +4,11 @@ import * as tag from 'forms/lib/tag';
 import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
 import * as teamsController from 'js/server/controllers/teams-controller';
 import * as dashboardController from 'js/server/controllers/dashboard-controller';
-import { createApplicationForm } from 'js/shared/apply/application-form';
-import { createTeamForm } from 'js/shared/apply/team-form';
-import renderForm from 'js/shared/apply/render-form';
-import renderTableForm from 'js/shared/apply/render-table-form';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
 import { Hacker, TeamMember, HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
 import { rsvpToResponse } from 'js/server/attendance/logic';
-import * as applyLogic from './logic';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 
 
