@@ -146,7 +146,7 @@ export const createHackerApplication = [
     });
   },
   checkSchema(schema),
-  (req: UserRequest, res) => {
+  (req: UserRequest, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/form.html', {
@@ -155,8 +155,14 @@ export const createHackerApplication = [
         formData: req.body,
       });
     } else {
-      createApplicationFromForm(req.body, req.user, req.file);
-      res.redirect('dashboard');
+      createApplicationFromForm(req.body, req.user, req.file).then(_ => {
+        res.redirect('dashboard');
+      }).catch(error => {
+        res.render('apply/team.html', {
+          formData: req.body,
+          error: error,
+        });
+      });
     }
   }
 ]

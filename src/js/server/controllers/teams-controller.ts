@@ -47,18 +47,22 @@ export function newTeam(req: UserRequest, res) {
 
 export const createTeam = [
   checkSchema(schema),
-  (req: UserRequest, res) => {
+  (req: UserRequest, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(req);
       res.render('apply/team.html', {
         errors: errors.mapped(),
         formData: req.body,
       });
     } else {
-      console.log(req)
-      createTeamFromForm(req.body, req.user, errors);
-      res.redirect('dashboard');
+      createTeamFromForm(req.body, req.user, errors).then(_ => {
+        res.redirect('dashboard');
+      }).catch(error => {
+        res.render('apply/team.html', {
+          formData: req.body,
+          error: error,
+        });
+      });
     }
   }
 ]

@@ -10,6 +10,11 @@
   </div>    
 {% endblock %}
 {% block extraSections %}
+  {% if error %}
+    <section color="red" grid="rows">
+      <p rows="0.5">{{ error }}</p>
+    </section>
+  {% endif %}
   <section>
     <form class="apply-form" action="form" enctype="multipart/form-data" method="POST" grid="rows">
       <div rows="1.5">
