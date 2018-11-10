@@ -16,7 +16,7 @@
     </section>
   {% endif %}
   <section>
-    <form class="apply-form" action="form" enctype="multipart/form-data" method="POST" grid="rows">
+    <form action="form" enctype="multipart/form-data" method="POST" grid="rows">
       <div rows="1.5">
         <fieldset data-controller="field-validator" {% if errors.cv %}data-field-validator-error="{{ errors.cv.msg }}"{% endif %}>
           <legend>Upload your CV.</legend>
@@ -36,10 +36,9 @@
         </fieldset>
       </div>
       <div rows="1.5">
-        <fieldset data-controller="field-validator" {% if errors.needsVisa %}data-field-validator-error="{{ errors.needsVisa.msg }}"{% endif %}>
-          <legend>Will you need a visa to enter the UK?</legend>
-          <input data-target="field-validator.field" data-action="field-validator#setValid" type="checkbox" value="needsVisa" id="needsVisa" name="needsVisa" {% if formData.needsVisa %}checked{% endif %}>
-          <label for="needsVisa">I will require a visa to enter the UK.</label>
+        <fieldset data-controller="field-validator" {% if errors.visaNeededBy %}data-field-validator-error="{{ errors.visaNeededBy.msg }}"{% endif %}>
+          <legend>If you need a visa to enter the UK, when do you need it by?</legend>
+          <input data-target="field-validator.field" data-action="field-validator#setValid" type="date" {% if formData.visaNeededBy %}value="{{ formData.visaNeededBy }}"{% endif %} id="visaNeededBy" name="visaNeededBy" placeholder="2018-12-01">
         </fieldset>
       </div>
       <div rows="2.5">
@@ -99,11 +98,11 @@
             <label for="teamMembership_apply">I’m applying as part of a team. One team member will fill out the team application form.</label>
           </div>
           <div>
-            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="radio" value="placement" id="teamMembership_placement" name="teamMembership" {{ 'checked' if formData.teamMembership === 'placement' }}>
+            <input data-target="field-validator.field" data-action="field-validator#setValid" type="radio" value="placement" id="teamMembership_placement" name="teamMembership" {{ 'checked' if formData.teamMembership === 'placement' }}>
             <label for="teamMembership_placement">I’m not applying as part of a team, but want to be put in a team.</label>
           </div>
           <div>
-            <input data-target="field-validator.field" data-action="field-validator#setValid" required type="radio" value="" id="teamMembership_none" name="teamMembership" {{ 'checked' if formData.teamMembership === '' }}>
+            <input data-target="field-validator.field" data-action="field-validator#setValid" type="radio" value="" id="teamMembership_none" name="teamMembership" {{ 'checked' if formData.teamMembership === '' }}>
             <label for="teamMembership_none">I don’t want to be in a team.</label>
           </div>
         </fieldset>
@@ -120,6 +119,19 @@
             <input data-target="field-validator.field" data-action="field-validator#setValid" required type="checkbox" value="termsAndConditions" id="confirmations_termsAndConditions" name="confirmations[]" {% if formData.confirmations[1] or formData.confirmations[0] === 'termsAndConditions' %}checked{% endif %}>
             <label for="confirmations_termsAndConditions">I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.</label>
           </div>
+        </fieldset>
+      </div>
+      <div rows="1.5">
+        <fieldset data-controller="field-validator" {% if errors.graduationMonth %}data-field-validator-error="{{ errors.graduationMonth.msg }}"{% endif %}>
+          <legend>What month do you plan to graduate?</legend>
+          <input data-target="field-validator.field" data-action="field-validator#setValid" required type="month" id="graduationMonth" name="graduationMonth" {% if formData.graduationMonth %}value="{{formData.graduationMonth}}"{% endif %} placeholder="2019-05">
+        </fieldset>
+      </div>
+      <div rows="2.0">
+        <fieldset data-controller="field-validator" {% if errors.otherInfo %}data-field-validator-error="{{ errors.otherInfo.msg }}"{% endif %}>
+          <legend>Tell us about a recent accomplishment you’re proud of.</legend>
+          <p><span class="pixel requirement">500 characters or less.</span></p>
+          <textarea data-target="field-validator.field" data-action="field-validator#setValid" name="otherInfo" id="otherInfo" maxlength="500">{{ formData.otherInfo | default('') }}</textarea>
         </fieldset>
       </div>
       <div rows="1.5">
