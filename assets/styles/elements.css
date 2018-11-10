@@ -124,8 +124,7 @@ button[disabled] {
 input:invalid,
 textarea:invalid,
 select:invalid{
-  outline: 1px solid var(--accent-color);
-  outline-offset: 4px;
+  border-color: var(--accent-color);
 }
 [data-field-validator-error] .requirement {
   color: var(--accent-color);
