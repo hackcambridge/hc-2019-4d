@@ -1,9 +1,10 @@
+import { RequestHandler } from 'express';
+
 import { UserRequest } from 'js/server/apply/router';
 import * as utils from '../utils.js';
 import { Hacker, TeamMember, HackerInstance } from 'js/server/models';
 import * as statuses from 'js/shared/status-constants';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
-import { RequestHandler } from 'express';
 
 async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<HackerInstance[]> {
   const teamMember = await user.getTeam();
