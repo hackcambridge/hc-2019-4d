@@ -21,7 +21,7 @@ export function multiCheckboxWidget(options = { }) {
         const id = field.id === false ? false : (field.id ? field.id + '_' + choiceKey : 'id_' + name + '_' + choiceKey);
         const checked = field.value && (Array.isArray(field.value) ? field.value.some(v => String(v) === String(choiceKey)) : String(field.value) === String(choiceKey));
 
-        return result + exports.checkboxWidget(field.choices[choiceKey], { value: choiceKey }).toHTML(name, { id, value: checked });
+        return result + checkboxWidget(field.choices[choiceKey], { value: choiceKey }).toHTML(name, { id, value: checked });
       }, '');
     }
   };
