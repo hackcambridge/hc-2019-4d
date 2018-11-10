@@ -30,50 +30,36 @@ function createCountryChoices(): { [id: string]: string }  {
 const countryChoices = createCountryChoices();
 
 const schema: ValidationSchema = {
-  /*cv: {
-    in: 'body',
     exists: {
       options: { checkFalsy: true },
     },
     custom: {
-      errorMessage: 'You must upload your CV as a PDF.',
-      options: (value) => {
-        return value === value;
-      },
-    },
-    custom: {
-      errorMessage: 'The file must be less than 2MB in size.',
-      options: (value) => {
-        return value === value;
-      },
-    },
-  },*/
   countryTravellingFrom: {
     in: 'body',
     exists: {
       options: { checkFalsy: true },
+      errorMessage: 'Fill out this field',
     },
-  },
-  roles: {
-    in: 'body',
-    exists: true,
   },
   goals: {
     in: 'body',
     exists: {
       options: { checkFalsy: true },
+      errorMessage: 'Fill out this field',
     },
   },
   interests: {
     in: 'body',
     exists: {
       options: { checkFalsy: true },
+      errorMessage: 'Fill out this field',
     },
   },
   accomplishment: {
     in: 'body',
     exists: {
       options: { checkFalsy: true },
+      errorMessage: 'Fill out this field',
     },
   },
   links: {
@@ -81,11 +67,11 @@ const schema: ValidationSchema = {
     exists: true,
     custom: {
       errorMessage: 'All the links must be valid.',
-      options: (value) => {
+      options: value => {
         if (value === '') {
           return true;
         } else {
-          return value.split(/\r?\n/).every((link) => {
+          return value.split(/\r?\n/).every(link => {
             validator.isURL(link, {
               allow_underscores: true,
               protocols: ['http', 'https']
@@ -97,18 +83,20 @@ const schema: ValidationSchema = {
   },
   teamMembership: {
     in: 'body',
-    exists: true,
+    exists: {
+      errorMessage: 'Select this tickbox',
+    },
   },
   confirmations: {
     in: 'body',
     exists: true,
     custom: {
       errorMessage: 'You must confirm your student status, and accept the terms and conditions, privacy policy, and the MLH Code of Conduct.',
-      options: (value) => {
+      options: value => {
         if (value === undefined) {
           return true;
         } else {
-          return value.length === 2;
+          return value.includes('studentStatus') && value.includes('termsAndConditions');
         }
       },
     },
@@ -120,36 +108,45 @@ export function newHackerApplication(req, res, next) {
 }
 
 export const createHackerApplication = [
-  fileUploadMiddleware.single('cv'),
-  checkSchema(schema),
+  (req: UserRequest, res, next) => {
+    checkSchema(schema);
+    next();
+  },
   (req: UserRequest, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(errors.array());
-      res.render('apply/form.html', { errors: errors.array(), countryChoices: countryChoices });
+      res.render('apply/form.html', {
+        errors: errors.mapped(),
+        countryChoices: countryChoices,
+        formData: req.body,
+      });
+      console.log(req.body);
     } else {
       createApplicationFromForm(req.body, req.user, req.file);
-      res.redirect('dashboard.html');
+      res.redirect('dashboard');
     }
   }
 ]
 
 export function createApplicationFromForm(body, user, file) {
-  return generate().then(slug => {
+  return generate().then(applicationSlug => {
     return HackerApplication.create({
       // Foreign key
       hackerId: user.id,
       // Application
-      applicationSlug: slug,
+      applicationSlug: applicationSlug,
       cv: file.location,
       countryTravellingFrom: body.countryTravellingFrom,
-      developmentRoles: body.roles,
+      developmentRoles: body.roles || [],
       learningGoal: body.goals,
       interests: body.interests,
       recentAccomplishment: body.accomplishment,
       links: body.links,
       inTeam: body.teamMembership.includes('teamMembership_apply'),
       wantsTeam: body.teamMembership.includes('teamMembership_placement'),
+      graduationDate: new Date("1980-01-01"),
+      needsVisa: Boolean(body.needsVisa),
+      wantsMailingList: Boolean(body.wantsMailingList),
     });
   }).then(application => {
     sendEmail({
@@ -166,11 +163,10 @@ export function createApplicationFromForm(body, user, file) {
     if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
       // slug was not unique, try again with new slug
       console.log('Application slug collision detected');
-      return exports.createApplicationFromForm(body, user);
+      return exports.createApplicationFromForm(body, user, file);
     } else {
       console.log('Failed to add an application to the database');
       return Promise.reject(err);
     }
-    
   });
 }
