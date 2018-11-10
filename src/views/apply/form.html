@@ -129,7 +129,7 @@
       </div>
       <div rows="2.0">
         <fieldset data-controller="field-validator" {% if errors.otherInfo %}data-field-validator-error="{{ errors.otherInfo.msg }}"{% endif %}>
-          <legend>Tell us about a recent accomplishment you’re proud of.</legend>
+          <legend>Is there anything else you’d like us to know?</legend>
           <p><span class="pixel requirement">500 characters or less.</span></p>
           <textarea data-target="field-validator.field" data-action="field-validator#setValid" name="otherInfo" id="otherInfo" maxlength="500">{{ formData.otherInfo | default('') }}</textarea>
         </fieldset>
