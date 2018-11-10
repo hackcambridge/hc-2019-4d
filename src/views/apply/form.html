@@ -36,9 +36,9 @@
         </fieldset>
       </div>
       <div rows="1.5">
-        <fieldset data-controller="field-validator" {% if errors.needsVisaBy %}data-field-validator-error="{{ errors.needsVisaBy.msg }}"{% endif %}>
+        <fieldset data-controller="field-validator" {% if errors.visaNeededBy %}data-field-validator-error="{{ errors.visaNeededBy.msg }}"{% endif %}>
           <legend>If you need a visa to enter the UK, when do you need it by?</legend>
-          <input data-target="field-validator.field" data-action="field-validator#setValid" type="date" value="{{ needsVisaBy }}" id="needsVisaBy" name="needsVisaBy">
+          <input data-target="field-validator.field" data-action="field-validator#setValid" type="date" value="{{ visaNeededBy }}" id="visaNeededBy" name="visaNeededBy">
         </fieldset>
       </div>
       <div rows="2.5">
