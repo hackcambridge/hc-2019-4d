@@ -2,7 +2,7 @@ import chalk from 'chalk';
 
 export function middleware(err, req, res, next) {
   const message = err.stack || err.toString();
-  console.error(chalk.red.underline('Error occurred. We goofed.'));
+  console.error(chalk.red.underline('The server encountered an error.'));
   console.error(message);
   res.status(err.status || 500);
 

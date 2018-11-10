@@ -1,6 +1,8 @@
 import db from './db';
 import Hacker from './Hacker';
+import { HackerInstance } from './Hacker';
 import HackerApplication from './HackerApplication';
+import { HackerApplicationInstance } from './HackerApplication';
 import ApplicationResponse from './ApplicationResponse';
 import Team from './Team';
 import TeamMember from './TeamMember';
@@ -16,7 +18,9 @@ import ApplicationTicket from './ApplicationTicket';
 export {
   db,
   Hacker,
+  HackerInstance,
   HackerApplication,
+  HackerApplicationInstance,
   ApplicationResponse,
   Team,
   TeamMember,

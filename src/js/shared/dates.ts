@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 
 export function getApplicationsStart(): moment.Moment {
-  return moment('2018-11-10T18:00:00Z');
+  return moment('2018-11-10T21:00:00Z');
 }
 
 export function getApplicationsEnd(): moment.Moment {
