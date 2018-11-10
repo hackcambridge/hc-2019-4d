@@ -3,7 +3,7 @@ import { fields } from 'forms';
 
 export function field(userOptions: any = { }) {
   const uploadField = fields.string(Object.assign({ 
-    widget: exports.widget(userOptions.attrs)
+    widget: widget(userOptions.attrs)
   }, userOptions));
 
   uploadField.parse = (rawData) => {

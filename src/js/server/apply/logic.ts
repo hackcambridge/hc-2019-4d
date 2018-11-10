@@ -3,8 +3,9 @@ import * as generate from 'adjective-adjective-animal';
 import { HackerApplication, ApplicationResponse, Team, TeamMember } from 'js/server/models';
 import { sendEmail } from 'js/server/email';
 import * as emailTemplates from './email-templates';
+import { HackerApplicationInstance } from '../models/HackerApplication';
 
-export function createApplicationFromForm(formData, user) {
+export function createApplicationFromForm(formData, user): HackerApplicationInstance {
   return generate().then(slug => {
     return HackerApplication.create({
       // Foreign key
@@ -39,7 +40,7 @@ export function createApplicationFromForm(formData, user) {
     if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
       // slug was not unique, try again with new slug
       console.log('Application slug collision detected');
-      return exports.createApplicationFromForm(formData, user);
+      return createApplicationFromForm(formData, user);
     } else {
       console.log('Failed to add an application to the database');
       return Promise.reject(err);

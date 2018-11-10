@@ -37,7 +37,7 @@ export function resolvePath(fromProjectRoot) {
 let assetsFile;
 
 try {
-  assetsFile = require(exports.resolvePath('./assets/dist/rev-manifest.json'));
+  assetsFile = require(resolvePath('./assets/dist/rev-manifest.json'));
 } catch (e) {
   assetsFile = { };
 }

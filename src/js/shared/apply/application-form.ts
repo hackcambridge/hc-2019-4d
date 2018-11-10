@@ -70,7 +70,7 @@ export function createApplicationForm(validateFile = true) {
       required: requiredField,
       validators: validateFile ? [
         fileTypeValidator('application/pdf', 'Please upload a PDF.'),
-        fileSizeValidator(exports.maxFieldSize, 'Your CV must be no larger than 2 MB.'),
+        fileSizeValidator(maxFieldSize, 'Your CV must be no larger than 2 MB.'),
       ] : [],
       cssClasses,
       row_units: '1.5',
