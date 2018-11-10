@@ -39,32 +39,8 @@ applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
 applyRouter.post('/form', hackerApplicationsController.createHackerApplication);
 
 applyRouter.all('/team', checkApplicationsOpen);
-
-applyRouter.post('/team', (req: UserRequest, res, next) => {
-  const form = createTeamForm();
-
-  form.handle(req.body, {
-    success: (resultForm: any) => {
-      const errors = { };
-      applyLogic.createTeamFromForm(resultForm.data, req.user, errors).then(() => {
-        console.log('Team application success.');
-        res.redirect('/apply/dashboard');
-      }).catch(err => {
-        console.log('Invalid team application:', err.message);
-        req.user.getHackerApplication().then(hackerApplication => {
-          res.locals.applicationSlug = hackerApplication.applicationSlug;
-          renderTeamPageWithForm(res, createTeamForm(resultForm.data), errors);
-        });
-      });
-    },
-    error: (resultForm) => {
-      renderTeamPageWithForm(res, resultForm);
-    },
-    empty: () => {
-      renderTeamPageWithForm(res, form);
-    }
-  });
-});
+applyRouter.get('/team', teamsController.newTeam);
+applyRouter.post('/team', teamsController.createTeam);
 
 // Process the RSVP response
 applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
@@ -131,20 +107,7 @@ applyRouter.get('/team', (req: UserRequest, res) => {
   });
 });
 
-function renderPageWithTableForm(res, path, form, errors = { }) {
-  res.render(path, {
-    formHtml: form.toHTML((name, field, options = { }) => {
-      if (errors.hasOwnProperty(name)) {
-        field.errorHTML = () => tag('td', { classes: ['error_msg form-error-message'] }, errors[name]);
-      }
-      return renderTableForm(name, field, options);
-    })
-  });
-}
-
-function renderTeamPageWithForm(res, form, errors = { }) {
-  renderPageWithTableForm(res, 'apply/team.html', form, errors);
-}
+applyRouter.get('/', (req, res) => res.render('apply/index.html'));
 
 /**
  * Intercepts the request to check if the user has submitted an application
