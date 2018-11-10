@@ -87,12 +87,12 @@ const schema: ValidationSchema = {
         if (value === '') {
           return true;
         } else {
-          return value.split(/\r?\n/).every(link => {
+          return value.split(/\r?\n/).every(link =>
             validator.isURL(link, {
               allow_underscores: true,
               protocols: ['http', 'https']
             })
-          })
+          )
         }
       },
     },
