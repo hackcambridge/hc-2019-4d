@@ -3,7 +3,7 @@ import { checkSchema, validationResult, ValidationSchema, Result } from 'express
 import { UserRequest } from 'js/server/apply/router';
 import { HackerApplication, ApplicationResponse, Team, TeamMember, HackerInstance } from 'js/server/models';
 import { TeamMemberInstance } from '../models/TeamMember';
-import { RequestHandlerParams } from '../../../../node_modules/@types/express-serve-static-core';
+import { RequestHandlerParams } from 'express-serve-static-core';
 
 const schema: ValidationSchema = {
   'members.b': {
