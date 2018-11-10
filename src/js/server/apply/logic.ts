@@ -1,13 +1,15 @@
 import * as generate from 'adjective-adjective-animal';
 
-import { HackerApplication, ApplicationResponse, Team, TeamMember } from 'js/server/models';
+import { HackerApplication, ApplicationResponse, Team, TeamMember, HackerInstance } from 'js/server/models';
 import { sendEmail } from 'js/server/email';
 import * as emailTemplates from './email-templates';
 import { HackerApplicationInstance } from '../models/HackerApplication';
 
-export function createApplicationFromForm(formData, user): HackerApplicationInstance {
-  return generate().then(slug => {
-    return HackerApplication.create({
+export async function createApplicationFromForm(formData, user: HackerInstance): Promise<HackerApplicationInstance> {
+  const slug: string = await generate();
+
+  try {
+    const application = await HackerApplication.create({
       // Foreign key
       hackerId: user.id,
       // Application
@@ -25,18 +27,19 @@ export function createApplicationFromForm(formData, user): HackerApplicationInst
       needsVisa: false,
       wantsMailingList: false
     });
-  }).then(application => {
-    sendEmail({
+
+    await sendEmail({
       to: user.email, 
       contents: emailTemplates.applied({
         name: user.firstName,
         applicationSlug: application.applicationSlug,
         inTeam: application.inTeam,
       }),
-    }).catch(console.log.bind(console));
-    user.log('Application made successfully');
+    });
+    
+    console.log('Application made successfully');
     return application;
-  }).catch(err => {
+  } catch(err) {
     if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
       // slug was not unique, try again with new slug
       console.log('Application slug collision detected');
@@ -45,8 +48,7 @@ export function createApplicationFromForm(formData, user): HackerApplicationInst
       console.log('Failed to add an application to the database');
       return Promise.reject(err);
     }
-    
-  });
+  }
 }
 
 export function createTeamFromForm(formData, user, errors) {
