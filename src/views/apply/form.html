@@ -38,7 +38,7 @@
       <div rows="1.5">
         <fieldset data-controller="field-validator" {% if errors.visaNeededBy %}data-field-validator-error="{{ errors.visaNeededBy.msg }}"{% endif %}>
           <legend>If you need a visa to enter the UK, when do you need it by?</legend>
-          <input data-target="field-validator.field" data-action="field-validator#setValid" type="date" {% if formData.visaNeededBy %}value="{{ formData.visaNeededBy }}"{% endif %} id="visaNeededBy" name="visaNeededBy" placeholder="2018-12-01">
+          <input data-target="field-validator.field" data-action="field-validator#setValid" type="date" {% if formData.visaNeededBy %}value="{{ formData.visaNeededBy }}"{% endif %} id="visaNeededBy" name="visaNeededBy" placeholder="YYYY-MM-DD">
         </fieldset>
       </div>
       <div rows="2.5">
@@ -124,7 +124,7 @@
       <div rows="1.5">
         <fieldset data-controller="field-validator" {% if errors.graduationMonth %}data-field-validator-error="{{ errors.graduationMonth.msg }}"{% endif %}>
           <legend>What month do you plan to graduate?</legend>
-          <input data-target="field-validator.field" data-action="field-validator#setValid" required type="month" id="graduationMonth" name="graduationMonth" {% if formData.graduationMonth %}value="{{formData.graduationMonth}}"{% endif %} placeholder="2019-05">
+          <input data-target="field-validator.field" data-action="field-validator#setValid" required type="month" id="graduationMonth" name="graduationMonth" {% if formData.graduationMonth %}value="{{formData.graduationMonth}}"{% endif %} placeholder="YYYY-MM">
         </fieldset>
       </div>
       <div rows="2.0">
