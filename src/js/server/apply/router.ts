@@ -1,5 +1,4 @@
 import { Router, Request } from 'express';
-import * as tag from 'forms/lib/tag';
 
 import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
 import * as teamsController from 'js/server/controllers/teams-controller';

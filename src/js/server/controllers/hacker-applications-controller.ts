@@ -2,7 +2,6 @@ import * as generate from 'adjective-adjective-animal';
 import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 import * as validator from 'validator';
 import countryList from 'country-list';
-import * as multer from 'multer';
 
 import { UserRequest } from 'js/server/apply/router';
 import { s3Upload } from 'js/server/apply/file-upload';

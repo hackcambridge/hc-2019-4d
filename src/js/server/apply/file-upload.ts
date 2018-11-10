@@ -1,9 +1,9 @@
-import { S3, Config } from 'aws-sdk';
+import { S3, Config as AwsConfig } from 'aws-sdk';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
 import { randomBytes } from 'crypto';
 
-const s3 = new S3(new Config({
+const s3 = new S3(new AwsConfig({
   region: 'eu-west-1'
 }));
 
