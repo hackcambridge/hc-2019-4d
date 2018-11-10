@@ -1,6 +1,11 @@
 import { Controller } from 'stimulus'
 
 export default class FieldValidatorController extends Controller {
+  /**
+   * Form fields
+   */
+  fieldTargets: [HTMLInputElement];
+
   static get targets() {
     return ['field']
   }
