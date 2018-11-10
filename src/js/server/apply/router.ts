@@ -32,10 +32,12 @@ applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboar
 
 applyRouter.all('/form', checkHasApplied, checkApplicationsOpen);
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
+// The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
 
 applyRouter.all('/team', checkApplicationsOpen);
 applyRouter.get('/team', teamsController.newTeam);
+// The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/team', ...teamsController.createTeam);
 
 // Process the RSVP response
@@ -105,7 +107,9 @@ function checkHasApplied(req, res, next) {
   }).catch(next);
 }
 
-// Intercepts requests to check if applications are still open, redirecting to the dashboard if not
+/**
+ * Intercepts requests to check if applications are still open, redirecting to the dashboard if not
+ */
 
 function checkApplicationsOpen(req, res, next) {
   console.log(process.env.APPLICATIONS_OPEN);
