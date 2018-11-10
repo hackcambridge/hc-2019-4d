@@ -129,7 +129,7 @@ const pdfUpload = s3Upload({
 
 const cvUpload = pdfUpload.single('cv');
 
-export function newHackerApplication(req, res, next) {
+export function newHackerApplication(req: UserRequest, res) {
   res.render('apply/form.html', { countryChoices: countryChoices });
 }
 
@@ -157,7 +157,6 @@ export const createHackerApplication = [
         countryChoices: countryChoices,
         formData: req.body,
       });
-      console.log(req.body);
     } else {
       createApplicationFromForm(req.body, req.user, req.file);
       res.redirect('dashboard');
