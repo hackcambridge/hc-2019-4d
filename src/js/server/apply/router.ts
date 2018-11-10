@@ -10,13 +10,11 @@ import renderTableForm from 'js/shared/apply/render-table-form';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
-import { Hacker, TeamMember, HackerApplication } from 'js/server/models';
+import { Hacker, TeamMember, HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
 import { rsvpToResponse } from 'js/server/attendance/logic';
 import * as applyLogic from './logic';
-import fileUploadMiddleware from './file-upload';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
-import { HackerInstance } from '../models/Hacker.js';
-import { HackerApplicationInstance } from '../models/HackerApplication';
+
 
 const applyRouter = Router();
 
@@ -107,18 +105,12 @@ applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
   }
 });
 
-applyRouter.get('/dashboard', auth.requireAuth, (req: UserRequest, res) => {
-  renderDashboard(req, res);
-});
+applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
-applyRouter.get('/logout', auth.logout, (req, res) => {
-  res.redirect('/');
-});
+applyRouter.get('/logout', auth.logout, (req, res) => res.redirect('/'));
 
 // The login page (has the login button)
-applyRouter.get('/', (req, res) => {
-  res.render('apply/index.html');
-});
+applyRouter.get('/', (req, res) => res.render('apply/index.html'));
 
 // Render the form for team applications
 applyRouter.get('/team', (req: UserRequest, res) => {
@@ -148,10 +140,6 @@ function renderPageWithTableForm(res, path, form, errors = { }) {
       return renderTableForm(name, field, options);
     })
   });
-}
-
-function renderApplyPageWithForm(res, form, errors = { }) {
-  renderPageWithForm(res, 'apply/form.html', form, errors);
 }
 
 function renderTeamPageWithForm(res, form, errors = { }) {
