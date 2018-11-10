@@ -30,7 +30,7 @@ applyRouter.get('/', (req, res) => {
 
 applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
-applyRouter.all('/form', checkHasApplied, checkApplicationsOpen);
+applyRouter.all('/form', goHomeIfAlreadyApplied, checkApplicationsOpen);
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
 // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
@@ -91,18 +91,12 @@ applyRouter.get('/', (req, res) => res.render('apply/index.html'));
  * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
  * as normal.
  */
-function checkHasApplied(req, res, next) {
+function goHomeIfAlreadyApplied(req, res, next) {
   req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
     if (hackerApplication) {
-      //If the hacker wants to create a team, redirect to the team page otherwise send them to the dashboard
-      if (hackerApplication.inTeam) {
-        res.redirect(`${req.baseUrl}/team`);
-        return;
-      }
       res.redirect(`${req.baseUrl}/dashboard`);
       return;
-    } 
-
+    }
     next();
   }).catch(next);
 }
