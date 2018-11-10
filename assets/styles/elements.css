@@ -52,7 +52,8 @@ select{
 
 input[type="email"],
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="month"]{
   border-bottom: var(--border) var(--secondary-color);
   border-left: unset;
   border-right: unset;

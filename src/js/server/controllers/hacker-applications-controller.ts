@@ -115,6 +115,11 @@ const schema: ValidationSchema = {
       },
     },
   },
+  graduationMonth: {
+    in: 'body',
+    exists: true,
+    isISO8601: true,
+  },
 };
 
 const pdfUpload = s3Upload({
@@ -157,7 +162,7 @@ export const createHackerApplication = [
       createApplicationFromForm(req.body, req.user, req.file).then(_ => {
         res.redirect('dashboard');
       }).catch(error => {
-        res.render('apply/team.html', {
+        res.render('apply/form.html', {
           formData: req.body,
           error: error,
         });
@@ -182,9 +187,9 @@ export function createApplicationFromForm(body, user, file) {
       links: body.links,
       inTeam: body.teamMembership.includes('teamMembership_apply'),
       wantsTeam: body.teamMembership.includes('teamMembership_placement'),
-      graduationDate: new Date("1980-01-01"),
       needsVisa: Boolean(body.needsVisa),
       wantsMailingList: Boolean(body.wantsMailingList),
+      graduationDate: body.graduationMonth,
     });
   }).then(application => {
     sendEmail({
