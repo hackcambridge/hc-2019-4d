@@ -23,34 +23,37 @@ const ts = require('gulp-typescript');
 
 console.log(argv);
 
-let onError = function onError(err) {
+function onError(err) {
   $.util.beep();
   console.log(err);
   this.emit('end');
-};
+  process.exit(1);
+}
 
-gulp.task('clean', () => {
-  return del(['dist', 'assets/dist']);
-});
+gulp.task('clean', () =>
+  del(['dist', 'assets/dist'])
+);
 
 // CSS
 
-gulp.task('preprocess-css', () => {
+gulp.task('preprocess-css', () =>
   gulp.src('assets/styles/all-stylesheets.css')
     .pipe($.if(!prod, $.sourcemaps.init()))
     .pipe(concatCss('all-stylesheets.css'))
     .pipe($.autoprefixer())
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
-    .pipe(bs.stream());
-});
+    .on('error', onError)
+    .pipe(bs.stream())
+);
 
 // YAML
 
-gulp.task('validate-yaml', () => {
+gulp.task('validate-yaml', () =>
   gulp.src('./src/resources/*.yml')
-    .pipe(validateYaml({ html: false }));
-});
+    .pipe(validateYaml({ html: false }))
+    .on('error', onError)
+);
 
 // JS
 
@@ -73,6 +76,7 @@ gulp.task('browserify', () => {
     .pipe($.if(prod, terser()))
     .pipe($.if(!prod, $.sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
+    .on('error', onError)
     .pipe(bs.stream());
 });
 
@@ -80,6 +84,7 @@ gulp.task('compile-typescript', () => {
   const tsProject = ts.createProject('tsconfig.json');
   return tsProject.src()
     .pipe(tsProject())
+    .on('error', onError)
     .js.pipe(gulp.dest('dist'));
 });
 
@@ -91,25 +96,27 @@ gulp.task('copy-source', () => {
 
 // Other assets
 
-gulp.task('copy-assets', () => {
-  return gulp.src(assetPath)
+gulp.task('copy-assets', () =>
+  gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
-    .pipe(bs.stream({ once: true }));
-});
+    .on('error', onError)
+    .pipe(bs.stream({ once: true }))
+);
 
-gulp.task('rev-assets', () => {
-  return gulp.src('assets/dist/**')
+gulp.task('rev-assets', () =>
+  gulp.src('assets/dist/**')
     .pipe($.revAll.revision({
       includeFilesInManifest: ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg']
     }))
     .pipe(gulp.dest('assets/dist'))
     .pipe($.revAll.manifestFile())
-    .pipe(gulp.dest('assets/dist'));
-});
+    .on('error', onError)
+    .pipe(gulp.dest('assets/dist'))
+);
 
-gulp.task('wait', (cb) => {
-  setTimeout(cb, 2000);
-});
+gulp.task('wait', (cb) =>
+  setTimeout(cb, 2000)
+);
 
 gulp.task('build', (cb) => {
   let args = ['clean', 'copy-assets', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
