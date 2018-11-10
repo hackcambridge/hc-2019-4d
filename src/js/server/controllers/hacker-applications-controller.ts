@@ -117,6 +117,11 @@ const schema: ValidationSchema = {
       },
     },
   },
+  graduationMonth: {
+    in: 'body',
+    exists: true,
+    isISO8601: true,
+  },
 };
 
 const pdfUpload = s3Upload({
@@ -186,9 +191,9 @@ export async function createApplicationFromForm(body, user: HackerInstance, file
       links: body.links,
       inTeam: body.teamMembership.includes('apply'),
       wantsTeam: body.teamMembership.includes('placement'),
-      graduationDate: new Date("1980-01-01"),
       needsVisa: Boolean(body.needsVisa),
       wantsMailingList: Boolean(body.wantsMailingList),
+      graduationDate: body.graduationMonth,
     });
 
     await sendEmail({
