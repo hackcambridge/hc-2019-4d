@@ -13,20 +13,6 @@ const schema: ValidationSchema = {
       errorMessage: 'Fill out this field',
     },
   },
-  'members.c': {
-    in: 'body',
-    exists: {
-      options: { checkFalsy: true },
-      errorMessage: 'Fill out this field',
-    },
-  },
-  'members.d': {
-    in: 'body',
-    exists: {
-      options: { checkFalsy: true },
-      errorMessage: 'Fill out this field',
-    },
-  },
 }
 
 export function newTeam(req: UserRequest, res) {
@@ -72,8 +58,8 @@ export function createTeamFromForm(body, user, errors) {
   const hackerIds = [user.id];
   const applicationSlugs = {
     'memberB': body.members.b,
-    'memberC': body.members.c,
-    'memberD': body.members.d,
+    'memberC': body.members.c || null,
+    'memberD': body.members.d || null,
   };
   // Ensure application slugs are unique and not the applicant's own
   return user.getHackerApplication().then(application => {

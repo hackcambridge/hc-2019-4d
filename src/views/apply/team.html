@@ -38,13 +38,13 @@
         <tr data-controller="field-validator" {% if errors['members.c'] %}data-field-validator-error="{{ errors['members.c'].msg }}"{% endif %}>
           <td>C</td>
           <td>
-            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" required name="members[c]" id="members_c" maxlength="256" placeholder="Enter the Application ID" value="{{ formData.members.c | default('') }}">
+            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" name="members[c]" id="members_c" maxlength="256" placeholder="Enter the Application ID" value="{{ formData.members.c | default('') }}">
           </td>
         </tr>
         <tr data-controller="field-validator" {% if errors['members.d'] %}data-field-validator-error="{{ errors['members.d'].msg }}"{% endif %}>
           <td>D</td>
           <td>
-            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" required name="members[d]" id="members_d" maxlength="256" placeholder="Enter the Application ID" value="{{ formData.members.d | default('') }}">
+            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" name="members[d]" id="members_d" maxlength="256" placeholder="Enter the Application ID" value="{{ formData.members.d | default('') }}">
           </td>
         </tr>
       </tbody>
