@@ -1,24 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 285 285" width="285pt" height="285pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <metadata> Produced by OmniGraffle 7.5 
-    <dc:date>2017-12-20 21:11:12 +0000</dc:date>
-  </metadata>
-  <defs/>
-  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
-    <title>Icons</title>
-    <g>
-      <title>Layer 1</title>
-      <rect x="0" y="0" width="285" height="285" fill="black"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>favicon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Favicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Profile-picture">
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="512" height="512"></rect>
+            <g id="Cube-raster" transform="translate(114.000000, 92.000000)">
+                <polygon id="Path" fill="#0092DB" points="142.5 0 285 82.2091183 285 246.627633 142.5 328.835917 0 246.627633 0 82.2091183"></polygon>
+                <g id="Back" opacity="0.4" style="mix-blend-mode: overlay;" stroke-width="1">
+                    <polygon id="Path" fill="#FFFFFF" points="142.5 0 285 82.2091183 285 246.627633 142.5 164.418515"></polygon>
+                    <polygon id="Path" fill="#000000" points="285 246.627633 142.5 328.835917 0 246.627633 142.5 164.418515"></polygon>
+                    <polygon id="Path" fill="#808080" points="0 82.2091183 142.5 0 142.5 164.418515 0 246.627633"></polygon>
+                </g>
+                <g id="Inner-cube" stroke-width="1" transform="translate(71.250000, 82.041420)">
+                    <polygon id="Path" fill="#D01602" style="mix-blend-mode: color;" points="71.25 0.167698225 142.5 41.2723964 142.5 123.481515 71.25 164.586213 0 123.481515 0 41.2723964"></polygon>
+                    <g id="Back" opacity="0.402390253" style="mix-blend-mode: overlay;">
+                        <polygon id="Path" fill="#FFFFFF" points="71.25 0.167698225 0 41.2723964 0 123.481515 71.25 82.3770947"></polygon>
+                        <polygon id="Path" fill="#000000" points="142.5 123.481515 71.25 164.586213 0 123.481515 71.25 82.3770947"></polygon>
+                        <polygon id="Path" fill="#808080" points="142.5 41.2723964 142.5 123.481515 71.25 82.3770947 71.25 0.167698225"></polygon>
+                    </g>
+                    <g id="Front" opacity="0.4" style="mix-blend-mode: overlay;">
+                        <polygon id="Path" fill="#000000" points="71.25 164.586213 0 123.481515 0 41.2723964 71.25 82.3770947"></polygon>
+                        <polygon id="Path" fill="#808080" points="142.5 123.481515 142.5 41.2723964 71.25 82.3770947 71.25 164.586213"></polygon>
+                        <polygon id="Path" fill="#FFFFFF" points="0 41.2723964 71.25 0.167698225 142.5 41.2723964 71.25 82.3770947"></polygon>
+                    </g>
+                </g>
+                <g id="Front" opacity="0.4" style="mix-blend-mode: overlay;" stroke-width="1">
+                    <polygon id="Path" fill="#000000" points="142.5 328.835917 0 246.627633 0 82.2091183 142.5 164.418515"></polygon>
+                    <polygon id="Path" fill="#FFFFFF" points="0 82.2091183 142.5 0 285 82.2091183 142.5 164.418515"></polygon>
+                    <polygon id="Path" fill="#808080" points="285 246.627633 285 82.2091183 142.5 164.418515 142.5 328.835917"></polygon>
+                </g>
+            </g>
+        </g>
     </g>
-    <g>
-      <title>Layer 4</title>
-      <path d="M 142.5 142.5 L 228 142.49803 L 185.2483 216.5422 L 99.7483 216.54417 Z" fill="black"/>
-      <path d="M 99.7483 216.54417 L 228 142.49803 L 206.62586 105.47693 L 78.37415 179.52307 Z" fill="black"/>
-      <path d="M 121.12585 105.4789 L 206.62586 105.47693 L 163.87415 179.5211 L 78.37415 179.52307 Z" fill="white"/>
-      <path d="M 78.37415 179.52307 L 206.62586 105.47693 L 185.2517 68.45583 L 57 142.50197 Z" fill="white" fill-opacity=".954222"/>
-      <path d="M 121.12586 105.4789 L 206.62586 105.47693 L 163.87415 179.5211 L 78.37415 179.52307 Z" fill="black" fill-opacity=".0479987"/>
-      <path d="M 99.7517 68.4578 L 185.2517 68.45583 L 142.5 142.5 L 57 142.50197 Z" fill="#eb3300"/>
-    </g>
-  </g>
 </svg>
