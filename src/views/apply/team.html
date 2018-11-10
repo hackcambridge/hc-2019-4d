@@ -3,7 +3,7 @@
 {% set footer = true %}
 {% set no_page_content = true %}
 {% block extraSections %}
-<form class="team-form" method="POST">
+<form action="team" method="POST">
   <section grid="rows">
     <h1 rows="1.0">
       Team Application
@@ -23,27 +23,24 @@
         <tr>
           <td>A</td>
           <td><span class="pixel">indicolite-gentlemanlike-jumpingbean</span></td>
-          <td></td>
         </tr>
-        <tr>
+        <tr data-controller="field-validator" {% if errors['members.b'] %}data-field-validator-error="{{ errors['members.b'].msg }}"{% endif %}>
           <td>B</td>
           <td>
-            <input type="text" name="members[a]" id="members_a" maxlength="256" placeholder="Enter the Application ID">
+            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" required name="members[b]" id="members_b" maxlength="256" placeholder="Enter the Application ID">
           </td>
-          <td></td>
         </tr>
-        <tr>
+        <tr data-controller="field-validator" {% if errors['members.c'] %}data-field-validator-error="{{ errors['members.c'].msg }}"{% endif %}>
           <td>C</td>
-          <td><input type="text" name="members[b]" id="members_b" maxlength="256" placeholder="Enter the Application ID">
+          <td>
+            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" required name="members[c]" id="members_c" maxlength="256" placeholder="Enter the Application ID">
           </td>
-          <td></td>
         </tr>
-        <tr>
+        <tr data-controller="field-validator" {% if errors['members.d'] %}data-field-validator-error="{{ errors['members.d'].msg }}"{% endif %}>
           <td>D</td>
           <td>
-            <input type="text" name="members[c]" id="members_c" maxlength="256" placeholder="Enter the Application ID">
+            <input type="text" data-target="field-validator.field" data-action="field-validator#setValid" required name="members[d]" id="members_d" maxlength="256" placeholder="Enter the Application ID">
           </td>
-          <td></td>
         </tr>
       </tbody>
     </table>
