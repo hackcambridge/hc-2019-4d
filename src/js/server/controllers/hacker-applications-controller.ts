@@ -1,11 +1,13 @@
-import * as generate from 'adjective-adjective-animal';
+import * as generateSlug from 'adjective-adjective-animal';
+import { NextFunction, Response } from 'express';
+import { RequestHandlerParams } from 'express-serve-static-core';
 import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 import * as validator from 'validator';
 import countryList from 'country-list';
 
 import { UserRequest } from 'js/server/apply/router';
 import { s3Upload } from 'js/server/apply/file-upload';
-import { HackerApplication } from 'js/server/models';
+import { HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
 import { sendEmail } from 'js/server/email';
 import * as emailTemplates from 'js/server/apply/email-templates';
 
@@ -128,12 +130,12 @@ const pdfUpload = s3Upload({
 
 const cvUpload = pdfUpload.single('cv');
 
-export function newHackerApplication(req: UserRequest, res) {
+export function newHackerApplication(req: UserRequest, res: Response) {
   res.render('apply/form.html', { countryChoices: countryChoices });
 }
 
-export const createHackerApplication = [
-  (req: UserRequest, res, next) => {
+export const createHackerApplication: RequestHandlerParams[] = [
+  (req: UserRequest, res: Response, next: NextFunction) => {
     cvUpload(req, res, err => {
       if (err) {
         req.params.cv = { error: err };
@@ -145,7 +147,7 @@ export const createHackerApplication = [
     });
   },
   checkSchema(schema),
-  (req: UserRequest, res, next) => {
+  async (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/form.html', {
@@ -154,25 +156,27 @@ export const createHackerApplication = [
         formData: req.body,
       });
     } else {
-      createApplicationFromForm(req.body, req.user, req.file).then(_ => {
-        res.redirect('dashboard');
-      }).catch(error => {
+      try {
+        const application = await createApplicationFromForm(req.body, req.user, req.file);
+        res.redirect(application.inTeam ? 'team' : 'dashboard');
+      } catch (error) {
         res.render('apply/team.html', {
           formData: req.body,
           error: error,
         });
-      });
+      }
     }
   }
 ]
 
-export function createApplicationFromForm(body, user, file) {
-  return generate().then(applicationSlug => {
-    return HackerApplication.create({
+export async function createApplicationFromForm(body, user: HackerInstance, file): Promise<HackerApplicationInstance> {
+  const applicationSlug: string = await generateSlug();
+  try {
+    const application = await HackerApplication.create({
       // Foreign key
       hackerId: user.id,
       // Application
-      applicationSlug: applicationSlug,
+      applicationSlug,
       cv: file.location,
       countryTravellingFrom: body.countryTravellingFrom,
       developmentRoles: body.roles || [],
@@ -180,31 +184,33 @@ export function createApplicationFromForm(body, user, file) {
       interests: body.interests,
       recentAccomplishment: body.accomplishment,
       links: body.links,
-      inTeam: body.teamMembership.includes('teamMembership_apply'),
-      wantsTeam: body.teamMembership.includes('teamMembership_placement'),
+      inTeam: body.teamMembership.includes('apply'),
+      wantsTeam: body.teamMembership.includes('placement'),
       graduationDate: new Date("1980-01-01"),
       needsVisa: Boolean(body.needsVisa),
       wantsMailingList: Boolean(body.wantsMailingList),
     });
-  }).then(application => {
-    sendEmail({
+
+    await sendEmail({
       to: user.email, 
       contents: emailTemplates.applied({
         name: user.firstName,
         applicationSlug: application.applicationSlug,
         inTeam: application.inTeam,
       }),
-    }).catch(console.log.bind(console));
-    user.log('Application made successfully');
+    });
+
+    console.log('Application made successfully');
+
     return application;
-  }).catch(err => {
+  } catch (err) {
     if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
       // slug was not unique, try again with new slug
-      console.log('Application slug collision detected');
-      return exports.createApplicationFromForm(body, user, file);
+      console.error('Application slug collision detected');
+      return createApplicationFromForm(body, user, file);
     } else {
-      console.log('Failed to add an application to the database');
+      console.error('Failed to add an application to the database');
       return Promise.reject(err);
     }
-  });
+  }
 }

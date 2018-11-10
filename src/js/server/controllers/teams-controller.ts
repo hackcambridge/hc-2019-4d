@@ -1,3 +1,4 @@
+import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
 import { checkSchema, validationResult, ValidationSchema, Result } from 'express-validator/check';
 
@@ -31,7 +32,7 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
 
 export const createTeam: RequestHandlerParams[] = [
   checkSchema(schema),
-  (req: UserRequest, res, next) => {
+  (req: UserRequest, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/team.html', {
@@ -65,8 +66,7 @@ export async function createTeamFromForm(body, user: HackerInstance, errors: Res
   members.add(application.applicationSlug);
 
   for (const field in applicationSlugs) {
-    applicationSlugs[field] = applicationSlugs[field].trim();
-    if (applicationSlugs[field] !== '') {
+    if (applicationSlugs[field] !== null) {
       if (!members.has(applicationSlugs[field])) {
         members.add(applicationSlugs[field]);
       } else {
