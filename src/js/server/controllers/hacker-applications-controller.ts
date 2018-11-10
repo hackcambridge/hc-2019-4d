@@ -2,9 +2,10 @@ import * as generate from 'adjective-adjective-animal';
 import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 import * as validator from 'validator';
 import countryList from 'country-list';
+import * as multer from 'multer';
 
 import { UserRequest } from 'js/server/apply/router';
-import fileUploadMiddleware from 'js/server/apply/file-upload';
+import { s3Upload } from 'js/server/apply/file-upload';
 import { HackerApplication } from 'js/server/models';
 import { sendEmail } from 'js/server/email';
 import * as emailTemplates from 'js/server/apply/email-templates';
@@ -30,10 +31,24 @@ function createCountryChoices(): { [id: string]: string }  {
 const countryChoices = createCountryChoices();
 
 const schema: ValidationSchema = {
+  cv: {
+    in: 'params',
     exists: {
       options: { checkFalsy: true },
+      errorMessage: 'Select a file',
     },
     custom: {
+      options: (value, { req }) => {
+        if (value.error) {
+          throw value.error;
+        } else if (!req.file) {
+          throw new Error('File not selected.');
+        } else {
+          return true;
+        }
+      }
+    }
+  },
   countryTravellingFrom: {
     in: 'body',
     exists: {
@@ -103,11 +118,33 @@ const schema: ValidationSchema = {
   },
 };
 
+const pdfUpload = s3Upload({
+  maxFields: 30,
+  maxFileSize: 1024 * 1024 * 2,
+  mediaType: {
+    type: 'application/pdf',
+    error: 'File is not a PDF.',
+  },
+});
+
+const cvUpload = pdfUpload.single('cv');
+
 export function newHackerApplication(req, res, next) {
   res.render('apply/form.html', { countryChoices: countryChoices });
 }
 
 export const createHackerApplication = [
+  (req: UserRequest, res, next) => {
+    cvUpload(req, res, err => {
+      if (err) {
+        req.params.cv = { error: err };
+        next();
+      } else {
+        req.params.cv = true;
+        next();
+      }
+    });
+  },
   (req: UserRequest, res, next) => {
     checkSchema(schema);
     next();
