@@ -120,11 +120,29 @@ const schema: ValidationSchema = {
   graduationMonth: {
     in: 'body',
     exists: true,
-    isISO8601: true,
+    isISO8601: {
+      errorMessage: 'Invalid date',
+      options: {
+        strict: true,
+      },
+    },
   },
   visaNeededBy: {
     in: 'body',
-    isISO8601: true,
+    optional: {
+      nullable: true,
+      checkFalsy: true,
+    },
+    custom: {
+      errorMessage: 'Invalid date',
+      options: value => {
+        if (value == '') {
+          return true;
+        } else {
+          return validator.isISO8601(value);
+        }
+      },
+    },
   },
 };
 
@@ -159,6 +177,7 @@ export const createHackerApplication: RequestHandlerParams[] = [
   async (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(req);
       res.render('apply/form.html', {
         errors: errors.mapped(),
         countryChoices: countryChoices,
@@ -169,7 +188,7 @@ export const createHackerApplication: RequestHandlerParams[] = [
         const application = await createApplicationFromForm(req.body, req.user, req.file);
         res.redirect(application.inTeam ? 'team' : 'dashboard');
       } catch (error) {
-        res.render('apply/team.html', {
+        res.render('apply/form.html', {
           formData: req.body,
           error: error,
         });
@@ -196,7 +215,7 @@ export async function createApplicationFromForm(body, user: HackerInstance, file
       inTeam: body.teamMembership.includes('apply'),
       wantsTeam: body.teamMembership.includes('placement'),
       needsVisa: Boolean(body.needsVisaBy),
-      visaNeededBy: body.visaNeededBy,
+      visaNeededBy: body.visaNeededBy || null,
       wantsMailingList: Boolean(body.wantsMailingList),
       graduationDate: body.graduationMonth,
       otherInfo: body.otherInfo || null,
