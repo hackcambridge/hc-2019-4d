@@ -3,7 +3,7 @@
 {% set footer = true %}
 {% set no_page_content = true %}
 {% block extraSections %}
-<form class="team-form" method="POST" enctype="multipart/form-data">
+<form class="team-form" method="POST">
   <section grid="rows">
     <h1 rows="1.0">
       Team Application
@@ -12,18 +12,43 @@
       Enter your teammates’ application IDs to confirm your team.
     </p>
     <table rows="2.0">
-      <tr>
-        <th class="one unit">Member</th>
-        <th>Application ID</th>
-      </tr>
-      <tr>
-        <td>A</td>
-        <td><span class="pixel">{{ applicationSlug }}</span></td>
-      </tr>
-      {{ formHtml|safe }}
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Application ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A</td>
+          <td><span class="pixel">indicolite-gentlemanlike-jumpingbean</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>B</td>
+          <td>
+            <input type="text" name="members[a]" id="members_a" maxlength="256" placeholder="Enter the Application ID">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>C</td>
+          <td><input type="text" name="members[b]" id="members_b" maxlength="256" placeholder="Enter the Application ID">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>D</td>
+          <td>
+            <input type="text" name="members[c]" id="members_c" maxlength="256" placeholder="Enter the Application ID">
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
     </table>
       <div rows="0.5">
-        <button type="submit" class="button submit-button">Submit</button>
+        <button type="submit">Submit</button>
       </div>
       <p rows="0.5">
         You can do this later if you wish.
