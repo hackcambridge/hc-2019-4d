@@ -169,9 +169,9 @@ button[disabled] {
 [data-field-validator-error] input,
 [data-field-validator-error] textarea,
 [data-field-validator-error] select,
-input:invalid:not([type="file"]):not([type="email"]):not([type="text"]):not([type="number"]):not([type="month"]):not([type="date"]),
-textarea:invalid,
-select:invalid{
+[data-controller] input:invalid:not([type="file"]):not([type="email"]):not([type="text"]):not([type="number"]):not([type="month"]):not([type="date"]),
+[data-controller] textarea:invalid,
+[data-controller] select:invalid {
   border-color: var(--accent-color);
 }
 input[type="file"]:invalid {
@@ -196,7 +196,7 @@ footer {
 
 table {
   width: 100%;
-  border-spacing: var(--gutter) 0;
+  border-spacing: var(--gutter) 4pt;
   margin: 0 calc(var(--gutter) * -1);
 }
 th {
