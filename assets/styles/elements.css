@@ -45,7 +45,6 @@ input:placeholder-shown {
 }
 
 input[type="submit"],
-input[type="checkbox"],
 button,
 input[type="button"] {
   background-color: unset;
@@ -179,6 +178,10 @@ input[type="file"]:invalid {
 }
 [data-field-validator-error] .requirement {
   color: var(--accent-color);
+}
+
+::-webkit-validation-bubble {
+  opacity: 1;
 }
 
 /* Sections */

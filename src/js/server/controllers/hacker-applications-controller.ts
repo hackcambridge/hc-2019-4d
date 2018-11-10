@@ -124,7 +124,6 @@ const schema: ValidationSchema = {
   },
   visaNeededBy: {
     in: 'body',
-    optional: true,
     isISO8601: true,
   },
 };
