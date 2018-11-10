@@ -36,46 +36,12 @@ applyRouter.get('/', (req, res) => {
 
 applyRouter.all('/form', checkHasApplied);
 applyRouter.all('/form', checkApplicationsOpen);
-
-/*applyRouter.post('/form', (req: UserRequest, res, next) => {
-  req.user.log('Attempted to make an application');
-  next();
-},
-fileUploadMiddleware.single('cv'), 
-(req: UserRequest, res, next) => {
-  req.user.log('Application file uploaded');
-  const form = createApplicationForm();
-
-  // HACK: Put all our fields in the same place by moving the file into req.body
-  req.body.cv = req.file;
-
-  form.handle(req.body, {
-    success: (resultForm: any) => {
-      applyLogic.createApplicationFromForm(resultForm.data, req.user)
-        .then(() => {
-          res.redirect(`${req.baseUrl}/form`);
-        })
-        .catch(next);
-    },
-    error: (resultForm) => {
-      renderApplyPageWithForm(res, resultForm);
-    },
-    empty: () => {
-      renderApplyPageWithForm(res, form);
-    }
-  });
-}
-);*/
-
-applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
-
-// Render the form for additional applicant details
-
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
+applyRouter.post('/form', hackerApplicationsController.createHackerApplication);
 
 applyRouter.all('/team', checkApplicationsOpen);
 
-applyRouter.post('/team', fileUploadMiddleware.none(), (req: UserRequest, res, next) => {
+applyRouter.post('/team', (req: UserRequest, res, next) => {
   const form = createTeamForm();
 
   form.handle(req.body, {
