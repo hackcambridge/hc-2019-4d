@@ -177,7 +177,6 @@ export const createHackerApplication: RequestHandlerParams[] = [
   async (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(req);
       res.render('apply/form.html', {
         errors: errors.mapped(),
         countryChoices: countryChoices,
