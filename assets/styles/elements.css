@@ -16,9 +16,14 @@ input, form, body, button, fieldset {
   margin: unset;
   padding: unset;
 }
+input, form, body, button, fieldset, textarea, select {
+  outline: none;
+  box-shadow: none;
+}
 input[type="file"]::-webkit-file-upload-button {
   margin: unset;
   padding: unset;
+  outline: none;
 }
 
 input {
