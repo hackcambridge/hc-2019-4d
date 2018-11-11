@@ -81,8 +81,16 @@ input[type="month"],
 input[type="date"] {
   border-left: unset;
   border-right: unset;
-  text-indent: 0.75pt;
   width: 100%;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="number"],
+input[type="month"],
+input[type="date"],
+textarea {
+  text-indent: 2pt;
 }
 
 input[type="email"]:not(:invalid),
