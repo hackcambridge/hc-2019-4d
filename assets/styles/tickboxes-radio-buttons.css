@@ -9,13 +9,11 @@ input[type="checkbox"] {
   position: relative;
 }
 
-/* border radius for radio*/
 input[type="radio"] {
   -webkit-border-radius: 100%;
   border-radius: 100%;
 }
 
-/* focus state */
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   outline: none;
@@ -31,27 +29,9 @@ input[type="checkbox"]:checked:before {
   text-align: center;
 }
 
-/* radio checked */
 input[type="radio"]:checked:before {
   content: '•';
 }
-
-/* checkbox checked */
 input[type="checkbox"]:checked:before {
   content: 'X';
-}
-
-/* disabled input */
-input:disabled {
-opacity: .6;
-box-shadow: none;
-background: rgba(0, 0, 0, 0.1);
-box-shadow:none;
-}
-
-/* style label for disabled input */
-input:disabled + label {
-opacity: .6;
-cursor:default;
--webkit-user-select: none;
 }
