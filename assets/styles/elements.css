@@ -177,8 +177,6 @@ button[disabled] {
 [data-controller] textarea:invalid,
 [data-controller] select:invalid {
   border-color: var(--accent-color);
-  outline: 0 solid transparent;
-  outline-offset: 0;
 }
 input[type="file"]:invalid {
   color: var(--accent-color);
