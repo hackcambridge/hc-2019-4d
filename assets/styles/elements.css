@@ -12,13 +12,21 @@ img {
 
 /* Forms */
 
-input, form, body, button, fieldset {
+input, form, body, button, fieldset, textarea {
   margin: unset;
   padding: unset;
+}
+input, form, body, button, fieldset, textarea, select {
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 input[type="file"]::-webkit-file-upload-button {
   margin: unset;
   padding: unset;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
 }
 
 input {
@@ -61,7 +69,6 @@ select{
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 0;
   margin: 0;
   border: var(--border) var(--secondary-color);
   background: none;
@@ -74,7 +81,16 @@ input[type="month"],
 input[type="date"] {
   border-left: unset;
   border-right: unset;
-  text-indent: 0.75pt;
+  width: 100%;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="number"],
+input[type="month"],
+input[type="date"],
+textarea {
+  text-indent: 2pt;
 }
 
 input[type="email"]:not(:invalid),
@@ -102,7 +118,7 @@ input[type="email"]:-webkit-autofill {
   border-bottom: var(--border) var(--accent-color);
 }
 
-input::placeholder {
+input::placeholder, ::placeholder {
   color: var(--subtle-accent-color);
 }
 
@@ -119,9 +135,10 @@ input[type="file"]::-webkit-file-upload-button {
 
 textarea {
   resize: none;
-  width: calc(100% - 3pt * 2);
   height: var(--one);
+  width: 100%;
   border: var(--border) var(--secondary-color);
+  -webkit-appearance: none;
 }
 
 fieldset {
@@ -141,12 +158,12 @@ input[type="button"]:hover:not([disabled]),
 button:hover:not([disabled]) {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  border: var(--border) var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 input[type="file"]:hover:not([disabled])::-webkit-file-upload-button {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  border: var(--border) var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 input[type="submit"]:active:not([disabled]),
@@ -154,12 +171,12 @@ input[type="button"]:active:not([disabled]),
 button:active:not([disabled]) {
   background-color: unset;
   color: var(--secondary-color);
-  border: var(--border) var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 input[type="file"]:active:not([disabled])::-webkit-file-upload-button {
   background-color: unset;
   color: var(--secondary-color);
-  border: var(--border) var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 input[disabled],
 button[disabled] {
@@ -172,18 +189,12 @@ button[disabled] {
 [data-controller] textarea:invalid,
 [data-controller] select:invalid {
   border-color: var(--accent-color);
-  outline: 0 solid transparent;
-  outline-offset: 0;
 }
 input[type="file"]:invalid {
   color: var(--accent-color);
 }
 [data-field-validator-error] .requirement {
   color: var(--accent-color);
-}
-
-::-webkit-validation-bubble {
-  opacity: 1;
 }
 
 /* Sections */
