@@ -107,7 +107,7 @@ input[type="email"]:-webkit-autofill {
   border-bottom: var(--border) var(--accent-color);
 }
 
-input::placeholder {
+input::placeholder, ::placeholder {
   color: var(--subtle-accent-color);
 }
 
