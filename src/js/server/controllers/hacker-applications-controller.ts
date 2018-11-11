@@ -117,6 +117,33 @@ const schema: ValidationSchema = {
       },
     },
   },
+  graduationMonth: {
+    in: 'body',
+    exists: true,
+    isISO8601: {
+      errorMessage: 'Invalid date',
+      options: {
+        strict: true,
+      },
+    },
+  },
+  visaNeededBy: {
+    in: 'body',
+    optional: {
+      nullable: true,
+      checkFalsy: true,
+    },
+    custom: {
+      errorMessage: 'Invalid date',
+      options: value => {
+        if (value == '') {
+          return true;
+        } else {
+          return validator.isISO8601(value);
+        }
+      },
+    },
+  },
 };
 
 const pdfUpload = s3Upload({
@@ -160,7 +187,7 @@ export const createHackerApplication: RequestHandlerParams[] = [
         const application = await createApplicationFromForm(req.body, req.user, req.file);
         res.redirect(application.inTeam ? 'team' : 'dashboard');
       } catch (error) {
-        res.render('apply/team.html', {
+        res.render('apply/form.html', {
           formData: req.body,
           error: error,
         });
@@ -186,9 +213,11 @@ export async function createApplicationFromForm(body, user: HackerInstance, file
       links: body.links,
       inTeam: body.teamMembership.includes('apply'),
       wantsTeam: body.teamMembership.includes('placement'),
-      graduationDate: new Date("1980-01-01"),
-      needsVisa: Boolean(body.needsVisa),
+      needsVisa: Boolean(body.needsVisaBy),
+      visaNeededBy: body.visaNeededBy || null,
       wantsMailingList: Boolean(body.wantsMailingList),
+      graduationDate: body.graduationMonth,
+      otherInfo: body.otherInfo || null,
     });
 
     await sendEmail({

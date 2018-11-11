@@ -1,4 +1,5 @@
 import { makeInstruction } from 'js/server/email';
+import * as metadata from 'js/shared/metadata';
 
 export function applied({name, applicationSlug, inTeam}) {
   const actions = [
@@ -24,11 +25,11 @@ export function applied({name, applicationSlug, inTeam}) {
   }
 
   return {
-    subject: 'You have applied to Hack Cambridge Ternary!',
+    subject: `You have applied to ${metadata.eventTitle}!`,
     body: {
       name,
       intro: [
-        'Thanks for applying to Hack Cambridge! We are so excited by all of the amazing people who want to come to our event this January.',
+        `Thanks for applying to ${metadata.title}! We are so excited by all of the amazing people who want to come to our event this January.`,
         'We will be reviewing your application soon, and will let you know as soon as we have made a decision.',
       ],
       action: actions,

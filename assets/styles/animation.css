@@ -1,6 +1,11 @@
 /* Animation */
 
-section, input, button, svg, a, ::after {
+section, input, button, svg, a, textarea, select, ::after {
+  transition-property: color, border-color, caret-color, background-color, opacity, fill-opacity, stroke-opacity;
+  transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
+  transition-duration: 0.25s;
+}
+input[type="file"]::-webkit-file-upload-button {
   transition-property: color, border-color, caret-color, background-color, opacity, fill-opacity, stroke-opacity;
   transition-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1);
   transition-duration: 0.25s;

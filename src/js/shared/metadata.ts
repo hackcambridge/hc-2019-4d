@@ -13,3 +13,4 @@ function createDescription() {
 export const description = createDescription();
 
 export const title = 'Hack Cambridge';
+export const eventTitle = 'Hack Cambridge 4D';
