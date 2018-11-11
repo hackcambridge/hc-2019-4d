@@ -2,7 +2,7 @@ import { Controller } from 'stimulus'
 
 export default class ValidationMessagesController extends Controller {
   allowMessage(event) {
-    if (!(this.data.has('listening'))) {
+    if (!this.data.has('listening')) {
       this.data.set('listening', '')
     }
   }
@@ -11,7 +11,7 @@ export default class ValidationMessagesController extends Controller {
     if (this.data.has('listening')) {
       this.data.delete('listening')
       event.target.scrollIntoViewIfNeeded(true)
-      event.target.reportValidity()
+      this.reportValidity(event)
     }
   }
   
