@@ -8,9 +8,13 @@
         if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
       #}
       {% if user.firstName %}
-        <section color="blue" align-last="right" grid="grid" rows="0.5" columns="4.0">
+        <section color="blue" align-last="right" grid="grid" rows="0.5" columns="3.0">
           <div rows="1.0">
             <div grid="grid">
+              <a class="icon" columns="1.5" rows="1.0" rel="prev" href="/">
+                {{ singleColourIcon(asset, 'Home') }}<br>
+                Home
+              </a>
               {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
               {% if not is_dashboard %}
                 <a class="icon" columns="1.5" rows="1.0" rel="prev" href="/apply/dashboard">
