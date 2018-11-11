@@ -20,6 +20,7 @@ body, div {
 [align-last="right"] > :last-child {
   grid-column-end: -1;
   grid-column-start: calc(-1 - (var(--columns) * 2 + var(--half-column)));
+  text-align: right;
 }
 [align-last="right"] > :first-child {
   grid-column-start: 1;
