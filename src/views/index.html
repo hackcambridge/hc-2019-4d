@@ -8,6 +8,7 @@
 {% set layoutMode = 'width' %}
 {% block content %}
   <main layout="{{ layoutMode }}">
+    {{requestedUrl.path}}
     <div fixed grid="grid" sidebar columns="7.5" rows="4.5">
       <img draggable="false" src="{{ asset('images/logo.svg') }}"/>
       <div></div>
@@ -97,20 +98,7 @@
         {% elif moment().isBefore(event.dates.getApplicationsEnd()) %}
           {% if user.firstName %}
             <div grid="grid" rows="1.0">
-              <a class="icon" columns="1.5" rows="1.0" rel="next" href="/apply/dashboard">
-                {{ singleColourIcon(asset, 'Dashboard') }}<br>
-                Dashboard
-              </a>
-              {% if moment().isBefore(event.dates.getApplicationsEnd()) %}
-                <a class="icon" columns="1.5" rows="1.0" rel="next" href="/apply/form">
-                  {{ singleColourIcon(asset, 'Next') }}<br>
-                  Application form
-                </a>
-              {% endif %}
-              <a class="icon" columns="1.5" rows="1.0" href="/apply/logout">
-                {{ singleColourIcon(asset, 'Log out') }}<br>
-                Log out
-              </a>
+              {% include 'navigation.html' %}
             </div>
           {% else %}
             <a class="icon" rel="next" href="/apply/dashboard">

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
 {% set layoutMode = "a4" %}
+{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
 {% block content %}
   {% include 'header.html' %}
   <main layout="{{ layoutMode }}">
@@ -11,21 +11,7 @@
         <section color="blue" align-last="right" grid="grid" rows="0.5" columns="3.0">
           <div rows="1.0">
             <div grid="grid">
-              <a class="icon" columns="1.5" rows="1.0" rel="prev" href="/">
-                {{ singleColourIcon(asset, 'Home') }}<br>
-                Home
-              </a>
-              {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
-              {% if not is_dashboard %}
-                <a class="icon" columns="1.5" rows="1.0" rel="prev" href="/apply/dashboard">
-                  {{ singleColourIcon(asset, 'Dashboard') }}<br>
-                  Dashboard
-                </a>
-              {% endif %}
-              <a class="icon" columns="1.5" rows="1.0" href="/apply/logout">
-                {{ singleColourIcon(asset, 'Log out') }}<br>
-                Log out
-              </a>
+              {% include 'navigation.html' %}
             </div>
           </div>
           <div rows="1.0">

@@ -1,0 +1,24 @@
+{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
+{% if not (requestedUrl.path === '/') %}
+  <a class="icon" columns="1.5" rows="1.0" rel="prev" href="/">
+    {{ singleColourIcon(asset, 'Home') }}<br>
+    Home
+  </a>
+{% endif %}
+{# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
+{% if not (requestedUrl.path === '/apply/dashboard') %}
+  <a class="icon" columns="1.5" rows="1.0" rel="prev" href="/apply/dashboard">
+    {{ singleColourIcon(asset, 'Dashboard') }}<br>
+    Dashboard
+  </a>
+{% endif %}
+{% if (moment().isBefore(event.dates.getApplicationsEnd()) and not (requestedUrl.path === '/apply/form')) %}
+      <a class="icon" columns="1.5" rows="1.0" rel="next" href="/apply/form">
+        {{ singleColourIcon(asset, 'Next') }}<br>
+        Application form
+      </a>
+      {% endif %}
+<a class="icon" columns="1.5" rows="1.0" href="/apply/logout">
+  {{ singleColourIcon(asset, 'Log out') }}<br>
+  Log out
+</a>
