@@ -1,15 +1,12 @@
 import { Router, Request } from 'express';
 
-import * as hackerApplicationsController from 'js/server/controllers/apply/hacker-applications-controller';
-import * as teamsController from 'js/server/controllers/apply/teams-controller';
-import * as rsvpsController from 'js/server/controllers/apply/rsvps-controller';
-import * as appliableConcern from 'js/server/controllers/apply/concerns/appliable-concern';
-import * as dashboardController from 'js/server/controllers/apply/dashboard-controller';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
 import { Hacker, TeamMember, HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
+import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply/index'
+import { appliableConcern } from 'js/server/controllers/apply/concerns/index'
 
 const applyRouter = Router();
 
