@@ -1,10 +1,10 @@
 import { Router, Request } from 'express';
 
-import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
-import * as teamsController from 'js/server/controllers/teams-controller';
-import * as rsvpsController from 'js/server/controllers/rsvps-controller';
-import * as appliableConcern from 'js/server/controllers/concerns/appliable-concern';
-import * as dashboardController from 'js/server/controllers/dashboard-controller';
+import * as hackerApplicationsController from 'js/server/controllers/apply/hacker-applications-controller';
+import * as teamsController from 'js/server/controllers/apply/teams-controller';
+import * as rsvpsController from 'js/server/controllers/apply/rsvps-controller';
+import * as appliableConcern from 'js/server/controllers/apply/concerns/appliable-concern';
+import * as dashboardController from 'js/server/controllers/apply/dashboard-controller';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
