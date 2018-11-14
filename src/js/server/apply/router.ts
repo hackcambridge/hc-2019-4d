@@ -2,13 +2,13 @@ import { Router, Request } from 'express';
 
 import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
 import * as teamsController from 'js/server/controllers/teams-controller';
+import * as rsvpsController from 'js/server/controllers/rsvps-controller';
 import * as appliableConcern from 'js/server/controllers/concerns/appliable-concern';
 import * as dashboardController from 'js/server/controllers/dashboard-controller';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
 import { Hacker, TeamMember, HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
-import { rsvpToResponse } from 'js/server/attendance/logic';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 
 const applyRouter = Router();
@@ -39,43 +39,7 @@ applyRouter.get('/team', teamsController.newTeam);
 applyRouter.post('/team', ...teamsController.createTeam);
 
 // Process the RSVP response
-applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
-  const rsvp = req.body.rsvp;
-  if (rsvp) {
-    // RSVP was given, store it
-    req.user.getHackerApplication().then(hackerApplication => {
-
-      if (hackerApplication == null) {
-        return Promise.resolve(null);
-      } else {
-        return hackerApplication.getApplicationResponse();
-      }
-
-    }).then(applicationResponse => {
-
-      if (applicationResponse != null) {
-        // Found a response
-        return applicationResponse.getResponseRsvp().then(responseRsvp => {
-          if (responseRsvp != null) {
-            console.log('There was already an RSVP for this application, ignoring new');
-            return Promise.resolve(null);
-          } else {
-            return rsvpToResponse(applicationResponse, rsvp);
-          }
-        });
-      } else {
-        // No response found
-        return Promise.resolve(null);
-      }
-
-    }).then(() => {
-      res.redirect('/apply/dashboard');
-    });
-  } else {
-    // No RSVP given so just redirect
-    res.redirect('/apply/dashboard');
-  }
-});
+applyRouter.post('/rsvp', auth.requireAuth, rsvpsController.createRsvp);
 
 applyRouter.get('/', (req, res) => res.render('apply/login.html'));
 
