@@ -19,7 +19,7 @@ export interface UserRequest extends Request {
 }
 
 applyRouter.get('/', (req: UserRequest, res) => {
-  req.user ? res.redirect(`${req.baseUrl}/dashboard`) : res.render('apply/index.html');
+  req.user ? res.redirect(`${req.baseUrl}/dashboard`) : res.render('apply/login.html');
 });
 
 applyRouter.use(auth.requireAuth);
@@ -80,6 +80,7 @@ applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
   }
 });
 
+applyRouter.get('/', (req, res) => res.render('apply/login.html'));
 
 
 export default applyRouter;
