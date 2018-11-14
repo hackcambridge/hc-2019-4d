@@ -11,7 +11,6 @@ import { Hacker, TeamMember, HackerApplication, HackerInstance, HackerApplicatio
 import { rsvpToResponse } from 'js/server/attendance/logic';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 
-
 const applyRouter = Router();
 
 export interface UserRequest extends Request {
@@ -25,9 +24,7 @@ applyRouter.get('/', (req: UserRequest, res) => {
 applyRouter.use(auth.requireAuth);
 
 // Route to redirect to whatever next step is required
-applyRouter.get('/', (req, res) => {
-  res.redirect(`${req.baseUrl}/form`);
-});
+applyRouter.get('/', (req, res) => res.redirect(`${req.baseUrl}/form`));
 
 applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
@@ -82,5 +79,6 @@ applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
 
 applyRouter.get('/', (req, res) => res.render('apply/login.html'));
 
+applyRouter.get('/logout', auth.logout, (req, res) => res.redirect('/'));
 
 export default applyRouter;
