@@ -2,6 +2,7 @@ import { Router, Request } from 'express';
 
 import * as hackerApplicationsController from 'js/server/controllers/hacker-applications-controller';
 import * as teamsController from 'js/server/controllers/teams-controller';
+import * as appliableConcern from 'js/server/controllers/concerns/appliable-concern';
 import * as dashboardController from 'js/server/controllers/dashboard-controller';
 import * as auth from 'js/server/auth';
 import * as utils from '../utils.js';
@@ -30,12 +31,12 @@ applyRouter.get('/', (req, res) => {
 
 applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
-applyRouter.all('/form', goHomeIfAlreadyApplied, checkApplicationsOpen);
+applyRouter.all('/form', appliableConcern.goHomeIfAlreadyApplied, appliableConcern.checkApplicationsOpen);
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
 // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
 
-applyRouter.all('/team', checkApplicationsOpen);
+applyRouter.all('/team', appliableConcern.checkApplicationsOpen);
 applyRouter.get('/team', teamsController.newTeam);
 // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/team', ...teamsController.createTeam);
@@ -79,40 +80,6 @@ applyRouter.post('/rsvp', auth.requireAuth, (req: UserRequest, res) => {
   }
 });
 
-applyRouter.get('/logout', auth.logout, (req, res) => res.redirect('/'));
 
-// The login page (has the login button)
-
-applyRouter.get('/', (req, res) => res.render('apply/index.html'));
-
-/**
- * Intercepts the request to check if the user has submitted an application
- * 
- * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
- * as normal.
- */
-function goHomeIfAlreadyApplied(req, res, next) {
-  req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
-    if (hackerApplication) {
-      res.redirect(`${req.baseUrl}/dashboard`);
-      return;
-    }
-    next();
-  }).catch(next);
-}
-
-/**
- * Intercepts requests to check if applications are still open, redirecting to the dashboard if not
- */
-
-function checkApplicationsOpen(req, res, next) {
-  console.log(process.env.APPLICATIONS_OPEN);
-  if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
-    res.redirect(`${req.baseUrl}/dashboard`);
-    return;
-  }
-  
-  next();
-}
 
 export default applyRouter;
