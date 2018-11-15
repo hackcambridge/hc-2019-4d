@@ -8,7 +8,7 @@ import * as errors from 'js/server/errors';
 import * as colors from 'js/shared/colors';
 import * as metadata from 'js/shared/metadata';
 import * as currentEvent from 'js/server/live/current-event';
-import { ServeStaticOptions } from '../../../node_modules/@types/serve-static';
+import { ServeStaticOptions } from 'serve-static';
 import apiRouter from './api';
 import applyRouter from './apply/router';
 import hcapiRouter from './hcapi';
@@ -30,6 +30,8 @@ app.use((req: any, res, next) => {
   res.locals.title = metadata.title;
   res.locals.description = metadata.description;
   res.locals.colors = colors;
+  res.locals.event = { dates, theme };
+  res.locals.user = req.user;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
   const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = url.parse(
@@ -49,6 +51,7 @@ app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOption
 auth.setUpAuth(app);
 
 app.locals.asset = utils.asset;
+app.locals.moment = moment;
 
 if (process.env.BS_SNIPPET) {
   app.locals.browserSync = process.env.BS_SNIPPET;
