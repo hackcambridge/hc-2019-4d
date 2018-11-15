@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as nunjucks from 'nunjucks';
 import * as bodyParser from 'body-parser';
 import * as url from 'url';
 import * as moment from 'moment';
@@ -18,6 +17,7 @@ import * as dates from 'js/shared/dates';
 import * as theme from 'js/shared/theme';
 
 const app = express();
+app.set('view engine', 'pug');
 let server = require('http').Server(app);
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -47,16 +47,6 @@ app.use(require('compression')());
 app.use('/assets', express.static(utils.resolvePath('assets/dist'), staticOptions));
 
 auth.setUpAuth(app);
-
-// View rendering
-const env = nunjucks.configure(utils.resolvePath('src/views'), {
-  autoescape: true,
-  noCache: app.settings.env == 'development',
-  express: app,
-  throwOnUndefined: true
-});
-env.addGlobal('moment', moment);
-env.addGlobal('event', { dates, theme });
 
 app.locals.asset = utils.asset;
 
