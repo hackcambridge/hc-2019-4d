@@ -62,7 +62,7 @@ app.use('/apply', applyRouter);
 app.use('/hcapi', hcapiRouter);
 
 app.get('/', (req, res) => {
-  res.render('index.html', {
+  res.render('index', {
     sponsors: utils.loadResource('sponsors')
   });
 });
@@ -76,58 +76,38 @@ app.get('/live-api/event-info', (req, res) => {
 });
 
 app.get('/live', (req, res) => {
-  res.render('live.html', {
+  res.render('live', {
     title: 'Hack Cambridge Ternary',
     sponsors: utils.loadResource('sponsors'),
     pusherKey: process.env.PUSHER_KEY
   });
 });
 
-app.get('/terms-and-conditions', (req, res) => {
-  res.render('terms-and-conditions.html');
-});
-
-app.get('/terms', (req, res) => {
-  // This URL was used in 2017 and previously, redirect it to the new location
-  res.redirect(301, '/terms-and-conditions');
-});
+app.get('/terms-and-conditions', (req, res) => res.render('terms-and-conditions'));
 
 app.get('/faqs', (req, res) => {
-  res.render('faqs.html', {
+  res.render('faqs', {
     faqs: utils.loadResource('faqs')
   });
 });
 
-app.get('/privacy-policy', (req, res) => {
-  res.render('privacy-policy.html');
-});
-
-app.get('/privacy', (req, res) => {
-  // This URL was used in 2017 and previously, redirect it to the new location
-  res.redirect(301, '/privacy-policy');
-});
+app.get('/privacy-policy', (req, res) => res.render('privacy-policy'));
 
 app.get('/pay', (req, res) => {
-  res.render('pay.html', {
+  res.render('pay', {
     title: 'Make a payment to Hack Cambridge',
     stripeKey: process.env.STRIPE_PUBLISH_KEY
   });
 });
 
-app.get('/favicon.ico', (req, res) => {
-  res.sendFile(utils.resolvePath('assets/images/favicons/favicon.ico'));
-});
+app.get('/favicon.ico', (req, res) => res.sendFile(utils.resolvePath('assets/images/favicons/favicon.ico')));
 
-app.get('/sponsorship', (req, res) => {
-  res.render('sponsorship.html');
-});
+app.get('/sponsorship', (req, res) => res.render('sponsorship'));
 
-app.get('/event', (req, res) => {
-  res.render('event/index.html');
-});
+app.get('/event', (req, res) => res.render('event/index'));
 
 app.get('/event/schedule', (req, res) => {
-  res.render('event/schedule.html', {
+  res.render('event/schedule', {
     schedule: utils.loadResource('schedule'),
     workshops: utils.loadResource('workshops'),
     demos: utils.loadResource('api_demos')
@@ -135,35 +115,25 @@ app.get('/event/schedule', (req, res) => {
 });
 
 app.get('/event/hacking', (req, res) => {
-  res.render('event/hacking.html', {
+  res.render('event/hacking', {
     apis: utils.loadResource('apis'),
     prizes: utils.loadResource('prizes')
   });
 });
 
-app.get('/event/location', (req, res) => {
-  res.render('event/location.html');
-});
+app.get('/event/location', (req, res) => res.render('event/location'));
 
-app.get('/favicons/browserconfig.xml', (req, res) => {
-  res.render('favicons/browserconfig.xml');
-});
+app.get('/favicons/browserconfig.xml', (req, res) => res.render('favicons/browserconfig.xml'));
 
-app.get('/favicons/manifest.json', (req, res) => {
-  res.render('favicons/manifest.json');
-});
+app.get('/favicons/manifest.json', (req, res) => res.render('favicons/manifest.json'));
 
-app.use((req, res) => {
-  res.status(404).render('404.html');
-});
+app.use((req, res) => res.status(404).render('404'));
 
 app.use(errors.middleware);
 
 // Start server
 app.set('port', (process.env.PORT || 3000));
 
-server.listen(app.get('port'), () => {
-  console.log('Node app is running on port', app.get('port'));
-});
+server.listen(app.get('port'), _ => console.log('Node app is running on port', app.get('port')));
 
 export default app;
