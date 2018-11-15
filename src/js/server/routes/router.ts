@@ -11,6 +11,7 @@ import * as currentEvent from 'js/server/live/current-event';
 import { ServeStaticOptions } from 'serve-static';
 import apiRouter from 'js/server/api';
 import applyRouter from './apply-router';
+import eventRouter from './event-router';
 import hcapiRouter from 'js/server/hcapi';
 import * as utils from 'js/server/utils';
 import * as dates from 'js/shared/dates';
@@ -62,6 +63,7 @@ if (process.env.BS_SNIPPET) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', apiRouter);
 app.use('/apply', applyRouter);
+app.use('/event', eventRouter);
 app.use('/hcapi', hcapiRouter);
 
 app.get('/', (req, res) => {
@@ -106,25 +108,6 @@ app.get('/pay', (req, res) => {
 app.get('/favicon.ico', (req, res) => res.sendFile(utils.resolvePath('assets/images/favicons/favicon.ico')));
 
 app.get('/sponsorship', (req, res) => res.render('sponsorship'));
-
-app.get('/event', (req, res) => res.render('event/index'));
-
-app.get('/event/schedule', (req, res) => {
-  res.render('event/schedule', {
-    schedule: utils.loadResource('schedule'),
-    workshops: utils.loadResource('workshops'),
-    demos: utils.loadResource('api_demos')
-  });
-});
-
-app.get('/event/hacking', (req, res) => {
-  res.render('event/hacking', {
-    apis: utils.loadResource('apis'),
-    prizes: utils.loadResource('prizes')
-  });
-});
-
-app.get('/event/location', (req, res) => res.render('event/location'));
 
 app.get('/favicons/browserconfig.xml', (req, res) => res.render('favicons/browserconfig.xml'));
 
