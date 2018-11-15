@@ -4,11 +4,7 @@ import * as moment from 'moment';
 import * as bodyParser from 'body-parser';
 import { ServeStaticOptions } from 'serve-static';
 
-import router from './routes/router';
-import apiRouter from './routes/api-router';
-import applyRouter from './routes/apply-router';
-import eventRouter from './routes/event-router';
-import hcApiRouter from './routes/hc-api-router';
+import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
 
 import * as auth from 'js/server/auth';
 import * as utils from 'js/server/utils';
