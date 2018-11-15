@@ -1,17 +1,7 @@
 import { Router } from 'express';
-import * as bodyParser from 'body-parser';
-import * as url from 'url';
-import * as moment from 'moment';
-import { ServeStaticOptions } from 'serve-static';
 
-import * as auth from 'js/server/auth';
-import * as errors from 'js/server/errors';
-import * as colors from 'js/shared/colors';
-import * as metadata from 'js/shared/metadata';
 import * as currentEvent from 'js/server/live/current-event';
 import * as utils from 'js/server/utils';
-import * as dates from 'js/shared/dates';
-import * as theme from 'js/shared/theme';
 
 const router = Router();
 
