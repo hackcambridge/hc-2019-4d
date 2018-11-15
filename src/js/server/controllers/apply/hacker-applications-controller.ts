@@ -5,7 +5,7 @@ import { checkSchema, validationResult, ValidationSchema } from 'express-validat
 import * as validator from 'validator';
 import countryList from 'country-list';
 
-import { UserRequest } from 'js/server/apply/router';
+import { UserRequest } from 'js/server/routes/apply-router';
 import { s3Upload } from 'js/server/apply/file-upload';
 import { HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
 import { sendEmail } from 'js/server/email';

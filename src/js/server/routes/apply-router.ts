@@ -12,12 +12,14 @@ export interface UserRequest extends Request {
 };
 
 applyRouter.get('/', (req: UserRequest, res) => {
-  req.user ? res.redirect(`${req.baseUrl}/dashboard`) : res.redirect(`${req.baseUrl}/login`);
+  req.user ? res.redirect('./dashboard') : res.redirect('./login');
 });
 
 applyRouter.get('/login', (req: UserRequest, res) => res.render('apply/login'));
 
 applyRouter.use(auth.requireAuth);
+
+applyRouter.get('/logout', auth.logout, (req: UserRequest, res) => res.redirect('/'));
 
 applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
@@ -35,7 +37,5 @@ applyRouter.route('/team')
 
 // Process the RSVP response
 applyRouter.post('/rsvp', auth.requireAuth, rsvpsController.createRsvp);
-
-applyRouter.get('/logout', auth.logout, (req: UserRequest, res) => res.redirect('/'));
 
 export default applyRouter;

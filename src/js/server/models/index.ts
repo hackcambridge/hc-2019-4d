@@ -6,6 +6,7 @@ import { HackerApplicationInstance } from './HackerApplication';
 import ApplicationResponse from './ApplicationResponse';
 import Team from './Team';
 import TeamMember from './TeamMember';
+import { TeamMemberInstance } from './TeamMember';
 import Admin from './Admin';
 import OauthAccessToken from './OauthAccessToken';
 import ApplicationReview from './ApplicationReview';
@@ -24,6 +25,7 @@ export {
   ApplicationResponse,
   Team,
   TeamMember,
+  TeamMemberInstance,
   OauthAccessToken,
   Admin,
   ApplicationAssignment,

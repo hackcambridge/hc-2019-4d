@@ -2,9 +2,8 @@ import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
 import { checkSchema, validationResult, ValidationSchema, Result } from 'express-validator/check';
 
-import { UserRequest } from 'js/server/apply/router';
-import { HackerApplication, ApplicationResponse, Team, TeamMember, HackerInstance } from 'js/server/models';
-import { TeamMemberInstance } from 'js/server/models/TeamMember';
+import { UserRequest } from 'js/server/routes/apply-router';
+import { HackerApplication, ApplicationResponse, Team, TeamMember, HackerInstance, TeamMemberInstance } from 'js/server/models';
 
 const schema: ValidationSchema = {
   'members.b': {
