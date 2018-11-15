@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import { json as parseJson } from 'body-parser';
 
 import * as errors from './hc-api/errors';
 import * as auth from './hc-api/auth';
@@ -18,7 +18,7 @@ const hcApi = express();
 hcApi.options('*', auth.middleware.cors);
 hcApi.use(auth.middleware.cors);
 hcApi.use(auth.middleware.bearer);
-hcApi.use(bodyParser.json());
+hcApi.use(parseJson());
 
 // API endpoints
 hcApi.use('/tokens', tokensRouter);

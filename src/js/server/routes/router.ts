@@ -1,28 +1,28 @@
 import { Router } from 'express';
 
-import * as currentEvent from 'js/server/live/current-event';
-import * as utils from 'js/server/utils';
+import { getCurrentEvents, getNextEvents } from 'js/server/live/current-event';
+import { loadResource, resolvePath } from 'js/server/utils';
 
 const router = Router();
 
 router.get('/', (req, res) => {
   res.render('index', {
-    sponsors: utils.loadResource('sponsors')
+    sponsors: loadResource('sponsors')
   });
 });
 
 router.get('/live-api/event-info', (req, res) => {
-  const schedule = utils.loadResource('schedule');
+  const schedule = loadResource('schedule');
   res.json({
-    currentEvents: currentEvent.getCurrentEvents(schedule),
-    nextEvents: currentEvent.getNextEvents(schedule)
+    currentEvents: getCurrentEvents(schedule),
+    nextEvents: getNextEvents(schedule)
   });
 });
 
 router.get('/live', (req, res) => {
   res.render('live', {
     title: 'Hack Cambridge Ternary',
-    sponsors: utils.loadResource('sponsors'),
+    sponsors: loadResource('sponsors'),
     pusherKey: process.env.PUSHER_KEY
   });
 });
@@ -31,7 +31,7 @@ router.get('/terms-and-conditions', (req, res) => res.render('terms-and-conditio
 
 router.get('/faqs', (req, res) => {
   res.render('faqs', {
-    faqs: utils.loadResource('faqs')
+    faqs: loadResource('faqs')
   });
 });
 
@@ -44,7 +44,7 @@ router.get('/pay', (req, res) => {
   });
 });
 
-router.get('/favicon.ico', (req, res) => res.sendFile(utils.resolvePath('assets/images/favicons/favicon.ico')));
+router.get('/favicon.ico', (req, res) => res.sendFile(resolvePath('assets/images/favicons/favicon.ico')));
 
 router.get('/sponsorship', (req, res) => res.render('sponsorship'));
 

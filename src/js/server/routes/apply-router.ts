@@ -2,7 +2,7 @@ import { Router, Request } from 'express';
 
 import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply/index';
 import { appliableConcern } from 'js/server/controllers/apply/concerns/index';
-import * as auth from 'js/server/auth';
+import { requireAuth, logout } from 'js/server/auth';
 import { HackerInstance } from 'js/server/models';
 
 const applyRouter = Router();
@@ -17,11 +17,11 @@ applyRouter.get('/', (req: UserRequest, res) => {
 
 applyRouter.get('/login', (req: UserRequest, res) => res.render('apply/login'));
 
-applyRouter.use(auth.requireAuth);
+applyRouter.use(requireAuth);
 
-applyRouter.get('/logout', auth.logout, (req: UserRequest, res) => res.redirect('/'));
+applyRouter.get('/logout', logout, (req: UserRequest, res) => res.redirect('/'));
 
-applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
+applyRouter.get('/dashboard', requireAuth, dashboardController.showDashboard);
 
 applyRouter.route('/form')
   .all(appliableConcern.goHomeIfAlreadyApplied, appliableConcern.checkApplicationsOpen)
@@ -36,6 +36,6 @@ applyRouter.route('/team')
   .post(...teamsController.createTeam);
 
 // Process the RSVP response
-applyRouter.post('/rsvp', auth.requireAuth, rsvpsController.createRsvp);
+applyRouter.post('/rsvp', requireAuth, rsvpsController.createRsvp);
 
 export default applyRouter;

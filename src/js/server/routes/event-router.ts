@@ -1,6 +1,6 @@
 import { Router, Request } from 'express';
 
-import * as utils from 'js/server/utils';
+import { loadResource } from 'js/server/utils';
 
 const eventRouter = Router();
 
@@ -8,16 +8,16 @@ eventRouter.get('/', (req, res) => res.render('event/index'));
 
 eventRouter.get('/schedule', (req, res) => {
   res.render('event/schedule', {
-    schedule: utils.loadResource('schedule'),
-    workshops: utils.loadResource('workshops'),
-    demos: utils.loadResource('api_demos')
+    schedule: loadResource('schedule'),
+    workshops: loadResource('workshops'),
+    demos: loadResource('api_demos')
   });
 });
 
 eventRouter.get('/hacking', (req, res) => {
   res.render('event/hacking', {
-    apis: utils.loadResource('apis'),
-    prizes: utils.loadResource('prizes')
+    apis: loadResource('apis'),
+    prizes: loadResource('prizes')
   });
 });
 
