@@ -1,7 +1,0 @@
-{% macro shortDateWithSuperscript(date) -%}
-  {{ dayWithSuperscript(date) }} {{ date.format('MMMM YYYY') }}
-{%- endmacro %}
-{% macro dayWithSuperscript(day) -%}
-  {% set ordinalSuffix = day.format('Do').split(day.format('D'))[1] %}
-  {{ day.format('D') }}<sup>{{ ordinalSuffix }}</sup>
-{%- endmacro %}

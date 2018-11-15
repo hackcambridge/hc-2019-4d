@@ -1,0 +1,16 @@
+extends base
+block content
+  - layoutMode = 'a4'
+  include ../mixins/svg-elements
+  include ../includes/header
+  main(layout=layoutMode)
+    section(color='blue' align-last='right' grid='grid' rows='0.5' columns='3.0')
+      div(rows='1.0')
+        div(grid='grid')
+          include ../includes/navigation
+      if user
+        div(rows='1.0') Hey #{user.firstName}!
+    block mainContent
+  footer(grid='rows' layout=layoutMode rows='2.0')
+    div
+      include ../includes/footer
