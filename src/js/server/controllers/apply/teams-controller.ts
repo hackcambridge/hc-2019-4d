@@ -21,12 +21,12 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
   if (hackerApplication !== null) {
     const team = await req.user.getTeam();
     if (team === null) {
-      res.render('apply/team.html', { applicationSlug: hackerApplication.applicationSlug });
+      res.render('apply/team-form', { applicationSlug: hackerApplication.applicationSlug });
     } else if (team !== null) {
       res.redirect('/apply/dashboard');
     }
   } else if (hackerApplication === null)  {
-    res.redirect('/apply/form');
+    res.redirect('/apply/application-form');
   }
 }
 
@@ -35,15 +35,15 @@ export const createTeam: RequestHandlerParams[] = [
   (req: UserRequest, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render('apply/team.html', {
+      res.render('apply/team-form', {
         errors: errors.mapped(),
         formData: req.body,
       });
     } else {
       createTeamFromForm(req.body, req.user, errors).then(_ => {
-        res.redirect('dashboard');
+        res.redirect('/apply/dashboard');
       }).catch(error => {
-        res.render('apply/team.html', {
+        res.render('apply/team-form', {
           formData: req.body,
           error: error,
         });

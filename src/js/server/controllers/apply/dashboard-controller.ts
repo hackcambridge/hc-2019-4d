@@ -54,7 +54,7 @@ export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
       ? getHackathonStartDate().isoWeekday(fridayWeekday)
       : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
 
-  res.render('apply/dashboard.html', {
+  res.render('apply/dashboard', {
     applicationSlug: (application === null) ? null : application.applicationSlug,
     applicationStatus,
     wantsTeam: (application === null) ? null : application.wantsTeam,
