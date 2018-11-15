@@ -5,7 +5,7 @@ import * as bodyParser from 'body-parser';
 import * as _ from 'lodash';
 import * as Stripe from 'stripe';
 
-import { ErrorWithStatus } from './utils';
+import { ErrorWithStatus } from 'js/server/utils';
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 

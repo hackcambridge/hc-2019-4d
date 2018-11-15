@@ -9,7 +9,7 @@ import * as colors from 'js/shared/colors';
 import * as metadata from 'js/shared/metadata';
 import * as currentEvent from 'js/server/live/current-event';
 import { ServeStaticOptions } from 'serve-static';
-import apiRouter from 'js/server/api';
+import apiRouter from './api-router';
 import applyRouter from './apply-router';
 import eventRouter from './event-router';
 import hcapiRouter from 'js/server/hcapi';
