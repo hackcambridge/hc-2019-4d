@@ -17,7 +17,7 @@ body, div {
   grid-column: span calc(var(--columns) * 2 + var(--half-column));
 }
 
-[align-last="right"] > :last-child {
+[align-last="right"] > :last-child:not(:only-child) {
   grid-column-end: -1;
   grid-column-start: calc(-1 - (var(--columns) * 2 + var(--half-column)));
   text-align: right;
