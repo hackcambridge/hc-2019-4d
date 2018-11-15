@@ -1,4 +1,4 @@
-import { ErrorWithStatus } from "../utils";
+import { ErrorWithStatus } from 'js/server/utils';
 
 export const middleware = {
   notFound(req, res, next) {
