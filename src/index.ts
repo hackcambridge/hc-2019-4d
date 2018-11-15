@@ -2,4 +2,4 @@ import * as dotenv from 'dotenv';
 
 dotenv.load();
 
-require('js/server');
+require('js/server/app');
