@@ -5,6 +5,7 @@ import { urlencoded as parseUrlEncoded } from 'body-parser';
 import { ServeStaticOptions } from 'serve-static';
 
 import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
+import { appliableConcern } from 'js/server/controllers/apply/concerns/index';
 
 import { setUpAuth } from 'js/server/auth';
 import { init as initializeUtils, resolvePath as resolveAssetPath, asset } from 'js/server/utils';
@@ -33,7 +34,6 @@ app.use((req: any, res, next) => {
   res.locals.description = metadata.description;
   res.locals.colors = colors;
   res.locals.event = { dates, theme };
-  res.locals.user = req.user;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
   const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = parseUrl(
@@ -53,6 +53,7 @@ app.use(require('compression')());
 app.use('/assets', express.static(resolveAssetPath('assets/dist'), staticOptions));
 
 setUpAuth(app);
+app.use(appliableConcern.setAppliedStatus);
 
 app.locals.asset = asset;
 app.locals.moment = moment;

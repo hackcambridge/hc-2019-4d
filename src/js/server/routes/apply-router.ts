@@ -24,13 +24,13 @@ applyRouter.get('/logout', logout, (req: UserRequest, res) => res.redirect('/'))
 applyRouter.get('/dashboard', requireAuth, dashboardController.showDashboard);
 
 applyRouter.route('/form')
-  .all(appliableConcern.goHomeIfAlreadyApplied, appliableConcern.checkApplicationsOpen)
+  .all(appliableConcern.goBackIfApplied, appliableConcern.goBackIfApplicationsClosed)
   .get(hackerApplicationsController.newHackerApplication)
   // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
   .post(...hackerApplicationsController.createHackerApplication);
 
 applyRouter.route('/team')
-  .all(appliableConcern.checkApplicationsOpen)
+  .all(appliableConcern.goBackIfApplicationsClosed)
   .get(teamsController.newTeam)
   // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
   .post(...teamsController.createTeam);
