@@ -3,6 +3,7 @@ import { parse as parseUrl } from 'url';
 import * as moment from 'moment';
 import { urlencoded as parseUrlEncoded } from 'body-parser';
 import { ServeStaticOptions } from 'serve-static';
+import * as compression from 'compression';
 
 import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
 import { appliableConcern } from 'js/server/controllers/apply/concerns/index';
@@ -49,7 +50,7 @@ let staticOptions: ServeStaticOptions = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
-app.use(require('compression')());
+app.use(compression());
 app.use('/assets', express.static(resolveAssetPath('assets/dist'), staticOptions));
 
 setUpAuth(app);
