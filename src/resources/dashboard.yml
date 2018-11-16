@@ -28,7 +28,7 @@ dashboard:
     has-ticket:
       message_type: success
       title: See you there!
-      subline: Thanks for confirming your place. See you on {{ dates.getHackathonStartDate().format('MMMM Do') }}!
+      subline: Thanks for confirming your place. See you on <%= dates.getHackathonStartDate().format('MMMM Do') %>!
 
     invited-declined:
       message_type: neutral
