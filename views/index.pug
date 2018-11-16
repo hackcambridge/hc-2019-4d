@@ -7,6 +7,7 @@ block content
     description = 'Hack Cambridge' + event.theme.getEventName() + ' ' + event.dates.getHackathonStartDate().year()
     keywords = 'hack,cambridge,' + event.theme.getEventName().toLowerCase() + '' + event.dates.getHackathonStartDate().year()
     layoutMode = 'width'
+  include includes/trust-badge
   main(layout=layoutMode)
     div(fixed='' grid='grid' sidebar='' columns='7.5' rows='4.5')
       img(draggable='false' src=asset('images/logo.svg'))
