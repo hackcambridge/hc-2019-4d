@@ -1,11 +1,11 @@
 extends layouts/a4
 block mainContent
-  -title = 'FAQs'
+  - title = 'FAQs'
   section(grid='rows')
     h1(rows='1.0')= title
     .text-columns(rows='15.5')
       for faq in faqs
-        h4= faq.question
-        p= faq.answer
+        h4!= faq.question
+        p!= faq.answer
         if faq.action
           != faq.action
