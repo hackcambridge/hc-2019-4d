@@ -55,6 +55,7 @@ app.use('/assets', express.static(resolveAssetPath('assets/dist'), staticOptions
 
 setUpAuth(app);
 app.use(appliableConcern.setAppliedStatus);
+app.use(appliableConcern.setApplicationsStatus);
 
 app.locals.asset = asset;
 app.locals.moment = moment;

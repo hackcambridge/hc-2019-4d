@@ -41,6 +41,17 @@ export function setAppliedStatus(req, res, next) {
   }).catch(next); 
 }
 
+export function setApplicationsStatus(req, res, next) {
+  alreadyApplied(req, res, next).then(applied => {
+    if (applied === true) {
+      res.locals.applicationsOpen = true;
+    } else {
+      res.locals.applicationsOpen = false;
+    }
+    next();
+  }).catch(next); 
+}
+
 export function applicationsClosed(req, res, next) {
   try {
     if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
