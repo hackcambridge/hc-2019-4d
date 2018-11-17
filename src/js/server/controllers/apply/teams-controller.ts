@@ -21,10 +21,10 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
     const team = await req.user.getTeam();
     if (team === null) {
       res.render('apply/team-form', { applicationSlug: hackerApplication.applicationSlug });
-    } else if (team !== null) {
+    } else {
       res.redirect('/apply/dashboard');
     }
-  } else if (hackerApplication === null)  {
+  } else {
     res.redirect('/apply/application-form');
   }
 }

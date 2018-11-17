@@ -165,13 +165,8 @@ export function newHackerApplication(req: UserRequest, res: Response) {
 export const createHackerApplication: RequestHandlerParams = [
   (req: UserRequest, res: Response, next: NextFunction) => {
     cvUpload(req, res, err => {
-    if (err) {
-      req.params.cv = { error: err };
+      req.params.cv = err ? { error: err } : true;
       next();
-    } else {
-      req.params.cv = true;
-      next();
-    }
     });
   },
   ...checkSchema(schema),
