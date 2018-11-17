@@ -23,11 +23,13 @@ export function goBackIfApplied(req, res, next) {
  */
 
 export function goBackIfApplicationsClosed(req, res, next) {
-  if (applicationsClosed(req, res, next)) {
-    res.redirect('back');
-  } else {
-    next();
-  }
+  applicationsClosed(req, res, next).then(closed => {
+    if (closed === true) {
+      res.redirect('back');
+    } else {
+      next();
+    }
+  }).catch(next); 
 }
 
 export function setAppliedStatus(req, res, next) {
@@ -42,8 +44,8 @@ export function setAppliedStatus(req, res, next) {
 }
 
 export function setApplicationsStatus(req, res, next) {
-  alreadyApplied(req, res, next).then(applied => {
-    if (applied === true) {
+  applicationsClosed(req, res, next).then(closed => {
+    if (closed === false) {
       res.locals.applicationsOpen = true;
     } else {
       res.locals.applicationsOpen = false;
@@ -52,7 +54,7 @@ export function setApplicationsStatus(req, res, next) {
   }).catch(next); 
 }
 
-export function applicationsClosed(req, res, next) {
+export async function applicationsClosed(req, res, next) {
   try {
     if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
       throw 'Applications closed!';
@@ -67,17 +69,21 @@ export function applicationsClosed(req, res, next) {
 }
 
 export async function alreadyApplied(req, res, next) {
-  return await req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
-    try {
-      if (hackerApplication) {
-        throw 'Application already made!';
-      } else {
-        return false;
+  if (req.user) {
+    return await req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
+      try {
+        if (hackerApplication) {
+          throw 'Application already made!';
+        } else {
+          return false;
+        }
+      } catch(error) {
+        if (error === 'Application already made!') {
+          return true;
+        }
       }
-    } catch(error) {
-      if (error === 'Application already made!') {
-        return true;
-      }
-    }
-  }).catch(next);
+    }).catch(next);
+  } else {
+    return false;
+  }
 }
