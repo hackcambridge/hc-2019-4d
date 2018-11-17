@@ -69,6 +69,10 @@ form[grid="grid"] > *:not(:last-child) {
   grid-auto-flow: column;
 }
 
+[grid][dense] {
+  grid-auto-flow: dense;
+}
+
 /* Sections */
 
 section, header, footer {
@@ -161,12 +165,12 @@ header {
   
   /* Margins between top-level elements */
 
-  header[grid="columns"] > *:not(:last-child),
-  main [grid="columns"] > *:not(:last-child),
-  footer[grid="columns"] > *:not(:last-child),
-  header[grid="grid"] > *:not(:last-child),
-  main [grid="grid"] > *:not(:last-child),
-  footer[grid="grid"] > *:not(:last-child) {
+  header[grid="columns"]:not([dense]) > *:not(:last-child),
+  main [grid="columns"]:not([dense]) > *:not(:last-child),
+  footer[grid="columns"]:not([dense]) > *:not(:last-child),
+  header[grid="grid"]:not([dense]) > *:not(:last-child),
+  main [grid="grid"]:not([dense]) > *:not(:last-child),
+  footer[grid="grid"]:not([dense]) > *:not(:last-child) {
     margin-right: var(--unit);
   }
 }

@@ -35,19 +35,15 @@ block content
             br
             | For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
           p Thank you for joining us.
-      ul.icons(rows='2.5')
-        li
-          a.icon(rel='external' href='https://www.facebook.com/hackcambridge')
-            +icon('Facebook')
-        li
-          a.icon(rel='external' href='https://twitter.com/@hack_cambridge')
-            +icon('Twitter')
-        li
-          a.icon(rel='external' href='https://medium.com/hackers-at-cambridge/tagged/hack-cambridge')
-            +icon('Medium')
-        li
-          a.icon(rel='external' href='https://www.instagram.com/hack_cambridge/')
-            +icon('Instagram')
+      div(grid='grid' dense rows='2.5' columns='1.0')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://www.facebook.com/hackcambridge')
+          +icon('Facebook')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://twitter.com/@hack_cambridge')
+          +icon('Twitter')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://medium.com/hackers-at-cambridge/tagged/hack-cambridge')
+          +icon('Medium')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://www.instagram.com/hack_cambridge/')
+          +icon('Instagram')
     section(grid='grid' sidebar='' columns='7.5')
       div
       div(grid='rows' rows='1.5')
