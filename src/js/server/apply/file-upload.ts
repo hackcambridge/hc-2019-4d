@@ -21,10 +21,12 @@ export function s3Upload(options) {
     storage: storage,
     limits: {
       fields: options.maxFields || 30,
-      fileSize: options.maxFileSize
+      fileSize: options.maxFileSize || 1024 * 1024 * 2,
     },
     fileFilter(req, file, callback) {
-      if (!(file.mimetype === options.mediaType.type)) {
+      if (!file) {
+        callback(new Error(options.missing.error), false);
+      } else if (!(file.mimetype === options.mediaType.type)) {
         callback(new Error(options.mediaType.error), false);
       } else {
         callback(null, true);

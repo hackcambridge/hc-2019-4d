@@ -146,35 +146,36 @@ const schema: ValidationSchema = {
   },
 };
 
-const pdfUpload = s3Upload({
+const cvUpload = s3Upload({
   maxFields: 30,
   maxFileSize: 1024 * 1024 * 2,
   mediaType: {
     type: 'application/pdf',
     error: 'File is not a PDF.',
   },
-});
-
-const cvUpload = pdfUpload.single('cv');
+  missing: {
+    error: 'File is missing.'
+  },
+}).single('cv');
 
 export function newHackerApplication(req: UserRequest, res: Response) {
   res.render('apply/application-form', { countryChoices: countryChoices });
 }
 
-export const createHackerApplication: RequestHandlerParams[] = [
+export const createHackerApplication: RequestHandlerParams = [
   (req: UserRequest, res: Response, next: NextFunction) => {
     cvUpload(req, res, err => {
-      if (err) {
-        req.params.cv = { error: err };
-        next();
-      } else {
-        req.params.cv = true;
-        next();
-      }
+    if (err) {
+      req.params.cv = { error: err };
+      next();
+    } else {
+      req.params.cv = true;
+      next();
+    }
     });
   },
-  checkSchema(schema),
-  async (req: UserRequest, res: Response, _next: NextFunction) => {
+  ...checkSchema(schema),
+  (req: UserRequest, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/application-form', {
@@ -183,20 +184,20 @@ export const createHackerApplication: RequestHandlerParams[] = [
         formData: req.body,
       });
     } else {
-      try {
-        const application = await createApplicationFromForm(req.body, req.user, req.file);
+      createApplicationFromForm(req.body, req.user, req.file).then(application => {
         res.redirect(application.inTeam ? 'team' : 'dashboard');
-      } catch (error) {
+      }).catch(error => {
         res.render('apply/application-form', {
           formData: req.body,
           error: error,
+          countryChoices: countryChoices,
         });
-      }
+      })
     }
   }
-]
+];
 
-export async function createApplicationFromForm(body, user: HackerInstance, file): Promise<HackerApplicationInstance> {
+async function createApplicationFromForm(body, user: HackerInstance, file): Promise<HackerApplicationInstance> {
   const applicationSlug: string = await generateSlug();
   try {
     const application = await HackerApplication.create({
@@ -204,7 +205,7 @@ export async function createApplicationFromForm(body, user: HackerInstance, file
       hackerId: user.id,
       // Application
       applicationSlug,
-      cv: file.location,
+      cv: file ? file.location : null,
       countryTravellingFrom: body.countryTravellingFrom,
       developmentRoles: body.roles || [],
       learningGoal: body.goals,

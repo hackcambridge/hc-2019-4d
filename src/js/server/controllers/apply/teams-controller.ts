@@ -29,8 +29,8 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
   }
 }
 
-export const createTeam: RequestHandlerParams[] = [
-  checkSchema(schema),
+export const createTeam: RequestHandlerParams = [
+  ...checkSchema(schema),
   (req: UserRequest, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
