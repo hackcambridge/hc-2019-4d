@@ -130,7 +130,15 @@ async function deriveOverallStatus() {
 };
 
 async function getStatuses() {
-  const [applicationStatus, teamApplicationStatus, responseStatus, rsvpStatus, ticketStatus, overallStatus] = await Promise.all([
+  const statuses = {};
+  [ 
+    statuses['applicationStatus'],
+    statuses['teamApplicationStatus'],
+    statuses['responseStatus'],
+    statuses['rsvpStatus'],
+    statuses['ticketStatus'],
+    statuses['overallStatus']
+  ] = await Promise.all([
     this.getApplicationStatus(),
     this.getTeamApplicationStatus(),
     this.getResponseStatus(),
@@ -138,14 +146,7 @@ async function getStatuses() {
     this.getTicketStatus(),
     this.deriveOverallStatus(),
   ]);
-  return {
-    applicationStatus: applicationStatus,
-    teamApplicationStatus: teamApplicationStatus,
-    responseStatus: responseStatus,
-    rsvpStatus: rsvpStatus,
-    ticketStatus: ticketStatus,
-    overallStatus: overallStatus
-  }
+  return statuses;
 }
 
 export class TooYoungError extends Error { }
