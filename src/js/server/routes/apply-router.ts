@@ -26,14 +26,12 @@ applyRouter.get('/dashboard', requireAuth, dashboardController.showDashboard);
 applyRouter.route('/form')
   .all(appliableConcern.goBackIfApplied, appliableConcern.goBackIfApplicationsClosed)
   .get(hackerApplicationsController.newHackerApplication)
-  // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
-  .post(...hackerApplicationsController.createHackerApplication);
+  .post(hackerApplicationsController.createHackerApplication);
 
 applyRouter.route('/team')
   .all(appliableConcern.goBackIfApplicationsClosed)
   .get(teamsController.newTeam)
-  // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
-  .post(...teamsController.createTeam);
+  .post(teamsController.createTeam);
 
 // Process the RSVP response
 applyRouter.post('/rsvp', requireAuth, rsvpsController.createRsvp);

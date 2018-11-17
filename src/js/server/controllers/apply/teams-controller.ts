@@ -21,16 +21,16 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
     const team = await req.user.getTeam();
     if (team === null) {
       res.render('apply/team-form', { applicationSlug: hackerApplication.applicationSlug });
-    } else if (team !== null) {
+    } else {
       res.redirect('/apply/dashboard');
     }
-  } else if (hackerApplication === null)  {
+  } else {
     res.redirect('/apply/application-form');
   }
 }
 
-export const createTeam: RequestHandlerParams[] = [
-  checkSchema(schema),
+export const createTeam: RequestHandlerParams = [
+  ...checkSchema(schema),
   (req: UserRequest, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
