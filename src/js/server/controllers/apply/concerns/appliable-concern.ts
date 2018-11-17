@@ -10,11 +10,7 @@ import * as statuses from 'js/shared/status-constants';
  
 export function goBackIfApplied(req, res, next) {
   alreadyApplied(req, res, next).then(applied => {
-    if (applied === true) {
-      res.redirect('back');
-    } else {
-      next();
-    }
+    applied === true ? res.redirect('back') : next();
   }).catch(next);
 }
 
@@ -24,32 +20,20 @@ export function goBackIfApplied(req, res, next) {
 
 export function goBackIfApplicationsClosed(req, res, next) {
   applicationsClosed(req, res, next).then(closed => {
-    if (closed === true) {
-      res.redirect('back');
-    } else {
-      next();
-    }
+    closed === true ? res.redirect('back') : next();
   }).catch(next); 
 }
 
 export function setAppliedStatus(req, res, next) {
   alreadyApplied(req, res, next).then(applied => {
-    if (applied === true) {
-      res.locals.applied = true;
-    } else {
-      res.locals.applied = false;
-    }
+    res.locals.applied = applied === true ? true : false;
     next();
   }).catch(next); 
 }
 
 export function setApplicationsStatus(req, res, next) {
   applicationsClosed(req, res, next).then(closed => {
-    if (closed === false) {
-      res.locals.applicationsOpen = true;
-    } else {
-      res.locals.applicationsOpen = false;
-    }
+    res.locals.applicationsOpen = closed === false ? true : false;
     next();
   }).catch(next); 
 }
