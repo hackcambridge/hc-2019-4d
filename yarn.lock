@@ -269,11 +269,6 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/nunjucks@^3.0.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/nunjucks/-/nunjucks-3.1.0.tgz#fdc2fce6f4d8046f7df88f06f32c9842aabdfa46"
-  integrity sha512-xluGXbkIBW0B5uxNy/k7jVgqUTbqTnCLBUX+Dby//PYNDqCvqCPo6GuaNWdCLAM/v/6PNCYIZOXCHi8kr0KCcg==
-
 "@types/passport-http-bearer@^1.0.33":
   version "1.0.33"
   resolved "https://registry.yarnpkg.com/@types/passport-http-bearer/-/passport-http-bearer-1.0.33.tgz#68d6df93db17a2abf58925efbfdeb3b7c2e0fdf5"
