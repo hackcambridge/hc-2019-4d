@@ -69,6 +69,12 @@ if (process.env.BS_SNIPPET) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', apiRouter);
 app.use('/apply', applyRouter);
+
+app.get('/appl', (_, res) => {
+  // This URL was sent out as a typo in a 2019 social media email.
+  res.redirect(302, '/apply');
+});
+
 app.use('/hcapi', hcapiRouter);
 
 app.get('/', (req, res) => {
