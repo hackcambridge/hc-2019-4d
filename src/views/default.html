@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% set layoutMode = "a4" %}
+{% from "macros/svg-elements.html" import singleColourIcon as singleColourIcon %}
 {% block content %}
   {% include 'header.html' %}
   <main layout="{{ layoutMode }}">
@@ -7,14 +8,14 @@
         if the user variable is available (only the case if the page is authenticated) let them know they're logged in via a header
       #}
       {% if user.firstName %}
-        <section color="blue" grid="rows">
+        <section color="blue" align-last="right" grid="grid" rows="0.5" columns="3.0">
           <div rows="1.0">
-            Hey {{ user.firstName }} {{ user.lastName }}!
-            <br><a href="/apply/logout">Logout</a>
-            {# dashboard view explicitly sets is_dashboard to true, otherwise is falsey #}
-            {% if not is_dashboard %}
-              <br><a href="/apply/dashboard">Dashboard</a>
-            {% endif %}
+            <div grid="grid">
+              {% include 'navigation.html' %}
+            </div>
+          </div>
+          <div rows="1.0">
+            Hey {{ user.firstName }}!
           </div>
         </section>
       {% endif %}
