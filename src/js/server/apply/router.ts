@@ -9,7 +9,7 @@ const applyRouter = Router();
 
 export interface UserRequest extends Request {
   user: HackerInstance;
-};
+}
 
 applyRouter.get('/', (req: UserRequest, res) => {
   req.user ? res.redirect(`${req.baseUrl}/dashboard`) : res.redirect(`${req.baseUrl}/login`);
