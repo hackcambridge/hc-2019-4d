@@ -6,7 +6,7 @@ import { ServeStaticOptions } from 'serve-static';
 import * as compression from 'compression';
 
 import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
-import { appliableConcern } from 'js/server/controllers/apply/concerns/index';
+import { applicationsMiddleware } from 'js/server/middleware';
 
 import { setUpAuth } from 'js/server/auth';
 import { init as initializeUtils, resolvePath as resolveAssetPath, asset } from 'js/server/utils';
@@ -54,8 +54,8 @@ app.use(compression());
 app.use('/assets', express.static(resolveAssetPath('assets/dist'), staticOptions));
 
 setUpAuth(app);
-app.use(appliableConcern.setAppliedStatus);
-app.use(appliableConcern.setApplicationsStatus);
+app.use(applicationsMiddleware.setAppliedStatus);
+app.use(applicationsMiddleware.setApplicationsStatus);
 
 app.locals.asset = asset;
 app.locals.moment = moment;
