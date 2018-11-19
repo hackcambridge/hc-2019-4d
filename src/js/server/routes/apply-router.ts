@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 
 import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply/index';
-import { appliableConcern } from 'js/server/controllers/apply/concerns/index';
+import { applicationsMiddleware } from 'js/server/middleware';
 import { requireAuth, logout } from 'js/server/auth';
 import { HackerInstance } from 'js/server/models';
 
@@ -24,12 +24,12 @@ applyRouter.get('/logout', logout, (req: UserRequest, res) => res.redirect('/'))
 applyRouter.get('/dashboard', requireAuth, dashboardController.showDashboard);
 
 applyRouter.route('/form')
-  .all(appliableConcern.goHomeIfAlreadyApplied, appliableConcern.checkApplicationsOpen)
+  .all(applicationsMiddleware.goHomeIfAlreadyApplied, applicationsMiddleware.checkApplicationsOpen)
   .get(hackerApplicationsController.newHackerApplication)
   .post(hackerApplicationsController.createHackerApplication);
 
 applyRouter.route('/team')
-  .all(appliableConcern.checkApplicationsOpen)
+  .all(applicationsMiddleware.checkApplicationsOpen)
   .get(teamsController.newTeam)
   .post(teamsController.createTeam);
 
