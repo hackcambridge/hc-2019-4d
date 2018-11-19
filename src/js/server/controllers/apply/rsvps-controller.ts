@@ -30,4 +30,3 @@ export function createRsvp(req: UserRequest, res) {
     res.redirect('/apply/dashboard');
   }
 }
-  
