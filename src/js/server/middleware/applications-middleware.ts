@@ -4,7 +4,7 @@ import * as statuses from 'js/shared/status-constants';
 /**
  * Intercepts the request to check if the user has submitted an application
  * 
- * If they have, it will redirect them to the dashboard. Otherwise, it will let them proceed
+ * If they have, it will redirect them to the previous page. Otherwise, it will let them proceed
  * as normal.
  */
  
@@ -15,7 +15,8 @@ export function goBackIfApplied(req, res, next) {
 }
 
 /**
- * Intercepts requests to check if applications are still open, redirecting to the dashboard if not
+ * Intercepts requests to check if applications are still open, redirecting to the previous page
+ * if not
  */
 
 export function goBackIfApplicationsClosed(req, res, next) {
