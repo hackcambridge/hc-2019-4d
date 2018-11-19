@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 
 import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply/index';
-import { appliableConcern } from 'js/server/controllers/apply/concerns/index';
+import { applicationsMiddleware } from 'js/server/middleware';
 import * as auth from 'js/server/auth';
 import { HackerInstance } from 'js/server/models';
 
@@ -22,13 +22,13 @@ applyRouter.use(auth.requireAuth);
 applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
 applyRouter.route('/form')
-  .all(appliableConcern.goHomeIfAlreadyApplied, appliableConcern.checkApplicationsOpen)
+  .all(applicationsMiddleware.goHomeIfAlreadyApplied, applicationsMiddleware.checkApplicationsOpen)
   .get(hackerApplicationsController.newHackerApplication)
   // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
   .post(...hackerApplicationsController.createHackerApplication);
 
 applyRouter.route('/team')
-  .all(appliableConcern.checkApplicationsOpen)
+  .all(applicationsMiddleware.checkApplicationsOpen)
   .get(teamsController.newTeam)
   // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
   .post(...teamsController.createTeam);
