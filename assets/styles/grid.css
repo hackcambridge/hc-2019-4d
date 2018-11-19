@@ -17,7 +17,7 @@ body, div {
   grid-column: span calc(var(--columns) * 2 + var(--half-column));
 }
 
-[align-last="right"] > :last-child {
+[align-last="right"] > :last-child:not(:only-child) {
   grid-column-end: -1;
   grid-column-start: calc(-1 - (var(--columns) * 2 + var(--half-column)));
   text-align: right;
@@ -67,6 +67,10 @@ form[grid="grid"] > *:not(:last-child) {
 [layout="width"] [grid="columns"],
 [layout="width"][grid="columns"] {
   grid-auto-flow: column;
+}
+
+[grid][dense] {
+  grid-auto-flow: dense;
 }
 
 /* Sections */
@@ -161,12 +165,12 @@ header {
   
   /* Margins between top-level elements */
 
-  header[grid="columns"] > *:not(:last-child),
-  main [grid="columns"] > *:not(:last-child),
-  footer[grid="columns"] > *:not(:last-child),
-  header[grid="grid"] > *:not(:last-child),
-  main [grid="grid"] > *:not(:last-child),
-  footer[grid="grid"] > *:not(:last-child) {
+  header[grid="columns"]:not([dense]) > *:not(:last-child),
+  main [grid="columns"]:not([dense]) > *:not(:last-child),
+  footer[grid="columns"]:not([dense]) > *:not(:last-child),
+  header[grid="grid"]:not([dense]) > *:not(:last-child),
+  main [grid="grid"]:not([dense]) > *:not(:last-child),
+  footer[grid="grid"]:not([dense]) > *:not(:last-child) {
     margin-right: var(--unit);
   }
 }

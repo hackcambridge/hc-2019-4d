@@ -1,0 +1,7 @@
+extends ../layouts/a4
+block mainContent
+  - title = 'Apply'
+  section(grid='rows')
+    h1(rows='1.0')= title
+    div(rows='0.5') To start or continue an application, log in with MyMLH.
+    a(href='/apply/form' rel='external' rows='1.0') Log in with MyMLH

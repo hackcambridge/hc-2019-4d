@@ -1,0 +1,28 @@
+include ../mixins/svg-elements
+
+if (requestedUrl.path !== '/')
+  a.icon(columns='1.5' rows='1.0' rel='prev' href='/')
+    +icon('Home')
+    br
+    | Home
+if user
+  if (requestedUrl.path !== '/apply/dashboard')
+    a.icon(columns='1.5' rows='1.0' rel='prev' href='/apply/dashboard')
+      +icon('Dashboard')
+      br
+      | Dashboard
+  if moment().isBefore(event.dates.getApplicationsEnd()) && (requestedUrl.path !== '/apply/form')
+    a.icon(columns='1.5' rows='1.0' rel='next' href='/apply/form')
+      +icon('Next')
+      br
+      | Apply
+  a.icon(columns='1.5' rows='1.0' href='/apply/logout')
+    +icon('Log out')
+    br
+    | Log out
+if !user && (requestedUrl.path !== '/apply/login')
+  a.icon(columns='1.5' rows='1.0' rel='next' href='/apply/login')
+    +icon('Log in')
+    br
+    | Log in
+    

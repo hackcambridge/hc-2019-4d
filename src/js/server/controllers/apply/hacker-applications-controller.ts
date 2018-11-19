@@ -158,7 +158,7 @@ const pdfUpload = s3Upload({
 const cvUpload = pdfUpload.single('cv');
 
 export function newHackerApplication(req: UserRequest, res: Response) {
-  res.render('apply/form.html', { countryChoices: countryChoices });
+  res.render('apply/application-form', { countryChoices: countryChoices });
 }
 
 export const createHackerApplication: RequestHandlerParams[] = [
@@ -177,7 +177,7 @@ export const createHackerApplication: RequestHandlerParams[] = [
   async (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render('apply/form.html', {
+      res.render('apply/application-form', {
         errors: errors.mapped(),
         countryChoices: countryChoices,
         formData: req.body,
@@ -187,7 +187,7 @@ export const createHackerApplication: RequestHandlerParams[] = [
         const application = await createApplicationFromForm(req.body, req.user, req.file);
         res.redirect(application.inTeam ? 'team' : 'dashboard');
       } catch (error) {
-        res.render('apply/form.html', {
+        res.render('apply/application-form', {
           formData: req.body,
           error: error,
         });
