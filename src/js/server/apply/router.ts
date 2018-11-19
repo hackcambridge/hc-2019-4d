@@ -5,8 +5,8 @@ import * as utils from '../utils.js';
 import * as statuses from 'js/shared/status-constants';
 import { Hacker, TeamMember, HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
-import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply/index'
-import { appliableConcern } from 'js/server/controllers/apply/concerns/index'
+import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply'
+import { applicationsMiddleware } from 'js/server/middleware'
 
 const applyRouter = Router();
 
@@ -25,12 +25,12 @@ applyRouter.get('/', (req, res) => res.redirect(`${req.baseUrl}/form`));
 
 applyRouter.get('/dashboard', auth.requireAuth, dashboardController.showDashboard);
 
-applyRouter.all('/form', appliableConcern.goHomeIfAlreadyApplied, appliableConcern.checkApplicationsOpen);
+applyRouter.all('/form', applicationsMiddleware.goHomeIfAlreadyApplied, applicationsMiddleware.checkApplicationsOpen);
 applyRouter.get('/form', hackerApplicationsController.newHackerApplication);
 // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/form', ...hackerApplicationsController.createHackerApplication);
 
-applyRouter.all('/team', appliableConcern.checkApplicationsOpen);
+applyRouter.all('/team', applicationsMiddleware.checkApplicationsOpen);
 applyRouter.get('/team', teamsController.newTeam);
 // The spread operator is needed because the validation middleware can't be wrapped in a lambda (or function).
 applyRouter.post('/team', ...teamsController.createTeam);
