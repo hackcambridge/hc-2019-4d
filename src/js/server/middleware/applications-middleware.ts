@@ -22,7 +22,6 @@ export function goHomeIfAlreadyApplied(req, res, next) {
  */
 
 export function checkApplicationsOpen(req, res, next) {
-  console.log(process.env.APPLICATIONS_OPEN);
   if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
     res.redirect(`${req.baseUrl}/dashboard`);
     return;

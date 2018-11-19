@@ -1,22 +1,22 @@
 // TODO: update to mailchimp-api-v3
 import * as mailchimp from 'mailchimp-api';
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import * as _ from 'lodash';
+import { Router } from 'express';
+import { json as parseJson, urlencoded as parseUrlEncoded } from 'body-parser';
+import { isEmpty } from 'lodash';
 import * as Stripe from 'stripe';
 
-import { ErrorWithStatus } from './utils';
+import { ErrorWithStatus } from 'js/server/utils';
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
 const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 
-const api = express.Router();
-api.use(bodyParser.json());
-api.use(bodyParser.urlencoded({ extended: true }));
+const api = Router();
+api.use(parseJson());
+api.use(parseUrlEncoded({ extended: true }));
 
 api.post('/subscribe/interested', (req, res, next) => {
-  if (_.isEmpty(req.body.email)) {
+  if (isEmpty(req.body.email)) {
     next(new ErrorWithStatus('Must provide email', 401));
     return;
   }
@@ -35,16 +35,16 @@ api.post('/subscribe/interested', (req, res, next) => {
 });
 
 api.post('/payment', (req, res, next) => {
-  if (_.isEmpty(req.body.reference)) {
+  if (isEmpty(req.body.reference)) {
     next(new ErrorWithStatus('Must provide reference', 401));
   }
-  if (_.isEmpty(req.body.amount)) {
+  if (isEmpty(req.body.amount)) {
     next(new ErrorWithStatus('Must provide amount', 401));
   }
-  if (_.isEmpty(req.body.token)) {
+  if (isEmpty(req.body.token)) {
     next(new ErrorWithStatus('Must provide token', 401));
   }
-  if (_.isEmpty(req.body.email)) {
+  if (isEmpty(req.body.email)) {
     next(new ErrorWithStatus('Must provide email', 401));
   }
 

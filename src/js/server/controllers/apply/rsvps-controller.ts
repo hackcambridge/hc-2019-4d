@@ -1,4 +1,4 @@
-import { UserRequest } from 'js/server/apply/router';
+import { UserRequest } from 'js/server/routes/apply-router';
 import { rsvpToResponse } from 'js/server/attendance/logic';
 
 export function createRsvp(req: UserRequest, res) {
