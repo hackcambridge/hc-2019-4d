@@ -16,6 +16,7 @@ INNER JOIN (
     -- Filter the list to only those which are less than 30 mins old
     AND "createdAt" > current_timestamp - interval '30 minutes'
   ) incomplete_assignments ON incomplete_assignments."hackerApplicationId"="hackers-applications".id
+  WHERE "hackers-applications"."isDisqualified" = FALSE
   GROUP BY "hackers-applications".id
 ) incomplete_assignments ON
 incomplete_assignments.id="hackers-applications".id
@@ -46,5 +47,5 @@ ORDER BY
       WHEN true THEN floor(random()+0.7)
       ELSE floor(random()+0.3)
     END
-    ASC, "createdAt"
+    ASC, "visaNeededBy", "createdAt"
 LIMIT 1;

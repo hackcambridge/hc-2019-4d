@@ -71,6 +71,9 @@ app.use('/apply', applyRouter);
 app.use('/event', eventRouter);
 app.use('/hcapi', hcApiRouter);
 
+// This URL was sent out as a typo in a 2019 social media email.
+app.get('/appl', (_, res) => res.redirect(302, '/apply'));
+
 app.use((req, res) => res.status(404).render('404'));
 
 app.use(errorMiddleware);
