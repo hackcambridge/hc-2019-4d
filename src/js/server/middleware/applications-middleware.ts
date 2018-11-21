@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from 'express';
+
 import { HackerApplicationInstance } from 'js/server/models';
 import * as statuses from 'js/shared/status-constants';
 
@@ -8,8 +10,8 @@ import * as statuses from 'js/shared/status-constants';
  * as normal.
  */
  
-export function goBackIfApplied(req, res, next) {
-  alreadyApplied(req, res, next).then(applied => {
+export function goBackIfApplied(req: Request, res: Response, next: NextFunction) {
+  alreadyApplied(req, res, next).then((applied: boolean) => {
     applied === true ? res.redirect('back') : next();
   }).catch(next);
 }
@@ -19,27 +21,26 @@ export function goBackIfApplied(req, res, next) {
  * if not
  */
 
-export function goBackIfApplicationsClosed(req, res, next) {
-  applicationsClosed(req, res, next).then(closed => {
+export function goBackIfApplicationsClosed(req: Request, res: Response, next: NextFunction) {
+  applicationsClosed(req, res, next).then((closed: boolean) => {
     closed === true ? res.redirect('back') : next();
   }).catch(next); 
 }
 
-export function setAppliedStatus(req, res, next) {
-  alreadyApplied(req, res, next).then(applied => {
     res.locals.applied = applied === true ? true : false;
+export function setAppliedStatus(req: Request, res: Response, next: NextFunction) {
+  alreadyApplied(req, res, next).then((applied: boolean) => {
     next();
   }).catch(next); 
 }
 
-export function setApplicationsStatus(req, res, next) {
-  applicationsClosed(req, res, next).then(closed => {
     res.locals.applicationsOpen = closed === false ? true : false;
+export function setApplicationsStatus(req: Request, res: Response, next: NextFunction) {
+  applicationsClosed(req, res, next).then((closed: boolean) => {
     next();
   }).catch(next); 
 }
 
-export async function applicationsClosed(req, res, next) {
   try {
     if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
       throw 'Applications closed!';
@@ -51,9 +52,10 @@ export async function applicationsClosed(req, res, next) {
       return true;
     }
   }
+export async function applicationsClosed(req: Request, res: Response, next: NextFunction) {
 }
 
-export async function alreadyApplied(req, res, next) {
+export async function alreadyApplied(req: Request, res: Response, next: NextFunction) {
   if (req.user) {
     return await req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
       try {
