@@ -27,50 +27,30 @@ export function goBackIfApplicationsClosed(req: Request, res: Response, next: Ne
   }).catch(next); 
 }
 
-    res.locals.applied = applied === true ? true : false;
 export function setAppliedStatus(req: Request, res: Response, next: NextFunction) {
   alreadyApplied(req, res, next).then((applied: boolean) => {
+    res.locals.applied = applied;
     next();
   }).catch(next); 
 }
 
-    res.locals.applicationsOpen = closed === false ? true : false;
 export function setApplicationsStatus(req: Request, res: Response, next: NextFunction) {
   applicationsClosed(req, res, next).then((closed: boolean) => {
+    res.locals.applicationsOpen = !closed;
     next();
   }).catch(next); 
 }
 
-  try {
-    if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
-      throw 'Applications closed!';
-    } else {
-      return false;
-    }
-  } catch(error) {
-    if (error === 'Applications closed!') {
-      return true;
-    }
-  }
 export async function applicationsClosed(req: Request, res: Response, next: NextFunction) {
+  if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
+    return true
+  } else return false;
 }
 
 export async function alreadyApplied(req: Request, res: Response, next: NextFunction) {
   if (req.user) {
     return await req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
-      try {
-        if (hackerApplication) {
-          throw 'Application already made!';
-        } else {
-          return false;
-        }
-      } catch(error) {
-        if (error === 'Application already made!') {
-          return true;
-        }
-      }
+      if (hackerApplication) return true;
     }).catch(next);
-  } else {
-    return false;
-  }
+  } else return false;
 }
