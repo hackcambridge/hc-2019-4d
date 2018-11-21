@@ -19,14 +19,6 @@ router.get('/live-api/event-info', (req, res) => {
   });
 });
 
-router.get('/live', (req, res) => {
-  res.render('live', {
-    title: 'Hack Cambridge Ternary',
-    sponsors: loadResource('sponsors'),
-    pusherKey: process.env.PUSHER_KEY
-  });
-});
-
 router.get('/terms-and-conditions', (req, res) => res.render('terms-and-conditions'));
 
 router.get('/faqs', (req, res) => {
@@ -36,13 +28,6 @@ router.get('/faqs', (req, res) => {
 });
 
 router.get('/privacy-policy', (req, res) => res.render('privacy-policy'));
-
-router.get('/pay', (req, res) => {
-  res.render('pay', {
-    title: 'Make a payment to Hack Cambridge',
-    stripeKey: process.env.STRIPE_PUBLISH_KEY
-  });
-});
 
 router.get('/favicon.ico', (req, res) => res.sendFile(resolvePath('assets/images/favicons/favicon.ico')));
 
