@@ -15,7 +15,7 @@ function createExpiryQueue(responsesToProcess, dryRun) {
     console.log(`Expiring response ${response.id}. Date invited: ${response.createdAt}`);
     return (dryRun ? Promise.resolve() : expireInvitation(response)).then(() => {
       console.log(`Expired ${response.id}`);
-    },error => {
+    }, error => {
       console.error(`Failed to expire ${response.id}`);
       console.error(error);
     }).then(() => processExpiryQueue());
@@ -36,7 +36,7 @@ export default {
   },
   handler: createHandler(({ dryRun }) =>
     getInvitationExpiryCandidates().then(responses => {
-      console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length != 1 ? 's' : ''}`);
+      console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length !== 1 ? 's' : ''}`);
       return createExpiryQueue(responses, dryRun).process();
     })
   ),

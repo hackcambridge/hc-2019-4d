@@ -30,7 +30,7 @@ export default {
   handler: createHandler(({ inputfile }) => {
     const teams = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputfile)).toString());
 
-    console.log(`Sending emails to ${teams.length} team${teams.length != 1 ? 's' : ''}`);
+    console.log(`Sending emails to ${teams.length} team${teams.length !== 1 ? 's' : ''}`);
 
     return createTeamQueue(teams).process();
   }),

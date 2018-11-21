@@ -15,5 +15,5 @@ export default {
       .command(send)
       .demand(1);
   },
-  handler: () => { },
+  handler: () => undefined,
 };

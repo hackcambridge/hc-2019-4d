@@ -9,8 +9,8 @@ export default {
   builder(yargs) {
     return yargs;
   },
-  handler: createHandler(({ email, applicationId }) =>
-    getHackerFromEmailOrApplicationSlug(email).then(user =>
+  handler: createHandler(({ emailOrApplicationId }) =>
+    getHackerFromEmailOrApplicationSlug(emailOrApplicationId).then(user =>
       user.getTeam().then(teamMember => {
         if (teamMember === null) {
           return Promise.reject('Hacker is not in a team.');
@@ -34,8 +34,10 @@ export default {
           });
 
           return teamWithMembersPromise.then(team => {
-            console.log(`${email} is in team ${team.id}.  Members:`);
-            team.teamMembers.map(member => console.log(`* (${member.hacker.id}) ${member.hacker.firstName} ${member.hacker.lastName} <${member.hacker.email}> ${member.hacker.hackerApplication.applicationSlug}`));
+            console.log(`${emailOrApplicationId} is in team ${team.id}.  Members:`);
+            team.teamMembers.map(member =>
+              console.log(`* (${member.hacker.id}) ${member.hacker.firstName} ${member.hacker.lastName} ` +
+                `<${member.hacker.email}> ${member.hacker.hackerApplication.applicationSlug}`));
           });
         }
       })

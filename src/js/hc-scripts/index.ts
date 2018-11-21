@@ -15,6 +15,7 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled rejection at: Promise', promise, 'reason', reason);
 });
 
+// tslint:disable-next-line:no-unused-expression
 yargs
   .command(createAdmin)
   .command(createToken)
