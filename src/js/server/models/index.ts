@@ -1,11 +1,12 @@
 import db from './db';
 import Hacker from './Hacker';
-import { HackerInstance } from './Hacker';
+import { HackerInstance, HackerStatuses } from './Hacker';
 import HackerApplication from './HackerApplication';
 import { HackerApplicationInstance } from './HackerApplication';
 import ApplicationResponse from './ApplicationResponse';
 import Team from './Team';
 import TeamMember from './TeamMember';
+import { TeamMemberInstance } from './TeamMember';
 import Admin from './Admin';
 import OauthAccessToken from './OauthAccessToken';
 import ApplicationReview from './ApplicationReview';
@@ -19,11 +20,13 @@ export {
   db,
   Hacker,
   HackerInstance,
+  HackerStatuses,
   HackerApplication,
   HackerApplicationInstance,
   ApplicationResponse,
   Team,
   TeamMember,
+  TeamMemberInstance,
   OauthAccessToken,
   Admin,
   ApplicationAssignment,

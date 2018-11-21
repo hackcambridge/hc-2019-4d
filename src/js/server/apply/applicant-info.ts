@@ -1,28 +1,25 @@
-import { Hacker } from 'js/server/models';
+import { Hacker, HackerStatuses, HackerInstance } from 'js/server/models';
 import * as statuses from 'js/shared/status-constants';
 import { getApplicationStatus, getTeamApplicationStatus } from 'js/server/models/Hacker';
 
 export const unfinishedApplicationKind = { INDIVIDUAL: 'individual', TEAM_ONLY: 'team-only' };
 
 export function getHackersWithUnfinishedApplications(kind) {
-  return Hacker.findAll().then(hackers =>
-    Promise.all(hackers.map(hacker =>
-      hacker.getHackerApplication().then(hackerApplication =>
-        Promise.all([
-          getApplicationStatus(hackerApplication),
-          getTeamApplicationStatus(hackerApplication)
-        ]).then(([applicationStatus, teamApplicationStatus]) => {
+  return Hacker.findAll().then((hackers: HackerInstance[]) =>
+    Promise.all(hackers.map((hacker: HackerInstance) =>
+      hacker.getStatuses()
+        .then((hackerStatuses: HackerStatuses) => {
           if (kind == unfinishedApplicationKind.INDIVIDUAL) {
-            return applicationStatus == statuses.application.INCOMPLETE ? hacker : null;
+            return hackerStatuses.applicationStatus == statuses.application.INCOMPLETE ? hacker : null;
           } else if (kind == unfinishedApplicationKind.TEAM_ONLY) {
             // The value of teamApplicationStatus is null if the individual application hasn't been finished,
             // so ensure we only return the hacker when teamApplicationStatus is INCOMPLETE.
-            return teamApplicationStatus == statuses.teamApplication.INCOMPLETE ? hacker : null;
+            return hackerStatuses.teamApplicationStatus == statuses.teamApplication.INCOMPLETE ? hacker : null;
           } else {
             throw Error('Unknown unfinished application kind');
           }
         })
       )
-    )).then(hackerResults => hackerResults.filter(result => result !== null))
+    ).then(hackerResults => hackerResults.filter(result => result !== null))
   );
 }

@@ -2,15 +2,9 @@ import * as Sequelize from 'sequelize';
 
 import db from './db';
 import Hacker from './Hacker';
-import {
-  HackerInstance
-} from './Hacker'
-import {
-  ApplicationTicketInstance
-} from './ApplicationTicket';
-import {
-  ApplicationResponseInstance
-} from './ApplicationResponse';
+import { HackerInstance } from './Hacker'
+import { ApplicationTicketInstance } from './ApplicationTicket';
+import { ApplicationResponseInstance } from './ApplicationResponse';
 
 interface HackerApplicationAttributes {
   id?: number;
@@ -37,9 +31,7 @@ interface HackerApplicationAttributes {
 export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
   getApplicationResponse: () => Promise<ApplicationResponseInstance>;
   applicationResponse?: ApplicationResponseInstance;
-
   getApplicationTicket: () => Promise<ApplicationTicketInstance>;
-
   getHacker: () => Promise<HackerInstance>;
   hacker?: HackerInstance;
 }

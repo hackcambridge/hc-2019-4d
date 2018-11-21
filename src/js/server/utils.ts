@@ -5,8 +5,8 @@ import * as yaml from 'js-yaml';
 import * as _ from 'lodash';
 import * as markdown_module from 'markdown-it';
 import * as moment from 'moment-timezone';
-import * as nunjucks from 'nunjucks';
 import * as path from 'path';
+import { render as renderEjs } from 'ejs'; 
 
 import * as dates from 'js/shared/dates';
 import * as theme from 'js/shared/theme';
@@ -54,22 +54,6 @@ export function asset(asset, prefix) {
   return prefix + asset;
 };
 
-function markdownPropertiesRecursive(object, properties) {
-  for (let property in object) {
-    if (object.hasOwnProperty(property)) {
-      if (typeof(object[property]) === 'object') {
-        // recurse
-        markdownPropertiesRecursive(object[property], properties);
-      } else {
-        if(properties.indexOf(property) >= 0) {
-          // This is one of the properties we identified as being markdown, render it
-          object[property] = nunjucks.renderString(markdown.renderInline(object[property]), {});
-        }
-      }
-    }
-  }
-}
-
 function loadScheduleTimeProperties(loadedScheduleResource) {
   loadedScheduleResource.forEach(day => {
     timeProperties(day.entries, ['time']);
@@ -83,22 +67,13 @@ function loadScheduleTimeProperties(loadedScheduleResource) {
   });
 }
 
-function renderNunjucksInFaqs(faqsResource, context) {
-  faqsResource.forEach(faq => {
-    faq.answer = nunjucks.renderString(faq.answer, context);
-    faq.question = nunjucks.renderString(faq.question, context);
-  });
-}
-
-function renderNunjucksInDashboard(dashboardResource, context) {
-  const message = dashboardResource['status-messages']['has-ticket'];
-  message.subline = nunjucks.renderString(message.subline, context);
-}
-
 export function loadResource(resourceName) {
   if ((!loadedResources[resourceName]) || app === undefined || app.settings.env === 'development') {
     let loadedResource = yaml.safeLoad(
-      fs.readFileSync(resolvePath(`src/resources/${resourceName}.yml`)).toString()
+      renderEjs(
+        fs.readFileSync(resolvePath(`src/resources/${resourceName}.yml`)).toString(),
+        { dates: dates, theme: theme }
+      )
     )[resourceName];
 
     switch (resourceName) {
@@ -125,18 +100,7 @@ export function loadResource(resourceName) {
         loadScheduleTimeProperties(loadedResource);
         break;
       case 'dashboard':
-        markdownPropertiesRecursive(loadedResource, ['content', 'title']);
-        renderNunjucksInDashboard(loadedResource, {
-          dates
-        });
-        break;
       case 'faqs':
-        renderNunjucksInFaqs(loadedResource, {
-          dates,
-          moment,
-          theme
-        });
-        break;
     }
 
     loadedResources[resourceName] = loadedResource;
