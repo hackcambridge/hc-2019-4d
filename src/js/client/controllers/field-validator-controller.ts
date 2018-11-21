@@ -18,7 +18,7 @@ export default class FieldValidatorController extends Controller {
     }
   }
 
-  public setValid(event) {
+  public setValid(_event) {
     this.fieldTargets.forEach(element => {
       element.setCustomValidity('');
     });

@@ -9,7 +9,7 @@ declare global {
 }
 
 export function start() {
-  $('.signup-form').each((index, element) => {
+  $('.signup-form').each((_index, element) => {
     const $element = $(element);
     const action = $element.attr('action');
     const method = $element.attr('method');

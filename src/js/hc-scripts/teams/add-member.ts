@@ -6,7 +6,7 @@ export default {
   command: 'add-member teamId <email|applicationId>',
   desc: 'Add a hacker to a team',
   aliases: [],
-  handler: createHandler(({ teamId, email, applicationId }) =>
+  handler: createHandler(({ teamId, email }) =>
     getHackerFromEmailOrApplicationSlug(email).then(hacker =>
       TeamMember.findOne({
         where: { hackerId: hacker.id }
@@ -17,7 +17,7 @@ export default {
           return TeamMember.create({
             teamId,
             hackerId: hacker.id
-          }).then(newTeamMember => {
+          }).then(_newTeamMember => {
             console.log(`Added hacker ${email} to team ${teamId}`);
           });
         }

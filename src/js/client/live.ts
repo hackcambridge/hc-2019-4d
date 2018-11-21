@@ -45,7 +45,7 @@ function setFeedItem(status) {
   }
 }
 
-function cycleFeedItems(statuses, element) {
+function cycleFeedItems(statuses) {
   let i = 0;
   setFeedItem(statuses[i]);
   i++;
@@ -131,7 +131,7 @@ function initialiseLive() {
       if (data.statuses[0].id_str !== lastStatusId) {
         lastStatusId = data.statuses[0].id_str;
         const statuses = data.statuses;
-        cycleFeedItems(statuses, '.live-social-feed-content');
+        cycleFeedItems(statuses);
       }
     });
   });

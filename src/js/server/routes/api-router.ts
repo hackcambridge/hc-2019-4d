@@ -56,7 +56,7 @@ api.post('/payment', (req, res, next) => {
     source: req.body.token,
     receipt_email: req.body.email,
     description: req.body.reference
-  }, (err, charge) => {
+  }, (err, _charge) => {
     if (err) {
       console.error(err);
       next(new ErrorWithStatus(err.message || 'Something went wrong with your transaction.', 500));
@@ -67,11 +67,11 @@ api.post('/payment', (req, res, next) => {
   });
 });
 
-api.use((req, res, next) => {
+api.use((_req, _res, next) => {
   next(new ErrorWithStatus('Not found', 404));
 });
 
-api.use((err, req, res, next) => {
+api.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.status(err.status || 500);
   res.json({

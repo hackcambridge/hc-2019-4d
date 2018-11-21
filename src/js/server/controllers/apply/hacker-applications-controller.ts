@@ -159,7 +159,7 @@ const cvUpload = s3Upload({
   },
 }).single('cv');
 
-export function newHackerApplication(req: UserRequest, res: Response) {
+export function newHackerApplication(_req: UserRequest, res: Response) {
   res.render('apply/application-form', { countryChoices });
 }
 
@@ -171,7 +171,7 @@ export const createHackerApplication: RequestHandlerParams = [
     });
   },
   ...checkSchema(schema),
-  (req: UserRequest, res: Response, next: NextFunction) => {
+  (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/application-form', {

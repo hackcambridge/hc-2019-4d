@@ -11,7 +11,7 @@ export const storage = multerS3({
   s3: s3 as any,
   bucket: process.env.S3_BUCKET,
   contentType: multerS3.AUTO_CONTENT_TYPE,
-  key(req, file, callback) {
+  key(_req, _file, callback) {
     callback(null, randomBytes(256).toString('hex'));
   }
 });
@@ -23,7 +23,7 @@ export function s3Upload(options) {
       fields: options.maxFields || 30,
       fileSize: options.maxFileSize || 1024 * 1024 * 2,
     },
-    fileFilter(req, file, callback) {
+    fileFilter(_req, file, callback) {
       if (!file) {
         callback(new Error(options.missing.error), false);
       } else if (!(file.mimetype === options.mediaType.type)) {

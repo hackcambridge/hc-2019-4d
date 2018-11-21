@@ -20,7 +20,7 @@ function processIndividualApplication(applicationId, responseType) {
       }
 
       return setResponseForApplicationWithChecks(application, responseType)
-        .then(applicationResponse => {
+        .then(_applicationResponse => {
           console.log(`Application response sent for application ${application.id}.`);
         }, error => {
           console.error(`Failed to send response for application ${application.id}.`);

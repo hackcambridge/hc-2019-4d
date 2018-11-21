@@ -41,13 +41,13 @@ export function setApplicationsStatus(req: Request, res: Response, next: NextFun
   }).catch(next);
 }
 
-export async function applicationsClosed(req: Request, res: Response, next: NextFunction) {
+export async function applicationsClosed(_req: Request, _res: Response, _next: NextFunction) {
   if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
     return true;
   } else { return false; }
 }
 
-export async function alreadyApplied(req: Request, res: Response, next: NextFunction) {
+export async function alreadyApplied(req: Request, _res: Response, next: NextFunction) {
   if (req.user) {
     return await req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
       if (hackerApplication) { return true; }

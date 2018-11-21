@@ -6,7 +6,7 @@ import { getApplicationsWithScores } from 'js/server/review/score-logic';
 
 const applicationsRouter = Router();
 
-applicationsRouter.get('/', (req, res, next) => {
+applicationsRouter.get('/', (_req, res, next) => {
   getApplicationsWithScores().then(applications => {
     res.json({
       applications,

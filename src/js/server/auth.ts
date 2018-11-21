@@ -54,7 +54,7 @@ export function requireAuth(req, res, next) {
   }
 }
 
-export function logout(req, res, next) {
+export function logout(req, _res, next) {
   // Delete the user session
   if (req.userSession) {
     req.userSession.reset();

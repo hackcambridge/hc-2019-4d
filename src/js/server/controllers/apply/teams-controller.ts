@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
-import { checkSchema, Result, validationResult, ValidationSchema } from 'express-validator/check';
+import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 
 import { ApplicationResponse, HackerApplication, HackerInstance, Team, TeamMember, TeamMemberInstance } from 'js/server/models';
 import { UserRequest } from 'js/server/routes/apply-router';
@@ -31,7 +31,7 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
 
 export const createTeam: RequestHandlerParams = [
   ...checkSchema(schema),
-  (req: UserRequest, res: Response, next: NextFunction) => {
+  (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/team-form', {

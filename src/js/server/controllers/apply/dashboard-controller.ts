@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 
-import { Hacker, HackerInstance, TeamMember } from 'js/server/models';
+import { HackerInstance, TeamMember } from 'js/server/models';
 import { UserRequest } from 'js/server/routes/apply-router';
 import * as utils from 'js/server/utils.js';
 import { getHackathonEndDate, getHackathonStartDate } from 'js/shared/dates';

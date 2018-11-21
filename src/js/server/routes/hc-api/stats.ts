@@ -5,7 +5,7 @@ import { response } from 'js/shared/status-constants';
 
 const statsRouter = Router();
 
-statsRouter.get('/', (req, res, next) => {
+statsRouter.get('/', (_req, res, next) => {
 
   // Get:
   // - The total number of applications

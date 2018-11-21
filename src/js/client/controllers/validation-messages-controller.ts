@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
 
 export default class ValidationMessagesController extends Controller {
-  public allowMessage(event) {
+  public allowMessage(_event) {
     if (!this.data.has('listening')) {
       this.data.set('listening', '');
     }
