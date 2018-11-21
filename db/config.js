@@ -17,7 +17,7 @@ module.exports = {
     host: '127.0.0.1',
     dialect: 'postgres'
   },
-  producti: {
+  production: {
     username: process.env.PGUSER || 'postgres',
     password: process.env.PGPASSWORD || '',
     database: process.env.PGDATABASE || 'hack-cambridge-production',
