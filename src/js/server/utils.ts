@@ -3,19 +3,12 @@ import { Express } from 'express';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import * as _ from 'lodash';
-import * as markdown_module from 'markdown-it';
 import * as moment from 'moment-timezone';
 import * as path from 'path';
 import { render as renderEjs } from 'ejs'; 
 
 import * as dates from 'js/shared/dates';
 import * as theme from 'js/shared/theme';
-
-const markdown = markdown_module({
-  html: true,
-  linkify: true,
-  typographer: true
-}).use(require('markdown-it-attrs'));
 
 const loadedResources = {};
 let app: Express;
