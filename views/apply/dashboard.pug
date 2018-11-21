@@ -4,8 +4,8 @@ block mainContent
   section(grid='rows')
     h1(rows='1.0')= title
     div(rows='1.5')
-      p= statusMessages['status-messages'][statuses.overallStatus].title
-      p= statusMessages['status-messages'][statuses.overallStatus].subline
+      p= statusMessages['overall-status-messages'][statuses.overallStatus].title
+      p= statusMessages['overall-status-messages'][statuses.overallStatus].subline
       if application
         p
           | Your application ID is 
