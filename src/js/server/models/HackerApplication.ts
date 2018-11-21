@@ -31,6 +31,7 @@ interface HackerApplicationAttributes {
   needsVisa: boolean;
   visaNeededBy?: Date;
   otherInfo?: string;
+  isDisqualified?: boolean;
 }
 
 export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
@@ -123,6 +124,10 @@ const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
     type: Sequelize.TEXT,
     allowNull: true
   },
+  isDisqualified: {
+    type: Sequelize.BOOLEAN,
+    allowNull: true
+  }
 };
 
 const HackerApplication =
