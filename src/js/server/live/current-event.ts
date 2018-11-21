@@ -23,7 +23,7 @@ export function getCurrentEvents(schedule) {
   const previousAndCurrentEvents = individualEvents.filter(event =>
     event.time.isBefore(now));
 
-  if (previousAndCurrentEvents.length == 0) {
+  if (previousAndCurrentEvents.length === 0) {
     return [];
   }
 
@@ -40,7 +40,7 @@ export function getNextEvents(schedule) {
   const futureEvents = individualEvents.filter(event =>
     event.time.isAfter(now));
 
-  if (futureEvents.length == 0) {
+  if (futureEvents.length === 0) {
     return [];
   }
 

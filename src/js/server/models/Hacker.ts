@@ -48,9 +48,9 @@ async function getResponseStatus(hackerInstance: HackerInstance): Promise<string
     if (applicationResponse === null) {
       // No response yet
       return statuses.response.PENDING;
-    } else if (applicationResponse.response == 'invited') {
+    } else if (applicationResponse.response === 'invited') {
       return statuses.response.INVITED;
-    } else if (applicationResponse.response == 'rejected') {
+    } else if (applicationResponse.response === 'rejected') {
       return statuses.response.REJECTED;
     }
   });
@@ -61,7 +61,7 @@ async function getRsvpStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
-    if (applicationResponse === null || applicationResponse.response == 'rejected') {
+    if (applicationResponse === null || applicationResponse.response === 'rejected') {
       // User hasn't been invited, we don't need an RSVP
       return statuses.rsvp.NOT_APPLICABLE;
     } else {
@@ -69,11 +69,11 @@ async function getRsvpStatus(hackerInstance: HackerInstance): Promise<string> {
         if (rsvp === null) {
           // User invited but hasn't rsvp'd
           return statuses.rsvp.INCOMPLETE;
-        } else if (rsvp.rsvp == 'RSVP_YES') {
+        } else if (rsvp.rsvp === 'RSVP_YES') {
           return statuses.rsvp.COMPLETE_YES;
-        } else if (rsvp.rsvp == 'RSVP_NO') {
+        } else if (rsvp.rsvp === 'RSVP_NO') {
           return statuses.rsvp.COMPLETE_NO;
-        } else if (rsvp.rsvp == 'RSVP_EXPIRED') {
+        } else if (rsvp.rsvp === 'RSVP_EXPIRED') {
           return statuses.rsvp.COMPLETE_EXPIRED;
         }
       });
@@ -98,21 +98,24 @@ async function getTicketStatus(hackerInstance: HackerInstance): Promise<string> 
 
 // Returns a promise that resolves to the headline application status
 async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Promise<string> {
-  if (hackerStatuses.applicationStatus == statuses.application.INCOMPLETE || hackerStatuses.teamApplicationStatus == statuses.application.INCOMPLETE) {
-    return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ? statuses.overall.INCOMPLETE : statuses.overall.INCOMPLETE_CLOSED;
-  } else if (hackerStatuses.responseStatus == statuses.response.PENDING) {
+  if (hackerStatuses.applicationStatus === statuses.application.INCOMPLETE ||
+      hackerStatuses.teamApplicationStatus === statuses.application.INCOMPLETE) {
+    return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ?
+      statuses.overall.INCOMPLETE :
+      statuses.overall.INCOMPLETE_CLOSED;
+  } else if (hackerStatuses.responseStatus === statuses.response.PENDING) {
     return statuses.overall.IN_REVIEW;
-       } else if (hackerStatuses.responseStatus == statuses.response.REJECTED) {
+       } else if (hackerStatuses.responseStatus === statuses.response.REJECTED) {
     return statuses.overall.REJECTED;
-       } else if (hackerStatuses.ticketStatus == statuses.ticket.HAS_TICKET) {
+       } else if (hackerStatuses.ticketStatus === statuses.ticket.HAS_TICKET) {
     return statuses.overall.HAS_TICKET;
-       } else if (hackerStatuses.rsvpStatus == statuses.rsvp.INCOMPLETE) {
+       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.INCOMPLETE) {
     return statuses.overall.INVITED_AWAITING_RSVP;
-       } else if (hackerStatuses.rsvpStatus == statuses.rsvp.COMPLETE_NO) {
+       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.COMPLETE_NO) {
     return statuses.overall.INVITED_DECLINED;
-       } else if (hackerStatuses.rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED) {
+       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.COMPLETE_EXPIRED) {
     return statuses.overall.INVITED_EXPIRED;
-       } else if (hackerStatuses.rsvpStatus == statuses.rsvp.COMPLETE_YES) {
+       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.COMPLETE_YES) {
     return statuses.overall.INVITED_ACCEPTED;
        } else {
     console.log(hackerStatuses);
@@ -239,7 +242,7 @@ const Hacker: Hacker = db.define<HackerInstance, HackerAttributes>('hacker', att
   }
 });
 
-Hacker.upsertAndFetchFromMlhUser = function(mlhUser) {
+Hacker.upsertAndFetchFromMlhUser = mlhUser => {
   const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
 
   if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {

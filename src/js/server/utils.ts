@@ -42,16 +42,16 @@ try {
   assetsFile = { };
 }
 
-export function asset(asset, prefix) {
+export function asset(assetPath, prefix) {
   if (prefix == null) {
     prefix = '/assets/';
   }
 
-  if (_.has(assetsFile, asset)) {
-    asset = assetsFile[asset];
+  if (_.has(assetsFile, assetPath)) {
+    assetPath = assetsFile[assetPath];
   }
 
-  return prefix + asset;
+  return prefix + assetPath;
 }
 
 function loadScheduleTimeProperties(loadedScheduleResource) {

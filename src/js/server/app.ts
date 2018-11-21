@@ -35,8 +35,8 @@ app.use((req: any, res, next) => {
   res.locals.description = metadata.description;
   res.locals.colors = colors;
   res.locals.event = { dates, theme };
-  const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
-  const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
+  const port = (app.settings.env === 'development') ? ':' + req.app.settings.port : '';
+  const protocol = (app.settings.env === 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = parseUrl(
     protocol + '://' + req.hostname + port + req.originalUrl
   );
@@ -47,7 +47,7 @@ initializeUtils(app);
 
 // Static file serving
 const staticOptions: ServeStaticOptions = { };
-if (app.settings.env != 'development') {
+if (app.settings.env !== 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
 app.use(compression());

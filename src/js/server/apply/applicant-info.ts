@@ -9,12 +9,12 @@ export function getHackersWithUnfinishedApplications(kind) {
     Promise.all(hackers.map((hacker: HackerInstance) =>
       hacker.getStatuses()
         .then((hackerStatuses: HackerStatuses) => {
-          if (kind == unfinishedApplicationKind.INDIVIDUAL) {
-            return hackerStatuses.applicationStatus == statuses.application.INCOMPLETE ? hacker : null;
-          } else if (kind == unfinishedApplicationKind.TEAM_ONLY) {
+          if (kind === unfinishedApplicationKind.INDIVIDUAL) {
+            return hackerStatuses.applicationStatus === statuses.application.INCOMPLETE ? hacker : null;
+          } else if (kind === unfinishedApplicationKind.TEAM_ONLY) {
             // The value of teamApplicationStatus is null if the individual application hasn't been finished,
             // so ensure we only return the hacker when teamApplicationStatus is INCOMPLETE.
-            return hackerStatuses.teamApplicationStatus == statuses.teamApplication.INCOMPLETE ? hacker : null;
+            return hackerStatuses.teamApplicationStatus === statuses.teamApplication.INCOMPLETE ? hacker : null;
           } else {
             throw Error('Unknown unfinished application kind');
           }

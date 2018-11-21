@@ -107,7 +107,8 @@ const schema: ValidationSchema = {
     in: 'body',
     exists: true,
     custom: {
-      errorMessage: 'You must confirm your student status, and accept the terms and conditions, privacy policy, and the MLH Code of Conduct.',
+      errorMessage: 'You must confirm your student status, and accept the terms and conditions, privacy policy' +
+        ', and the MLH Code of Conduct.',
       options: value => {
         if (value === undefined) {
           return true;
@@ -136,7 +137,7 @@ const schema: ValidationSchema = {
     custom: {
       errorMessage: 'Invalid date',
       options: value => {
-        if (value == '') {
+        if (value === '') {
           return true;
         } else {
           return validator.isISO8601(value);
@@ -229,7 +230,7 @@ async function createApplicationFromForm(body, user: HackerInstance, file): Prom
 
     return application;
   } catch (err) {
-    if (err.name == 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
+    if (err.name === 'SequelizeUniqueConstraintError' && err.errors[0].path === 'applicationSlug') {
       // slug was not unique, try again with new slug
       console.error('Application slug collision detected');
       return createApplicationFromForm(body, user, file);

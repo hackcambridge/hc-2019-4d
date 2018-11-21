@@ -120,7 +120,8 @@ export function getIndividualScores() {
      *   '2': 3.5,
      * }
      */
-    return individualScoresArr.reduce((scores, application) => Object.assign(scores, {[application.application_id]: parseFloat(application.avg)}), {});
+    return individualScoresArr.reduce((scores, application) =>
+      Object.assign(scores, {[application.application_id]: parseFloat(application.avg)}), {});
   });
 }
 
@@ -194,7 +195,9 @@ export function getApplicationsWithScores(weightingFunction = (({ rating }) => r
         institution: application.hacker.institution,
         inTeam: application.hacker.Team !== null,
         rating: calculateScore(application, individualScores, teamScores),
-        status: application.applicationResponse !== null ? (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
+        status: application.applicationResponse !== null ?
+          (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') :
+          'Pending',
       };
 
       augmentedApplication.rating = weightingFunction(augmentedApplication);

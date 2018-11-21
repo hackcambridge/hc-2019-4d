@@ -91,13 +91,13 @@ function setResponseForApplication(application: HackerApplicationInstance, respo
 /**
  * Sets the response for a set of applications in an ACID-safe way
  */
-function setResponseForApplications(applications: HackerApplicationInstance[], responseStatus): PromiseLike<Array<{ application: HackerApplicationInstance, isApplicationNew: boolean }>> {
+function setResponseForApplications(applications: HackerApplicationInstance[], responseStatus):
+  PromiseLike<Array<{application: HackerApplicationInstance, isApplicationNew: boolean}>> {
   return db.transaction(transaction =>
     Promise.all(
       applications.map(application =>
-        Promise
-          .all([application, setResponseForApplication(application, responseStatus, transaction)])
-          .then(([ application, isApplicationNew ]) => ({ application, isApplicationNew }))
+        setResponseForApplication(application, responseStatus, transaction)
+          .then(isApplicationNew => ({ application, isApplicationNew }))
       )
     )
   );

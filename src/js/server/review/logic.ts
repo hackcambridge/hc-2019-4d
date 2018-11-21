@@ -43,7 +43,8 @@ export function reviewApplication(admin, hackerApplication, reviewCriterionScore
       .upsert(reviewKey, { transaction })
       .then(() => ApplicationReview.findOne({ where: reviewKey, transaction }))
       .then(applicationReview => Promise.all(
-        reviewCriterionScores.map(({ reviewCriterionId, score }) => upsertCriterionScore(applicationReview.id, reviewCriterionId, score, transaction))
+        reviewCriterionScores.map(({ reviewCriterionId, score }) =>
+          upsertCriterionScore(applicationReview.id, reviewCriterionId, score, transaction))
       ))
       .then(() => ApplicationReview.findOne({
         where: reviewKey,
@@ -78,7 +79,7 @@ export function getNextApplicationToReviewForAdmin(admin) {
       transaction: t,
     }).then(applicationRecords => {
       // db.query returns an array, check if it contains a result
-      if (applicationRecords === undefined || applicationRecords.length == 0) {
+      if (applicationRecords === undefined || applicationRecords.length === 0) {
         console.log('Couldn\'t find any applications to assign to this admin');
         return null;
       } else {

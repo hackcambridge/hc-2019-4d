@@ -123,7 +123,7 @@ adminsRouter.get('/:adminId/stats', (req, res, next) => {
         HackerApplication.count(),
         getNumberOfCommittedAdmins(),
       ]).then(([ applicationsReviewedByAdminCount, applicationCount, committedAdminCount ]) => {
-        const reviewGoal = committedAdminCount == 0 ? 0 :
+        const reviewGoal = committedAdminCount === 0 ? 0 :
           Math.ceil(applicationCount * 2 / committedAdminCount * GOAL_BOOST);
 
         res.json({

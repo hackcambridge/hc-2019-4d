@@ -18,7 +18,7 @@ export class Countdown {
   public static createStartCountdown() {
     return new Countdown({
       deadline: Countdown.hackathonStart,
-      render:difference => {
+      render: difference => {
         if (difference.asHours() >= 1) {
           return ('Starting in ' + difference.humanize()
             // HACK: Replace moment's humanised dates with more numerical ones
@@ -38,7 +38,7 @@ export class Countdown {
   public static createHackingCountdown() {
     return new Countdown({
       deadline: Countdown.hackathonEnd,
-      render:difference => {
+      render: difference => {
         if (difference.asMilliseconds() < 0) {
           return '00:00:00';
         }

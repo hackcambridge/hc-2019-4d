@@ -45,7 +45,7 @@ const OauthAccessToken: OauthAccessToken =
 
 OauthAccessToken.belongsTo(Admin);
 
-OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(token) {
+OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(tokenString) {
   return OauthAccessToken.findOne({
     include: [
       {
@@ -54,7 +54,7 @@ OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(toke
       },
     ],
     where: {
-      token,
+      token: tokenString,
     },
   }).then(token => {
     if (!token) {

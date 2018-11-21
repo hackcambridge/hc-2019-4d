@@ -83,27 +83,27 @@ export async function createTeamFromForm(body, user: HackerInstance, errors: Res
   await Promise.all(Object.keys(applicationSlugs).map(async field => {
     const applicationSlug = applicationSlugs[field];
 
-    const application = await HackerApplication.findOne({
+    const teamMemberApplication = await HackerApplication.findOne({
       where: { applicationSlug }
     });
 
-    if (application === null) {
+    if (teamMemberApplication === null) {
       // The application slug was not valid
       throw new Error(errors[field] = 'There aren\'t any applications with this ID!');
     }
-    hackerIds.push(application.hackerId);
+    hackerIds.push(teamMemberApplication.hackerId);
 
-    const team = await TeamMember.findOne({
-      where: { hackerId: application.hackerId }
+    const existingTeam = await TeamMember.findOne({
+      where: { hackerId: teamMemberApplication.hackerId }
     });
 
-    if (team !== null) {
+    if (existingTeam !== null) {
       // The hacker is already part of another team
       throw new Error(errors[field] = 'This applicant is already part of a different team!');
     }
 
     const applicationResponse = await ApplicationResponse.findOne({
-      where: { hackerApplicationId: application.id }
+      where: { hackerApplicationId: teamMemberApplication.id }
     });
 
     if (applicationResponse !== null) {

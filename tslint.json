@@ -7,6 +7,7 @@
     "rules": {
         "arrow-parens": [true, "ban-single-arg-parens"],
         "interface-name": [true, "never-prefix"],
+        "max-line-length": [true, 140],
         "no-console": false,
         "no-var-requires": false,
         "object-literal-sort-keys": false,
@@ -16,7 +17,8 @@
             "arrays": "never",
             "functions": "never",
             "typeLiterals": "never"
-        }]
+        }],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
     },
     "rulesDirectory": []
 }

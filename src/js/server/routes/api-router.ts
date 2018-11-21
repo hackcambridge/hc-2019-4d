@@ -27,9 +27,9 @@ api.post('/subscribe/interested', (req, res, next) => {
     email: { email: req.body.email },
     merge_vars: { EMAIL: req.body.email },
     update_existing: true
-  },data => {
+  }, _data => {
     res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
-  },error => {
+  }, _error => {
     next(new ErrorWithStatus('We couldn\'t add you. Please check that this is a valid email.', 500));
   });
 });
