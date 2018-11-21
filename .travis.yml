@@ -5,12 +5,15 @@ node_js:
 
 services:
   - postgres
+  
+before_script:
+  - yarn run sequelize db:create
 
 jobs:
   include:
     - stage: test
       script: npm test
-    - script: PGHOST=127.0.0.1 PGDATABASE=postgres PGUSER=postgres PGPASSWORD= PGPORT=5432 npm run migrate
+    - script: yarn run migrate
 
 notifications:
   email:
