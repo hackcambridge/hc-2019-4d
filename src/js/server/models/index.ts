@@ -1,6 +1,6 @@
 import db from './db';
 import Hacker from './Hacker';
-import { HackerInstance } from './Hacker';
+import { HackerInstance, HackerStatuses } from './Hacker';
 import HackerApplication from './HackerApplication';
 import { HackerApplicationInstance } from './HackerApplication';
 import ApplicationResponse from './ApplicationResponse';
@@ -20,6 +20,7 @@ export {
   db,
   Hacker,
   HackerInstance,
+  HackerStatuses,
   HackerApplication,
   HackerApplicationInstance,
   ApplicationResponse,
