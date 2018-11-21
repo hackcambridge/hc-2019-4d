@@ -120,7 +120,6 @@
     "yargs": "^9.0.1"
   },
   "devDependencies": {
-    "gulp-eslint": "^4.0.0",
     "gulp-yaml-validate": "^1.0.2",
     "mocha": "^4.0.1"
   }
