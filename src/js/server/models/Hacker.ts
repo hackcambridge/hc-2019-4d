@@ -4,14 +4,23 @@ import * as moment from 'moment';
 import db from './db';
 import * as statuses from 'js/shared/status-constants';
 import * as dates from 'js/shared/dates';
-import HackerApplication from './HackerApplication';
 import { HackerApplicationInstance } from './HackerApplication';
 import { TeamMemberInstance } from './TeamMember';
 
-const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
+export interface IndividualHackerStatuses {
+  applicationStatus: string;
+  teamApplicationStatus: string;
+  responseStatus: string;
+  rsvpStatus: string;
+  ticketStatus: string;
+}
+
+export interface HackerStatuses extends IndividualHackerStatuses {
+  overallStatus: string;
+}
 
 // Return a promise that evaluates to the team application status
-export async function getTeamApplicationStatus(hackerInstance) {
+export async function getTeamApplicationStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) return null;
   const team = await hackerInstance.getTeam();
@@ -32,7 +41,7 @@ export async function getTeamApplicationStatus(hackerInstance) {
 }
 
 // Return a promise that evaluates to the response status
-async function getResponseStatus(hackerInstance) {
+async function getResponseStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) return null;
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
@@ -48,7 +57,7 @@ async function getResponseStatus(hackerInstance) {
 }
 
 // Return a promise that resolves to the RSVP status of the user
-async function getRsvpStatus(hackerInstance) {
+async function getRsvpStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) return null;
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
@@ -73,14 +82,14 @@ async function getRsvpStatus(hackerInstance) {
 }
 
 // Returns a promise that resolves to the status of the users personal application
-export async function getApplicationStatus(hackerInstance) {
+export async function getApplicationStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) return statuses.application.INCOMPLETE;
   else return statuses.application.COMPLETE;
 }
 
 // Returns a promise that resolves to the ticketed status of the given application
-async function getTicketStatus(hackerInstance) {
+async function getTicketStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication == null) return null;
   return hackerApplication.getApplicationTicket().then(applicationTicket => {
@@ -89,14 +98,7 @@ async function getTicketStatus(hackerInstance) {
 }
 
 // Returns a promise that resolves to the headline application status
-async function deriveOverallStatus(hackerInstance) {
-  const hackerStatuses: HackerStatuses = {
-    applicationStatus: await getApplicationStatus(hackerInstance),
-    teamApplicationStatus: await getTeamApplicationStatus(hackerInstance),
-    responseStatus: await getResponseStatus(hackerInstance),
-    rsvpStatus: await getRsvpStatus(hackerInstance),
-    ticketStatus: await getTicketStatus(hackerInstance)
-  };
+async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Promise<string> {
   if (hackerStatuses.applicationStatus == statuses.application.INCOMPLETE || hackerStatuses.teamApplicationStatus == statuses.application.INCOMPLETE)
     return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ? statuses.overall.INCOMPLETE : statuses.overall.INCOMPLETE_CLOSED;
   else if (hackerStatuses.responseStatus == statuses.response.PENDING)
@@ -119,25 +121,18 @@ async function deriveOverallStatus(hackerInstance) {
   }
 };
 
-export interface HackerStatuses {
-  applicationStatus: string;
-  teamApplicationStatus: string;
-  responseStatus: string;
-  rsvpStatus: string;
-  ticketStatus: string;
-  overallStatus?: string;
-}
-
-async function getStatuses(): Promise<HackerStatuses> {
-  const statuses: HackerStatuses = {
+async function getStatuses(this: HackerInstance): Promise<HackerStatuses> {
+  const individualStatuses: IndividualHackerStatuses = {
     applicationStatus: await getApplicationStatus(this),
     teamApplicationStatus: await getTeamApplicationStatus(this),
     responseStatus: await getResponseStatus(this),
     rsvpStatus: await getRsvpStatus(this),
     ticketStatus: await getTicketStatus(this),
-    overallStatus: await deriveOverallStatus(this)
   };
-  return statuses;
+  return {
+    ...individualStatuses,
+    overallStatus: await deriveOverallStatus(individualStatuses)
+  };
 }
 
 export class TooYoungError extends Error { }
@@ -246,6 +241,8 @@ const Hacker: Hacker = db.define<HackerInstance, HackerAttributes>('hacker', att
 });
 
 Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
+  const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
+  
   if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {
     return Promise.reject(new TooYoungError());
   }
