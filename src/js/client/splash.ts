@@ -26,15 +26,15 @@ export function start() {
         .slideDown();
     };
 
-    $element.submit((e) => {
+    $element.submit(e => {
       e.preventDefault();
 
       $('.signup-form-output')
-        .slideUp(400, function () {
+        .slideUp(400, function() {
           $(this).remove();
         });
 
-      if ((<string>$element.find('input[type="email"]').val()).trim() === '') {
+      if (($element.find('input[type="email"]').val() as string).trim() === '') {
         createFlash('Must provide email', 'signup-form-error');
         return;
       }
@@ -48,11 +48,11 @@ export function start() {
         .text('Working...');
 
       loading = $.ajax(action, {
-        method: method,
+        method,
         data: $element.serialize()
-      }).done((data) => {
+      }).done(data => {
         createFlash(data.message, 'signup-form-success');
-      }).fail((jqXHR) => {
+      }).fail(jqXHR => {
         const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
 
         createFlash(errormsg, 'signup-form-error');
@@ -70,4 +70,4 @@ export function start() {
       window.fbq('track', 'CompleteRegistration');
     });
   });
-};
+}

@@ -1,28 +1,28 @@
 import * as generateSlug from 'adjective-adjective-animal';
+import countryList from 'country-list';
 import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
 import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 import * as validator from 'validator';
-import countryList from 'country-list';
 
-import { UserRequest } from 'js/server/routes/apply-router';
-import { s3Upload } from 'js/server/apply/file-upload';
-import { HackerApplication, HackerInstance, HackerApplicationInstance } from 'js/server/models';
-import { sendEmail } from 'js/server/email';
 import * as emailTemplates from 'js/server/apply/email-templates';
+import { s3Upload } from 'js/server/apply/file-upload';
+import { sendEmail } from 'js/server/email';
+import { HackerApplication, HackerApplicationInstance, HackerInstance } from 'js/server/models';
+import { UserRequest } from 'js/server/routes/apply-router';
 
 // Optimise the list creation by only making it once, lazily.
 
 function createCountryChoices(): { [id: string]: string }  {
-  let choices = {};
-    
+  const choices = {};
+
   // Add an invalid placeholder so that the user doesn't accidentally miss this box.
-  
+
   choices[''] = 'Choose a country…';
-  
+
   // Add United Kingdom to the top of the country choices since it is the most likely to be applicable.
-  
-  choices['GB'] = 'United Kingdom';
+
+  choices.GB = 'United Kingdom';
   countryList().getData().forEach(({ code, name }) => {
     choices[code] = name;
   });
@@ -92,7 +92,7 @@ const schema: ValidationSchema = {
               allow_underscores: true,
               protocols: ['http', 'https']
             })
-          )
+          );
         }
       },
     },
@@ -159,7 +159,7 @@ const cvUpload = s3Upload({
 }).single('cv');
 
 export function newHackerApplication(req: UserRequest, res: Response) {
-  res.render('apply/application-form', { countryChoices: countryChoices });
+  res.render('apply/application-form', { countryChoices });
 }
 
 export const createHackerApplication: RequestHandlerParams = [
@@ -175,7 +175,7 @@ export const createHackerApplication: RequestHandlerParams = [
     if (!errors.isEmpty()) {
       res.render('apply/application-form', {
         errors: errors.mapped(),
-        countryChoices: countryChoices,
+        countryChoices,
         formData: req.body,
       });
     } else {
@@ -184,10 +184,10 @@ export const createHackerApplication: RequestHandlerParams = [
       }).catch(error => {
         res.render('apply/application-form', {
           formData: req.body,
-          error: error,
-          countryChoices: countryChoices,
+          error,
+          countryChoices,
         });
-      })
+      });
     }
   }
 ];
@@ -217,7 +217,7 @@ async function createApplicationFromForm(body, user: HackerInstance, file): Prom
     });
 
     await sendEmail({
-      to: user.email, 
+      to: user.email,
       contents: emailTemplates.applied({
         name: user.firstName,
         applicationSlug: application.applicationSlug,

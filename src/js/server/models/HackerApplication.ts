@@ -1,10 +1,10 @@
 import * as Sequelize from 'sequelize';
 
+import { ApplicationResponseInstance } from './ApplicationResponse';
+import { ApplicationTicketInstance } from './ApplicationTicket';
 import db from './db';
 import Hacker from './Hacker';
-import { HackerInstance } from './Hacker'
-import { ApplicationTicketInstance } from './ApplicationTicket';
-import { ApplicationResponseInstance } from './ApplicationResponse';
+import { HackerInstance } from './Hacker';
 
 interface HackerApplicationAttributes {
   id?: number;
@@ -18,7 +18,7 @@ interface HackerApplicationAttributes {
   countryTravellingFrom: string;
   links: string;
   /** Boolean for if the hacker said they wanted to make a team application */
-  inTeam: boolean; 
+  inTeam: boolean;
   wantsTeam: boolean;
   graduationDate: Date;
   wantsMailingList: boolean;

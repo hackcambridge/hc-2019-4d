@@ -1,4 +1,4 @@
-import { DataTypeAbstract, DefineAttributeColumnOptions } from "sequelize";
+import { DataTypeAbstract, DefineAttributeColumnOptions } from 'sequelize';
 
 declare global {
   type SequelizeAttributes<T extends { [key: string]: any }> = {

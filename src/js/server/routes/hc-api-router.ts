@@ -1,14 +1,14 @@
-import * as express from 'express';
 import { json as parseJson } from 'body-parser';
+import * as express from 'express';
 
-import * as errors from './hc-api/errors';
-import * as auth from './hc-api/auth';
-import tokensRouter from './hc-api/tokens';
 import adminsRouter from './hc-api/admins';
 import applicationsRouter from './hc-api/applications';
-import statsRouter from './hc-api/stats';
+import * as auth from './hc-api/auth';
 import criteriaRouter from './hc-api/criteria';
+import * as errors from './hc-api/errors';
+import statsRouter from './hc-api/stats';
 import ticketsRouter from './hc-api/tickets';
+import tokensRouter from './hc-api/tokens';
 
 /**
  * The hc-api is a separate express app to completely separate anything going on in our main website

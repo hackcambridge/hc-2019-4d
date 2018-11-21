@@ -2,12 +2,12 @@ import * as dotenv from 'dotenv';
 import * as yargs from 'yargs';
 import createAdmin from './create-admin';
 import createToken from './create-token';
-import unfinishedApplications from './unfinished-applications';
-import suggestResponses from './suggest-responses';
-import respond from './respond';
-import expireInvitations from './expire-invitations';
 import downloadCvs from './download-cvs';
+import expireInvitations from './expire-invitations';
+import respond from './respond';
+import suggestResponses from './suggest-responses';
 import teams from './teams';
+import unfinishedApplications from './unfinished-applications';
 
 dotenv.load();
 

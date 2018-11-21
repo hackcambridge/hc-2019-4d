@@ -1,6 +1,6 @@
 /**
  * @module Module for hitting the Slack API.
- * 
+ *
  * We don't use any existing packages because we are hitting undocumented API endpoints.
  * Information on those here: https://github.com/ErikKalkoken/slackApiDoc
  */
@@ -15,7 +15,7 @@ export class SlackApiError extends Error { }
 
 /**
  * Makes a call to the Slack API.
- * 
+ *
  * All Slack API endpoints return a 200 even in the event of error. It's up to the caller
  * to interpret the "ok" and "error" values of the returned object.
  */
@@ -34,7 +34,7 @@ function makeSlackApiCall(endpoint: string, params = { }) {
 
 /**
  * Invites a user to the Slack channel associated with the token
- * 
+ *
  * @returns a promise that resolves to whether an invite was sent or not
  */
 export function inviteUser(email: string, firstName: string, lastName: string): Promise<boolean> {

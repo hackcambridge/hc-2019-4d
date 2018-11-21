@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize';
 
-import db from './db';
 import ApplicationReview from './ApplicationReview';
+import db from './db';
 import ReviewCriterion from './ReviewCriterion';
 
 interface ReviewCriterionScoreAttributes {

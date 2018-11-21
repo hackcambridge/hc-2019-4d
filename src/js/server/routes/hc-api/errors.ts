@@ -10,4 +10,4 @@ export const middleware = {
       error: error.message || 'An error occurred',
     });
   },
-}
+};

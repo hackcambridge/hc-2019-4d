@@ -1,9 +1,9 @@
 import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
-import { checkSchema, validationResult, ValidationSchema, Result } from 'express-validator/check';
+import { checkSchema, Result, validationResult, ValidationSchema } from 'express-validator/check';
 
+import { ApplicationResponse, HackerApplication, HackerInstance, Team, TeamMember, TeamMemberInstance } from 'js/server/models';
 import { UserRequest } from 'js/server/routes/apply-router';
-import { HackerApplication, ApplicationResponse, Team, TeamMember, HackerInstance, TeamMemberInstance } from 'js/server/models';
 
 const schema: ValidationSchema = {
   'members.b': {
@@ -13,7 +13,7 @@ const schema: ValidationSchema = {
       errorMessage: 'Fill out this field',
     },
   },
-}
+};
 
 export async function newTeam(req: UserRequest, res): Promise<void> {
   const hackerApplication = await req.user.getHackerApplication();
@@ -44,7 +44,7 @@ export const createTeam: RequestHandlerParams = [
       }).catch(error => {
         res.render('apply/team-form', {
           formData: req.body,
-          error: error,
+          error,
         });
       });
     }
@@ -55,9 +55,9 @@ export async function createTeamFromForm(body, user: HackerInstance, errors: Res
   const members = new Set<string>();
   const hackerIds = [user.id];
   const applicationSlugs = {
-    'memberB': body.members.b,
-    'memberC': body.members.c || null,
-    'memberD': body.members.d || null,
+    memberB: body.members.b,
+    memberC: body.members.c || null,
+    memberD: body.members.d || null,
   };
   // Ensure application slugs are unique and not the applicant's own
   const application = await user.getHackerApplication();
@@ -77,7 +77,7 @@ export async function createTeamFromForm(body, user: HackerInstance, errors: Res
   }
 
   if (members.size <= 1) {
-    throw new Error(errors['memberB'] = 'You need at least two team members to form a team.');
+    throw new Error(errors.memberB = 'You need at least two team members to form a team.');
   }
 
   await Promise.all(Object.keys(applicationSlugs).map(async field => {

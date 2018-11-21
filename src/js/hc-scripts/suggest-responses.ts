@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { createHandler } from './utils';
 import { getApplicationsWithScores } from 'js/server/review/score-logic';
+import { createHandler } from './utils';
 
 function getAugmentScore() {
   try {
@@ -21,7 +21,6 @@ function getChooseApplicants() {
     throw error;
   }
 }
-
 
 function createComparisonFunction(inviteType) {
   if (inviteType === 'invite') {

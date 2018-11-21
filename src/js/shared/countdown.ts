@@ -2,6 +2,71 @@ import * as dates from 'js/shared/dates';
 import * as moment from 'moment';
 
 export class Countdown {
+
+  set deadline(date: Date) {
+    this.deadlineTime = date.getTime();
+    this.updateTime();
+  }
+
+  get done(): boolean {
+    return this.difference.asMilliseconds() < 0;
+  }
+
+  /**
+   * Predefined Countdowns
+   */
+  public static createStartCountdown() {
+    return new Countdown({
+      deadline: Countdown.hackathonStart,
+      render:difference => {
+        if (difference.asHours() >= 1) {
+          return ('Starting in ' + difference.humanize()
+            // HACK: Replace moment's humanised dates with more numerical ones
+            .replace('an hour', '1 hour')
+            .replace('a day', '1 day') + '…');
+        }
+
+        const minutes = difference.minutes();
+        const seconds = difference.seconds();
+        const deciSeconds = Math.floor(difference.milliseconds() / 100);
+
+        return `Starting in ${padZero(minutes)}:${padZero(seconds)}:${deciSeconds}`;
+      }
+    });
+  }
+
+  public static createHackingCountdown() {
+    return new Countdown({
+      deadline: Countdown.hackathonEnd,
+      render:difference => {
+        if (difference.asMilliseconds() < 0) {
+          return '00:00:00';
+        }
+
+        return [Math.floor(difference.asHours()), difference.minutes(), difference.seconds()]
+          .map(t => padZero(t))
+          .join(':');
+      }
+    });
+  }
+
+  public static createChainedCountdown() {
+    const c = Countdown.createStartCountdown();
+    c.nextCountdown = Countdown.createHackingCountdown();
+    return c;
+  }
+
+  private static hackathonStart: Date = dates.getHackingPeriodStart().toDate();
+  private static hackathonEnd: Date = dates.getHackingPeriodEnd().toDate();
+
+  public onCount: (renderedText: string) => void;
+
+  private difference: moment.Duration;
+  private deadlineTime: number;
+  private nextCountdown: Countdown;
+  private renderFunc: (difference: moment.Duration) => string;
+  private precision: number;
+  private timer: number;
   constructor(options) {
     options = options || { };
     this.difference = null;
@@ -17,62 +82,13 @@ export class Countdown {
     }
   }
 
-  /**
-   * Predefined Countdowns
-   */
-  public static createStartCountdown() {
-    return new Countdown({
-      deadline: Countdown.hackathonStart,
-      render: (difference) => {
-        if (difference.asHours() >= 1) {
-          return ('Starting in ' + difference.humanize()
-            // HACK: Replace moment's humanised dates with more numerical ones
-            .replace('an hour', '1 hour')
-            .replace('a day', '1 day') + '…');
-        }
-
-        let minutes = difference.minutes();
-        let seconds = difference.seconds();
-        let deciSeconds = Math.floor(difference.milliseconds() / 100);
-
-        return `Starting in ${padZero(minutes)}:${padZero(seconds)}:${deciSeconds}`;
-      }
-    });
-  }
-
-  public static createHackingCountdown() {
-    return new Countdown({
-      deadline: Countdown.hackathonEnd,
-      render: (difference) => {
-        if (difference.asMilliseconds() < 0) {
-          return '00:00:00';
-        }
-
-        return [Math.floor(difference.asHours()), difference.minutes(), difference.seconds()]
-          .map((t) => padZero(t))
-          .join(':');
-      }
-    });
-  }
-
-  public static createChainedCountdown() {
-    let c = Countdown.createStartCountdown();
-    c.nextCountdown = Countdown.createHackingCountdown();
-    return c;
-  }
-
-  set deadline(date: Date) {
-    this.deadlineTime = date.getTime();
-    this.updateTime();
-  }
-
-  updateTime() {
+  public updateTime() {
     if (this.deadlineTime == null) {
       throw new Error('Must first set deadline before updating');
     }
 
-    let now = new Date();
-    let nowTime = now.getTime();
+    const now = new Date();
+    const nowTime = now.getTime();
 
     this.difference = moment.duration(this.deadlineTime - nowTime);
 
@@ -85,44 +101,28 @@ export class Countdown {
     }
   }
 
-  start() {
+  public start() {
     this.timer = window.setInterval(() => this.onCount(this.render()), this.precision);
   }
 
-  stop() {
+  public stop() {
     if (this.timer != null) {
       clearInterval(this.timer);
       this.timer = null;
     }
   }
 
-  render(): string {
+  public render(): string {
     this.updateTime();
     return this.renderFunc ? this.renderFunc(this.difference) : this.difference.humanize();
   }
-
-  get done(): boolean {
-    return this.difference.asMilliseconds() < 0;
-  }
-
-  public onCount: (renderedText: string) => void;
-
-  private difference: moment.Duration;
-  private deadlineTime: number;
-  private nextCountdown: Countdown;
-  private renderFunc: (difference: moment.Duration) => string;
-  private precision: number;
-  private timer: number;
-
-  private static hackathonStart: Date = dates.getHackingPeriodStart().toDate();
-  private static hackathonEnd: Date = dates.getHackingPeriodEnd().toDate();
 }
 
 function padZero(num) {
-  let chars = `${num}`.split('');
+  const chars = `${num}`.split('');
   if (chars.length <= 1) {
     chars.unshift('0');
   }
 
-  return chars.map((c) => `${c}`).join('');
+  return chars.map(c => `${c}`).join('');
 }

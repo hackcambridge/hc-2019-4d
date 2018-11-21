@@ -18,9 +18,9 @@ function getSortedIndividualEvents(schedule) {
 
 export function getCurrentEvents(schedule) {
   const individualEvents = getSortedIndividualEvents(schedule);
-  
+
   const now = moment();
-  const previousAndCurrentEvents = individualEvents.filter(event => 
+  const previousAndCurrentEvents = individualEvents.filter(event =>
     event.time.isBefore(now));
 
   if (previousAndCurrentEvents.length == 0) {
@@ -35,9 +35,9 @@ export function getCurrentEvents(schedule) {
 
 export function getNextEvents(schedule) {
   const individualEvents = getSortedIndividualEvents(schedule);
-  
+
   const now = moment();
-  const futureEvents = individualEvents.filter(event => 
+  const futureEvents = individualEvents.filter(event =>
     event.time.isAfter(now));
 
   if (futureEvents.length == 0) {

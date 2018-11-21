@@ -1,8 +1,8 @@
-import { Router, Request } from 'express';
+import { Request, Router } from 'express';
 
-import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply';
+import { logout, requireAuth } from 'js/server/auth';
+import { dashboardController, hackerApplicationsController, rsvpsController, teamsController } from 'js/server/controllers/apply';
 import { applicationsMiddleware } from 'js/server/middleware';
-import { requireAuth, logout } from 'js/server/auth';
 import { HackerInstance } from 'js/server/models';
 
 const applyRouter = Router();

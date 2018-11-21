@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import { render as renderEjs } from 'ejs';
 import { Express } from 'express';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
@@ -6,7 +7,6 @@ import * as _ from 'lodash';
 import * as markdown_module from 'markdown-it';
 import * as moment from 'moment-timezone';
 import * as path from 'path';
-import { render as renderEjs } from 'ejs'; 
 
 import * as dates from 'js/shared/dates';
 import * as theme from 'js/shared/theme';
@@ -23,7 +23,7 @@ let app: Express;
 const PROJECT_ROOT = path.resolve(path.join(__dirname, '../../../'));
 
 function timeProperties(items, properties) {
-  items.forEach((item) => properties.forEach((prop) => item[prop] = moment.tz(item[prop], 'Europe/London')));
+  items.forEach(item => properties.forEach(prop => item[prop] = moment.tz(item[prop], 'Europe/London')));
 }
 
 export function init(a) {
@@ -52,7 +52,7 @@ export function asset(asset, prefix) {
   }
 
   return prefix + asset;
-};
+}
 
 function loadScheduleTimeProperties(loadedScheduleResource) {
   loadedScheduleResource.forEach(day => {
@@ -72,7 +72,7 @@ export function loadResource(resourceName) {
     let loadedResource = yaml.safeLoad(
       renderEjs(
         fs.readFileSync(resolvePath(`src/resources/${resourceName}.yml`)).toString(),
-        { dates: dates, theme: theme }
+        { dates, theme }
       )
     )[resourceName];
 
@@ -82,8 +82,8 @@ export function loadResource(resourceName) {
         timeProperties(loadedResource, ['time']);
 
         loadedResource = loadedResource.sort((r1, r2) => {
-          let time1 = r1.time;
-          let time2 = r2.time;
+          const time1 = r1.time;
+          const time2 = r2.time;
 
           if (time1.isValid()) {
             if (!time2.isValid()) {
@@ -107,9 +107,9 @@ export function loadResource(resourceName) {
   }
 
   return loadedResources[resourceName];
-};
+}
 
-let publicId = crypto.randomBytes(12).toString('hex');
+const publicId = crypto.randomBytes(12).toString('hex');
 
 export function getPublicId() {
   return publicId;

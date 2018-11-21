@@ -1,7 +1,7 @@
-import get from "./get";
-import addMember from "./add-member";
-import suggest from "./suggest";
-import send from "./send";
+import addMember from './add-member';
+import get from './get';
+import send from './send';
+import suggest from './suggest';
 
 export default {
   command: 'teams',

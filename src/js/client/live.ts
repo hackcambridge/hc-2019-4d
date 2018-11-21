@@ -1,6 +1,6 @@
 import * as $ from 'jquery';
-import * as Pusher from 'pusher-js';
 import * as moment from 'moment';
+import * as Pusher from 'pusher-js';
 
 import { Countdown } from 'js/shared/countdown';
 
@@ -92,7 +92,7 @@ function refreshEventInfo() {
 }
 
 function setBackground() {
-  let time = new Date();
+  const time = new Date();
   if (time.getHours() > 18 || time.getHours() < 8) {
     if (! $('main').hasClass('black')) {
       if ($('main').hasClass('red')) {
@@ -120,7 +120,7 @@ function initialiseLive() {
   setInterval(() => {
     refreshEventInfo();
   }, 10000);
-  
+
   setBackground();
   setInterval(setBackground, 300000);
 
@@ -135,21 +135,21 @@ function initialiseLive() {
       }
     });
   });
-  
+
   function rotateCube() {
     const x = Math.random() * 360;
     const y = Math.random() * 360;
     const z = Math.random() * 360;
     $('#cube-logo').css('transform', 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)');
   }
-  
-  $('.event-countdown').each(function () {
-    let countdown = Countdown.createChainedCountdown();
-    countdown.onCount = (rendered) => $(this).html(rendered);
+
+  $('.event-countdown').each(function() {
+    const countdown = Countdown.createChainedCountdown();
+    countdown.onCount =rendered => $(this).html(rendered);
     countdown.start();
   });
-  
+
   $('#cube-logo').each(_ => {
-    setInterval(rotateCube, 5000)
+    setInterval(rotateCube, 5000);
   });
 }

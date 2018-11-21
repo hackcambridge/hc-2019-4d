@@ -1,24 +1,24 @@
-import * as express from 'express';
-import { parse as parseUrl } from 'url';
-import * as moment from 'moment';
 import { urlencoded as parseUrlEncoded } from 'body-parser';
-import { ServeStaticOptions } from 'serve-static';
 import * as compression from 'compression';
+import * as express from 'express';
+import * as moment from 'moment';
+import { ServeStaticOptions } from 'serve-static';
+import { parse as parseUrl } from 'url';
 
-import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
 import { applicationsMiddleware } from 'js/server/middleware';
+import { apiRouter, applyRouter, eventRouter, hcApiRouter, router } from './routes';
 
 import { setUpAuth } from 'js/server/auth';
-import { init as initializeUtils, resolvePath as resolveAssetPath, asset } from 'js/server/utils';
 import { middleware as errorMiddleware } from 'js/server/errors';
+import { asset, init as initializeUtils, resolvePath as resolveAssetPath } from 'js/server/utils';
 
 import * as colors from 'js/shared/colors';
-import * as metadata from 'js/shared/metadata';
 import * as dates from 'js/shared/dates';
+import * as metadata from 'js/shared/metadata';
 import * as theme from 'js/shared/theme';
 
 const app = express();
-let server = require('http').Server(app);
+const server = require('http').Server(app);
 
 app.set('view engine', 'pug');
 // Start server
@@ -46,7 +46,7 @@ app.use((req: any, res, next) => {
 initializeUtils(app);
 
 // Static file serving
-let staticOptions: ServeStaticOptions = { };
+const staticOptions: ServeStaticOptions = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }

@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize';
 
-import db from './db';
 import ApplicationResponse from './ApplicationResponse';
+import db from './db';
 
 const RSVP_YES = 'RSVP_YES';
 const RSVP_NO = 'RSVP_NO';

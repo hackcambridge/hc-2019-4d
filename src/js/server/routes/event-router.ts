@@ -1,4 +1,4 @@
-import { Router, Request } from 'express';
+import { Request, Router } from 'express';
 
 import { loadResource } from 'js/server/utils';
 
@@ -24,4 +24,3 @@ eventRouter.get('/hacking', (req, res) => {
 eventRouter.get('/location', (req, res) => res.render('event/location'));
 
 export default eventRouter;
-

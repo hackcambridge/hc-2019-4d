@@ -1,6 +1,6 @@
 import { Hacker, HackerApplication, Team, TeamMember } from 'js/server/models';
-import { getHackerFromEmailOrApplicationSlug } from './utils';
 import { createHandler } from '../utils';
+import { getHackerFromEmailOrApplicationSlug } from './utils';
 
 export default {
   command: 'get <email|applicationId>',
@@ -10,7 +10,7 @@ export default {
     return yargs;
   },
   handler: createHandler(({ email, applicationId }) =>
-    getHackerFromEmailOrApplicationSlug(email).then(user => 
+    getHackerFromEmailOrApplicationSlug(email).then(user =>
       user.getTeam().then(teamMember => {
         if (teamMember === null) {
           return Promise.reject('Hacker is not in a team.');

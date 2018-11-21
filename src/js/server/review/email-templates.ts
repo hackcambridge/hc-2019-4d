@@ -37,7 +37,7 @@ export function notInvited({ name }) {
         'Due to the amount of them, we are unable to provide feedback on individual applications.',
         `Please stay tuned and apply for ${metadata.title} ${getHackathonStartDate().add(1, 'year').format('YYYY')} when it rolls around — we would love to hear from you again!`,
       ],
-      
+
     },
   };
 }

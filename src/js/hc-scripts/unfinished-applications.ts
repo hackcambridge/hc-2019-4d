@@ -1,5 +1,5 @@
-import { createHandler } from './utils';
 import { getHackersWithUnfinishedApplications } from 'js/server/apply/applicant-info';
+import { createHandler } from './utils';
 
 function getEmailsOfHackersWithUnfinishedApplications(kind) {
   return getHackersWithUnfinishedApplications(kind).then(hackers => {

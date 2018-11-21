@@ -36,4 +36,4 @@ export function applied({name, applicationSlug, inTeam}) {
       outro: 'If you have any questions or concerns in the meantime, don\'t hesitate to reach out to us by visiting our website.',
     },
   };
-};
+}

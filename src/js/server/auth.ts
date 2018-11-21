@@ -85,9 +85,9 @@ function handleCallback(req, res, next) {
     redirectToAuthorize(req, res);
   }
 
-  getToken(req.query.code, req).then((access_token) => {
+  getToken(req.query.code, req).then(access_token => {
     return getMlhUser(access_token);
-  }).then((mlhUser) => {
+  }).then(mlhUser => {
     Hacker
       .upsertAndFetchFromMlhUser(mlhUser)
       .then(user => {
@@ -126,8 +126,8 @@ function redirectToAuthorize(req, res) {
   console.log(`Tried to store in cookie: ${req.originalUrl}`);
 
   // Construct the query string
-  let qs = querystring.stringify({
-    client_id: client_id,
+  const qs = querystring.stringify({
+    client_id,
     redirect_uri: url.resolve(req.requestedUrl, auth_callback),
     response_type: 'code',
     scope: [
@@ -153,9 +153,9 @@ function getToken(code, req) {
   console.log(code);
 
   const body = {
-    client_id: client_id,
-    client_secret: client_secret,
-    code: code,
+    client_id,
+    client_secret,
+    code,
     grant_type: 'authorization_code',
     redirect_uri: url.resolve(req.requestedUrl, auth_callback),
   };
@@ -168,11 +168,11 @@ function getToken(code, req) {
     method: 'POST',
     body: JSON.stringify(body)
 
-  }).then((response) => {
+  }).then(response => {
 
     return response.json();
 
-  }).then((json) => {
+  }).then(json => {
 
     return json.access_token;
 
@@ -181,26 +181,26 @@ function getToken(code, req) {
 
 // Take an access_token and return a promise of user info from the MyMLH api
 function getMlhUser(access_token) {
-  let query = {
-    access_token: access_token
+  const query = {
+    access_token
   };
-  let query_string = querystring.stringify(query);
-  let full_url = user_url + '?' + query_string;
+  const query_string = querystring.stringify(query);
+  const full_url = user_url + '?' + query_string;
 
   return fetch(full_url, {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'GET',
-  }).then((response) => {
+  }).then(response => {
     return response.json();
-  }).then((json) => {
+  }).then(json => {
     if (json.hasOwnProperty('data')) {
       return json.data;
     } else {
       console.log('Bad data');
       console.log(json);
-      throw 'Couldn\'t get user data';
+      throw new Error('Couldn\'t get user data');
     }
   });
 }

@@ -1,8 +1,8 @@
-import * as Sequelize from 'sequelize';
 import * as moment from 'moment';
+import * as Sequelize from 'sequelize';
 
-import db from './db';
 import Admin, { AdminInstance } from './Admin';
+import db from './db';
 
 interface OauthAccessTokenAttributes {
   id?: number;
@@ -56,7 +56,7 @@ OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(toke
     where: {
       token,
     },
-  }).then((token) => {
+  }).then(token => {
     if (!token) {
       return null;
     }

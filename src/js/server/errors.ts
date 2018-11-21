@@ -10,4 +10,4 @@ export function middleware(err, req, res, next) {
     locals.message = message;
   }
   res.render('error', locals);
-};
+}
