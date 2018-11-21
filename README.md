@@ -33,7 +33,6 @@ PGPORT=5432
 PGUSER=postgres
 S3_BUCKET=s3_bucket_placeholder
 APPLICATIONS_OPEN_STATUS=
-APPLICATION_URL=
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 GOOGLE_SHEETS_AUTH_EMAIL=
@@ -48,7 +47,6 @@ PUSHER_KEY=
 SLACK_API_TOKEN=
 STRIPE_PRIVATE_KEY=
 STRIPE_PUBLISH_KEY=
-TEAM_APPLICATION_URL=
 ```
 
 Leaving most of these variables undefined is sufficient to get the basic website up-and-running, but not all features will work without valid tokens for all the environment variables.  If you're working on the Hack Cambridge committee, you can ask for these tokens on the #development_and_web channel on Slack, but we're looking to improve this process.

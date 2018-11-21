@@ -13,8 +13,7 @@
     },
     "MYMLH_CLIENT_ID": {
       "description": "The public identifier for the app speaking to MyMLH",
-      "required": true,
-      "value": "1926df5db5d25159e71a8e1529e167935900e3cc6f831221d0f2f74bf0c26b5c"
+      "required": true
     },
     "MYMLH_CLIENT_SECRET": {
       "description": "The private secret used to confirm MyMLH client identity",
@@ -66,6 +65,22 @@
     },
     "STRIPE_PUBLISH_KEY": {
       "description": "Publishable key for accessing the Stripe API",
+      "required": true
+    },
+    "APPLICATIONS_OPEN_STATUS": {
+      "description": "Indicates whether applications are open or closed",
+      "required": true
+    },
+    "MAILCHIMP_API_KEY": {
+      "description": "API key for accessing the Mailchimp API",
+      "required": true
+    },
+    "MAILCHIMP_INTERESTED_LIST_ID": {
+      "description": "Mailchimp List ID for the mailing list for people interested in the next Hack Cambridge event",
+      "required": true
+    },
+    "PUSHER_KEY": {
+      "description": "API key for accessing the Pusher API",
       "required": true
     }
   }
