@@ -22,6 +22,7 @@ module.exports = {
     password: process.env.PGPASSWORD || '',
     database: process.env.PGDATABASE || 'hack-cambridge-production',
     host: process.env.PGHOST || '127.0.0.1',
+    port: process.env.PGPORT || 5432,
     dialect: 'postgres'
   }
 };
