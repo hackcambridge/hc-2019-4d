@@ -117,7 +117,6 @@ async function deriveOverallStatus() {
   else if (rsvpStatus == statuses.rsvp.COMPLETE_YES)
     return statuses.overall.INVITED_ACCEPTED;
   else {
-    console.log('Couldn\'t derive an overall status');
     console.log({
       applicationStatus,
       responseStatus,
