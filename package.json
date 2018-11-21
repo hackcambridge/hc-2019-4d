@@ -115,7 +115,7 @@
     "stimulus": "^1.1.0",
     "stripe": "^5.1.1",
     "style-loader": "^0.19.0",
-    "typescript": "^2.9.2",
+    "typescript": "^3.1.6",
     "validator": "^10.8.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -124,7 +124,9 @@
   },
   "devDependencies": {
     "gulp-eslint": "^4.0.0",
+    "gulp-tslint": "^8.1.3",
     "gulp-yaml-validate": "^1.0.2",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "tslint": "^5.11.0"
   }
 }
