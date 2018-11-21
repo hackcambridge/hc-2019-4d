@@ -94,7 +94,7 @@ gulp.task('compile-typescript', () => {
 
 gulp.task("lint-typescript", () =>
   gulp
-    .src("src/**.ts")
+    .src("src/**/*.ts")
     .pipe(tslint({
         formatter: "verbose"
     }))
