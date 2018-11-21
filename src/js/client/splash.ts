@@ -53,7 +53,9 @@ export function start() {
       }).done(data => {
         createFlash(data.message, 'signup-form-success');
       }).fail(jqXHR => {
-        const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
+        const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ?
+          jqXHR.responseJSON.error :
+          'Something went wrong. Please try again.';
 
         createFlash(errormsg, 'signup-form-error');
       }).always(() => {

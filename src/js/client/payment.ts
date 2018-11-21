@@ -26,22 +26,28 @@ export function start() {
           console.log('TOKEN');
           $output.text('Working…');
 
-          const data = $form.serializeArray();
+          const formData = $form.serializeArray();
 
-          data.push({ name: 'token', value: token.id });
-          data.push({ name: 'email', value: token.email });
+          formData.push({ name: 'token', value: token.id });
+          formData.push({ name: 'email', value: token.email });
 
           loading = $.ajax('/api/payment', {
             method: 'POST',
-            data
+            data: formData
           })
             .done(data => {
               $output.text(data.message);
               $('section.form-status.red').removeClass('red').addClass('black');
             })
             .fail(jqXHR => {
-              const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
-              $output.text(errormsg + ' Please try again.').append('<br>').append('<a href="mailto:team@hackcambridge.com?subject=Payment issue&body=I have encountered this error when trying to make a payment: ' + errormsg + '">Contact us</a>');
+              const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ?
+                jqXHR.responseJSON.error :
+                'Something went wrong. Please try again.';
+              $output
+                .text(errormsg + ' Please try again.')
+                .append('<br>')
+                .append('<a href="mailto:team@hackcambridge.com?subject=Payment issue&body=' +
+                  'I have encountered this error when trying to make a payment: ' + errormsg + '">Contact us</a>');
               $('section.form-status.black').removeClass('black').addClass('red');
               $form.find('input, button').prop('disabled', false);
             })
@@ -77,7 +83,7 @@ export function start() {
         const amount = Math.round(getAmount() * 100);
         const reference = $reference.val();
 
-        if (amount == 0) {
+        if (amount === 0) {
           return;
         }
 

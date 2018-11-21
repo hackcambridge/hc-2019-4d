@@ -51,7 +51,7 @@ function cycleFeedItems(statuses, element) {
   i++;
   setInterval(() => {
     setFeedItem(statuses[i]);
-    if (i == statuses.length - 1) {
+    if (i === statuses.length - 1) {
       i = 0;
     } else {
       i++;
@@ -67,7 +67,7 @@ let previousEventInfo = null;
 
 function refreshEventInfo() {
   $.getJSON('/live-api/event-info', newEventInfo => {
-    if (JSON.stringify(newEventInfo) != JSON.stringify(previousEventInfo)) {
+    if (JSON.stringify(newEventInfo) !== JSON.stringify(previousEventInfo)) {
       const currentEvents = newEventInfo.currentEvents;
       const nextEvents = newEventInfo.nextEvents;
       if (currentEvents.length > 0) {
@@ -100,7 +100,7 @@ function setBackground() {
       }
       $('main').addClass('black');
     }
-  } else if (time.getDate() == 21 && time.getHours() >= 12) {
+  } else if (time.getDate() === 21 && time.getHours() >= 12) {
     if (! $('main').hasClass('red')) {
       if ($('main').hasClass('black')) {
         $('main').removeClass('black');
@@ -145,7 +145,7 @@ function initialiseLive() {
 
   $('.event-countdown').each(function() {
     const countdown = Countdown.createChainedCountdown();
-    countdown.onCount =rendered => $(this).html(rendered);
+    countdown.onCount = rendered => $(this).html(rendered);
     countdown.start();
   });
 
