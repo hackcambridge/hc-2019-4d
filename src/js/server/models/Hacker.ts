@@ -252,13 +252,7 @@ const Hacker: Hacker = db.define<HackerInstance, HackerAttributes>('hacker', att
   tableName: 'hackers',
   instanceMethods: {
     // Add the instance methods
-    getTeamApplicationStatus,
-    getResponseStatus,
-    getApplicationStatus,
-    getRsvpStatus,
-    getTicketStatus,
     getStatuses,
-    deriveOverallStatus,
     log(logText) {
       console.log(`[User ${this.id}] ${logText}`);
     },
