@@ -51,7 +51,7 @@ export const createTeam: RequestHandlerParams = [
   }
 ];
 
-export async function createTeamFromForm(body, user: HackerInstance, errors: Result<{}>): Promise<TeamMemberInstance[]> {
+export async function createTeamFromForm(body, user: HackerInstance, errors): Promise<TeamMemberInstance[]> {
   const members = new Set<string>();
   const hackerIds = [user.id];
   const applicationSlugs = {

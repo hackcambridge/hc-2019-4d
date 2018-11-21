@@ -14,7 +14,7 @@ import { UserRequest } from 'js/server/routes/apply-router';
 // Optimise the list creation by only making it once, lazily.
 
 function createCountryChoices(): { [id: string]: string }  {
-  const choices = {};
+  const choices: { [code: string]: string } = {};
 
   // Add an invalid placeholder so that the user doesn't accidentally miss this box.
 
