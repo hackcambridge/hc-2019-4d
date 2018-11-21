@@ -19,8 +19,6 @@ export interface HackerStatuses extends IndividualHackerStatuses {
   overallStatus: string;
 }
 
-const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
-
 // Return a promise that evaluates to the team application status
 export async function getTeamApplicationStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
@@ -243,6 +241,8 @@ const Hacker: Hacker = db.define<HackerInstance, HackerAttributes>('hacker', att
 });
 
 Hacker.upsertAndFetchFromMlhUser = function (mlhUser) {
+  const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
+  
   if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {
     return Promise.reject(new TooYoungError());
   }
