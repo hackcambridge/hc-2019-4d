@@ -7,6 +7,18 @@ import * as dates from 'js/shared/dates';
 import { HackerApplicationInstance } from './HackerApplication';
 import { TeamMemberInstance } from './TeamMember';
 
+export interface IndividualHackerStatuses {
+  applicationStatus: string;
+  teamApplicationStatus: string;
+  responseStatus: string;
+  rsvpStatus: string;
+  ticketStatus: string;
+}
+
+export interface HackerStatuses extends IndividualHackerStatuses {
+  overallStatus: string;
+}
+
 const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
 
 // Return a promise that evaluates to the team application status
@@ -88,14 +100,7 @@ async function getTicketStatus(hackerInstance: HackerInstance): Promise<string> 
 }
 
 // Returns a promise that resolves to the headline application status
-async function deriveOverallStatus(hackerInstance: HackerInstance): Promise<string> {
-  const hackerStatuses: HackerStatuses = {
-    applicationStatus: await getApplicationStatus(hackerInstance),
-    teamApplicationStatus: await getTeamApplicationStatus(hackerInstance),
-    responseStatus: await getResponseStatus(hackerInstance),
-    rsvpStatus: await getRsvpStatus(hackerInstance),
-    ticketStatus: await getTicketStatus(hackerInstance)
-  };
+async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Promise<string> {
   if (hackerStatuses.applicationStatus == statuses.application.INCOMPLETE || hackerStatuses.teamApplicationStatus == statuses.application.INCOMPLETE)
     return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ? statuses.overall.INCOMPLETE : statuses.overall.INCOMPLETE_CLOSED;
   else if (hackerStatuses.responseStatus == statuses.response.PENDING)
@@ -118,25 +123,18 @@ async function deriveOverallStatus(hackerInstance: HackerInstance): Promise<stri
   }
 };
 
-export interface HackerStatuses {
-  applicationStatus: string;
-  teamApplicationStatus: string;
-  responseStatus: string;
-  rsvpStatus: string;
-  ticketStatus: string;
-  overallStatus?: string;
-}
-
 async function getStatuses(this: HackerInstance): Promise<HackerStatuses> {
-  const statuses: HackerStatuses = {
+  const individualStatuses: IndividualHackerStatuses = {
     applicationStatus: await getApplicationStatus(this),
     teamApplicationStatus: await getTeamApplicationStatus(this),
     responseStatus: await getResponseStatus(this),
     rsvpStatus: await getRsvpStatus(this),
     ticketStatus: await getTicketStatus(this),
-    overallStatus: await deriveOverallStatus(this)
   };
-  return statuses;
+  return {
+    ...individualStatuses,
+    overallStatus: await deriveOverallStatus(individualStatuses)
+  };
 }
 
 export class TooYoungError extends Error { }
