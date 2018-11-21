@@ -18,7 +18,7 @@ block mainContent
           tr
             td A
             td
-              span.pixel indicolite-gentlemanlike-jumpingbean
+              span.pixel= applicationSlug
           tr(data-controller='field-validator' data-field-validator-error=(errors && errors['members.b']) ? errors['members.b'].msg : null)
             td B
             td

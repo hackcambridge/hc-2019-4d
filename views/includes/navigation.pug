@@ -11,7 +11,7 @@ if user
       +icon('Dashboard')
       br
       | Dashboard
-  if moment().isBefore(event.dates.getApplicationsEnd()) && (requestedUrl.path !== '/apply/form')
+  if moment().isBefore(event.dates.getApplicationsEnd()) && (requestedUrl.path !== '/apply/form') && !applied && applicationsOpen
     a.icon(columns='1.5' rows='1.0' rel='next' href='/apply/form')
       +icon('Next')
       br

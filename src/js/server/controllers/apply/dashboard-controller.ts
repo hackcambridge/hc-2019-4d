@@ -3,7 +3,7 @@ import { RequestHandler } from 'express';
 import { UserRequest } from 'js/server/routes/apply-router';
 import * as utils from 'js/server/utils.js';
 import { Hacker, TeamMember, HackerInstance } from 'js/server/models';
-import * as statuses from 'js/shared/status-constants';
+import * as statusConstants from 'js/shared/status-constants';
 import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 
 async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<HackerInstance[]> {
@@ -27,26 +27,13 @@ async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<Hacke
 }
 
 export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
-  const content = utils.loadResource('dashboard');
-
-  const application = await req.user.getHackerApplication();
-  const applicationStatus = req.user.getApplicationStatus(application);
-
-  const [teamApplicationStatus, responseStatus, rsvpStatus, ticketStatus, teamMembers] = await Promise.all([
-    req.user.getTeamApplicationStatus(application),
-    req.user.getResponseStatus(application),
-    req.user.getRsvpStatus(application),
-    req.user.getTicketStatus(application),
+  const statusMessages = utils.loadResource('dashboard');
+  
+  const [application, statuses, teamMembers] = await Promise.all([
+    req.user.getHackerApplication(),
+    req.user.getStatuses(),
     getOtherTeamMembersAsHackers(req.user)
   ]);
-
-  const overallStatus = Hacker.deriveOverallStatus(
-    applicationStatus,
-    responseStatus,
-    teamApplicationStatus,
-    rsvpStatus,
-    ticketStatus
-  );
 
   const fridayWeekday = 5;
   const fridayBeforeHackathonDate =
@@ -55,27 +42,14 @@ export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
       : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
 
   res.render('apply/dashboard', {
-    applicationSlug: (application === null) ? null : application.applicationSlug,
-    applicationStatus,
-    wantsTeam: (application === null) ? null : application.wantsTeam,
-    teamApplicationStatus,
-    responseStatus,
-    rsvpStatus,
-    ticketStatus,
-    overallStatus,
-
-    applicationInfo: content['your-application'][applicationStatus],
-    teamApplicationInfo: content['team-application'][teamApplicationStatus],
-    rsvpInfo: content['rsvp'][rsvpStatus],
-    statusMessage: content['status-messages'][overallStatus],
+    application,
+    statuses,
+    statusMessages,
     teamMembers,
-
     applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
-
     hackathonStartDate: getHackathonStartDate().format('dddd DDDo MMM YYYY'),
     hackathonEndDate: getHackathonEndDate().format('dddd DDDo MMM'),
     fridayBeforeHackathonDate: fridayBeforeHackathonDate.format('DDDo MMM'),
-
-    statuses
+    statusConstants
   });
 };

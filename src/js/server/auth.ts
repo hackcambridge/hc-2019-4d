@@ -71,12 +71,10 @@ function setUserFromSession(req, res, next) {
           req.user = user;
           res.locals.user = user;
         }
-
         next();
       });
     return;
   }
-
   next();
 }
 

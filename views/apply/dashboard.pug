@@ -4,20 +4,20 @@ block mainContent
   section(grid='rows')
     h1(rows='1.0')= title
     div(rows='1.5')
-      p= statusMessage.title
-      p= statusMessage.subline
-      if applicationSlug
+      p= statusMessages['overall-status-messages'][statuses.overallStatus].title
+      p= statusMessages['overall-status-messages'][statuses.overallStatus].subline
+      if application
         p
           | Your application ID is 
-          span.pixel= applicationSlug
+          span.pixel= application.applicationSlug
           | .
-    //| {% block extraSections %}
+    //
       |   {% set roomShareForm = &quot;https://docs.google.com/forms/d/e/1FAIpQLSf7cEY2xt-Ya_VooMEAbmQMhCLDpBJ5MtHFa38ZE2rsmLvmWw/viewform&quot; %}
       |   {% set internationalVisaForm = &quot;https://docs.google.com/forms/d/e/1FAIpQLScF6ZRa8oLYcZ42G3Xgx5fmKV3FWrl0Jkm4dcVLYhVBCKy1Jw/viewform&quot; %}
       |   {# To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking #}
       |   {% set openSlackLink = &quot;slack://open?team=T7YPKKJRZ&quot; %}
       |   {# Section for info about RSVPs #}
-  if rsvpStatus == statuses.rsvp.INCOMPLETE || rsvpStatus == statuses.rsvp.COMPLETE_EXPIRED
+  if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE || statusConstants.rsvpStatus == statusConstants.rsvp.COMPLETE_EXPIRED
     section
       form(method='POST' action='/apply/rsvp')
         .container.a4
@@ -27,10 +27,10 @@ block mainContent
           .two.half.unit.row
             .unit.column.grows
               h4
-                span.pixel= rsvpInfo.label
-              p {{ rsvpInfo.content }}
+                span.pixel= statusMessages['rsvp'][applicationStatuses.rsvpStatus].label
+              p= statusMessages['rsvp'][applicationStatuses.rsvpStatus].content
           |                   {# The RSVP form for incomplete RSVPs #}
-          |                   {% if rsvpStatus == statuses.rsvp.INCOMPLETE %}
+          |                   {% if statuses.rsvpStatus == statusMessages.rsvp.INCOMPLETE %}
           .two.half.unit.row
             .unit.column.grows
               div
@@ -50,12 +50,12 @@ block mainContent
               div
                 button(type='submit' name='submit') Submit!
           |                   {% endif %}
-          |                   {% if rsvpInfo.action %}
+          |                   {% if statusMessages['rsvp'][applicationStatuses.rsvpStatus].action %}
           .one.half.unit.row
             .unit.column.grows
-              a(href='{{ rsvpInfo.action.location }}') {{ rsvpInfo.action.title }}
-          |                   {% endif %}
-  if overallStatus == statuses.overall.HAS_TICKET
+              a(href= statusMessages['rsvp'][applicationStatuses.rsvpStatus].action.location)
+                = statusMessages['rsvp'][applicationStatuses.rsvpStatus].action.title
+  if statuses.overallStatus == statusConstants.overall.HAS_TICKET
     section
       .container.a4
         .two.unit.row
@@ -68,7 +68,7 @@ block mainContent
               | Please take the time to complete them so that we can make Hack Cambridge Ternary as good as it can be for you.
             a(href='{{ roomShareForm }}' target='_blank') Room Sharing (if you are travelling for further away)
             a(href='{{ internationalVisaForm }}' target='_blank') Request letter for international visa
-  if responseStatus == statuses.response.INVITED && rsvpStatus != statuses.rsvp.COMPLETE_NO && rsvpStatus != statuses.rsvp.COMPLETE_EXPIRED
+  if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
     section
       .container.a4
         .two.unit.row
@@ -128,7 +128,7 @@ block mainContent
           .unit.column.grows
             p
               | For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the {{ fridayBeforeHackathonDate }}), in which case you&rsquo;ll just need to bring a sleeping bag and a pillow. However, at present, we can&rsquo;t guarantee you a place, so please apply early
-              | {% if overallStatus == statuses.overall.HAS_TICKET %}
+              | {% if statuses.overallStatus == statusMessages.overall.HAS_TICKET %}
               | if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
             a(href='{{ roomShareForm }}' target='_blank') Apply for accommodation
             |                           {% else %}
@@ -136,7 +136,7 @@ block mainContent
             p
             |                           {% endif %}
             p
-  if overallStatus == statuses.overall.HAS_TICKET
+  if statuses.overallStatus == statusConstants.overall.HAS_TICKET
     section
       .container.a4
         .two.unit.row
@@ -190,7 +190,7 @@ block mainContent
               | Keep your 
               strong application ID
               |  on hand (that&rsquo;s: 
-              span.pixel {{ applicationSlug }}
+              span.pixel {{ application.applicationSlug }}
               | )!
             p
               | Since you&rsquo;re going to be here overnight, we&rsquo;ll have some quiet spaces for sleeping, but we recommend you take a 
@@ -199,12 +199,12 @@ block mainContent
               strong toothbrush
               |  and possibly a spare change of clothes.
         |               {# If not in team #}
-        |               {% if teamApplicationStatus != statuses.teamApplication.COMPLETE %}
+        |               {% if statuses.teamApplicationStatus != statusMessages.teamApplication.COMPLETE %}
         .three.unit.row
           .unit.column.grows
             | {# Teams #}
             h4 Finding your teams
-            |                           {% if wantsTeam %}
+            |                           {% if application.wantsTeam %}
             p
               | You said that you wanted to have a team chosen for you for the hackathon. We&rsquo;ll be sending you some allocations soon!
             |                           {% else %}
@@ -212,21 +212,23 @@ block mainContent
               | There&rsquo;ll be opportunities to find team members on the day. We&rsquo;ll be sending out more information regarding this shortly.
             |                           {% endif %}
         |               {% endif %}
-  if overallStatus == statuses.overall.INCOMPLETE || overallStatus == statuses.overall.IN_REVIEW
+  if statuses.overallStatus == statusConstants.overall.INCOMPLETE || statuses.overallStatus == statusConstants.overall.IN_REVIEW
     section(grid='rows')
       h3(rows='0.5') Your Application
       div(rows='1.0')
-        p= applicationInfo.content
-        if applicationInfo.action
-          a(href=applicationInfo.action.location)= applicationInfo.action.title
-    if applicationStatus == statuses.application.COMPLETE
+        p= statusMessages['your-application'][statuses.applicationStatus].content
+        if statusMessages['your-application'][statuses.applicationStatus].action
+          a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)
+            = statusMessages['your-application'][statuses.applicationStatus].action.title
+    if statuses.applicationStatus == statusConstants.application.COMPLETE
       section(grid='rows')
         h3(rows='0.5') Team Application
         div(rows='1.5')
-          p= teamApplicationInfo.content
-          if teamApplicationInfo.action
-            a(href=teamApplicationInfo.action.location)= teamApplicationInfo.action.title
-        if teamApplicationStatus == statuses.teamApplication.COMPLETE
+          p= statusMessages['team-application'][statuses.teamApplicationStatus].content
+          if statusMessages['team-application'][statuses.teamApplicationStatus].action
+            a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)
+              = statusMessages['team-application'][statuses.teamApplicationStatus].action.title
+        if statuses.teamApplicationStatus == statusConstants.teamApplication.COMPLETE
           div(rows='1.0')
             ul
               for hacker in teamMembers

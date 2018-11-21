@@ -3,8 +3,10 @@ import { parse as parseUrl } from 'url';
 import * as moment from 'moment';
 import { urlencoded as parseUrlEncoded } from 'body-parser';
 import { ServeStaticOptions } from 'serve-static';
+import * as compression from 'compression';
 
 import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
+import { applicationsMiddleware } from 'js/server/middleware';
 
 import { setUpAuth } from 'js/server/auth';
 import { init as initializeUtils, resolvePath as resolveAssetPath, asset } from 'js/server/utils';
@@ -33,7 +35,6 @@ app.use((req: any, res, next) => {
   res.locals.description = metadata.description;
   res.locals.colors = colors;
   res.locals.event = { dates, theme };
-  res.locals.user = req.user;
   const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
   const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = parseUrl(
@@ -49,10 +50,12 @@ let staticOptions: ServeStaticOptions = { };
 if (app.settings.env != 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
-app.use(require('compression')());
+app.use(compression());
 app.use('/assets', express.static(resolveAssetPath('assets/dist'), staticOptions));
 
 setUpAuth(app);
+app.use(applicationsMiddleware.setAppliedStatus);
+app.use(applicationsMiddleware.setApplicationsStatus);
 
 app.locals.asset = asset;
 app.locals.moment = moment;

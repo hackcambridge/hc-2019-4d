@@ -1,5 +1,5 @@
 dashboard:
-  status-messages:
+  overall-status-messages:
     incomplete:
       message_type: warning
       title: Your application is incomplete.
