@@ -15,6 +15,7 @@
     "migration:generate": "sequelize migration:generate",
     "model:generate": "sequelize model:generate",
     "seed:generate": "sequelize seed:generate",
+    "setup": "sequelize db:create; sequelize db:migrate; yarn install"
   },
   "repository": {
     "type": "git",
