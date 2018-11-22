@@ -8,9 +8,9 @@
 
 To run the website on your machine, first make sure you have the following things installed:
 
-- [Node.js](https://nodejs.org) v8 LTS.  If you need to keep multiple versions of Node installed, you might find [Node Version Manager](https://github.com/creationix/nvm) helpful.
-- [Yarn](https://yarnpkg.com/)
 - [Docker](https://www.docker.com)
+- [Node.js](https://nodejs.org/dist/latest-v8.x/) v8 LTS.  If you need to keep multiple versions of Node installed, you might find [Node Version Manager](https://github.com/creationix/nvm) helpful.
+- [Yarn](https://yarnpkg.com/en/docs/install/)
 
 Then [clone this repository from GitHub](https://help.github.com/articles/cloning-a-repository/):
 
@@ -50,11 +50,8 @@ Leaving most of these variables undefined is sufficient to get the basic website
 
 ### Dependencies
 
-We use [Yarn](https://yarnpkg.com/lang/en/) to manage dependencies.  To install the dependencies of the Hack Cambridge website, run:
+We use Yarn to manage dependencies, and PostgreSQL for our database.
 
-```bash
-yarn install
-```
 
 ### Starting the database
 
@@ -64,10 +61,20 @@ To use our database in development, you'll first need to start it by running:
 docker-compose up
 ```
 
-Before starting the app for the first time, you'll need to setup the tables:
+Once PostgreSQL is running, run:
 
 ```bash
-yarn run migrate
+yarn setup
+```
+
+This will create the database, run the migrations, and install the packages specified in `package.json`.
+
+#### Installing packages only
+
+If you don't need PostgreSQL, just run:
+
+```bash
+yarn install
 ```
 
 ### Starting the web server
@@ -75,11 +82,10 @@ yarn run migrate
 To start the web server, run:
 
 ```bash
-yarn global add gulp
-gulp serve
+yarn watch
 ```
 
-And you will be able to access the site at [http://localhost:3000](http://localhost:3000).
+You will be able to access the site at [http://localhost:3000](http://localhost:3000).
 
 ## OAuth2 API
 
@@ -87,13 +93,13 @@ We run an API which authenticates admin users via tokens. Currently the only way
 through scripts. To create a user:
 
 ```bash
-yarn run hc-script -- create-admin --email email@domain.com --name UserName
+yarn hc-script -- create-admin --email email@domain.com --name UserName
 ```
 
 To then create a token for that user:
 
 ```bash
-yarn run hc-script -- create-token email@domain.com
+yarn hc-script -- create-token email@domain.com
 ```
 
 Once you have your token, you can use it to authenticate requests to the API in your HTTP headers:
@@ -107,7 +113,7 @@ Authorization: Bearer <<TOKEN GOES HERE >>
 To send responses to applicants, you can use the `respond` script:
 
 ```bash
-yarn run hc-script respond invite applications.json
+yarn hc-script respond invite applications.json
 ```
 
 You can either `invite` or `reject`.
@@ -115,7 +121,7 @@ You can either `invite` or `reject`.
 `applications.json` refers to an applications file, which can be generated with `suggest-responses`.
 
 ```bash
-yarn run hc-script -- suggest-responses invite 50 applications.json
+yarn hc-script -- suggest-responses invite 50 applications.json
 ```
 
 The use of this script requires a score augmentor function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
@@ -146,25 +152,23 @@ You can control whether or not applications are open using the APPLICATION_OPEN_
 To send team allocations for ticketed hackers that have requested them, you must first suggest some:
 
 ```bash
-yarn run hc-script -- teams suggest teams.json
+yarn hc-script -- teams suggest teams.json
 ```
 
 Then you can send them
 
 ```bash
-yarn run hc-script -- teams send teams.json
+yarn hc-script -- teams send teams.json
 ```
 
 ## Build System
 
-This uses [Gulp](http://gulpjs.org). Install it globally, and then run to build styles and scripts.
+This uses [Gulp](http://gulpjs.org). Run to build styles and scripts.
 
 ```bash
-yarn global add gulp
-gulp build # Build the assets
-gulp serve # Start the server, automatically build assets and reload the browser when changes are made
-gulp watch # Watch for changes in assets and build automatically
-gulp build --prod # Build production assets (or set NODE_ENV to production)
+yarn build # Build the assets
+yarn serve # Start the server, automatically build assets and reload the browser when changes are made
+yarn build --prod # Build production assets (or set NODE_ENV to production)
 ```
 
 ## Database migrations
@@ -172,7 +176,19 @@ gulp build --prod # Build production assets (or set NODE_ENV to production)
 We are using the sequelize CLI to manage migrations. So to create your own:
 
 ```bash
-yarn run sequelize -- migration:create --name YOURMIGRATION
+yarn migration:generate --name YOURMIGRATION
+```
+
+Or to create both a model and migration:
+
+```bash
+yarn model:generate --name YOURMODEL
+```
+
+And for a seed:
+
+```bash
+yarn seed:generate --name YOURSEED
 ```
 
 ## Rolling your own
