@@ -8,14 +8,16 @@ module.exports = {
     password: '',
     database: 'hack-cambridge-development',
     host: '127.0.0.1',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
   },
   test: {
     username: 'postgres',
     password: '',
     database: 'hack-cambridge-test',
     host: '127.0.0.1',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
   },
   production: {
     username: process.env.PGUSER || 'postgres',
@@ -23,6 +25,7 @@ module.exports = {
     database: process.env.PGDATABASE || 'hack-cambridge-production',
     host: process.env.PGHOST || '127.0.0.1',
     port: process.env.PGPORT || 5432,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
   }
 };
