@@ -13,7 +13,7 @@ jobs:
   include:
     - stage: test
       script: npm test
-    - script: yarn run migrate
+    - script: yarn run db:migrate
 
 notifications:
   email:
