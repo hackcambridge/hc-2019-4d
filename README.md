@@ -8,7 +8,6 @@
 
 To run the website on your machine, first make sure you have the following things installed:
 
-- [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org/dist/latest-v8.x/) v8 LTS.  If you need to keep multiple versions of Node installed, you might find [Node Version Manager](https://github.com/creationix/nvm) helpful.
 - [Yarn](https://yarnpkg.com/en/docs/install/)
 
@@ -52,10 +51,17 @@ Leaving most of these variables undefined is sufficient to get the basic website
 
 We use Yarn to manage dependencies, and PostgreSQL for our database.
 
+#### Installing PostgreSQL and packages
 
-### Starting the database
+You have various options for installing PostgreSQL:
 
-To use our database in development, you'll first need to start it by running:
+- By [downloading Postgres.app](https://postgresapp.com/downloads.html) if you're running macOS (very easy, and [intergrates with Postico](https://eggerapps.at/postico/))
+- [Using the installers on the PostgreSQL website](https://www.postgresql.org/download/)
+- Using your favourite package manager (e.g. Homebrew, APT, RPM…)
+- By [downloading Docker](https://www.docker.com/products/docker-desktop) and using a Docker image (more complicated, but guarantees an identical environment)
+
+Usually the database can be configured to start automatically after login (this is the default for Postgres.app).
+If you use Docker though, you need to start the database manually each time with:
 
 ```bash
 docker-compose up
