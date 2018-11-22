@@ -1,8 +1,8 @@
 import * as Sequelize from 'sequelize';
 
+import Admin from './Admin';
 import db from './db';
 import HackerApplication from './HackerApplication';
-import Admin from './Admin';
 
 interface ApplicationAssignmentAttributes {
   id?: number;

@@ -19,6 +19,7 @@ const revAll = require('gulp-rev-all');
 const sourcemaps = require('gulp-sourcemaps');
 const terser = require('gulp-terser');
 const ts = require('gulp-typescript');
+const tslint = require('gulp-tslint');
 const util = require('gulp-util');
 const validateYaml = require('gulp-yaml-validate');
 
@@ -91,6 +92,15 @@ gulp.task('compile-typescript', () => {
     .js.pipe(gulp.dest('dist'));
 });
 
+gulp.task("lint-typescript", () =>
+  gulp
+    .src("src/**/*.ts")
+    .pipe(tslint({
+        formatter: "verbose"
+    }))
+    .pipe(tslint.report())
+);
+
 gulp.task('copy-source', () => {
   const paths = ['src/**', '!src/**/*.ts'];
   return gulp.src(paths)
@@ -122,7 +132,7 @@ gulp.task('wait', (cb) =>
 );
 
 gulp.task('build', (cb) => {
-  let args = ['clean', 'copy-assets', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
+  let args = ['clean', 'copy-assets', 'lint-typescript', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd

@@ -1,4 +1,4 @@
-import { HackerApplication, ApplicationTicket } from 'js/server/models';
+import { ApplicationTicket, HackerApplication } from 'js/server/models';
 
 export function getAllApplicationsWithTickets() {
   return HackerApplication.findAll({

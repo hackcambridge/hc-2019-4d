@@ -1,12 +1,12 @@
 import { TeamMember } from 'js/server/models';
-import { getHackerFromEmailOrApplicationSlug } from './utils';
 import { createHandler } from '../utils';
+import { getHackerFromEmailOrApplicationSlug } from './utils';
 
 export default {
   command: 'add-member teamId <email|applicationId>',
   desc: 'Add a hacker to a team',
   aliases: [],
-  handler: createHandler(({ teamId, email, applicationId }) =>
+  handler: createHandler(({ teamId, email }) =>
     getHackerFromEmailOrApplicationSlug(email).then(hacker =>
       TeamMember.findOne({
         where: { hackerId: hacker.id }
@@ -15,9 +15,9 @@ export default {
           return Promise.reject(`Hacker already in team ${teamMember.teamId}`);
         } else {
           return TeamMember.create({
-            teamId: teamId,
+            teamId,
             hackerId: hacker.id
-          }).then(newTeamMember => {
+          }).then(_newTeamMember => {
             console.log(`Added hacker ${email} to team ${teamId}`);
           });
         }

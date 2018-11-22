@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { createHandler } from './utils';
-import { response } from 'js/shared/status-constants';
-import { setResponseForApplicationWithChecks } from 'js/server/review/response-logic';
 import { HackerApplication } from 'js/server/models';
+import { setResponseForApplicationWithChecks } from 'js/server/review/response-logic';
+import { response } from 'js/shared/status-constants';
+import { createHandler } from './utils';
 
 const responseTypeMap = {
   invite: response.INVITED,
@@ -20,7 +20,7 @@ function processIndividualApplication(applicationId, responseType) {
       }
 
       return setResponseForApplicationWithChecks(application, responseType)
-        .then(applicationResponse => {
+        .then(_applicationResponse => {
           console.log(`Application response sent for application ${application.id}.`);
         }, error => {
           console.error(`Failed to send response for application ${application.id}.`);
@@ -38,7 +38,7 @@ function processResponseQueue(applications, responseType) {
   }
 
   const application = applications.pop();
-  
+
   return processIndividualApplication(application.id, responseType)
     .then(() => {
       return processResponseQueue(applications, responseType);

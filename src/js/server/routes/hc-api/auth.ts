@@ -1,12 +1,12 @@
+import * as cors from 'cors';
 import * as passport from 'passport';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
-import * as cors from 'cors';
 
 import { OauthAccessToken } from 'js/server/models';
 
 passport.use(new BearerStrategy((token, done) => {
   OauthAccessToken.getAdminFromTokenString(token)
-    .then((admin) => {
+    .then(admin => {
       if (!admin) {
         done(null, false);
         return;

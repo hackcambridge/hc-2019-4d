@@ -1,5 +1,5 @@
+import { expireInvitation, getInvitationExpiryCandidates } from 'js/server/attendance/logic';
 import { createHandler } from './utils';
-import { getInvitationExpiryCandidates, expireInvitation } from 'js/server/attendance/logic';
 
 function createExpiryQueue(responsesToProcess, dryRun) {
   // Defensive clone for mutating array
@@ -15,7 +15,7 @@ function createExpiryQueue(responsesToProcess, dryRun) {
     console.log(`Expiring response ${response.id}. Date invited: ${response.createdAt}`);
     return (dryRun ? Promise.resolve() : expireInvitation(response)).then(() => {
       console.log(`Expired ${response.id}`);
-    }, (error) => {
+    }, error => {
       console.error(`Failed to expire ${response.id}`);
       console.error(error);
     }).then(() => processExpiryQueue());
@@ -35,8 +35,8 @@ export default {
       .describe('dryRun', 'Display the candidates for expiry but do not expire them');
   },
   handler: createHandler(({ dryRun }) =>
-    getInvitationExpiryCandidates().then((responses) => {
-      console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length != 1 ? 's' : ''}`);
+    getInvitationExpiryCandidates().then(responses => {
+      console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length !== 1 ? 's' : ''}`);
       return createExpiryQueue(responses, dryRun).process();
     })
   ),

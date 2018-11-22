@@ -3,7 +3,8 @@ import * as metadata from 'js/shared/metadata';
 import { TeamMemberDetails } from './team-logic';
 
 function teamKeyFromMember(member: TeamMemberDetails) {
-  return { [`${member.firstName} ${member.lastName}`]: `${member.email} (${member.slackName ? `Slack name: ${member.slackName}` : 'You haven\'t signed up for Slack yet!'})` };
+  const slackDetails = member.slackName ? `Slack name: ${member.slackName}` : 'You haven\'t signed up for Slack yet!';
+  return { [`${member.firstName} ${member.lastName}`]: `${member.email} (${slackDetails})` };
 }
 
 export function newTicket({ name }: { name: string }) {
@@ -13,11 +14,13 @@ export function newTicket({ name }: { name: string }) {
       name,
       intro: [
         `You\'ve confirmed your place at ${metadata.eventTitle}. Here\'s your ticket!`,
-        'Well, this email isn\'t your actual ticket, we will know who you are because you have to bring photo ID with you to registration.',
+        'Well, this email isn\'t your actual ticket, we will know who you are because you have to bring photo ID ' +
+        'with you to registration.',
       ],
       action: [
         makeInstruction({
-          instructions: 'All the information about registration, accommodation, travel and more is on your dashboard. Have a good read - there may be some extra steps for you.',
+          instructions: 'All the information about registration, accommodation, travel and more is on your ' +
+          'dashboard. Have a good read - there may be some extra steps for you.',
           button: {
             text: 'Go to my Dashboard',
             link: 'https://hackcambridge.com/apply/dashboard',
@@ -35,7 +38,8 @@ export function expiry({ name, daysValid }: { name: string, daysValid: number })
     body: {
       name,
       intro: [
-        `Earlier we sent you an invitation to ${metadata.eventTitle} with ${daysValid} days to respond. We have not received a response from you and your invitation has expired.`,
+        `Earlier we sent you an invitation to ${metadata.eventTitle} with ${daysValid} days to respond. ` +
+        'We have not received a response from you and your invitation has expired.',
         `We hope to see you apply for the next ${metadata.title}!`
       ],
       outro: 'If you have any questions, please reach out to us by visiting our website.',
@@ -44,7 +48,7 @@ export function expiry({ name, daysValid }: { name: string, daysValid: number })
 }
 
 export function teamAllocation({ team }: { team: TeamMemberDetails[] }) {
-  const teamDictionary = team.reduce((partialTeam, member) => 
+  const teamDictionary = team.reduce((partialTeam, member) =>
     Object.assign(partialTeam, teamKeyFromMember(member)),
   { }
   );
@@ -66,4 +70,3 @@ export function teamAllocation({ team }: { team: TeamMemberDetails[] }) {
     }
   };
 }
-

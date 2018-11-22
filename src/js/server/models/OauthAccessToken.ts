@@ -1,8 +1,8 @@
-import * as Sequelize from 'sequelize';
 import * as moment from 'moment';
+import * as Sequelize from 'sequelize';
 
-import db from './db';
 import Admin, { AdminInstance } from './Admin';
+import db from './db';
 
 interface OauthAccessTokenAttributes {
   id?: number;
@@ -45,7 +45,7 @@ const OauthAccessToken: OauthAccessToken =
 
 OauthAccessToken.belongsTo(Admin);
 
-OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(token) {
+OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(tokenString) {
   return OauthAccessToken.findOne({
     include: [
       {
@@ -54,9 +54,9 @@ OauthAccessToken.getAdminFromTokenString = function getAdminFromTokenString(toke
       },
     ],
     where: {
-      token,
+      token: tokenString,
     },
-  }).then((token) => {
+  }).then(token => {
     if (!token) {
       return null;
     }

@@ -1,21 +1,21 @@
-import { Controller } from 'stimulus'
+import { Controller } from 'stimulus';
 
 export default class ValidationMessagesController extends Controller {
-  allowMessage(event) {
+  public allowMessage(_event) {
     if (!this.data.has('listening')) {
-      this.data.set('listening', '')
+      this.data.set('listening', '');
     }
   }
-  
-  scrollToElement(event) {
+
+  public scrollToElement(event) {
     if (this.data.has('listening')) {
-      this.data.delete('listening')
-      event.target.scrollIntoViewIfNeeded(true)
-      this.reportValidity(event)
+      this.data.delete('listening');
+      event.target.scrollIntoViewIfNeeded(true);
+      this.reportValidity(event);
     }
   }
-  
-  reportValidity(event) {
-    event.target.reportValidity()
+
+  public reportValidity(event) {
+    event.target.reportValidity();
   }
 }

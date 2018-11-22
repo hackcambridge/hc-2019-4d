@@ -1,5 +1,5 @@
-import { UserRequest } from 'js/server/routes/apply-router';
 import { rsvpToResponse } from 'js/server/attendance/logic';
+import { UserRequest } from 'js/server/routes/apply-router';
 
 export function createRsvp(req: UserRequest, res) {
   if (req.body.rsvp) {

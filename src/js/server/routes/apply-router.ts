@@ -1,8 +1,8 @@
-import { Router, Request } from 'express';
+import { Request, Router } from 'express';
 
-import { hackerApplicationsController, teamsController, rsvpsController, dashboardController } from 'js/server/controllers/apply';
+import { logout, requireAuth } from 'js/server/auth';
+import { dashboardController, hackerApplicationsController, rsvpsController, teamsController } from 'js/server/controllers/apply';
 import { applicationsMiddleware } from 'js/server/middleware';
-import { requireAuth, logout } from 'js/server/auth';
 import { HackerInstance } from 'js/server/models';
 
 const applyRouter = Router();
@@ -15,11 +15,11 @@ applyRouter.get('/', (req: UserRequest, res) => {
   req.user ? res.redirect('dashboard') : res.redirect('login');
 });
 
-applyRouter.get('/login', (req: UserRequest, res) => res.render('apply/login'));
+applyRouter.get('/login', (_req: UserRequest, res) => res.render('apply/login'));
 
 applyRouter.use(requireAuth);
 
-applyRouter.get('/logout', logout, (req: UserRequest, res) => res.redirect('/'));
+applyRouter.get('/logout', logout, (_req: UserRequest, res) => res.redirect('/'));
 
 applyRouter.get('/dashboard', requireAuth, dashboardController.showDashboard);
 

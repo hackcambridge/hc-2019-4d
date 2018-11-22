@@ -10,38 +10,44 @@ declare global {
 
 export function start() {
   if ('StripeCheckout' in window) {
-    let StripeCheckout = window.StripeCheckout;
-    let stripeConfig = window.stripeConfig;
+    const StripeCheckout = window.StripeCheckout;
+    const stripeConfig = window.stripeConfig;
 
     $('.payment-form').each((_, form: HTMLFormElement) => {
-      let $form = $(form);
+      const $form = $(form);
       let loading = null;
 
-      let stripeHandler = StripeCheckout.configure({
+      const stripeHandler = StripeCheckout.configure({
         key: stripeConfig.key,
         image: stripeConfig.image,
         locale: 'auto',
         currency: 'GBP',
-        token: function (token) {
+        token(token) {
           console.log('TOKEN');
           $output.text('Working…');
 
-          let data = $form.serializeArray();
+          const formData = $form.serializeArray();
 
-          data.push({ name: 'token', value: token.id });
-          data.push({ name: 'email', value: token.email });
+          formData.push({ name: 'token', value: token.id });
+          formData.push({ name: 'email', value: token.email });
 
           loading = $.ajax('/api/payment', {
             method: 'POST',
-            data: data
+            data: formData
           })
-            .done((data) => {
+            .done(data => {
               $output.text(data.message);
               $('section.form-status.red').removeClass('red').addClass('black');
             })
-            .fail((jqXHR) => {
-              let errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ? jqXHR.responseJSON.error : 'Something went wrong. Please try again.';
-              $output.text(errormsg + ' Please try again.').append('<br>').append('<a href="mailto:team@hackcambridge.com?subject=Payment issue&body=I have encountered this error when trying to make a payment: ' + errormsg + '">Contact us</a>');
+            .fail(jqXHR => {
+              const errormsg = ((jqXHR.responseJSON) && (jqXHR.responseJSON.error)) ?
+                jqXHR.responseJSON.error :
+                'Something went wrong. Please try again.';
+              $output
+                .text(errormsg + ' Please try again.')
+                .append('<br>')
+                .append('<a href="mailto:team@hackcambridge.com?subject=Payment issue&body=' +
+                  'I have encountered this error when trying to make a payment: ' + errormsg + '">Contact us</a>');
               $('section.form-status.black').removeClass('black').addClass('red');
               $form.find('input, button').prop('disabled', false);
             })
@@ -53,12 +59,12 @@ export function start() {
         }
       });
 
-      let $amount = $form.find('[name="amount"]');
-      let $reference = $form.find('[name="reference"]');
-      let $output = $('p.form-status');
+      const $amount = $form.find('[name="amount"]');
+      const $reference = $form.find('[name="reference"]');
+      const $output = $('p.form-status');
 
       function getAmount(): number {
-        const amount: number = <number>$amount.val();
+        const amount: number = $amount.val() as number;
 
         if (isNaN(amount)) {
           return 0;
@@ -67,17 +73,17 @@ export function start() {
         return amount;
       }
 
-      $form.submit((e) => {
+      $form.submit(e => {
         e.preventDefault();
 
         if (loading != null) {
           return;
         }
 
-        let amount = Math.round(getAmount() * 100);
-        let reference = $reference.val();
+        const amount = Math.round(getAmount() * 100);
+        const reference = $reference.val();
 
-        if (amount == 0) {
+        if (amount === 0) {
           return;
         }
 
@@ -88,9 +94,9 @@ export function start() {
         stripeHandler.open({
           name: 'Hack Cambridge',
           description: 'Payment: ' + reference,
-          amount: amount
+          amount
         });
       });
     });
   }
-};
+}

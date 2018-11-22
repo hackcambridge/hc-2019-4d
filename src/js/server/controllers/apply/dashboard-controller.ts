@@ -1,10 +1,10 @@
 import { RequestHandler } from 'express';
 
+import { HackerInstance, TeamMember } from 'js/server/models';
 import { UserRequest } from 'js/server/routes/apply-router';
 import * as utils from 'js/server/utils.js';
-import { Hacker, TeamMember, HackerInstance } from 'js/server/models';
+import { getHackathonEndDate, getHackathonStartDate } from 'js/shared/dates';
 import * as statusConstants from 'js/shared/status-constants';
-import { getHackathonStartDate, getHackathonEndDate } from 'js/shared/dates';
 
 async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<HackerInstance[]> {
   const teamMember = await user.getTeam();
@@ -12,13 +12,13 @@ async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<Hacke
     return null;
   }
   const otherMembers = await TeamMember.findAll({
-    where: <any>{
+    where: {
       teamId: teamMember.teamId,
       $not: {
         // Exclude the current user
         hackerId: user.id,
       }
-    },
+    } as any,
   });
   if (otherMembers == null) {
     return null;
@@ -28,7 +28,7 @@ async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<Hacke
 
 export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
   const statusMessages = utils.loadResource('dashboard');
-  
+
   const [application, statuses, teamMembers] = await Promise.all([
     req.user.getHackerApplication(),
     req.user.getStatuses(),

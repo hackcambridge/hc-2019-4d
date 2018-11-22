@@ -1,4 +1,4 @@
-import { getHackathonStartDate, getHackathonEndDate } from './dates';
+import { getHackathonEndDate, getHackathonStartDate } from './dates';
 
 function createDescription() {
   if (!getHackathonStartDate().isSame(getHackathonEndDate(), 'month')) {
@@ -6,7 +6,7 @@ function createDescription() {
   }
 
   const formattedDateRange = getHackathonStartDate().format('MMMM D') + ' – ' + getHackathonEndDate().format('D');
-  
+
   return `Join us for 24 hours of building, breaking and creating in the heart of Cambridge from ${formattedDateRange}.`;
 }
 

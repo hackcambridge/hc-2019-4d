@@ -1,9 +1,9 @@
 import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
-import { checkSchema, validationResult, ValidationSchema, Result } from 'express-validator/check';
+import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 
+import { ApplicationResponse, HackerApplication, HackerInstance, Team, TeamMember, TeamMemberInstance } from 'js/server/models';
 import { UserRequest } from 'js/server/routes/apply-router';
-import { HackerApplication, ApplicationResponse, Team, TeamMember, HackerInstance, TeamMemberInstance } from 'js/server/models';
 
 const schema: ValidationSchema = {
   'members.b': {
@@ -13,7 +13,7 @@ const schema: ValidationSchema = {
       errorMessage: 'Fill out this field',
     },
   },
-}
+};
 
 export async function newTeam(req: UserRequest, res): Promise<void> {
   const hackerApplication = await req.user.getHackerApplication();
@@ -31,7 +31,7 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
 
 export const createTeam: RequestHandlerParams = [
   ...checkSchema(schema),
-  (req: UserRequest, res: Response, next: NextFunction) => {
+  (req: UserRequest, res: Response, _next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render('apply/team-form', {
@@ -44,20 +44,20 @@ export const createTeam: RequestHandlerParams = [
       }).catch(error => {
         res.render('apply/team-form', {
           formData: req.body,
-          error: error,
+          error,
         });
       });
     }
   }
 ];
 
-export async function createTeamFromForm(body, user: HackerInstance, errors: Result<{}>): Promise<TeamMemberInstance[]> {
+export async function createTeamFromForm(body, user: HackerInstance, errors): Promise<TeamMemberInstance[]> {
   const members = new Set<string>();
   const hackerIds = [user.id];
   const applicationSlugs = {
-    'memberB': body.members.b,
-    'memberC': body.members.c || null,
-    'memberD': body.members.d || null,
+    memberB: body.members.b,
+    memberC: body.members.c || null,
+    memberD: body.members.d || null,
   };
   // Ensure application slugs are unique and not the applicant's own
   const application = await user.getHackerApplication();
@@ -77,33 +77,33 @@ export async function createTeamFromForm(body, user: HackerInstance, errors: Res
   }
 
   if (members.size <= 1) {
-    throw new Error(errors['memberB'] = 'You need at least two team members to form a team.');
+    throw new Error(errors.memberB = 'You need at least two team members to form a team.');
   }
 
   await Promise.all(Object.keys(applicationSlugs).map(async field => {
     const applicationSlug = applicationSlugs[field];
 
-    const application = await HackerApplication.findOne({
+    const teamMemberApplication = await HackerApplication.findOne({
       where: { applicationSlug }
     });
 
-    if (application === null) {
+    if (teamMemberApplication === null) {
       // The application slug was not valid
       throw new Error(errors[field] = 'There aren\'t any applications with this ID!');
     }
-    hackerIds.push(application.hackerId);
+    hackerIds.push(teamMemberApplication.hackerId);
 
-    const team = await TeamMember.findOne({
-      where: { hackerId: application.hackerId }
+    const existingTeam = await TeamMember.findOne({
+      where: { hackerId: teamMemberApplication.hackerId }
     });
 
-    if (team !== null) {
+    if (existingTeam !== null) {
       // The hacker is already part of another team
       throw new Error(errors[field] = 'This applicant is already part of a different team!');
     }
 
     const applicationResponse = await ApplicationResponse.findOne({
-      where: { hackerApplicationId: application.id }
+      where: { hackerApplicationId: teamMemberApplication.id }
     });
 
     if (applicationResponse !== null) {

@@ -17,7 +17,7 @@ function downloadCv(application, destPath) {
     });
 
     request.on('error', error => {
-      fs.unlink(destPath, _ => {});
+      fs.unlink(destPath, _ => undefined);
       reject(`Could not download CV for application ID ${application.id} (error ${error})`);
     });
   });
@@ -27,21 +27,22 @@ function downloadCvs(basePath) {
   return getAllApplicationsWithTickets()
     .then(applicationsWithTickets => {
       const cvPromiseFunctions = applicationsWithTickets.map((application, i) => {
-        const destPath = path.resolve(process.cwd(), basePath, `Hack Cambridge CV ${i+1}.pdf`);
+        const destPath = path.resolve(process.cwd(), basePath, `Hack Cambridge CV ${i + 1}.pdf`);
         return (() => downloadCv(application, destPath));
       });
 
       let promiseChain = Promise.resolve();
 
       for (let i = 0; i < cvPromiseFunctions.length; i += simultaneousRequests) {
-        let promiseFunctionChunk = cvPromiseFunctions.slice(i, i + simultaneousRequests);
+        const promiseFunctionChunk = cvPromiseFunctions.slice(i, i + simultaneousRequests);
         promiseChain = promiseChain.then(_ => {
           console.log(`Downloading CVs ${i + 1} to ${i + promiseFunctionChunk.length}...`);
           return Promise.all(promiseFunctionChunk.map(promiseFunc => promiseFunc()))
-            .then(_ => {});
+            // tslint:disable-next-line:no-shadowed-variable
+            .then(_ => undefined);
         });
       }
-      
+
       return promiseChain;
     });
 }

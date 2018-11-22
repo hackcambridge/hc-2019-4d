@@ -1,8 +1,8 @@
 import * as Sequelize from 'sequelize';
 
+import { response } from 'js/shared/status-constants';
 import db from './db';
 import HackerApplication from './HackerApplication';
-import { response } from 'js/shared/status-constants';
 import { ResponseRsvpInstance } from './ResponseRsvp';
 
 interface ApplicationResponseAttributes {

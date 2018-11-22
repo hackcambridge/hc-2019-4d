@@ -1,8 +1,8 @@
 // TODO: update to mailchimp-api-v3
-import * as mailchimp from 'mailchimp-api';
-import { Router } from 'express';
 import { json as parseJson, urlencoded as parseUrlEncoded } from 'body-parser';
+import { Router } from 'express';
 import { isEmpty } from 'lodash';
+import * as mailchimp from 'mailchimp-api';
 import * as Stripe from 'stripe';
 
 import { ErrorWithStatus } from 'js/server/utils';
@@ -27,9 +27,9 @@ api.post('/subscribe/interested', (req, res, next) => {
     email: { email: req.body.email },
     merge_vars: { EMAIL: req.body.email },
     update_existing: true
-  }, (data) => {
+  }, _data => {
     res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
-  }, (error) => {
+  }, _error => {
     next(new ErrorWithStatus('We couldn\'t add you. Please check that this is a valid email.', 500));
   });
 });
@@ -48,15 +48,15 @@ api.post('/payment', (req, res, next) => {
     next(new ErrorWithStatus('Must provide email', 401));
   }
 
-  let amount = Math.round(req.body.amount * 100);
+  const amount = Math.round(req.body.amount * 100);
 
   stripe.charges.create({
-    amount: amount,
+    amount,
     currency: 'gbp',
     source: req.body.token,
     receipt_email: req.body.email,
     description: req.body.reference
-  }, (err, charge) => {
+  }, (err, _charge) => {
     if (err) {
       console.error(err);
       next(new ErrorWithStatus(err.message || 'Something went wrong with your transaction.', 500));
@@ -67,11 +67,11 @@ api.post('/payment', (req, res, next) => {
   });
 });
 
-api.use((req, res, next) => {
+api.use((_req, _res, next) => {
   next(new ErrorWithStatus('Not found', 404));
 });
 
-api.use((err, req, res, next) => {
+api.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.status(err.status || 500);
   res.json({

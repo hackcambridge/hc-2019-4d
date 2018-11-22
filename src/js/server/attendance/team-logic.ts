@@ -1,8 +1,8 @@
-import { HackerApplication, ApplicationTicket, Hacker } from 'js/server/models';
-import * as slack from 'js/server/slack';
 import { sendEmail } from 'js/server/email';
-import * as emailTemplates from './email-templates';
+import { ApplicationTicket, Hacker, HackerApplication } from 'js/server/models';
+import * as slack from 'js/server/slack';
 import { HackerApplicationInstance } from '../models/HackerApplication';
+import * as emailTemplates from './email-templates';
 
 const ROLE_ORDERING = ['development', 'design', 'product_management', 'unknown'];
 const TARGET_TEAM_SIZE = 4;
@@ -60,11 +60,11 @@ function assignApplicationsToTeams(applications: HackerApplicationInstance[]) {
   let teamIndex = 0;
   const teams = createEmptyTeams(applicationsToAssign);
 
-  applications.forEach((application) => {
+  applications.forEach(application => {
     teams[teamIndex % teams.length].push(application);
     teamIndex += 1;
   });
-  
+
   return teams;
 }
 
@@ -83,7 +83,7 @@ function createTeamAssignments(): PromiseLike<HackerApplicationInstance[][]> {
 }
 
 function getSlackNameForEmail(slackUsers, email): string {
-  for (let user of slackUsers) {
+  for (const user of slackUsers) {
     if (user.profile.email === email) {
       return user.name;
     }
@@ -114,7 +114,7 @@ export function sendTeamEmail(team) {
   return sendEmail({
     to: team.map(member => member.email),
     contents: emailTemplates.teamAllocation({ team }),
-  }).catch((error) => {
+  }).catch(error => {
     console.error(`Sending team email to ${teamIdentifier} failed: `, error);
   });
 }

@@ -11,9 +11,9 @@ export default {
   builder(yargs) {
     return yargs;
   },
-  handler: createHandler(({ outputfile }) => 
+  handler: createHandler(({ outputfile }) =>
     getSerializedTeamAssignments()
-      .then((teams) => {
+      .then(teams => {
         fs.writeFileSync(path.resolve(process.cwd(), outputfile), JSON.stringify(teams, null, 2));
         console.log(`Wrote ${teams.length} teams to ${outputfile}.`);
       })

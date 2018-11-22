@@ -8,4 +8,4 @@ export function createHandler(createHandlerFn) {
       .catch(error => console.error(error))
       .then(() => process.exit());
   };
-};
+}

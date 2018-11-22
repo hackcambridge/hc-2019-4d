@@ -1,24 +1,24 @@
-import * as express from 'express';
-import { parse as parseUrl } from 'url';
-import * as moment from 'moment';
 import { urlencoded as parseUrlEncoded } from 'body-parser';
-import { ServeStaticOptions } from 'serve-static';
 import * as compression from 'compression';
+import * as express from 'express';
+import * as moment from 'moment';
+import { ServeStaticOptions } from 'serve-static';
+import { parse as parseUrl } from 'url';
 
-import { router, apiRouter, applyRouter, eventRouter, hcApiRouter } from './routes';
 import { applicationsMiddleware } from 'js/server/middleware';
+import { apiRouter, applyRouter, eventRouter, hcApiRouter, router } from './routes';
 
 import { setUpAuth } from 'js/server/auth';
-import { init as initializeUtils, resolvePath as resolveAssetPath, asset } from 'js/server/utils';
 import { middleware as errorMiddleware } from 'js/server/errors';
+import { asset, init as initializeUtils, resolvePath as resolveAssetPath } from 'js/server/utils';
 
 import * as colors from 'js/shared/colors';
-import * as metadata from 'js/shared/metadata';
 import * as dates from 'js/shared/dates';
+import * as metadata from 'js/shared/metadata';
 import * as theme from 'js/shared/theme';
 
 const app = express();
-let server = require('http').Server(app);
+const server = require('http').Server(app);
 
 app.set('view engine', 'pug');
 // Start server
@@ -35,8 +35,8 @@ app.use((req: any, res, next) => {
   res.locals.description = metadata.description;
   res.locals.colors = colors;
   res.locals.event = { dates, theme };
-  const port = (app.settings.env == 'development') ? ':' + req.app.settings.port : '';
-  const protocol = (app.settings.env == 'development') ? req.protocol : 'https';
+  const port = (app.settings.env === 'development') ? ':' + req.app.settings.port : '';
+  const protocol = (app.settings.env === 'development') ? req.protocol : 'https';
   res.locals.requestedUrl = req.requestedUrl = parseUrl(
     protocol + '://' + req.hostname + port + req.originalUrl
   );
@@ -46,8 +46,8 @@ app.use((req: any, res, next) => {
 initializeUtils(app);
 
 // Static file serving
-let staticOptions: ServeStaticOptions = { };
-if (app.settings.env != 'development') {
+const staticOptions: ServeStaticOptions = { };
+if (app.settings.env !== 'development') {
   staticOptions.maxAge = 60 * 60 * 365 * 1000;
 }
 app.use(compression());
@@ -74,7 +74,7 @@ app.use('/hcapi', hcApiRouter);
 // This URL was sent out as a typo in a 2019 social media email.
 app.get('/appl', (_, res) => res.redirect(302, '/apply'));
 
-app.use((req, res) => res.status(404).render('404'));
+app.use((_req, res) => res.status(404).render('404'));
 
 app.use(errorMiddleware);
 

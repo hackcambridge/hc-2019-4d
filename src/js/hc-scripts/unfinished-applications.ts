@@ -1,5 +1,5 @@
-import { createHandler } from './utils';
 import { getHackersWithUnfinishedApplications } from 'js/server/apply/applicant-info';
+import { createHandler } from './utils';
 
 function getEmailsOfHackersWithUnfinishedApplications(kind) {
   return getHackersWithUnfinishedApplications(kind).then(hackers => {
@@ -20,8 +20,10 @@ export default {
   aliases: [],
   builder(yargs) {
     return yargs
-      .example('unfinished-applications individual', 'Get emails of hackers who didn\'t finish their individual application')
-      .example('unfinished-applications team-only', 'Get emails of hackers who finished their individual application but not their team application');
+      .example('unfinished-applications individual',
+        'Get emails of hackers who didn\'t finish their individual application')
+      .example('unfinished-applications team-only',
+        'Get emails of hackers who finished their individual application but not their team application');
   },
   handler: createHandler(({ kind }) =>
     getEmailsOfHackersWithUnfinishedApplications(kind)

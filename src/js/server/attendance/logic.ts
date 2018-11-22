@@ -1,28 +1,28 @@
 import * as moment from 'moment';
 import * as Sequelize from 'sequelize';
 
-import { ResponseRsvp, ApplicationTicket, HackerApplication, ApplicationResponse, Hacker, db } from 'js/server/models';
-import * as slack from 'js/server/slack';
 import { sendEmail } from 'js/server/email';
-import { response } from 'js/shared/status-constants';
+import { ApplicationResponse, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'js/server/models';
 import { INVITATION_VALIDITY_DURATION } from 'js/server/review/constants';
+import * as slack from 'js/server/slack';
+import { response } from 'js/shared/status-constants';
 import * as emailTemplates from './email-templates';
 
 /**
  * Creates a ticket for an application.
- * 
+ *
  * Sends an email and Slack invite to the user.
  */
 function createTicket(application, transaction) {
   return ApplicationTicket.create({
     hackerApplicationId: application.id,
-  }, { transaction }).then((applicationTicket) => {
+  }, { transaction }).then(applicationTicket => {
     return application.getHacker({ transaction })
       .then(hacker => {
         Promise.all([
           slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
           sendTicketEmail(hacker)
-        ]).catch((error) => {
+        ]).catch(error => {
           // Not doing anything on error as there is no way to recover
           console.error(error);
         });
@@ -55,7 +55,7 @@ function sendTicketEmail(hacker) {
  */
 export function getInvitationExpiryCandidates() {
   return ApplicationResponse.findAll({
-    where: <any>Sequelize.and(
+    where: Sequelize.and(
       {
         createdAt: {
           $lt: moment().subtract(INVITATION_VALIDITY_DURATION).toDate(),
@@ -63,7 +63,7 @@ export function getInvitationExpiryCandidates() {
         response: response.INVITED,
       },
       Sequelize.literal('"responseRsvp" IS null')
-    ),
+    ) as any,
     include: [
       ResponseRsvp,
       {
@@ -76,7 +76,7 @@ export function getInvitationExpiryCandidates() {
 
 /**
  * Expire an invitation and email the invitation holder about this
- * 
+ *
  * @param {Response} response - The response object to expire. Must represent an invitation
  *   and have its application with hacker hydrated.
  */
@@ -99,7 +99,7 @@ export function expireInvitation(applicationResponse) {
 
 /**
  * Adds an RSVP for a particular application response.
- * 
+ *
  * If the RSVP is yes, then a ticket will be added to the application.
  */
 export function rsvpToResponse(applicationResponse, rsvpStatus) {
