@@ -43,6 +43,8 @@ STRIPE_PUBLISH_KEY=
 
 Leaving most of these variables undefined is sufficient to get the basic website up-and-running, but not all features will work without valid tokens for all the environment variables.  If you're working on the Hack Cambridge committee, you can ask for these tokens on the #development_and_web channel on Slack, but we're looking to improve this process.
 
+You can run the website in different environments by changing the value of `NODE_ENV`. Valid values are `development`, `test`, and `production`.
+
 ### Dependencies
 
 We use Yarn to manage dependencies, and PostgreSQL for our database.
