@@ -194,10 +194,12 @@ export function getApplicationsWithScores(weightingFunction = (({ rating }) => r
         country: application.countryTravellingFrom,
         institution: application.hacker.institution,
         inTeam: application.hacker.Team !== null,
+        isDisqualified: application.isDisqualified,
         rating: calculateScore(application, individualScores, teamScores),
         status: application.applicationResponse !== null ?
           (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') :
           'Pending',
+        visaNeededBy: application.visaNeededBy,
       };
 
       augmentedApplication.rating = weightingFunction(augmentedApplication);
