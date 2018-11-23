@@ -33,8 +33,8 @@ router.get('/favicon.ico', (_req, res) => res.sendFile(resolvePath('assets/image
 
 router.get('/sponsorship', (_req, res) => res.render('sponsorship'));
 
-router.get('/favicons/browserconfig.xml', (_req, res) => res.render('favicons/browserconfig.xml'));
+router.get('/favicons/browserconfig.xml', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/browserconfig.xml')));
 
-router.get('/favicons/manifest.json', (_req, res) => res.render('favicons/manifest.json'));
+router.get('/favicons/manifest.json', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/manifest.json')));
 
 export default router;
