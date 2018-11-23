@@ -174,7 +174,7 @@ yarn watch # Start the server, automatically build assets and reload the browser
 yarn build --prod # Build production assets (or set NODE_ENV to production)
 ```
 
-## Database migrations
+## Database generators
 
 We use sequelize to manage migrations. To create your own:
 
@@ -192,6 +192,26 @@ And for a seed:
 
 ```bash
 yarn seed:generate --name YOURSEED
+```
+
+## Database tasks
+
+If you run in an environment other than `development` you'll need to set up a database for it and run the migrations. To do this run:
+
+```bash
+yarn db:setup
+```
+
+To run the migrations for the current database run:
+
+```bash
+yarn db:migrate
+```
+
+And to get a fresh, empty database, run:
+
+```bash
+yarn db:reset
 ```
 
 ## Rolling your own
