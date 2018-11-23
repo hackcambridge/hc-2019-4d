@@ -169,7 +169,7 @@ This uses [Gulp](http://gulpjs.org). Run to build styles and scripts.
 
 ```bash
 yarn build # Build the assets
-yarn serve # Start the server, automatically build assets and reload the browser when changes are made
+yarn watch # Start the server, automatically build assets and reload the browser when changes are made
 yarn build --prod # Build production assets (or set NODE_ENV to production)
 ```
 
