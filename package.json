@@ -9,13 +9,13 @@
     "build": "gulp build",
     "watch": "gulp serve",
     "hc-script": "export NODE_PATH=$NODE_PATH:./dist; node ./dist/js/hc-scripts/index",
-    "db:migrate": "sequelize db:migrate",
-    "db:setup": "sequelize db:create; sequelize db:migrate",
-    "db:reset": "sequelize db:drop; sequelize db:create; sequelize db:migrate",
+    "db:migrate": "./scripts/db/migrate",
+    "db:setup": "./scripts/db/setup",
+    "db:reset": "./scripts/db/reset",
     "migration:generate": "sequelize migration:generate",
     "model:generate": "sequelize model:generate",
     "seed:generate": "sequelize seed:generate",
-    "setup": "sequelize db:create; sequelize db:migrate; yarn install"
+    "setup": "./scripts/setup"
   },
   "repository": {
     "type": "git",
