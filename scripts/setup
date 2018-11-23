@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo 'Creating database…'
+sequelize db:create
+echo 'Migrating database…'
+sequelize db:migrate
+echo 'Installing packages…'
+yarn install
