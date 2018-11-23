@@ -1,2 +1,5 @@
 import * as Sequelize from 'sequelize';
-export default new Sequelize(require('js/../../db/config.js')[process.env.NODE_ENV]);
+
+import * as databaseConfig from 'js/../../db/config.js';
+
+export default new Sequelize(databaseConfig[process.env.NODE_ENV]);
