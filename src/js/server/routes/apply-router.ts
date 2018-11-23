@@ -12,7 +12,7 @@ export interface UserRequest extends Request {
 }
 
 applyRouter.get('/', (req: UserRequest, res) => {
-  req.user ? res.redirect('dashboard') : res.redirect('login');
+  req.user ? res.redirect('apply/dashboard') : res.redirect('apply/login');
 });
 
 applyRouter.get('/login', (_req: UserRequest, res) => res.render('apply/login'));
