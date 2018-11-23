@@ -127,7 +127,7 @@ function redirectToAuthorize(req, res) {
 
   // Construct the query string
   const qs = querystring.stringify({
-    clientId,
+    client_id: clientId,
     redirect_uri: url.resolve(req.requestedUrl, authCallback),
     response_type: 'code',
     scope: [
@@ -153,8 +153,8 @@ function getToken(code, req) {
   console.log(code);
 
   const body = {
-    clientId,
-    clientSecret,
+    client_id: clientId,
+    client_secret: clientSecret,
     code,
     grant_type: 'authorization_code',
     redirect_uri: url.resolve(req.requestedUrl, authCallback),
@@ -182,7 +182,7 @@ function getToken(code, req) {
 // Take an access_token and return a promise of user info from the MyMLH api
 function getMlhUser(accessToken) {
   const query = {
-    accessToken
+    access_token: accessToken
   };
   const queryString = querystring.stringify(query);
   const fullUrl = userUrl + '?' + queryString;
