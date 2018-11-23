@@ -25,11 +25,6 @@ To get started, create a `.env` file at the root of your project with the follow
 
 ```text
 AUTH_SESSION_SECRET=auth_session_secret_placeholder
-PGDATABASE=postgres
-PGHOST=127.0.0.1
-PGPASSWORD=
-PGPORT=5432
-PGUSER=postgres
 S3_BUCKET=s3_bucket_placeholder
 APPLICATIONS_OPEN_STATUS=
 AWS_ACCESS_KEY_ID=
@@ -55,11 +50,12 @@ We use Yarn to manage dependencies, and PostgreSQL for our database.
 
 You have various options for installing PostgreSQL:
 
+- By [downloading Docker](https://www.docker.com/products/docker-desktop) and using a Docker image (guarantees an identical environment)
 - By [downloading Postgres.app](https://postgresapp.com/downloads.html) if you're running macOS (very easy, and [intergrates with Postico](https://eggerapps.at/postico/))
 - [Using the installers on the PostgreSQL website](https://www.postgresql.org/download/)
 - Using your favourite package manager (e.g. Homebrew, APT, RPM…)
-- By [downloading Docker](https://www.docker.com/products/docker-desktop) and using a Docker image (more complicated, but guarantees an identical environment)
 
+If you install PostgreSQL using a method other than Docker, be aware that we use PostgreSQL 9.6 in production (so you may encounter unexpected behaviour if you use a different version).
 Usually the database can be configured to start automatically after login (this is the default for Postgres.app).
 If you use Docker though, you need to start the database manually each time with:
 
@@ -179,7 +175,7 @@ yarn build --prod # Build production assets (or set NODE_ENV to production)
 
 ## Database migrations
 
-We are using the sequelize CLI to manage migrations. So to create your own:
+We use sequelize to manage migrations. To create your own:
 
 ```bash
 yarn migration:generate --name YOURMIGRATION
