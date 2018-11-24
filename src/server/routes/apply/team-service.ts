@@ -1,7 +1,6 @@
-import Hacker, { HackerInstance } from "../models/Hacker";
-import { TeamInstance } from "../models/Team";
-import { sendEmail } from '../email';
-import * as emailTemplates from './email-templates';
+import { sendEmail } from '../../email';
+import * as emailTemplates from '../../apply/email-templates';
+import Hacker, { HackerInstance } from "server/models/Hacker";
 
 interface TeamServiceConfig {
   /**
