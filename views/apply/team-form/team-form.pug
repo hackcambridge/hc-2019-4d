@@ -1,0 +1,23 @@
+table(rows='2.0')
+  thead
+    tr
+      th Member
+      th Application ID
+      th
+  tbody
+    tr
+      td A
+      td
+        span.pixel= applicationSlug
+    tr(data-controller='field-validator' data-field-validator-error=(errors && errors['members.b']) ? errors['members.b'].msg : null)
+      td B
+      td
+        input#members_b(type='text' data-target='field-validator.field' data-action='field-validator#setValid' required='' name='members[b]' maxlength='256' placeholder='Enter the Application ID' value=formData? formData.members.b : null)
+    tr(data-controller='field-validator' data-field-validator-error=(errors && errors['members.c']) ? errors['members.b'].msg : null)
+      td C
+      td
+        input#members_c(type='text' data-target='field-validator.field' data-action='field-validator#setValid' name='members[c]' maxlength='256' placeholder='Enter the Application ID' value=formData? formData.members.c : null)
+    tr(data-controller='field-validator' data-field-validator-error=(errors && errors['members.d']) ? errors['members.b'].msg : null)
+      td D
+      td
+        input#members_d(type='text' data-target='field-validator.field' data-action='field-validator#setValid' name='members[d]' maxlength='256' placeholder='Enter the Application ID' value=formData? formData.members.d : null)
