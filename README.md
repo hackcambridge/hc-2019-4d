@@ -43,6 +43,8 @@ STRIPE_PUBLISH_KEY=
 
 Leaving most of these variables undefined is sufficient to get the basic website up-and-running, but not all features will work without valid tokens for all the environment variables.  If you're working on the Hack Cambridge committee, you can ask for these tokens on the #development_and_web channel on Slack, but we're looking to improve this process.
 
+You can run the website in different environments by changing the value of `NODE_ENV`. Valid values are `development`, `test`, and `production`.
+
 ### Dependencies
 
 We use Yarn to manage dependencies, and PostgreSQL for our database.
@@ -174,7 +176,7 @@ yarn watch # Start the server, automatically build assets and reload the browser
 yarn build --prod # Build production assets (or set NODE_ENV to production)
 ```
 
-## Database migrations
+## Database generators
 
 We use sequelize to manage migrations. To create your own:
 
@@ -192,6 +194,26 @@ And for a seed:
 
 ```bash
 yarn seed:generate --name YOURSEED
+```
+
+## Database tasks
+
+If you run in an environment other than `development` you'll need to set up a database for it and run the migrations. To do this run:
+
+```bash
+yarn db:setup
+```
+
+To run the migrations for the current database run:
+
+```bash
+yarn db:migrate
+```
+
+And to get a fresh, empty database, run:
+
+```bash
+yarn db:reset
 ```
 
 ## Rolling your own
