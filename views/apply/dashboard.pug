@@ -223,7 +223,7 @@ block mainContent
     if statuses.applicationStatus == statusConstants.application.COMPLETE
       section(grid='rows')
         h3(rows='0.5') Team Application
-        div(rows='1.5')
+        div(rows='1.0')
           p= statusMessages['team-application'][statuses.teamApplicationStatus].content
           if statusMessages['team-application'][statuses.teamApplicationStatus].action
             a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)
@@ -233,6 +233,7 @@ block mainContent
             ul
               for hacker in teamMembers
                 li= hacker.firstName + ' ' + hacker.lastName
-        div(rows='1.5')
-          p If you need to make changes to your team, get in touch with us.
-          a(href='mailto:team@hackcambridge.com') Get in touch
+          div(rows='0.5')
+            button(data-method='GET' data-action='/apply/team') Edit team
+          div(rows='1.0')
+            button(data-method='DELETE' data-action='/apply/team') Leave team
