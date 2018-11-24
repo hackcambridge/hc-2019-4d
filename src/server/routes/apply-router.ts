@@ -30,8 +30,10 @@ applyRouter.route('/form')
 
 applyRouter.route('/team')
   .all(applicationsMiddleware.goBackIfApplicationsClosed)
-  .get(teamsController.newTeam)
-  .post(teamsController.createTeam);
+  .get(teamsController.newTeamOrEditTeam)
+  .post(teamsController.createTeam)
+  .patch(teamsController.updateTeam)
+  .delete(teamsController.deleteTeam);
 
 // Process the RSVP response
 applyRouter.post('/rsvp', requireAuth, rsvpsController.createRsvp);
