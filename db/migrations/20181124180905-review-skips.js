@@ -25,6 +25,7 @@ module.exports = {
           key: 'id',
           deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
         },
+        unique: 'adminIdHackerApplicationIdCompositeUnique',
       },
       hackerApplicationId: {
         type: Sequelize.INTEGER,
@@ -34,6 +35,14 @@ module.exports = {
           key: 'id',
           deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
         },
+        unique: 'adminIdHackerApplicationIdCompositeUnique'
+      }
+    },
+    {
+      uniqueKeys: {
+        adminIdHackerApplicationIdCompositeUnique: {
+            fields: ['adminId', 'hackerApplicationId']
+        }
       }
     })
   ,
