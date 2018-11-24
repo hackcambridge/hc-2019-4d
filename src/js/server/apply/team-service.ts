@@ -1,11 +1,37 @@
 import Hacker, { HackerInstance } from "../models/Hacker";
 import { TeamInstance } from "../models/Team";
+import { sendEmail } from '../email';
+import * as emailTemplates from './email-templates';
 
 interface TeamServiceConfig {
-  sendUserLeftTeamEmail(emailRecipient: string, emailLeaving: string): Promise<void>;
-  sendUserInvitationToApplyEmail(emailRecipient: string, emailFrom: string): Promise<void>;
-  sendUserInvitationToJoinEmail(emailRecipient: string, emailFrom: string): Promise<void>;
-  sendUserRemovedEmail(emailRecipient: string, emailRemover: string): Promise<void>;
+  /**
+   * Sends an email notifying another team member that someone has decided to leave that team
+   * @param recipient A member of team who is being notified that someone in their team has left
+   * @param leaving The hacker who has decided to leave
+   */
+  sendUserLeftTeamEmail(recipient: HackerInstance, leaving: HackerInstance): Promise<void>;
+
+  /**
+   * Sends an email when creating a team to those not in the database encouraging them to apply
+   * @param recipient The email of the user who has not yet applied
+   * @param from The Hacker who tried to add the new member to the team 
+   */
+  sendUserInvitationToApplyEmail(recipient: string, from: HackerInstance): Promise<void>;
+
+  /**
+   * If the other members are in the database (they have applied), send them an email to join the team
+   * @param recipient The email of the user who has not yet joined the team
+   * @param from The Hacker who tried to add the new member to the team
+   */
+  sendUserInvitationToJoinEmail(recipient: HackerInstance, from: HackerInstance): Promise<void>;
+
+  /**
+   * An email to a user who has been removed by another member of team
+   * @param removed The person who has been removed
+   * @param emailRecipient Recipient of the email (all team members)
+   * @param emailRemover The person who has removed another user.
+   */
+  sendUserRemovedEmail(removed: HackerInstance, recipient: HackerInstance, remover: HackerInstance): Promise<void>;
 }
 
 interface TeamServiceInterface {
@@ -95,17 +121,22 @@ class TeamService implements TeamServiceInterface {
       await team.destroy();
     } else {
       await teamMember.destroy();
-      const emails = await Promise.all(team.teamMembers.map(async member => {
+      const members = await Promise.all(team.teamMembers.map(async member => {
         const otherHacker = await member.getHacker();
-        return otherHacker.email;
+        return otherHacker;
       }));
 
-      await Promise.all(emails.map(email => {
-        return this.config.sendUserLeftTeamEmail(email, hacker.email);
+      await Promise.all(members.map(member => {
+        return this.config.sendUserLeftTeamEmail(member, hacker);
       }));
     }
   }
 
+  /**
+   * Adds a new member to a current hacker's team, if they haven't applied it prompts them to do so.
+   * If they have applied, then it sends an email to prompt them to join otherwise if they already have a team
+   * an error is thrown.
+   */
   async addNewMemberByEmail(hacker: HackerInstance, userEmail: string): Promise<void> {
     const newHacker = await Hacker.findOne({
       where: {
@@ -115,37 +146,70 @@ class TeamService implements TeamServiceInterface {
   
     if (newHacker === null) {
       //Hacker not in the database, so invite them to apply
-      this.config.sendUserInvitationToApplyEmail(userEmail, hacker.email);
+      this.config.sendUserInvitationToApplyEmail(userEmail, hacker);
     } else {
       const team = await newHacker.getTeam();
       if (team === null) {
-        //Send do you want to join team?
-        this.config.sendUserInvitationToJoinEmail(userEmail, hacker.email);
+        //Hacker in database and they currently have no team
+        this.config.sendUserInvitationToJoinEmail(newHacker, hacker);
       } else {
-        //Error: Already in team
+        //TODO: Already in database and have team error
         throw new Error("Unimplemented");
       }
     }
   }
 
+  /**
+   * Removes a member from a team and notifies all other team members (including the one removed) that it has happened.
+   */
   async removeUserFromTeam(hacker: HackerInstance, userEmail: string): Promise<void> {
     const teamMember = await hacker.getTeam();
     const team = await teamMember.getTeam();
   
-    const emailPromises = team.teamMembers.map(async member => {
+    const hackerPromises = team.teamMembers.map(async member => {
       const otherHacker = await member.getHacker();
-      return otherHacker.email;
+      return otherHacker;
     });
 
-    const emails = await Promise.all(emailPromises);
+    const hackers = await Promise.all(hackerPromises);
 
-    const inTeamIndex = emails.findIndex(email => email === userEmail);
+    const inTeamIndex = hackers.findIndex(member => member.email === userEmail);
 
     if(inTeamIndex !== -1) {
+      const removedHacker = await team.teamMembers[inTeamIndex].getHacker();
       team.teamMembers[inTeamIndex].destroy();
-      this.config.sendUserRemovedEmail(userEmail, hacker.email);
+      hackers.map(member => {
+        //Don't send email to the person removing the member of the team
+        if(member.email !== hacker.email) {
+          this.config.sendUserRemovedEmail(removedHacker, member, hacker);
+        }
+      })
     } else {
+      // TODO: If they're not in the team error
       throw new Error("Unimplemented");
     }
+  }
+}
+
+class TeamConfig implements TeamServiceConfig {
+
+  async sendUserLeftTeamEmail(recipient: HackerInstance, leaving: HackerInstance) {
+    const contents = emailTemplates.userLeftTeamEmail(recipient, leaving);
+    await sendEmail({ to: recipient, contents: contents });
+  }
+    
+  async sendUserInvitationToApplyEmail(recipient: string, from: HackerInstance) {
+    const contents = emailTemplates.invitationToApplyEmail(recipient, from);
+    await sendEmail({ to: recipient, contents: contents });
+  }
+    
+  async sendUserInvitationToJoinEmail(recipient: HackerInstance, from: HackerInstance) {
+    const contents = emailTemplates.invitationToJoinEmail(recipient, from);
+    await sendEmail({ to: recipient, contents: contents });
+  }
+    
+  async sendUserRemovedEmail(removed: HackerInstance, recipient: HackerInstance, remover: HackerInstance) {
+    const contents = emailTemplates.userRemovedEmail(removed, recipient, remover);
+    await sendEmail({ to: recipient, contents: contents });
   }
 }
