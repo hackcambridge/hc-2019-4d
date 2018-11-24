@@ -1,5 +1,6 @@
 import * as Sequelize from 'sequelize';
 
-import * as databaseConfig from '../../../db/config';
+import { getConfigPath } from '../../../db/configManager';
 
-export default new Sequelize(databaseConfig[process.env.NODE_ENV]);
+const dbConfig = require(getConfigPath());
+export default new Sequelize(dbConfig[process.env.NODE_ENV ? process.env.NODE_ENV : 'development']);
