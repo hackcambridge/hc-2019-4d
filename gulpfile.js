@@ -75,7 +75,7 @@ gulp.task('browserify', () => {
       .pipe(buffer());
   };
 
-  return gulpBrowserify('./dist/js/client/main.js', 'main.js')
+  return gulpBrowserify('./dist/client/main.js', 'main.js')
     .pipe(gulpIf(!prod, sourcemaps.init({ loadMaps: true })))
     .pipe(gulpIf(prod, terser()))
     .pipe(gulpIf(!prod, sourcemaps.write()))
@@ -146,7 +146,7 @@ gulp.task('build', (cb) => {
 });
 
 gulp.task('watch', ['build'], () => {
-  gulp.watch(['src/js/**'], ['compile-typescript', 'copy-source', 'browserify']);
+  gulp.watch(['src/**'], ['compile-typescript', 'copy-source', 'browserify']);
   gulp.watch('assets/styles/**.css', ['preprocess-css']);
   gulp.watch(['views/**', 'src/resources/**'], bs.reload);
   gulp.watch(assetPath, ['copy-assets']);
@@ -157,7 +157,7 @@ gulp.task('serve', ['watch'], () => {
     nodemon({
       script: 'dist/index.js',
       ext: 'js',
-      ignore: ['dist/js/client/**', 'gulpfile.js'],
+      ignore: ['dist/client/**', 'gulpfile.js'],
       env: Object.assign({
         NODE_PATH: './dist',
       }, env),

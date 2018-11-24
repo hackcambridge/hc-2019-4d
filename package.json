@@ -8,7 +8,7 @@
     "postinstall": "gulp build",
     "build": "gulp build",
     "watch": "gulp serve",
-    "hc-script": "export NODE_PATH=$NODE_PATH:./dist; node ./dist/js/hc-scripts/index",
+    "hc-script": "export NODE_PATH=$NODE_PATH:./dist; node ./dist/hc-scripts/index",
     "db:migrate": "./scripts/db/migrate",
     "db:setup": "./scripts/db/setup",
     "db:reset": "./scripts/db/reset",
