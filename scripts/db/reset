@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source .env
+if [[ $NODE_ENV == 'production' ]] || [[ $NODE_ENV == 'prod' ]]
+  then
+  echo 'If you really want to drop the production database, you must do so manually with `yarn run sequelize db:drop`'
+  exit 1
+fi
+if [[ $NODE_ENV != 'development' ]] && [[ $NODE_ENV != 'test' ]]
+then
+  echo Are you sure you want to delete the database? Your environment is \'$NODE_ENV\'
+  read -r -p "Are you sure? [y/N] " response
+  if ! [[ $response =~ ^(yes|y)$ ]]
+  then
+    exit 0
+  fi
+fi
+echo 'Dropping database…'
+sequelize db:drop
+echo 'Creating database…'
+sequelize db:create
+echo 'Migrating database…'
+sequelize db:migrate

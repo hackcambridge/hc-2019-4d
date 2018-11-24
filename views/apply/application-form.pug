@@ -1,0 +1,140 @@
+extends ../layouts/a4
+block mainContent
+  - title = 'Application'
+  section(grid='rows')
+    h1(rows='1.0')= title
+    p(rows='1.5')   
+      | Hey #{user.firstName }, thanks for choosing to apply.
+      br
+      | We’d like to get to know you a bit better.
+  if error 
+    section(color='red' grid='rows')
+      p(rows='0.5')= error
+  section
+    form(action='form' enctype='multipart/form-data' method='POST' grid='rows' data-controller='validation-messages')
+      div(rows='1.5')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.cv) ? errors.cv.msg : null)
+          legend Upload your CV.
+          p: span.pixel.requirement PDF files only. 2 MB maximum size.
+          input#cv(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' accept='application/pdf' required='' type='file' name='cv')
+      div(rows='1.5')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.countryTravellingFrom) ? errors.countryTravellingFrom.msg : null)
+          legend Where will you be coming from?
+          p This does not have to be your current country of residence.
+          select#countryTravellingFrom(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' name='countryTravellingFrom')
+            for countryName, countryCode in countryChoices 
+              option(value=countryCode selected=(formData && formData.countryTravellingFrom == countryCode) ? true : false)= countryName
+      div(rows='1.5')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.visaNeededBy) ? errors.visaNeededBy.msg : null)
+          legend If you need a visa to enter the UK, when do you need it by?
+          input#visaNeededBy(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='date' value=formData ? formData.visaNeededBy : null name='visaNeededBy' placeholder='YYYY-MM-DD')
+      div(rows='2.5')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.roles) ? errors.roles.msg : null)
+          legend If you already know, what role or roles in a team would you be interested in?
+          p Tick all that apply.
+          div
+            input#roles_development(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='checkbox' value='development' name='roles[]' checked=(formData && formData.roles && formData.roles.includes('development') ? true : false))
+            |
+            |
+            label(for='roles_development') Development
+          div
+            input#roles_design(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='checkbox' value='design' name='roles[]' checked=(formData && formData.roles && formData.roles.includes('design') ? true : false))
+            |
+            |
+            label(for='roles_design') Design
+          div
+            input#roles_productManagement(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='checkbox' value='productManagement' name='roles[]' checked=(formData && formData.roles && formData.roles.includes('productManagement') ? true : false))
+            |
+            |
+            label(for='roles_productManagement') Product Management
+      div(rows='2.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.goals) ? errors.goals.msg : null)
+          legend What do you want to get out of this event?
+          p
+            span.pixel.requirement 500 characters or less.
+          textarea#goals(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' name='goals' maxlength='500')= formData ? formData.goals : null
+      div(rows='2.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.interests) ? errors.interests.msg : null)
+          legend What are you interested in?
+          p
+            | Mention anything you want—it doesn’t have to be technology-related! 
+            br
+            span.pixel.requirement 500 characters or less.
+          textarea#interests(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' name='interests' maxlength='500')= formData ? formData.interests : null
+      div(rows='2.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.accomplishment) ? errors.accomplishment.msg : null)
+          legend Tell us about a recent accomplishment you’re proud of.
+          p
+            span.pixel.requirement 500 characters or less.
+          textarea#accomplishment(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' name='accomplishment' maxlength='500')= formData ? formData.accomplishment : null
+      div(rows='2.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.links) ? errors.links.msg : null)
+          legend Are there any links you’d like to share so we can get to know you better?
+          p
+            | For example GitHub, LinkedIn or your website. Put each link on a new line. 
+            br
+            span.pixel.requirement 500 characters or less.
+          textarea#links(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' name='links' maxlength='500' placeholder='https://github.com/hackcambridge')= formData ? formData.links : null
+      div(rows='3.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.teamMembership) ? errors.teamMembership.msg : null)
+          legend Teams
+          p
+            | If you’re applying as part of a team now, we won’t process your application until you’ve been entered into a team using the team application form. This can be submitted by any member of the team after every team member has submitted this form.
+            br
+            | If you’re applying individually, but want to be part of a team, we can suggest a team for you before the event. You can always change team by contacting us.
+          div
+            input#teamMembership_apply(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='radio' value='apply' name='teamMembership' checked=(formData && formData.teamMembership) == 'apply' ? true : false)
+            |
+            |
+            label(for='teamMembership_apply')
+              | I’m applying as part of a team. One team member will fill out the team application form.
+          div
+            input#teamMembership_placement(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='radio' value='placement' name='teamMembership' checked=(formData && formData.teamMembership) == 'placement' ? true : false)
+            |
+            |
+            label(for='teamMembership_placement') I’m not applying as part of a team, but want to be put in a team.
+          div
+            input#teamMembership_none(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='radio' value='' name='teamMembership' checked=(formData && formData.teamMembership) == '' ? true : false)
+            |
+            |
+            label(for='teamMembership_none') I don’t want to be in a team.
+      div(rows='3.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.confirmations) ? errors.confirmations.msg : null)
+          legend Student status confirmation and terms and conditions
+          p
+            | We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, and the MLH Code of Conduct.
+            br
+            a(href='/terms-and-conditions' target='_blank') Terms and conditions
+            br
+            a(href='/privacy-policy' target='_blank') Privacy policy
+            br
+            a(href='http://static.mlh.io/docs/mlh-code-of-conduct.pdf' target='_blank') MLH Code of Conduct
+          div
+            input#confirmations_studentStatus(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='studentStatus' name='confirmations[]' checked=(formData && formData.confirmations && formData.confirmations.includes('studentStatus') ? true : false))
+            |
+            |
+            label(for='confirmations_studentStatus') I’m currently a student, or I graduated after January 19, 2018.
+          div
+            input#confirmations_termsAndConditions(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='termsAndConditions' name='confirmations[]' checked=formData && formData.confirmations && formData.confirmations.includes('termsAndConditions' == 'studentStatus') ? true : false)
+            |
+            |
+            label(for='confirmations_termsAndConditions') I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.
+      div(rows='1.5')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.graduationmonth) ? errors.graduationmonth.msg : null)
+          legend What month do you plan to graduate?
+          input#graduationMonth(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='month' name='graduationMonth' value=formData ? formData.graduationMonth : null placeholder='YYYY-MM')
+      div(rows='2.0')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.otherInfo) ? errors.otherInfo.msg : null)
+          legend Is there anything else you’d like us to know?
+          p
+            span.pixel.requirement 500 characters or less.
+          textarea#otherInfo(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' name='otherInfo' maxlength='500')= formData ? formData.otherInfo : null
+      div(rows='1.5')
+        fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.wantsMailingList) ? errors.wantsMailingList.msg : null)
+          legend Want to know about next year’s event?
+          input#wantsMailingList(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' type='checkbox' value='wantsMailingList' name='wantsMailingList' checked=(formData && formData.wantsMailingList) ? true : false)
+          |
+          |
+          label(for='wantsMailingList') Sign up to the mailing list.
+      div(rows='0.5')
+        button(type='submit') Submit!

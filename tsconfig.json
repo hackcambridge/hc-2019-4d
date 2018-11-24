@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "module": "commonjs",
     "moduleResolution": "node",
-    "baseUrl": "src",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "target": "es2016"
   }
 }

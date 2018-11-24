@@ -1,0 +1,119 @@
+extends layouts/base
+block content
+  include mixins/dates
+  include mixins/svg-elements
+  -
+    title = event.theme.getEventName()
+    description = 'Hack Cambridge' + event.theme.getEventName() + ' ' + event.dates.getHackathonStartDate().year()
+    keywords = 'hack,cambridge,' + event.theme.getEventName().toLowerCase() + '' + event.dates.getHackathonStartDate().year()
+    layoutMode = 'width'
+  include includes/trust-badge
+  main(layout=layoutMode)
+    div(fixed='' grid='grid' sidebar='' columns='7.5' rows='4.5')
+      img(draggable='false' src=asset('images/logo.svg'))
+      div
+      div
+    section(grid='grid' sidebar='' columns='7.5' rows='4.5')
+      img(draggable='false' src=asset('images/logo.svg'))
+      div(grid='rows')
+        h1(rows='2.0')
+          | Hack
+          br
+          | Cambridge
+          br
+          span.pixel 4D
+        div(rows='1.5')
+          p
+            | Hack Cambridge is back! From the
+            |
+            +dayWithSuperscript(event.dates.getHackathonStartDate())
+            |
+            | to the
+            |
+            +shortDateWithSuperscript(event.dates.getHackathonEndDate())
+            | , the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.
+            br
+            | For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+          p Thank you for joining us.
+      div(grid='grid' dense rows='2.5' columns='1.0')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://www.facebook.com/hackcambridge')
+          +icon('Facebook')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://twitter.com/@hack_cambridge')
+          +icon('Twitter')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://medium.com/hackers-at-cambridge/tagged/hack-cambridge')
+          +icon('Medium')
+        a.icon(columns='1.0' rows='1.0' rel='external' href='https://www.instagram.com/hack_cambridge/')
+          +icon('Instagram')
+    section(grid='grid' sidebar='' columns='7.5')
+      div
+      div(grid='rows' rows='1.5')
+        strong(rows='0.5') Keen to know more about the event?
+        div(rows='1.0')
+          p We’ll be publishing an event page very soon! In it, you'll find a schedule, maps and directions, listings of APIs, hardware, prizes, and more.
+          //-a(href="/event") Find all the information you need on the event page
+      div
+    section(grid='grid' sidebar='' columns='7.5' color='red')
+      div
+      div(grid='rows' rows='1.5')
+        strong(rows='0.5')
+          if moment().isBefore(event.dates.getApplicationsStart())
+            if moment().isBefore(event.dates.getApplicationsStart().subtract(1, 'weeks'))
+              | Applications for Hack Cambridge 2019 open soon.
+            else
+              | Applications open this #{event.dates.getApplicationsStart().format('dddd')}!
+          else if moment().isBefore(event.dates.getApplicationsEnd())
+            | Applications are open!
+          else if moment().isBefore(event.dates.getHackathonEndDate())
+            | Applications have closed for this year.
+          else
+            | Hack Cambridge is finished for this year.
+        if moment().isBefore(event.dates.getApplicationsStart())
+          p(rows='0.5')
+            if moment().isBefore(event.dates.getApplicationsStart().subtract(1, 'weeks'))
+              | Sign up to stay in the loop!
+            else
+              | Sign up to be reminded.
+          form.signup-form(grid='columns' method='post' action='/api/subscribe/interested' rows='0.5' columns='1.0' align-last='right')
+            input(type='email' name='email' required='' placeholder='email@domain.com')
+            input(type='submit' name='submit' value='Submit.')
+        else if moment().isBefore(event.dates.getApplicationsEnd())
+          if user
+            div(grid='grid' rows='1.0')
+              include includes/navigation
+          else
+            a.icon(rel='next' href='/apply/dashboard')
+              +icon('Log in')
+              br
+              | Log in with MyMLH to start, continue, or access your application
+        else
+          p(rows='0.5') Sign up for information about next year!
+          form.signup-form(grid='columns' method='post' action='/api/subscribe/interested' rows='0.5' columns='1.0' align-last='right')
+            input(type='email' name='email' required='' placeholder='email@domain.com')
+            input(type='submit' name='submit' value='Submit.')
+      ul(rows='0.5')
+        li
+          a.icon(rel='next' href='/faqs')
+            +icon('Help')
+    section(grid='columns' sidebar='' columns='7.5')
+      div
+      div(grid='rows')
+        h2(rows='1.0') Sponsors
+        div(rows='1.5')
+          p Thank you to everyone who sponsored Hack Cambridge Ternary last year! We couldn't have done it without you.
+          p Interested in sponsoring Hack Cambridge this year?
+          a(href='mailto:sponsorship@hackcambridge.com') Send us an email
+            if sponsors
+              for sponsorTierName, sponsorTier in sponsors
+                if sponsorTier.length != 0
+                  h4(rows='1.0') sponsorTierName
+                  .content(rows=sponsorTier.rows)
+                    for sponsor in sponsorTier.items
+                      div(grid='columns')
+                        a(columns=sponsorTier.columns href=sponsor.website target='_blank' rel='external')
+                          +sponsorLogo(sponsor.name)             
+      div
+  footer(grid='grid' sidebar='' columns='7.5' layout=layoutMode)
+    div
+    div(rows='2.0')
+      include includes/footer
+    div

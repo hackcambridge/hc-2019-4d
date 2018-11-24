@@ -3,6 +3,9 @@
 :root, input, button, input, select, textarea {
   font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
 }
+::-webkit-file-upload-button {
+  font-family: "PxGrotesk", Helvetica, Arial, sans-serif;
+}
 
 /* Paragraph styles */
 

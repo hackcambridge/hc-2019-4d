@@ -1,0 +1,238 @@
+extends ../layouts/a4
+block mainContent
+  - title = 'Dashboard'
+  section(grid='rows')
+    h1(rows='1.0')= title
+    div(rows='1.5')
+      p= statusMessages['overall-status-messages'][statuses.overallStatus].title
+      p= statusMessages['overall-status-messages'][statuses.overallStatus].subline
+      if application
+        p
+          | Your application ID is 
+          span.pixel= application.applicationSlug
+          | .
+    //
+      |   {% set roomShareForm = &quot;https://docs.google.com/forms/d/e/1FAIpQLSf7cEY2xt-Ya_VooMEAbmQMhCLDpBJ5MtHFa38ZE2rsmLvmWw/viewform&quot; %}
+      |   {% set internationalVisaForm = &quot;https://docs.google.com/forms/d/e/1FAIpQLScF6ZRa8oLYcZ42G3Xgx5fmKV3FWrl0Jkm4dcVLYhVBCKy1Jw/viewform&quot; %}
+      |   {# To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking #}
+      |   {% set openSlackLink = &quot;slack://open?team=T7YPKKJRZ&quot; %}
+      |   {# Section for info about RSVPs #}
+  if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE || statusConstants.rsvpStatus == statusConstants.rsvp.COMPLETE_EXPIRED
+    section
+      form(method='POST' action='/apply/rsvp')
+        .container.a4
+          .two.unit.row
+            .unit.column.grows
+              h3 RSVP
+          .two.half.unit.row
+            .unit.column.grows
+              h4
+                span.pixel= statusMessages['rsvp'][applicationStatuses.rsvpStatus].label
+              p= statusMessages['rsvp'][applicationStatuses.rsvpStatus].content
+          |                   {# The RSVP form for incomplete RSVPs #}
+          |                   {% if statuses.rsvpStatus == statusMessages.rsvp.INCOMPLETE %}
+          .two.half.unit.row
+            .unit.column.grows
+              div
+                input#rsvp-yes(type='radio' name='rsvp' value='RSVP_YES' required='true')
+                label(for='rsvp-yes') I&rsquo;ll be attending Hack Cambridge.
+              div
+                input#rsvp-no(type='radio' name='rsvp' value='RSVP_NO' required='true')
+                label(for='rsvp-no')
+                  | I 
+                  strong won&rsquo;t
+                  |  be attending Hack Cambridge.
+              div
+                input#rsvp-confirmation(type='checkbox' name='confirmation' value='confirmation' required='true')
+                label(for='rsvp-confirmation') I confirm my response.
+          .one.half.unit.row
+            .unit.column.grows
+              div
+                button(type='submit' name='submit') Submit!
+          |                   {% endif %}
+          |                   {% if statusMessages['rsvp'][applicationStatuses.rsvpStatus].action %}
+          .one.half.unit.row
+            .unit.column.grows
+              a(href= statusMessages['rsvp'][applicationStatuses.rsvpStatus].action.location)
+                = statusMessages['rsvp'][applicationStatuses.rsvpStatus].action.title
+  if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+    section
+      .container.a4
+        .two.unit.row
+          .unit.column.grows
+            h3 Extra Details
+        .three.unit.row
+          .unit.column.grows
+            p
+              | We have a couple of forms for you to fill out with some extra details.
+              | Please take the time to complete them so that we can make Hack Cambridge Ternary as good as it can be for you.
+            a(href='{{ roomShareForm }}' target='_blank') Room Sharing (if you are travelling for further away)
+            a(href='{{ internationalVisaForm }}' target='_blank') Request letter for international visa
+  if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
+    section
+      .container.a4
+        .two.unit.row
+          .unit.column.grows
+            | {# Date and Time #}
+            h3 Date and Time
+        .two.half.unit.row
+          .unit.column.grows
+            p
+              | {{ hackathonStartDate }} (Registration opens at 9am) &ndash; {{ hackathonEndDate }} (Closing ceremony finishes at 6pm).
+              br
+              |                           Times subject to change.
+        .two.unit.row
+          .unit.column.grows
+            | {# Location #}
+            h3 Location
+        .three.unit.row
+          .unit.column.grows
+            p
+              | Cambridge Corn Exchange
+              br
+              |                           2 Wheeler St
+              br
+              |                           Cambridge
+              br
+              |                           CB2 3QB
+              br
+            a(href='https://goo.gl/maps/6TTeXNnD7Jp' target='_blank') View on Google Maps
+        .two.unit.row
+          .unit.column.grows
+            | {# Travel Reimbursements #}
+            h3 Travel Cost Reimbursements
+        .seven.unit.row
+          .unit.column.grows
+            ul
+              p
+                | We will aim to reimburse some of your travel costs. The amount you will be able to claim up to depends on where you&rsquo;re coming from:
+              li
+                | You can apply for up to &pound;30 for distances as far as London,
+              li
+                | Up to &pound;50 for distances as far as Manchester,
+              li
+                | And &pound;70 for distances further than Manchester (including international).
+            p
+              | We will be sending more details on travel reimbursements, and we may be processing them at the event so keep your receipts with you and bring them to Hack Cambridge Ternary!
+            p
+              strong Note:
+              |                           We won&rsquo;t be reimbursing parking costs or cost of travel if you are studying locally. We ask that you be responsible about claiming travel reimbursements and only do so if appropriate &mdash; we reserve the right to deny travel reimbursements.
+            p
+              | If you haven&rsquo;t already done so, remember to check the travel-related forms.
+            a(href='{{ internationalVisaForm }}' target='_blank') Request invitation letter for visa (international)
+        .two.unit.row
+          .unit.column.grows
+            | {# Accommodation #}
+            h3 Accommodation
+        .two.unit.row
+          .unit.column.grows
+            p
+              | For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the {{ fridayBeforeHackathonDate }}), in which case you&rsquo;ll just need to bring a sleeping bag and a pillow. However, at present, we can&rsquo;t guarantee you a place, so please apply early
+              | {% if statuses.overallStatus == statusMessages.overall.HAS_TICKET %}
+              | if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
+            a(href='{{ roomShareForm }}' target='_blank') Apply for accommodation
+            |                           {% else %}
+            |                               using the form that will be made available to you when you accept your invitation. We will get back to you as soon as possible indicating whether we could allocate you a room or not. People coming from outside the UK will be prioritised.
+            p
+            |                           {% endif %}
+            p
+  if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+    section
+      .container.a4
+        .two.unit.row
+          .unit.column.grows
+            h3 Slack
+        .four.unit.row
+          .unit.column.grows
+            p
+              | You should have received an invite to our Slack team. Make sure you accept the invite and join in to meet everyone. If you didn&rsquo;t receive an invite, let us know straight away. If you haven&rsquo;t used Slack before, that&rsquo;s okay. It&rsquo;s a team messaging app that will allow us all to stay in touch easily, great for getting quick answers to any questions you might have about Hack Cambridge or for meeting your teammates!
+            a(href='{{ openSlackLink }}') Go to the Slack team
+            a(href='https://slack.com/downloads' target='_blank') Download the mobile or desktop app
+        .two.unit.row
+          .unit.column.grows
+            | {# Travel #}
+            h3 Travel Advice
+        .nine.half.unit.row
+          .eight.unit.columns.grows
+            h4 Train
+            p
+              | The nearest train station is Cambridge train station. It&rsquo;s an approximately 30-minute walk from there to the venue. Which is a great way to wake you up nicely!
+            a(href='https://www.google.co.uk/maps/dir/Cambridge,+Station+Rd,+Cambridge+CB1+2JW/Cambridge+Corn+Exchange,+2+Wheeler+St,+Cambridge+CB2+3QB/@52.1992886,0.1230436,16z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47d87083c513efe3:0xc3b0831300f8d3f1!2m2!1d0.1373124!2d52.1940784!1m5!1m1!1s0x47d870bd777be21d:0x54210632dfcff7b5!2m2!1d0.119639!2d52.204348!3e2' target='_blank') View directions on Google Maps
+            h4 By Car
+            p
+              | We encourage you to avoid driving to Hack Cambridge if possible&mdash;parking is hard to find and isn&rsquo;t cheap around the venue. If you have no choice but to drive, we recommend you park at the train station (Cambridge Station) about 30 minutes walking away (see above) to save yourself the &pound;50 parking charge.
+            a(href='http://en.parkopedia.co.uk/parking/carpark/cambridge_station/cb1/cambridge/?arriving=201801200730&leaving=201801211600' target='_blank') Find parking
+            h4 By Air
+            p
+              | If you are an international student and will be flying, we recommend you head for Stansted Airport, our closest international airport, if possible. From there, you can take a National Express coach to Cambridge (50 minutes&rsquo; journey time) for about &pound;8, or take the train for about &pound;10 (30 minutes&rsquo; journey time).
+            a(href='http://coach.nationalexpress.com/nxbooking/journey-search' target='_blank') Coach information
+            br
+            a(href='http://ojp.nationalrail.co.uk/service/planjourney/search' target='_blank') Train information
+            h4 Other questions
+            p
+              | If you have any other questions about travel, please email our logistics team.
+            a(href='mailto:logistics@hackcambridge.com') Email the logistics team
+        .two.unit.row
+          .unit.column.grows
+            | {# On the day #}
+            h3 On the day
+        .four.unit.row
+          .unit.column.grows
+            | {# What to bring #}
+            h4 What to bring
+            p
+              | Don&rsquo;t forget to bring 
+              strong Photo ID
+              | .
+              br
+              |                           Have this ready at the entrance.
+            p
+              | Keep your 
+              strong application ID
+              |  on hand (that&rsquo;s: 
+              span.pixel {{ application.applicationSlug }}
+              | )!
+            p
+              | Since you&rsquo;re going to be here overnight, we&rsquo;ll have some quiet spaces for sleeping, but we recommend you take a 
+              strong sleeping bag
+              |  to get comfortable. Remember to bring a 
+              strong toothbrush
+              |  and possibly a spare change of clothes.
+        |               {# If not in team #}
+        |               {% if statuses.teamApplicationStatus != statusMessages.teamApplication.COMPLETE %}
+        .three.unit.row
+          .unit.column.grows
+            | {# Teams #}
+            h4 Finding your teams
+            |                           {% if application.wantsTeam %}
+            p
+              | You said that you wanted to have a team chosen for you for the hackathon. We&rsquo;ll be sending you some allocations soon!
+            |                           {% else %}
+            p
+              | There&rsquo;ll be opportunities to find team members on the day. We&rsquo;ll be sending out more information regarding this shortly.
+            |                           {% endif %}
+        |               {% endif %}
+  if statuses.overallStatus == statusConstants.overall.INCOMPLETE || statuses.overallStatus == statusConstants.overall.IN_REVIEW
+    section(grid='rows')
+      h3(rows='0.5') Your Application
+      div(rows='1.0')
+        p= statusMessages['your-application'][statuses.applicationStatus].content
+        if statusMessages['your-application'][statuses.applicationStatus].action
+          a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)
+            = statusMessages['your-application'][statuses.applicationStatus].action.title
+    if statuses.applicationStatus == statusConstants.application.COMPLETE
+      section(grid='rows')
+        h3(rows='0.5') Team Application
+        div(rows='1.5')
+          p= statusMessages['team-application'][statuses.teamApplicationStatus].content
+          if statusMessages['team-application'][statuses.teamApplicationStatus].action
+            a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)
+              = statusMessages['team-application'][statuses.teamApplicationStatus].action.title
+        if statuses.teamApplicationStatus == statusConstants.teamApplication.COMPLETE
+          div(rows='1.0')
+            ul
+              for hacker in teamMembers
+                li= hacker.firstName + ' ' + hacker.lastName
+        div(rows='1.5')
+          p If you need to make changes to your team, get in touch with us.
+          a(href='mailto:team@hackcambridge.com') Get in touch

@@ -1,0 +1,7 @@
+mixin shortDateWithSuperscript(date)
+  +dayWithSuperscript(date) + '' + date.format('MMMM YYYY')
+mixin dayWithSuperscript(day)
+  - ordinalSuffix = day.format('Do').split(day.format('D'))[1]
+  = day.format('D')
+  sup
+    = ordinalSuffix

@@ -1,0 +1,37 @@
+input[type="radio"], 
+input[type="checkbox"] {
+  height: 1em;
+  width: 1em;
+  vertical-align: middle;
+  border: 1px solid;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+}
+
+input[type="radio"] {
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+input[type="radio"]:checked:before,
+input[type="checkbox"]:checked:before {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0.9em;
+  line-height: 0.9;
+  width: 1em;
+  text-align: center;
+}
+
+input[type="radio"]:checked:before {
+  content: '•';
+}
+input[type="checkbox"]:checked:before {
+  content: 'X';
+}
