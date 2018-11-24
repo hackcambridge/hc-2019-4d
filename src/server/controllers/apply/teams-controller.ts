@@ -15,15 +15,15 @@ const schema: ValidationSchema = {
   },
 };
 
+export async function newTeamOrEditTeam(req: UserRequest, res: Response): Promise<void> {
+  const team = await req.user.getTeam();
+  team === null ? newTeam(req, res) : editTeam(req, res);
+}
+
 export async function newTeam(req: UserRequest, res): Promise<void> {
   const hackerApplication = await req.user.getHackerApplication();
   if (hackerApplication !== null) {
-    const team = await req.user.getTeam();
-    if (team === null) {
-      res.render('apply/team-form', { applicationSlug: hackerApplication.applicationSlug });
-    } else {
-      res.redirect('/apply/dashboard');
-    }
+    res.render('apply/team-form/new', { applicationSlug: hackerApplication.applicationSlug });
   } else {
     res.redirect('/apply/application-form');
   }
@@ -31,10 +31,12 @@ export async function newTeam(req: UserRequest, res): Promise<void> {
 
 export const createTeam: RequestHandlerParams = [
   ...checkSchema(schema),
-  (req: UserRequest, res: Response, _next: NextFunction) => {
+  async (req: UserRequest, res: Response, _next: NextFunction) => {
+    const hackerApplication = await req.user.getHackerApplication();
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render('apply/team-form', {
+      res.render('apply/team-form/new', {
+        applicationSlug: hackerApplication.applicationSlug,
         errors: errors.mapped(),
         formData: req.body,
       });
@@ -42,7 +44,8 @@ export const createTeam: RequestHandlerParams = [
       createTeamFromForm(req.body, req.user, errors).then(_ => {
         res.redirect('/apply/dashboard');
       }).catch(error => {
-        res.render('apply/team-form', {
+        res.render('apply/team-form/new', {
+          applicationSlug: hackerApplication.applicationSlug,
           formData: req.body,
           error,
         });
@@ -50,6 +53,28 @@ export const createTeam: RequestHandlerParams = [
     }
   }
 ];
+
+export async function editTeam(req: UserRequest, res: Response): Promise<void> {
+  throw new Error('Edit function not implemented');
+  const hackerApplication = await req.user.getHackerApplication();
+  res.render('apply/team-form/edit', { applicationSlug: hackerApplication.applicationSlug });
+}
+
+export async function updateTeam(req: UserRequest, res: Response): Promise<void> {
+  throw new Error('Update function not implemented');
+  console.log(req);
+  res.redirect('back');
+}
+
+export async function deleteTeam(req: UserRequest, res: Response): Promise<void> {
+  const team = await req.user.getTeam();
+  if (team === null) {
+    res.redirect('back');
+  } else {
+    throw new Error('Delete function not implemented');
+    res.redirect('back');
+  }
+}
 
 export async function createTeamFromForm(body, user: HackerInstance, errors): Promise<TeamMemberInstance[]> {
   const members = new Set<string>();
