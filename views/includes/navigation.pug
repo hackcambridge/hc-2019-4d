@@ -20,8 +20,8 @@ if user
     +icon('Log out')
     br
     | Log out
-if !user && (requestedUrl.path !== '/apply/login')
-  a.icon(columns='1.5' rows='1.0' rel='next' href='/apply/login')
+if !user && (requestedUrl.path !== '/apply')
+  a.icon(columns='1.5' rows='1.0' rel='next' href='/apply')
     +icon('Log in')
     br
     | Log in
