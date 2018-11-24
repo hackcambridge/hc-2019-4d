@@ -6,13 +6,7 @@ INNER JOIN (
     -- Get a list of incomplete assignments
     SELECT id, "adminId", "hackerApplicationId"
     FROM "application-assignments"
-    -- Filter out those where a review has been submitted by that admin for that application
-    WHERE NOT EXISTS (
-      SELECT * 
-        FROM "application-reviews"
-        WHERE "adminId" = "application-assignments"."adminId" AND
-        "hackerApplicationId" = "application-assignments"."hackerApplicationId"
-    ) AND "application-assignments"."adminId" != :adminId
+    WHERE "application-assignments"."adminId" != :adminId
     -- Filter the list to only those which are less than 30 mins old
     AND "createdAt" > current_timestamp - interval '30 minutes'
   ) incomplete_assignments ON incomplete_assignments."hackerApplicationId"="hackers-applications".id
@@ -34,6 +28,14 @@ WHERE incomplete_assignments.count + reviews.count < 2
 AND NOT EXISTS (
   SELECT * 
   FROM "application-reviews"
+  WHERE 
+    "adminId" = :adminId AND
+    "hackerApplicationId" = "hackers-applications".id
+)
+-- Filter to those that this admin has not skipped
+AND NOT EXISTS (
+  SELECT * 
+  FROM "review-skips"
   WHERE 
     "adminId" = :adminId AND
     "hackerApplicationId" = "hackers-applications".id
