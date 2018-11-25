@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { Admin, ApplicationReview, HackerApplication } from 'server/models';
+import ReviewSkips from 'server/models/ReviewSkips';
 import * as reviewLogic from 'server/review/logic';
 
 /**
@@ -52,7 +53,7 @@ adminsRouter.get('/:adminId/next-review-application', (req, res, next) => {
 });
 
 /**
- * Creates a review for a particluar application, by a particular admin.
+ * Creates a review for a particular application, by a particular admin.
  * Request body should contain a key `scores` which is an array of scored criteria:
  *
  * ```
@@ -101,6 +102,15 @@ adminsRouter.get('/:adminId/reviews/:applicationId', (req, res, next) => {
       });
     })
     .catch(next);
+});
+
+adminsRouter.post('/:adminId/skip-review/:applicationId', async (req, res, next) => {
+  try {
+    await ReviewSkips.upsert({ adminId: req.params.adminId, hackerApplicationId: req.params.applicationId});
+    res.json({ success: true });
+  } catch (_e) {
+    next();
+  }
 });
 
 function getNumberOfCommittedAdmins() {
