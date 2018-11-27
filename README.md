@@ -41,9 +41,19 @@ STRIPE_PRIVATE_KEY=
 STRIPE_PUBLISH_KEY=
 ```
 
-Leaving most of these variables undefined is sufficient to get the basic website up-and-running, but not all features will work without valid tokens for all the environment variables.  If you're working on the Hack Cambridge committee, you can ask for these tokens on the #development_and_web channel on Slack, but we're looking to improve this process.
+Leaving most of these variables undefined is sufficient to get the basic website up-and-running, but not all features will work without valid tokens for all the environment variables. If you're working on the Hack Cambridge committee, you can ask for these tokens on the #development_and_web channel on Slack, but we're looking to improve this process.
 
-You can run the website in different environments by changing the value of `NODE_ENV`. Valid values are `development`, `test`, and `production`.
+You can run the website in different environments by changing the value of `NODE_ENV`. By default, the valid values are `development`, `test`, and `production`. For example, if you are allocating teams to hackers, you will probably want to run the teams `suggest` script on the `production` environment.
+
+In order to use the `production` environment, add the following variables to your `.env` file:
+
+```text
+PGUSER=
+PGPASSWORD=
+PGDATABASE=
+PGHOST=
+PGPORT=
+```
 
 ### Dependencies
 
@@ -129,7 +139,7 @@ You can either `invite` or `reject`.
 yarn hc-script -- suggest-responses invite 50 applications.json
 ```
 
-The use of this script requires a score augmentor function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
+The use of this script requires a score augmentation function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
 It takes in a computed application object and returns an augmented score. The identity function (leaving the score unchanged) looks like this:
 
 ```typescript
@@ -215,6 +225,8 @@ And to get a fresh, empty database, run:
 ```bash
 yarn db:reset
 ```
+
+To add new environments other than `development`, `test`, and `production`, copy `db/config.dist.js` to `db/config.js` and add the database configuration for the new environments to `db/config.js`.
 
 ## Rolling your own
 

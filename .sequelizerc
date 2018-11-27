@@ -1,7 +1,10 @@
+const fs = require('fs');
 const path = require('path');
 
+const configManager = require('./db/configManager');
+
 module.exports = {
-  config: path.resolve('db', 'config.js'),
+  config: configManager.getConfigPath(),
   'migrations-path': path.resolve('db', 'migrations'),
   'models-path': path.resolve('db', 'models'),
 };
