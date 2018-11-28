@@ -22,6 +22,7 @@ const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
 const util = require('gulp-util');
 const validateYaml = require('gulp-yaml-validate');
+const mocha = require('gulp-mocha');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
@@ -179,3 +180,8 @@ gulp.task('serve', ['watch'], () => {
     });
   }
 });
+
+gulp.task('test', ['build'], () => {
+  gulp.src('./dist/test/**/*.js', { read: false })
+    .pipe(mocha());
+})

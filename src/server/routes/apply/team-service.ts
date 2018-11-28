@@ -1,8 +1,9 @@
+import { TeamMember } from 'server/models';
 import Hacker, { HackerInstance } from 'server/models/Hacker';
 import * as emailTemplates from '../../apply/email-templates';
 import { sendEmail } from '../../email';
 
-interface TeamServiceConfig {
+export interface TeamServiceConfig {
   /**
    * Sends an email notifying another team member that someone has decided to leave that team
    * @param recipient A member of team who is being notified that someone in their team has left
@@ -69,7 +70,7 @@ interface TeamServiceInterface {
   removeUserFromTeam(hacker: HackerInstance, userEmail: string): Promise<void>;
 }
 
-class TeamService implements TeamServiceInterface {
+export class TeamService implements TeamServiceInterface {
 
   constructor(private config: TeamServiceConfig) {
 
@@ -114,13 +115,18 @@ class TeamService implements TeamServiceInterface {
   public async leaveOwnTeam(hacker: HackerInstance): Promise<void> {
     const teamMember = await hacker.getTeam();
     const team = await teamMember.getTeam();
+    const teamMembers = await TeamMember.findAll({
+      where: {
+        teamId: team.id
+      }
+    });
 
-    if (team.getTotalMembersCount() === 1) {
+    if (teamMembers.length === 1) {
       await teamMember.destroy();
       await team.destroy();
     } else {
       await teamMember.destroy();
-      const members = await Promise.all(team.teamMembers.map(async member => {
+      const members = await Promise.all(teamMembers.map(async member => {
         const otherHacker = await member.getHacker();
         return otherHacker;
       }));
@@ -163,18 +169,25 @@ class TeamService implements TeamServiceInterface {
   public async removeUserFromTeam(hacker: HackerInstance, userEmail: string): Promise<void> {
     const teamMember = await hacker.getTeam();
     const team = await teamMember.getTeam();
-    const hackerPromises = team.teamMembers.map(async member => {
+    const teamMembers = await TeamMember.findAll({
+      where: {
+        teamId: team.id
+      }
+    });
+
+    const hackerPromises = teamMembers.map(async member => {
       const otherHacker = await member.getHacker();
       return otherHacker;
     });
 
     const hackers = await Promise.all(hackerPromises);
-
-    const inTeamIndex = hackers.findIndex(member => member.email === userEmail);
+    const inTeamIndex = hackers.findIndex(member => {
+      return member.email === userEmail;
+    });
 
     if (inTeamIndex !== -1) {
-      const removedHacker = await team.teamMembers[inTeamIndex].getHacker();
-      team.teamMembers[inTeamIndex].destroy();
+      const removedHacker = await teamMembers[inTeamIndex].getHacker();
+      teamMembers[inTeamIndex].destroy();
       hackers.map(member => {
         // Don't send email to the person removing the member of the team
         if (member.email !== hacker.email) {
@@ -206,4 +219,8 @@ class TeamConfig implements TeamServiceConfig {
     const contents = emailTemplates.userRemovedEmail(removed, recipient, remover);
     await sendEmail({ to: recipient, contents });
   }
+}
+
+export function createTeamService() {
+  return new TeamService(new TeamConfig());
 }

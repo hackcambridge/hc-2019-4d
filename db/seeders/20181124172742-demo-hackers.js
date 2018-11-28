@@ -27,7 +27,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('hackers', [
       generatePerson(1, 'Joe', 'Smith'),
-      generatePerson(2, 'Joe', 'Blogs')
+      generatePerson(2, 'Joe', 'Blogs'),
+      generatePerson(3, 'Josephine', 'Smith'),
+      generatePerson(4, 'Josephine', 'Blogs')
       ], {});
   },
 

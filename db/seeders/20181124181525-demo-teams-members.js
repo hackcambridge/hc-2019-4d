@@ -16,7 +16,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('teams-members', [
       generateTeamMember(1, 1, 1),
-      generateTeamMember(2, 1, 2)
+      generateTeamMember(2, 1, 2),
+      generateTeamMember(3, 1, 3),
+      generateTeamMember(4, 1, 4)
     ], {});
   },
 

@@ -28,11 +28,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('hackers-applications', [
         generateApplication(1, 'fierce-buggy-snake', true, false),
-        generateApplication(2, 'fierce-buggy-snail', true, false)
+        generateApplication(2, 'fierce-buggy-snail', true, false),
+        generateApplication(3, 'fierce-buggy-turtle', true, false),
+        generateApplication(4, 'fierce-buggy-tortoise', true, false)
       ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Person', null, {});
+    return queryInterface.bulkDelete('hackers-applications', null, {});
   }
 };

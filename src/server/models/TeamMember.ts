@@ -25,6 +25,7 @@ const attributes: SequelizeAttributes<TeamMemberAttributes> = {
     allowNull: false,
     references: {
       model: Team,
+      allowNull: true,
       key: 'id',
       deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
     },
