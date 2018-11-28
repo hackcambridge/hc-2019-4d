@@ -114,7 +114,7 @@ const schema: ValidationSchema = {
           return true;
         } else {
           return value.includes('studentStatus') && value.includes('termsAndConditions') &&
-          value.includes('mlhCodeOfConduct') && value.includes('mlhDataProcessing');
+            value.includes('mlhCodeOfConduct') && value.includes('mlhDataProcessing');
         }
       },
     },
