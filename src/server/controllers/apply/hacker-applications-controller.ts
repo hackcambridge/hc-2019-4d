@@ -108,12 +108,13 @@ const schema: ValidationSchema = {
     exists: true,
     custom: {
       errorMessage: 'You must confirm your student status, and accept the terms and conditions, privacy policy' +
-        ', and the MLH Code of Conduct.',
+        ', the MLH Code of Conduct, and the sharing of your data with MLH.',
       options: value => {
         if (value === undefined) {
           return true;
         } else {
-          return value.includes('studentStatus') && value.includes('termsAndConditions');
+          return value.includes('studentStatus') && value.includes('termsAndConditions') &&
+          value.includes('mlhCodeOfConduct') && value.includes('mlhDataProcessing');
         }
       },
     },
