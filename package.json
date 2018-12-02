@@ -71,6 +71,7 @@
     "compression": "^1.6.1",
     "cors": "^2.8.1",
     "country-list": "https://github.com/mbale/country-list/archive/ce7f1f3a66a6b4e56879dad5f45886c71174ae30.tar.gz",
+    "csv-stringify": "^5.0.0",
     "del": "^3.0.0",
     "dotenv": "^4.0.0",
     "ejs": "^2.6.1",

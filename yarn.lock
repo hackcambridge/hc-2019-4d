@@ -2518,6 +2518,13 @@ cssom@0.3.x, "cssom@>= 0.3.0 < 0.4.0":
   dependencies:
     cssom "0.3.x"
 
+csv-stringify@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-5.0.0.tgz#7248acd769a6cf74201fd43ded7b806dd51aff1f"
+  integrity sha512-Zb2k2+oZcmQDn0nd0XpMTd8W+B2JfjI3kVfZBijYnw7zAx+K627z4LfvCfhP7B7dwyLmuzLOeuhW6T9HWIpQXg==
+  dependencies:
+    lodash.get "~4.4.2"
+
 d@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/d/-/d-1.0.0.tgz#754bb5bfe55451da69a58b94d45f4c5b0462d58f"
@@ -5425,6 +5432,11 @@ lodash.escape@^3.0.0:
   integrity sha1-mV7g3BjBtIzJLv+ucaEKq1tIdpg=
   dependencies:
     lodash._root "^3.0.0"
+
+lodash.get@~4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
 
 lodash.isarguments@^3.0.0:
   version "3.1.0"
