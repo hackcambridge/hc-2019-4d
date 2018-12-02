@@ -1,13 +1,24 @@
+import * as stringify from 'csv-stringify/lib/sync';
+
 import { getHackersWithUnfinishedApplications } from 'server/apply/applicant-info';
+import { HackerInstance } from 'server/models';
 import { createHandler } from './utils';
 
-function getEmailsOfHackersWithUnfinishedApplications(kind) {
-  return getHackersWithUnfinishedApplications(kind).then(hackers => {
-    const emails = hackers.map(hacker => hacker.email);
+function outputHackers(hackerList: ReadonlyArray<HackerInstance>): void {
+  const columns = {
+    email: 'Email',
+    firstName: 'First name',
+    lastName: 'Last name'
+  };
+  const hackerData = hackerList.map(hacker => [hacker.email, hacker.firstName, hacker.lastName]);
+  console.log(stringify(hackerData, { header: true, columns }));
+}
 
-    console.log(`Emails of applicants with unfinished applications of kind ${kind}:`);
-    if (emails.length > 0) {
-      emails.map(email => console.log(email));
+function printHackersWithUnfinishedApplications(kind): PromiseLike<void> {
+  return getHackersWithUnfinishedApplications(kind).then(hackers => {
+    console.log(`Applicants with unfinished applications of kind ${kind}:`);
+    if (hackers.length > 0) {
+      outputHackers(hackers);
     } else {
       console.log('<none>');
     }
@@ -16,16 +27,16 @@ function getEmailsOfHackersWithUnfinishedApplications(kind) {
 
 export default {
   command: 'unfinished-applications <kind>',
-  desc: 'Get emails of all hackers who started an application but didn\'t finish it',
+  desc: 'Get details of all hackers who started an application but didn\'t finish it',
   aliases: [],
   builder(yargs) {
     return yargs
       .example('unfinished-applications individual',
-        'Get emails of hackers who didn\'t finish their individual application')
+        'Get details of hackers who didn\'t finish their individual application')
       .example('unfinished-applications team-only',
-        'Get emails of hackers who finished their individual application but not their team application');
+        'Get details of hackers who finished their individual application but not their team application');
   },
   handler: createHandler(({ kind }) =>
-    getEmailsOfHackersWithUnfinishedApplications(kind)
+    printHackersWithUnfinishedApplications(kind)
   ),
 };
