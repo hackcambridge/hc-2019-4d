@@ -55,7 +55,7 @@ a {
   text-decoration: unset;
 }
 
-:not(p) strong {
+:not(p):not(label) > strong {
   font-size: 16pt;
 }
 header p {
