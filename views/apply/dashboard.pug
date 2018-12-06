@@ -20,7 +20,7 @@ block mainContent
   if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE || statuses.rsvpStatus == statusConstants.rsvp.COMPLETE_EXPIRED
     section
       form(method='POST' action='/apply/rsvp' grid='rows')
-        h3(rows='0.5') RSVP
+        h3(rows='1.0') RSVP
         h4(rows='1.0'): span.pixel= statusMessages['rsvp'][statuses.rsvpStatus].label
         p(rows='1.0')= statusMessages['rsvp'][statuses.rsvpStatus].content
         if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE
@@ -46,27 +46,22 @@ block mainContent
           div(rows='0.5')
             button(type='submit' name='submit') Submit!
         if statusMessages['rsvp'][statuses.rsvpStatus].action
-          a(href= statusMessages['rsvp'][statuses.rsvpStatus].action.location, rows='0.5')
-            = statusMessages['rsvp'][statuses.rsvpStatus].action.title
-  if statuses.overallStatus == statusConstants.overall.HAS_TICKET
-    section(grid='rows')
-      h3(rows='0.5') Extra Details
-      div(rows='2.0')
-        p
-          | We have a couple of forms for you to fill out with some extra details.
-          | Please take the time to complete them so that we can make Hack Cambridge Ternary as good as it can be for you.
-        ul
-          li: a(href=roomShareForm target='_blank') Room Sharing (if you are travelling for further away)
-          li: a(href=internationalVisaForm target='_blank') Request letter for international visa
+          ul
+            li
+              a(href= statusMessages['rsvp'][statuses.rsvpStatus].action.location, rows='0.5')
+                = statusMessages['rsvp'][statuses.rsvpStatus].action.title
   if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
-    section(grid='grid' dense)
-      div(columns='3.5' rows='3.0' grid='rows')
-        h3(rows='1.0') Date and Time
-        p(rows='1.0') #{hackathonStartDate} (Registration opens at 09:00)–#{hackathonEndDate} (Closing ceremony finishes at 18:00). Times subject to change.
-      div(columns='3.5' rows='3.0' grid='rows')
+    section(grid='grid' color='red')
+      div(columns='4.0' rows='3.0' grid='rows')
+        h3(rows='1.0') Date and time
+        p
+          | 09:00 #{hackathonStartDate}–18:00 #{hackathonEndDate}.
+          br
+          | Times subject to change.
+      div(columns='4.0' rows='3.0' grid='rows')
         h3(rows='1.0') Location
-        div(rows='2.0')
-          address
+        div
+          p: address
             | Cambridge Corn Exchange
             br
             | 2 Wheeler St
@@ -75,102 +70,113 @@ block mainContent
             br
             | CB2 3QB
             br
-          a(href='https://goo.gl/maps/6TTeXNnD7Jp' target='_blank') View on Google Maps
-      div(columns='5.0' rows='3.0' grid='rows')
+          ul
+            li: a(href='https://goo.gl/maps/TypmzToZ2yq' target='_blank') View on Google Maps
+            li: a(href='https://maps.apple.com/place?&auid=5916990408850136741' target='_blank') View on Apple Maps
+  if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
+    section(grid='grid')
+      div(columns='5.5' rows='4.5' grid='rows')
         h3(rows='1.0') Accommodation
-        div(rows='2.5')
+        div
           p
-            | For those of you that are travelling from further afield, we are endeavouring to find people in Cambridge willing to offer up some accommodation space for you on the Friday night before Hack Cambridge (the #{fridayBeforeHackathonDate}), in which case you’ll just need to bring a sleeping bag and a pillow. However, at present, we can’t guarantee you a place, so please apply early
+            | For those travelling from further afield, we try to find a host in Cambridge who will provide a place to sleep on the night before Hack Cambridge (the #{fridayBeforeHackathonDate}), in which case you’ll only need to bring a sleeping bag and pillow. However, at present, we can’t guarantee you a place, so please apply
             |
             if statuses.overallStatus == statusConstants.overall.HAS_TICKET
-              | if this would be helpful for you! We will get back to you as soon as possible indicating whether we can allocate you a room or not. People coming from outside the UK will be prioritised.
+              | now if you want to be hosted!
             else
-              | using the form that will be made available to you when you accept your invitation. We will get back to you as soon as possible indicating whether we could allocate you a room or not. People coming from outside the UK will be prioritised.
+              | straight away after accepting your invitation, using the form which appears in this section.
+            |
+            | We will reply as soon as possible indicating whether we can find you a host. Hackers coming from international destinations will be prioritised.
           if statuses.overallStatus == statusConstants.overall.HAS_TICKET
-            a(href=roomShareForm target='_blank') Apply for accommodation
-      div(columns='6.0' rows='6.0' grid='rows')
-        h3(rows='1.0') Travel Cost Reimbursements
-        div(rows='4.0')
-          p We will aim to reimburse some of your travel costs. The amount you will be able to claim up to depends on where you’re coming from:
+            ul
+              li: a(href=roomShareForm target='_blank') Apply for accommodation
+      div(columns='5.5' rows='2.5' grid='rows')
+        h3(rows='1.0') Visas
+        div
+          p If you need an invitation letter for a visa, please request one below.
           ul
-            li You can apply for up to £30 for distances as far as London,
+            li: a(href=internationalVisaForm target='_blank') Request invitation letter for visa
+      div(columns='5.5' rows='5.0' grid='rows')
+        h3(rows='1.0') Travel cost reimbursements
+        div
+          p We aim to reimburse a part of your travel costs. The amount you will be able to claim depends on how far you’ve travelled:
+          ul
+            li Up to £30 for distances as far as London,
             li Up to £50 for distances as far as Manchester,
-            li And £70 for distances further than Manchester (including international).
-          p We will be sending more details on travel reimbursements, and we may be processing them at the event so keep your receipts and bring them with you!
+            li Up to £70 for distances further than Manchester (including international destinations).
+          p We will send more details on travel reimbursements, and may process them at the event, so keep your receipts and bring them with you!
           p
             strong Note:
             |
-            | We won’t be reimbursing parking costs or cost of travel if you are studying locally. We ask that you be responsible about claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.
-          p If you haven’t already done so, remember to check the travel-related forms.
-          a(href=internationalVisaForm target='_blank') Request invitation letter for visa (international)
+            | We don’t reimburse parking costs or travel costs if you study in Cambridge. Please be responsible when claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.      
   if statuses.overallStatus == statusConstants.overall.HAS_TICKET
-    section(grid='rows')
-      h3(rows='0.5') Slack
-      div(rows='2.0')
-        p You should have received an invite to our Slack team. Make sure you accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. If you haven’t used Slack before, that’s okay. It’s a team messaging app that will allow us all to stay in touch easily, great for getting quick answers to any questions you might have about Hack Cambridge or for meeting your teammates!
+    section(grid='grid')
+      h3(rows='1.0' columns='all') Travel advice
+      div(rows='3.0' columns='5.0')
+        h4 By rail
+        p The nearest train station is Cambridge. Then take the route U bus towards Eddington to Pembroke Street (15 minutes and £1 with student ID) or walk (30 minutes). 
         ul
-          li: a(href=openSlackLink) Go to the Slack team
-          li: a(href='https://slack.com/downloads' target='_blank') Download the mobile or desktop app
-      h3(rows='1.0') Travel Advice
-      div(rows='6.0')
-        h4 By Train
-        p The nearest train station is Cambridge train station. It’s an approximately 30-minute walk from there to the venue. Which is a great way to wake you up nicely!
-        a(href='https://www.google.co.uk/maps/dir/Cambridge,+Station+Rd,+Cambridge+CB1+2JW/Cambridge+Corn+Exchange,+2+Wheeler+St,+Cambridge+CB2+3QB/@52.1992886,0.1230436,16z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47d87083c513efe3:0xc3b0831300f8d3f1!2m2!1d0.1373124!2d52.1940784!1m5!1m1!1s0x47d870bd777be21d:0x54210632dfcff7b5!2m2!1d0.119639!2d52.204348!3e2' target='_blank') View directions on Google Maps
-        h4 By Car
-        p We encourage you to avoid driving to Hack Cambridge if possible—parking is hard to find and isn’t cheap around the venue. If you have no choice but to drive, we recommend you park at the train station (Cambridge Station) about 30 minutes walking away (see above) to save yourself the £50 parking charge.
-        a(href='http://en.parkopedia.co.uk/parking/carpark/cambridge_station/cb1/cambridge/?arriving=201801200730&leaving=201801211600' target='_blank') Find parking
-        h4 By Air
-        p If you are an international student and will be flying, we recommend you head for Stansted Airport, our closest international airport, if possible. From there, you can take a National Express coach to Cambridge (50 minutes’ journey time) for about £8, or take the train for about £10 (30 minutes’ journey time).
+          li: a(href='http://www.nationalrail.co.uk/stations/CBG/details.aspx' target='_blank') Cambridge station
+          li: a(href='http://www.go-whippet.co.uk/new-route-u/') Route U bus
+      div(rows='3.0' columns='5.0')
+        h4 By air
+        p We recommend flying into Stansted. Then take a Greater Anglia or CrossCountry train to Cambridge (30 minutes and about £10) or a National Express coach to Cambridge (50 minutes and about £8).
         ul
-          li: a(href='http://coach.nationalexpress.com/nxbooking/journey-search' target='_blank' rows='0.5') Coach information
-          li: a(href='http://ojp.nationalrail.co.uk/service/planjourney/search' target='_blank' rows='0.5') Train information
+          li: a(href='http://www.nationalrail.co.uk' target='_blank' rows='0.5') Train information
+          li: a(href='https://www.nationalexpress.com/en/airports/stansted' target='_blank' rows='0.5') Coach information
+      div(rows='3.0' columns='5.0')
+        h4 By car
+        p Please avoid driving to Cambridge—parking is difficult to find and expensive. If you must drive, we recommend the park&ride service, which is less expensive.
+        ul
+          li: a(href='http://www.cambridgeparkandride.info' target='_blank') Cambridge park&ride
+      div(rows='2.0' columns='5.0')
         h4 Other questions
         p If you have any other questions about travel, please email our logistics team.
-        a(href='mailto:logistics@hackcambridge.com') Email the logistics team
-      h3(rows='1.0') On the day
-      div(rows='2.5')
+        ul
+          li: a(href='mailto:logistics@hackcambridge.com') Email the logistics team
+      h3(rows='1.0' columns='all') On the day
+      div(rows='3.5' columns='5.0')
         h4 What to bring
-        p
-          | Don’t forget to bring 
-          strong Photo ID
-          | . Have this ready at the entrance.
-        p
-          | Keep your
-          |
-          strong application ID
-          |
-          | (
-          span.pixel= application.applicationSlug
-          | ) on hand!
-        p
-          | Since you’re going to be here overnight, we’ll have some quiet spaces for sleeping, but we recommend you take a 
-          strong sleeping bag
-          |  to get comfortable. Remember to bring a 
-          strong toothbrush
-          |  and possibly a spare change of clothes.
+        ul
+          li Photo ID: have this ready at the entrance.
+          li A note of your application ID
+            |
+            | (
+            span.pixel= application.applicationSlug
+            | ): have this ready at the entrance.
+          li
+        p Since you will be here overnight, quiet spaces will be available for sleeping, but we recommend taking a sleeping bag. Don’t forget your toothbrush, and possibly a spare change of clothes.
       // If not in team
       if statuses.teamApplicationStatus != statusConstants.teamApplication.COMPLETE
-        div(rows='1.5')
+        div(rows='2.0' columns='5.0')
           h4 Finding your teams
           if application.wantsTeam
             p You said that you wanted to have a team chosen for you for the hackathon. We’ll be sending you some allocations soon!
           else
             p There’ll be opportunities to find team members on the day. We’ll be sending out more information regarding this shortly.
+      div(rows='3.5' columns='5.0')
+        h4 Slack
+        p You should have received an invite to our Slack team. Make sure to accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. Don’t worry if you haven’t used Slack before: it’s a team messaging app, allowing everyone to easily contact each other—great for getting quick answers to questions you might have about Hack Cambridge or meeting your teammates!
+        ul
+          li: a(href=openSlackLink) Go to the Slack team
+          li: a(href='https://slack.com/downloads' target='_blank') Download the mobile or desktop app
   if statuses.overallStatus == statusConstants.overall.INCOMPLETE || statuses.overallStatus == statusConstants.overall.IN_REVIEW
     section(grid='rows')
-      h3(rows='0.5') Your Application
+      h3(rows='0.5') Your application
       div(rows='1.0')
         p= statusMessages['your-application'][statuses.applicationStatus].content
         if statusMessages['your-application'][statuses.applicationStatus].action
-          a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)
+          ul
+            li: a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)
             = statusMessages['your-application'][statuses.applicationStatus].action.title
     if statuses.applicationStatus == statusConstants.application.COMPLETE
       section(grid='rows')
-        h3(rows='0.5') Team Application
+        h3(rows='0.5') Team application
         div(rows='1.5')
           p= statusMessages['team-application'][statuses.teamApplicationStatus].content
           if statusMessages['team-application'][statuses.teamApplicationStatus].action
-            a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)
+            ul
+              li: a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)
               = statusMessages['team-application'][statuses.teamApplicationStatus].action.title
         if statuses.teamApplicationStatus == statusConstants.teamApplication.COMPLETE
           div(rows='1.0')
