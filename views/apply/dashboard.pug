@@ -20,7 +20,7 @@ block mainContent
   if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE || statuses.rsvpStatus == statusConstants.rsvp.COMPLETE_EXPIRED
     section
       form(method='POST' action='/apply/rsvp' grid='rows')
-        h3(rows='1.0') RSVP
+        h3(rows='1.0') Respond to your invitation
         h4(rows='1.0'): span.pixel= statusMessages['rsvp'][statuses.rsvpStatus].label
         p(rows='1.0')= statusMessages['rsvp'][statuses.rsvpStatus].content
         if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE
