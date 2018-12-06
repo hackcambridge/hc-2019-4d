@@ -73,6 +73,9 @@ ul, ol {
 ul {
   list-style-type: none;
 }
+p + ul {
+  margin-top: 6pt;
+}
 ol {
   list-style-position: outside;
 }

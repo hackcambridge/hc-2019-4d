@@ -16,6 +16,9 @@ body, div {
 [grid="grid"] > *, [grid="columns"] > * {
   grid-column: span calc(var(--columns) * 2 + var(--half-column));
 }
+[grid="grid"] > [columns="all"], [grid="columns"] > [columns="all"] {
+  grid-column: 1 / -1;
+}
 
 [align-last="right"] > :last-child:not(:only-child) {
   grid-column-end: -1;
@@ -66,7 +69,7 @@ form[grid="grid"] > *:not(:last-child) {
 [layout="width"][grid="grid"],
 [layout="width"] [grid="columns"],
 [layout="width"][grid="columns"] {
-  grid-auto-flow: column;
+  grid-auto-flow: row;
 }
 
 [grid][dense] {
