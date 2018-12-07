@@ -67,9 +67,7 @@ if (process.env.BS_SNIPPET) {
 
 app.use(parseUrlEncoded({ extended: true }));
 app.use(methodOverride((req: any) => {
-  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-    return req.body._method;
-  }
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) return req.body._method;
 }));
 app.use('/', router);
 app.use('/api', apiRouter);
