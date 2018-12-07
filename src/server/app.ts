@@ -1,6 +1,7 @@
 import { urlencoded as parseUrlEncoded } from 'body-parser';
 import * as compression from 'compression';
 import * as express from 'express';
+import * as methodOverride from 'method-override';
 import * as moment from 'moment';
 import { ServeStaticOptions } from 'serve-static';
 import { parse as parseUrl } from 'url';
@@ -65,6 +66,11 @@ if (process.env.BS_SNIPPET) {
 }
 
 app.use(parseUrlEncoded({ extended: true }));
+app.use(methodOverride((req: any) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    return req.body._method;
+  }
+}));
 app.use('/', router);
 app.use('/api', apiRouter);
 app.use('/apply', applyRouter);
