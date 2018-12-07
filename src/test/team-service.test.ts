@@ -1,5 +1,5 @@
 
-import { expect } from 'chai';
+import { assert as chaiAssert, expect } from 'chai';
 // import { exec } from 'child_process';
 import { assert, spy } from 'sinon';
 import { Hacker, HackerInstance, TeamMember } from '../server/models';
@@ -63,6 +63,22 @@ describe('Test seeding creates hackers', () => {
 describe('Team Service', () => {
   beforeEach( () => {
     // exec('yarn seed:all');
+  });
+  describe('#addNewMemberByEmail()', () => {
+    it('should report an error as there is no room for a team member in this team', async () => {
+      const mockTeamService = new TeamService(new MockConfig());
+      const teamMember = await Hacker.findOne({
+        where: {
+          email: 'Joe.Smith@fakeemail.com'
+        }
+      });
+
+      return mockTeamService.addNewMemberByEmail(teamMember, 'Steve.NoTeam@fakeemail.com')
+        .then(
+          () => Promise.reject(new Error('Expected method to reject.')),
+          err => chaiAssert.instanceOf(err, Error)
+        );
+    });
   });
   describe('#leaveOwnTeam()', () => {
     it('should remove member from team, deleting team if last and sending email to all others', async () => {

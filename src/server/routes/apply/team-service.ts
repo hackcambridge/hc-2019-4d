@@ -1,4 +1,4 @@
-import { TeamMember } from 'server/models';
+import { Team, TeamMember } from 'server/models';
 import Hacker, { HackerInstance } from 'server/models/Hacker';
 import * as emailTemplates from '../../apply/email-templates';
 import { sendEmail } from '../../email';
@@ -148,6 +148,25 @@ export class TeamService implements TeamServiceInterface {
         email: userEmail
       }
     });
+
+    // Check current size of the team to see if there is space for another member
+    const hackerTeamInstance = await hacker.getTeam();
+    const hackersTeam = await Team.findOne({
+      where: {
+        id: hackerTeamInstance.teamId
+      },
+      include: [
+        {
+          model: TeamMember,
+          required: true
+        }
+      ]
+    });
+
+    if (hackersTeam.teamMembers.length >= 4) {
+      throw new Error('Team Already Full');
+    }
+
     if (newHacker === null) {
       // Hacker not in the database, so invite them to apply
       this.config.sendUserInvitationToApplyEmail(userEmail, hacker);
