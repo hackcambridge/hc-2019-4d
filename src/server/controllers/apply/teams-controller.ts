@@ -61,9 +61,13 @@ export async function editTeam(req: UserRequest, res: Response): Promise<void> {
 }
 
 export async function updateTeam(req: UserRequest, res: Response): Promise<void> {
-  throw new Error('Update function not implemented');
-  console.log(req);
-  res.redirect('back');
+  const team = await req.user.getTeam();
+  if (team === null) {
+    res.redirect('back');
+  } else {
+    throw new Error('Update function not implemented');
+    res.redirect('back');
+  }
 }
 
 export async function deleteTeam(req: UserRequest, res: Response): Promise<void> {
