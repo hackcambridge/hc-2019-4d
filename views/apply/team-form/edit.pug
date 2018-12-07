@@ -5,9 +5,10 @@ block mainContent
     section(color='red' grid='rows')
       p(rows='0.5')= error
   section
-    form(grid='rows')
+    form(grid='rows' action='/apply/team' method='post')
       h1(rows='1.0') Team Application
       p(rows='0.5') Enter your teammates’ application IDs to update your team.
       include team-form
       div(rows='0.5')
-        button(data-method='PATCH' data-action='/apply/team') Submit
+        input(type='hidden' name='_method' value='patch')
+        button(type='submit') Submit

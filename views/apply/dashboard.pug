@@ -234,6 +234,6 @@ block mainContent
               for hacker in teamMembers
                 li= hacker.firstName + ' ' + hacker.lastName
           div(rows='0.5')
-            button(data-method='GET' data-action='/apply/team') Edit team
+            a(href='/apply/team') Edit team
           div(rows='1.0')
-            button(data-method='DELETE' data-action='/apply/team') Leave team
+            a(href='/apply/team' data-method='delete' data-confirm='Are you sure you want to leave the team?') Leave team
