@@ -90,7 +90,8 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Congratulations, your application has been accepted! Please be aware that you have five days to accept your invitation before it expires.
+        Congratulations, you’re invited to <%= metadata.eventTitle %>! Please be aware that you have five days from when you were invited to accept
+        your invitation before it expires.
     complete-yes:
       type: success
       label: Yes!
