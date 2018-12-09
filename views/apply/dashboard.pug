@@ -3,7 +3,7 @@ block mainContent
   -
     title = 'Dashboard'
     roomShareForm = undefined
-    internationalVisaForm = 'https://docs.google.com/forms/d/e/1FAIpQLSflkf8VJrgARSTfgGb_cPiiu3i6YeatCbIqQQXfD3wdBbf_NQ/viewform'
+    visaForm = 'https://docs.google.com/forms/d/e/1FAIpQLSflkf8VJrgARSTfgGb_cPiiu3i6YeatCbIqQQXfD3wdBbf_NQ/viewform'
   // To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking
   - openSlackLink = undefined
   section(grid='rows')
@@ -75,13 +75,13 @@ block mainContent
             li: a(href='https://maps.apple.com/place?&auid=5916990408850136741' target='_blank') View on Apple Maps
   if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
     section(grid='grid')
-      if internationalVisaForm
+      if visaForm
         div(columns='5.5' rows='2.5' grid='rows')
           h3(rows='1.0') Visas
           div
             p If you need an invitation letter for a visa, please request one below.
             ul
-              li: a(href=internationalVisaForm target='_blank') Request invitation letter for visa
+              li: a(href=visaForm target='_blank') Request invitation letter for visa
       if roomShareForm
         div(columns='5.5' rows='4.5' grid='rows')
           h3(rows='1.0') Accommodation
