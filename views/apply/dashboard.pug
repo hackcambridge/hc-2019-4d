@@ -48,7 +48,7 @@ block mainContent
         if statusMessages['rsvp'][statuses.rsvpStatus].action
           ul
             li
-              a(href= statusMessages['rsvp'][statuses.rsvpStatus].action.location, rows='0.5')
+              a(href=statusMessages['rsvp'][statuses.rsvpStatus].action.location)
                 = statusMessages['rsvp'][statuses.rsvpStatus].action.title
   if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
     section(grid='grid' color='red')
