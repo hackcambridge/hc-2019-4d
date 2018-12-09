@@ -8,7 +8,7 @@ dashboard:
     incomplete-closed:
       message_type: neutral
       title: All good things must come to an end.
-      subline: Unfortunately applications for Hack Cambridge are now closed. Keep an eye out for our future events!
+      subline: Unfortunately applications for <%= metadata.title %> are now closed. Keep an eye out for our future events!
     
     in-review:
       message_type: success
@@ -18,7 +18,7 @@ dashboard:
     invited-awaiting-rsvp:
       message_type: success
       title: You’re in!
-      subline: We’d love to have you at Hack Cambridge Ternary. Please confirm your place below.
+      subline: We’d love to have you at <%= metadata.eventTitle %>. Please confirm your place below.
 
     invited-accepted:
       message_type: neutral
@@ -33,12 +33,12 @@ dashboard:
     invited-declined:
       message_type: neutral
       title: Thank you!
-      subline: You’ve told us you can’t make it. Thanks for your interest in Hack Cambridge Ternary.
+      subline: You’ve told us you can’t make it. Thanks for your interest in <%= metadata.eventTitle %>.
 
     invited-expired:
       message_type: neutral
       title: Thank you!
-      subline: Your invitation for Hack Cambridge has expired, thank you for your interest.
+      subline: Your invitation for <%= metadata.title %> has expired, thank you for your interest.
 
     rejected:
       message_type: neutral
@@ -65,7 +65,7 @@ dashboard:
       content:
         You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
       action:
-        title: Submit a team application before December 9th
+        title: Submit a team application before <%= dates.getApplicationsCloseDate().format('MMMM Do') %>
         location: /apply/team
     wanting:
       type: success
@@ -90,17 +90,17 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Please let us know if you’re committed to attending Hack Cambridge Ternary so we can confirm your place! Please note that if you accept and then
-        do not register on the day, this may affect your application in future iterations of Hack Cambridge, please be honest!
+        Congratulations, you’re invited to <%= metadata.eventTitle %>! Please be aware that you have five days from when you were invited to accept
+        your invitation before it expires.
     complete-yes:
       type: success
       label: Yes!
-      content: Your place is confirmed. We can’t wait to see you at Hack Cambridge Ternary!
+      content: Your place is confirmed. We can’t wait to see you at <%= metadata.eventTitle %>!
     complete-no:
       type: na
       label: Declined
       content:
-        Thanks for letting us know that you’re no longer able to attend Hack Cambridge Ternary. Your place has been opened up to somebody else.
+        Thanks for letting us know that you’re no longer able to attend <%= metadata.eventTitle %>. Your place has been opened up to somebody else.
         If you have feedback for us, we’d be glad to hear it. Just drop us an email.
       action:
         title: Send us an email
@@ -109,7 +109,7 @@ dashboard:
       type: na
       label: Expired
       content:
-        Your invitation for Hack Cambridge Ternary has expired. Your place has been opened up to somebody else.
+        Your invitation for <%= metadata.eventTitle %> has expired. Your place has been opened up to somebody else.
         If you have feedback for us, we’d be glad to hear it. Just drop us an email.
       action:
         title: Send us an email
@@ -119,7 +119,7 @@ dashboard:
       type: warning
       label: Incomplete
       content: 
-        We still need a few more details from you to guarantee your enjoyment of Hack Cambridge.
+        We still need a few more details from you to guarantee your enjoyment of <%= metadata.title %>.
       action:
         title: Provide further details
         location: /apply/further

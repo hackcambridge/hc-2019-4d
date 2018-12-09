@@ -99,7 +99,8 @@ async function getTicketStatus(hackerInstance: HackerInstance): Promise<string> 
 // Returns a promise that resolves to the headline application status
 async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Promise<string> {
   if (hackerStatuses.applicationStatus === statuses.application.INCOMPLETE ||
-      hackerStatuses.teamApplicationStatus === statuses.application.INCOMPLETE) {
+     ((hackerStatuses.teamApplicationStatus === statuses.application.INCOMPLETE) &&
+     (hackerStatuses.applicationStatus === statuses.application.INCOMPLETE))) {
     return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ?
       statuses.overall.INCOMPLETE :
       statuses.overall.INCOMPLETE_CLOSED;
