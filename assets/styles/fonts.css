@@ -55,7 +55,7 @@ a {
   text-decoration: unset;
 }
 
-:not(p) strong {
+:not(p):not(label) > strong {
   font-size: 16pt;
 }
 header p {
@@ -72,6 +72,9 @@ ul, ol {
 }
 ul {
   list-style-type: none;
+}
+p + ul {
+  margin-top: 6pt;
 }
 ol {
   list-style-position: outside;
