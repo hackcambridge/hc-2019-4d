@@ -17,6 +17,13 @@ export function getHackathonEndDate(): moment.Moment {
 }
 
 /**
+ * Returns the datetime when applications close.
+ */
+export function getAdvertisedApplicationsEnd(): moment.Moment {
+  return moment('2018-12-13T23:59:59Z');
+}
+
+/**
  * Returns the earliest graduation date we can accept.
  *
  * This is due to the restriction imposed by MLH that attendees must either be students or
@@ -39,11 +46,4 @@ export function getHackingPeriodStart(): moment.Moment {
  */
 export function getHackingPeriodEnd(): moment.Moment {
   return moment('2019-01-20T12:00:00Z');
-}
-
-/**
- * Returns the datetime when applications close.
- */
-export function getApplicationsCloseDate(): moment.Moment {
-  return moment('2018-12-13T23:59:59Z');
 }

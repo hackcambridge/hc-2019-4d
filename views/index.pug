@@ -53,7 +53,7 @@ block content
           p We’ll be publishing an event page very soon! In it, you'll find a schedule, maps and directions, listings of APIs, hardware, prizes, and more.
           //-a(href="/event") Find all the information you need on the event page
       div
-    if moment().isAfter(event.dates.getApplicationsEnd().subtract(1, 'weeks'))
+    if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks'))
       section(grid='grid' sidebar='' columns='7.5' color='blue')
         div
         div(grid='rows' rows='1.0')
@@ -70,8 +70,8 @@ block content
               | Applications for Hack Cambridge 2019 open soon.
             else
               | Applications open this #{event.dates.getApplicationsStart().format('dddd')}!
-          else if moment().isBefore(event.dates.getApplicationsEnd())
-            if moment().isAfter(event.dates.getApplicationsEnd().subtract(1, 'weeks'))
+          else if moment().isBefore(event.dates.getAdvertisedApplicationsEnd())
+            if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks'))
               | Applications close soon!
             else
               | Applications are open!
