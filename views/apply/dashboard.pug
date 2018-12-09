@@ -2,10 +2,10 @@ extends ../layouts/width
 block mainContent
   -
     title = 'Dashboard'
-    roomShareForm = 'https://docs.google.com/forms/d/e/1FAIpQLSf7cEY2xt-Ya_VooMEAbmQMhCLDpBJ5MtHFa38ZE2rsmLvmWw/viewform'
-    internationalVisaForm = 'https://docs.google.com/forms/d/e/1FAIpQLScF6ZRa8oLYcZ42G3Xgx5fmKV3FWrl0Jkm4dcVLYhVBCKy1Jw/viewform'
+    roomShareForm = undefined
+    internationalVisaForm = undefined
   // To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking
-  - openSlackLink = 'slack://open?team=T7YPKKJRZ'
+  - openSlackLink = undefined
   section(grid='rows')
     h1(rows='1.0')= title
     div(rows='1.5')
@@ -75,27 +75,29 @@ block mainContent
             li: a(href='https://maps.apple.com/place?&auid=5916990408850136741' target='_blank') View on Apple Maps
   if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
     section(grid='grid')
-      div(columns='5.5' rows='2.5' grid='rows')
-        h3(rows='1.0') Visas
-        div
-          p If you need an invitation letter for a visa, please request one below.
-          ul
-            li: a(href=internationalVisaForm target='_blank') Request invitation letter for visa
-      div(columns='5.5' rows='4.5' grid='rows')
-        h3(rows='1.0') Accommodation
-        div
-          p
-            | For those travelling from further afield, we try to find a host in Cambridge who will provide a place to sleep on the night before Hack Cambridge (the #{fridayBeforeHackathonDate}), in which case you’ll only need to bring a sleeping bag and pillow. However, at present, we can’t guarantee you a place, so please apply
-            |
-            if statuses.overallStatus == statusConstants.overall.HAS_TICKET
-              | now if you want to be hosted!
-            else
-              | straight away after accepting your invitation, using the form which appears in this section.
-            |
-            | We will reply as soon as possible indicating whether we can find you a host. Hackers coming from international destinations will be prioritised.
-          if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+      if internationalVisaForm
+        div(columns='5.5' rows='2.5' grid='rows')
+          h3(rows='1.0') Visas
+          div
+            p If you need an invitation letter for a visa, please request one below.
             ul
-              li: a(href=roomShareForm target='_blank') Apply for accommodation
+              li: a(href=internationalVisaForm target='_blank') Request invitation letter for visa
+      if roomShareForm
+        div(columns='5.5' rows='4.5' grid='rows')
+          h3(rows='1.0') Accommodation
+          div
+            p
+              | For those travelling from further afield, we try to find a host in Cambridge who will provide a place to sleep on the night before Hack Cambridge (the #{fridayBeforeHackathonDate}), in which case you’ll only need to bring a sleeping bag and pillow. However, at present, we can’t guarantee you a place, so please apply
+              |
+              if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+                | now if you want to be hosted!
+              else
+                | straight away after accepting your invitation, using the form which appears in this section.
+              |
+              | We will reply as soon as possible indicating whether we can find you a host. Hackers coming from international destinations will be prioritised.
+            if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+              ul
+                li: a(href=roomShareForm target='_blank') Apply for accommodation
       div(columns='4.5' rows='5.5' grid='rows')
         h3(rows='1.0') Travel cost reimbursements
         div
@@ -146,12 +148,13 @@ block mainContent
             | ): have this ready at the entrance.
           li
         p Since you will be here overnight, quiet spaces will be available for sleeping, but we recommend taking a sleeping bag. Don’t forget your toothbrush, and possibly a spare change of clothes.
-      div(rows='4.0' columns='5.0')
-        h4 Slack
-        p You should have received an invite to our Slack team. Make sure to accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. Don’t worry if you haven’t used Slack before: it’s a team messaging app, allowing everyone to easily contact each other—great for getting quick answers to questions you might have about Hack Cambridge or meeting your teammates!
-        ul
-          li: a(href=openSlackLink) Go to the Slack team
-          li: a(href='https://slack.com/downloads' target='_blank') Download the mobile or desktop app
+      if openSlackLink
+        div(rows='4.0' columns='5.0')
+          h4 Slack
+          p You should have received an invite to our Slack team. Make sure to accept the invite and join in to meet everyone. If you didn’t receive an invite, let us know straight away. Don’t worry if you haven’t used Slack before: it’s a team messaging app, allowing everyone to easily contact each other—great for getting quick answers to questions you might have about Hack Cambridge or meeting your teammates!
+          ul
+            li: a(href=openSlackLink) Go to the Slack team
+            li: a(href='https://slack.com/downloads' target='_blank') Download the mobile or desktop app
       // If not in team
       if statuses.teamApplicationStatus != statusConstants.teamApplication.COMPLETE
         div(rows='2.0' columns='4.0')
