@@ -58,7 +58,7 @@ block content
       div(grid='rows' rows='1.5')
         strong(rows='0.5')
           if moment().isBefore(event.dates.getApplicationsStart())
-            if moment().isBefore(event.dates.getApplicationsStart().subtract(1, 'weeks'))
+            if moment().isAfter(event.dates.getApplicationsStart().subtract(1, 'weeks'))
               | Applications for Hack Cambridge 2019 open soon.
             else
               | Applications open this #{event.dates.getApplicationsStart().format('dddd')}!
