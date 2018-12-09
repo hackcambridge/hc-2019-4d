@@ -90,8 +90,7 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Please let us know if you’re committed to attending Hack Cambridge Ternary so we can confirm your place! Please note that if you accept and then
-        do not register on the day, this may affect your application in future iterations of Hack Cambridge, please be honest!
+        Congratulations, your application has been accepted! Please be aware that you have five days to accept your invitation before it expires.
     complete-yes:
       type: success
       label: Yes!
