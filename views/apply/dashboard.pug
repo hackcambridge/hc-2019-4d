@@ -19,12 +19,12 @@ block mainContent
   // Section for info about RSVPs
   if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE || statuses.rsvpStatus == statusConstants.rsvp.COMPLETE_EXPIRED
     section
-      form(method='POST' action='/apply/rsvp' grid='rows')
-        h3(rows='1.0') Respond to your invitation
-        h4(rows='1.0'): span.pixel= statusMessages['rsvp'][statuses.rsvpStatus].label
-        p(rows='1.0')= statusMessages['rsvp'][statuses.rsvpStatus].content
+      form(method='POST' action='/apply/rsvp' grid='grid')
+        h3(rows='1.0' columns='all') Respond to your invitation
+        h4(rows='1.0' columns='all'): span.pixel= statusMessages['rsvp'][statuses.rsvpStatus].label
+        p(rows='1.5' columns='8')= statusMessages['rsvp'][statuses.rsvpStatus].content
         if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE
-          div(rows='1.5')
+          div(rows='1.5' columns='all')
             div
               input#rsvp-yes(type='radio' name='rsvp' value='RSVP_YES' required='true')
               |
@@ -43,7 +43,7 @@ block mainContent
               |
               |
               label(for='rsvp-confirmation') I confirm my response.
-          div(rows='0.5')
+          div(rows='0.5' columns='all')
             button(type='submit' name='submit') Submit!
         if statusMessages['rsvp'][statuses.rsvpStatus].action
           ul
