@@ -5,7 +5,7 @@ export function getApplicationsStart(): moment.Moment {
 }
 
 export function getApplicationsEnd(): moment.Moment {
-  return getHackathonStartDate();
+  return moment('2018-12-13T23:59:00Z');
 }
 
 export function getHackathonStartDate(): moment.Moment {
