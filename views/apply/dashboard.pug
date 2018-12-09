@@ -172,8 +172,7 @@ block mainContent
         p= statusMessages['your-application'][statuses.applicationStatus].content
         if statusMessages['your-application'][statuses.applicationStatus].action
           ul
-            li: a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)
-            = statusMessages['your-application'][statuses.applicationStatus].action.title
+            li: a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)= statusMessages['your-application'][statuses.applicationStatus].action.title
     if statuses.applicationStatus == statusConstants.application.COMPLETE
       section(grid='rows')
         h3(rows='0.5') Team application
@@ -181,8 +180,7 @@ block mainContent
           p= statusMessages['team-application'][statuses.teamApplicationStatus].content
           if statusMessages['team-application'][statuses.teamApplicationStatus].action
             ul
-              li: a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)
-              = statusMessages['team-application'][statuses.teamApplicationStatus].action.title
+              li: a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)= statusMessages['team-application'][statuses.teamApplicationStatus].action.title
         if statuses.teamApplicationStatus == statusConstants.teamApplication.COMPLETE
           div(rows='1.0')
             ul
