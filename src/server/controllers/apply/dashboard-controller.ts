@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import * as moment from 'moment';
 
 import { HackerInstance, TeamMember } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
@@ -27,13 +28,18 @@ async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<Hacke
 }
 
 export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
-  const statusMessages = utils.loadResource('dashboard');
-
   const [application, statuses, teamMembers] = await Promise.all([
     req.user.getHackerApplication(),
     req.user.getStatuses(),
     getOtherTeamMembersAsHackers(req.user)
   ]);
+
+  const applicationResponse = await application.getApplicationResponse();
+  const expiryDate = applicationResponse == null ? null : moment(applicationResponse.expiryDate);
+
+  const statusMessages = utils.loadResource('dashboard', {
+    expiryDate
+  });
 
   const fridayWeekday = 5;
   const fridayBeforeHackathonDate =
