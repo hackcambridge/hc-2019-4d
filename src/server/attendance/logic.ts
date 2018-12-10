@@ -57,8 +57,8 @@ export function getInvitationExpiryCandidates() {
   return ApplicationResponse.findAll({
     where: Sequelize.and(
       {
-        createdAt: {
-          $lt: moment().subtract(INVITATION_VALIDITY_DURATION).toDate(),
+        expiryDate: {
+          $lt: moment().toDate(),
         },
         response: response.INVITED,
       },

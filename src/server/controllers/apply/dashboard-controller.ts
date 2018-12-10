@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import * as moment from 'moment';
 
 import { HackerInstance, TeamMember } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
@@ -26,20 +27,26 @@ async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<Hacke
   return Promise.all(otherMembers.map(member => member.getHacker()));
 }
 
-export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
-  const statusMessages = utils.loadResource('dashboard');
+function getFridayBeforeHackathonDate(): moment.Moment {
+  const fridayWeekday = 5;
+  return getHackathonStartDate().isoWeekday() > fridayWeekday
+      ? getHackathonStartDate().isoWeekday(fridayWeekday)
+      : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
+}
 
+export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
   const [application, statuses, teamMembers] = await Promise.all([
     req.user.getHackerApplication(),
     req.user.getStatuses(),
     getOtherTeamMembersAsHackers(req.user)
   ]);
 
-  const fridayWeekday = 5;
-  const fridayBeforeHackathonDate =
-    (getHackathonStartDate().isoWeekday() > fridayWeekday)
-      ? getHackathonStartDate().isoWeekday(fridayWeekday)
-      : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
+  const applicationResponse = await application.getApplicationResponse();
+  const expiryDate = applicationResponse == null ? null : moment(applicationResponse.expiryDate);
+
+  const statusMessages = utils.loadResource('dashboard', {
+    expiryDate
+  });
 
   res.render('apply/dashboard', {
     application,
@@ -49,7 +56,7 @@ export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
     applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
     hackathonStartDate: getHackathonStartDate().format('DD/MM/YY'),
     hackathonEndDate: getHackathonEndDate().format('DD/MM/YY'),
-    fridayBeforeHackathonDate: fridayBeforeHackathonDate.format('DDDo MMM'),
+    fridayBeforeHackathonDate: getFridayBeforeHackathonDate().format('DDDo MMM'),
     statusConstants
   });
 };

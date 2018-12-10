@@ -90,8 +90,8 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Congratulations, you’re invited to <%= metadata.eventTitle %>! Please be aware that you have five days from when you were invited to accept
-        your invitation before it expires.
+        Congratulations, you’re invited to <%= metadata.eventTitle %>!
+        Let us know whether you’ll be attending or not before your invitation expires<%= expiryDate != null ? ` on ${expiryDate.format('MMMM Do')}` : '' %>.
     complete-yes:
       type: success
       label: Yes!
