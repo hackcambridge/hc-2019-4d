@@ -187,6 +187,7 @@ export function applicationHasBeenIndividuallyScored(application) {
 interface AugmentedApplication {
   id: number;
   name: string;
+  email: string;
   gender: string;
   country: string;
   institution: string;
@@ -208,6 +209,7 @@ async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplic
   return applications.map(application => ({
     id: application.id,
     name: `${application.hacker.firstName} ${application.hacker.lastName}`,
+    email: application.hacker.email,
     gender: application.hacker.gender,
     country: application.countryTravellingFrom,
     institution: application.hacker.institution,
