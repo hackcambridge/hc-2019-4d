@@ -4,8 +4,11 @@ export function getApplicationsStart(): moment.Moment {
   return moment('2018-11-10T23:30:00Z');
 }
 
+/**
+ * Links to start applications will be removed from this date.
+ */
 export function getApplicationsEnd(): moment.Moment {
-  return getHackathonStartDate();
+  return moment('2018-12-13T23:59:00Z');
 }
 
 export function getHackathonStartDate(): moment.Moment {
@@ -14,6 +17,15 @@ export function getHackathonStartDate(): moment.Moment {
 
 export function getHackathonEndDate(): moment.Moment {
   return moment('2019-01-20');
+}
+
+/**
+ * Returns the datetime applications are advertised to close. This is the closing date
+ * displayed to hackers. Applications won't actually close until `getApplicationsEnd`, at
+ * which point links to start applications will be removed.
+ */
+export function getAdvertisedApplicationsEnd(): moment.Moment {
+  return moment('2018-12-13T23:59:59Z');
 }
 
 /**
@@ -39,11 +51,4 @@ export function getHackingPeriodStart(): moment.Moment {
  */
 export function getHackingPeriodEnd(): moment.Moment {
   return moment('2019-01-20T12:00:00Z');
-}
-
-/**
- * Returns the datetime when applications close.
- */
-export function getApplicationsCloseDate(): moment.Moment {
-  return moment('2018-12-13T23:59:59Z');
 }

@@ -53,17 +53,28 @@ block content
           p We’ll be publishing an event page very soon! In it, you'll find a schedule, maps and directions, listings of APIs, hardware, prizes, and more.
           //-a(href="/event") Find all the information you need on the event page
       div
+    if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks'))
+      section(grid='grid' sidebar='' columns='7.5' color='blue')
+        div
+        div(grid='rows' rows='1.0')
+          strong(rows='0.5') Applications close this #{event.dates.getApplicationsEnd().format('dddd')}! 
+          div(rows='0.5')
+            p Submit your application before time runs out!
+        div
     section(grid='grid' sidebar='' columns='7.5' color='red')
       div
       div(grid='rows' rows='1.5')
         strong(rows='0.5')
           if moment().isBefore(event.dates.getApplicationsStart())
-            if moment().isBefore(event.dates.getApplicationsStart().subtract(1, 'weeks'))
+            if moment().isAfter(event.dates.getApplicationsStart().subtract(1, 'weeks'))
               | Applications for Hack Cambridge 2019 open soon.
             else
               | Applications open this #{event.dates.getApplicationsStart().format('dddd')}!
-          else if moment().isBefore(event.dates.getApplicationsEnd())
-            | Applications are open!
+          else if moment().isBefore(event.dates.getAdvertisedApplicationsEnd())
+            if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks'))
+              | Applications close soon!
+            else
+              | Applications are open!
           else if moment().isBefore(event.dates.getHackathonEndDate())
             | Applications have closed for this year.
           else
