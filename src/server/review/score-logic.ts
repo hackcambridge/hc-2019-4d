@@ -184,40 +184,55 @@ export function applicationHasBeenIndividuallyScored(application) {
   }).then(result => result.count >= 2);
 }
 
+interface AugmentedApplication {
+  id: number;
+  name: string;
+  gender: string;
+  country: string;
+  institution: string;
+  inTeam: boolean;
+  isDisqualified: boolean;
+  rating: number;
+  status: string;
+  visaNeededBy: Date;
+}
+
+async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplication>> {
+  const [applications, individualScores, teamsArr] = await Promise.all([
+    getApplicationsWithTeams(),
+    getIndividualScores(),
+    getTeamsWithMembers(),
+  ]);
+  const teamScores = calculateTeamsAverages(individualScores, teamsArr);
+
+  return applications.map(application => ({
+    id: application.id,
+    name: `${application.hacker.firstName} ${application.hacker.lastName}`,
+    gender: application.hacker.gender,
+    country: application.countryTravellingFrom,
+    institution: application.hacker.institution,
+    inTeam: application.hacker.Team !== null,
+    isDisqualified: application.isDisqualified,
+    rating: calculateScore(application, individualScores, teamScores),
+    ratingStdev: application.applicationReviews.length > 0 ? getReviewSetStdev(application.applicationReviews) : 0,
+    status: application.applicationResponse !== null ?
+      (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
+    visaNeededBy: application.visaNeededBy,
+  }));
+}
+
 /**
  * Gets all applications with their true score and useful extra information.
  *
  * @param {Function} [weightingFunction] An optional function that takes in application
  *   object and returns a new score.
  */
-export function getApplicationsWithScores(weightingFunction = (({ rating }) => rating)) {
-  return Promise.all([
-    getApplicationsWithTeams(),
-    getIndividualScores(),
-    getTeamsWithMembers(),
-  ]).then(([applications, individualScores, teamsArr]) => {
-    const teamScores = calculateTeamsAverages(individualScores, teamsArr);
+export async function getApplicationsWithScores(weightingFunction: (app: AugmentedApplication) => number = ({ rating }) => rating):
+  Promise<ReadonlyArray<AugmentedApplication>> {
+  const augmentedApplications = await getAugmentedApplications();
 
-    return applications.map(application => {
-      const augmentedApplication = {
-        id: application.id,
-        name: `${application.hacker.firstName} ${application.hacker.lastName}`,
-        gender: application.hacker.gender,
-        country: application.countryTravellingFrom,
-        institution: application.hacker.institution,
-        inTeam: application.hacker.Team !== null,
-        isDisqualified: application.isDisqualified,
-        rating: calculateScore(application, individualScores, teamScores),
-        ratingStdev: application.applicationReviews.length > 0 ? getReviewSetStdev(application.applicationReviews) : 0,
-        status: application.applicationResponse !== null ?
-          (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') :
-          'Pending',
-        visaNeededBy: application.visaNeededBy,
-      };
-
-      augmentedApplication.rating = weightingFunction(augmentedApplication);
-
-      return augmentedApplication;
-    });
-  });
+  return augmentedApplications.map(application => ({
+    ...application,
+    rating: weightingFunction(application)
+  }));
 }
