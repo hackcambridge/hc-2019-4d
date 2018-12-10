@@ -4,6 +4,7 @@ import * as mailgunTransport from 'nodemailer-mailgun-transport';
 import * as sendmailTransport from 'nodemailer-sendmail-transport';
 
 import * as colors from 'shared/colors';
+import * as metadata from 'shared/metadata';
 
 function createTransport() {
   if (process.env.MAILGUN_API_KEY) {
@@ -24,8 +25,8 @@ const transporter = nodemailer.createTransport(createTransport());
 const mailGenerator = new Mailgen({
   theme: 'default',
   product: {
-    name: 'Hack Cambridge',
-    link: 'https://hackcambridge.com',
+    name: metadata.title,
+    link: 'https://hackcambridge.com'
   },
 });
 
