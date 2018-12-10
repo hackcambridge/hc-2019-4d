@@ -41,7 +41,7 @@ export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
     getOtherTeamMembersAsHackers(req.user)
   ]);
 
-  const applicationResponse = await application.getApplicationResponse();
+  const applicationResponse = application == null ? null : await application.getApplicationResponse();
   const expiryDate = applicationResponse == null ? null : moment(applicationResponse.expiryDate);
 
   const statusMessages = utils.loadResource('dashboard', {
