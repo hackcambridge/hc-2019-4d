@@ -1,0 +1,3 @@
+form(grid='columns' method='post' action='/api/subscribe/interested' rows='0.5' columns='1.0' align-last='right' data-remote='true' data-controller='email-sign-up' data-action='ajax:success->email-sign-up#processResponse ajax:error->email-sign-up#handleError')
+  input(type='email' name='email' required='' placeholder='email@domain.com')
+  input(type='submit' name='submit' value='Submit.')
