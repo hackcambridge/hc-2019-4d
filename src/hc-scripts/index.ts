@@ -4,6 +4,7 @@ import createAdmin from './create-admin';
 import createToken from './create-token';
 import downloadCvs from './download-cvs';
 import expireInvitations from './expire-invitations';
+import polarisedApplications from './polarised-applications';
 import respond from './respond';
 import suggestResponses from './suggest-responses';
 import teams from './teams';
@@ -19,12 +20,13 @@ process.on('unhandledRejection', (reason, promise) => {
 yargs
   .command(createAdmin)
   .command(createToken)
-  .command(unfinishedApplications)
-  .command(suggestResponses)
-  .command(respond)
-  .command(expireInvitations)
   .command(downloadCvs)
+  .command(expireInvitations)
+  .command(polarisedApplications)
+  .command(respond)
+  .command(suggestResponses)
   .command(teams)
+  .command(unfinishedApplications)
   .demand(1, 'Supply a command.')
   .help()
   .argv;

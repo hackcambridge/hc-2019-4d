@@ -3,17 +3,18 @@ import * as Sequelize from 'sequelize';
 import Admin from './Admin';
 import db from './db';
 import HackerApplication from './HackerApplication';
+import { ReviewCriterionScoreInstance } from './ReviewCriterionScore';
 
-interface ApplicationResponseAttributes {
+interface ApplicationReviewAttributes {
   id?: number;
   adminId: number;
   hackerApplicationId: number;
 }
+export interface ApplicationReviewInstance extends Sequelize.Instance<ApplicationReviewAttributes>, ApplicationReviewAttributes {
+  reviewCriterionScores?: ReviewCriterionScoreInstance[];
+}
 
-type ApplicationResponseInstance = Sequelize.Instance<ApplicationResponseAttributes>
-  & ApplicationResponseAttributes;
-
-const attributes: SequelizeAttributes<ApplicationResponseAttributes> = {
+const attributes: SequelizeAttributes<ApplicationReviewAttributes> = {
   adminId: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -25,7 +26,7 @@ const attributes: SequelizeAttributes<ApplicationResponseAttributes> = {
 };
 
 const ApplicationReview =
-  db.define<ApplicationResponseInstance, ApplicationResponseAttributes>('applicationReview', attributes, {
+  db.define<ApplicationReviewInstance, ApplicationReviewAttributes>('applicationReview', attributes, {
     tableName: 'application-reviews',
   });
 

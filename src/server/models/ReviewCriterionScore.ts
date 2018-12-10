@@ -11,7 +11,7 @@ interface ReviewCriterionScoreAttributes {
   score: number;
 }
 
-type ReviewCriterionScoreInstance = Sequelize.Instance<ReviewCriterionScoreAttributes>
+export type ReviewCriterionScoreInstance = Sequelize.Instance<ReviewCriterionScoreAttributes>
   & ReviewCriterionScoreAttributes;
 
 const attributes: SequelizeAttributes<ReviewCriterionScoreAttributes> = {
