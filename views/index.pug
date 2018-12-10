@@ -85,9 +85,7 @@ block content
               | Sign up to stay in the loop!
             else
               | Sign up to be reminded.
-          form.signup-form(grid='columns' method='post' action='/api/subscribe/interested' rows='0.5' columns='1.0' align-last='right')
-            input(type='email' name='email' required='' placeholder='email@domain.com')
-            input(type='submit' name='submit' value='Submit.')
+          include includes/email-sign-up-form
         else if moment().isBefore(event.dates.getApplicationsEnd())
           if user
             div(grid='grid' rows='1.0')
@@ -99,9 +97,7 @@ block content
               | Log in with MyMLH to start, continue, or access your application
         else
           p(rows='0.5') Sign up for information about next year!
-          form.signup-form(grid='columns' method='post' action='/api/subscribe/interested' rows='0.5' columns='1.0' align-last='right')
-            input(type='email' name='email' required='' placeholder='email@domain.com')
-            input(type='submit' name='submit' value='Submit.')
+          include includes/email-sign-up-form
       ul(rows='0.5')
         li
           a.icon(rel='next' href='/faqs')
