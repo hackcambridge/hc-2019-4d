@@ -1,7 +1,9 @@
 import * as fs from 'fs';
 import * as Sequelize from 'sequelize';
 
-import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, Team, TeamMember } from 'server/models';
+import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, ReviewCriterionScore,
+         Team, TeamMember } from 'server/models';
+import { getReviewSetStdev } from './polarised';
 
 const individualScoreQuery = fs.readFileSync('src/server/review/individual_scores.sql', 'utf8');
 
@@ -92,6 +94,16 @@ export function getApplicationsWithTeams() {
         model: ApplicationResponse,
         required: false,
       },
+      {
+        model: ApplicationReview,
+        required: false,
+        include: [
+          {
+            model: ReviewCriterionScore,
+            required: false,
+          },
+        ],
+      }
     ],
   });
 }
@@ -196,6 +208,7 @@ export function getApplicationsWithScores(weightingFunction = (({ rating }) => r
         inTeam: application.hacker.Team !== null,
         isDisqualified: application.isDisqualified,
         rating: calculateScore(application, individualScores, teamScores),
+        ratingStdev: application.applicationReviews.length > 0 ? getReviewSetStdev(application.applicationReviews) : 0,
         status: application.applicationResponse !== null ?
           (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') :
           'Pending',

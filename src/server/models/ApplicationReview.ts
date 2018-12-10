@@ -31,6 +31,8 @@ const ApplicationReview =
   });
 
 ApplicationReview.belongsTo(Admin);
+
 ApplicationReview.belongsTo(HackerApplication);
+HackerApplication.hasMany(ApplicationReview);
 
 export default ApplicationReview;
