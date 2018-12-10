@@ -1,5 +1,8 @@
+import * as moment from 'moment';
+
 import { sendEmail } from 'server/email';
 import { ApplicationResponse, db, Hacker, HackerApplication, Team, TeamMember } from 'server/models';
+import { ApplicationResponseAttributes } from 'server/models/ApplicationResponse';
 import { HackerInstance } from 'server/models/Hacker';
 import { HackerApplicationInstance } from 'server/models/HackerApplication';
 import { response } from 'shared/status-constants';
@@ -69,9 +72,11 @@ function checkApplicationsAreScored(applications: HackerApplicationInstance[]): 
  */
 function setResponseForApplication(application: HackerApplicationInstance, responseStatus, transaction) {
   console.log(`Setting response for application ${application.id} to "${responseStatus}"`);
-  const responseContent = {
+  const responseContent: ApplicationResponseAttributes = {
     response: responseStatus,
     hackerApplicationId: application.id,
+    // Expire the invitation at the end of the day to give hackers the full final day to respond.
+    expiryDate: moment().add(INVITATION_VALIDITY_DURATION).endOf('day').toDate()
   };
 
   return ApplicationResponse.findOne({

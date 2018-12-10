@@ -61,12 +61,12 @@ function loadScheduleTimeProperties(loadedScheduleResource) {
   });
 }
 
-export function loadResource(resourceName) {
+export function loadResource(resourceName, extraData = {}) {
   if ((!loadedResources[resourceName]) || app === undefined || app.settings.env === 'development') {
     let loadedResource = yaml.safeLoad(
       renderEjs(
         fs.readFileSync(resolvePath(`./assets/resources/${resourceName}.yml`)).toString(),
-        { dates, metadata, theme }
+        { ...extraData, dates, metadata, theme }
       )
     )[resourceName];
 
