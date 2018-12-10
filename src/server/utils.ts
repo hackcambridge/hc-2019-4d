@@ -8,6 +8,7 @@ import * as moment from 'moment-timezone';
 import * as path from 'path';
 
 import * as dates from 'shared/dates';
+import * as metadata from 'shared/metadata';
 import * as theme from 'shared/theme';
 
 const loadedResources = {};
@@ -60,12 +61,12 @@ function loadScheduleTimeProperties(loadedScheduleResource) {
   });
 }
 
-export function loadResource(resourceName) {
+export function loadResource(resourceName, extraData = {}) {
   if ((!loadedResources[resourceName]) || app === undefined || app.settings.env === 'development') {
     let loadedResource = yaml.safeLoad(
       renderEjs(
         fs.readFileSync(resolvePath(`./assets/resources/${resourceName}.yml`)).toString(),
-        { dates, theme }
+        { ...extraData, dates, metadata, theme }
       )
     )[resourceName];
 

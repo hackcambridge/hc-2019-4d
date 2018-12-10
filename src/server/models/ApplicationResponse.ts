@@ -5,10 +5,11 @@ import db from './db';
 import HackerApplication from './HackerApplication';
 import { ResponseRsvpInstance } from './ResponseRsvp';
 
-interface ApplicationResponseAttributes {
+export interface ApplicationResponseAttributes {
   id?: number;
   response: string; // TODO: Update
   hackerApplicationId?: number;
+  expiryDate: Date;
 }
 
 export interface ApplicationResponseInstance extends Sequelize.Instance<ApplicationResponseAttributes>, ApplicationResponseAttributes {
@@ -20,6 +21,10 @@ const attributes: SequelizeAttributes<ApplicationResponseAttributes> = {
     type: Sequelize.ENUM(response.INVITED, response.REJECTED),
     allowNull: false,
   },
+  expiryDate: {
+    type: Sequelize.DATE,
+    allowNull: false
+  }
 };
 
 const ApplicationResponse = db.define<ApplicationResponseInstance, ApplicationResponseAttributes>('applicationResponse', attributes, {

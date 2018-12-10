@@ -98,27 +98,37 @@ block mainContent
             |
             |
             label(for='teamMembership_none') I don’t want to be in a team.
-      div(rows='3.0')
+      div(rows='5.0')
         fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.confirmations) ? errors.confirmations.msg : null)
           legend Student status confirmation and terms and conditions
           p
-            | We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, and the MLH Code of Conduct.
+            | We need confirmation of your student status, and you need to accept the terms and conditions, privacy policy, the MLH Code of Conduct, and the sharing of your data with MLH.
             br
             a(href='/terms-and-conditions' target='_blank') Terms and conditions
             br
             a(href='/privacy-policy' target='_blank') Privacy policy
             br
-            a(href='http://static.mlh.io/docs/mlh-code-of-conduct.pdf' target='_blank') MLH Code of Conduct
+            a(href='https://github.com/MLH/mlh-policies' target='_blank' rel='external') MLH Policies
           div
             input#confirmations_studentStatus(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='studentStatus' name='confirmations[]' checked=(formData && formData.confirmations && formData.confirmations.includes('studentStatus') ? true : false))
             |
             |
             label(for='confirmations_studentStatus') I’m currently a student, or I graduated after January 19, 2018.
           div
-            input#confirmations_termsAndConditions(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='termsAndConditions' name='confirmations[]' checked=formData && formData.confirmations && formData.confirmations.includes('termsAndConditions' == 'studentStatus') ? true : false)
+            input#confirmations_termsAndConditions(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='termsAndConditions' name='confirmations[]' checked=formData && formData.confirmations && formData.confirmations.includes('termsAndConditions') ? true : false)
             |
             |
-            label(for='confirmations_termsAndConditions') I accept the terms and conditions, privacy policy, and the MLH Code of Conduct.
+            label(for='confirmations_termsAndConditions') I accept the terms and conditions and privacy policy.
+          div
+            input#confirmations_mlhCodeOfConduct(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='mlhCodeOfConduct' name='confirmations[]' checked=formData && formData.confirmations && formData.confirmations.includes('mlhCodeOfConduct') ? true : false)
+            |
+            |
+            label(for='confirmations_mlhCodeOfConduct') I have read and agree to the MLH Code of Conduct
+          div
+            input#confirmations_mlhDataProcessing(data-target='field-validator.field' data-action='field-validator#setValid invalid->validation-messages#scrollToElement focus->validation-messages#reportValidity' required='' type='checkbox' value='mlhDataProcessing' name='confirmations[]' checked=formData && formData.confirmations && formData.confirmations.includes('mlhDataProcessing') ? true : false)
+            |
+            |
+            label(for='confirmations_mlhDataProcessing') I authorise Hack Cambridge to share my application information with MLH for the purposes of event administration, ranking, MLH administration, pre- and post-event informational e-mails, and occasional messages about hackathons in accordance with the​ MLH Privacy Policy.​ I further agree to the terms of both the MLH Contest Terms and Conditions​ and the ​MLH Privacy Policy.
       div(rows='1.5')
         fieldset(data-controller='field-validator' data-field-validator-error=(errors && errors.graduationmonth) ? errors.graduationmonth.msg : null)
           legend What month do you plan to graduate?

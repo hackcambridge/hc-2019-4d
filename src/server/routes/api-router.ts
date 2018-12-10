@@ -3,11 +3,8 @@ import { json as parseJson, urlencoded as parseUrlEncoded } from 'body-parser';
 import { Router } from 'express';
 import { isEmpty } from 'lodash';
 import * as mailchimp from 'mailchimp-api';
-import * as Stripe from 'stripe';
 
 import { ErrorWithStatus } from 'server/utils';
-
-const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
 const MC = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 
@@ -31,39 +28,6 @@ api.post('/subscribe/interested', (req, res, next) => {
     res.json({ message: 'We\'ve added you to our mailing list. Please check your email to confirm.' });
   }, _error => {
     next(new ErrorWithStatus('We couldn\'t add you. Please check that this is a valid email.', 500));
-  });
-});
-
-api.post('/payment', (req, res, next) => {
-  if (isEmpty(req.body.reference)) {
-    next(new ErrorWithStatus('Must provide reference', 401));
-  }
-  if (isEmpty(req.body.amount)) {
-    next(new ErrorWithStatus('Must provide amount', 401));
-  }
-  if (isEmpty(req.body.token)) {
-    next(new ErrorWithStatus('Must provide token', 401));
-  }
-  if (isEmpty(req.body.email)) {
-    next(new ErrorWithStatus('Must provide email', 401));
-  }
-
-  const amount = Math.round(req.body.amount * 100);
-
-  stripe.charges.create({
-    amount,
-    currency: 'gbp',
-    source: req.body.token,
-    receipt_email: req.body.email,
-    description: req.body.reference
-  }, (err, _charge) => {
-    if (err) {
-      console.error(err);
-      next(new ErrorWithStatus(err.message || 'Something went wrong with your transaction.', 500));
-      return;
-    }
-
-    res.json({ message: 'Your payment of £' + (amount / 100).toFixed(2) + ' has been processed. Thank you!'});
   });
 });
 

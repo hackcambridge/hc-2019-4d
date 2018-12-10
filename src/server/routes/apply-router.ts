@@ -1,4 +1,4 @@
-import { Request, Router } from 'express';
+import { Request, Response, Router } from 'express';
 
 import { logout, requireAuth } from 'server/auth';
 import { dashboardController, hackerApplicationsController, rsvpsController, teamsController } from 'server/controllers/apply';
@@ -11,17 +11,13 @@ export interface UserRequest extends Request {
   user: HackerInstance;
 }
 
-applyRouter.get('/', (req: UserRequest, res) => {
-  req.user ? res.redirect('apply/dashboard') : res.redirect('apply/login');
-});
-
-applyRouter.get('/login', (_req: UserRequest, res) => res.render('apply/login'));
+applyRouter.get('/', (req: UserRequest, res: Response) => req.user ? res.redirect('/apply/dashboard') : res.render('apply/login'));
 
 applyRouter.use(requireAuth);
 
-applyRouter.get('/logout', logout, (_req: UserRequest, res) => res.redirect('/'));
+applyRouter.get('/logout', logout, (_req: UserRequest, res: Response) => res.redirect('/'));
 
-applyRouter.get('/dashboard', requireAuth, dashboardController.showDashboard);
+applyRouter.get('/dashboard', dashboardController.showDashboard);
 
 applyRouter.route('/form')
   .all(applicationsMiddleware.goBackIfApplied, applicationsMiddleware.goBackIfApplicationsClosed)
@@ -36,6 +32,6 @@ applyRouter.route('/team')
   .delete(teamsController.deleteTeam);
 
 // Process the RSVP response
-applyRouter.post('/rsvp', requireAuth, rsvpsController.createRsvp);
+applyRouter.post('/rsvp', rsvpsController.createRsvp);
 
 export default applyRouter;
