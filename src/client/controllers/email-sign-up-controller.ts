@@ -4,11 +4,12 @@ import { UJSEvent } from '../main';
 export default class EmailSignUpController extends Controller {
   public processResponse(event: UJSEvent<any>) {
     const [data] = event.detail;
-    alert(data.message);
+    alert(data);
   }
 
   public handleError(event: UJSEvent<any>) {
-    const [data] = event.detail;
-    alert(`An error occurred when submitting the form.\nThe error was: ${data.error}`);
+    const [ response, status ] = event.detail;
+    alert(`The server returned a ${status} error.\nThe error was: ${response}`);
+    console.log(response);
   }
 }
