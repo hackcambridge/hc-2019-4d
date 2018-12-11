@@ -2,8 +2,8 @@ extends ../layouts/width
 block mainContent
   -
     title = 'Dashboard'
-    roomShareForm = undefined
-    visaForm = 'https://docs.google.com/forms/d/e/1FAIpQLSflkf8VJrgARSTfgGb_cPiiu3i6YeatCbIqQQXfD3wdBbf_NQ/viewform'
+    roomShareForm = 'https://goo.gl/forms/VVlxPkExhrc4ZcKy1'
+    visaForm = 'https://goo.gl/forms/qLqnYa4tMKkWZN9k2'
   // To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking
   - openSlackLink = 'slack://open?team=TEN04697S'
   section(grid='rows')
@@ -97,6 +97,13 @@ block mainContent
                 | straight away after accepting your invitation, using the form which appears in this section.
               |
               | We will reply as soon as possible indicating whether we can find you a host. Hackers coming from international destinations will be prioritised.
+              if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+                |
+                | For more information join the
+                |
+                span(class='pixel') #host-a-hacker
+                |
+                | channel on Slack.
             if statuses.overallStatus == statusConstants.overall.HAS_TICKET
               ul
                 li: a(href=roomShareForm target='_blank') Apply for accommodation
