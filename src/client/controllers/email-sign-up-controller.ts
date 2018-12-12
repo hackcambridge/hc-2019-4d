@@ -10,6 +10,5 @@ export default class EmailSignUpController extends Controller {
   public handleError(event: UJSEvent<string>) {
     const [ response, status ] = event.detail;
     alert(`The server returned a ${status} error.\nThe error was: ${response}`);
-    console.log(response);
   }
 }
