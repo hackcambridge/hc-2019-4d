@@ -7,7 +7,7 @@
 
 /* Sections */
 
-section, header, footer {
+section, header, footer, dialog {
   --color-1: white;
   --color-2: black;
   --color-3: var(--red);
@@ -25,7 +25,7 @@ section[color="red"], header[color="red"], footer[color="red"] {
   --color-3: white;
   --color-4: black;
 }
-section, header, footer {
+section, header, footer, dialog {
   --primary-color: var(--color-1);
   --secondary-color: var(--color-2);
   --accent-color: var(--color-3);

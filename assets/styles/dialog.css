@@ -1,0 +1,23 @@
+dialog[open]:not(dialog[open] *) {
+  display: block;
+  position: fixed;
+  z-index: 3;
+  left: unset;
+  right: var(--unit);
+  bottom: var(--unit);
+  width: calc(var(--unit) * 4);
+  height: var(--unit);
+  margin: unset;
+  border: 1px solid black;
+  padding: var(--gutter);
+  background: white;
+}
+dialog:not([open]) {
+  display: none;
+}
+dialog button {
+  position: absolute;
+  bottom: var(--gutter);
+  right: var(--gutter);
+  height: 23px;
+}
