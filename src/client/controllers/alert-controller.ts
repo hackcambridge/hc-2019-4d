@@ -17,13 +17,13 @@ export default class AlertController extends Controller {
     }
     window.alert = (message: string) => {
       this.data.set('message', message);
-      this.showDialog();
+      this.messageTarget.innerText = this.data.get('message');
+      this.dialogTarget.setAttribute('open', '');
     };
   }
 
   public showDialog() {
-    this.messageTarget.innerText = this.data.get('message');
-    this.dialogTarget.setAttribute('open', '');
+    alert(this.data.get('message'));
   }
 
   public dismissDialog() {
