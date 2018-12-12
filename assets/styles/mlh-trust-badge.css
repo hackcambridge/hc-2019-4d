@@ -1,5 +1,6 @@
 #mlh-trust-badge {
   display: block;
+  z-index: 1;
   max-width: 100px;
   min-width: 60px;
   position: fixed;
