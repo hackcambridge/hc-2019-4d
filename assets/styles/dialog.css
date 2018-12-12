@@ -21,3 +21,11 @@ dialog button {
   right: var(--gutter);
   height: 23px;
 }
+@media screen and (max-width: 500px) {
+  dialog[open]:not(dialog[open] *) {
+    width: calc(100% - (2 * var(--gutter)));
+    right: unset;
+    bottom: 0;
+    border-width: 1px 0 0 0;
+  }
+}
