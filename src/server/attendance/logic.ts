@@ -2,10 +2,11 @@ import * as moment from 'moment';
 import * as Sequelize from 'sequelize';
 
 import { sendEmail } from 'server/email';
-import { ApplicationResponse, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'server/models';
+import { ApplicationResponse, ApplicationResponseInstance, ApplicationTicket, db, Hacker,
+  HackerApplication, ResponseRsvp } from 'server/models';
 import { INVITATION_VALIDITY_DURATION } from 'server/review/constants';
 import * as slack from 'server/slack';
-import { response } from 'shared/status-constants';
+import { CompleteRsvpStatus, ResponseStatus } from 'shared/status-constants';
 import * as emailTemplates from './email-templates';
 
 /**
@@ -60,7 +61,7 @@ export function getInvitationExpiryCandidates() {
         expiryDate: {
           $lt: moment().toDate(),
         },
-        response: response.INVITED,
+        response: ResponseStatus.INVITED,
       },
       Sequelize.literal('"responseRsvp" IS null')
     ) as any,
@@ -81,13 +82,13 @@ export function getInvitationExpiryCandidates() {
  *   and have its application with hacker hydrated.
  */
 export function expireInvitation(applicationResponse) {
-  if (applicationResponse.response !== response.INVITED) {
+  if (applicationResponse.response !== ResponseStatus.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
 
   return ResponseRsvp.create({
     applicationResponseId: applicationResponse.id,
-    rsvp: ResponseRsvp.RSVP_EXPIRED,
+    rsvp: CompleteRsvpStatus.RSVP_EXPIRED,
   }).then(responseRsvp =>
     sendExpiryEmail(applicationResponse.hackerApplication.hacker)
       .catch(() => {
@@ -102,8 +103,8 @@ export function expireInvitation(applicationResponse) {
  *
  * If the RSVP is yes, then a ticket will be added to the application.
  */
-export function rsvpToResponse(applicationResponse, rsvpStatus) {
-  if (applicationResponse.response !== response.INVITED) {
+export function rsvpToResponse(applicationResponse: ApplicationResponseInstance, rsvpStatus: CompleteRsvpStatus) {
+  if (applicationResponse.response !== ResponseStatus.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
 
@@ -112,7 +113,7 @@ export function rsvpToResponse(applicationResponse, rsvpStatus) {
       applicationResponseId: applicationResponse.id,
       rsvp: rsvpStatus,
     }, { transaction }).then(responseRsvp => {
-      if (responseRsvp.rsvp === ResponseRsvp.RSVP_YES) {
+      if (responseRsvp.rsvp === CompleteRsvpStatus.RSVP_YES) {
         return applicationResponse
           .getHackerApplication({ transaction })
           .then(application => createTicket(application, transaction))

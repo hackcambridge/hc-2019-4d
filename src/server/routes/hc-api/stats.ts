@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { ApplicationResponse, ApplicationReview, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'server/models';
-import { response } from 'shared/status-constants';
+import { CompleteRsvpStatus, ResponseStatus } from 'shared/status-constants';
 
 const statsRouter = Router();
 
@@ -17,10 +17,10 @@ statsRouter.get('/', (_req, res, next) => {
   const hackerCountPromise = Hacker.count();
   const hackerApplicationCountPromise = HackerApplication.count();
   const reviewCountPromise = ApplicationReview.count();
-  const invitationsCountPromise = ApplicationResponse.count({ where: { response: response.INVITED } });
-  const rejectionsCountPromise = ApplicationResponse.count({ where: { response: response.REJECTED } });
-  const rsvpNoCountPromise = ResponseRsvp.count({ where: { rsvp: ResponseRsvp.RSVP_NO }});
-  const expiredCountPromise = ResponseRsvp.count(({ where: { rsvp: ResponseRsvp.RSVP_EXPIRED }}));
+  const invitationsCountPromise = ApplicationResponse.count({ where: { response: ResponseStatus.INVITED } });
+  const rejectionsCountPromise = ApplicationResponse.count({ where: { response: ResponseStatus.REJECTED } });
+  const rsvpNoCountPromise = ResponseRsvp.count({ where: { rsvp: CompleteRsvpStatus.RSVP_NO }});
+  const expiredCountPromise = ResponseRsvp.count(({ where: { rsvp: CompleteRsvpStatus.RSVP_EXPIRED }}));
   const ticketCountPromise = ApplicationTicket.count();
 
   const applicationsReviewedQuery =

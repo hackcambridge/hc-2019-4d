@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { HackerApplicationInstance } from 'server/models';
-import * as statuses from 'shared/status-constants';
+import { ApplicationsOpenStatus } from 'shared/status-constants';
 
 /**
  * Intercepts the request to check if the user has submitted an application
@@ -42,9 +42,7 @@ export function setApplicationsStatus(req: Request, res: Response, next: NextFun
 }
 
 export async function applicationsClosed(_req: Request, _res: Response, _next: NextFunction) {
-  if (process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.CLOSED) {
-    return true;
-  } else { return false; }
+  return process.env.APPLICATIONS_OPEN_STATUS === ApplicationsOpenStatus.CLOSED;
 }
 
 export async function alreadyApplied(req: Request, _res: Response, next: NextFunction) {

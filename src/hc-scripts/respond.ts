@@ -2,16 +2,16 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { HackerApplication } from 'server/models';
-import { setResponseForApplicationWithChecks } from 'server/review/response-logic';
-import { response } from 'shared/status-constants';
+import { DecidedResponseStatus, setResponseForApplicationWithChecks } from 'server/review/response-logic';
+import { ResponseStatus } from 'shared/status-constants';
 import { createHandler } from './utils';
 
-const responseTypeMap = {
-  invite: response.INVITED,
-  reject: response.REJECTED,
+const responseTypeMap: { [type: string]: DecidedResponseStatus } = {
+  invite: ResponseStatus.INVITED,
+  reject: ResponseStatus.REJECTED,
 };
 
-function processIndividualApplication(applicationId, responseType) {
+function processIndividualApplication(applicationId, responseType: DecidedResponseStatus) {
   return HackerApplication.findById(applicationId)
     .then(application => {
       if (application == null) {
@@ -32,7 +32,7 @@ function processIndividualApplication(applicationId, responseType) {
 /**
  * This function will mutate the applications queue
  */
-function processResponseQueue(applications, responseType) {
+function processResponseQueue(applications, responseType: DecidedResponseStatus) {
   if (applications.length === 0) {
     return Promise.resolve();
   }

@@ -1,15 +1,12 @@
 import * as Sequelize from 'sequelize';
 
+import { CompleteRsvpStatus } from 'shared/status-constants';
 import ApplicationResponse from './ApplicationResponse';
 import db from './db';
 
-const RSVP_YES = 'RSVP_YES';
-const RSVP_NO = 'RSVP_NO';
-const RSVP_EXPIRED = 'RSVP_EXPIRED';
-
 interface ResponseRsvpAttributes {
   id?: number;
-  rsvp: string; // TODO: refine
+  rsvp: CompleteRsvpStatus;
   applicationResponseId: number;
 }
 
@@ -18,7 +15,7 @@ export type ResponseRsvpInstance = Sequelize.Instance<ResponseRsvpAttributes>
 
 const attributes: SequelizeAttributes<ResponseRsvpAttributes> = {
   rsvp: {
-    type: Sequelize.ENUM(RSVP_YES, RSVP_NO, RSVP_EXPIRED),
+    type: Sequelize.ENUM(CompleteRsvpStatus.RSVP_YES, CompleteRsvpStatus.RSVP_NO, CompleteRsvpStatus.RSVP_EXPIRED),
     allowNull: false,
   },
   applicationResponseId: {
@@ -28,13 +25,9 @@ const attributes: SequelizeAttributes<ResponseRsvpAttributes> = {
   },
 };
 
-const ResponseRsvp: any = db.define<ResponseRsvpInstance, ResponseRsvpAttributes>('responseRsvp', attributes, {
+const ResponseRsvp = db.define<ResponseRsvpInstance, ResponseRsvpAttributes>('responseRsvp', attributes, {
   tableName: 'response-rsvps',
 });
-
-ResponseRsvp.RSVP_YES = RSVP_YES;
-ResponseRsvp.RSVP_NO = RSVP_NO;
-ResponseRsvp.RSVP_EXPIRED = RSVP_EXPIRED;
 
 ResponseRsvp.belongsTo(ApplicationResponse);
 ApplicationResponse.hasOne(ResponseRsvp);

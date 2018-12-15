@@ -202,7 +202,7 @@ function deriveScoringStatus(application: HackerApplicationInstance): string {
   if (application.isWithdrawn) {
     return 'Withdrawn';
   }
-  if (application.applicationResponse !== null) {
+  if (application.applicationResponse === null) {
     return 'Pending';
   }
   return application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited';
