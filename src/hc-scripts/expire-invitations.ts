@@ -2,17 +2,15 @@ import { expireInvitation, getInvitationExpiryCandidates } from 'server/attendan
 import { ApplicationResponseInstance } from 'server/models';
 import { createHandler } from './utils';
 
-async function processExpiryQueue(responsesToProcess: ReadonlyArray<ApplicationResponseInstance>, dryRun: boolean) {
-  for (const response of responsesToProcess) {
-    console.log(`Expiring response ${response.id}. Date invited: ${response.createdAt}`);
-    if (dryRun === false) {
-      try {
-        await expireInvitation(response);
-        console.log(`Expired ${response.id}`);
-      } catch (error) {
-        console.error(`Failed to expire ${response.id}`);
-        console.error(error);
-      }
+async function expireResponse(response: ApplicationResponseInstance, dryRun: boolean): Promise<void> {
+  console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} response ${response.id}. Date invited: ${response.createdAt}`);
+  if (!dryRun) {
+    try {
+      await expireInvitation(response);
+      console.log(`Expired ${response.id}`);
+    } catch (error) {
+      console.error(`Failed to expire ${response.id}`);
+      console.error(error);
     }
   }
 }
@@ -28,7 +26,7 @@ export default {
   handler: createHandler(({ dryRun }) =>
     getInvitationExpiryCandidates().then(responses => {
       console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length !== 1 ? 's' : ''}`);
-      return processExpiryQueue(responses, dryRun);
+      return Promise.all(responses.map(response => expireResponse(response, dryRun)));
     })
   ),
 };
