@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as Sequelize from 'sequelize';
 
-import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, ReviewCriterionScore,
+import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, HackerApplicationInstance, ReviewCriterionScore,
          Team, TeamMember } from 'server/models';
 import { getReviewSetStdev } from './polarised';
 
@@ -192,10 +192,20 @@ interface AugmentedApplication {
   country: string;
   institution: string;
   inTeam: boolean;
-  isDisqualified: boolean;
+  isWithdrawn: boolean;
   rating: number;
   status: string;
   visaNeededBy: Date;
+}
+
+function deriveScoringStatus(application: HackerApplicationInstance): string {
+  if (application.isWithdrawn) {
+    return 'Withdrawn';
+  }
+  if (application.applicationResponse !== null) {
+    return 'Pending';
+  }
+  return application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited';
 }
 
 async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplication>> {
@@ -214,11 +224,10 @@ async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplic
     country: application.countryTravellingFrom,
     institution: application.hacker.institution,
     inTeam: application.hacker.Team !== null,
-    isDisqualified: application.isDisqualified,
+    isWithdrawn: application.isWithdrawn,
     rating: calculateScore(application, individualScores, teamScores),
     ratingStdev: application.applicationReviews.length > 0 ? getReviewSetStdev(application.applicationReviews) : 0,
-    status: application.applicationResponse !== null ?
-      (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
+    status: deriveScoringStatus(application),
     visaNeededBy: application.visaNeededBy,
   }));
 }

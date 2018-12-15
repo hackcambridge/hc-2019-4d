@@ -87,7 +87,7 @@ export async function getApplicationStatus(hackerInstance: HackerInstance): Prom
   if (hackerApplication === null) {
     return statuses.application.INCOMPLETE;
   } else {
-    return hackerApplication.isDisqualified ? statuses.application.WITHDRAWN : statuses.application.COMPLETE;
+    return hackerApplication.isWithdrawn ? statuses.application.WITHDRAWN : statuses.application.COMPLETE;
   }
 }
 
