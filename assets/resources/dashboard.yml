@@ -9,6 +9,11 @@ dashboard:
       message_type: neutral
       title: All good things must come to an end.
       subline: Unfortunately applications for <%= metadata.title %> are now closed. Keep an eye out for our future events!
+
+    withdrawn:
+      message_type: neutral
+      title: Your application has been withdrawn.
+      subline: If this is unexpected, please get in touch with us.
     
     in-review:
       message_type: success
@@ -57,6 +62,10 @@ dashboard:
       type: success
       label: Complete
       content: You’ve filled out your application. You’re on top form!
+    withdrawn:
+      message_type: neutral
+      label: Withdrawn
+      subline: Your application has been withdrawn.  If this is unexpected, please get in touch with us.
 
   team-application:
     na:

@@ -3,6 +3,7 @@ export const overall = {
   INCOMPLETE_CLOSED: 'incomplete-closed',
   IN_REVIEW: 'in-review',
   REJECTED: 'rejected',
+  WITHDRAWN: 'withdrawn',
   INVITED_AWAITING_RSVP: 'invited-awaiting-rsvp',
   INVITED_ACCEPTED: 'invited-accepted',
   INVITED_DECLINED: 'invited-declined',
@@ -13,6 +14,7 @@ export const overall = {
 export const application = {
   INCOMPLETE: 'incomplete',
   COMPLETE: 'complete',
+  WITHDRAWN: 'withdrawn',
 };
 
 export const teamApplication = {

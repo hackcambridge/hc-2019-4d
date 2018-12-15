@@ -84,7 +84,11 @@ async function getRsvpStatus(hackerInstance: HackerInstance): Promise<string> {
 // Returns a promise that resolves to the status of the users personal application
 export async function getApplicationStatus(hackerInstance: HackerInstance): Promise<string> {
   const hackerApplication = await hackerInstance.getHackerApplication();
-  if (hackerApplication === null) { return statuses.application.INCOMPLETE; } else { return statuses.application.COMPLETE; }
+  if (hackerApplication === null) {
+    return statuses.application.INCOMPLETE;
+  } else {
+    return hackerApplication.isDisqualified ? statuses.application.WITHDRAWN : statuses.application.COMPLETE;
+  }
 }
 
 // Returns a promise that resolves to the ticketed status of the given application
@@ -104,6 +108,8 @@ async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Pr
     return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ?
       statuses.overall.INCOMPLETE :
       statuses.overall.INCOMPLETE_CLOSED;
+  } else if (hackerStatuses.applicationStatus === statuses.application.WITHDRAWN) {
+    return statuses.overall.WITHDRAWN;
   } else if (hackerStatuses.responseStatus === statuses.response.PENDING) {
     return statuses.overall.IN_REVIEW;
        } else if (hackerStatuses.responseStatus === statuses.response.REJECTED) {
