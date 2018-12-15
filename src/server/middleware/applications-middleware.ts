@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { HackerApplicationInstance } from 'server/models';
-import { ApplicationsOpenStatus } from 'shared/status-constants';
+import { ApplicationsOpenStatus } from 'shared/statuses';
 
 /**
  * Intercepts the request to check if the user has submitted an application

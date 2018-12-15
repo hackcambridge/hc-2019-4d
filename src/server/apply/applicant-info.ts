@@ -1,5 +1,5 @@
 import { Hacker, HackerInstance } from 'server/models';
-import { HackerStatuses, IndividualApplicationStatus, TeamApplicationStatus } from 'shared/status-constants';
+import { HackerStatuses, IndividualApplicationStatus, TeamApplicationStatus } from 'shared/statuses';
 
 export const unfinishedApplicationKind = { INDIVIDUAL: 'individual', TEAM_ONLY: 'team-only' };
 

@@ -3,7 +3,7 @@ import * as path from 'path';
 
 import { HackerApplication } from 'server/models';
 import { DecidedResponseStatus, setResponseForApplicationWithChecks } from 'server/review/response-logic';
-import { ResponseStatus } from 'shared/status-constants';
+import { ResponseStatus } from 'shared/statuses';
 import { createHandler } from './utils';
 
 const responseTypeMap: { [type: string]: DecidedResponseStatus } = {

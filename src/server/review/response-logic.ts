@@ -6,7 +6,7 @@ import { ApplicationResponseAttributes } from 'server/models/ApplicationResponse
 import { HackerInstance } from 'server/models/Hacker';
 import { HackerApplicationInstance } from 'server/models/HackerApplication';
 import { assertNever } from 'shared/common';
-import { ResponseStatus } from 'shared/status-constants';
+import { ResponseStatus } from 'shared/statuses';
 import { INVITATION_VALIDITY_DURATION } from './constants';
 import * as emailTemplates from './email-templates';
 import { applicationHasBeenIndividuallyScored } from './score-logic';

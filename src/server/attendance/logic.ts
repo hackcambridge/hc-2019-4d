@@ -6,7 +6,7 @@ import { ApplicationResponse, ApplicationResponseInstance, ApplicationTicket, db
   HackerApplication, ResponseRsvp } from 'server/models';
 import { INVITATION_VALIDITY_DURATION } from 'server/review/constants';
 import * as slack from 'server/slack';
-import { CompleteRsvpStatus, ResponseStatus } from 'shared/status-constants';
+import { CompleteRsvpStatus, ResponseStatus } from 'shared/statuses';
 import * as emailTemplates from './email-templates';
 
 /**

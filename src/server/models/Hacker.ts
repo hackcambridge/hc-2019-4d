@@ -4,7 +4,7 @@ import * as Sequelize from 'sequelize';
 import { assertNever } from 'shared/common';
 import * as dates from 'shared/dates';
 import { ApplicationsOpenStatus, CompleteRsvpStatus, HackerStatuses, IndividualApplicationStatus, IndividualHackerStatuses,
-  OverallStatus, ResponseStatus, RsvpStatus, TeamApplicationStatus, TicketStatus } from 'shared/status-constants';
+  OverallStatus, ResponseStatus, RsvpStatus, TeamApplicationStatus, TicketStatus } from 'shared/statuses';
 import db from './db';
 import { HackerApplicationInstance } from './HackerApplication';
 import { TeamMemberInstance } from './TeamMember';

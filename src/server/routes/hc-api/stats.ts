@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { ApplicationResponse, ApplicationReview, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'server/models';
-import { CompleteRsvpStatus, ResponseStatus } from 'shared/status-constants';
+import { CompleteRsvpStatus, ResponseStatus } from 'shared/statuses';
 
 const statsRouter = Router();
 

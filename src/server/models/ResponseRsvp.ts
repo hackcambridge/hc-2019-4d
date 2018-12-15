@@ -1,6 +1,6 @@
 import * as Sequelize from 'sequelize';
 
-import { CompleteRsvpStatus } from 'shared/status-constants';
+import { CompleteRsvpStatus } from 'shared/statuses';
 import ApplicationResponse from './ApplicationResponse';
 import db from './db';
 
