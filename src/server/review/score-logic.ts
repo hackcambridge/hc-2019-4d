@@ -1,25 +1,34 @@
 import * as fs from 'fs';
+import * as math from 'mathjs';
 import * as Sequelize from 'sequelize';
 
-import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, ReviewCriterionScore,
-         Team, TeamMember } from 'server/models';
-import { getReviewSetStdev } from './polarised';
+import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, HackerApplicationInstance, ReviewCriterionScore,
+         Team, TeamInstance, TeamMember } from 'server/models';
+
+interface NumWithStdev {
+  value: number;
+  stdev: number;
+}
+interface ScoreMap { [key: number]: NumWithStdev; }
 
 const individualScoreQuery = fs.readFileSync('src/server/review/individual_scores.sql', 'utf8');
 
 /**
  * Takes a HackerApplication and the set of individual scores,
  * produces the validated, group averaged (if necessary) score
- * for that application
+ * for that application.
  *
  * Returns null if they are not 'fully scored', i.e. they are yet to recieve at least two reviews.
  *
- * @param  {HackerApplication} application  The HackerApplication of the person to score
- * @param  {Object} individualScores        The object mapping HackerApplication IDs to individual scores
- * @param  {Object} teamScores              The object mapping Team IDs to team average scores
- * @return {Number}                         The score for this hacker, null if not fully scored
+ * @param application      The HackerApplication of the person to score
+ * @param individualScores The object mapping HackerApplication IDs to individual scores
+ * @param teamScores       The object mapping Team IDs to team average scores
+ * @return                 The score for this hacker, null if not fully scored
  */
-export function calculateScore(application, individualScores, teamScores) {
+export function calculateScore(
+  application: HackerApplicationInstance,
+  individualScores: ScoreMap,
+  teamScores: ScoreMap): NumWithStdev | null {
   const hacker = application.hacker;
   const teamId = hacker.Team ? hacker.Team.teamId : null;
 
@@ -43,11 +52,11 @@ export function calculateScore(application, individualScores, teamScores) {
 
 /**
  * Takes a Team with associated HackerApplications and
- * the set of individual scores and calculates the teams
- * average score
- * @return {Number}  The average score for the team, null if team has not been fully scored
+ * the set of individual scores and calculates the team's
+ * average score.
+ * @return The average score for the team, null if team has not been fully scored.
  */
-export function calculateTeamAverage(team, individualScores) {
+export function calculateTeamAverage(team: TeamInstance, individualScores: ScoreMap): NumWithStdev | null {
   const teamMembers = team.teamMembers;
   const teamMembersScores = teamMembers.map(member => {
     const memberApplicationId = member.hacker.hackerApplication.id;
@@ -60,23 +69,24 @@ export function calculateTeamAverage(team, individualScores) {
 }
 
 /**
- * Takes an array of numbers and returns the average or null if any one of them is null
+ * Takes an array of numbers and returns the average or null if any one of them is null.
  */
-function averageOrNull(values) {
-  let sum = 0;
-  const length = values.length;
-  for (let i = 0; i < length; i++) {
-    if (values[i] === null) { return null; }
-    sum += values[i];
+function averageOrNull(values: Array<NumWithStdev | null>): NumWithStdev | null {
+  if (values.some(v => v === null)) {
+    return null;
   }
-  return sum / length;
+
+  return {
+    value: math.mean(values.map(v => v.value)),
+    // Add errors in quadrature per https://en.wikipedia.org/wiki/Propagation_of_uncertainty
+    stdev: math.sqrt(math.sum(values.map(v => Math.pow(v.stdev, 2)))) / values.length
+  };
 }
 
 /**
- * Gets all applications and includes the TeamMember relation
- * @return {Promise.<[HackerApplication]>} Promise that resolves to the resulting HackerApplications
+ * Gets all applications and includes the TeamMember relation.
  */
-export function getApplicationsWithTeams() {
+export function getApplicationsWithTeams(): PromiseLike<HackerApplicationInstance[]> {
   return HackerApplication.findAll({
     include: [
       {
@@ -109,15 +119,14 @@ export function getApplicationsWithTeams() {
 }
 
 /**
- * Gets a score for applications that have more than 2 reviews
- * This DOES NOT take into account team averages, this is an individual score
- * @return {Promise} A Promise that resolves to an object. See below for format
+ * Gets a score for applications that have more than 2 reviews.
+ * This DOES NOT take into account team averages, this is an individual score.
  */
-export function getIndividualScores() {
+export function getIndividualScores(): ScoreMap {
   // Get the individual scores (exist if reviews have been done)
   return db.query(individualScoreQuery, {
     type: Sequelize.QueryTypes.SELECT,
-  }).then(individualScoresArr => {
+  }).then((individualScoresArr: ReadonlyArray<{ application_id: string, avg: string, stddev_samp: string }>) => {
     /**
      * Flatten the scores array for later efficiency
      * [
@@ -132,16 +141,20 @@ export function getIndividualScores() {
      *   '2': 3.5,
      * }
      */
-    return individualScoresArr.reduce((scores, application) =>
-      Object.assign(scores, {[application.application_id]: parseFloat(application.avg)}), {});
+    return individualScoresArr.reduce<ScoreMap>((scoresSoFar, application) => ({
+        ...scoresSoFar,
+        [application.application_id]: {
+          value: parseFloat(application.avg),
+          stdev: parseFloat(application.stddev_samp),
+        }
+      }), {});
   });
 }
 
 /**
- * Gets a list of teams with the associated HackerApplications
- * @return {Promise.[Team]} A promise that resolves to the list of teams
+ * Gets a list of teams with the associated HackerApplications.
  */
-export function getTeamsWithMembers() {
+export function getTeamsWithMembers(): PromiseLike<TeamInstance[]> {
   // Get the teams with members listed
   return Team.findAll({
     include: [
@@ -161,30 +174,31 @@ export function getTeamsWithMembers() {
 
 /**
  * Takes the set of individual scores and the team listings and
- * produces a set of team average scores
- * @param  {Object} individualScores This is of the structure {'<application_id>': <score as float>, ... }
- * @param  {[Team]} teamsArr         Set of teams with the associated HackerApplication objects
- * @return {Object}                  This is of the structure {'<team_id>': <average score as float>, ...}
+ * produces a set of team average scores.
  */
-export function calculateTeamsAverages(individualScores, teamsArr) {
-  return teamsArr.reduce((teams, team) => Object.assign(teams, {[team.id]: calculateTeamAverage(team, individualScores)}), {});
+export function calculateTeamsAverages(individualScores: ScoreMap, teamsArr: TeamInstance[]): ScoreMap {
+  return teamsArr.reduce<ScoreMap>((scoresSoFar, team) => ({
+    ...scoresSoFar,
+    [team.id]: calculateTeamAverage(team, individualScores)
+  }), {});
 }
 
 /**
  * Takes a HackerApplication and returns whether or not that application
- * has been scored by the minimum number of reviewers
- * @param  {HackerApplication} application The application to check
- * @return {boolean}             Whether or not the application is fully scored
+ * has been scored by the minimum number of reviewers.
+ * @param application The application to check
+ * @return Whether or not the application is fully scored
  */
-export function applicationHasBeenIndividuallyScored(application) {
-  return ApplicationReview.findAndCountAll({
+export async function applicationHasBeenIndividuallyScored(application: HackerApplicationInstance): Promise<boolean> {
+  const result = await ApplicationReview.findAndCountAll({
     where: {
       hackerApplicationId: application.id,
     }
-  }).then(result => result.count >= 2);
+  });
+  return result.count >= 2;
 }
 
-interface AugmentedApplication {
+export interface AugmentedApplication {
   id: number;
   name: string;
   email: string;
@@ -192,10 +206,38 @@ interface AugmentedApplication {
   country: string;
   institution: string;
   inTeam: boolean;
-  isDisqualified: boolean;
+  isWithdrawn: boolean;
   rating: number;
+  ratingStdev: number;
   status: string;
   visaNeededBy: Date;
+}
+
+function deriveScoringStatus(application: HackerApplicationInstance): string {
+  if (application.isWithdrawn) {
+    return 'Withdrawn';
+  }
+  if (application.applicationResponse === null) {
+    return 'Pending';
+  }
+  return application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited';
+}
+
+function augmentApplication(application: HackerApplicationInstance, rating: NumWithStdev): AugmentedApplication {
+  return {
+    id: application.id,
+    name: `${application.hacker.firstName} ${application.hacker.lastName}`,
+    email: application.hacker.email,
+    gender: application.hacker.gender,
+    country: application.countryTravellingFrom,
+    institution: application.hacker.institution,
+    inTeam: application.hacker.Team !== null,
+    isWithdrawn: application.isWithdrawn,
+    rating: rating !== null ? rating.value : null,
+    ratingStdev: rating !== null ? rating.stdev : null,
+    status: deriveScoringStatus(application),
+    visaNeededBy: application.visaNeededBy,
+  };
 }
 
 async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplication>> {
@@ -206,31 +248,21 @@ async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplic
   ]);
   const teamScores = calculateTeamsAverages(individualScores, teamsArr);
 
-  return applications.map(application => ({
-    id: application.id,
-    name: `${application.hacker.firstName} ${application.hacker.lastName}`,
-    email: application.hacker.email,
-    gender: application.hacker.gender,
-    country: application.countryTravellingFrom,
-    institution: application.hacker.institution,
-    inTeam: application.hacker.Team !== null,
-    isDisqualified: application.isDisqualified,
-    rating: calculateScore(application, individualScores, teamScores),
-    ratingStdev: application.applicationReviews.length > 0 ? getReviewSetStdev(application.applicationReviews) : 0,
-    status: application.applicationResponse !== null ?
-      (application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited') : 'Pending',
-    visaNeededBy: application.visaNeededBy,
-  }));
+  return applications.map(application => {
+    const rating = calculateScore(application, individualScores, teamScores);
+    return augmentApplication(application, rating);
+  });
 }
 
 /**
  * Gets all applications with their true score and useful extra information.
  *
- * @param {Function} [weightingFunction] An optional function that takes in application
+ * @param weightingFunction An optional function that takes in application
  *   object and returns a new score.
  */
-export async function getApplicationsWithScores(weightingFunction: (app: AugmentedApplication) => number = ({ rating }) => rating):
-  Promise<ReadonlyArray<AugmentedApplication>> {
+export async function getApplicationsWithScores(
+  weightingFunction: (app: AugmentedApplication) => number = ({ rating }) => rating
+): Promise<ReadonlyArray<AugmentedApplication>> {
   const augmentedApplications = await getAugmentedApplications();
 
   return augmentedApplications.map(application => ({

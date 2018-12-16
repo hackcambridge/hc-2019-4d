@@ -1,5 +1,5 @@
 -- Get individual scores
-SELECT id AS application_id, AVG(sum) FROM (
+SELECT id AS application_id, AVG(sum), stddev_samp(sum) FROM (
   -- Get application review total scores (multiple reviews for each application)
   SELECT "hackers-applications".id, "application-reviews".id AS review, "application-reviews"."adminId", SUM("review-criteria-scores".score) FROM "hackers-applications"
   -- Find how many reviews each application has
