@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import { UJSEvent } from '../main';
+import { UJSEvent } from '../types';
 
 export default class EmailSignUpController extends Controller {
   public processResponse(event: UJSEvent<string>) {
