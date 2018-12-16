@@ -1,5 +1,5 @@
-import { Hacker, HackerInstance, HackerStatuses } from 'server/models';
-import * as statuses from 'shared/status-constants';
+import { Hacker, HackerInstance } from 'server/models';
+import { HackerStatuses, IndividualApplicationStatus, TeamApplicationStatus } from 'shared/statuses';
 
 export const unfinishedApplicationKind = { INDIVIDUAL: 'individual', TEAM_ONLY: 'team-only' };
 
@@ -9,11 +9,11 @@ export function getHackersWithUnfinishedApplications(kind) {
       hacker.getStatuses()
         .then((hackerStatuses: HackerStatuses) => {
           if (kind === unfinishedApplicationKind.INDIVIDUAL) {
-            return hackerStatuses.applicationStatus === statuses.application.INCOMPLETE ? hacker : null;
+            return hackerStatuses.individualApplicationStatus === IndividualApplicationStatus.INCOMPLETE ? hacker : null;
           } else if (kind === unfinishedApplicationKind.TEAM_ONLY) {
             // The value of teamApplicationStatus is null if the individual application hasn't been finished,
             // so ensure we only return the hacker when teamApplicationStatus is INCOMPLETE.
-            return hackerStatuses.teamApplicationStatus === statuses.teamApplication.INCOMPLETE ? hacker : null;
+            return hackerStatuses.teamApplicationStatus === TeamApplicationStatus.INCOMPLETE ? hacker : null;
           } else {
             throw Error('Unknown unfinished application kind');
           }

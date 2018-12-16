@@ -1,124 +1,119 @@
 import * as moment from 'moment';
 import * as Sequelize from 'sequelize';
 
+import { assertNever } from 'shared/common';
 import * as dates from 'shared/dates';
-import * as statuses from 'shared/status-constants';
+import { ApplicationsOpenStatus, CompleteRsvpStatus, HackerStatuses, IndividualApplicationStatus, IndividualHackerStatuses,
+  OverallStatus, ResponseStatus, RsvpStatus, TeamApplicationStatus, TicketStatus } from 'shared/statuses';
 import db from './db';
 import { HackerApplicationInstance } from './HackerApplication';
 import { TeamMemberInstance } from './TeamMember';
 
-export interface IndividualHackerStatuses {
-  applicationStatus: string;
-  teamApplicationStatus: string;
-  responseStatus: string;
-  rsvpStatus: string;
-  ticketStatus: string;
-}
-
-export interface HackerStatuses extends IndividualHackerStatuses {
-  overallStatus: string;
-}
-
-// Return a promise that evaluates to the team application status
-export async function getTeamApplicationStatus(hackerInstance: HackerInstance): Promise<string> {
+async function getTeamApplicationStatus(hackerInstance: HackerInstance): Promise<TeamApplicationStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
   const team = await hackerInstance.getTeam();
   if (team === null) {
     if (hackerApplication.wantsTeam) {
       // User wants us to place them in team
-      return statuses.teamApplication.WANTS_TEAM;
+      return TeamApplicationStatus.WANTS_TEAM;
     }
     if (!hackerApplication.inTeam) {
       // User didn't apply as part of a team
-      return statuses.teamApplication.NOT_APPLICABLE;
+      return TeamApplicationStatus.NOT_APPLICABLE;
     }
-    return statuses.teamApplication.INCOMPLETE;
+    return TeamApplicationStatus.INCOMPLETE;
   } else {
     // User is listed in a team application
-    return statuses.teamApplication.COMPLETE;
+    return TeamApplicationStatus.COMPLETE;
   }
 }
 
-// Return a promise that evaluates to the response status
-async function getResponseStatus(hackerInstance: HackerInstance): Promise<string> {
+async function getResponseStatus(hackerInstance: HackerInstance): Promise<ResponseStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
     if (applicationResponse === null) {
       // No response yet
-      return statuses.response.PENDING;
-    } else if (applicationResponse.response === 'invited') {
-      return statuses.response.INVITED;
-    } else if (applicationResponse.response === 'rejected') {
-      return statuses.response.REJECTED;
+      return ResponseStatus.PENDING;
     }
+    return applicationResponse.response;
   });
 }
 
-// Return a promise that resolves to the RSVP status of the user
-async function getRsvpStatus(hackerInstance: HackerInstance): Promise<string> {
+function convertToRsvpStatus(completeRsvpStatus: CompleteRsvpStatus) {
+  switch (completeRsvpStatus) {
+    case CompleteRsvpStatus.RSVP_YES:
+      return RsvpStatus.COMPLETE_YES;
+    case CompleteRsvpStatus.RSVP_NO:
+      return RsvpStatus.COMPLETE_NO;
+    case CompleteRsvpStatus.RSVP_EXPIRED:
+      return RsvpStatus.COMPLETE_EXPIRED;
+    default:
+      return assertNever(completeRsvpStatus);
+  }
+}
+
+async function getRsvpStatus(hackerInstance: HackerInstance): Promise<RsvpStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
-  return hackerApplication.getApplicationResponse().then(applicationResponse => {
-    if (applicationResponse === null || applicationResponse.response === 'rejected') {
-      // User hasn't been invited, we don't need an RSVP
-      return statuses.rsvp.NOT_APPLICABLE;
-    } else {
-      return applicationResponse.getResponseRsvp().then(rsvp => {
-        if (rsvp === null) {
-          // User invited but hasn't rsvp'd
-          return statuses.rsvp.INCOMPLETE;
-        } else if (rsvp.rsvp === 'RSVP_YES') {
-          return statuses.rsvp.COMPLETE_YES;
-        } else if (rsvp.rsvp === 'RSVP_NO') {
-          return statuses.rsvp.COMPLETE_NO;
-        } else if (rsvp.rsvp === 'RSVP_EXPIRED') {
-          return statuses.rsvp.COMPLETE_EXPIRED;
-        }
-      });
-    }
-  });
+
+  const applicationResponse = await hackerApplication.getApplicationResponse();
+  if (applicationResponse === null || applicationResponse.response === ResponseStatus.REJECTED) {
+    // User hasn't been invited, we don't need an RSVP
+    return RsvpStatus.NOT_APPLICABLE;
+  } else {
+    return applicationResponse.getResponseRsvp().then(rsvp => {
+      if (rsvp === null) {
+        // User invited but hasn't rsvp'd
+        return RsvpStatus.INCOMPLETE;
+      }
+      return convertToRsvpStatus(rsvp.rsvp);
+    });
+  }
 }
 
-// Returns a promise that resolves to the status of the users personal application
-export async function getApplicationStatus(hackerInstance: HackerInstance): Promise<string> {
+async function getIndividualApplicationStatus(hackerInstance: HackerInstance): Promise<IndividualApplicationStatus> {
   const hackerApplication = await hackerInstance.getHackerApplication();
-  if (hackerApplication === null) { return statuses.application.INCOMPLETE; } else { return statuses.application.COMPLETE; }
+  if (hackerApplication === null) {
+    return IndividualApplicationStatus.INCOMPLETE;
+  } else {
+    return hackerApplication.isWithdrawn ? IndividualApplicationStatus.WITHDRAWN : IndividualApplicationStatus.COMPLETE;
+  }
 }
 
-// Returns a promise that resolves to the ticketed status of the given application
-async function getTicketStatus(hackerInstance: HackerInstance): Promise<string> {
+async function getTicketStatus(hackerInstance: HackerInstance): Promise<TicketStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication == null) { return null; }
   return hackerApplication.getApplicationTicket().then(applicationTicket => {
-    return applicationTicket == null ? statuses.ticket.NO_TICKET : statuses.ticket.HAS_TICKET;
+    return applicationTicket == null ? TicketStatus.NO_TICKET : TicketStatus.HAS_TICKET;
   });
 }
 
-// Returns a promise that resolves to the headline application status
-async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Promise<string> {
-  if (hackerStatuses.applicationStatus === statuses.application.INCOMPLETE ||
-     ((hackerStatuses.teamApplicationStatus === statuses.application.INCOMPLETE) &&
-     (hackerStatuses.applicationStatus === statuses.application.INCOMPLETE))) {
-    return process.env.APPLICATIONS_OPEN_STATUS === statuses.applicationsOpen.OPEN ?
-      statuses.overall.INCOMPLETE :
-      statuses.overall.INCOMPLETE_CLOSED;
-  } else if (hackerStatuses.responseStatus === statuses.response.PENDING) {
-    return statuses.overall.IN_REVIEW;
-       } else if (hackerStatuses.responseStatus === statuses.response.REJECTED) {
-    return statuses.overall.REJECTED;
-       } else if (hackerStatuses.ticketStatus === statuses.ticket.HAS_TICKET) {
-    return statuses.overall.HAS_TICKET;
-       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.INCOMPLETE) {
-    return statuses.overall.INVITED_AWAITING_RSVP;
-       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.COMPLETE_NO) {
-    return statuses.overall.INVITED_DECLINED;
-       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.COMPLETE_EXPIRED) {
-    return statuses.overall.INVITED_EXPIRED;
-       } else if (hackerStatuses.rsvpStatus === statuses.rsvp.COMPLETE_YES) {
-    return statuses.overall.INVITED_ACCEPTED;
-       } else {
+/** Returns a promise that resolves to the headline application status */
+function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): OverallStatus {
+  if (hackerStatuses.individualApplicationStatus === IndividualApplicationStatus.INCOMPLETE ||
+     hackerStatuses.teamApplicationStatus === TeamApplicationStatus.INCOMPLETE) {
+    return process.env.APPLICATIONS_OPEN_STATUS === ApplicationsOpenStatus.OPEN ?
+      OverallStatus.INCOMPLETE :
+      OverallStatus.INCOMPLETE_CLOSED;
+  } else if (hackerStatuses.individualApplicationStatus === IndividualApplicationStatus.WITHDRAWN) {
+    return OverallStatus.WITHDRAWN;
+  } else if (hackerStatuses.responseStatus === ResponseStatus.PENDING) {
+    return OverallStatus.IN_REVIEW;
+  } else if (hackerStatuses.responseStatus === ResponseStatus.REJECTED) {
+    return OverallStatus.REJECTED;
+  } else if (hackerStatuses.ticketStatus === TicketStatus.HAS_TICKET) {
+    return OverallStatus.HAS_TICKET;
+  } else if (hackerStatuses.rsvpStatus === RsvpStatus.INCOMPLETE) {
+    return OverallStatus.INVITED_AWAITING_RSVP;
+  } else if (hackerStatuses.rsvpStatus === RsvpStatus.COMPLETE_NO) {
+    return OverallStatus.INVITED_DECLINED;
+  } else if (hackerStatuses.rsvpStatus === RsvpStatus.COMPLETE_EXPIRED) {
+    return OverallStatus.INVITED_EXPIRED;
+  } else if (hackerStatuses.rsvpStatus === RsvpStatus.COMPLETE_YES) {
+    return OverallStatus.INVITED_ACCEPTED;
+  } else {
     console.log(hackerStatuses);
     throw new Error('Couldn\'t derive an overall status');
   }
@@ -126,7 +121,7 @@ async function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): Pr
 
 async function getStatuses(this: HackerInstance): Promise<HackerStatuses> {
   const individualStatuses: IndividualHackerStatuses = {
-    applicationStatus: await getApplicationStatus(this),
+    individualApplicationStatus: await getIndividualApplicationStatus(this),
     teamApplicationStatus: await getTeamApplicationStatus(this),
     responseStatus: await getResponseStatus(this),
     rsvpStatus: await getRsvpStatus(this),
