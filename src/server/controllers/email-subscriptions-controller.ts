@@ -12,5 +12,11 @@ export function createSubscription(req: Request, res: Response) {
     update_existing: true
   },
   _ => res.json('An email requesting your confirmation has been sent to the address you provided.'),
-  err => err.name === 'ValidationError' ? res.status(400).json(err.error) : res.status(500).json(err.error));
+  err => {
+    if (err.name === 'ValidationError') {
+      res.status(400).json(err.error);
+    } else {
+      res.status(500).json('The server encountered an error.');
+    }
+  });
 }
