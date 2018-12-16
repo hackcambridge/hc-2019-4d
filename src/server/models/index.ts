@@ -12,7 +12,7 @@ import OauthAccessToken from './OauthAccessToken';
 import ResponseRsvp from './ResponseRsvp';
 import ReviewCriterion from './ReviewCriterion';
 import ReviewCriterionScore from './ReviewCriterionScore';
-import Team from './Team';
+import Team, { TeamInstance } from './Team';
 import TeamMember from './TeamMember';
 import { TeamMemberInstance } from './TeamMember';
 
@@ -25,6 +25,7 @@ export {
   ApplicationResponse,
   ApplicationResponseInstance,
   Team,
+  TeamInstance,
   TeamMember,
   TeamMemberInstance,
   OauthAccessToken,
