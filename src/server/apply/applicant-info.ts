@@ -1,24 +1,44 @@
+import * as stringify from 'csv-stringify/lib/sync';
+
 import { Hacker, HackerInstance } from 'server/models';
-import { HackerStatuses, IndividualApplicationStatus, TeamApplicationStatus } from 'shared/statuses';
+import { assertNever } from 'shared/common';
+import { IndividualApplicationStatus, TeamApplicationStatus } from 'shared/statuses';
 
-export const unfinishedApplicationKind = { INDIVIDUAL: 'individual', TEAM_ONLY: 'team-only' };
+export enum UnfinishedApplicationKind {
+  INDIVIDUAL = 'individual',
+  TEAM_ONLY = 'team-only',
+}
 
-export function getHackersWithUnfinishedApplications(kind) {
-  return Hacker.findAll().then((hackers: HackerInstance[]) =>
-    Promise.all(hackers.map((hacker: HackerInstance) =>
-      hacker.getStatuses()
-        .then((hackerStatuses: HackerStatuses) => {
-          if (kind === unfinishedApplicationKind.INDIVIDUAL) {
-            return hackerStatuses.individualApplicationStatus === IndividualApplicationStatus.INCOMPLETE ? hacker : null;
-          } else if (kind === unfinishedApplicationKind.TEAM_ONLY) {
-            // The value of teamApplicationStatus is null if the individual application hasn't been finished,
-            // so ensure we only return the hacker when teamApplicationStatus is INCOMPLETE.
-            return hackerStatuses.teamApplicationStatus === TeamApplicationStatus.INCOMPLETE ? hacker : null;
-          } else {
-            throw Error('Unknown unfinished application kind');
-          }
-        })
-      )
-    ).then(hackerResults => hackerResults.filter(result => result !== null))
-  );
+export async function getHackersWithUnfinishedApplications(kind: UnfinishedApplicationKind): Promise<HackerInstance[]> {
+  const hackers = await Hacker.findAll();
+  const hackerStatuses = await Promise.all(hackers.map(hacker => hacker.getStatuses()));
+  const hackerResults = hackers.map((hacker, i) => {
+    switch (kind) {
+      case UnfinishedApplicationKind.INDIVIDUAL:
+        return hackerStatuses[i].individualApplicationStatus === IndividualApplicationStatus.INCOMPLETE ? hacker : null;
+      case UnfinishedApplicationKind.TEAM_ONLY:
+        // The value of teamApplicationStatus is null if the individual application hasn't been finished,
+        // so ensure we only return the hacker when teamApplicationStatus is INCOMPLETE.
+        return hackerStatuses[i].teamApplicationStatus === TeamApplicationStatus.INCOMPLETE ? hacker : null;
+      default:
+        return assertNever(kind);
+    }
+  });
+  return hackerResults.filter(result => result !== null);
+}
+
+function csvOfHackers(hackerList: ReadonlyArray<HackerInstance>): string {
+  const columns = {
+    email: 'Email',
+    firstName: 'First name',
+    lastName: 'Last name'
+  };
+  const hackerData = hackerList.map(hacker => [hacker.email, hacker.firstName, hacker.lastName]);
+  return stringify(hackerData, { header: true, columns });
+}
+
+export async function getCsvOfHackersWithUnfinishedApplications(kind): Promise<string> {
+  const unfinishedHackers = await getHackersWithUnfinishedApplications(kind);
+  console.log(`Applicants with unfinished applications of kind ${kind}:`);
+  return csvOfHackers(unfinishedHackers);
 }
