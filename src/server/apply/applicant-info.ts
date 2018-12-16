@@ -12,19 +12,18 @@ export enum UnfinishedApplicationKind {
 export async function getHackersWithUnfinishedApplications(kind: UnfinishedApplicationKind): Promise<HackerInstance[]> {
   const hackers = await Hacker.findAll();
   const hackerStatuses = await Promise.all(hackers.map(hacker => hacker.getStatuses()));
-  const hackerResults = hackers.map((hacker, i) => {
+  return hackers.filter((_hacker, i) => {
     switch (kind) {
       case UnfinishedApplicationKind.INDIVIDUAL:
-        return hackerStatuses[i].individualApplicationStatus === IndividualApplicationStatus.INCOMPLETE ? hacker : null;
+        return hackerStatuses[i].individualApplicationStatus === IndividualApplicationStatus.INCOMPLETE;
       case UnfinishedApplicationKind.TEAM_ONLY:
         // The value of teamApplicationStatus is null if the individual application hasn't been finished,
         // so ensure we only return the hacker when teamApplicationStatus is INCOMPLETE.
-        return hackerStatuses[i].teamApplicationStatus === TeamApplicationStatus.INCOMPLETE ? hacker : null;
+        return hackerStatuses[i].teamApplicationStatus === TeamApplicationStatus.INCOMPLETE;
       default:
         return assertNever(kind);
     }
   });
-  return hackerResults.filter(result => result !== null);
 }
 
 function csvOfHackers(hackerList: ReadonlyArray<HackerInstance>): string {
