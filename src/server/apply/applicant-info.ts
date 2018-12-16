@@ -39,6 +39,5 @@ function csvOfHackers(hackerList: ReadonlyArray<HackerInstance>): string {
 
 export async function getCsvOfHackersWithUnfinishedApplications(kind): Promise<string> {
   const unfinishedHackers = await getHackersWithUnfinishedApplications(kind);
-  console.log(`Applicants with unfinished applications of kind ${kind}:`);
   return csvOfHackers(unfinishedHackers);
 }

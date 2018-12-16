@@ -14,6 +14,7 @@ export default {
   },
   handler: createHandler(async ({ kind }) => {
     console.assert(kind === UnfinishedApplicationKind.INDIVIDUAL || kind === UnfinishedApplicationKind.TEAM_ONLY);
+    console.log(`Applicants with unfinished applications of kind ${kind}:`);
     console.log(await getCsvOfHackersWithUnfinishedApplications(kind));
   }),
 };
