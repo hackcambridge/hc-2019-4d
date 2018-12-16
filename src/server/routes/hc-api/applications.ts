@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { getCsvOfHackersWithUnfinishedApplications } from 'server/apply/applicant-info';
+import { getCsvOfHackersWithUnfinishedApplications, UnfinishedApplicationKind } from 'server/apply/applicant-info';
 import { Hacker, HackerApplication } from 'server/models';
 import * as responseLogic from 'server/review/response-logic';
 import { getApplicationsWithScores } from 'server/review/score-logic';
@@ -71,7 +71,9 @@ applicationsRouter.post('/:applicationId/response', (req, res, next) => {
 
 applicationsRouter.get('/unfinished/:kind', async (req, res, next) => {
   try {
-    const csv = await getCsvOfHackersWithUnfinishedApplications(req.params.kind);
+    const kind = req.params.kind;
+    console.assert(kind === UnfinishedApplicationKind.INDIVIDUAL || kind === UnfinishedApplicationKind.TEAM_ONLY);
+    const csv = await getCsvOfHackersWithUnfinishedApplications(kind);
     res.send(csv);
   } catch (e) {
     next(e);
