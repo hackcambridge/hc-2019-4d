@@ -2,8 +2,8 @@ extends ../layouts/width
 block mainContent
   -
     title = 'Dashboard'
-    roomShareForm = undefined
-    visaForm = 'https://docs.google.com/forms/d/e/1FAIpQLSflkf8VJrgARSTfgGb_cPiiu3i6YeatCbIqQQXfD3wdBbf_NQ/viewform'
+    roomShareForm = 'https://goo.gl/forms/VVlxPkExhrc4ZcKy1'
+    visaForm = 'https://goo.gl/forms/TGoMc4QqVJp60F4j1'
   // To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking
   - openSlackLink = 'slack://open?team=TEN04697S'
   section(grid='rows')
@@ -17,13 +17,13 @@ block mainContent
           span.pixel= application.applicationSlug
           | .
   // Section for info about RSVPs
-  if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE || statuses.rsvpStatus == statusConstants.rsvp.COMPLETE_EXPIRED
+  if statuses.rsvpStatus == statusConstants.RsvpStatus.INCOMPLETE || statuses.rsvpStatus == statusConstants.RsvpStatus.COMPLETE_EXPIRED
     section
       form(method='POST' action='/apply/rsvp' grid='grid')
         h3(rows='1.0' columns='all') Respond to your invitation
         h4(rows='1.0' columns='all'): span.pixel= statusMessages['rsvp'][statuses.rsvpStatus].label
         p(rows='1.5' columns='8')= statusMessages['rsvp'][statuses.rsvpStatus].content
-        if statuses.rsvpStatus == statusConstants.rsvp.INCOMPLETE
+        if statuses.rsvpStatus == statusConstants.RsvpStatus.INCOMPLETE
           div(rows='1.5' columns='all')
             div
               input#rsvp-yes(type='radio' name='rsvp' value='RSVP_YES' required='true')
@@ -50,7 +50,7 @@ block mainContent
             li
               a(href=statusMessages['rsvp'][statuses.rsvpStatus].action.location)
                 = statusMessages['rsvp'][statuses.rsvpStatus].action.title
-  if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
+  if statuses.responseStatus == statusConstants.ResponseStatus.INVITED && statuses.rsvpStatus != statusConstants.RsvpStatus.COMPLETE_NO && statuses.rsvpStatus != statusConstants.RsvpStatus.COMPLETE_EXPIRED
     section(grid='grid' color='red')
       div(columns='4.0' rows='3.0' grid='rows')
         h3(rows='1.0') Date and time
@@ -75,9 +75,9 @@ block mainContent
           ul
             li: a(href='https://goo.gl/maps/TypmzToZ2yq' target='_blank') View on Google Maps
             li: a(href='https://maps.apple.com/place?&auid=5916990408850136741' target='_blank') View on Apple Maps
-  if statuses.responseStatus == statusConstants.response.INVITED && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_NO && statuses.rsvpStatus != statusConstants.rsvp.COMPLETE_EXPIRED
+  if statuses.responseStatus == statusConstants.ResponseStatus.INVITED && statuses.rsvpStatus != statusConstants.RsvpStatus.COMPLETE_NO && statuses.rsvpStatus != statusConstants.RsvpStatus.COMPLETE_EXPIRED
     section(grid='grid')
-      if visaForm && (statuses.responseStatus == statusConstants.rsvp.COMPLETE_YES)
+      if visaForm && (statuses.rsvpStatus == statusConstants.RsvpStatus.COMPLETE_YES)
         div(columns='5.5' rows='2.5' grid='rows')
           h3(rows='1.0') Visas
           div
@@ -91,13 +91,20 @@ block mainContent
             p
               | For those travelling from further afield, we try to find a host in Cambridge who will provide a place to sleep on the night before Hack Cambridge (the #{fridayBeforeHackathonDate}), in which case you’ll only need to bring a sleeping bag and pillow. However, at present, we can’t guarantee you a place, so please apply
               |
-              if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+              if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
                 | now if you want to be hosted!
               else
                 | straight away after accepting your invitation, using the form which appears in this section.
               |
               | We will reply as soon as possible indicating whether we can find you a host. Hackers coming from international destinations will be prioritised.
-            if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+              if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
+                |
+                | For more information join the
+                |
+                span(class='pixel') #host-a-hacker
+                |
+                | channel on Slack.
+            if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
               ul
                 li: a(href=roomShareForm target='_blank') Apply for accommodation
       div(columns='4.5' rows='5.5' grid='rows')
@@ -113,7 +120,7 @@ block mainContent
             strong Note:
             |
             | We don’t reimburse parking costs or travel costs if you study in Cambridge. Please be responsible when claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.      
-  if statuses.overallStatus == statusConstants.overall.HAS_TICKET
+  if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
     section(grid='grid')
       h3(rows='1.0' columns='all') Travel advice
       div(rows='3.0' columns='5.0')
@@ -158,22 +165,22 @@ block mainContent
             li: a(href=openSlackLink) Go to the Slack team
             li: a(href='https://slack.com/downloads' target='_blank') Download the mobile or desktop app
       // If not in team
-      if statuses.teamApplicationStatus != statusConstants.teamApplication.COMPLETE
+      if statuses.teamApplicationStatus != statusConstants.TeamApplicationStatus.COMPLETE
         div(rows='2.0' columns='4.0')
           h4 Finding your teams
           if application.wantsTeam
             p You said that you wanted to have a team chosen for you for the hackathon. We’ll be sending you some allocations soon!
           else
             p There’ll be opportunities to find team members on the day. We’ll be sending out more information regarding this shortly.
-  if statuses.overallStatus == statusConstants.overall.INCOMPLETE || statuses.overallStatus == statusConstants.overall.IN_REVIEW
+  if statuses.overallStatus == statusConstants.OverallStatus.INCOMPLETE || statuses.overallStatus == statusConstants.OverallStatus.IN_REVIEW
     section(grid='rows')
       h3(rows='0.5') Your application
       div(rows='1.0')
-        p= statusMessages['your-application'][statuses.applicationStatus].content
-        if statusMessages['your-application'][statuses.applicationStatus].action
+        p= statusMessages['your-application'][statuses.individualApplicationStatus].content
+        if statusMessages['your-application'][statuses.individualApplicationStatus].action
           ul
-            li: a(href=statusMessages['your-application'][statuses.applicationStatus].action.location)= statusMessages['your-application'][statuses.applicationStatus].action.title
-    if statuses.applicationStatus == statusConstants.application.COMPLETE
+            li: a(href=statusMessages['your-application'][statuses.individualApplicationStatus].action.location)= statusMessages['your-application'][statuses.individualApplicationStatus].action.title
+    if statuses.individualApplicationStatus == statusConstants.IndividualApplicationStatus.COMPLETE
       section(grid='rows')
         h3(rows='0.5') Team application
         div(rows='1.5')
@@ -181,11 +188,11 @@ block mainContent
           if statusMessages['team-application'][statuses.teamApplicationStatus].action
             ul
               li: a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)= statusMessages['team-application'][statuses.teamApplicationStatus].action.title
-        if statuses.teamApplicationStatus == statusConstants.teamApplication.COMPLETE
+        if statuses.teamApplicationStatus == statusConstants.TeamApplicationStatus.COMPLETE
           div(rows='1.0')
             ul
               for hacker in teamMembers
                 li= hacker.firstName + ' ' + hacker.lastName
-        div(rows='1.5')
-          p If you need to make changes to your team, get in touch with us.
-          a(href='mailto:team@hackcambridge.com') Get in touch
+          div(rows='1.5')
+            p If you need to make changes to your team, get in touch with us.
+            a(href='mailto:team@hackcambridge.com') Get in touch

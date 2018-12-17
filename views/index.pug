@@ -57,7 +57,12 @@ block content
       section(grid='grid' sidebar='' columns='7.5' color='blue')
         div
         div(grid='rows' rows='1.0')
-          strong(rows='0.5') Applications close this #{event.dates.getApplicationsEnd().format('dddd')}! 
+          if moment().isBefore(event.dates.getAdvertisedApplicationsEnd().subtract(2, 'day'))
+            strong(rows='0.5') Applications close this #{event.dates.getApplicationsEnd().format('dddd')}!
+          else if moment().isBefore(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'day'))
+            strong(rows='0.5') Applications close tomorrow!
+          else
+            strong(rows='0.5') Applications close today at #{event.dates.getApplicationsEnd().format('HH:mm')}!
           div(rows='0.5')
             p Submit your application before time runs out!
         div
