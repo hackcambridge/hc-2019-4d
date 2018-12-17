@@ -14,6 +14,7 @@ $(document).ready(() => {
   pages.forEach(f => f.start());
 });
 
+Rails.confirm = (message, _element) => confirm('overridden: ' + message);
 Rails.start();
 
 const application = Application.start();

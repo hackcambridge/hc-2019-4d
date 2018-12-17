@@ -1,4 +1,4 @@
-form(grid='columns' method='POST' action='/email-subscriptions' rows='0.5' columns='1.0' align-last='right' data-remote='true' data-controller='email-sign-up' data-action='ajax:success->email-sign-up#processResponse ajax:error->email-sign-up#handleError')
+form(grid='columns' method='POST' action='/email-subscriptions' rows='0.5' columns='1.0' align-last='right' data-remote='true' data-controller='email-sign-up' data-confirm='Hello world!')
   div
     input(type='email' name='email' required=true placeholder='email@domain.com' data-target='email-sign-up.field')
   input(type='submit' name='submit' value='Submit.' data-disable-with='Loading…')
