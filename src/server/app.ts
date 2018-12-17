@@ -6,7 +6,7 @@ import { ServeStaticOptions } from 'serve-static';
 import { parse as parseUrl } from 'url';
 
 import { applicationsMiddleware } from 'server/middleware';
-import { apiRouter, applyRouter, eventRouter, hcApiRouter, router } from './routes';
+import { applyRouter, eventRouter, hcApiRouter, router } from './routes';
 
 import { setUpAuth } from 'server/auth';
 import { middleware as errorMiddleware } from 'server/errors';
@@ -66,7 +66,6 @@ if (process.env.BS_SNIPPET) {
 
 app.use(parseUrlEncoded({ extended: true }));
 app.use('/', router);
-app.use('/api', apiRouter);
 app.use('/apply', applyRouter);
 app.use('/event', eventRouter);
 app.use('/hcapi', hcApiRouter);

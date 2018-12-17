@@ -1,7 +1,10 @@
-import { Router } from 'express';
+import { json as parseJson, urlencoded as parseUrlEncoded } from 'body-parser';
+import { Request, Response, Router } from 'express';
 
 import { getCurrentEvents, getNextEvents } from 'server/live/current-event';
 import { loadResource, resolvePath } from 'server/utils';
+
+import { emailSubscriptionsController } from 'server/controllers';
 
 const router = Router();
 
@@ -36,5 +39,11 @@ router.get('/sponsorship', (_req, res) => res.render('sponsorship'));
 router.get('/favicons/browserconfig.xml', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/browserconfig.xml')));
 
 router.get('/favicons/manifest.json', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/manifest.json')));
+
+router.use(parseJson());
+router.use(parseUrlEncoded({ extended: true }));
+router.route('/email-subscriptions')
+  .post(emailSubscriptionsController.createSubscription)
+  .all((_req: Request, res: Response) => res.sendStatus(405));
 
 export default router;
