@@ -6,7 +6,7 @@ export default class EmailSignUpController extends Controller {
    * Field
    */
   public fieldTarget: HTMLInputElement;
-  
+
   static get targets() {
     return ['field'];
   }
