@@ -1,8 +1,8 @@
-import * as generateSlug from 'adjective-adjective-animal';
 import countryList from 'country-list';
 import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
 import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
+import { generateCombination } from 'gfycat-style-urls';
 import * as validator from 'validator';
 
 import * as emailTemplates from 'server/apply/email-templates';
@@ -195,7 +195,7 @@ export const createHackerApplication: RequestHandlerParams = [
 ];
 
 async function createApplicationFromForm(body, user: HackerInstance, file): Promise<HackerApplicationInstance> {
-  const applicationSlug: string = await generateSlug();
+  const applicationSlug: string = generateCombination(2, '-').toLowerCase();
   try {
     const application = await HackerApplication.create({
       // Foreign key
