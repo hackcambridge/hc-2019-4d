@@ -1,29 +1,18 @@
 import { expireInvitation, getInvitationExpiryCandidates } from 'server/attendance/logic';
+import { ApplicationResponseInstance } from 'server/models';
 import { createHandler } from './utils';
 
-function createExpiryQueue(responsesToProcess, dryRun) {
-  // Defensive clone for mutating array
-  const responses = responsesToProcess.slice(0);
-
-  const processExpiryQueue = () => {
-    if (responses.length === 0) {
-      return Promise.resolve();
-    }
-
-    const response = responses.pop();
-
-    console.log(`Expiring response ${response.id}. Date invited: ${response.createdAt}`);
-    return (dryRun ? Promise.resolve() : expireInvitation(response)).then(() => {
+async function expireResponse(response: ApplicationResponseInstance, dryRun: boolean): Promise<void> {
+  console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} response ${response.id}. Date invited: ${response.createdAt}`);
+  if (!dryRun) {
+    try {
+      await expireInvitation(response);
       console.log(`Expired ${response.id}`);
-    }, error => {
+    } catch (error) {
       console.error(`Failed to expire ${response.id}`);
       console.error(error);
-    }).then(() => processExpiryQueue());
-  };
-
-  return {
-    process: processExpiryQueue,
-  };
+    }
+  }
 }
 
 export default {
@@ -37,7 +26,7 @@ export default {
   handler: createHandler(({ dryRun }) =>
     getInvitationExpiryCandidates().then(responses => {
       console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length !== 1 ? 's' : ''}`);
-      return createExpiryQueue(responses, dryRun).process();
+      return Promise.all(responses.map(response => expireResponse(response, dryRun)));
     })
   ),
 };

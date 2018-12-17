@@ -8,7 +8,7 @@ export function getApplicationsStart(): moment.Moment {
  * Links to start applications will be removed from this date.
  */
 export function getApplicationsEnd(): moment.Moment {
-  return moment('2018-12-13T23:59:00Z');
+  return moment('2018-12-17T23:59:00Z');
 }
 
 export function getHackathonStartDate(): moment.Moment {
@@ -25,7 +25,7 @@ export function getHackathonEndDate(): moment.Moment {
  * which point links to start applications will be removed.
  */
 export function getAdvertisedApplicationsEnd(): moment.Moment {
-  return moment('2018-12-13T23:59:59Z');
+  return moment('2018-12-17T23:59:59Z');
 }
 
 /**

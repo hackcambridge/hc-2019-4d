@@ -5,7 +5,7 @@ import { HackerInstance, TeamMember } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
 import * as utils from 'server/utils.js';
 import { getHackathonEndDate, getHackathonStartDate } from 'shared/dates';
-import * as statusConstants from 'shared/status-constants';
+import * as statusConstants from 'shared/statuses';
 
 async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<HackerInstance[]> {
   const teamMember = await user.getTeam();

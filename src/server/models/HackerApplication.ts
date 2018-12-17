@@ -26,7 +26,10 @@ interface HackerApplicationAttributes {
   needsVisa: boolean;
   visaNeededBy?: Date;
   otherInfo?: string;
-  isDisqualified?: boolean;
+  /** Whether the application is withdrawn.  For example, the hacker has told us they want to withdraw,
+   *  or they are ineligible for the event.
+   */
+  isWithdrawn?: boolean;
 }
 
 export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
@@ -118,7 +121,7 @@ const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
     type: Sequelize.TEXT,
     allowNull: true
   },
-  isDisqualified: {
+  isWithdrawn: {
     type: Sequelize.BOOLEAN,
     allowNull: true
   }

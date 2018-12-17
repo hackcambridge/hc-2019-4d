@@ -5,10 +5,13 @@ import { ApplicationResponse, db, Hacker, HackerApplication, Team, TeamMember } 
 import { ApplicationResponseAttributes } from 'server/models/ApplicationResponse';
 import { HackerInstance } from 'server/models/Hacker';
 import { HackerApplicationInstance } from 'server/models/HackerApplication';
-import { response } from 'shared/status-constants';
+import { assertNever } from 'shared/common';
+import { ResponseStatus } from 'shared/statuses';
 import { INVITATION_VALIDITY_DURATION } from './constants';
 import * as emailTemplates from './email-templates';
 import { applicationHasBeenIndividuallyScored } from './score-logic';
+
+export type DecidedResponseStatus = ResponseStatus.INVITED | ResponseStatus.REJECTED;
 
 /**
  * Normalizes teams and non-teams into an array that either contains a
@@ -70,7 +73,7 @@ function checkApplicationsAreScored(applications: HackerApplicationInstance[]): 
  *
  * Returns a promise that resolves with whether the application is new or not
  */
-function setResponseForApplication(application: HackerApplicationInstance, responseStatus, transaction) {
+function setResponseForApplication(application: HackerApplicationInstance, responseStatus: DecidedResponseStatus, transaction) {
   console.log(`Setting response for application ${application.id} to "${responseStatus}"`);
   const responseContent: ApplicationResponseAttributes = {
     response: responseStatus,
@@ -96,7 +99,7 @@ function setResponseForApplication(application: HackerApplicationInstance, respo
 /**
  * Sets the response for a set of applications in an ACID-safe way
  */
-function setResponseForApplications(applications: HackerApplicationInstance[], responseStatus):
+function setResponseForApplications(applications: HackerApplicationInstance[], responseStatus: DecidedResponseStatus):
   PromiseLike<Array<{application: HackerApplicationInstance, isApplicationNew: boolean}>> {
   return db.transaction(transaction =>
     Promise.all(
@@ -108,22 +111,21 @@ function setResponseForApplications(applications: HackerApplicationInstance[], r
   );
 }
 
-function getEmailForApplicationResponse(hacker: HackerInstance, responseStatus) {
-  if (responseStatus === response.INVITED) {
-    return emailTemplates.invited({
-      name: hacker.firstName,
-      daysValid: INVITATION_VALIDITY_DURATION.asDays(),
-    });
+function getEmailForApplicationResponse(hacker: HackerInstance, responseStatus: DecidedResponseStatus) {
+  switch (responseStatus) {
+    case ResponseStatus.INVITED:
+      return emailTemplates.invited({
+        name: hacker.firstName,
+        daysValid: INVITATION_VALIDITY_DURATION.asDays(),
+      });
+    case ResponseStatus.REJECTED:
+      return emailTemplates.notInvited({ name: hacker.firstName });
+    default:
+      return assertNever(responseStatus);
   }
-
-  if (responseStatus === response.REJECTED) {
-    return emailTemplates.notInvited({ name: hacker.firstName });
-  }
-
-  throw new Error(`Could not find template for response "${responseStatus}"`);
 }
 
-function sendEmailForApplicationResponse(application: HackerApplicationInstance, responseStatus) {
+function sendEmailForApplicationResponse(application: HackerApplicationInstance, responseStatus: DecidedResponseStatus) {
   console.log(`Sending response email for application ${application.id}`);
 
   return application.getHacker().then(hacker =>
@@ -141,7 +143,7 @@ function sendEmailForApplicationResponse(application: HackerApplicationInstance,
  * - Any applicants in the same team will receive the same status
  * - If this is the application's first response (99% of cases), an email will be sent
  */
-export function setResponseForApplicationWithChecks(originalApplication, responseStatus) {
+export function setResponseForApplicationWithChecks(originalApplication, responseStatus: DecidedResponseStatus) {
   return normalizeApplicationTeams(originalApplication)
     .then(checkApplicationsAreScored)
     .then(applications => setResponseForApplications(applications, responseStatus))
