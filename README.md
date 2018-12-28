@@ -139,14 +139,14 @@ You can either `invite` or `reject`.
 yarn hc-script -- suggest-responses invite 50 applications.json
 ```
 
-The use of this script requires a score augmentation function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
+The use of this script requires a score augmentation function for any custom scoring logic. It is placed in `src/hc-scripts/augment-score.ts`.
 It takes in a computed application object and returns an augmented score. The identity function (leaving the score unchanged) looks like this:
 
 ```typescript
 module.exports = ({ rating }) => rating;
 ```
 
-It also makes use of a selection script stored in `src/js/hc-scripts/choose-applicants.js`
+It also makes use of a selection script stored in `src/hc-scripts/choose-applicants.ts`
 This takes a sorted list of applications, a result count limit and an inviteType
 and returns a list of the suggested applications to invite/reject.
 E.g. to just takes the top n in the sorted list:

@@ -37,7 +37,7 @@ export interface HackerApplicationInstance extends Sequelize.Instance<HackerAppl
   applicationResponse?: ApplicationResponseInstance;
   applicationReviews?: ApplicationReviewInstance[];
   getApplicationTicket: () => Promise<ApplicationTicketInstance>;
-  getHacker: () => Promise<HackerInstance>;
+  getHacker: (data?: { transaction: Sequelize.Transaction }) => Promise<HackerInstance>;
   hacker?: HackerInstance;
 }
 

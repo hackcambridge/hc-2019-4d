@@ -15,6 +15,8 @@ export interface ApplicationResponseAttributes {
 
 export interface ApplicationResponseInstance extends Sequelize.Instance<ApplicationResponseAttributes>, ApplicationResponseAttributes {
   getHackerApplication: (data?: { transaction: Sequelize.Transaction }) => Promise<HackerApplicationInstance>;
+  hackerApplication?: HackerApplicationInstance;
+
   getResponseRsvp: () => Promise<ResponseRsvpInstance>;
 }
 

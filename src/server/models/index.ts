@@ -2,7 +2,7 @@ import Admin from './Admin';
 import ApplicationAssignment from './ApplicationAssignment';
 import ApplicationResponse, { ApplicationResponseInstance } from './ApplicationResponse';
 import ApplicationReview from './ApplicationReview';
-import ApplicationTicket from './ApplicationTicket';
+import ApplicationTicket, { ApplicationTicketInstance } from './ApplicationTicket';
 import db from './db';
 import Hacker from './Hacker';
 import { HackerInstance } from './Hacker';
@@ -24,6 +24,8 @@ export {
   HackerApplicationInstance,
   ApplicationResponse,
   ApplicationResponseInstance,
+  ApplicationTicket,
+  ApplicationTicketInstance,
   Team,
   TeamInstance,
   TeamMember,
@@ -35,5 +37,4 @@ export {
   ReviewCriterion,
   ReviewCriterionScore,
   ResponseRsvp,
-  ApplicationTicket,
 };
