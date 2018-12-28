@@ -64,7 +64,7 @@ We use Yarn to manage dependencies, and PostgreSQL for our database.
 You have various options for installing PostgreSQL:
 
 - By [downloading Docker](https://www.docker.com/products/docker-desktop) and using a Docker image (guarantees an identical environment)
-- By [downloading Postgres.app](https://postgresapp.com/downloads.html) if you're running macOS (very easy, and [intergrates with Postico](https://eggerapps.at/postico/))
+- By [downloading Postgres.app](https://postgresapp.com/downloads.html) if you're running macOS (very easy, and [integrates with Postico](https://eggerapps.at/postico/))
 - [Using the installers on the PostgreSQL website](https://www.postgresql.org/download/)
 - Using your favourite package manager (e.g. Homebrew, APT, RPM…)
 
