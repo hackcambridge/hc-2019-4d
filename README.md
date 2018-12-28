@@ -188,7 +188,7 @@ yarn build --prod # Build production assets (or set NODE_ENV to production)
 
 ## Database generators
 
-We use sequelize to manage migrations. To create your own:
+We use [Sequelize](http://docs.sequelizejs.com) to manage migrations. To create your own:
 
 ```bash
 yarn migration:generate --name YOURMIGRATION
