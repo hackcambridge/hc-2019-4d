@@ -1,4 +1,4 @@
-import { makeInstruction } from 'server/email';
+import { MailContent, makeInstruction } from 'server/email';
 import * as metadata from 'shared/metadata';
 import { TeamMemberDetails } from './team-logic';
 
@@ -7,7 +7,7 @@ function teamKeyFromMember(member: TeamMemberDetails) {
   return { [`${member.firstName} ${member.lastName}`]: `${member.email} (${slackDetails})` };
 }
 
-export function newTicket({ name }: { name: string }) {
+export function newTicket({ name }: { name: string }): MailContent {
   return {
     subject: `${name}, we’re looking forward to seeing you at ${metadata.eventTitle}`,
     body: {
@@ -30,7 +30,7 @@ export function newTicket({ name }: { name: string }) {
   };
 }
 
-export function expiry({ name, daysValid }: { name: string, daysValid: number }) {
+export function expiry({ name, daysValid }: { name: string, daysValid: number }): MailContent {
   return {
     subject: `Your ${metadata.title} invitation has expired`,
     body: {
@@ -45,7 +45,7 @@ export function expiry({ name, daysValid }: { name: string, daysValid: number })
   };
 }
 
-export function teamAllocation({ team }: { team: TeamMemberDetails[] }) {
+export function teamAllocation({ team }: { team: TeamMemberDetails[] }): MailContent {
   const teamDictionary = team.reduce((partialTeam, member) =>
     Object.assign(partialTeam, teamKeyFromMember(member)),
   { }
