@@ -2,8 +2,8 @@ import * as moment from 'moment';
 import * as Sequelize from 'sequelize';
 
 import { sendEmail } from 'server/email';
-import { ApplicationResponse, ApplicationResponseInstance, ApplicationTicket, db, Hacker,
-  HackerApplication, ResponseRsvp } from 'server/models';
+import { ApplicationResponse, ApplicationResponseInstance, ApplicationTicket, ApplicationTicketInstance, db, Hacker,
+  HackerApplication, HackerApplicationInstance, HackerInstance, ResponseRsvp } from 'server/models';
 import { INVITATION_VALIDITY_DURATION } from 'server/review/constants';
 import * as slack from 'server/slack';
 import { CompleteRsvpStatus, ResponseStatus } from 'shared/statuses';
@@ -14,26 +14,25 @@ import * as emailTemplates from './email-templates';
  *
  * Sends an email and Slack invite to the user.
  */
-function createTicket(application, transaction) {
-  return ApplicationTicket.create({
-    hackerApplicationId: application.id,
-  }, { transaction }).then(applicationTicket => {
-    return application.getHacker({ transaction })
-      .then(hacker => {
-        Promise.all([
-          slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
-          sendTicketEmail(hacker)
-        ]).catch(error => {
-          // Not doing anything on error as there is no way to recover
-          console.error(error);
-        });
+async function createTicket(
+  application: HackerApplicationInstance,
+  transaction: Sequelize.Transaction): Promise<ApplicationTicketInstance> {
+  const applicationTicket = await ApplicationTicket.create({
+      hackerApplicationId: application.id,
+    }, { transaction });
 
-        return applicationTicket;
-      });
-  });
+  const hacker = await application.getHacker({ transaction });
+  Promise.all([
+      slack.inviteUser(hacker.email, hacker.firstName, hacker.lastName),
+      sendTicketEmail(hacker)
+    ]).catch(error => {
+      // Not doing anything on error as there is no way to recover
+      console.error(error);
+    });
+  return applicationTicket;
 }
 
-function sendExpiryEmail(hacker) {
+function sendExpiryEmail(hacker: HackerInstance) {
   console.log(`Sending invitation expiry email for hacker ${hacker.id}`);
 
   return sendEmail({
@@ -42,7 +41,7 @@ function sendExpiryEmail(hacker) {
   });
 }
 
-function sendTicketEmail(hacker) {
+function sendTicketEmail(hacker: HackerInstance) {
   console.log(`Sending ticket email for hacker ${hacker.id}`);
 
   return sendEmail({
@@ -81,7 +80,7 @@ export function getInvitationExpiryCandidates() {
  * @param {Response} response - The response object to expire. Must represent an invitation
  *   and have its application with hacker hydrated.
  */
-export function expireInvitation(applicationResponse) {
+export function expireInvitation(applicationResponse: ApplicationResponseInstance) {
   if (applicationResponse.response !== ResponseStatus.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
