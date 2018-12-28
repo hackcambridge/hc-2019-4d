@@ -2,8 +2,8 @@ import * as fs from 'fs';
 import * as math from 'mathjs';
 import * as Sequelize from 'sequelize';
 
-import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, HackerApplicationInstance, ReviewCriterionScore,
-         Team, TeamInstance, TeamMember } from 'server/models';
+import { ApplicationResponse, ApplicationReview, db, Hacker, HackerApplication, HackerApplicationInstance, HackerInstance,
+         ReviewCriterionScore, Team, TeamInstance, TeamMember } from 'server/models';
 
 interface NumWithStdev {
   value: number;
@@ -176,7 +176,7 @@ export function getTeamsWithMembers(): PromiseLike<TeamInstance[]> {
  * Takes the set of individual scores and the team listings and
  * produces a set of team average scores.
  */
-export function calculateTeamsAverages(individualScores: ScoreMap, teamsArr: TeamInstance[]): ScoreMap {
+export function calculateTeamsAverages(individualScores: ScoreMap, teamsArr: ReadonlyArray<TeamInstance>): ScoreMap {
   return teamsArr.reduce<ScoreMap>((scoresSoFar, team) => ({
     ...scoresSoFar,
     [team.id]: calculateTeamAverage(team, individualScores)
@@ -200,17 +200,31 @@ export async function applicationHasBeenIndividuallyScored(application: HackerAp
 
 export interface AugmentedApplication {
   id: number;
+  hackerId: number;
   name: string;
   email: string;
   gender: string;
   country: string;
   institution: string;
+  /**
+   * All the hackers that must be invited if this application is invited.
+   *
+   * If the hacker has made an individual application, this will contain just the hacker.
+   * If the hacker has made a team applications, this will contain the whole team.
+   */
+  associatedHackers: HackerInstance[];
   inTeam: boolean;
   isWithdrawn: boolean;
   rating: number;
   ratingStdev: number;
   status: string;
   visaNeededBy: Date;
+}
+
+function getAssociatedHackers(hacker: HackerInstance, teamsArr: ReadonlyArray<TeamInstance>): HackerInstance[] {
+  return hacker.Team !== null ?
+    teamsArr.find(team => team.id === hacker.Team.teamId).teamMembers.map(member => member.hacker) :
+    [hacker];
 }
 
 function deriveScoringStatus(application: HackerApplicationInstance): string {
@@ -223,14 +237,19 @@ function deriveScoringStatus(application: HackerApplicationInstance): string {
   return application.applicationResponse.response === 'invited' ? 'Invited' : 'Not Invited';
 }
 
-function augmentApplication(application: HackerApplicationInstance, rating: NumWithStdev): AugmentedApplication {
+function augmentApplication(
+  application: HackerApplicationInstance,
+  rating: NumWithStdev,
+  teamsArr: ReadonlyArray<TeamInstance>): AugmentedApplication {
   return {
     id: application.id,
+    hackerId: application.hacker.id,
     name: `${application.hacker.firstName} ${application.hacker.lastName}`,
     email: application.hacker.email,
     gender: application.hacker.gender,
     country: application.countryTravellingFrom,
     institution: application.hacker.institution,
+    associatedHackers: getAssociatedHackers(application.hacker, teamsArr),
     inTeam: application.hacker.Team !== null,
     isWithdrawn: application.isWithdrawn,
     rating: rating !== null ? rating.value : null,
@@ -250,7 +269,7 @@ async function getAugmentedApplications(): Promise<ReadonlyArray<AugmentedApplic
 
   return applications.map(application => {
     const rating = calculateScore(application, individualScores, teamScores);
-    return augmentApplication(application, rating);
+    return augmentApplication(application, rating, teamsArr);
   });
 }
 
