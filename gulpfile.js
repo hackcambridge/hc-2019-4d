@@ -54,7 +54,7 @@ gulp.task('preprocess-css', () =>
 // YAML
 
 gulp.task('validate-yaml', () =>
-  gulp.src('./src/resources/*.yml')
+  gulp.src('./assets/resources/*.yml')
     .pipe(validateYaml({ html: false }))
     .on('error', onError)
 );
@@ -148,7 +148,7 @@ gulp.task('build', (cb) => {
 gulp.task('watch', ['build'], () => {
   gulp.watch(['src/**'], ['compile-typescript', 'copy-source', 'browserify']);
   gulp.watch('assets/styles/**.css', ['preprocess-css']);
-  gulp.watch(['views/**', 'src/resources/**'], bs.reload);
+  gulp.watch(['views/**', 'assets/resources/**'], bs.reload);
   gulp.watch(assetPath, ['copy-assets']);
 });
 
