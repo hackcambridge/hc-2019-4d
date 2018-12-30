@@ -20,19 +20,11 @@ const sourcemaps = require('gulp-sourcemaps');
 const terser = require('gulp-terser');
 const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
-const util = require('gulp-util');
 const validateYaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
 let assetPath = ['assets/**', '!assets/dist/**', '!assets/styles/**'];
-
-function onError(err) {
-  util.beep();
-  console.log(err);
-  this.emit('end');
-  process.exit(1);
-}
 
 gulp.task('clean', () =>
   del(['dist', 'assets/dist'])
@@ -47,7 +39,6 @@ gulp.task('preprocess-css', () =>
     .pipe(postcss([ autoprefixer() ]))
     .pipe(gulpIf(!prod, sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/styles'))
-    .on('error', onError)
     .pipe(bs.stream())
 );
 
@@ -56,7 +47,6 @@ gulp.task('preprocess-css', () =>
 gulp.task('validate-yaml', () =>
   gulp.src('./assets/resources/*.yml')
     .pipe(validateYaml({ html: false }))
-    .on('error', onError)
 );
 
 // JS
@@ -70,7 +60,6 @@ gulp.task('browserify', () => {
     })
       .transform('babelify', { presets: ['es2015'] })
       .bundle()
-      .on('error', onError)
       .pipe(source(fileOut))
       .pipe(buffer());
   };
@@ -80,7 +69,6 @@ gulp.task('browserify', () => {
     .pipe(gulpIf(prod, terser()))
     .pipe(gulpIf(!prod, sourcemaps.write()))
     .pipe(gulp.dest('assets/dist/scripts'))
-    .on('error', onError)
     .pipe(bs.stream());
 });
 
@@ -88,7 +76,6 @@ gulp.task('compile-typescript', () => {
   const tsProject = ts.createProject('tsconfig.json');
   return tsProject.src()
     .pipe(tsProject())
-    .on('error', onError)
     .js.pipe(gulp.dest('dist'));
 });
 
@@ -112,7 +99,6 @@ gulp.task('copy-source', () => {
 gulp.task('copy-assets', () =>
   gulp.src(assetPath)
     .pipe(gulp.dest('assets/dist'))
-    .on('error', onError)
     .pipe(bs.stream({ once: true }))
 );
 
@@ -123,7 +109,6 @@ gulp.task('rev-assets', () =>
     }))
     .pipe(gulp.dest('assets/dist'))
     .pipe(revAll.manifestFile())
-    .on('error', onError)
     .pipe(gulp.dest('assets/dist'))
 );
 
