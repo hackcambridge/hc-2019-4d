@@ -6,6 +6,7 @@
 #
 # sponsors:
 #   tera:
+#     name: Tera
 #     items:
 #       - name: Acme Development
 #         website: https://www.acmedevelopment.com
@@ -13,3 +14,54 @@
 #     columns: 5.0 (the maximum number of columns the items should span)
 
 sponsors:
+  tera:
+    name: Tera
+    items:
+      - name: Improbable
+        website: https://improbable.io/
+      - name: Avast
+        website: https://www.avast.com/
+      - name: Microsoft
+        website: https://www.microsoft.com/en-gb
+    rows: 6.0
+    columns: 7.0
+  giga:
+    name: Giga
+    items:
+      - name: Cisco
+        website: https://www.cisco.com/
+      - name: TPP
+        website: https://www.tpp-uk.com/
+      - name: GraphCore
+        website: https://www.graphcore.ai/
+      - name: Featurespace
+        website: https://www.featurespace.com/
+      - name: Amazon
+        website: https://www.amazon.co.uk/
+      - name: TransferWise
+        website: https://transferwise.com/
+      - name: Monzo
+        website: https://monzo.com/
+    rows: 14.0
+    columns: 4.0
+  mega:
+    name: Mega
+    items:
+      - name: Blockchain
+        website: https://www.blockchain.com/
+      - name: MoneyLion
+        website: https://www.moneylion.com/
+      - name: G-Research
+        website: https://www.gresearch.co.uk/
+      - name: Man AHL
+        website: https://www.ahl.com/
+      - name: Deliveroo
+        website: https://deliveroo.co.uk/
+      - name: Sopra Steria
+        website: https://www.soprasteria.co.uk/
+      - name: ARM
+        website: https://www.arm.com/
+      - name: Jane Street
+        website: https://www.janestreet.com/
+    rows: 15.0
+    columns: 3.0
