@@ -1,9 +1,12 @@
+import moment = require('moment');
+
 import { expireInvitation, getInvitationExpiryCandidates } from 'server/attendance/logic';
 import { ApplicationResponseInstance } from 'server/models';
 import { createHandler } from './utils';
 
 async function expireResponse(response: ApplicationResponseInstance, dryRun: boolean): Promise<void> {
-  console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} response ${response.id}. Date invited: ${response.createdAt}`);
+  console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} response ${response.id}. ` +
+    `Date invited: ${response.createdAt}, expiry date: ${response.expiryDate}`);
   if (!dryRun) {
     try {
       await expireInvitation(response);
@@ -23,10 +26,11 @@ export default {
     return yargs.boolean('dryRun')
       .describe('dryRun', 'Display the candidates for expiry but do not expire them');
   },
-  handler: createHandler(({ dryRun }) =>
-    getInvitationExpiryCandidates().then(responses => {
+  handler: createHandler(({ dryRun }) => {
+    const durationAgoExpired = moment.duration(3, 'days');
+    return getInvitationExpiryCandidates(durationAgoExpired).then(responses => {
       console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} ${responses.length} invitation${responses.length !== 1 ? 's' : ''}`);
       return Promise.all(responses.map(response => expireResponse(response, dryRun)));
-    })
-  ),
+    });
+  }),
 };
