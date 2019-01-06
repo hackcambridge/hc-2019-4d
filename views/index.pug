@@ -48,11 +48,22 @@ block content
     section(grid='grid' sidebar='' columns='7.5')
       div
       div(grid='rows' rows='1.5')
-        strong(rows='0.5') Keen to know more about the event?
-        div(rows='1.0')
-          p We’ll be publishing an event page very soon! In it, you'll find a schedule, maps and directions, listings of APIs, hardware, prizes, and more.
-          //-a(href="/event") Find all the information you need on the event page
+        strong(rows='0.5') Going to the event?
+        div(grid='rows' rows='1.0')
+          a.icon(rel='next' href='/event')
+            +icon('Events', 'Event page')
+            br
+            | Find out what’s happening on the event page
       div
+    if moment().isAfter(event.dates.getAdvertisedApplicationsEnd())
+      section(grid='grid' sidebar='' columns='7.5' color='blue')
+        div
+        div(grid='rows' rows='1.0')
+          a.icon(rel='next' href='/apply/dashboard')
+            +icon('Log in')
+            br
+            | Log in with MyMLH to access your application
+        div
     if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks')) && moment().isBefore(event.dates.getAdvertisedApplicationsEnd())
       section(grid='grid' sidebar='' columns='7.5' color='blue')
         div
@@ -93,7 +104,7 @@ block content
           include includes/email-sign-up-form
         else if moment().isBefore(event.dates.getApplicationsEnd())
           if user
-            div(grid='grid' rows='1.0')
+            nav(grid='grid' rows='1.0')
               include includes/navigation
           else
             a.icon(rel='next' href='/apply/dashboard')
