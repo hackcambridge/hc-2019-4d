@@ -1,0 +1,29 @@
+extends ../layouts/width
+block mainContent
+  - title = 'Ternary'
+  section(grid='rows')
+    h1(rows='1.0') Welcome!
+  section(grid='rows' color='red')
+    h3(rows='1.0') Key info
+    nav(grid='grid' rows='1.0')
+      include ../includes/event/navigation
+  section(grid='grid')
+    div(columns='6.0' rows='3.0' grid='rows')
+      h3(rows='1.0') Food
+      div(rows='2.0')
+        p Saturday lunch, midnight pizza, and breakfast and lunch on Sunday are all provided, plus plenty of snacks and drinks throughout to keep you going. We make sure to cater for everyone’s dietary requirements, so there’ll definitely be food for you.
+        ul
+          li: a(href='/event/location') Find out where meals and snacks are served using the maps
+          li: a(href='/event/schedule') Find out when meals are served in the schedule
+  section(grid='grid')
+    div(columns='6.0' rows='2.5' grid='rows')
+      h3(rows='1.0') Emergencies
+      div(rows='1.5')
+        p In an emergency, call the emergency services on 112.
+        a(href='tel:112') Call 112 now!
+        p
+          | If you need to leave the building,
+          br
+          | do so quickly by the nearest fire exit.
+          br
+          | Do not take anything with you.
