@@ -42,7 +42,7 @@ sponsors:
         website: https://transferwise.com/
       - name: Monzo
         website: https://monzo.com/
-    rows: 14.0
+    rows: 12.0
     columns: 4.0
   mega:
     name: Mega
@@ -63,5 +63,5 @@ sponsors:
         website: https://www.arm.com/
       - name: Jane Street
         website: https://www.janestreet.com/
-    rows: 15.0
+    rows: 11.5
     columns: 3.0
