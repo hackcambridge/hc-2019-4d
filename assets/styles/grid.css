@@ -44,7 +44,7 @@ footer[layout="width"] {
 /* Content items */
 
 .content > *:not(:first-child) {
-  margin-top: calc(var(--unit));
+  margin-top: calc(var(--unit) / 2);
 }
 
 /* Alignment */

@@ -119,7 +119,7 @@ block content
           for sponsorTier, key in sponsors
             if sponsorTier.items != null && sponsorTier.items.length != 0
               h4(rows='1.0')= sponsorTier.name
-              .content(rows=sponsorTier.rows)
+              .sponsor-logos-group(rows=sponsorTier.rows)
                 for sponsor in sponsorTier.items
                   div(grid='columns')
                     a(columns=sponsorTier.columns href=sponsor.website target='_blank' rel='external')
