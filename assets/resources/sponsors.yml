@@ -23,7 +23,7 @@ sponsors:
         website: https://www.avast.com/
       - name: Microsoft
         website: https://www.microsoft.com/en-gb
-    rows: 6.0
+    rows: 7.0
     columns: 7.0
   giga:
     name: Giga
@@ -42,7 +42,7 @@ sponsors:
         website: https://transferwise.com/
       - name: Monzo
         website: https://monzo.com/
-    rows: 13.0
+    rows: 16.0
     columns: 5.0
   mega:
     name: Mega
@@ -63,7 +63,7 @@ sponsors:
         website: https://www.arm.com/
       - name: Jane Street
         website: https://www.janestreet.com/
-    rows: 13.0
+    rows: 17.0
     columns: 4.0
   kilo:
     name: Kilo
