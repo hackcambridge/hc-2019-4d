@@ -1,0 +1,26 @@
+extends ../layouts/width
+block mainContent
+  - title = 'Ternary'
+  section(grid='rows')
+    nav(grid='grid' rows='1.0')
+      include ../includes/event/navigation
+  section(grid='grid')
+    h1(rows='1.0' columns='all') Maps
+    img(columns='6.0' rows='6.0' draggable='false' src=asset('images/maps/general-map.svg'))
+    img(columns='6.0' rows='6.0' draggable='false' src=asset('images/maps/corn-exchange.svg'))
+    img(columns='6.0' rows='6.0' draggable='false' src=asset('images/maps/guildhall.svg'))
+    img(columns='5.0' rows='6.0' draggable='false' src=asset('images/maps/corn-exchange-main-hall.svg'))
+  section(grid='grid')
+    div(grid='rows' rows='3.5' columns='7.0')
+      h3(rows='1.0') Our venues
+      div(rows='2.5')
+        p Hack Cambridge is held in the Corn Exchange, and the Guildhall across the street. The main event will take place in the Corn Exchange, and workshops, demos, food, and the sleeping area will all be in the Guildhall. In any case, the location of events is always indicated in the timetable.
+        p
+          | The Guildhall is just a few minutes’ walk from the Corn Exchange, and the route will be well-signposted. 
+          br
+          | Volunteers will also show the way for each of the meals and workshops.
+    div(grid='rows' rows='2.0' columns='7.0')
+      h3(rows='1.0') Getting to the venue
+      div(rows='1.0')
+        p Information on how to get to the venue is on the dashboard.
+        a(rel='next' href='/apply/dashboard') To the dashboard
