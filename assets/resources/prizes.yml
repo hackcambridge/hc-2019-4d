@@ -4,35 +4,35 @@ prizes:
       The team judged to have produced the most innovative, technically challenging and well designed project.
     prize: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
     class: first
-    rows: four
+    rows: 2.0
 
   - name: Hack Cambridge 2<sup>nd</sup> Place
     description: |
       Runners up.
     prize: A Raspberry Pi, developed here in Cambridge, for each team member.
     class: second
-    rows: three
+    rows: 1.5
 
   - name: Hack Cambridge 3<sup>rd</sup> Place
     description: |
       Runners up.
     prize: A copy of the fantastic card game Exploding Kittens for each team member.
     class: third
-    rows: three
+    rows: 1.5
 
   - name: Hack Cambridge People's Prize
     description: |
       Do you have what it takes to impress your fellow hackers?
     prize: A set of programming language playing cards for each team member.
     class: peoples
-    rows: three half
+    rows: 1.5
 
   - name: "Instagram and Twitter picture competition #ternary"
     description: |
       Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
     prize: Cryptex USB Flash Drive 16GB.
     class: peoples
-    rows: four
+    rows: 2.0
 
   - name: Microsoft Vision Cognitive Challenge
     description: |
@@ -52,25 +52,25 @@ prizes:
           <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
       </ul>
     prize: Xbox One X for each person.
-    rows: ten half
+    rows: 7.0
 
   - name: Microsoft Azure Challenge
     description: |
       We will be looking for innovative applications of the Microsoft Azure Cloud Platform
     prize: $100 of Azure for 3 months so a total of $300, plus Microsoft Ruck Sack and Goodies for each person.
-    rows: three half
+    rows: 1.5
 
   - name: Arm Best Hack in Hardware
     description: |
       We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
     prize: Micro:bit inventor's kit & Amazon Gift Card.
-    rows: three half
+    rows: 1.5
 
   - name: Best use of ARK blockchain
     description: |
       The best project using ARK blockchain technology and APIs (preferably) for IoT or in general.
     prize: 3 × IoT box by ADAFruit for the best team + Branded Ledges Nano S HW Wallet for team members.
-    rows: four
+    rows: 2.0
 
   - name: TPP's Health & Society Hack
     description: |
@@ -82,61 +82,61 @@ prizes:
         <li>Wow factor
       </ol>
     prize: Each member of the team which impress us the most will take home a drone.
-    rows: five half
+    rows: 4.0
 
   - name: "Amazon: Best use of Amazon tech"
     description: |
       Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ Hack Cambridge!
     prize: Each member of the team which impress us the most will take home an Amazon Echo.
-    rows: four
+    rows: 2.0
 
   - name: Droit Hack Challenge
     description: |
       Natural language processing of legal texts.
     prize: An iPad.
-    rows: two
+    rows: 1.5
 
   - name: Best Simulation
     description: |
       Build the best simulation/video game with clever use of data and existing technologies.
     prize: TBC.
-    rows: two
+    rows: 1.5
 
   - name: MLH !Light prize
     description: |
       An MLH side event.
     prize: Bluetooth Speaker.
-    rows: two
+    rows: 1.5
 
   - name: Capture the Flag
     description: |
       An MLH side event.
     prize: BlackRock Back Pack.
-    rows: two
+    rows: 1.5
 
   - name: Best Domain Name Registered With Domain.com
     description: |
       MLH prize.
     prize: Raspberry Pi & PiHut Essential Kit.
-    rows: two
+    rows: 1.5
 
   - name: Best IoT Hack Using A Qualcomm Device
     description: |
       MLH prize.
     prize: DragonBoard 210C & Power Source.
-    rows: two
+    rows: 1.5
 
   - name: Best Use of Amazon Web Services
     description: |
       MLH prize.
     prize: $30  Amazon Gift Card.
-    rows: two
+    rows: 1.5
 
   - name: Accenture prize
     description: |
       The Accenture Team's favourite project.
     prize: TBC.
-    rows: two
+    rows: 1.5
 
   - name: Cisco Challenge
     description: |
@@ -145,7 +145,7 @@ prizes:
       Our current fave is KernelSandersBot who helps us with our team’s fried chicken orders, let’s see if you can compete with that. 
       Good luck and let the craziest idea win!
     prize: £100 Amazon Voucher per team member.
-    rows: four half
+    rows: 2.5
 
   - name: Avast Hack Challenge
     description: |
@@ -153,7 +153,7 @@ prizes:
       Find a foreign spy and recover a magical item to stop enemies from spying on you!
       Apply your logical thinking and knowledge of PC, math, and knowledge of PC, math, cryptology and tone dialing. The ﬁrst one to send us their result gets a DJI Spark drone as a prize.
       So let’s play!
-    extraDescription: | 
+    extraDescription: |
       <ol><h6>Rules</h6>
         <li>Accept the challenge</li>
         <li>Get your USB ﬂash drive with the game at the Avast stand in Guildhall Place</li>
@@ -163,4 +163,4 @@ prizes:
       <p>Do you need help?</p>
       <p>Visit the Avast stand in Guildhall Place. Michal, Petr, and Milos from Avast will help you.</p>
     prize: DJI Spark drone.
-    rows: eight half
+    rows: 6.0
