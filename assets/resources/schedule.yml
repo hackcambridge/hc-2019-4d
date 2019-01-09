@@ -2,6 +2,7 @@ schedule:
   - day: Saturday 20<sup>th</sup> January
     entries:
       - time: 2018-01-20 9:00:00
+        rows: 2.0
         events:
           - name: Registration Opens
           - name: Pitching Session
@@ -10,14 +11,15 @@ schedule:
         events:
           - name: Opening Ceremony
       - time: 2018-01-20 12:00:00
+        rows: 2.0
         events:
           - name: Hacking Starts
           - name: Lunch
           - name: Travel Reimburse<wbr>ments<br><i>Corn Exchange Reception</i>
       - time: 2018-01-20 13:00:00
+        rows: 2.0
         events:
           - name: API Demos
-            rows: four
             subevents:
               - time: 2018-01-20 13:00:00
                 name: Amazon Alexa Demo
@@ -31,9 +33,9 @@ schedule:
         events:
           - name: Travel Reimbursements closes
       - time: 2018-01-20 14:05:00
+        rows: 3.0
         events:
           - name: Workshops
-            rows: five
             subevents:
               - time: 2018-01-20 14:05:00
                 name: Cambridge Consultants Workshop
@@ -49,6 +51,7 @@ schedule:
         events:
           - name: Dinner  
       - time: 2018-01-20 20:00:00
+        rows: 1.5
         events:
           - name: MLH Capture the Flag
           - name: MLH !Light
