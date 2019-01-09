@@ -75,8 +75,8 @@ block mainContent
     h3(rows='1.0' columns='all')
       +icon('API', 'APIs')
       | Find APIs
-    each api in apis
-      div(columns='6.0' rows=api.rows || 1.5)
+    for api in apis
+      div(columns='6.0' rows=api.rows || '1.5')
         h4(rows='1.0')= api.name
         div
           p!= api.description
@@ -89,8 +89,8 @@ block mainContent
     h3(rows='1.0' columns='all')
       +icon('Trophy', 'Prizes')
       | Look up prizes
-    each prize in prizes
-      div(columns='6.0' rows=prize.rows || 2.0)
+    for prize in prizes
+      div(columns='6.0' rows=prize.rows || '2.0')
         h4(rows='1.0')!= prize.name
         div
           if prize.description
