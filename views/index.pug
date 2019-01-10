@@ -115,15 +115,15 @@ block content
           p Thank you to everyone who sponsored Hack Cambridge Ternary last year! We couldn't have done it without you.
           p Interested in sponsoring Hack Cambridge this year?
           a(href='mailto:sponsorship@hackcambridge.com') Send us an email
-            if sponsors
-              for sponsorTierName, sponsorTier in sponsors
-                if sponsorTier.length != 0
-                  h4(rows='1.0') sponsorTierName
-                  .content(rows=sponsorTier.rows)
-                    for sponsor in sponsorTier.items
-                      div(grid='columns')
-                        a(columns=sponsorTier.columns href=sponsor.website target='_blank' rel='external')
-                          +sponsorLogo(sponsor.name)             
+        if sponsors
+          for sponsorTier, key in sponsors
+            if sponsorTier.items != null && sponsorTier.items.length != 0
+              h4(rows='1.0')= sponsorTier.name
+              .sponsor-logos-group(rows=sponsorTier.rows)
+                for sponsor in sponsorTier.items
+                  div(grid='columns')
+                    a(columns=sponsorTier.columns href=sponsor.website target='_blank' rel='external')
+                      +sponsorLogo(sponsor.name)
       div
   footer(grid='grid' sidebar='' columns='7.5' layout=layoutMode)
     div
