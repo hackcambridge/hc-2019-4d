@@ -40,7 +40,7 @@ sponsors:
         website: https://www.tpp-uk.com/
       - name: TransferWise
         website: https://transferwise.com/
-    rows: 16.0
+    rows: 13.5
     columns: 5.0
   mega:
     name: Mega
@@ -68,5 +68,5 @@ sponsors:
     items:
       - name: Sticker Mule
         website: https://www.stickermule.com/
-    rows: 2.0
+    rows: 1.0
     columns: 3.0
