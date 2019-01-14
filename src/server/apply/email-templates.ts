@@ -1,7 +1,7 @@
-import { makeInstruction } from 'server/email';
+import { MailContent, makeInstruction } from 'server/email';
 import * as metadata from 'shared/metadata';
 
-export function applied({name, applicationSlug, inTeam}) {
+export function applied({ name, applicationSlug, inTeam }: { name: string, applicationSlug: string, inTeam: boolean }): MailContent {
   const actions = [
     makeInstruction({
       instructions: `Your application ID is ${applicationSlug}. View the status of your application on your dashboard.`,

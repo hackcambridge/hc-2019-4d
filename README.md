@@ -64,7 +64,7 @@ We use Yarn to manage dependencies, and PostgreSQL for our database.
 You have various options for installing PostgreSQL:
 
 - By [downloading Docker](https://www.docker.com/products/docker-desktop) and using a Docker image (guarantees an identical environment)
-- By [downloading Postgres.app](https://postgresapp.com/downloads.html) if you're running macOS (very easy, and [intergrates with Postico](https://eggerapps.at/postico/))
+- By [downloading Postgres.app](https://postgresapp.com/downloads.html) if you're running macOS (very easy, and [integrates with Postico](https://eggerapps.at/postico/))
 - [Using the installers on the PostgreSQL website](https://www.postgresql.org/download/)
 - Using your favourite package manager (e.g. Homebrew, APT, RPM…)
 
@@ -139,14 +139,14 @@ You can either `invite` or `reject`.
 yarn hc-script -- suggest-responses invite 50 applications.json
 ```
 
-The use of this script requires a score augmentation function for any custom scoring logic. It is placed in `src/js/hc-scripts/augment-score.js`.
+The use of this script requires a score augmentation function for any custom scoring logic. It is placed in `src/hc-scripts/augment-score.ts`.
 It takes in a computed application object and returns an augmented score. The identity function (leaving the score unchanged) looks like this:
 
 ```typescript
 module.exports = ({ rating }) => rating;
 ```
 
-It also makes use of a selection script stored in `src/js/hc-scripts/choose-applicants.js`
+It also makes use of a selection script stored in `src/hc-scripts/choose-applicants.ts`
 This takes a sorted list of applications, a result count limit and an inviteType
 and returns a list of the suggested applications to invite/reject.
 E.g. to just takes the top n in the sorted list:
@@ -188,7 +188,7 @@ yarn build --prod # Build production assets (or set NODE_ENV to production)
 
 ## Database generators
 
-We use sequelize to manage migrations. To create your own:
+We use [Sequelize](http://docs.sequelizejs.com) to manage migrations. To create your own:
 
 ```bash
 yarn migration:generate --name YOURMIGRATION

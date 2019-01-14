@@ -1,10 +1,10 @@
 import * as moment from 'moment';
 
-import { makeInstruction } from 'server/email';
+import { MailContent, makeInstruction } from 'server/email';
 import { getHackathonStartDate } from 'shared/dates';
 import * as metadata from 'shared/metadata';
 
-export function invited({ name, daysValid }) {
+export function invited({ name, daysValid }: { name: string, daysValid: number }): MailContent {
   return {
     subject: `Congratulations ${name}, you’re invited to ${metadata.eventTitle}!`,
     body: {
@@ -34,21 +34,28 @@ export function invited({ name, daysValid }) {
   };
 }
 
-export function notInvited({ name }) {
+export function notInvited({ name }: { name: string }): MailContent {
   return {
     subject: `An update on your ${metadata.title} application`,
     body: {
       name,
       intro: [
-        `You sent an application to build with us at ${metadata.title} in January. ` +
+        `You sent an application to build with us at ${metadata.eventTitle} in January. ` +
         'Unfortunately, we were unable to reserve you a place at the hackathon.',
         'We received a large number of applicants from amazing people all over the world and as much ' +
-        'as we’d like to, we can’t offer everyone a spot this year.',
-        'Due to the amount of them, we are unable to provide feedback on individual applications.',
-        `Please stay tuned and apply for ${metadata.title} ${getHackathonStartDate().add(1, 'year').format('YYYY')} ` +
-        'when it rolls around—we would love to hear from you again!',
+        'as we’d like to, we regretfully can’t offer everyone a spot this year.',
+        'Due to the large number of applications, we are unable to provide individual feedback.',
       ],
-
+      action: [
+        makeInstruction({
+          instructions: `Please stay tuned and apply for ${metadata.title} ${getHackathonStartDate().add(1, 'year').format('YYYY')} ` +
+          'when it rolls around—we would love to hear from you again!',
+          button: {
+            text: 'Sign up for information',
+            link: 'https://hackcambridge.com',
+          },
+        }),
+      ],
     },
   };
 }

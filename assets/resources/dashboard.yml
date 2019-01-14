@@ -74,7 +74,7 @@ dashboard:
       content:
         You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
       action:
-        title: Submit a team application before <%= dates.getAdvertisedApplicationsEnd().format('MMMM Do') %>
+        title: Submit a team application before <%= dates.getApplicationsEnd().format('MMMM Do') %>
         location: /apply/team
     wanting:
       type: success
@@ -99,8 +99,8 @@ dashboard:
       type: warning
       label: Unconfirmed
       content: 
-        Congratulations, you’re invited to <%= metadata.eventTitle %>!
-        Let us know whether you’ll be attending or not before your invitation expires<%= expiryDate != null ? ` on ${expiryDate.format('MMMM Do')}` : '' %>.
+        "Congratulations, you’re invited to <%= metadata.eventTitle %>! \
+        Let us know whether you’ll be attending or not before your invitation expires<%= expiryDate != null ? ` on ${expiryDate.format('MMMM Do')}` : '' %>."
     complete-yes:
       type: success
       label: Yes!
