@@ -25,7 +25,7 @@ function createTeamQueue(teamsToProcess) {
 
 export default {
   command: 'send <inputfile>',
-  desc: 'Take any pending invitations that are too old and expire them',
+  desc: 'Send team allocations emails to hackers',
   aliases: [],
   handler: createHandler(({ inputfile }) => {
     const teams = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputfile)).toString());
