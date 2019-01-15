@@ -1,13 +1,15 @@
 import * as fs from 'fs';
 import * as https from 'https';
+import * as _ from 'lodash';
 import * as path from 'path';
 
 import { getAllApplicationsWithTickets } from 'server/attendance/attendee-info';
+import { HackerApplicationInstance } from 'server/models';
 import { createHandler } from './utils';
 
 const simultaneousRequests = 10;
 
-function downloadCv(application, destPath) {
+function downloadCv(application: HackerApplicationInstance, destPath: string) {
   return new Promise((resolve, reject) => {
     const dest = fs.createWriteStream(destPath);
 
@@ -17,34 +19,25 @@ function downloadCv(application, destPath) {
     });
 
     request.on('error', error => {
-      fs.unlink(destPath, _ => undefined);
+      fs.unlink(destPath, () => undefined);
       reject(`Could not download CV for application ID ${application.id} (error ${error})`);
     });
   });
 }
 
-function downloadCvs(basePath) {
-  return getAllApplicationsWithTickets()
-    .then(applicationsWithTickets => {
-      const cvPromiseFunctions = applicationsWithTickets.map((application, i) => {
-        const destPath = path.resolve(process.cwd(), basePath, `Hack Cambridge CV ${i + 1}.pdf`);
-        return (() => downloadCv(application, destPath));
-      });
+async function downloadCvs(basePath: string): Promise<void> {
+  const applicationsWithTickets = await getAllApplicationsWithTickets();
+  const shuffledApplications = _.shuffle(applicationsWithTickets);
+  const cvPromiseFunctions = shuffledApplications.map((application, i) => {
+    const destPath = path.resolve(process.cwd(), basePath, `Hack Cambridge CV ${i + 1}.pdf`);
+    return (() => downloadCv(application, destPath));
+  });
 
-      let promiseChain = Promise.resolve();
-
-      for (let i = 0; i < cvPromiseFunctions.length; i += simultaneousRequests) {
-        const promiseFunctionChunk = cvPromiseFunctions.slice(i, i + simultaneousRequests);
-        promiseChain = promiseChain.then(_ => {
-          console.log(`Downloading CVs ${i + 1} to ${i + promiseFunctionChunk.length}...`);
-          return Promise.all(promiseFunctionChunk.map(promiseFunc => promiseFunc()))
-            // tslint:disable-next-line:no-shadowed-variable
-            .then(_ => undefined);
-        });
-      }
-
-      return promiseChain;
-    });
+  for (let i = 0; i < cvPromiseFunctions.length; i += simultaneousRequests) {
+    const promiseFunctionChunk = cvPromiseFunctions.slice(i, i + simultaneousRequests);
+    console.log(`Downloading CVs ${i + 1} to ${i + promiseFunctionChunk.length}...`);
+    await Promise.all(promiseFunctionChunk.map(promiseFunc => promiseFunc()));
+  }
 }
 
 export default {
@@ -54,9 +47,11 @@ export default {
   builder(yargs) {
     return yargs;
   },
-  handler: createHandler(({ outputfolder }) =>
-    downloadCvs(outputfolder)
-      .then(_ => console.log('Done downloading CVs.'))
-      .catch(reason => console.log('Failed to download CVs. ' + reason))
-  ),
+  handler: createHandler(async ({ outputfolder }: { outputfolder: string }) => {
+    try {
+      await downloadCvs(outputfolder);
+    } catch (err) {
+      console.log('Failed to download CVs. ' + err);
+    }
+  })
 };
