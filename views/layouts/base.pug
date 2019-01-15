@@ -32,7 +32,7 @@ html
     meta(name='msapplication-config' content='/favicons/browserconfig.xml')
     meta(name='theme-color' content='#ffffff')
   body
-    dialog(data-controller='alert' data-target='alert.dialog' data-alert-message=(alertMessage || null))
+    dialog(id='dialog-element' data-controller='alert' data-target='alert.dialog' data-action='alert@window->alert#alert' data-alert-message=(alertMessage || null))
       p(data-target='alert.message')
       button(data-action='alert#dismissDialog') Okay.
     if browserSync

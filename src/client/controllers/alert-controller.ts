@@ -15,11 +15,11 @@ export default class AlertController extends Controller {
     if (this.data.has('message')) {
       this.showDialog();
     }
-    window.alert = (message: string) => {
-      this.data.set('message', message);
-      this.messageTarget.innerText = this.data.get('message');
-      this.dialogTarget.setAttribute('open', '');
-    };
+  }
+
+  public alert(event: CustomEvent) {
+    this.messageTarget.innerText = event.detail;
+    this.dialogTarget.setAttribute('open', '');
   }
 
   public showDialog() {
