@@ -1,5 +1,5 @@
+import * as Rails from '@rails/ujs';
 import * as $ from 'jquery';
-import * as Rails from 'rails-ujs';
 import { Application } from 'stimulus';
 import AlertController from './controllers/alert-controller';
 import EmailSignUpController from './controllers/email-sign-up-controller';
