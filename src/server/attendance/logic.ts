@@ -53,12 +53,12 @@ function sendTicketEmail(hacker: HackerInstance) {
 /**
  * Get all invitations that are old enough to expire. Responses are hydrated with application and hacker objects
  */
-export function getInvitationExpiryCandidates() {
+export function getInvitationExpiryCandidates(durationAgoExpired: moment.Duration) {
   return ApplicationResponse.findAll({
     where: Sequelize.and(
       {
         expiryDate: {
-          $lt: moment().toDate(),
+          $lt: moment().subtract(durationAgoExpired).toDate(),
         },
         response: ResponseStatus.INVITED,
       },
