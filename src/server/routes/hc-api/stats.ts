@@ -5,7 +5,7 @@ import { CompleteRsvpStatus, ResponseStatus } from 'shared/statuses';
 
 const statsRouter = Router();
 
-statsRouter.get('/', (_req, res, next) => {
+statsRouter.get('/', async (_req, res, next) => {
 
   // Get:
   // - The total number of applications
@@ -16,6 +16,7 @@ statsRouter.get('/', (_req, res, next) => {
 
   const hackerCountPromise = Hacker.count();
   const hackerApplicationCountPromise = HackerApplication.count();
+  const hackerApplicationWithdrawnCountPromise = HackerApplication.count({ where: { isWithdrawn: true } });
   const reviewCountPromise = ApplicationReview.count();
   const invitationsCountPromise = ApplicationResponse.count({ where: { response: ResponseStatus.INVITED } });
   const rejectionsCountPromise = ApplicationResponse.count({ where: { response: ResponseStatus.REJECTED } });
@@ -24,12 +25,15 @@ statsRouter.get('/', (_req, res, next) => {
   const ticketCountPromise = ApplicationTicket.count();
 
   const applicationsReviewedQuery =
-    'SELECT COUNT(*) FROM (' +
-      'SELECT "hackerApplicationId", COUNT(id)' +
-      'FROM "application-reviews"' +
-      'GROUP BY "hackerApplicationId"' +
-    ') review_counts WHERE count >= 2';
+    `SELECT COUNT(*) FROM (
+      SELECT "hackerApplicationId", COUNT("application-reviews".id)
+      FROM "application-reviews"
+      INNER JOIN "hackers-applications" ON "hackers-applications".id = "hackerApplicationId"
+      WHERE "hackers-applications"."isWithdrawn" = FALSE
+      GROUP BY "hackerApplicationId"
+    ) review_counts WHERE count >= 2`;
 
+  /** Applications reviewed and not withdrawn */
   const applicationsReviewedCountPromise =
   db.query(applicationsReviewedQuery, { type: db.QueryTypes.SELECT }).then(counts => {
     // Get the number from the object that's returned
@@ -48,45 +52,49 @@ statsRouter.get('/', (_req, res, next) => {
 
   const leaderboardPromise = db.query(leaderboardQuery, { type: db.QueryTypes.SELECT });
 
-  Promise.all([
-    hackerCountPromise,
-    hackerApplicationCountPromise,
-    reviewCountPromise,
-    applicationsReviewedCountPromise,
-    leaderboardPromise,
-    invitationsCountPromise,
-    rejectionsCountPromise,
-    rsvpNoCountPromise,
-    ticketCountPromise,
-    expiredCountPromise,
-  ])
-    .then(
-      ([
-        hackerCount,
-        hackerApplicationCount,
-        reviewCount,
-        applicationsReviewedCount,
-        leaderboard,
-        invitationsCount,
-        rejectionsCount,
-        rsvpNoCount,
-        ticketCount,
-        expiredCount,
-      ]) => {
-        res.json({
-          hackerCount,
-          hackerApplicationCount,
-          reviewCount,
-          applicationsReviewedCount,
-          leaderboard,
-          invitationsCount,
-          rejectionsCount,
-          rsvpNoCount,
-          ticketCount,
-          expiredCount,
-        });
-      }
-    ).catch(next);
+  try {
+    const [
+      hackerCount,
+      hackerApplicationCount,
+      hackerApplicationWithdrawnCount,
+      reviewCount,
+      applicationsReviewedCount,
+      leaderboard,
+      invitationsCount,
+      rejectionsCount,
+      rsvpNoCount,
+      ticketCount,
+      expiredCount,
+    ] = await Promise.all([
+      hackerCountPromise,
+      hackerApplicationCountPromise,
+      hackerApplicationWithdrawnCountPromise,
+      reviewCountPromise,
+      applicationsReviewedCountPromise,
+      leaderboardPromise,
+      invitationsCountPromise,
+      rejectionsCountPromise,
+      rsvpNoCountPromise,
+      ticketCountPromise,
+      expiredCountPromise,
+    ]);
+
+    return res.json({
+      hackerCount,
+      hackerApplicationCount,
+      hackerApplicationWithdrawnCount,
+      reviewCount,
+      applicationsReviewedCount,
+      leaderboard,
+      invitationsCount,
+      rejectionsCount,
+      rsvpNoCount,
+      ticketCount,
+      expiredCount,
+    });
+  } catch (e) {
+    next(e);
+  }
 });
 
 export default statsRouter;
