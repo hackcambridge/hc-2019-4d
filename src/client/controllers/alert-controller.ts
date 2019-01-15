@@ -23,7 +23,7 @@ export default class AlertController extends Controller {
   }
 
   public showDialog() {
-    alert(this.data.get('message'));
+    window.dispatchEvent(new CustomEvent('alert', { detail: this.data.get('message') }));
   }
 
   public dismissDialog() {
