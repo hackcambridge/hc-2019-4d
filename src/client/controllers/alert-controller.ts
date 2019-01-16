@@ -22,8 +22,21 @@ export default class AlertController extends Controller {
     this.dialogTarget.setAttribute('open', '');
   }
 
+  public confirm(event: CustomEvent) {
+    this.messageTarget.innerText = event.detail;
+    this.dialogTarget.setAttribute('open', '');
+  }
+
+  public dispatchCancellation() {
+    window.dispatchEvent(new Event('confirm:cancelled'));
+  }
+
+  public dispatchConfirmation() {
+    window.dispatchEvent(new Event('confirm:confirmed'));
+  }
+
   public showDialog() {
-    window.dispatchEvent(new CustomEvent('alert', { detail: this.data.get('message') }));
+    window.dispatchEvent(new CustomEvent('alert:show', { detail: this.data.get('message') }));
   }
 
   public dismissDialog() {
