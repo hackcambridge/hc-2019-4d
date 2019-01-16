@@ -13,16 +13,11 @@ export default class AlertController extends Controller {
 
   public connect() {
     if (this.data.has('message')) {
-      this.showDialog();
+      window.dispatchEvent(new CustomEvent('alert:show', { detail: this.data.get('message') }));
     }
   }
 
-  public alert(event: CustomEvent) {
-    this.messageTarget.innerText = event.detail;
-    this.dialogTarget.setAttribute('open', '');
-  }
-
-  public confirm(event: CustomEvent) {
+  public showDialog(event: CustomEvent) {
     this.messageTarget.innerText = event.detail;
     this.dialogTarget.setAttribute('open', '');
   }
@@ -33,10 +28,6 @@ export default class AlertController extends Controller {
 
   public dispatchConfirmation() {
     window.dispatchEvent(new Event('confirm:confirmed'));
-  }
-
-  public showDialog() {
-    window.dispatchEvent(new CustomEvent('alert:show', { detail: this.data.get('message') }));
   }
 
   public dismissDialog() {

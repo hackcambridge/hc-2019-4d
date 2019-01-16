@@ -32,10 +32,10 @@ html
     meta(name='msapplication-config' content='/favicons/browserconfig.xml')
     meta(name='theme-color' content='#ffffff')
   body
-    dialog(data-controller='alert' data-target='alert.dialog' data-action='alert:show@window->alert#alert' data-alert-message=(alertMessage || null))
+    dialog(data-controller='alert' data-target='alert.dialog' data-action='alert:show@window->alert#showDialog' data-alert-message=(alertMessage || null))
       p(data-target='alert.message')
       .buttons: button(data-action='alert#dismissDialog') Okay.
-    dialog(data-controller='alert' data-target='alert.dialog' data-action='confirm:show@window->alert#confirm' data-alert-message=(alertMessage || null))
+    dialog(data-controller='alert' data-target='alert.dialog' data-action='confirm:show@window->alert#showDialog' data-alert-message=(alertMessage || null))
       p(data-target='alert.message')
       .buttons
         button(data-action='alert#dismissDialog alert#dispatchCancellation') Cancel.
