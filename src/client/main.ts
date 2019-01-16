@@ -1,5 +1,6 @@
 import * as $ from 'jquery';
 import { Application } from 'stimulus';
+
 import AlertController from './controllers/alert-controller';
 import EmailSignUpController from './controllers/email-sign-up-controller';
 import FieldValidatorController from './controllers/field-validator-controller';
