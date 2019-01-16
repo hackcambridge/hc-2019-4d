@@ -32,9 +32,14 @@ html
     meta(name='msapplication-config' content='/favicons/browserconfig.xml')
     meta(name='theme-color' content='#ffffff')
   body
-    dialog(id='dialog-element' data-controller='alert' data-target='alert.dialog' data-action='alert@window->alert#alert' data-alert-message=(alertMessage || null))
+    dialog(data-controller='alert' data-target='alert.dialog' data-action='alert:show@window->alert#alert' data-alert-message=(alertMessage || null))
       p(data-target='alert.message')
-      button(data-action='alert#dismissDialog') Okay.
+      .buttons: button(data-action='alert#dismissDialog') Okay.
+    dialog(data-controller='alert' data-target='alert.dialog' data-action='confirm:show@window->alert#confirm' data-alert-message=(alertMessage || null))
+      p(data-target='alert.message')
+      .buttons
+        button(data-action='alert#dismissDialog alert#dispatchCancellation') Cancel.
+        button(data-action='alert#dismissDialog alert#dispatchConfirmation') Confirm!
     if browserSync
       !=browserSync
     block content
