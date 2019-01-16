@@ -1,6 +1,6 @@
 import { Controller } from 'stimulus';
 
-import { UJSEvent } from '../types';
+import { UJSEvent } from '../ujs';
 
 export default class EmailSignUpController extends Controller {
   /**
