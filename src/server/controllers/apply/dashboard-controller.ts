@@ -54,8 +54,8 @@ export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
     statusMessages,
     teamMembers,
     applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
-    hackathonStartDate: getHackathonStartDate().format('DD/MM/YY'),
-    hackathonEndDate: getHackathonEndDate().format('DD/MM/YY'),
+    hackathonStartDate: getHackathonStartDate().format('HH:MM DD/MM/YY'),
+    hackathonEndDate: getHackathonEndDate().format('HH:MM DD/MM/YY'),
     fridayBeforeHackathonDate: getFridayBeforeHackathonDate().format('DDDo MMM'),
     statusConstants
   });

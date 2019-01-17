@@ -4,14 +4,16 @@
 # so we can put it in superscript.
 
 # <% graduationDate = dates.getEarliestGraduationDateToAccept() %>
-# <% formattedGraduationDate = graduationDate.format('D') + '<sup>' + graduationDate.format('Do').split(graduationDate.format('D'))[1] + '</sup> of ' + graduationDate.format('MMMM YYYY') %>
+# <% applicationsCloseDate = dates.getAdvertisedApplicationsEnd() %>
+# <% formattedGraduationDate = graduationDate.format('D') + '<sup>' + graduationDate.format('Do').split(graduationDate.format('D'))[1] + '</sup> ' + graduationDate.format('MMMM YYYY') %>
+# <% formattedApplicationsCloseDate = applicationsCloseDate.format('D') + '<sup>' + applicationsCloseDate.format('Do').split(applicationsCloseDate.format('D'))[1] + '</sup> ' + applicationsCloseDate.format('MMMM YYYY') %>
 
 faqs:
   - question: What’s a hackathon?
     answer: A hackathon is a focused 24-hour event where you and a small team get to build something new and exciting, alongside a whole bunch of like-minded people.
 
   - question: Can I attend?
-    answer: If you’re 18 or over, and a student at any school or university, or you were still a student after the <%- formattedGraduationDate %>, you’re welcome to apply.
+    answer: If you’re 18 or over, and a student at any school or university, or you were still a student after the <time datetime=<%=graduationDate.format()%>><%- formattedGraduationDate %></time>, you’re welcome to apply.
 
   - question: Do I have to be doing Computer Science or other programming-related degree to take part?
     answer: No! We welcome everyone to apply regardless of their subject or university.
@@ -51,7 +53,7 @@ faqs:
     answer: We love ’em! We’ll provide the basics (soldering kits, breadboards, etc.) and you do the rest. Do bring along any special equipment you might want to hack on as well.
 
   - question: When do applications close?
-    answer: Applications close on <%= dates.getAdvertisedApplicationsEnd().format('MMMM Do') %>.
+    answer: Applications close on <time datetime=<%=applicationsCloseDate.format()%>><%- formattedApplicationsCloseDate %></time>.
 
   - question: When will I find out whether I was accepted as a participant of Hack Cambridge <%= theme.getEventName() %>?
     answer: We will be sending out invitations on a rolling basis as applications come in. If you’re coming from far away, we’ll aim to get back to you as soon as possible to give you time to sort out travel arrangements.

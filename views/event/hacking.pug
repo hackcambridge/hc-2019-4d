@@ -29,7 +29,7 @@ block mainContent
         li
           | You must submit your hack before hacking ends at
           |
-          span.pixel 12:00:00 GMT
+          span.pixel #{event.dates.getHackingPeriodEnd().format('HH:MM:SS')} UTC
         li You must submit all relevant source code
   section(grid='grid')
     h3(rows='1.0' columns='all')

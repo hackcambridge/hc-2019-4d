@@ -1,3 +1,9 @@
+# <% hackathonStartDate = dates.getHackathonStartDate() %>
+# <% applicationsCloseDate = dates.getAdvertisedApplicationsEnd() %>
+# <% formattedHackathonStartDate = hackathonStartDate.format('D') + '<sup>' + hackathonStartDate.format('Do').split(hackathonStartDate.format('D'))[1] + '</sup> ' + hackathonStartDate.format('MMMM YYYY') %>
+# <% formattedApplicationsCloseDate = applicationsCloseDate.format('D') + '<sup>' + applicationsCloseDate.format('Do').split(applicationsCloseDate.format('D'))[1] + '</sup> ' + applicationsCloseDate.format('MMMM YYYY') %>
+# <% formattedExpiryDate = expiryDate.format('D') + '<sup>' + expiryDate.format('Do').split(expiryDate.format('D'))[1] + '</sup> ' + expiryDate.format('MMMM') %>
+
 dashboard:
   overall-status-messages:
     incomplete:
@@ -33,7 +39,7 @@ dashboard:
     has-ticket:
       message_type: success
       title: See you there!
-      subline: Thanks for confirming your place. See you on <%= dates.getHackathonStartDate().format('MMMM Do') %>!
+      subline: Thanks for confirming your place. See you on <time datetime=<%=hackathonStartDate.format()%>><%- formattedHackathonStartDate %></date>!
 
     invited-declined:
       message_type: neutral
@@ -74,7 +80,7 @@ dashboard:
       content:
         You didn’t apply as part of a team. Applying as a team means your applications will be reviewed together and either all or none of you will be invited.
       action:
-        title: Submit a team application before <%= dates.getAdvertisedApplicationsEnd().format('MMMM Do') %>
+        title: Submit a team application before <time datetime=<%=applicationsCloseDate.format()%>><%- formattedApplicationsCloseDate %></time>
         location: /apply/team
     wanting:
       type: success
@@ -98,9 +104,9 @@ dashboard:
     incomplete:
       type: warning
       label: Unconfirmed
-      content: 
+      content: |
         Congratulations, you’re invited to <%= metadata.eventTitle %>!
-        Let us know whether you’ll be attending or not before your invitation expires<%= expiryDate != null ? ` on ${expiryDate.format('MMMM Do')}` : '' %>.
+        Let us know whether you’ll be attending or not before your invitation expires<%- expiryDate ? ` on <date datetime=${expiryDate.format()}>${formattedExpiryDate}</date>` : '' %>.
     complete-yes:
       type: success
       label: Yes!

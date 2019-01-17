@@ -12,11 +12,18 @@ export function getApplicationsEnd(): moment.Moment {
 }
 
 export function getHackathonStartDate(): moment.Moment {
-  return moment('2019-01-19');
+  return moment('2019-01-19T09:00:00Z');
 }
 
 export function getHackathonEndDate(): moment.Moment {
-  return moment('2019-01-20');
+  return moment('2019-01-20T18:00:00Z');
+}
+
+export function getFridayBeforeHackathonDate(): moment.Moment {
+  const fridayWeekday = 5;
+  return getHackathonStartDate().isoWeekday() > fridayWeekday
+    ? getHackathonStartDate().isoWeekday(fridayWeekday)
+    : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
 }
 
 /**

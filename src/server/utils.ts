@@ -49,6 +49,7 @@ export function asset(assetPath, prefix) {
 }
 
 function loadScheduleTimeProperties(loadedScheduleResource) {
+  timeProperties(loadedScheduleResource, ['day']);
   loadedScheduleResource.forEach(day => {
     timeProperties(day.entries, ['time']);
     day.entries.forEach(entry => {

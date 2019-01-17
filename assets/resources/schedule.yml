@@ -1,5 +1,5 @@
 schedule:
-  - day: Saturday 20<sup>th</sup> January
+  - day: 2018-01-20
     entries:
       - time: 2018-01-20 9:00:00
         rows: 2.0
@@ -59,7 +59,7 @@ schedule:
         events:
           - name: Sleeping Area Opens
 
-  - day: Sunday 21<sup>st</sup> January
+  - day: 2018-01-21
     entries:
       - time: 2018-01-21 00:00:00
         events:

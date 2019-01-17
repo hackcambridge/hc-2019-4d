@@ -26,13 +26,14 @@ block content
           p
             | Hack Cambridge is back! From the
             |
-            +dayWithSuperscript(event.dates.getHackathonStartDate())
+            time(datetime=event.dates.getHackathonStartDate().format())
+              +dayWithSuperscript(event.dates.getHackathonStartDate())
             |
             | to the
             |
-            +shortDateWithSuperscript(event.dates.getHackathonEndDate())
-            | 
-            | of #{event.dates.getHackathonEndDate().format('MMMM YYYY')}, the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.
+            time(datetime=event.dates.getHackathonEndDate().format())
+              +shortDateWithSuperscript(event.dates.getHackathonEndDate())
+            | , the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.
             br
             | For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
           p Thank you for joining us.
