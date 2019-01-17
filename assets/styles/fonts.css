@@ -44,7 +44,7 @@ h6 {
 h6:not(:first-child) {
   margin-top: 6pt;
 }
-p, li, th, td, label, select, textarea, input, button, :not(span) > a {
+p, li, th, td, label, select, textarea, input, button, :not(span):not(h4) > a {
   font-size: 11pt;
 }
 p, li, th, td, label, select, textarea, button, :not(span) > a {
