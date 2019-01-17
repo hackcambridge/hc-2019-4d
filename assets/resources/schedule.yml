@@ -72,7 +72,7 @@ schedule:
           - name: Breakfast Ends
       - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 11:30:00
         events:
-          - name: Submit your hack on Devpost<br>ternary.<wbr>devpost.<wbr>com
+          - name: <a rel='external' href='https://hc4d.devpost.com'>Submit your hack on Devpost</a>
       - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 12:00:00
         events:
           - name: Lunch
