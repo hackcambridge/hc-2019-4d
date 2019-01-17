@@ -1,0 +1,36 @@
+dialog[open]:not(dialog[open] *) {
+  display: block;
+  position: fixed;
+  z-index: 3;
+  left: unset;
+  right: var(--unit);
+  bottom: var(--unit);
+  width: calc(var(--unit) * 4);
+  height: var(--unit);
+  margin: unset;
+  border: 1px solid black;
+  padding: var(--gutter);
+  background: white;
+}
+dialog:not([open]) {
+  display: none;
+}
+dialog .buttons {
+  position: absolute;
+  bottom: var(--gutter);
+  right: var(--gutter);
+}
+dialog button {
+  height: 23px;
+}
+dialog button:not(:last-child) {
+  margin-right: var(--gutter);
+}
+@media screen and (max-width: 500px) {
+  dialog[open]:not(dialog[open] *) {
+    width: calc(100% - (2 * var(--gutter)));
+    right: unset;
+    bottom: 0;
+    border-width: 1px 0 0 0;
+  }
+}

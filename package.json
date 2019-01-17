@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/hackcambridge/hack-cambridge-website#readme",
   "dependencies": {
+    "@rails/ujs": "^6.0.0-alpha",
     "@types/body-parser": "^1.17.0",
     "@types/client-sessions": "^0.8.0",
     "@types/compression": "^0.0.36",
@@ -111,7 +112,6 @@
     "pug": "^2.0.3",
     "pusher-js": "^4.0.0",
     "querystring": "^0.2.0",
-    "rails-ujs": "^5.2.2",
     "run-sequence": "^2.2.0",
     "sequelize": "^3.30.4",
     "sequelize-cli": "^3.0.0",
