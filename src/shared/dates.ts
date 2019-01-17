@@ -12,7 +12,7 @@ export function getApplicationsEnd(): moment.Moment {
 }
 
 export function getHackathonStartDate(): moment.Moment {
-  return moment('2019-01-19T09:00:00Z');
+  return moment('2019-01-19T10:00:00Z');
 }
 
 export function getHackathonEndDate(): moment.Moment {
