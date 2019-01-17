@@ -41,6 +41,9 @@ h5 {
 h6 {
   font-size: 13pt;
 }
+h6:not(:first-child) {
+  margin-top: 6pt;
+}
 p, li, th, td, label, select, textarea, input, button, :not(span) > a {
   font-size: 11pt;
 }
@@ -48,6 +51,7 @@ p, li, th, td, label, select, textarea, button, :not(span) > a {
   line-height: 1.25;
 }
 li {
+  margin-top: 6pt;
   margin-bottom: 6pt;
 }
 a {
@@ -62,7 +66,7 @@ header p {
   margin-bottom: 10pt;
 }
 
-span.pixel {
+.pixel {
   font-family: "PxGrotesk-Screen"
 }
 
