@@ -1,15 +1,6 @@
 api_demos:
-  - name: Amazon Alexa Demo
-    time: 2018-01-20 13:00:00
-
-  - name: Microsoft API Demo
-    time: 2018-01-20 13:15:00
-
-  - name: Avast biggest threats of 2017
-    time: 2018-01-20 13:30:00
-
-  - name: FeatureSpace JavaScript Collector
-    time: 2018-01-20 13:45:00
-    
-  - name: Cambridge Consultants
-    time: 2018-01-20 14:00:00
+  - description: 'Get a quick introduction to Azure and how it can boost you Hack experience.
+    Tutorials covering: Intelligent Kiosk, Cog services, App Service, Bots, & Machine
+    Learning Studio. Visit aka.ms/hackwithazure for more information!'
+    name: Get to Know Azure & Hackathons
+    time: ''
