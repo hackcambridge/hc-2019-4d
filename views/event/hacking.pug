@@ -84,7 +84,7 @@ block mainContent
           if api.documentation
             a(rel='external' href=api.documentation) Documentation
           if api.prizes
-            != api.prizes
+            p!= api.prizes
     h3(rows='1.0' columns='all')
       +icon('Trophy', 'Prizes')
       | Look up prizes
