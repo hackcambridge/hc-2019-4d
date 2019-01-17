@@ -1,5 +1,9 @@
 import * as UJS from '@rails/ujs';
 
+/**
+ * Custom confirm function, standing in for `window.confirm`.
+ */
+
 function customConfirm(message: string, element: HTMLElement) {
   window.dispatchEvent(new CustomEvent('confirm:show', { detail: message }));
   window.addEventListener('confirm:confirmed', _ => {
