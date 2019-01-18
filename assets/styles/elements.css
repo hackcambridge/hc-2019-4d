@@ -202,6 +202,12 @@ input[type="file"]:invalid {
 section:not([color]) + section:not([color]),
 section[color="red"] + section[color="red"],
 section[color="blue"] + section[color="blue"],
+section:not([color]) + nav:not([color]),
+section[color="red"] + nav[color="red"],
+section[color="blue"] + nav[color="blue"],
+nav:not([color]) + section:not([color]),
+nav[color="red"] + section[color="red"],
+nav[color="blue"] + section[color="blue"],
 header:not([color]) + main section:first-child:not([color]),
 footer {
   overflow: hidden;

@@ -2,9 +2,8 @@ extends ../layouts/width
 block mainContent
   include ../mixins/dates
   - title = 'Ternary'
-  section(grid='rows')
-    nav(grid='grid' rows='1.0')
-      include ../includes/event/navigation
+  nav(grid='grid')
+    include ../includes/event/navigation
   section(grid='rows')
     h1(rows='1.0') Schedule
   section(grid='grid')
@@ -14,7 +13,7 @@ block mainContent
         p These are shorter, tech-focussed talks. We will announce each talk on stage just before it begins.
     for demo in demos
       div(columns='6.0' rows='1.5' grid='grid')
-        h4(rows='1.0' columns='1.0'): time.pixel(datetime=demo.time.format())!= demo.time.format('HH:mm')
+        h5(rows='1.0' columns='1.0'): time.pixel(datetime=demo.time.format())!= demo.time.format('HH:mm')
         div(rows='1.0' columns='4.0')
           h4
             = demo.title
@@ -25,7 +24,7 @@ block mainContent
         p These are longer, tech-focussed talks. We will announce each talk on stage just before it starts.
     for workshop in workshops
       div(columns='6.0' grid='grid' rows=workshop.rows || '1.5')
-        h4(rows='1.0' columns='1.0'): time.pixel(datetime=workshop.time.format())!= workshop.time.format('HH:mm')
+        h5(rows='1.0' columns='1.0'): time.pixel(datetime=workshop.time.format())!= workshop.time.format('HH:mm')
         div(rows=workshop.rows columns='4.0')
           h4
             != workshop.title
@@ -40,7 +39,7 @@ block mainContent
         +shortDateWithSuperscript(item.day)
       for entry in item.entries
         div(columns='6.0' grid='grid' rows=entry.rows || '1.0')
-          h4(rows='1.0' columns='1.0'): time.pixel(datetime=entry.time.format())!= entry.time.format('HH:mm')
+          h5(rows='1.0' columns='1.0'): time.pixel(datetime=entry.time.format())!= entry.time.format('HH:mm')
           div(columns='4.0' rows=entry.rows || '1.0')
             for event in entry.events
               h4
