@@ -15,14 +15,12 @@
         - name: Hacking Starts
         - name: Lunch
           location: Guildhall
-    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
       rows: 3.0
       events:
         - name: API Demos
           location: Guildhall
           subevents:
-            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
-              name: Improbable
             - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
               name: Monzo
             - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:30:00
