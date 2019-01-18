@@ -1,9 +1,27 @@
+---
 workshops:
-  - name: Cambridge Consultants Workshop
-    description: "Good Software, Fast: Delivering software quality on over 300 projects a year."
-    time: 2018-01-20 14:05:00
-    rows: 2.0
-
+  - name: Software opportunities with Graphcore
+    time: ''
+    rows: 1.0
+  - name: How to Hack with AI
+    description: |
+      This beginner-level workshop will explain what AI and cloud computing
+      are in simple terms then show you how to add AI to your project in just a few
+      lines of code.
+    extraDescription: |
+      <h6>Expect to learn:</h6>
+      <ul>
+        <li>What is cloud computing</li>
+        <li>What is AI</li>
+        <li>How to add AI to your project</li>
+      </ul>
+      <h6>Technical prerequisites:</h6>
+      <ul>
+        <li>Basic understanding of cloud computing</li>
+        <li>Basic coding skills (call REST APIs, work with JSON, etc.)</li>
+      </ul>
+    time: ''
+    rows: 4.5
   - name: Avast Workshop
     description: |
       Avast will host a workshop on Saturday afternoon. This main focus
@@ -22,4 +40,4 @@ workshops:
       if you get stuck, want to run your ideas by the judges, or are looking for more
       insights into what the team is looking for in the outcome of the challenge.</p>
     time: ''
-    rows: 4.0
+    rows: 5.5

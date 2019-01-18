@@ -43,7 +43,10 @@ block mainContent
           h4(rows='1.0' columns='1.0'): time.pixel(datetime=entry.time.format())!= entry.time.format('HH:mm')
           div(columns='4.0' rows=entry.rows || '1.0')
             for event in entry.events
-              h4!= event.name
+              h4
+                != event.name
+                if event.location
+                  address= event.location
               if event.subevents
                 ul
                   for subevent in event.subevents
