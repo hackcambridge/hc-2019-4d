@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import { HackerInstance, TeamMember } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
 import * as utils from 'server/utils.js';
-import { getHackathonEndDate, getHackathonStartDate } from 'shared/dates';
 import * as statusConstants from 'shared/statuses';
 
 async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<HackerInstance[]> {
@@ -27,13 +26,6 @@ async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<Hacke
   return Promise.all(otherMembers.map(member => member.getHacker()));
 }
 
-function getFridayBeforeHackathonDate(): moment.Moment {
-  const fridayWeekday = 5;
-  return getHackathonStartDate().isoWeekday() > fridayWeekday
-      ? getHackathonStartDate().isoWeekday(fridayWeekday)
-      : getHackathonStartDate().subtract(1, 'week').isoWeekday(fridayWeekday);
-}
-
 export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
   const [application, statuses, teamMembers] = await Promise.all([
     req.user.getHackerApplication(),
@@ -54,9 +46,6 @@ export const showDashboard: RequestHandler = async (req: UserRequest, res) => {
     statusMessages,
     teamMembers,
     applicationsOpenStatus: process.env.APPLICATIONS_OPEN_STATUS,
-    hackathonStartDate: getHackathonStartDate().format('HH:MM DD/MM/YY'),
-    hackathonEndDate: getHackathonEndDate().format('HH:MM DD/MM/YY'),
-    fridayBeforeHackathonDate: getFridayBeforeHackathonDate().format('DDDo MMM'),
     statusConstants
   });
 };
