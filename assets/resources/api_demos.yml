@@ -1,24 +1,27 @@
 ---
 - description: A short demo on how to use TransferWise API to automate you payments
-  title: "TransferWise: Introduction to TransferWise Payouts API"
+  title: 'TransferWise: Introduction to TransferWise Payouts API'
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:30:00
   rows: '2.0'
 - description: |
     Get a quick introduction to Azure and how it can boost you Hack experience.
     Tutorials covering: Intelligent Kiosk, Cog services, App Service, Bots, & Machine
     Learning Studio. Visit aka.ms/hackwithazure for more information!
-  title: "Microsoft: Get to Know Azure & Hackathons"
+  title: 'Microsoft: Get to Know Azure & Hackathons'
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:45:00
   rows: '3.0'
 - description: ''
-  title: Improbable
-  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
-- description: ''
   title: Monzo
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
-- description: ''
-  title: TPP
+- description: |
+    For those of you wanting to take part in our Hackathon challenge,
+    come along to find out how to use the "GP Connect" APIs that allow you to integrate
+    with our SystmOne medical records system to view patient records and book appointments.
+    (All data and examples are test data). Supporting files and documentation will
+    be posted to the #sponsor-tpp Slack channel.
+  title: 'TPP: GP Connect API'
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:00:00
+  rows: '3.5'
 - description: ''
-  title: Amazon
+  title: 'Amazon: "Alexa, Teach me to create a new skill"'
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:15:00

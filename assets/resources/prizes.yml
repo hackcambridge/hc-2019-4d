@@ -82,15 +82,38 @@
   title: TransferWise Hack
   rows: 13.0
 - description: |
-    Improbable are awarding a prize to the team that comes up with the
-    best adversary for a game developed with probabilistic techniques. Your game
-    can be anything: “Guess Who”, “Mastermind”, Poker, “Battleship” or even a game
-    you invent. Improbable will be giving a workshop on our Probabilistic Programming
-    Language ''Keanu'', and our engineers will be on hand to help you hit the ground
-    running should you choose to use Keanu.
+    Think Big and leverage Alexa to improve daily life. Get inspired
+    from your personal experience or the experience of your family, friends or society
+    and build an Alexa Skill that can improve a situation or mitigate challenges that
+    are faced by someone you know in daily life
+  prizes: 1st - Amazon Echo Spot for each team member (max of 4 members). 2nd - One
+    Amazon Echo (2nd Gen) - Smart speaker for each team member (max of 4 members).
+    3rd - One Amazon Gift Voucher (£40) for each team member (max of 4 members).
+  title: Life is better with Alexa
+  rows: '2.5'
+- description: |
+    Improbable is awarding a prize to the team that comes up with the
+    best adversary for a game developed with probabilistic techniques. Your game can
+    be anything: “Guess Who”, “Mastermind”, Poker, “Battleship” or even a game you
+    invent.  Improbable will be giving a workshop on our Probabilistic Programming
+    Language 'Keanu', and our engineers will be on hand to help you hit the ground
+    running should you choose to use Keanu.  Judging criteria: Good use of a Probabilistic
+    Programming Language. Good use of visualisation and UI: can we easily play with or 
+    against the AI or visualise a game? Actual results: can the AI beat humans or existing
+    AIs?
+  extraDescription: |
+    <h6>Some possible resources to give you some context:</h6>
+    <ul>
+      <li><a rel='external' href='https://www.wikiwand.com/en/Probabilistic_programming_language'>Wikiwand: Probabilistic programming language</a></li>
+      <li><a rel='external' href='https://arxiv.org/abs/1809.10756'>An Introduction to Probabilistic Programming</a></li>
+      <li><a rel='external' href='https://improbable-research.github.io/keanu/'>Keanu Docs</a> (made by Improbable)</li>
+      <li><a rel='external' href='https://docs.pymc.io/'>Probabilistic Programming in Python</a></li>
+      <li><a rel='external' href='https://mc-stan.org/'>Stan</a></li>
+      <li><a rel='external' href='http://edwardlib.org/'>Edward</a></li>
+    </ul>
   prizes: Sega Megadrive Game Console w/games
   title: Best Probabilistic Game AI
-  rows: 3.5
+  rows: 7.0
 - description: |
     Any team that chooses to enter will evaluated on the following criteria:
     Judging criteria: 1. Was the project developed using Microsoft Azure? (required

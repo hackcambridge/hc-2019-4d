@@ -21,7 +21,7 @@
     </ul>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
   rows: 5.0
-- title: Avast
+- title: Avast Workshop
   description: |
     Avast will host a workshop on Saturday afternoon. This main focus
     of this workshop will be to provide further insight on how to solve the challenge,
