@@ -12,12 +12,14 @@ block mainContent
       div(rows='1.0')
         p These are shorter, tech-focussed talks. We will announce each talk on stage just before it begins.
     for demo in demos
-      div(columns='6.0' rows='1.5' grid='grid')
+      div(columns='6.0' rows=demo.rows || '1.5' grid='grid')
         h5(rows='1.0' columns='1.0'): time.pixel(datetime=demo.time.format())!= demo.time.format('HH:mm')
         div(rows='1.0' columns='4.0')
           h4
             = demo.title
             address Guildhall
+          if demo.description
+            p!= demo.description
     div(rows='2.0' columns='all' grid='rows')
       h3(rows='1.0' columns='all') Workshops
       div(rows='1.0')
