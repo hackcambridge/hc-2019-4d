@@ -56,7 +56,7 @@ block content
             br
             | Find out what’s happening on the event page
       div
-    if moment().isAfter(event.dates.getAdvertisedApplicationsEnd())
+    if moment().isAfter(event.dates.getApplicationsEnd())
       section(grid='grid' sidebar='' columns='7.5' color='blue')
         div
         div(grid='rows' rows='1.0')
@@ -65,13 +65,13 @@ block content
             br
             | Log in with MyMLH to access your application
         div
-    if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks')) && moment().isBefore(event.dates.getAdvertisedApplicationsEnd())
+    if moment().isAfter(event.dates.getApplicationsEnd().subtract(1, 'weeks')) && moment().isBefore(event.dates.getApplicationsEnd())
       section(grid='grid' sidebar='' columns='7.5' color='blue')
         div
         div(grid='rows' rows='1.0')
-          if moment().isBefore(event.dates.getAdvertisedApplicationsEnd().subtract(2, 'day'))
+          if moment().isBefore(event.dates.getApplicationsEnd().subtract(2, 'day'))
             strong(rows='0.5') Applications close this #{event.dates.getApplicationsEnd().format('dddd')}!
-          else if moment().isBefore(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'day'))
+          else if moment().isBefore(event.dates.getApplicationsEnd().subtract(1, 'day'))
             strong(rows='0.5') Applications close tomorrow!
           else
             strong(rows='0.5') Applications close today at #{event.dates.getApplicationsEnd().format('HH:mm')}!
@@ -87,8 +87,8 @@ block content
               | Applications for Hack Cambridge 2019 open soon.
             else
               | Applications open this #{event.dates.getApplicationsStart().format('dddd')}!
-          else if moment().isBefore(event.dates.getAdvertisedApplicationsEnd())
-            if moment().isAfter(event.dates.getAdvertisedApplicationsEnd().subtract(1, 'weeks'))
+          else if moment().isBefore(event.dates.getApplicationsEnd())
+            if moment().isAfter(event.dates.getApplicationsEnd().subtract(1, 'weeks'))
               | Applications close soon!
             else
               | Applications are open!
@@ -124,18 +124,18 @@ block content
       div(grid='rows')
         h2(rows='1.0') Sponsors
         div(rows='1.5')
-          p Thank you to everyone who sponsored Hack Cambridge Ternary last year! We couldn't have done it without you.
-          p Interested in sponsoring Hack Cambridge this year?
+          p A massive thank you to all of our sponsors for Hack Cambridge 4D! We couldn't do it without you.
+          p Interested in sponsoring Hack Cambridge next year?
           a(href='mailto:sponsorship@hackcambridge.com') Send us an email
-            if sponsors
-              for sponsorTierName, sponsorTier in sponsors
-                if sponsorTier.length != 0
-                  h4(rows='1.0') sponsorTierName
-                  .content(rows=sponsorTier.rows)
-                    for sponsor in sponsorTier.items
-                      div(grid='columns')
-                        a(columns=sponsorTier.columns href=sponsor.website target='_blank' rel='external')
-                          +sponsorLogo(sponsor.name)             
+        if sponsors
+          for sponsorTier, key in sponsors
+            if sponsorTier.items != null && sponsorTier.items.length != 0
+              h4(rows='1.0')= sponsorTier.name
+              .sponsor-logos-group(rows=sponsorTier.rows)
+                for sponsor in sponsorTier.items
+                  div(grid='columns')
+                    a(columns=sponsorTier.columns href=sponsor.website target='_blank' rel='external')
+                      +sponsorLogo(sponsor.name)
       div
   footer(grid='grid' sidebar='' columns='7.5' layout=layoutMode)
     div

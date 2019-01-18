@@ -8,7 +8,9 @@
 @import 'animation.css';
 @import 'icons.css';
 @import 'mlh-trust-badge.css';
+@import 'sponsor-logos.css';
 @import 'tickboxes-radio-buttons.css';
+@import 'dialog.css';
 
 /* The schedule stylesheet hasn't been tested with the new grid system yet */
 /* @import 'schedule.styl'; */
