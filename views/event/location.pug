@@ -1,9 +1,8 @@
 extends ../layouts/width
 block mainContent
   - title = 'Ternary'
-  section(grid='rows')
-    nav(grid='grid' rows='1.0')
-      include ../includes/event/navigation
+  nav(grid='grid')
+    include ../includes/event/navigation
   section(grid='grid')
     h1(rows='1.0' columns='all') Maps
     img(columns='6.0' rows='6.0' draggable='false' src=asset('images/maps/general-map.svg'))

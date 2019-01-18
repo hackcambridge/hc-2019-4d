@@ -80,7 +80,7 @@ form[grid="grid"] > *:not(:last-child) {
 
 /* Sections */
 
-section, header, footer {
+section, header, footer, nav {
   padding-top: calc(var(--unit) / 2);
   padding-bottom: calc(var(--unit) / 2);
 }
@@ -99,6 +99,7 @@ header {
   header,
   main section,
   footer,
+  nav,
   header[layout="width"],
   main[layout="width"] > *,
   footer[layout="width"]  {
@@ -177,5 +178,12 @@ header {
   main [grid="grid"]:not([dense]) > *:not(:last-child),
   footer[grid="grid"]:not([dense]) > *:not(:last-child) {
     margin-right: var(--unit);
+  }
+}
+
+@media (max-width: calc(596pt)) {
+  section > :not(div:empty) + :not(div:empty),
+  nav > :not(div:empty) + :not(div:empty) {
+    margin-top: calc(var(--unit) / 2);
   }
 }

@@ -2,9 +2,23 @@
 - description: A short demo on how to use TransferWise API to automate you payments
   title: Introduction to TransferWise Payouts API
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:30:00
+  rows: '2.0'
 - description: |
     Get a quick introduction to Azure and how it can boost you Hack experience.
     Tutorials covering: Intelligent Kiosk, Cog services, App Service, Bots, & Machine
     Learning Studio. Visit aka.ms/hackwithazure for more information!
   title: Get to Know Azure & Hackathons
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:45:00
+  rows: '3.0'
+- description: ''
+  title: Improbable
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
+- description: ''
+  title: Monzo
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
+- description: ''
+  title: TPP
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:00:00
+- description: ''
+  title: Amazon
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:15:00

@@ -77,10 +77,4 @@ ul.icons li {
   [sidebar] > :nth-last-child(3n) {
     grid-column: 1 / -1;
   }
-  [sidebar] > :last-child {
-    margin-top: calc(var(--unit) / 2);
-  }
-  [sidebar] > :nth-last-child(3n) {
-    margin-bottom: calc(var(--unit) / 2);
-  }
 }
