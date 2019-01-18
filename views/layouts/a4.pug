@@ -4,12 +4,13 @@ block content
   include ../mixins/svg-elements
   include ../includes/header
   main(layout=layoutMode)
-    section(color='blue' align-last='right' grid='grid' rows='0.5' columns='2.0')
-      div(rows='1.0')
-        div(grid='grid')
-          include ../includes/navigation
-      if user
-        div(rows='1.0') Hey #{user.firstName}!
+    nav(color='blue' grid='grid' rows='0.5' columns='2.0')
+      h3(rows='1.0' columns='all') 
+        if user
+          | Hey #{user.firstName}!
+        else
+          | Log in for more
+      include ../includes/navigation
     block mainContent
   footer(grid='rows' layout=layoutMode rows='2.0')
     div
