@@ -9,6 +9,11 @@ figure {
 img {
   justify-self: stretch;
 }
+img[raster] {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 
 /* Forms */
 
