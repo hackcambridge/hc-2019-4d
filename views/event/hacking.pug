@@ -76,7 +76,7 @@ block mainContent
       | Find APIs
     for api in apis
       div(columns='6.0' rows=api.rows || '1.5')
-        h4(rows='1.0')= api.title
+        h4(rows='1.0')= api.name
         div
           p!= api.description
           if api.extraDescription
