@@ -20,7 +20,7 @@
       <li>Basic coding skills (call REST APIs, work with JSON, etc.)</li>
     </ul>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
-  rows: 4.5
+  rows: 5.0
 - title: Avast Workshop
   description: |
     Avast will host a workshop on Saturday afternoon. This main focus
@@ -39,4 +39,4 @@
     if you get stuck, want to run your ideas by the judges, or are looking for more
     insights into what the team is looking for in the outcome of the challenge.</p>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
-  rows: 5.5
+  rows: 6.0
