@@ -1,7 +1,7 @@
 ---
 workshops:
   - name: Software opportunities with Graphcore
-    time: ''
+    time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:10:00
     rows: 1.0
   - name: How to Hack with AI
     description: |
@@ -20,7 +20,8 @@ workshops:
         <li>Basic understanding of cloud computing</li>
         <li>Basic coding skills (call REST APIs, work with JSON, etc.)</li>
       </ul>
-    time: ''
+    time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
+    name: Microsoft
     rows: 4.5
   - name: Avast Workshop
     description: |
@@ -39,5 +40,5 @@ workshops:
       <p>This workshop is for you! We highly encourage attendance, as you may find it useful
       if you get stuck, want to run your ideas by the judges, or are looking for more
       insights into what the team is looking for in the outcome of the challenge.</p>
-    time: ''
+    time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
     rows: 5.5
