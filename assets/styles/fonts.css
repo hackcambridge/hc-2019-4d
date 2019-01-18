@@ -67,7 +67,8 @@ header p {
 }
 
 .pixel {
-  font-family: "PxGrotesk-Screen"
+  font-family: "PxGrotesk-Screen";
+  font-synthesis: none;
 }
 
 /* Lists */
