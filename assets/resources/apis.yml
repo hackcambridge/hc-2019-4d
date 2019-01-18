@@ -1,8 +1,8 @@
 ---
 apis:
-  - description: |
+  - description: ''
     link: https://api-docs.transferwise.com/#transferwise-api
-    name: 'TransferWise API '
+    title: 'TransferWise API '
     type: api
     rows: 1.5
   - description: Arctic is a high performance datastore accessible from python. It uses
@@ -10,7 +10,7 @@ apis:
       query millions of rows per second per client and scale to hundreds of millions
       of rows per second per MongoDB instance.
     link: https://github.com/manahl/arctic
-    name: Arctic
+    title: Arctic
     type: api
     rows: 3.0
   - description: PyBloqs is a flexible framework for visualizing data and automated
@@ -18,52 +18,52 @@ apis:
       can be displayed as HTML in the browser or exported in a variety of formats (including
       HTML, PDF, SVG, PNG).
     link: https://github.com/manahl/PyBloqs
-    name: PyBloqs
+    title: PyBloqs
     type: framework
     rows: 2.5
   - description: Pynorama is a tool for visualizing intricate datasets (e.g. text data,
       documents) for which a simple table format is not suitable, and was created with
       Natural Language Processing applications in mind.
     link: https://github.com/manahl/pynorama
-    name: Pynorama
+    title: Pynorama
     type: api
     rows: 2.5
   - description: 'An incredibly easy method for websites to receive bitcoin payments.
       This service is completely free and secure. Perfect for business or personal use. '
     link: https://www.blockchain.com/api/api_receive
-    name: Receive Payments
+    title: Receive Payments
     type: api
     rows: 2.0
   - description: Blockchain's APIs to send and receive payment from Blockchain Wallets.
     link: https://www.blockchain.com/api/blockchain_wallet_api
-    name: Blockchain Wallet
+    title: Blockchain Wallet
     type: api
     rows: 2.0
   - description: Query JSON data on blocks and transactions. Almost all the data you
       see on this website is available in JSON format.
     link: https://www.blockchain.com/api/blockchain_api
-    name: Blockchain Data API
+    title: Blockchain Data API
     type: api
     rows: 2.0
   - description: 'Simple plain text API for querying blockchain data. '
     link: https://www.blockchain.com/api/q
-    name: Simple Query API
+    title: Simple Query API
     type: api
     rows: 1.5
   - description: 'Low latency streaming socket channel providing data on new blocks
       and transactions. Subscribe to notification on blocks, transactions or an address
       and receive JSON objects describing a transaction or block when an event occurs. '
     link: https://www.blockchain.com/api/api_websocket
-    name: Websockets
+    title: Websockets
     type: api
     rows: 2.5
   - description: 'Currency data from the major bitcoin exchanges. '
     link: https://www.blockchain.com/api/exchange_rates_api
-    name: Exchange Rates
+    title: Exchange Rates
     type: api
     rows: 1.5
   - description: 'JSON feed containing the data from the charts and stats pages. '
     link: https://www.blockchain.com/api/charts_api
-    name: Charts and Statistics
+    title: Charts and Statistics
     type: api
     rows: 2.0

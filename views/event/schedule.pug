@@ -17,7 +17,7 @@ block mainContent
         h4(rows='1.0' columns='1.0'): time.pixel(datetime=demo.time.format())!= demo.time.format('HH:mm')
         div(rows='1.0' columns='4.0')
           h4
-            = demo.name
+            = demo.title
             address Guildhall
     div(rows='2.0' columns='all' grid='rows')
       h3(rows='1.0' columns='all') Workshops
@@ -28,7 +28,7 @@ block mainContent
         h4(rows='1.0' columns='1.0'): time.pixel(datetime=workshop.time.format())!= workshop.time.format('HH:mm')
         div(rows=workshop.rows columns='4.0')
           h4
-            != workshop.name
+            != workshop.title
             address Guildhall
           if workshop.description
             p!= workshop.description
