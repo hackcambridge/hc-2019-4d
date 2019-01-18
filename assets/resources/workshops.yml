@@ -1,8 +1,8 @@
 ---
-- title: Software opportunities with Graphcore
+- title: "Graphcore: Software opportunities with Graphcore"
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:10:00
   rows: 1.5
-- title: How to Hack with AI
+- title: "Microsoft: How to Hack with AI"
   description: |
     This beginner-level workshop will explain what AI and cloud computing
     are in simple terms then show you how to add AI to your project in just a few
@@ -21,7 +21,7 @@
     </ul>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
   rows: 5.0
-- title: Avast Workshop
+- title: Avast
   description: |
     Avast will host a workshop on Saturday afternoon. This main focus
     of this workshop will be to provide further insight on how to solve the challenge,
