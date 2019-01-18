@@ -69,7 +69,7 @@ export function loadResource(resourceName, extraData = {}) {
         fs.readFileSync(resolvePath(`./assets/resources/${resourceName}.yml`)).toString(),
         { ...extraData, dates, metadata, theme }
       )
-    )[resourceName];
+    );
 
     switch (resourceName) {
       case 'workshops':

@@ -13,68 +13,67 @@
 #     rows: 6.0 (the number of rows the items will take up)
 #     columns: 5.0 (the maximum number of columns the items should span)
 ---
-sponsors:
-  tera:
-    name: Tera
-    items:
-      - name: Avast
-        website: https://www.avast.com/
-      - name: Improbable
-        website: https://improbable.io/
-      - name: Microsoft
-        website: https://www.microsoft.com/en-gb
-    rows: 7.0
-    columns: 7.0
-  giga:
-    name: Giga
-    items:
-      - name: Amazon
-        website: https://www.amazon.co.uk/
-      - name: Featurespace
-        website: https://www.featurespace.com/
-      - name: GraphCore
-        website: https://www.graphcore.ai/
-      - name: Monzo
-        website: https://monzo.com/
-      - name: TPP
-        website: https://www.tpp-uk.com/
-      - name: TransferWise
-        website: https://transferwise.com/
-    rows: 13.5
-    columns: 5.0
-  mega:
-    name: Mega
-    items:
-      - name: ARM
-        website: https://www.arm.com/
-      - name: Blockchain
-        website: https://www.blockchain.com/
-      - name: Deliveroo
-        website: https://deliveroo.co.uk/
-      - name: G-Research
-        website: https://www.gresearch.co.uk/
-      - name: Jane Street
-        website: https://www.janestreet.com/
-      - name: J.P. Morgan
-        website: https://www.jpmorgan.com/
-      - name: Man AHL
-        website: https://www.ahl.com/
-      - name: MoneyLion
-        website: https://www.moneylion.com/
-      - name: Sopra Steria
-        website: https://www.soprasteria.co.uk/
-    rows: 19.0
-    columns: 4.0
-  kilo:
-    name: Kilo
-    items:
-      - name: Datascope
-        website: https://www.datascope.co.uk/
-      - name: GitHub
-        website: https://www.github.com/
-      - name: Sticker Mule
-        website: https://www.stickermule.com/
-      - name: Wolfram Language
-        website: https://www.wolfram.com/language/
-    rows: 7.0
-    columns: 3.0
+tera:
+  name: Tera
+  items:
+    - name: Avast
+      website: https://www.avast.com/
+    - name: Improbable
+      website: https://improbable.io/
+    - name: Microsoft
+      website: https://www.microsoft.com/en-gb
+  rows: 7.0
+  columns: 7.0
+giga:
+  name: Giga
+  items:
+    - name: Amazon
+      website: https://www.amazon.co.uk/
+    - name: Featurespace
+      website: https://www.featurespace.com/
+    - name: GraphCore
+      website: https://www.graphcore.ai/
+    - name: Monzo
+      website: https://monzo.com/
+    - name: TPP
+      website: https://www.tpp-uk.com/
+    - name: TransferWise
+      website: https://transferwise.com/
+  rows: 13.5
+  columns: 5.0
+mega:
+  name: Mega
+  items:
+    - name: ARM
+      website: https://www.arm.com/
+    - name: Blockchain
+      website: https://www.blockchain.com/
+    - name: Deliveroo
+      website: https://deliveroo.co.uk/
+    - name: G-Research
+      website: https://www.gresearch.co.uk/
+    - name: Jane Street
+      website: https://www.janestreet.com/
+    - name: J.P. Morgan
+      website: https://www.jpmorgan.com/
+    - name: Man AHL
+      website: https://www.ahl.com/
+    - name: MoneyLion
+      website: https://www.moneylion.com/
+    - name: Sopra Steria
+      website: https://www.soprasteria.co.uk/
+  rows: 19.0
+  columns: 4.0
+kilo:
+  name: Kilo
+  items:
+    - name: Datascope
+      website: https://www.datascope.co.uk/
+    - name: GitHub
+      website: https://www.github.com/
+    - name: Sticker Mule
+      website: https://www.stickermule.com/
+    - name: Wolfram Language
+      website: https://www.wolfram.com/language/
+  rows: 7.0
+  columns: 3.0

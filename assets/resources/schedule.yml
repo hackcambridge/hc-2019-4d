@@ -1,100 +1,99 @@
 ---
-schedule:
-  - day: <%= dates.getHackathonStartDate().format() %>
-    entries:
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 9:00:00
-        events:
-          - name: Registration Opens
-            location: Corn Exchange
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 11:00:00
-        events:
-          - name: Opening Ceremony
-            location: Corn Exchange
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 12:00:00
-        rows: 1.5
-        events:
-          - name: Hacking Starts
-          - name: Lunch
-            location: Guildhall
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
-        rows: 3.0
-        events:
-          - name: API Demos
-            location: Guildhall
-            subevents:
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
-                name: Improbable
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
-                name: Monzo
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:30:00
-                name: TransferWise
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:45:00
-                name: Microsoft
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:00:00
-                name: TPP
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:15:00
-                name: Amazon
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
-        rows: 2.5
-        events:
-          - name: Workshops
-            location: Guildhall
-            subevents:
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
-                name: Microsoft
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
-                name: Avast
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:10:00
-                name: Graphcore
-              - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:45:00
-                name: Improbable
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 19:00:00
-        events:
-          - name: Dinner
-            location: Guildhall
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 20:00:00
-        events:
-          - name: MLH !Light
-            location: Guildhall
-      - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 22:00:00
-        events:
-          - name: Sleeping Area Opens
-            location: Guildhall
-  - day: <%= dates.getHackathonEndDate().format() %>
-    entries:
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 00:00:00
-        events:
-          - name: Midnight Snack
-            location: Guildhall
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 08:30:00
-        events:
-          - name: Breakfast
-            location: Guildhall
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 12:00:00
-        events:
-          - name: Lunch
-            location: Guildhall
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 12:00:00
-        events:
-          - name: Hacking Ends
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 13:30:00
-        events:
-          - name: Expo Starts
-            location: Corn Exchange
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 15:00:00
-        events:
-          - name: Finalists Announced
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 15:30:00
-        events:
-          - name: Finalist Presentations
-            location: Corn Exchange
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 16:15:00
-        events:
-          - name: Closing Ceremony
-            location: Corn Exchange
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 17:00:00
-        events:
-          - name: Event Concludes
-      - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 18:00:00
-        events:
-          - name: Venue Closes
+- day: <%= dates.getHackathonStartDate().format() %>
+  entries:
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 9:00:00
+      events:
+        - name: Registration Opens
+          location: Corn Exchange
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 11:00:00
+      events:
+        - name: Opening Ceremony
+          location: Corn Exchange
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 12:00:00
+      rows: 1.5
+      events:
+        - name: Hacking Starts
+        - name: Lunch
+          location: Guildhall
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
+      rows: 3.0
+      events:
+        - name: API Demos
+          location: Guildhall
+          subevents:
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:00:00
+              name: Improbable
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
+              name: Monzo
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:30:00
+              name: TransferWise
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:45:00
+              name: Microsoft
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:00:00
+              name: TPP
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:15:00
+              name: Amazon
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
+      rows: 2.5
+      events:
+        - name: Workshops
+          location: Guildhall
+          subevents:
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
+              name: Microsoft
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
+              name: Avast
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:10:00
+              name: Graphcore
+            - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:45:00
+              name: Improbable
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 19:00:00
+      events:
+        - name: Dinner
+          location: Guildhall
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 20:00:00
+      events:
+        - name: MLH !Light
+          location: Guildhall
+    - time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 22:00:00
+      events:
+        - name: Sleeping Area Opens
+          location: Guildhall
+- day: <%= dates.getHackathonEndDate().format() %>
+  entries:
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 00:00:00
+      events:
+        - name: Midnight Snack
+          location: Guildhall
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 08:30:00
+      events:
+        - name: Breakfast
+          location: Guildhall
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 12:00:00
+      events:
+        - name: Lunch
+          location: Guildhall
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 12:00:00
+      events:
+        - name: Hacking Ends
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 13:30:00
+      events:
+        - name: Expo Starts
+          location: Corn Exchange
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 15:00:00
+      events:
+        - name: Finalists Announced
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 15:30:00
+      events:
+        - name: Finalist Presentations
+          location: Corn Exchange
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 16:15:00
+      events:
+        - name: Closing Ceremony
+          location: Corn Exchange
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 17:00:00
+      events:
+        - name: Event Concludes
+    - time: <%= dates.getHackathonEndDate().format('YYYY-MM-DD') %> 18:00:00
+      events:
+        - name: Venue Closes

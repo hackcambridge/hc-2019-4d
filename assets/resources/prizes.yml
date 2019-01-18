@@ -1,155 +1,154 @@
 ---
-prizes:
-  - title: Hack Cambridge 1<sup>st</sup> Place
-    description: |
-      The team judged to have produced the most innovative, technically challenging and well designed project.
-    prizes: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
-    rows: 2.0
-  - title: Hack Cambridge 2<sup>nd</sup> Place
-    description: |
-      Runners up.
-    prizes: A Raspberry Pi, developed here in Cambridge, for each team member.
-    rows: 1.5
-  - title: Hack Cambridge 3<sup>rd</sup> Place
-    description: |
-      Runners up.
-    prizes: A copy of the fantastic card game Exploding Kittens for each team member.
-    rows: 1.5
-  - title: Hack Cambridge People's Prize
-    description: |
-      Do you have what it takes to impress your fellow hackers?
-    prizes: A set of programming language playing cards for each team member.
-    rows: 1.5
-  - description: |
-      For Hack Cambridge Monzo is exposing an API to allow you to send
-      us receipt information for your transactions. This information will be displayed
-      in the app in the details screen for that transaction. The challenge is to figure
-      out a way of automatically getting useful receipts into Monzo! Some ideas: 1.
-      Parse email receipts for purchases 2. Use OCR on images of paper receipts 3.
-      Use an api of another company - Uber, Deliveroo, TFL? Talk to the Monzo mentors
-      for help getting started!
-    prizes: x4 lego goodies
-    title: Monzo Receipts API Prize
-    rows: 3.5
-  - description: |
-      The best hack involving something other than your laptop or modile
-      phone. This could be a smart light bulb, a fitness tracker, a micro-controller,
-      a raspberry pi or an eeg headset.
-    prizes: Raspberry Pi Zero Kit and £50 Amazon Voucher
-    title: Best Haredware Hack Prize Sponsored by Arm
-    rows: 2.5
-  - description: |
-      Borderless Account, also known as Balances, is our latest offering that allows our
-      customers to receive and hold money in over 40 currencies with zero fees. It isn't
-      just a traditional multi-currency account where one could only load money in a specific
-      currency, it rather offers local bank account details for receiving USD, EUR, GBP,
-      AUD and NZD. This allows our customers to pay (or be paid) in a specific currency
-      immediately, without any foreign exchange conversion, as if they actually had an
-      account in the country operating with the said currency. Moreover, our customers could
-      also use their TransferWise Debit Card globally, without ever having to worry about
-      converting currencies - we automatically use their balance from the currency that
-      offers them best conversion rates to fund their spending!
-      Build a solution that frees our customers from having to manually perform payments of
-      repetitive nature from their Borderless Accounts. Imagine you are a freelance software
-      engineer who takes up projects from clients globally, uses borderless account to get
-      paid, and has direct debits set up with a local bank for paying all the bills. Or imagine
-      you are an expat who needs to send a portion of their salary to their family in their
-      home country. Or perhaps you are a traveller who is planning a trip abroad and wants to
-      hedge funds systematically to prevent against dramatic fluctuation of exchange rates.
-      Wouldn't it be awesome if TransferWise does all the work for you to perform smart
-      conversions using your preferences?
-    extraDescription: |
-      <p>We'd like you to come up with use cases that you'd like to solve, determine what
-      user preferences would be, and build a solution that our users would love to use - we'd
-      love to leave this problem a bit open for you to have room for innovation, and make your
-      solution to be as smart as you want to make it.</p>
-      <p>TransferWise is a customer-centric company, and we always place our Customers at the
-      core of all our decisions. We love to step into their shoes and think about their use
-      cases, feedback, and experience to bring improvements to our systems and introduce new
-      features. Your solution would be evaluated along the same lines:</p>
-      <ul>
-        <li>
-          Impact of your solution
-          <ul>
-            <li>• Capabilities</li>
-            <li>• Effectiveness</li>
-            <li>• Value to our customers</li>
-          </ul>
-        </li>
-        <li>Ease of Use</li>
-        <li>Scalability</li>
-      </ul>
-    prizes: £100 amazon Voucher and Interview for paid internship this summer
-    title: TransferWise Hack
-    rows: 13.0
-  - description: |
-      Improbable are awarding a prize to the team that comes up with the
-      best adversary for a game developed with probabilistic techniques. Your game
-      can be anything: “Guess Who”, “Mastermind”, Poker, “Battleship” or even a game
-      you invent. Improbable will be giving a workshop on our Probabilistic Programming
-      Language ''Keanu'', and our engineers will be on hand to help you hit the ground
-      running should you choose to use Keanu.
-    prizes: Sega Megadrive Game Console w/games
-    title: Best Probabilistic Game AI
-    rows: 3.5
-  - description: |
-      Any team that chooses to enter will evaluated on the following criteria:
-      Judging criteria: 1. Was the project developed using Microsoft Azure? (required
-      for entry) 2. Does the project address a clear need, problem, or opportunity
-      and is the solution clearly explained? (10 points) 3. Does the project include
-      innovations in technical design and/or implementation of services (e.g., Cognitive
-      Services, Bot Services, IoT Hub, Functions) and/or user experience? (20 points)
-      4. Does the project have a clear target market or audience? (5 points) 5. Is
-      the project’s purpose and basic functionality easily understood? (5 points)
-      6. Does the project have a professional degree of production in terms of performance,
-      user interface, visuals, and audio? (10 points) Winner is highest total score
-      out of 50. Tie-break: Does the team have a credible plan for getting their project
-      to market in terms of business model, any required partnerships, or other factors?
-    prizes: Automatic entry in Imagine Cup 2019 Semi-Finals and two chances to become
-      one of the few elite teams at our regional finals, plus Xbox One Xs for each
-      team member!
-    title: Azure Champ Prize
-    rows: 5.5
-  - description: |
-      Companies that rely heavily on advertising revenue are aggressively
-      tracking and commercialising you while you’re browsing, searching, and shopping
-      online. Is it really OK for these companies, and in some cases governments,
-      to know everything about you, while you know nothing about them? We think you
-      should be able to control what you want to share and when. Your privacy is our
-      priority! Here’s the question we’re asking: How can we use the awesome cleaning
-      power of our CCleaner product line to enhance user privacy online within the
-      Avast Secure Browser? For our challenge, you’ll explore the full possibilities
-      of what can be done with with an integration between these two hugely popular
-      products. We’ll give you access to custom builds of our CCleaner and Avast Secure
-      Browser applications, so you can: Create an integration between CCleaner and
-      Avast Secure Browser to clean user browsing data and report the results within
-      CCleaner Build a CCleaner browser extension to clean Avast Secure Browser in
-      real time, making use of custom browser APIs Explore new and innovative ways
-      to improve user privacy online through cleaning, including making of use of
-      other available browser features Just remember: reaching simple, elegant solutions
-      can often help solve the most technical and complex challenges. We’ll judge
-      competing teams based on teamwork, quality of the end solution, and creativity.
-      We can’t wait to see what you come up with!
-    prizes: We are excited to be offering four Oculus Go Standalone VR headsets (32
-      GB) worth ~£1,000 for the winning team!
-    title: Integrate the Avast Secure Browser and CCleaner products to improve user
-      privacy, prevent website tracking & reduce browsing footprints
-    rows: 8.5
-  - description: |
-      TPP are excited to announce a competition for the Cambridge Hackathon. At
-      TPP, we are revolutionising patient healthcare, both within the NHS and across
-      the world. To do this, our Software Developers are always looking at improvements
-      to our system and working on new ways to give patients more control over their
-      own care. This year we want to give you a chance to test your skills by creating
-      your own revolutionary design for the healthcare industry. TPP will be providing
-      access to dummy patient data from SystmOne, one of the UK’s largest digital
-      healthcare systems. You will be able to integrate with SystmOne, retrieving
-      patient data and booking appointments. Access will be available to demographic
-      data, appointment information, drug history, allergies and medical sensitivities. You
-      will have free range to use this data, perhaps to develop an app or piece of
-      software that could be used to improve patient care. You could create a revolutionary
-      new appointment booking system or a personal healthcare application- the possibilities
-      are endless.
-    prizes: Raspberry Pi Starter Kit with 7 inch touch screen
-    title: Medical Record Integration
-    rows: 4.5
+- title: Hack Cambridge 1<sup>st</sup> Place
+  description: |
+    The team judged to have produced the most innovative, technically challenging and well designed project.
+  prizes: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
+  rows: 2.0
+- title: Hack Cambridge 2<sup>nd</sup> Place
+  description: |
+    Runners up.
+  prizes: A Raspberry Pi, developed here in Cambridge, for each team member.
+  rows: 1.5
+- title: Hack Cambridge 3<sup>rd</sup> Place
+  description: |
+    Runners up.
+  prizes: A copy of the fantastic card game Exploding Kittens for each team member.
+  rows: 1.5
+- title: Hack Cambridge People's Prize
+  description: |
+    Do you have what it takes to impress your fellow hackers?
+  prizes: A set of programming language playing cards for each team member.
+  rows: 1.5
+- description: |
+    For Hack Cambridge Monzo is exposing an API to allow you to send
+    us receipt information for your transactions. This information will be displayed
+    in the app in the details screen for that transaction. The challenge is to figure
+    out a way of automatically getting useful receipts into Monzo! Some ideas: 1.
+    Parse email receipts for purchases 2. Use OCR on images of paper receipts 3.
+    Use an api of another company - Uber, Deliveroo, TFL? Talk to the Monzo mentors
+    for help getting started!
+  prizes: x4 lego goodies
+  title: Monzo Receipts API Prize
+  rows: 3.5
+- description: |
+    The best hack involving something other than your laptop or modile
+    phone. This could be a smart light bulb, a fitness tracker, a micro-controller,
+    a raspberry pi or an eeg headset.
+  prizes: Raspberry Pi Zero Kit and £50 Amazon Voucher
+  title: Best Haredware Hack Prize Sponsored by Arm
+  rows: 2.5
+- description: |
+    Borderless Account, also known as Balances, is our latest offering that allows our
+    customers to receive and hold money in over 40 currencies with zero fees. It isn't
+    just a traditional multi-currency account where one could only load money in a specific
+    currency, it rather offers local bank account details for receiving USD, EUR, GBP,
+    AUD and NZD. This allows our customers to pay (or be paid) in a specific currency
+    immediately, without any foreign exchange conversion, as if they actually had an
+    account in the country operating with the said currency. Moreover, our customers could
+    also use their TransferWise Debit Card globally, without ever having to worry about
+    converting currencies - we automatically use their balance from the currency that
+    offers them best conversion rates to fund their spending!
+    Build a solution that frees our customers from having to manually perform payments of
+    repetitive nature from their Borderless Accounts. Imagine you are a freelance software
+    engineer who takes up projects from clients globally, uses borderless account to get
+    paid, and has direct debits set up with a local bank for paying all the bills. Or imagine
+    you are an expat who needs to send a portion of their salary to their family in their
+    home country. Or perhaps you are a traveller who is planning a trip abroad and wants to
+    hedge funds systematically to prevent against dramatic fluctuation of exchange rates.
+    Wouldn't it be awesome if TransferWise does all the work for you to perform smart
+    conversions using your preferences?
+  extraDescription: |
+    <p>We'd like you to come up with use cases that you'd like to solve, determine what
+    user preferences would be, and build a solution that our users would love to use - we'd
+    love to leave this problem a bit open for you to have room for innovation, and make your
+    solution to be as smart as you want to make it.</p>
+    <p>TransferWise is a customer-centric company, and we always place our Customers at the
+    core of all our decisions. We love to step into their shoes and think about their use
+    cases, feedback, and experience to bring improvements to our systems and introduce new
+    features. Your solution would be evaluated along the same lines:</p>
+    <ul>
+      <li>
+        Impact of your solution
+        <ul>
+          <li>• Capabilities</li>
+          <li>• Effectiveness</li>
+          <li>• Value to our customers</li>
+        </ul>
+      </li>
+      <li>Ease of Use</li>
+      <li>Scalability</li>
+    </ul>
+  prizes: £100 amazon Voucher and Interview for paid internship this summer
+  title: TransferWise Hack
+  rows: 13.0
+- description: |
+    Improbable are awarding a prize to the team that comes up with the
+    best adversary for a game developed with probabilistic techniques. Your game
+    can be anything: “Guess Who”, “Mastermind”, Poker, “Battleship” or even a game
+    you invent. Improbable will be giving a workshop on our Probabilistic Programming
+    Language ''Keanu'', and our engineers will be on hand to help you hit the ground
+    running should you choose to use Keanu.
+  prizes: Sega Megadrive Game Console w/games
+  title: Best Probabilistic Game AI
+  rows: 3.5
+- description: |
+    Any team that chooses to enter will evaluated on the following criteria:
+    Judging criteria: 1. Was the project developed using Microsoft Azure? (required
+    for entry) 2. Does the project address a clear need, problem, or opportunity
+    and is the solution clearly explained? (10 points) 3. Does the project include
+    innovations in technical design and/or implementation of services (e.g., Cognitive
+    Services, Bot Services, IoT Hub, Functions) and/or user experience? (20 points)
+    4. Does the project have a clear target market or audience? (5 points) 5. Is
+    the project’s purpose and basic functionality easily understood? (5 points)
+    6. Does the project have a professional degree of production in terms of performance,
+    user interface, visuals, and audio? (10 points) Winner is highest total score
+    out of 50. Tie-break: Does the team have a credible plan for getting their project
+    to market in terms of business model, any required partnerships, or other factors?
+  prizes: Automatic entry in Imagine Cup 2019 Semi-Finals and two chances to become
+    one of the few elite teams at our regional finals, plus Xbox One Xs for each
+    team member!
+  title: Azure Champ Prize
+  rows: 5.5
+- description: |
+    Companies that rely heavily on advertising revenue are aggressively
+    tracking and commercialising you while you’re browsing, searching, and shopping
+    online. Is it really OK for these companies, and in some cases governments,
+    to know everything about you, while you know nothing about them? We think you
+    should be able to control what you want to share and when. Your privacy is our
+    priority! Here’s the question we’re asking: How can we use the awesome cleaning
+    power of our CCleaner product line to enhance user privacy online within the
+    Avast Secure Browser? For our challenge, you’ll explore the full possibilities
+    of what can be done with with an integration between these two hugely popular
+    products. We’ll give you access to custom builds of our CCleaner and Avast Secure
+    Browser applications, so you can: Create an integration between CCleaner and
+    Avast Secure Browser to clean user browsing data and report the results within
+    CCleaner Build a CCleaner browser extension to clean Avast Secure Browser in
+    real time, making use of custom browser APIs Explore new and innovative ways
+    to improve user privacy online through cleaning, including making of use of
+    other available browser features Just remember: reaching simple, elegant solutions
+    can often help solve the most technical and complex challenges. We’ll judge
+    competing teams based on teamwork, quality of the end solution, and creativity.
+    We can’t wait to see what you come up with!
+  prizes: We are excited to be offering four Oculus Go Standalone VR headsets (32
+    GB) worth ~£1,000 for the winning team!
+  title: Integrate the Avast Secure Browser and CCleaner products to improve user
+    privacy, prevent website tracking & reduce browsing footprints
+  rows: 8.5
+- description: |
+    TPP are excited to announce a competition for the Cambridge Hackathon. At
+    TPP, we are revolutionising patient healthcare, both within the NHS and across
+    the world. To do this, our Software Developers are always looking at improvements
+    to our system and working on new ways to give patients more control over their
+    own care. This year we want to give you a chance to test your skills by creating
+    your own revolutionary design for the healthcare industry. TPP will be providing
+    access to dummy patient data from SystmOne, one of the UK’s largest digital
+    healthcare systems. You will be able to integrate with SystmOne, retrieving
+    patient data and booking appointments. Access will be available to demographic
+    data, appointment information, drug history, allergies and medical sensitivities. You
+    will have free range to use this data, perhaps to develop an app or piece of
+    software that could be used to improve patient care. You could create a revolutionary
+    new appointment booking system or a personal healthcare application- the possibilities
+    are endless.
+  prizes: Raspberry Pi Starter Kit with 7 inch touch screen
+  title: Medical Record Integration
+  rows: 4.5

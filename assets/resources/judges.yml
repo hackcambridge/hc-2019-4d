@@ -1,39 +1,38 @@
 ---
-judges:
-  - name: Dr. Robert Mullins
-    description: |
-      Robert Mullins is a Senior Lecturer in the Computer Laboratory at the University of Cambridge.
-      His research and teaching focuses on computer architecture and VLSI design. He has a particular
-      interest in on-chip interconnection networks, chip-multiprocessors and novel parallel processing fabrics.
-      
-      He is a Fellow of St. John's College and Director of Studies for Computer Science at St. John's College
-      and Peterhouse College. He was a founder of the <a href="https://www.raspberrypi.org/about/">Raspberry Pi Foundation</a>,
-      a UK charity that promotes the study of computer science and electronics at the school level. He is a founder
-      and director of the <a href="http://www.lowrisc.org/about/">lowRISC project</a>.
+- name: Dr. Robert Mullins
+  description: |
+    Robert Mullins is a Senior Lecturer in the Computer Laboratory at the University of Cambridge.
+    His research and teaching focuses on computer architecture and VLSI design. He has a particular
+    interest in on-chip interconnection networks, chip-multiprocessors and novel parallel processing fabrics.
+    
+    He is a Fellow of St. John's College and Director of Studies for Computer Science at St. John's College
+    and Peterhouse College. He was a founder of the <a href="https://www.raspberrypi.org/about/">Raspberry Pi Foundation</a>,
+    a UK charity that promotes the study of computer science and electronics at the school level. He is a founder
+    and director of the <a href="http://www.lowrisc.org/about/">lowRISC project</a>.
 
-  - name: Professor Cicilia Mascolo
-    description: |
-      Cecilia Mascolo is Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge, UK.
-      Prior joining Cambridge in 2008, she has been a faculty member in the Department of Computer Science at University
-      College London. She holds a PhD from the University of Bologna. Her research interests are in human mobility modelling,
-      mobile and sensor systems and networking and spatio-temporal data analysis. She has published in a number of top tier
-      conferences and journals in the area and her investigator experience spans projects funded by Research Councils and industry.
-      She has served as organizing and programme committee member of mobile, sensor systems and networking conferences and workshops.
-      She sits on the editorial boards of IEEE Pervasive Computing, IEEE Transactions on Mobile Computing and ACM Transactions on Sensor Networks.
+- name: Professor Cicilia Mascolo
+  description: |
+    Cecilia Mascolo is Full Professor of Mobile Systems in the Computer Laboratory, University of Cambridge, UK.
+    Prior joining Cambridge in 2008, she has been a faculty member in the Department of Computer Science at University
+    College London. She holds a PhD from the University of Bologna. Her research interests are in human mobility modelling,
+    mobile and sensor systems and networking and spatio-temporal data analysis. She has published in a number of top tier
+    conferences and journals in the area and her investigator experience spans projects funded by Research Councils and industry.
+    She has served as organizing and programme committee member of mobile, sensor systems and networking conferences and workshops.
+    She sits on the editorial boards of IEEE Pervasive Computing, IEEE Transactions on Mobile Computing and ACM Transactions on Sensor Networks.
 
-  - name: Lee Stott
-    description: |
-      Lee has worked for Microsoft in a number of roles over the last five years, acting as both Academic and Technical Evangelist before
-      moving on to become Technical lead of Academic Engagements in 2016, where he now works to engage with academic institutions across the UK
-      in the ongoing development of the Microsoft platform. Prior to this, Lee worked for the University of Manchester as the Head of Information Systems,
-      giving him extensive experience of leading service and delivery teams across both academic and commercial markets.
+- name: Lee Stott
+  description: |
+    Lee has worked for Microsoft in a number of roles over the last five years, acting as both Academic and Technical Evangelist before
+    moving on to become Technical lead of Academic Engagements in 2016, where he now works to engage with academic institutions across the UK
+    in the ongoing development of the Microsoft platform. Prior to this, Lee worked for the University of Manchester as the Head of Information Systems,
+    giving him extensive experience of leading service and delivery teams across both academic and commercial markets.
 
-  - name: Mircea Baja
-    description: |
-      Mircea Baja is a Principal Software Engineer at Sophos.
-      Over a decade and a half he designed, implemented and contributed to products and components that half he designed, implemented and contributed
-      to products and components that make users and computers more secure.
+- name: Mircea Baja
+  description: |
+    Mircea Baja is a Principal Software Engineer at Sophos.
+    Over a decade and a half he designed, implemented and contributed to products and components that half he designed, implemented and contributed
+    to products and components that make users and computers more secure.
 
-  - name: Nick Tikhonov
-    description: |
-      Software Engineer and Hackathon pro.
+- name: Nick Tikhonov
+  description: |
+    Software Engineer and Hackathon pro.
