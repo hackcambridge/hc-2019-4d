@@ -1,7 +1,7 @@
 ---
 - title: Software opportunities with Graphcore
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:10:00
-  rows: 1.0
+  rows: 1.5
 - title: How to Hack with AI
   description: |
     This beginner-level workshop will explain what AI and cloud computing
@@ -40,3 +40,6 @@
     insights into what the team is looking for in the outcome of the challenge.</p>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
   rows: 5.5
+- title: Improbable
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:45:00
+  rows: 1.0
