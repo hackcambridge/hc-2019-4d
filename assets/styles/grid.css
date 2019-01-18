@@ -179,3 +179,9 @@ header {
     margin-right: var(--unit);
   }
 }
+
+@media (max-width: calc(596pt)) {
+  section > :not(div:empty) + :not(div:empty) {
+    margin-top: calc(var(--unit) / 2);
+  }
+}
