@@ -149,6 +149,7 @@ header {
   
   header[layout="a4"],
   main[layout="a4"] section,
+  main[layout="a4"] nav,
   footer[layout="a4"] {
     padding-left: calc((100vw - 484pt)/2);
     padding-right: calc((100vw - 484pt)/2);
@@ -165,7 +166,7 @@ header {
   
   /* Flow */
   
-  [grid="grid"], [grid="columns"] {
+  :not(nav)[grid="grid"], :not(nav)[grid="columns"] {
     grid-auto-flow: column;
   }
   
