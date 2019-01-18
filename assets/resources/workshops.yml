@@ -21,7 +21,6 @@ workshops:
         <li>Basic coding skills (call REST APIs, work with JSON, etc.)</li>
       </ul>
     time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
-    name: Microsoft
     rows: 4.5
   - name: Avast Workshop
     description: |
