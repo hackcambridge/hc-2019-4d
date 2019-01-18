@@ -7,7 +7,7 @@
 # <% applicationsCloseDate = dates.getApplicationsEnd() %>
 # <% formattedGraduationDate = graduationDate.format('D') + '<sup>' + graduationDate.format('Do').split(graduationDate.format('D'))[1] + '</sup> ' + graduationDate.format('MMMM YYYY') %>
 # <% formattedApplicationsCloseDate = applicationsCloseDate.format('D') + '<sup>' + applicationsCloseDate.format('Do').split(applicationsCloseDate.format('D'))[1] + '</sup> ' + applicationsCloseDate.format('MMMM YYYY') %>
-
+---
 faqs:
   - question: What’s a hackathon?
     answer: A hackathon is a focused 24-hour event where you and a small team get to build something new and exciting, alongside a whole bunch of like-minded people.

@@ -12,7 +12,7 @@
 #         website: https://www.acmedevelopment.com
 #     rows: 6.0 (the number of rows the items will take up)
 #     columns: 5.0 (the maximum number of columns the items should span)
-
+---
 sponsors:
   tera:
     name: Tera
