@@ -1,47 +1,42 @@
-workshops:
-  - name: Cambridge Consultants Workshop
-    description: "Good Software, Fast: Delivering software quality on over 300 projects a year."
-    time: 2018-01-20 14:05:00
-    rows: three
-
-  - name: Google Android Wear and Winning Hackathons Workshop
-    extraDescription: |
-      <h6>Android Wear — a 10 min Hackathon Special</h6>
-      <p>What if you want to beat Google and Apple at their own wearable game? Hoi will tell you why you should still use Android Wear (for now).
-      Latest news and bare minimum you need to know, what are the main differences developing for Android vs Android Wear?</p>
-      <h6>Secrets to winning a Hackathon</h6>
-      <p>Prior to Google, Hoi won various prizes at 7 hackathons over 18 months including being the overall winner at the Unilever Heartage Hack and Google I/O Extended London Hackathon—what's his secret?
-      He will cover 3 hot topics: ideas, teams and the dreaded presentation.
-      Apologies for the clickbait-y title… #sorrynotsorry</p>
-    time: 2018-01-20 14:40:00
-    rows: eight
-
-  - name: Microsoft Cognitive Services Workshop
-    description: |
-      This workshop is aimed at supporting those interested in the Microsoft Challenge.
-      We will be providing a overview and demos supporting your innovative applications of Microsoft Cognitive Services.
-    extraDescription: |
-      <a rel="external" href="http://aka.ms/cognitive">Microsoft Cognitive Services</a>
-      <ul><h6>Cognitive APIs in the workshop</h6>
-        <li>Computer Vision API: Distill actionable information from images</li>
-        <li>Face API: Detect, identify, analyse, organise and tag faces in photos</li>
-        <li>Content moderator: Automated image, text and video moderation</li>
-        <li>Emotion API <span class="accent">PREVIEW</span>: Personalise user experiences with emotion recognition</li>
-        <li>Custom Vision Service <span class="accent">PREVIEW</span>: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
-        <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
-      </ul>
-    time: 2018-01-20 15:15:00
-    rows: eight
-
-  - name: Improbable Constructing massive, multiplayer, game worlds Workshop
-    description: |
-        Improbable's Spatial OS platform enables developers to create huge simulated worlds, a primary application of which is games.
-        In this 30 minute tech talk we would like to provide you insight into a project involving the creation of a huge game environment, the development process and furthermore the applications of computer science within this.
-    time: 2018-01-20 15:50:00
-    rows: five
-
-  - name: ARK.io Workshop<br>How to launch your own blockchain and communicate with other chains
-    description: |
-      Blockchain and IoT are a marriage made in heaven. Blockchain enables and augments a variety of application scenarios and use cases for IoT. No longer are such possibilities just futuristic dreams.
-    time: 2018-01-20 17:35:00
-    rows: four
+---
+- title: Software opportunities with Graphcore
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:10:00
+  rows: 1.0
+- title: How to Hack with AI
+  description: |
+    This beginner-level workshop will explain what AI and cloud computing
+    are in simple terms then show you how to add AI to your project in just a few
+    lines of code.
+  extraDescription: |
+    <h6>Expect to learn:</h6>
+    <ul>
+      <li>What is cloud computing</li>
+      <li>What is AI</li>
+      <li>How to add AI to your project</li>
+    </ul>
+    <h6>Technical prerequisites:</h6>
+    <ul>
+      <li>Basic understanding of cloud computing</li>
+      <li>Basic coding skills (call REST APIs, work with JSON, etc.)</li>
+    </ul>
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:00:00
+  rows: 4.5
+- title: Avast Workshop
+  description: |
+    Avast will host a workshop on Saturday afternoon. This main focus
+    of this workshop will be to provide further insight on how to solve the challenge,
+    including:
+  extraDescription: |
+    <ul>
+      <li>Reviewing integration examples for the early part of the challenge and overcoming 
+      potential issues</li>
+      <li>Exploring further the ideas and directions available for the later part of the 
+      challenge</li>
+      <li>Elaborating further on the growing need for privacy and the benefits of regular
+      cleaning for maintaining user privacy</li>
+    </ul>
+    <p>This workshop is for you! We highly encourage attendance, as you may find it useful
+    if you get stuck, want to run your ideas by the judges, or are looking for more
+    insights into what the team is looking for in the outcome of the challenge.</p>
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
+  rows: 5.5

@@ -1,0 +1,100 @@
+extends ../layouts/width
+block mainContent
+  - title = 'Ternary'
+  section(grid='rows')
+    nav(grid='grid' rows='1.0')
+      include ../includes/event/navigation
+  section(grid='rows')
+    h1(rows='1.0') Hacking
+  section(grid='grid' color='blue')
+    div(rows='2.0' columns='all' grid='rows')
+      h3(rows='1.0')
+        +icon('Upload', 'Submit your hack')
+        | Submit your hack
+      div(rows='1.0')
+        p We use Devpost for hack submissions.
+        a(href='https://ternary.devpost.com/') Go to Devpost
+    div(rows='3.0' columns='7.0')
+      h4 How to submit your hack
+      ul
+        li Every member of your team needs to have a Devpost account.
+        li Only one person needs to submit the hack: to do this click ‘Enter a Submission’.
+        ol
+          li Provide a good overview of what you’ve developed in the description field. This will be used as criteria to assess your hack. Do use screenshots if you wish.
+          li Enter your team members’ Devpost accounts.
+          li Choose the challenge or challenges to enter for.
+    div(rows='1.0' columns='6.0')
+      ul
+        h4 Rules
+        li
+          | You must submit your hack before hacking ends at
+          |
+          span.pixel #{event.dates.getHackingPeriodEnd().format('HH:MM:SS')} UTC
+        li You must submit all relevant source code
+  section(grid='grid')
+    //h3(rows='1.0' columns='all')
+      +icon('Tech', 'Hardware')
+      | Get hardware
+    //p(rows='2.0' columns='6.0') We’ll have a range of hardware for you to make use of during the event. You can sign out hardware shortly before and during the event, first-come first-served. If you&rsquo;re particularly keen to use some of the equipment, make sure to get in there early!
+    //div(rows='3.0' columns='6.0')
+      h4 ARM equipment
+      ul
+        li 2 St Nucleo F401RE mbed development boards and cables
+        li 2 mbed application shields
+        li 1 WiFi shield
+        li 2 Grove sensor base shields
+        li 3 Grove light sensors
+        li 3 Grove colour sensors
+        li 2 BBC Microbit kits
+    //div(rows='5.5' columns='6.0')
+      h4 MLH equipment
+      ul
+        li: ul
+          h6 1 Grey Crate
+          li 2 Amazon Echo
+          li 1 Amazon Fire Phone
+          li 4 Arduino 101
+          li 4 Base Shield
+          li 1 Grove Starter Kit
+          li 1 Intel Starter Kit
+          li 2 Leap Motion
+          li 1 Muse
+          li 4 Myo Armband
+          li 3 Pebble Time Cases
+          li 25 Zip ties
+        li:ul
+          h6 1 Red Crate
+          li 1 Oculus Rift
+          li 1 Samsung Gear VR
+          li 1 Dell XPS 2-in-1
+    //div(rows='1.0' columns='6.0')
+      h4 Amazon equipment
+      ul
+        li 4 Echo dots
+    h3(rows='1.0' columns='all')
+      +icon('API', 'APIs')
+      | Find APIs
+    for api in apis
+      div(columns='6.0' rows=api.rows || '1.5')
+        h4(rows='1.0')= api.name
+        div
+          p!= api.description
+          if api.extraDescription
+            != api.extraDescription
+          if api.link
+            a(rel='external' href=api.link) Documentation
+          if api.prizes
+            p!= api.prizes
+    h3(rows='1.0' columns='all')
+      +icon('Trophy', 'Prizes')
+      | Look up prizes
+    for prize in prizes
+      div(columns='6.0' rows=prize.rows || '2.0')
+        h4(rows='1.0')!= prize.title
+        div
+          if prize.description
+            p!= prize.description
+          if prize.prize
+            p.accent!= prize.prizes
+          if prize.extraDescription
+            != prize.extraDescription

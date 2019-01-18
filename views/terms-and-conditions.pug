@@ -8,11 +8,13 @@ block mainContent
       li
         | Hack Cambridge is an event taking place from
         |
-        +dayWithSuperscript(event.dates.getHackathonStartDate())
+        time(datetime=event.dates.getHackathonStartDate().format())
+          +dayWithSuperscript(event.dates.getHackathonStartDate())
         |
         | to the
         |
-        +shortDateWithSuperscript(event.dates.getHackathonEndDate())
+        time(datetime=event.dates.getHackathonEndDate().format())
+          +shortDateWithSuperscript(event.dates.getHackathonEndDate())
         |
         | in Cambridge, UK. It will henceforth be referred to as ‘the Event’ or ‘Hack Cambridge’.
       li The Organisers of Hack Cambridge, henceforth referred to as ‘the Organisers’ in this T&C, refer to any or all of the individuals involved with organising the Event in any capacity.

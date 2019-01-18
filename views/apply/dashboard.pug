@@ -1,16 +1,18 @@
 extends ../layouts/width
 block mainContent
+  include ../mixins/dates
   -
     title = 'Dashboard'
     roomShareForm = 'https://goo.gl/forms/VVlxPkExhrc4ZcKy1'
     visaForm = 'https://goo.gl/forms/TGoMc4QqVJp60F4j1'
+    travelReimbursementForm = 'https://goo.gl/forms/RAcoJRUVUDgmeaQ03'
   // To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking
   - openSlackLink = 'slack://open?team=TEN04697S'
   section(grid='rows')
     h1(rows='1.0')= title
     div(rows='1.5')
       p= statusMessages['overall-status-messages'][statuses.overallStatus].title
-      p= statusMessages['overall-status-messages'][statuses.overallStatus].subline
+      p!= statusMessages['overall-status-messages'][statuses.overallStatus].subline
       if application
         p
           | Your application ID is 
@@ -22,7 +24,7 @@ block mainContent
       form(method='POST' action='/apply/rsvp' grid='grid')
         h3(rows='1.0' columns='all') Respond to your invitation
         h4(rows='1.0' columns='all'): span.pixel= statusMessages['rsvp'][statuses.rsvpStatus].label
-        p(rows='1.5' columns='8')= statusMessages['rsvp'][statuses.rsvpStatus].content
+        p(rows='1.5' columns='8')!= statusMessages['rsvp'][statuses.rsvpStatus].content
         if statuses.rsvpStatus == statusConstants.RsvpStatus.INCOMPLETE
           div(rows='1.5' columns='all')
             div
@@ -55,9 +57,11 @@ block mainContent
       div(columns='4.0' rows='3.0' grid='rows')
         h3(rows='1.0') Date and time
         p
-          | 09:00 #{hackathonStartDate}–
+          time(datetime=event.dates.getHackathonStartDate().format())= event.dates.getHackathonStartDate().format('HH:MM DD/MM/YY')
+          |–
           br
-          | 18:00 #{hackathonEndDate}.
+          time(datetime=event.dates.getHackathonEndDate().format())= event.dates.getHackathonEndDate().format('HH:MM DD/MM/YY')
+          |.
           br
           | Times subject to change.
       div(columns='3.0' rows='3.0' grid='rows')
@@ -89,7 +93,11 @@ block mainContent
           h3(rows='1.0') Accommodation
           div
             p
-              | For those travelling from further afield, we try to find a host in Cambridge who will provide a place to sleep on the night before Hack Cambridge (the #{fridayBeforeHackathonDate}), in which case you’ll only need to bring a sleeping bag and pillow. However, at present, we can’t guarantee you a place, so please apply
+              | For those travelling from further afield, we try to find a host in Cambridge who will provide a place to sleep on the night before Hack Cambridge (the
+              |
+              time
+                +shortDateWithSuperscript(event.dates.getFridayBeforeHackathonDate())
+              |), in which case you’ll only need to bring a sleeping bag and pillow. However, at present, we can’t guarantee you a place, so please apply
               |
               if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
                 | now if you want to be hosted!
@@ -107,7 +115,7 @@ block mainContent
             if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
               ul
                 li: a(href=roomShareForm target='_blank') Apply for accommodation
-      div(columns='4.5' rows='5.5' grid='rows')
+      div(columns='4.5' rows='6.0' grid='rows')
         h3(rows='1.0') Travel cost reimbursements
         div
           p We aim to reimburse a part of your travel costs. The amount you will be able to apply for depends on how far you’ve travelled:
@@ -119,7 +127,9 @@ block mainContent
           p
             strong Note:
             |
-            | We don’t reimburse parking costs or travel costs if you study in Cambridge. Please be responsible when claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.      
+            | We don’t reimburse parking costs or travel costs if you study in Cambridge. Please be responsible when claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.
+          ul
+            li: a(href=travelReimbursementForm target='_blank') Apply for travel cost reimbursement     
   if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
     section(grid='grid')
       h3(rows='1.0' columns='all') Travel advice
@@ -187,7 +197,7 @@ block mainContent
           p= statusMessages['team-application'][statuses.teamApplicationStatus].content
           if statusMessages['team-application'][statuses.teamApplicationStatus].action
             ul
-              li: a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)= statusMessages['team-application'][statuses.teamApplicationStatus].action.title
+              li: a(href=statusMessages['team-application'][statuses.teamApplicationStatus].action.location)!= statusMessages['team-application'][statuses.teamApplicationStatus].action.title
         if statuses.teamApplicationStatus == statusConstants.TeamApplicationStatus.COMPLETE
           div(rows='1.0')
             ul

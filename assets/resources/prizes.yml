@@ -1,166 +1,154 @@
-prizes:
-  - name: Hack Cambridge 1<sup>st</sup> Place
-    description: |
-      The team judged to have produced the most innovative, technically challenging and well designed project.
-    prize: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
-    class: first
-    rows: four
-
-  - name: Hack Cambridge 2<sup>nd</sup> Place
-    description: |
-      Runners up.
-    prize: A Raspberry Pi, developed here in Cambridge, for each team member.
-    class: second
-    rows: three
-
-  - name: Hack Cambridge 3<sup>rd</sup> Place
-    description: |
-      Runners up.
-    prize: A copy of the fantastic card game Exploding Kittens for each team member.
-    class: third
-    rows: three
-
-  - name: Hack Cambridge People's Prize
-    description: |
-      Do you have what it takes to impress your fellow hackers?
-    prize: A set of programming language playing cards for each team member.
-    class: peoples
-    rows: three half
-
-  - name: "Instagram and Twitter picture competition #ternary"
-    description: |
-      Let us know what you have been doing during Hack Cambridge by tweeting or ‘instagramming’ a photo with the hashtag #ternary, and the prize will go to our favourite.
-    prize: Cryptex USB Flash Drive 16GB.
-    class: peoples
-    rows: four
-
-  - name: Microsoft Vision Cognitive Challenge
-    description: |
-      We will be looking for innovative applications of the Vision API sets of Cognitive Services.
-    extraDescription: |
-      <p>The Microsoft challenge will focus on the Cognitive Services API: AI, Data and pervasive technology which are driving the future.</p>
-      <a rel='external' href='http://aka.ms/cognitive'>Cognitive Services API</a>
-      <p>The team solutions will need to a built using Microsoft Cognitive Services.</p>
-      <p>Cognitive Services are a free, easy-to-use, open-source SDK and services and even export models to run offline, 
-      starting with export to the CoreML format for iOS 11.</p>
-      <ul><h6>APIs to be considered</h6>
-          <li>Computer Vision API: Distill actionable information from images</li>
-          <li>Face API: Detect, identify, analyse, organise and tag faces in photos</li>
-          <li>Content moderator: Automated image, text and video moderation</li>
-          <li>Emotion API <span class="accent">PREVIEW</span>: Personalise user experiences with emotion recognition</li>
-          <li>Custom Vision Service <span class="accent">PREVIEW</span>: Easily customise your own state-of-the-art computer vision models for your unique use case</li>
-          <li>Video Indexer <span class="accent">PREVIEW</span>: Unlock video insights</li>
-      </ul>
-    prize: Xbox One X for each person.
-    rows: ten half
-
-  - name: Microsoft Azure Challenge
-    description: |
-      We will be looking for innovative applications of the Microsoft Azure Cloud Platform
-    prize: $100 of Azure for 3 months so a total of $300, plus Microsoft Ruck Sack and Goodies for each person.
-    rows: three half
-
-  - name: Arm Best Hack in Hardware
-    description: |
-      We will award prize to the best hack using a piece of hardware that is not your laptop or mobile phone.
-    prize: Micro:bit inventor's kit & Amazon Gift Card.
-    rows: three half
-
-  - name: Best use of ARK blockchain
-    description: |
-      The best project using ARK blockchain technology and APIs (preferably) for IoT or in general.
-    prize: 3 × IoT box by ADAFruit for the best team + Branded Ledges Nano S HW Wallet for team members.
-    rows: four
-
-  - name: TPP's Health & Society Hack
-    description: |
-      We’re looking for the hack which has the biggest potential to change the world, with a particular interest in healthcare.
-    extraDescription: |
-      <ol><h6>Judging criteria</h6>
-        <li>Potential impact on health/society
-        <li>Practicality
-        <li>Wow factor
-      </ol>
-    prize: Each member of the team which impress us the most will take home a drone.
-    rows: five half
-
-  - name: "Amazon: Best use of Amazon tech"
-    description: |
-      Amazon is offering an Echo device for the best Amazon project (Alexa or Prime Video or AWS) developed @ Hack Cambridge!
-    prize: Each member of the team which impress us the most will take home an Amazon Echo.
-    rows: four
-
-  - name: Droit Hack Challenge
-    description: |
-      Natural language processing of legal texts.
-    prize: An iPad.
-    rows: two
-
-  - name: Best Simulation
-    description: |
-      Build the best simulation/video game with clever use of data and existing technologies.
-    prize: TBC.
-    rows: two
-
-  - name: MLH !Light prize
-    description: |
-      An MLH side event.
-    prize: Bluetooth Speaker.
-    rows: two
-
-  - name: Capture the Flag
-    description: |
-      An MLH side event.
-    prize: BlackRock Back Pack.
-    rows: two
-
-  - name: Best Domain Name Registered With Domain.com
-    description: |
-      MLH prize.
-    prize: Raspberry Pi & PiHut Essential Kit.
-    rows: two
-
-  - name: Best IoT Hack Using A Qualcomm Device
-    description: |
-      MLH prize.
-    prize: DragonBoard 210C & Power Source.
-    rows: two
-
-  - name: Best Use of Amazon Web Services
-    description: |
-      MLH prize.
-    prize: $30  Amazon Gift Card.
-    rows: two
-
-  - name: Accenture prize
-    description: |
-      The Accenture Team's favourite project.
-    prize: TBC.
-    rows: two
-
-  - name: Cisco Challenge
-    description: |
-      Using the Cisco Spark development kit, build a Spark Bot to help you in your daily life.
-      Be it scheduling, voting , daily dog pic feed or anything else you can come up with. 
-      Our current fave is KernelSandersBot who helps us with our team’s fried chicken orders, let’s see if you can compete with that. 
-      Good luck and let the craziest idea win!
-    prize: £100 Amazon Voucher per team member.
-    rows: four half
-
-  - name: Avast Hack Challenge
-    description: |
-      Become a counter-intelligence agent in a Roman Legionary styled Avast Hack Challenge.
-      Find a foreign spy and recover a magical item to stop enemies from spying on you!
-      Apply your logical thinking and knowledge of PC, math, and knowledge of PC, math, cryptology and tone dialing. The ﬁrst one to send us their result gets a DJI Spark drone as a prize.
-      So let’s play!
-    extraDescription: | 
-      <ol><h6>Rules</h6>
-        <li>Accept the challenge</li>
-        <li>Get your USB ﬂash drive with the game at the Avast stand in Guildhall Place</li>
-        <li>When you solve the challenge, you’ll ﬁnd out how to claim the prize</li>
-        <li>The ﬁrst correct result wins a smart dron a smart drone, the DJI Spark</li>
-      </ol>
-      <p>Do you need help?</p>
-      <p>Visit the Avast stand in Guildhall Place. Michal, Petr, and Milos from Avast will help you.</p>
-    prize: DJI Spark drone.
-    rows: eight half
+---
+- title: Hack Cambridge 1<sup>st</sup> Place
+  description: |
+    The team judged to have produced the most innovative, technically challenging and well designed project.
+  prizes: The team receives a unique Hack Cambridge trophy as well as a mechanical keyboard for each team member.
+  rows: 2.0
+- title: Hack Cambridge 2<sup>nd</sup> Place
+  description: |
+    Runners up.
+  prizes: A Raspberry Pi, developed here in Cambridge, for each team member.
+  rows: 1.5
+- title: Hack Cambridge 3<sup>rd</sup> Place
+  description: |
+    Runners up.
+  prizes: A copy of the fantastic card game Exploding Kittens for each team member.
+  rows: 1.5
+- title: Hack Cambridge People's Prize
+  description: |
+    Do you have what it takes to impress your fellow hackers?
+  prizes: A set of programming language playing cards for each team member.
+  rows: 1.5
+- description: |
+    For Hack Cambridge Monzo is exposing an API to allow you to send
+    us receipt information for your transactions. This information will be displayed
+    in the app in the details screen for that transaction. The challenge is to figure
+    out a way of automatically getting useful receipts into Monzo! Some ideas: 1.
+    Parse email receipts for purchases 2. Use OCR on images of paper receipts 3.
+    Use an api of another company - Uber, Deliveroo, TFL? Talk to the Monzo mentors
+    for help getting started!
+  prizes: x4 lego goodies
+  title: Monzo Receipts API Prize
+  rows: 3.5
+- description: |
+    The best hack involving something other than your laptop or modile
+    phone. This could be a smart light bulb, a fitness tracker, a micro-controller,
+    a raspberry pi or an eeg headset.
+  prizes: Raspberry Pi Zero Kit and £50 Amazon Voucher
+  title: Best Haredware Hack Prize Sponsored by Arm
+  rows: 2.5
+- description: |
+    Borderless Account, also known as Balances, is our latest offering that allows our
+    customers to receive and hold money in over 40 currencies with zero fees. It isn't
+    just a traditional multi-currency account where one could only load money in a specific
+    currency, it rather offers local bank account details for receiving USD, EUR, GBP,
+    AUD and NZD. This allows our customers to pay (or be paid) in a specific currency
+    immediately, without any foreign exchange conversion, as if they actually had an
+    account in the country operating with the said currency. Moreover, our customers could
+    also use their TransferWise Debit Card globally, without ever having to worry about
+    converting currencies - we automatically use their balance from the currency that
+    offers them best conversion rates to fund their spending!
+    Build a solution that frees our customers from having to manually perform payments of
+    repetitive nature from their Borderless Accounts. Imagine you are a freelance software
+    engineer who takes up projects from clients globally, uses borderless account to get
+    paid, and has direct debits set up with a local bank for paying all the bills. Or imagine
+    you are an expat who needs to send a portion of their salary to their family in their
+    home country. Or perhaps you are a traveller who is planning a trip abroad and wants to
+    hedge funds systematically to prevent against dramatic fluctuation of exchange rates.
+    Wouldn't it be awesome if TransferWise does all the work for you to perform smart
+    conversions using your preferences?
+  extraDescription: |
+    <p>We'd like you to come up with use cases that you'd like to solve, determine what
+    user preferences would be, and build a solution that our users would love to use - we'd
+    love to leave this problem a bit open for you to have room for innovation, and make your
+    solution to be as smart as you want to make it.</p>
+    <p>TransferWise is a customer-centric company, and we always place our Customers at the
+    core of all our decisions. We love to step into their shoes and think about their use
+    cases, feedback, and experience to bring improvements to our systems and introduce new
+    features. Your solution would be evaluated along the same lines:</p>
+    <ul>
+      <li>
+        Impact of your solution
+        <ul>
+          <li>• Capabilities</li>
+          <li>• Effectiveness</li>
+          <li>• Value to our customers</li>
+        </ul>
+      </li>
+      <li>Ease of Use</li>
+      <li>Scalability</li>
+    </ul>
+  prizes: £100 amazon Voucher and Interview for paid internship this summer
+  title: TransferWise Hack
+  rows: 13.0
+- description: |
+    Improbable are awarding a prize to the team that comes up with the
+    best adversary for a game developed with probabilistic techniques. Your game
+    can be anything: “Guess Who”, “Mastermind”, Poker, “Battleship” or even a game
+    you invent. Improbable will be giving a workshop on our Probabilistic Programming
+    Language ''Keanu'', and our engineers will be on hand to help you hit the ground
+    running should you choose to use Keanu.
+  prizes: Sega Megadrive Game Console w/games
+  title: Best Probabilistic Game AI
+  rows: 3.5
+- description: |
+    Any team that chooses to enter will evaluated on the following criteria:
+    Judging criteria: 1. Was the project developed using Microsoft Azure? (required
+    for entry) 2. Does the project address a clear need, problem, or opportunity
+    and is the solution clearly explained? (10 points) 3. Does the project include
+    innovations in technical design and/or implementation of services (e.g., Cognitive
+    Services, Bot Services, IoT Hub, Functions) and/or user experience? (20 points)
+    4. Does the project have a clear target market or audience? (5 points) 5. Is
+    the project’s purpose and basic functionality easily understood? (5 points)
+    6. Does the project have a professional degree of production in terms of performance,
+    user interface, visuals, and audio? (10 points) Winner is highest total score
+    out of 50. Tie-break: Does the team have a credible plan for getting their project
+    to market in terms of business model, any required partnerships, or other factors?
+  prizes: Automatic entry in Imagine Cup 2019 Semi-Finals and two chances to become
+    one of the few elite teams at our regional finals, plus Xbox One Xs for each
+    team member!
+  title: Azure Champ Prize
+  rows: 5.5
+- description: |
+    Companies that rely heavily on advertising revenue are aggressively
+    tracking and commercialising you while you’re browsing, searching, and shopping
+    online. Is it really OK for these companies, and in some cases governments,
+    to know everything about you, while you know nothing about them? We think you
+    should be able to control what you want to share and when. Your privacy is our
+    priority! Here’s the question we’re asking: How can we use the awesome cleaning
+    power of our CCleaner product line to enhance user privacy online within the
+    Avast Secure Browser? For our challenge, you’ll explore the full possibilities
+    of what can be done with with an integration between these two hugely popular
+    products. We’ll give you access to custom builds of our CCleaner and Avast Secure
+    Browser applications, so you can: Create an integration between CCleaner and
+    Avast Secure Browser to clean user browsing data and report the results within
+    CCleaner Build a CCleaner browser extension to clean Avast Secure Browser in
+    real time, making use of custom browser APIs Explore new and innovative ways
+    to improve user privacy online through cleaning, including making of use of
+    other available browser features Just remember: reaching simple, elegant solutions
+    can often help solve the most technical and complex challenges. We’ll judge
+    competing teams based on teamwork, quality of the end solution, and creativity.
+    We can’t wait to see what you come up with!
+  prizes: We are excited to be offering four Oculus Go Standalone VR headsets (32
+    GB) worth ~£1,000 for the winning team!
+  title: Integrate the Avast Secure Browser and CCleaner products to improve user
+    privacy, prevent website tracking & reduce browsing footprints
+  rows: 8.5
+- description: |
+    TPP are excited to announce a competition for the Cambridge Hackathon. At
+    TPP, we are revolutionising patient healthcare, both within the NHS and across
+    the world. To do this, our Software Developers are always looking at improvements
+    to our system and working on new ways to give patients more control over their
+    own care. This year we want to give you a chance to test your skills by creating
+    your own revolutionary design for the healthcare industry. TPP will be providing
+    access to dummy patient data from SystmOne, one of the UK’s largest digital
+    healthcare systems. You will be able to integrate with SystmOne, retrieving
+    patient data and booking appointments. Access will be available to demographic
+    data, appointment information, drug history, allergies and medical sensitivities. You
+    will have free range to use this data, perhaps to develop an app or piece of
+    software that could be used to improve patient care. You could create a revolutionary
+    new appointment booking system or a personal healthcare application- the possibilities
+    are endless.
+  prizes: Raspberry Pi Starter Kit with 7 inch touch screen
+  title: Medical Record Integration
+  rows: 4.5
