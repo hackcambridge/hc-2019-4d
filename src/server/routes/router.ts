@@ -36,6 +36,8 @@ router.get('/favicon.ico', (_req, res) => res.sendFile(resolvePath('assets/image
 
 router.get('/sponsorship', (_req, res) => res.render('sponsorship'));
 
+router.get('/live', (_req, res) => res.render('live', { pusherKey: process.env.PUSHER_KEY }));
+
 router.get('/favicons/browserconfig.xml', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/browserconfig.xml')));
 
 router.get('/favicons/manifest.json', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/manifest.json')));
