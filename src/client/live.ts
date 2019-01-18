@@ -22,26 +22,7 @@ function setFeedItem(status) {
   const statusText = status.text.split(' ').slice(0, -1).join(' ');
   $('.social-content').html(statusText);
   if (status.image) {
-    if (! $('.social-image-inner-container').hasClass('five')) {
-      $('.social-image-inner-container').addClass('five');
-    }
-    if (! $('.social-image-outer-container').hasClass('five')) {
-      $('.social-image-outer-container').addClass('five');
-    }
-    if (! $('.social-image-outer-container').hasClass('half')) {
-      $('.social-image-outer-container').addClass('half');
-    }
-    $('.social-image').css('background-image', `url(${status.image})`).css('background-size', 'cover');
-  } else {
-    if ($('.social-image-inner-container').hasClass('five')) {
-      $('.social-image-inner-container').removeClass('five');
-    }
-    if ($('.social-image-outer-container').hasClass('five')) {
-      $('.social-image-outer-container').removeClass('five');
-    }
-    if ($('.social-image-outer-container').hasClass('half')) {
-      $('.social-image-outer-container').removeClass('half');
-    }
+    $('.social-image').attr('src', status.image);
   }
 }
 
@@ -80,10 +61,10 @@ function refreshEventInfo() {
       }
       if (JSON.stringify(newEventInfo).search('Expo') > -1) {
         $('.social-column').css('display', 'none');
-        $('.map-column').css('display', 'flex');
+        $('.map-column').css('display', 'grid');
         $('main').removeClass().addClass('black');
       } else {
-        $('.social-column').css('display', 'flex');
+        $('.social-column').css('display', 'grid');
         $('.map-column').css('display', 'none');
       }
       previousEventInfo = newEventInfo;
