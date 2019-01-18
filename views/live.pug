@@ -1,0 +1,27 @@
+extends layouts/base
+block content
+  include mixins/svg-elements
+  main(layout='width')
+    section(grid='columns')
+      img(columns='6.0' draggable='false' src=asset('images/logo.svg'))
+      div(columns='8.0' grid='rows')
+        h2.event-countdown.pixel(rows='1.0')
+        h3(rows='1.0') On now
+        h5(rows='1.0').live-event-now-time.pixel
+        .two.unit.column.live-event-now-text-container
+        h3(rows='1.0') Up next
+        h5(rows='1.0').live-event-next-time.pixel
+        .two.unit.column.live-event-next-text-container
+      div(columns='5.0' grid='rows').social-column
+        h2(rows='1.0').pixel #hack4D
+        .live-social-feed-content(rows='6.0' grid='rows')
+          div(rows='4.5' grid='rows')
+            img.social-image(raster=true rows='4.0')
+          div(rows=4.0)
+            h6.social-title
+            p.social-content
+      div(columns='5.0' grid='rows').map-column
+        h2.pixel(rows='1.0') Map
+        img(draggable='false' src=asset('images/maps/corn-exchange-main-hall.svg'))
+    script.
+      window.liveConfig = { pusherKey: "#{pusherKey}" };
