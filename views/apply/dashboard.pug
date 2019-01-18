@@ -5,6 +5,7 @@ block mainContent
     title = 'Dashboard'
     roomShareForm = 'https://goo.gl/forms/VVlxPkExhrc4ZcKy1'
     visaForm = 'https://goo.gl/forms/TGoMc4QqVJp60F4j1'
+    travelReimbursementForm = 'https://goo.gl/forms/RAcoJRUVUDgmeaQ03'
   // To obtain this link, see https://stackoverflow.com/a/44883343/618502 and https://api.slack.com/docs/deep-linking
   - openSlackLink = 'slack://open?team=TEN04697S'
   section(grid='rows')
@@ -114,7 +115,7 @@ block mainContent
             if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
               ul
                 li: a(href=roomShareForm target='_blank') Apply for accommodation
-      div(columns='4.5' rows='5.5' grid='rows')
+      div(columns='4.5' rows='6.0' grid='rows')
         h3(rows='1.0') Travel cost reimbursements
         div
           p We aim to reimburse a part of your travel costs. The amount you will be able to apply for depends on how far you’ve travelled:
@@ -126,7 +127,9 @@ block mainContent
           p
             strong Note:
             |
-            | We don’t reimburse parking costs or travel costs if you study in Cambridge. Please be responsible when claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.      
+            | We don’t reimburse parking costs or travel costs if you study in Cambridge. Please be responsible when claiming travel reimbursements and only do so if appropriate—we reserve the right to deny travel reimbursements.
+          ul
+            li: a(href=travelReimbursementForm target='_blank') Apply for travel cost reimbursement     
   if statuses.overallStatus == statusConstants.OverallStatus.HAS_TICKET
     section(grid='grid')
       h3(rows='1.0' columns='all') Travel advice
