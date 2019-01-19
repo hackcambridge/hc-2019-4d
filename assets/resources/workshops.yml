@@ -40,7 +40,7 @@
     insights into what the team is looking for in the outcome of the challenge.</p>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
   rows: 6.0
-- title: Improbable: Probabilistic Programming with Keanu
+- title: 'Improbable: Probabilistic Programming with Keanu'
   description: |
       We explore how probabilistic programming lets you model the world and answer
       questions about it. Specifically, we show some examples of using Keanu to do this,
