@@ -33,12 +33,18 @@ export default class EventsController extends Controller {
     if (events.length > 0) {
       this.timeTargets[index].setAttribute('datetime', moment(events[0].time).toISOString());
       this.timeTargets[index].innerText = `${moment(events[0].time).format('HH:mm')}`;
+      this.nameTargets[index].childNodes.forEach(node => {
+        this.nameTargets[index].removeChild(node);
+      });
       events.forEach(event => {
         const element = document.createElement('h4');
         element.innerText = event.name;
         this.nameTargets[index].appendChild(element);
       });
     } else {
+      this.nameTargets[index].childNodes.forEach(node => {
+        this.nameTargets[index].removeChild(node);
+      });
       const element = document.createElement('h4');
       element.innerHTML = placeholder;
       this.nameTargets[index].appendChild(element);
