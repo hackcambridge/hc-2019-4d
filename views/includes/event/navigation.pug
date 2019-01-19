@@ -1,0 +1,26 @@
+include ../../mixins/svg-elements
+
+if (requestedUrl.path !== '/event')
+  a.icon(columns='1.5' rows='1.0' rel='prev' href='/event')
+    +icon('Back')
+    br
+    | Event page
+if (requestedUrl.path !== '/event/location')
+  a.icon(columns='1.5' rows='1.0' href='/event/location')
+    +icon('Map', 'Maps')
+    br
+    | Maps
+if (requestedUrl.path !== '/event/schedule')
+  a.icon(columns='1.5' rows='1.0' href='/event/schedule')
+    +icon('Events', 'Schedule')
+    br
+    | Schedule
+if (requestedUrl.path !== '/event/hacking')
+  a.icon(columns='1.5' rows='1.0' href='/event/hacking')
+    +icon('Terminal', 'Hacking')
+    br
+    | Hacking
+a.icon(columns='1.5' rows='1.0' rel='external' href='https://hc-4d.slack.com/')
+  +icon('Help')
+  br
+  | Help

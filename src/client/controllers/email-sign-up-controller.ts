@@ -1,5 +1,6 @@
 import { Controller } from 'stimulus';
-import { UJSEvent } from '../types';
+
+import { UJSEvent } from '../ujs';
 
 export default class EmailSignUpController extends Controller {
   /**
@@ -13,7 +14,7 @@ export default class EmailSignUpController extends Controller {
 
   public processResponse(event: UJSEvent<string>) {
     const [ response ] = event.detail;
-    alert(response);
+    window.dispatchEvent(new CustomEvent('alert:show', { detail: response }));
   }
 
   public handleError(event: UJSEvent<string>) {
@@ -21,7 +22,7 @@ export default class EmailSignUpController extends Controller {
     if (status === 'Bad Request') {
       this.fieldTarget.setCustomValidity(response);
     } else {
-      alert(`The server returned a ${status} error.\nThe error was: ${response}`);
+      window.dispatchEvent(new CustomEvent('alert:show', { detail: `The server returned a ${status} error.\nThe error was: ${response}` }));
     }
   }
 }

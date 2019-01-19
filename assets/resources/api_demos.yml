@@ -1,15 +1,31 @@
-api_demos:
-  - name: Amazon Alexa Demo
-    time: 2018-01-20 13:00:00
-
-  - name: Microsoft API Demo
-    time: 2018-01-20 13:15:00
-
-  - name: Avast biggest threats of 2017
-    time: 2018-01-20 13:30:00
-
-  - name: FeatureSpace JavaScript Collector
-    time: 2018-01-20 13:45:00
-    
-  - name: Cambridge Consultants
-    time: 2018-01-20 14:00:00
+---
+- description: A short demo on how to use TransferWise API to automate you payments
+  title: 'TransferWise: Introduction to TransferWise Payouts API'
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:30:00
+  rows: '2.0'
+- description: |
+    Learn how to teach Alexa new skills using the Alexa Skills Kit.
+    Quickly build and deploy new voice capabilities onto any device that supports
+    Alexa.
+  title: 'Amazon: Alexa, Teach me to create a new skill'
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:15:00
+  rows: '3.0'
+- description: |
+    Get a quick introduction to Azure and how it can boost you Hack experience.
+    Tutorials covering: Intelligent Kiosk, Cog services, App Service, Bots, & Machine
+    Learning Studio. Visit aka.ms/hackwithazure for more information!
+  title: 'Microsoft: Get to Know Azure & Hackathons'
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:45:00
+  rows: '3.0'
+- description: ''
+  title: Monzo
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 13:15:00
+- description: |
+    For those of you wanting to take part in our Hackathon challenge,
+    come along to find out how to use the "GP Connect" APIs that allow you to integrate
+    with our SystmOne medical records system to view patient records and book appointments.
+    (All data and examples are test data). Supporting files and documentation will
+    be posted to the #sponsor-tpp Slack channel.
+  title: 'TPP: GP Connect API'
+  time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:00:00
+  rows: '3.5'

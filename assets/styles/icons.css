@@ -1,7 +1,7 @@
 svg {
   overflow: visible;
 }
-a svg.icon {
+a > svg.icon {
   stroke: var(--accent-color);
   stroke-opacity: 0;
   stroke-width: 2;
@@ -13,4 +13,9 @@ a:not(:hover) svg.icon, a:active svg.icon {
 }
 a:hover:not(:active) svg.icon {
   fill-opacity: 1;
+}
+:not(a) > svg.icon {
+  fill: var(--secondary-color);
+  vertical-align: middle;
+  margin-right: var(--gutter);
 }

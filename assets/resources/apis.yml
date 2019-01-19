@@ -1,107 +1,79 @@
-apis:
-  - name: SpatialOS
-    description: |
-      SpatialOS is a computation platform from Improbable that allows you to exceed the power of a single game engine or server.
-    documentation: https://docs.improbable.io/reference/12.0
-    prizes: Use of SpatialOS is eligible for the Improbable Challenge Prize, details of which will be up shortly!
-    rows: four half
-
-  - name: Microsoft Cognitive — Vision, Speech, Search, Language, Knowledge 
-    description: |
-      Microsoft Cognitive Services (formerly Project Oxford) are a set of APIs, SDKs and services available to developers to make their applications more intelligent,
-      engaging and discoverable. Microsoft Cognitive Services expands on Microsoft’s evolving portfolio of machine learning APIs and enables developers to easily add
-      intelligent features—such as emotion and video detection; facial, speech and vision recognition; and speech and language understanding—into their
-      applications. Our vision is for more personal computing experiences and enhanced productivity aided by systems that increasingly can see, hear, speak, understand
-      and even begin to reason. You will find documentation of each product and their corresponding API references on the left navigation table.
-    documentation: https://www.microsoft.com/cognitive-services/en-us/documentation
-    prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
-    rows: eight half
-
-  - name: Microsoft Bot Framework
-    description: |
-      Build and connect intelligent bots to interact with your users naturally wherever they are—from your website or app to text/SMS, Skype, Slack, Facebook Messenger, 
-      Office 365 mail, Teams and other popular services. 
-    documentation: https://docs.botframework.com/en-us/
-    prizes: Use of this API is eligible for the Microsoft Cognitive Services and Bot Framework Prize!
-    rows: five
-
-  - name: Man AHL Arctic
-    description: |
-      Man AHL are a leading quantitative investment manager in the UK and a pioneer in systematic trading for over 25 years. Their
-      Arctic API provides a high performance datastore for time series and tick data.
-    documentation: https://github.com/manahl/arctic
-    rows: four
-
-  - name: TPP Example Public Health Data
-    description: |
-      At TPP we have to interact with lots of different healthcare providers around the globe and we have to deal with a lot of data (6660 NHS organisations in the UK).
-      We need to be able to handle data in all sorts of formats and as efficiently as possible.
-      We’re providing an example set of patient data in the FHIR format for the Hack.
-      FHIR stands for ‘Fast Healthcare Interoperability Resources’.
-      It is a global standard for exchanging healthcare information electronically.
-      It has both its advantages and its drawbacks, and is something we work with at TPP.
-      There are plenty of things you could do with this data.
-    extraDescription: |
-      <ul><h6>Examples</h6>
-        <li>You could create a tool to analyse a full set of patient information to identify trends and predict outcomes/treatments.</li>
-        <li>Patients are getting more and more involved with their own healthcare. They may want a frontend to display their information, it could make suggestions to improve their health.</li>
-        <li>You’ll also see that this format is still quite bloated. We have to deal with a large amount of patient data every second (12,850 patient record retrievals a minute).
-          Maybe you could come up with a way to store this information more efficiently.</li>
-      </ul>
-      <ul><h6>Links which may help you get started</h6>
-        <li><a rel='external' href='https://www.hl7.org/fhir/'>Main site</a></li>
-        <li><a rel='external' href='http://hapifhir.io/'>Java</a></li>
-        <li><a rel='external' href='https://github.com/ewoutkramer/fhir-net-api'>C#</a></li>
-      </ul>
-    documentation: https://www.hl7.org/fhir/
-    rows: twelve
-
-  - name: ARK API
-    description: |
-      Flexible and easy-to-use API to talk to the blockchain ecosystem.
-    documentation: https://github.com/arkecosystem/
-    rows: three
-
-  - name: ARK Contract Execution Services 
-    description: |
-      Bridging two separate blockchains together and achieving true interoperability between ecosystems.
-    documentation: https://github.com/arkecosystem/
-    rows: three half
-
-  - name: ARK — Click-Deployable Blockchain
-    description: |
-      The ARK Ecosystem gives you full blockchain functionality via REST APIs available in many programming languages, 
-      such as ark-js, ark-java, ark-net, ark-golang, ark-c/c++… (there are more than twelve client API program language implementations).</p>
-      <p>The main goal of ARK is to help you deliver new solutions build on top of easy deployable and scalable opensource blockchain ecosystem.
-      Ark Push Button-Deployable custom blockchain technology enables users to launch their own chain with a few clicks.
-      The new blockchain remains fully ARK-compatible with the API and other service benefits, so you can start using the new ecosystem.
-    extraDescription: |
-      <a rel='external' href='https://github.com/ArkEcosystem'>REST specifications</a>
-      <a rel='external' href='https://ark.brianfaust.me'>Documentation for Node</a>
-    documentation: https://github.com/arkecosystem/
-    rows: seven half
-
-  - name: Amazon Prime Video App
-    description: Building a simple version of a streaming app, see for inspiration the docs link. 
-    documentation: https://bitbucket.org/olivif/avworkshop/src
-
-  - name: AWS All technologies
-    description: The general AWS services for free.
-    documentation: https://aws.amazon.com/
-
-  - name: Amazon Elastic Transcoder
-    description: Media Transcoding in the cloud.
-    documentation: https://aws.amazon.com/elastictranscoder/
-
-  - name: Amazon Alexa Skills Kit
-    description: Allow users to create an Alexa Skill on the cloud.
-    documentation: https://aws.amazon.com/alexa/
-
-  - name: Amazon Lambda
-    description: Framework to run a function in the cloud.
-    documentation: https://aws.amazon.com/lambda/
-    rows: two half
-
-  - name: Cisco Spark
-    description: Create Cisco Spark integrations and bots to automate experiences. Embed Cisco Spark calling and messaging in your app to drive growth.
-    documentation: https://developer.ciscospark.com/
+---
+- description: Add detailed information to your Monzo transactions!
+  link: https://paper.dropbox.com/doc/Monzo-Receipts-API--AV72zCKRwCP0dRyzJVMyisBrAg-eZscuadhVo1QOF2N48JXe
+  name: Monzo Receipts API
+- description: ''
+  link: https://api-docs.transferwise.com/#transferwise-api
+  name: 'TransferWise API'
+- description: The Alexa Skills Kit (ASK) is a collection of self-service APIs, tools,
+    documentation, and code samples that makes it fast and easy for you to add skills
+    to Alexa.
+  link: https://developer.amazon.com/alexa-skills-kit/
+  name: Alexa Skill Kit
+  rows: '2.5'
+- description: Arctic is a high performance datastore accessible from python. It uses
+    MongoDB to store pandas dataframes, numpy arrays and pickled objects, and can
+    query millions of rows per second per client and scale to hundreds of millions
+    of rows per second per MongoDB instance.
+  link: https://github.com/manahl/arctic
+  name: 'Man AHL: Arctic'
+  rows: '3.0'
+- description: PyBloqs is a flexible framework for visualizing data and automated
+    creation of reports, and works with Pandas, matplotlib and highcharts. Reports
+    can be displayed as HTML in the browser or exported in a variety of formats (including
+    HTML, PDF, SVG, PNG).
+  link: https://github.com/manahl/PyBloqs
+  name: 'Man AHL: PyBloqs'
+  rows: '3.0'
+- description: Pynorama is a tool for visualizing intricate datasets (e.g. text data,
+    documents) for which a simple table format is not suitable, and was created with
+    Natural Language Processing applications in mind.
+  link: https://github.com/manahl/pynorama
+  name: 'Man AHL: Pynorama'
+  rows: '2.5'
+- description: 'An incredibly easy method for websites to receive bitcoin payments.
+    This service is completely free and secure. Perfect for business or personal use.'
+  link: https://www.blockchain.com/api/api_receive
+  name: 'Blockchain: Receive Payments'
+  rows: '2.0'
+- description: Blockchain's APIs to send and receive payment from Blockchain Wallets.
+  link: https://www.blockchain.com/api/blockchain_wallet_api
+  name: 'Blockchain: Wallet'
+  rows: '2.0'
+- description: Query JSON data on blocks and transactions. Almost all the data you
+    see on this website is available in JSON format.
+  link: https://www.blockchain.com/api/blockchain_api
+  name: 'Blockchain: Data API'
+  rows: '2.0'
+- description: 'Simple plain text API for querying blockchain data.'
+  link: https://www.blockchain.com/api/q
+  name: 'Blockchain: Simple Query API'
+- description: 'Low latency streaming socket channel providing data on new blocks
+    and transactions. Subscribe to notification on blocks, transactions or an address
+    and receive JSON objects describing a transaction or block when an event occurs.'
+  link: https://www.blockchain.com/api/api_websocket
+  name: 'Blockchain: Websockets'
+  rows: '2.5'
+- description: 'Currency data from the major bitcoin exchanges.'
+  link: https://www.blockchain.com/api/exchange_rates_api
+  name: 'Blockchain: Exchange Rates'
+- description: 'JSON feed containing the data from the charts and stats pages.'
+  link: https://www.blockchain.com/api/charts_api
+  name: 'Blockchain: Charts and Statistics'
+  rows: '2.0'
+- description: ''
+  link: http://hackcambridge.featurespace.co.uk:20080/
+  name: Featurespace Javascript Collector (JSC)
+- description: 'A demo version of the national GP Connect API which allows you to
+    retrieve patient records and manage GP appointments. Supporting files and documentation
+    will be posted to the #sponsor-tpp Slack channel.'
+  link: https://developer.nhs.uk/apis/gpconnect/
+  name: 'TPP: GP Connect'
+  rows: '2.5'
+- description: |
+    Keanu is a general-purpose probabalistic programming library. Probabalistic
+    programming is programming that accounts for uncertainty. You can express what you don't
+    know about a program by describingthe unknowns as probability distributions.
+  link: https://improbable-research.github.io/keanu/
+  name: 'Improbable: Keanu'
+  rows: '2.5'
