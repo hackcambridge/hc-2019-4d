@@ -1,0 +1,24 @@
+extends layouts/base
+block content
+  include mixins/svg-elements
+  main(layout='width')
+    section(grid='columns' data-target='color.colorable')
+      img(columns='6.0' draggable='false' src=asset('images/logo.svg'))
+      div(columns='8.0' grid='rows' data-controller='events countdown')
+        h2.pixel(rows='1.0' data-target='countdown.time')
+        h3(rows='1.0') On now
+        div(rows='1.5' grid='columns')
+          h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
+          div(columns='4.0' data-target='events.name')
+        h3(rows='1.0') Up next
+        div(rows='1.5' grid='columns')
+          h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
+          div(columns='4.0' data-target='events.name')
+      div(columns='4.0' grid='rows' data-controller='social-feed' data-social-feed-pusher-key=pusherKey).social-column
+        h2(rows='1.0').pixel #hack4D
+        div(rows='6.0' grid='rows')
+          div(rows='4.5' grid='rows')
+            img(raster=true rows='4.0' data-target='social-feed.image')
+          div(rows=4.0)
+            h6(data-target='social-feed.title')
+            p(data-target='social-feed.content')
