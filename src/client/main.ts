@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import { Application } from 'stimulus';
 
 import AlertController from './controllers/alert-controller';
@@ -10,14 +9,6 @@ import FieldValidatorController from './controllers/field-validator-controller';
 import SocialFeedController from './controllers/social-feed-controller';
 import ValidationMessagesController from './controllers/validation-messages-controller';
 import { UJS } from './ujs';
-
-import * as live from './live';
-
-const pages = [live];
-
-$(document).ready(() => {
-  pages.forEach(f => f.start());
-});
 
 UJS.start();
 
