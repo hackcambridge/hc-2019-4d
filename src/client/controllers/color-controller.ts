@@ -25,7 +25,7 @@ export default class ColorController extends Controller {
     let key = 0;
     ColorController.colorSequence.slice(1).forEach(entry => {
       if (entry.hasOwnProperty('time') && (entry.time < moment())) {
-        key += 1;
+        key++;
       }
     });
     this.setColorAndKey(key);
@@ -37,7 +37,7 @@ export default class ColorController extends Controller {
     if (key < ColorController.colorSequence.length) {
       const entry = ColorController.colorSequence[key + 1];
       if (entry.hasOwnProperty('time') && (entry.time < moment())) {
-        key += 1;
+        key++;
         this.setColorAndKey(key);
       }
     }
