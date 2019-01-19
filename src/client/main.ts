@@ -6,6 +6,7 @@ import ColorController from './controllers/color-controller';
 import EmailSignUpController from './controllers/email-sign-up-controller';
 import EventsController from './controllers/events-controller';
 import FieldValidatorController from './controllers/field-validator-controller';
+import SocialFeedController from './controllers/social-feed-controller';
 import ValidationMessagesController from './controllers/validation-messages-controller';
 import { UJS } from './ujs';
 
@@ -26,3 +27,4 @@ application.register('validation-messages', ValidationMessagesController);
 application.register('alert', AlertController);
 application.register('color', ColorController);
 application.register('events', EventsController);
+application.register('social-feed', SocialFeedController);

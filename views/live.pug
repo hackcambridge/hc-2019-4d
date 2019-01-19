@@ -14,13 +14,11 @@ block content
         div(rows='1.5' grid='columns')
           h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
           div(columns='4.0' data-target='events.name')
-      div(columns='4.0' grid='rows').social-column
+      div(columns='4.0' grid='rows' data-controller='social-feed' data-social-feed-pusher-key=pusherKey).social-column
         h2(rows='1.0').pixel #hack4D
-        .live-social-feed-content(rows='6.0' grid='rows')
+        div(rows='6.0' grid='rows')
           div(rows='4.5' grid='rows')
-            img.social-image(raster=true rows='4.0')
+            img(raster=true rows='4.0' data-target='social-feed.image')
           div(rows=4.0)
-            h6.social-title
-            p.social-content
-    script.
-      window.liveConfig = { pusherKey: "#{pusherKey}" };
+            h6(data-target='social-feed.title')
+            p(data-target='social-feed.content')
