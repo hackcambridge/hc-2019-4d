@@ -3,7 +3,7 @@ import { Controller } from 'stimulus';
 
 export default class EventsController extends Controller {
   /**
-   * Colourable elements
+   * Event elements
    */
   public timeTargets: HTMLElement[];
   public nameTargets: HTMLElement[];
