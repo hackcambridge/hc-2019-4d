@@ -7,7 +7,7 @@ export default class ColorController extends Controller {
   /**
    * Colourable elements
    */
-  public colorableTargets: [HTMLInputElement];
+  public colorableTargets: HTMLElement[];
 
   static get targets() {
     return ['colorable'];

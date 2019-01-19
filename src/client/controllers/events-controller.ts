@@ -5,8 +5,8 @@ export default class EventsController extends Controller {
   /**
    * Colourable elements
    */
-  public timeTargets: HTMLInputElement[];
-  public nameTargets: HTMLInputElement[];
+  public timeTargets: HTMLElement[];
+  public nameTargets: HTMLElement[];
 
   static get targets() {
     return ['time', 'name'];
