@@ -1,6 +1,8 @@
 extends ../layouts/width
 block mainContent
   - title = 'Ternary'
+  - devpostLink = 'https://hackcambridge4d.devpost.com/'
+  - hardwareLabLink = 'https://hardware.mlh.io/events/hack-cambridge-4d'
   nav(grid='grid')
     include ../includes/event/navigation
   section(grid='rows')
@@ -12,7 +14,7 @@ block mainContent
         | Submit your hack
       div(rows='1.0')
         p We use Devpost for hack submissions.
-        a(href='https://hackcambridge4d.devpost.com/') Go to Devpost
+        a(rel='external' href=devpostLink) Go to Devpost
     div(rows='3.0' columns='7.0')
       h4 How to submit your hack
       ul
