@@ -31,45 +31,12 @@ block mainContent
           span.pixel #{event.dates.getHackingPeriodEnd().format('HH:MM:SS')} UTC
         li You must submit all relevant source code
   section(grid='grid')
-    //h3(rows='1.0' columns='all')
+    h3(rows='1.0' columns='all')
       +icon('Tech', 'Hardware')
       | Get hardware
-    //p(rows='2.0' columns='6.0') We’ll have a range of hardware for you to make use of during the event. You can sign out hardware shortly before and during the event, first-come first-served. If you&rsquo;re particularly keen to use some of the equipment, make sure to get in there early!
-    //div(rows='3.0' columns='6.0')
-      h4 ARM equipment
-      ul
-        li 2 St Nucleo F401RE mbed development boards and cables
-        li 2 mbed application shields
-        li 1 WiFi shield
-        li 2 Grove sensor base shields
-        li 3 Grove light sensors
-        li 3 Grove colour sensors
-        li 2 BBC Microbit kits
-    //div(rows='5.5' columns='6.0')
-      h4 MLH equipment
-      ul
-        li: ul
-          h6 1 Grey Crate
-          li 2 Amazon Echo
-          li 1 Amazon Fire Phone
-          li 4 Arduino 101
-          li 4 Base Shield
-          li 1 Grove Starter Kit
-          li 1 Intel Starter Kit
-          li 2 Leap Motion
-          li 1 Muse
-          li 4 Myo Armband
-          li 3 Pebble Time Cases
-          li 25 Zip ties
-        li:ul
-          h6 1 Red Crate
-          li 1 Oculus Rift
-          li 1 Samsung Gear VR
-          li 1 Dell XPS 2-in-1
-    //div(rows='1.0' columns='6.0')
-      h4 Amazon equipment
-      ul
-        li 4 Echo dots
+    div(rows='2.0' columns='6.0')
+      p We’ll have a range of hardware for you to make use of during the event. You can sign out hardware shortly before and during the event, first-come first-served. If you&rsquo;re particularly keen to use some of the equipment, make sure to get in there early!
+      a(rel='external' href=hardwareLabLink) Get hardware from the MLH Hardware Lab
     h3(rows='1.0' columns='all')
       +icon('API', 'APIs')
       | Find APIs
