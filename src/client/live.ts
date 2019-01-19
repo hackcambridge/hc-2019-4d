@@ -44,11 +44,9 @@ function initialiseLive() {
     encrypted: true,
     cluster: 'eu',
   });
-
-  const liveUpdates = pusher.subscribe('live-updates');
   let lastStatusId = null;
   $('.live-social-feed-content').each(() => {
-    liveUpdates.bind('social', data => {
+    pusher.subscribe('live-updates').bind('social', data => {
       if (data.statuses[0].id_str !== lastStatusId) {
         lastStatusId = data.statuses[0].id_str;
         const statuses = data.statuses;
@@ -56,7 +54,6 @@ function initialiseLive() {
       }
     });
   });
-
   $('.event-countdown').each(function() {
     const countdown = Countdown.createChainedCountdown();
     countdown.onCount = rendered => $(this).html(rendered);
