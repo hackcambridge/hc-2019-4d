@@ -4,7 +4,7 @@ export default class FieldValidatorController extends Controller {
   /**
    * Form fields
    */
-  public fieldTargets: [HTMLInputElement];
+  public fieldTargets: HTMLInputElement[];
 
   static get targets() {
     return ['field'];
