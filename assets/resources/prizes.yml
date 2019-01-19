@@ -98,7 +98,7 @@
     invent.  Improbable will be giving a workshop on our Probabilistic Programming
     Language 'Keanu', and our engineers will be on hand to help you hit the ground
     running should you choose to use Keanu.  Judging criteria: Good use of a Probabilistic
-    Programming Language. Good use of visualisation and UI: can we easily play with or 
+    Programming Language. Good use of visualisation and UI: can we easily play with or
     against the AI or visualise a game? Actual results: can the AI beat humans or existing
     AIs?
   extraDescription: |
@@ -174,4 +174,55 @@
     are endless.
   prizes: Raspberry Pi Starter Kit with 7 inch touch screen
   title: Medical Record Integration
-  rows: 4.5
+  rows: 6.0
+- description: |
+    Place in the top group of teams at any MLH Member Event.
+  prizes: Each winning team member will receive an MLH 2019 Hackathon Season medal.
+  title: MLH Top Teams Overall
+- description: |
+    Use Algolia's search API in your project.
+  prizes: Each winning team member will receive a Casio Calculator Watch.
+  title: MLH Best use of Algolia
+- description: |
+    Register a domain using Domain.com during the weekend. Each team may submit
+    one entry per person on the team.
+  prizes: Each winning team member will receive a Raspberry Pi & PiHut Essential Kit.
+  title: MLH Best Domain Registered with Domain.com
+- description: |
+    Use Google Cloud Platform in your hack. Find a full list of GCP products &
+    services at https://cloud.google.com/products.
+  prizes: Each winning team member will receive a Google Home Mini, max 4 per team.
+  title: MLH Best use of Google Cloud Platform
+- description: |
+    Use HERE.com's mapping API or SDK in your project.
+  prizes: Each winning team member will receive a Casio Calculator Watch.
+  title: MLH Best use of HERE.com
+- description: |
+    Use a Qualcomm device, like the Dragonboard 410C, in your IoT project.
+  prizes: Each winning team member will receive their own DragonBoard 410C.
+  title: MLH Best IoT Hack using a Qualcomm Device
+- description: |
+    Use the Webex Teams API or mobile SDK in your project. One winning team
+    will be selected from all MLH Member Events each weekend.
+  prizes: Each member of the winning team will receive a power bank.
+  title: MLH Best use of the Cisco Webex Teams API
+- description: |
+    Use Clarifai's image or video recognition API or SDK in your project.
+  prizes: One winning team will be selected from all MLH Member Events each weekend.
+  title: MLH Best use of Clarifai's API
+- description: |
+    Demo a project that makes the world a better place through social good.
+  prizes: One winning team will be selected from all MLH Member Events each weekend.
+  title: MLH Best Social Good Hack
+- description: |
+    Use Snap Kit in your hack.
+  prizes: |
+    One winning team will be selected from all MLH Member Events each weekend and
+    top entries will be reviewed by Snap engineers. Each winning team member will
+    receive a pair of Spectacles by Snapchat.
+  title: MLH Snap Kit Weekly Challenge
+- description: |
+    Draw a picture of the GitHub Octocat. Tweet a picture of your drawing at
+    @GitHubEducation with both the hackathon's hastag and #MyOctocat.
+  prizes: The winner at each event will receive an Octocat Statue.
+  title: Best Octocat Drawing
