@@ -1,43 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg viewBox="0 0 1024 1182" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1024 1182" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin">
   <g clip-path="url(#clip0)">
-    <g opacity=".8">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 0l512 295.603V886.81l-512 295.6L0 886.81V295.603L512 0z" fill="#0092DB"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M512 0L1024 295.603V886.81L512 1182.41L0 886.81V295.603L512 0Z" fill="#0092DB"/>
+    <g style="mix-blend-mode:overlay" opacity="0.4" clip-path="url(#clip1)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 0L1024 295.603V886.81L512 591.207V0Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1024 886.81L512 1182.41L0 886.81L512 591.207L1024 886.81Z" fill="black"/>
+      <path d="M0 295.603L512 0V591.207L0 886.81V295.603Z" fill="#808080"/>
     </g>
-    <g opacity=".4" clip-path="url(#clip1)" style="mix-blend-mode:overlay">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 0l512 295.603V886.81L512 591.207V0z" fill="#fff"/>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M1024 886.81l-512 295.6L0 886.81l512-295.603 512 295.603z" fill="#000"/>
-      <path d="M0 295.603L512 0v591.207L0 886.81V295.603z" fill="gray"/>
+    <g style="mix-blend-mode:overlay" opacity="0.4" clip-path="url(#clip2)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 1182.41L0 886.81V295.603L512 591.207V1182.41Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 295.603L512 0L1024 295.603L512 591.207L0 295.603Z" fill="white"/>
+      <path d="M1024 886.81V295.603L512 591.207V1182.41L1024 886.81Z" fill="#808080"/>
     </g>
     <g style="mix-blend-mode:color">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 295.603l256 147.802v295.603L512 886.81 256 739.008V443.405l256-147.802z" fill="#D01602"/>
-      <g opacity=".4" style="mix-blend-mode:overlay">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M512 295.603L256 443.405v295.603l256-147.801V295.603z" fill="#fff"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M768 739.008L512 886.81 256 739.008l256-147.801 256 147.801z" fill="#000"/>
-        <path d="M768 443.405v295.603L512 591.207V295.603l256 147.802z" fill="gray"/>
-      </g>
-      <g opacity=".4" style="mix-blend-mode:overlay">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M512 886.81L256 739.008V443.405l256 147.802V886.81z" fill="#000"/>
-        <path d="M768 739.008V443.405L512 591.207V886.81l256-147.802z" fill="gray"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M256 443.405l256-147.802 256 147.802-256 147.802-256-147.802z" fill="#fff"/>
-      </g>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 295.603L768 443.405V739.008L512 886.81L256 739.008V443.405L512 295.603Z" fill="#FF1700"/>
     </g>
-    <g opacity=".4" clip-path="url(#clip2)" style="mix-blend-mode:overlay">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 1182.41L0 886.81V295.603l512 295.604v591.203z" fill="#000"/>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 295.603L512 0l512 295.603-512 295.604L0 295.603z" fill="#fff"/>
-      <path d="M1024 886.81V295.603L512 591.207v591.203l512-295.6z" fill="gray"/>
+    <g style="mix-blend-mode:lighten" opacity="0.28">
+      <path d="M768 443.405V739.008L512 591.207V295.603L768 443.405Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 295.603L256 443.405V739.008L512 591.207V295.603Z" fill="#808080"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M768 739.008L512 886.81L256 739.008L512 591.207L768 739.008Z" fill="black"/>
+    </g>
+    <g style="mix-blend-mode:lighten" opacity="0.28">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M512 886.81L256 739.008V443.405L512 591.207V886.81Z" fill="black"/>
+      <path d="M768 739.008V443.405L512 591.207V886.81L768 739.008Z" fill="#808080"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M256 443.405L512 295.603L768 443.405L512 591.207L256 443.405Z" fill="white"/>
     </g>
   </g>
   <defs>
     <clipPath id="clip0">
-      <path fill="#fff" d="M0 0h1024v1182H0z"/>
+      <rect width="1024" height="1182" fill="white"/>
     </clipPath>
     <clipPath id="clip1">
-      <path fill="#fff" d="M0 0h1024v1182H0z"/>
+      <rect width="1024" height="1182" fill="white"/>
     </clipPath>
     <clipPath id="clip2">
-      <path fill="#fff" d="M0 0h1024v1182H0z"/>
+      <rect width="1024" height="1182" fill="white"/>
     </clipPath>
   </defs>
 </svg>
