@@ -42,7 +42,7 @@ export default class EventsController extends Controller {
   }
 
   public removeAllChildren(element) {
-    element.childNodes.forEach(node => node.removeChild(node));
+    element.childNodes.forEach(node => element.removeChild(node));
   }
 
   public appendTextNode(parentNode, tag, text) {
