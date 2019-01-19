@@ -26,8 +26,7 @@ function downloadCv(application: HackerApplicationInstance, destPath: string) {
 }
 
 async function downloadCvs(basePath: string): Promise<void> {
-  const applicationsWithTickets = await getAllApplicationsWithTickets();
-  const shuffledApplications = _.shuffle(applicationsWithTickets);
+  const shuffledApplications = _.shuffle(await getAllApplicationsWithTickets());
   const cvPromiseFunctions = shuffledApplications.map((application, i) => {
     const destPath = path.resolve(process.cwd(), basePath, `Hack Cambridge CV ${i + 1}.pdf`);
     return (() => downloadCv(application, destPath));
