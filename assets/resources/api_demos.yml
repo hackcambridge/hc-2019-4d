@@ -7,7 +7,7 @@
     Learn how to teach Alexa new skills using the Alexa Skills Kit.
     Quickly build and deploy new voice capabilities onto any device that supports
     Alexa.
-  title: 'Amazon: "Alexa, Teach me to create a new skill"'
+  title: 'Amazon: Alexa, Teach me to create a new skill'
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 14:15:00
   rows: '3.0'
 - description: |

@@ -28,9 +28,9 @@
     including:
   extraDescription: |
     <ul>
-      <li>Reviewing integration examples for the early part of the challenge and overcoming 
+      <li>Reviewing integration examples for the early part of the challenge and overcoming
       potential issues</li>
-      <li>Exploring further the ideas and directions available for the later part of the 
+      <li>Exploring further the ideas and directions available for the later part of the
       challenge</li>
       <li>Elaborating further on the growing need for privacy and the benefits of regular
       cleaning for maintaining user privacy</li>
@@ -40,6 +40,12 @@
     insights into what the team is looking for in the outcome of the challenge.</p>
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 15:35:00
   rows: 6.0
-- title: Improbable
+- title: Improbable: Probabilistic Programming with Keanu
+  description: |
+      We explore how probabilistic programming lets you model the world and answer
+      questions about it. Specifically, we show some examples of using Keanu to do this,
+      and how you can tune your Keanu models using data and "observations".
+      Finally, we explore how you might apply Keanu to our challenge, Best
+      Probabilistic Game AI, by building a very simple game AI using Keanu
   time: <%= dates.getHackathonStartDate().format('YYYY-MM-DD') %> 16:45:00
   rows: 1.0

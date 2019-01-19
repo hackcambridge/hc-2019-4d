@@ -5,6 +5,12 @@
 - description: ''
   link: https://api-docs.transferwise.com/#transferwise-api
   name: 'TransferWise API'
+- description: The Alexa Skills Kit (ASK) is a collection of self-service APIs, tools,
+    documentation, and code samples that makes it fast and easy for you to add skills
+    to Alexa.
+  link: https://developer.amazon.com/alexa-skills-kit/
+  name: Alexa Skill Kit
+  rows: '2.5'
 - description: Arctic is a high performance datastore accessible from python. It uses
     MongoDB to store pandas dataframes, numpy arrays and pickled objects, and can
     query millions of rows per second per client and scale to hundreds of millions
@@ -56,8 +62,8 @@
   name: 'Blockchain: Charts and Statistics'
   rows: '2.0'
 - description: ''
-  link: http://hackcambridge.featurespace.co.uk
-  name: Featurespace API
+  link: http://hackcambridge.featurespace.co.uk:20080/
+  name: Featurespace Javascript Collector (JSC)
 - description: 'A demo version of the national GP Connect API which allows you to
     retrieve patient records and manage GP appointments. Supporting files and documentation
     will be posted to the #sponsor-tpp Slack channel.'
