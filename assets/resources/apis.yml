@@ -70,3 +70,10 @@
   link: https://developer.nhs.uk/apis/gpconnect/
   name: 'TPP: GP Connect'
   rows: '2.5'
+- description: |
+    Keanu is a general-purpose probabalistic programming library. Probabalistic
+    programming is programming that accounts for uncertainty. You can express what you don't
+    know about a program by describingthe unknowns as probability distributions.
+  link: https://improbable-research.github.io/keanu/
+  name: Improbable: Keanu
+  rows: '2.5'
