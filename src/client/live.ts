@@ -1,5 +1,4 @@
 import * as $ from 'jquery';
-import * as moment from 'moment';
 import * as Pusher from 'pusher-js';
 
 import { Countdown } from 'shared/countdown';
@@ -40,70 +39,11 @@ function cycleFeedItems(statuses) {
   }, 30000);
 }
 
-function eventNameList(events) {
-  return events.map(event => `<h4>${event.name}</h4>`).join(' ');
-}
-
-let previousEventInfo = null;
-
-function refreshEventInfo() {
-  $.getJSON('/live-api/event-info', newEventInfo => {
-    if (JSON.stringify(newEventInfo) !== JSON.stringify(previousEventInfo)) {
-      const currentEvents = newEventInfo.currentEvents;
-      const nextEvents = newEventInfo.nextEvents;
-      if (currentEvents.length > 0) {
-        $('.live-event-now-time').html(`${moment(currentEvents[0].time).format('HH:mm')}`);
-        $('.live-event-now-text-container').html(`${eventNameList(currentEvents)}`);
-      }
-      if (nextEvents.length > 0) {
-        $('.live-event-next-time').html(`${moment(nextEvents[0].time).format('HH:mm')}`);
-        $('.live-event-next-text-container').html(`${eventNameList(nextEvents)}`);
-      }
-      if (JSON.stringify(newEventInfo).search('Expo') > -1) {
-        $('.social-column').css('display', 'none');
-        $('.map-column').css('display', 'grid');
-        $('main').removeClass().addClass('black');
-      } else {
-        $('.social-column').css('display', 'grid');
-        $('.map-column').css('display', 'none');
-      }
-      previousEventInfo = newEventInfo;
-    }
-  });
-}
-
-function setBackground() {
-  const time = new Date();
-  if (time.getHours() > 18 || time.getHours() < 8) {
-    if (! $('main').hasClass('black')) {
-      if ($('main').hasClass('red')) {
-        $('main').removeClass('red');
-      }
-      $('main').addClass('black');
-    }
-  } else if (time.getDate() === 21 && time.getHours() >= 12) {
-    if (! $('main').hasClass('red')) {
-      if ($('main').hasClass('black')) {
-        $('main').removeClass('black');
-      }
-      $('main').addClass('red');
-    }
-  }
-}
-
 function initialiseLive() {
   const pusher = new Pusher(window.liveConfig.pusherKey, {
     encrypted: true,
     cluster: 'eu',
   });
-
-  refreshEventInfo();
-  setInterval(() => {
-    refreshEventInfo();
-  }, 10000);
-
-  setBackground();
-  setInterval(setBackground, 300000);
 
   const liveUpdates = pusher.subscribe('live-updates');
   let lastStatusId = null;
@@ -117,20 +57,9 @@ function initialiseLive() {
     });
   });
 
-  function rotateCube() {
-    const x = Math.random() * 360;
-    const y = Math.random() * 360;
-    const z = Math.random() * 360;
-    $('#cube-logo').css('transform', 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)');
-  }
-
   $('.event-countdown').each(function() {
     const countdown = Countdown.createChainedCountdown();
     countdown.onCount = rendered => $(this).html(rendered);
     countdown.start();
-  });
-
-  $('#cube-logo').each(_ => {
-    setInterval(rotateCube, 5000);
   });
 }

@@ -2,21 +2,19 @@ extends layouts/base
 block content
   include mixins/svg-elements
   main(layout='width')
-    section(grid='columns')
+    section(grid='columns' data-target='color.colorable')
       img(columns='6.0' draggable='false' src=asset('images/logo.svg'))
-      div(columns='8.0' grid='rows')
+      div(columns='8.0' grid='rows' data-controller='events')
         h2.event-countdown.pixel(rows='1.0')
         h3(rows='1.0') On now
         div(rows='1.5' grid='columns')
-          h5(columns='1.0'): time.pixel.live-event-now-time(datetime='')
-          div(columns='4.0')
-            h4.live-event-now-text-container
+          h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
+          div(columns='4.0' data-target='events.name')
         h3(rows='1.0') Up next
         div(rows='1.5' grid='columns')
-          h5(columns='1.0'): time.pixel.live-event-next-time(datetime='')
-          div(columns='4.0')
-            .live-event-next-text-container
-      div(columns='5.0' grid='rows').social-column
+          h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
+          div(columns='4.0' data-target='events.name')
+      div(columns='4.0' grid='rows').social-column
         h2(rows='1.0').pixel #hack4D
         .live-social-feed-content(rows='6.0' grid='rows')
           div(rows='4.5' grid='rows')
@@ -24,8 +22,5 @@ block content
           div(rows=4.0)
             h6.social-title
             p.social-content
-      div(columns='5.0' grid='rows').map-column
-        h2.pixel(rows='1.0') Map
-        img(draggable='false' src=asset('images/maps/corn-exchange-main-hall.svg'))
     script.
       window.liveConfig = { pusherKey: "#{pusherKey}" };

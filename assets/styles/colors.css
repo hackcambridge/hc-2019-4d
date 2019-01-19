@@ -7,7 +7,12 @@
 
 /* Sections */
 
-section, header, footer, dialog, nav, body {
+section:not([colorless]),
+header:not([colorless]),
+footer:not([colorless]),
+dialog:not([colorless]),
+nav:not([colorless]),
+body:not([colorless]) {
   --color-1: white;
   --color-2: black;
   --color-3: var(--red);
@@ -24,6 +29,12 @@ section[color="red"], header[color="red"], footer[color="red"], nav[color="red"]
   --color-2: white;
   --color-3: white;
   --color-4: black;
+}
+section[color="black"], header[color="black"], footer[color="black"], nav[color="black"], body[color='black'] {
+  --color-1: black;
+  --color-2: white;
+  --color-3: var(--red);
+  --color-4: var(--blue);
 }
 section, header, footer, dialog, nav, body {
   --primary-color: var(--color-1);

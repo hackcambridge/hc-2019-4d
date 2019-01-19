@@ -31,7 +31,7 @@ html
     //meta(name='application-name' content=#{'HC ' + event.theme.getEventName()})
     meta(name='msapplication-config' content='/favicons/browserconfig.xml')
     meta(name='theme-color' content='#ffffff')
-  body
+  body(data-controller='color' data-target='color.colorable')
     dialog(data-controller='alert' data-target='alert.dialog' data-action='alert:show@window->alert#showDialog' data-alert-message=(alertMessage || null))
       p(data-target='alert.message')
       .buttons: button(data-action='alert#dismissDialog') Okay.
