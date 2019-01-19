@@ -1,4 +1,7 @@
 ---
+- description: Add detailed information to your Monzo transactions!
+  link: https://paper.dropbox.com/doc/Monzo-Receipts-API--AV72zCKRwCP0dRyzJVMyisBrAg-eZscuadhVo1QOF2N48JXe
+  name: Monzo Receipts API
 - description: ''
   link: https://api-docs.transferwise.com/#transferwise-api
   name: 'TransferWise API'
