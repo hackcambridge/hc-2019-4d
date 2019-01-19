@@ -1,11 +1,16 @@
 import * as moment from 'moment';
+import 'moment-duration-format';
+
+interface FormattableDuration extends moment.Duration {
+  format(template: string, options?: object): string;
+}
 
 import * as dates from 'shared/dates';
 
 export class Countdown {
 
   set deadline(date: Date) {
-    this.deadlineTime = date.getTime();
+    this.deadlineTime = moment(date);
     this.updateTime();
   }
 
@@ -16,70 +21,48 @@ export class Countdown {
   /**
    * Predefined Countdowns
    */
-  public static createStartCountdown() {
-    return new Countdown({
-      deadline: Countdown.hackathonStart,
-      render: difference => {
-        if (difference.asHours() >= 1) {
-          return ('Starting in ' + difference.humanize()
-            // HACK: Replace moment's humanised dates with more numerical ones
-            .replace('an hour', '1 hour')
-            .replace('a day', '1 day') + '…');
-        }
-
-        const minutes = difference.minutes();
-        const seconds = difference.seconds();
-        const deciSeconds = Math.floor(difference.milliseconds() / 100);
-
-        return `Starting in ${padZero(minutes)}:${padZero(seconds)}:${deciSeconds}`;
-      }
-    });
+  public static createCountdown(time) {
+    return new Countdown(time, difference => `−${difference.format(Countdown.countdownFormat, { trim: false })}`);
   }
 
-  public static createHackingCountdown() {
-    return new Countdown({
-      deadline: Countdown.hackathonEnd,
-      render: difference => {
-        if (difference.asMilliseconds() < 0) {
-          return '00:00:00';
+  public static createEndpoint(time) {
+    return new Countdown(time, difference => {
+        if (moment() < time) {
+          return `−${difference.format(Countdown.countdownFormat, { trim: false })}`;
+        } else {
+          return (moment.duration(0) as FormattableDuration).format(Countdown.countdownFormat, { trim: false });
         }
-
-        return [Math.floor(difference.asHours()), difference.minutes(), difference.seconds()]
-          .map(t => padZero(t))
-          .join(':');
       }
-    });
+    );
   }
 
   public static createChainedCountdown() {
-    const c = Countdown.createStartCountdown();
-    c.nextCountdown = Countdown.createHackingCountdown();
+    const c = Countdown.createCountdown(Countdown.hackathonStart);
+    c.nextCountdown = Countdown.createEndpoint(Countdown.hackathonEnd);
     return c;
   }
 
   private static hackathonStart: Date = dates.getHackingPeriodStart().toDate();
   private static hackathonEnd: Date = dates.getHackingPeriodEnd().toDate();
+  private static countdownFormat: string = 'hh:mm:ss';
 
   public onCount: (renderedText: string) => void;
 
-  private difference: moment.Duration;
-  private deadlineTime: number;
+  private difference: FormattableDuration;
+  private deadlineTime: moment.Moment;
   private nextCountdown: Countdown;
-  private renderFunc: (difference: moment.Duration) => string;
-  private precision: number;
+  private renderFunc: (difference: FormattableDuration) => string;
   private timer: number;
-  constructor(options) {
-    options = options || { };
+  constructor(deadline, renderFunction) {
     this.difference = null;
     this.deadlineTime = null;
-    this.renderFunc = options.render || null;
-    this.nextCountdown = options.next || null;
-    this.precision = options.precision || 100;
-    this.onCount = options.onCount || (() => undefined);
+    this.renderFunc = renderFunction;
+    this.nextCountdown = null;
+    this.onCount = (() => undefined);
     this.timer = null;
 
-    if (options.deadline) {
-      this.deadline = options.deadline;
+    if (deadline) {
+      this.deadline = deadline;
     }
   }
 
@@ -88,13 +71,10 @@ export class Countdown {
       throw new Error('Must first set deadline before updating');
     }
 
-    const now = new Date();
-    const nowTime = now.getTime();
-
-    this.difference = moment.duration(this.deadlineTime - nowTime);
+    this.difference = moment.duration(this.deadlineTime.diff(moment())) as FormattableDuration;
 
     // Check for countdown chaining
-    if ((this.nextCountdown) && (this.done)) {
+    if ((this.nextCountdown) && (this.deadlineTime < moment())) {
       this.deadlineTime = this.nextCountdown.deadlineTime;
       this.renderFunc = this.nextCountdown.renderFunc;
       this.nextCountdown = this.nextCountdown.nextCountdown;
@@ -103,7 +83,7 @@ export class Countdown {
   }
 
   public start() {
-    this.timer = window.setInterval(() => this.onCount(this.render()), this.precision);
+    this.timer = window.setInterval(() => this.onCount(this.render()), 1000);
   }
 
   public stop() {
@@ -115,15 +95,6 @@ export class Countdown {
 
   public render(): string {
     this.updateTime();
-    return this.renderFunc ? this.renderFunc(this.difference) : this.difference.humanize();
+    return this.renderFunc(this.difference);
   }
-}
-
-function padZero(num) {
-  const chars = `${num}`.split('');
-  if (chars.length <= 1) {
-    chars.unshift('0');
-  }
-
-  return chars.map(c => `${c}`).join('');
 }

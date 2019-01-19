@@ -96,6 +96,7 @@
     "mailgen": "2.0.2",
     "mathjs": "^5.4.0",
     "moment": "^2.11.1",
+    "moment-duration-format": "^2.2.2",
     "moment-timezone": "^0.5.0",
     "multer": "^1.2.0",
     "multer-s3": "^2.3.2",
