@@ -3,6 +3,7 @@ import { Application } from 'stimulus';
 
 import AlertController from './controllers/alert-controller';
 import ColorController from './controllers/color-controller';
+import CountdownController from './controllers/countdown-controller';
 import EmailSignUpController from './controllers/email-sign-up-controller';
 import EventsController from './controllers/events-controller';
 import FieldValidatorController from './controllers/field-validator-controller';
@@ -28,3 +29,4 @@ application.register('alert', AlertController);
 application.register('color', ColorController);
 application.register('events', EventsController);
 application.register('social-feed', SocialFeedController);
+application.register('countdown', CountdownController);
