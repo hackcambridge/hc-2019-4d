@@ -38,6 +38,8 @@ router.get('/sponsorship', (_req, res) => res.render('sponsorship'));
 
 router.get('/live', (_req, res) => res.render('live', { pusherKey: process.env.PUSHER_KEY }));
 
+router.get('/expo-map', (_req, res) => res.render('expo-map'));
+
 router.get('/favicons/browserconfig.xml', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/browserconfig.xml')));
 
 router.get('/favicons/manifest.json', (_req, res) => res.sendFile(resolvePath('assets/images/favicons/manifest.json')));
