@@ -4,3 +4,13 @@ block content
   main(layout='width')
     section(grid='columns' color='blue')
       img(columns='9.0' draggable='false' src=asset('images/maps/corn-exchange-main-hall-expo.svg'))
+      div(columns='8.0' grid='rows' data-controller='events countdown')
+        h2.pixel(rows='1.0' data-target='countdown.time')
+        h3(rows='1.0') On now
+        div(rows='1.5' grid='columns')
+          h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
+          div(columns='4.0' data-target='events.name')
+        h3(rows='1.0') Up next
+        div(rows='1.5' grid='columns')
+          h5(columns='1.0'): time.pixel(datetime='' data-target='events.time')
+          div(columns='4.0' data-target='events.name')
