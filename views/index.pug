@@ -24,7 +24,7 @@ block content
           span.pixel 4D
         div(rows='1.5')
           p
-            | Hack Cambridge is back! From the
+            | From the
             |
             time(datetime=event.dates.getHackathonStartDate().format())
               +dayWithSuperscript(event.dates.getHackathonStartDate())
@@ -33,9 +33,9 @@ block content
             |
             time(datetime=event.dates.getHackathonEndDate().format())
               +shortDateWithSuperscript(event.dates.getHackathonEndDate())
-            | , the University of Cambridge’s annual hackathon will yet again bring together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.
+            | , the University of Cambridge’s annual hackathon yet again brought together outstanding hackers, programmers, designers and more from universities all over the world to build amazing software.
             br
-            | For 24 hours they will build, break and innovate to produce projects that push the boundaries of technology.
+            | For 24 hours they built, broke and innovated to produce projects that push the boundaries of technology.
           p Thank you for joining us.
       div(grid='grid' dense rows='2.5' columns='1.0')
         a.icon(columns='1.0' rows='1.0' rel='external' href='https://www.facebook.com/hackcambridge')
@@ -49,12 +49,12 @@ block content
     section(grid='grid' sidebar='' columns='7.5')
       div
       div(grid='rows' rows='1.5')
-        strong(rows='0.5') Going to the event?
+        strong(rows='0.5') Curious about the event?
         div(grid='rows' rows='1.0')
           a.icon(rel='next' href='/event')
             +icon('Events', 'Event page')
             br
-            | Find out what’s happening on the event page
+            | Find out what happened on the event page
       div
     if moment().isAfter(event.dates.getApplicationsEnd())
       section(grid='grid' sidebar='' columns='7.5' color='blue')
