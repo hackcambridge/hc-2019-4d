@@ -27,7 +27,7 @@
     "url": "https://github.com/hackcambridge/hack-cambridge-website/issues"
   },
   "engines": {
-    "node": "8.12.*"
+    "node": "8.15.*"
   },
   "homepage": "https://github.com/hackcambridge/hack-cambridge-website#readme",
   "dependencies": {
