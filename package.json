@@ -40,7 +40,7 @@
     "@types/ejs": "^2.6.3",
     "@types/express": "^4.16.1",
     "@types/gulp": "^4.0.5",
-    "@types/jquery": "^3.3.5",
+    "@types/jquery": "^3.3.29",
     "@types/js-yaml": "^3.11.2",
     "@types/lodash": "^4.14.115",
     "@types/mailgen": "^2.0.1",
