@@ -77,7 +77,7 @@
     "ejs": "^2.6.1",
     "express": "^4.13.3",
     "express-session": "^1.14.2",
-    "express-validator": "^5.3.0",
+    "express-validator": "^5.3.1",
     "extract-text-webpack-plugin": "^3.0.1",
     "geodist": "^0.2.1",
     "gfycat-style-urls": "^1.0.3",
