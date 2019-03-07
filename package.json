@@ -42,7 +42,7 @@
     "@types/gulp": "^4.0.5",
     "@types/jquery": "^3.3.29",
     "@types/js-yaml": "^3.11.2",
-    "@types/lodash": "^4.14.115",
+    "@types/lodash": "^4.14.122",
     "@types/mailgen": "^2.0.1",
     "@types/mathjs": "^4.4.5",
     "@types/moment": "^2.13.0",
