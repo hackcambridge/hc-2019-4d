@@ -34,7 +34,7 @@ export default class ColorController extends Controller {
 
   public checkTime() {
     let key = Number(this.data.get('key'));
-    if (key < ColorController.colorSequence.length) {
+    if (key < ColorController.colorSequence.length - 1) {
       const entry = ColorController.colorSequence[key + 1];
       if (entry.hasOwnProperty('time') && (entry.time < moment())) {
         key++;
