@@ -82,6 +82,10 @@
     "PUSHER_KEY": {
       "description": "API key for accessing the Pusher API",
       "required": true
+    },
+    "NODE_ENV": {
+      "description": "Environment setting",
+      "required": true
     }
   }
 }
