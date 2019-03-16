@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "target": "es2016"
+    "target": "ES2016",
+    "sourceMap": true
   }
 }
