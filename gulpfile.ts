@@ -1,4 +1,3 @@
-import * as del from 'del';
 import * as pack from 'webpack-stream';
 import * as autoprefixer from 'autoprefixer';
 import * as browserSync from 'browser-sync';
@@ -6,6 +5,7 @@ import * as browserSync from 'browser-sync';
 import { src, dest, watch, series, parallel } from 'gulp';
 
 import * as gulpConcatCss from 'gulp-concat-css';
+import * as gulpClean from 'gulp-clean';
 import * as gulpNodemon from 'gulp-nodemon';
 import * as gulpPostcss from 'gulp-postcss';
 import * as gulpRevAll from 'gulp-rev-all';
@@ -21,7 +21,7 @@ import { browserSyncConfig } from './bs-config';
 const paths = {
   in: {
     assets: {
-      yaml: 'assets/resources/*.yml',
+      resources: 'assets/resources/*.yml',
       styles: 'assets/styles/**.css',
       other: ['assets/**', '!assets/dist/**', '!assets/styles/**'],
       stylesheetManifest: 'assets/styles/all-stylesheets.css',
@@ -32,22 +32,21 @@ const paths = {
       views: 'views/**',
     },
     clientSide: {
-      entry: 'src/client/main.ts',
-      ts: 'src/client/**/*.ts',
+      entry: 'src/client/main.ts'
     },
   },
   out: {
-    serverSide: 'dist/**',
-    assets: 'assets/dist/**'
+    serverSide: 'dist',
+    assets: 'assets/dist',
   }
 }
 const revisionedExtensions = ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg'];
 const tsProject = createProject('tsconfig.json', { rootDir: 'src' });
 const browserSyncInstance = browserSync.create();
 
-export function clean(cb) {
-  del([paths.out.serverSide, paths.out.assets]);
-  cb();
+export function clean() {
+  return src([paths.out.serverSide, paths.out.assets])
+    .pipe(gulpClean());
 }
 
 // Server-side
@@ -62,17 +61,20 @@ function compileServerSideTS() {
 
 function copyOtherServerSideSource() {
   return src(paths.in.serverSide.nonTS)
-    .pipe(dest('dist'));
+    .pipe(dest('dist'))
+    .pipe(browserSyncInstance.stream({ once: true }));
 }
 
 const buildServerSide = parallel(compileServerSideTS, copyOtherServerSideSource);
 
-// Client-side
+// Client-side is not synchronous as Webpack will watch for changes
 
-function packClientSide() {
-  return src(paths.in.clientSide.entry)
+function packClientSide(cb) {
+  src(paths.in.clientSide.entry)
     .pipe(pack(webpackConfig))
-    .pipe(dest('assets/dist/scripts'));
+    .pipe(dest('assets/dist/scripts'))
+    .pipe(browserSyncInstance.stream({ once: true }));
+  cb();
 }
 
 const buildSource = parallel(buildServerSide, packClientSide);
@@ -103,7 +105,7 @@ function preprocessCSS() {
 // YAML
 
 function validateYAML() {
-  return src(paths.in.assets.yaml)
+  return src(paths.in.assets.resources)
     .pipe(gulpYamlValidate({ html: false }))
     .pipe(browserSyncInstance.stream({ once: true }));
 }
@@ -112,11 +114,13 @@ export const build = series(clean, parallel(copyAssets, buildSource, preprocessC
 
 function runNodemon(cb) {
   nodemonConfig.done = cb;
-  gulpNodemon(nodemonConfig).on('start', () => browserSyncInstance.init(browserSyncConfig));
+  gulpNodemon(nodemonConfig)
+    .on('start', () => browserSyncInstance.init(browserSyncConfig))
+    .on('restart', () => browserSyncInstance.reload());
 }
 
 watch(paths.in.assets.styles).on('change', preprocessCSS);
-watch(paths.in.assets.yaml).on('change', validateYAML);
+watch(paths.in.assets.resources).on('change', validateYAML);
 watch(paths.in.assets.other).on('change', copyAssets);
 watch(paths.in.serverSide.views).on('change', browserSyncInstance.reload);
 
