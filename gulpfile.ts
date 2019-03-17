@@ -1,22 +1,22 @@
-import * as pack from 'webpack-stream';
 import * as autoprefixer from 'autoprefixer';
 import * as browserSync from 'browser-sync';
+import * as pack from 'webpack-stream';
 
-import { src, dest, watch, series, parallel } from 'gulp';
+import { dest, parallel, series, src, watch } from 'gulp';
 
-import * as gulpConcatCss from 'gulp-concat-css';
 import * as gulpClean from 'gulp-clean';
+import * as gulpConcatCss from 'gulp-concat-css';
 import * as gulpNodemon from 'gulp-nodemon';
 import * as gulpPostcss from 'gulp-postcss';
 import * as gulpRevAll from 'gulp-rev-all';
 import * as gulpSourcemaps from 'gulp-sourcemaps';
-import { createProject } from 'gulp-typescript';
 import gulpTslint from 'gulp-tslint';
+import { createProject } from 'gulp-typescript';
 import * as gulpYamlValidate from 'gulp-yaml-validate';
 
-import { webpackConfig } from 'config/webpack';
-import { nodemonConfig } from 'config/nodemon';
 import { browserSyncConfig } from 'config/browsersync';
+import { nodemonConfig } from 'config/nodemon';
+import { webpackConfig } from 'config/webpack';
 
 const paths = {
   in: {
