@@ -1,10 +1,10 @@
 import * as autoprefixer from 'autoprefixer';
 import * as browserSync from 'browser-sync';
+import * as del from 'del';
 import * as pack from 'webpack-stream';
 
 import { dest, parallel, series, src, watch } from 'gulp';
 
-import * as gulpClean from 'gulp-clean';
 import * as gulpConcatCss from 'gulp-concat-css';
 import * as gulpNodemon from 'gulp-nodemon';
 import * as gulpPostcss from 'gulp-postcss';
@@ -45,8 +45,7 @@ const tsProject = createProject('tsconfig.json', { rootDir: 'src' });
 const browserSyncInstance = browserSync.create();
 
 export function clean() {
-  return src([paths.out.serverSide, paths.out.assets])
-    .pipe(gulpClean());
+  return del([paths.out.serverSide, paths.out.assets]);
 }
 
 // Server-side
