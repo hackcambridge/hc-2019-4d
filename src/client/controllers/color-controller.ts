@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import { Controller } from 'stimulus';
 
-import * as dates from 'shared/dates';
+import * as dates from '../../shared/dates';
 
 export default class ColorController extends Controller {
   /**

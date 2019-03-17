@@ -14,9 +14,9 @@ import gulpTslint from 'gulp-tslint';
 import { createProject } from 'gulp-typescript';
 import * as gulpYamlValidate from 'gulp-yaml-validate';
 
-import { browserSyncConfig } from 'config/browsersync';
-import { nodemonConfig } from 'config/nodemon';
-import { webpackConfig } from 'config/webpack';
+import { browserSyncConfig } from './config/browsersync';
+import { nodemonConfig } from './config/nodemon';
+import { webpackConfig } from './config/webpack';
 
 const paths = {
   in: {

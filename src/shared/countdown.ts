@@ -5,7 +5,7 @@ interface FormattableDuration extends moment.Duration {
   format(template: string, options?: object): string;
 }
 
-import * as dates from 'shared/dates';
+import * as dates from './dates';
 
 export class Countdown {
 

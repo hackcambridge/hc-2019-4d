@@ -1,6 +1,6 @@
 import { Controller } from 'stimulus';
 
-import { Countdown } from 'shared/countdown';
+import { Countdown } from '../../shared/countdown';
 
 export default class CountdownController extends Controller {
   /**
