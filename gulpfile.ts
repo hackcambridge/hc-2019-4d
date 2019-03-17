@@ -123,6 +123,7 @@ watch(paths.in.assets.styles).on('change', preprocessCSS);
 watch(paths.in.assets.resources).on('change', validateYAML);
 watch(paths.in.assets.other).on('change', copyAssets);
 watch(paths.in.serverSide.views).on('change', browserSyncInstance.reload);
+// watch(paths.in.serverSide.ts).on('change', compileServerSideTS);
 
 export default series(clean, parallel(series(parallel(copyAssets, buildServerSide, preprocessCSS, validateYAML),
                                                       runNodemon),
