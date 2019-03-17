@@ -39,7 +39,7 @@ const paths = {
     serverSide: 'dist',
     assets: 'assets/dist',
   }
-}
+};
 const revisionedExtensions = ['.css', '.html', '.icns', '.ico', '.jpg', '.js', '.png', '.svg'];
 const tsProject = createProject('tsconfig.json', { rootDir: 'src' });
 const browserSyncInstance = browserSync.create();
@@ -53,7 +53,7 @@ export function clean() {
 
 function compileServerSideTS() {
   return src(paths.in.serverSide.ts)
-    .pipe(gulpTslint({ formatter: "verbose" }))
+    .pipe(gulpTslint({ formatter: 'verbose' }))
     .pipe(gulpTslint.report())
     .pipe(tsProject()).js
     .pipe(dest('dist'));
