@@ -7739,10 +7739,10 @@ sequelize-cli@^3.0.0:
     umzug "^2.1.0"
     yargs "^8.0.2"
 
-sequelize@^3.30.4:
-  version "3.33.0"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-3.33.0.tgz#b0eb12b87223aded10e50a9d78506e0dd42f9208"
-  integrity sha1-sOsSuHIjre0Q5QqdeFBuDdQvkgg=
+sequelize@^3.34.0:
+  version "3.34.0"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-3.34.0.tgz#edbceb53dd7c9e5a0fd6b35fb89565239e8f09e4"
+  integrity sha512-smJMYZ+JniYZ2Ja4GPaEC0/mkvCNnRl7mM958hZQP9dpXNbSS/wPFUNrn0mnfpWRk8Ob/3zo0H1qxQbXKgcIzw==
   dependencies:
     bluebird "^3.3.4"
     depd "^1.1.0"

@@ -113,7 +113,7 @@
     "pusher-js": "^4.0.0",
     "querystring": "^0.2.0",
     "run-sequence": "^2.2.0",
-    "sequelize": "^3.30.4",
+    "sequelize": "^3.34.0",
     "sequelize-cli": "^3.0.0",
     "stimulus": "^1.1.0",
     "typescript": "^3.1.6",
