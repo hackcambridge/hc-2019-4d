@@ -55,7 +55,7 @@
     "@types/passport": "^0.4.6",
     "@types/passport-http-bearer": "^1.0.33",
     "@types/pusher-js": "^4.2.1",
-    "@types/validator": "^9.4.4",
+    "@types/validator": "^10.11.0",
     "@types/webpack-env": "^1.13.9",
     "@types/yargs": "^11.1.1",
     "autoprefixer": "^9.5.1",
