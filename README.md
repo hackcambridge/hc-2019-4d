@@ -1,8 +1,6 @@
 # Hack Cambridge Website
 
-[
-  ![Master branch unit testing result](https://travis-ci.org/hackcambridge/hack-cambridge-website.svg?branch=master)
-](https://travis-ci.org/hackcambridge/hack-cambridge-website)
+[![Build Status](https://travis-ci.com/hackcambridge/hack-cambridge-website.svg?branch=master)](https://travis-ci.com/hackcambridge/hack-cambridge-website)
 
 ## Getting started
 
