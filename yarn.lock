@@ -5517,7 +5517,7 @@ mailchimp-api@^2.0.7:
   resolved "https://registry.yarnpkg.com/mailchimp-api/-/mailchimp-api-2.0.7.tgz#20a1e4476685da652c6b2eed6fccf38da18e46f7"
   integrity sha1-IKHkR2aF2mUsay7tb8zzjaGORvc=
 
-mailgen@2.0.7:
+mailgen@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/mailgen/-/mailgen-2.0.7.tgz#d71ef9b3bc490400e976a06058eef8220b7d2e07"
   integrity sha512-fVtjUGEwMOXxr8Q3EYpy8rODnfuJtE+H90/j56ypTNyUpjp0dHky5eUen4R8ECayvzoVc1omKkksVNL1v47bpA==
