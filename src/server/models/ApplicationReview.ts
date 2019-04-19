@@ -1,20 +1,20 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
-import Admin from './Admin';
+import { Admin } from './Admin';
 import db from './db';
-import HackerApplication from './HackerApplication';
-import { ReviewCriterionScoreInstance } from './ReviewCriterionScore';
+import { HackerApplication } from './HackerApplication';
+import { ReviewCriterionScore } from './ReviewCriterionScore';
 
-interface ApplicationReviewAttributes {
-  id?: number;
-  adminId: number;
-  hackerApplicationId: number;
-}
-export interface ApplicationReviewInstance extends Sequelize.Instance<ApplicationReviewAttributes>, ApplicationReviewAttributes {
-  reviewCriterionScores?: ReviewCriterionScoreInstance[];
+export class ApplicationReview extends Model {
+  public id?: number;
+  public adminId: number;
+  public hackerApplicationId: number;
+
+  public reviewCriterionScores?: ReviewCriterionScore[];
 }
 
-const attributes: SequelizeAttributes<ApplicationReviewAttributes> = {
+ApplicationReview.init({
   adminId: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -23,16 +23,13 @@ const attributes: SequelizeAttributes<ApplicationReviewAttributes> = {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-};
-
-const ApplicationReview =
-  db.define<ApplicationReviewInstance, ApplicationReviewAttributes>('applicationReview', attributes, {
-    tableName: 'application-reviews',
-  });
+}, {
+  sequelize: db,
+  modelName: 'applicationReview',
+  tableName: 'application-reviews',
+});
 
 ApplicationReview.belongsTo(Admin);
 
 ApplicationReview.belongsTo(HackerApplication);
 HackerApplication.hasMany(ApplicationReview);
-
-export default ApplicationReview;

@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
-import { Admin, ApplicationReview, HackerApplication } from 'server/models';
-import ReviewSkips from 'server/models/ReviewSkips';
+import { Admin, ApplicationReview, HackerApplication, ReviewSkips } from 'server/models';
 import * as reviewLogic from 'server/review/logic';
 
 /**
@@ -32,7 +31,7 @@ adminsRouter.get('/by-email/:email', (req, res, next) => {
 
 adminsRouter.get('/:adminId/next-review-application', (req, res, next) => {
   Admin
-    .findById(req.params.adminId)
+    .findByPk(req.params.adminId)
     .then(admin => {
       if (!admin) {
         next();
@@ -67,8 +66,8 @@ adminsRouter.get('/:adminId/next-review-application', (req, res, next) => {
  */
 adminsRouter.post('/:adminId/reviews/:applicationId', (req, res, next) => {
   Promise.all([
-    Admin.findById(req.params.adminId),
-    HackerApplication.findById(req.params.applicationId),
+    Admin.findByPk(req.params.adminId),
+    HackerApplication.findByPk(req.params.applicationId),
   ]).then(([admin, hackerApplication]) => {
     if ((!admin) || (!hackerApplication)) {
       next();
@@ -121,7 +120,7 @@ function getNumberOfCommittedAdmins() {
 
 adminsRouter.get('/:adminId/stats', (req, res, next) => {
   Admin
-    .findById(req.params.adminId)
+    .findByPk(req.params.adminId)
     .then(admin => {
       if (!admin) {
         next();

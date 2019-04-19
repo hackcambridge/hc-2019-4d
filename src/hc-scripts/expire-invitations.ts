@@ -1,10 +1,10 @@
 import moment = require('moment');
 
 import { expireInvitation, getInvitationExpiryCandidates } from 'server/attendance/logic';
-import { ApplicationResponseInstance } from 'server/models';
+import { ApplicationResponse } from 'server/models';
 import { createHandler } from './utils';
 
-async function expireResponse(response: ApplicationResponseInstance, dryRun: boolean): Promise<void> {
+async function expireResponse(response: ApplicationResponse, dryRun: boolean): Promise<void> {
   console.log(`${dryRun ? 'Dry run expiring' : 'Expiring'} response ${response.id}. ` +
     `Date invited: ${response.createdAt}, expiry date: ${response.expiryDate}`);
   if (!dryRun) {

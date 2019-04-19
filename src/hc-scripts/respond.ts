@@ -12,7 +12,7 @@ const responseTypeMap: { [type: string]: DecidedResponseStatus } = {
 };
 
 function processIndividualApplication(applicationId, responseType: DecidedResponseStatus) {
-  return HackerApplication.findById(applicationId)
+  return HackerApplication.findByPk(applicationId)
     .then(application => {
       if (application == null) {
         console.log(`Application ${applicationId} not found`);

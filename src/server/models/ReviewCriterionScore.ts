@@ -1,20 +1,18 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
-import ApplicationReview from './ApplicationReview';
+import { ApplicationReview } from './ApplicationReview';
 import db from './db';
-import ReviewCriterion from './ReviewCriterion';
+import { ReviewCriterion } from './ReviewCriterion';
 
-interface ReviewCriterionScoreAttributes {
-  id?: number;
-  applicationReviewId: number;
-  reviewCriterionId: number;
-  score: number;
+export class ReviewCriterionScore extends Model {
+  public id?: number;
+  public applicationReviewId: number;
+  public reviewCriterionId: number;
+  public score: number;
 }
 
-export type ReviewCriterionScoreInstance = Sequelize.Instance<ReviewCriterionScoreAttributes>
-  & ReviewCriterionScoreAttributes;
-
-const attributes: SequelizeAttributes<ReviewCriterionScoreAttributes> = {
+ReviewCriterionScore.init({
   applicationReviewId: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -27,15 +25,12 @@ const attributes: SequelizeAttributes<ReviewCriterionScoreAttributes> = {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-};
-
-const ReviewCriterionScore =
-  db.define<ReviewCriterionScoreInstance, ReviewCriterionScoreAttributes>('reviewCriterionScore', attributes, {
-    tableName: 'review-criteria-scores',
-  });
+}, {
+  sequelize: db,
+  modelName: 'reviewCriterionScore',
+  tableName: 'review-criteria-scores',
+});
 
 ReviewCriterionScore.belongsTo(ReviewCriterion);
 ReviewCriterionScore.belongsTo(ApplicationReview);
 ApplicationReview.hasMany(ReviewCriterionScore);
-
-export default ReviewCriterionScore;

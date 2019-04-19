@@ -1,17 +1,15 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import db from './db';
 
-interface ReviewSkipsAttributes {
-  id?: number;
-  adminId: number;
-  hackerApplicationId: number;
+export class ReviewSkips extends Model {
+  public id?: number;
+  public adminId: number;
+  public hackerApplicationId: number;
 }
 
-type ReviewSkipsInstance = Sequelize.Instance<ReviewSkipsAttributes>
-  & ReviewSkipsAttributes;
-
-const attributes: SequelizeAttributes<ReviewSkipsAttributes> = {
+ReviewSkips.init({
   adminId: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -22,11 +20,8 @@ const attributes: SequelizeAttributes<ReviewSkipsAttributes> = {
     allowNull: false,
     unique: 'adminIdHackerApplicationIdCompositeUnique'
   },
-};
-
-const ReviewSkips =
-  db.define<ReviewSkipsInstance, ReviewSkipsAttributes>('ReviewSkips', attributes, {
-    tableName: 'review-skips',
-  });
-
-export default ReviewSkips;
+}, {
+  sequelize: db,
+  modelName: 'reviewSkips',
+  tableName: 'review-skips',
+});

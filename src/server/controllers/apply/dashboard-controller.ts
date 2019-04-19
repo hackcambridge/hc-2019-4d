@@ -1,24 +1,25 @@
 import { RequestHandler } from 'express';
 import * as moment from 'moment';
+import * as Sequelize from 'sequelize';
 
-import { HackerInstance, TeamMember } from 'server/models';
+import { Hacker, TeamMember } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
 import * as utils from 'server/utils.js';
 import * as statusConstants from 'shared/statuses';
 
-async function getOtherTeamMembersAsHackers(user: HackerInstance): Promise<HackerInstance[]> {
-  const teamMember = await user.getTeam();
+async function getOtherTeamMembersAsHackers(user: Hacker): Promise<Hacker[]> {
+  const teamMember = await user.getTeamMember();
   if (teamMember == null) {
     return null;
   }
-  const otherMembers = await TeamMember.findAll({
+  const otherMembers: TeamMember[] = await TeamMember.findAll({
     where: {
       teamId: teamMember.teamId,
-      $not: {
+      [Sequelize.Op.not]: {
         // Exclude the current user
         hackerId: user.id,
       }
-    } as any,
+    },
   });
   if (otherMembers == null) {
     return null;

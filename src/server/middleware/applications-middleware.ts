@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { HackerApplicationInstance } from 'server/models';
+import { UserRequest } from 'server/routes/apply-router';
 import { ApplicationsOpenStatus } from 'shared/statuses';
 
 /**
@@ -10,7 +10,7 @@ import { ApplicationsOpenStatus } from 'shared/statuses';
  * as normal.
  */
 
-export function goBackIfApplied(req: Request, res: Response, next: NextFunction) {
+export function goBackIfApplied(req: UserRequest, res: Response, next: NextFunction) {
   alreadyApplied(req, res, next).then((applied: boolean) => {
     applied === true ? res.redirect('back') : next();
   }).catch(next);
@@ -27,7 +27,7 @@ export function goBackIfApplicationsClosed(req: Request, res: Response, next: Ne
   }).catch(next);
 }
 
-export function setAppliedStatus(req: Request, res: Response, next: NextFunction) {
+export function setAppliedStatus(req: UserRequest, res: Response, next: NextFunction) {
   alreadyApplied(req, res, next).then((applied: boolean) => {
     res.locals.applied = applied;
     next();
@@ -45,10 +45,13 @@ export async function applicationsClosed(_req: Request, _res: Response, _next: N
   return process.env.APPLICATIONS_OPEN_STATUS === ApplicationsOpenStatus.CLOSED;
 }
 
-export async function alreadyApplied(req: Request, _res: Response, next: NextFunction) {
+export async function alreadyApplied(req: UserRequest, _res: Response, _next: NextFunction) {
   if (req.user) {
-    return await req.user.getHackerApplication().then((hackerApplication: HackerApplicationInstance) => {
-      if (hackerApplication) { return true; }
-    }).catch(next);
-  } else { return false; }
+    const hackerApplication = await req.user.getHackerApplication();
+
+    if (hackerApplication) {
+      return true;
+    }
+  }
+  return false;
 }

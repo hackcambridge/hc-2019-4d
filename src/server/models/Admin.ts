@@ -1,17 +1,16 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import db from './db';
 
-interface AdminAttributes {
-  id?: number;
-  name: string;
-  email: string;
-  lowCommittal?: boolean; // false by default
+export class Admin extends Model {
+  public id?: number;
+  public name: string;
+  public email: string;
+  public lowCommittal?: boolean; // false by default
 }
 
-export type AdminInstance = Sequelize.Instance<AdminAttributes> & AdminAttributes;
-
-const attributes: SequelizeAttributes<AdminAttributes> = {
+Admin.init({
   name: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -27,8 +26,8 @@ const attributes: SequelizeAttributes<AdminAttributes> = {
     allowNull: false,
     defaultValue: false
   }
-};
-
-export default db.define<AdminInstance, AdminAttributes>('admin', attributes, {
+}, {
+  sequelize: db,
+  modelName: 'admin',
   tableName: 'admins',
 });

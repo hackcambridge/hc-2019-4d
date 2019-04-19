@@ -3,12 +3,12 @@ import { Request, Response, Router } from 'express';
 import { logout, requireAuth } from 'server/auth';
 import { dashboardController, hackerApplicationsController, rsvpsController, teamsController } from 'server/controllers/apply';
 import { applicationsMiddleware } from 'server/middleware';
-import { HackerInstance } from 'server/models';
+import { Hacker } from 'server/models';
 
 const applyRouter = Router();
 
 export interface UserRequest extends Request {
-  user: HackerInstance;
+  user: Hacker;
 }
 
 applyRouter.get('/', (req: UserRequest, res: Response) => req.user ? res.redirect('/apply/dashboard') : res.render('apply/login'));

@@ -1,26 +1,25 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import { CompleteResponseStatus, ResponseStatus } from 'shared/statuses';
 import db from './db';
-import HackerApplication, { HackerApplicationInstance } from './HackerApplication';
-import { ResponseRsvpInstance } from './ResponseRsvp';
+import { HackerApplication } from './HackerApplication';
+import { ResponseRsvp } from './ResponseRsvp';
 
-export interface ApplicationResponseAttributes {
-  id?: number;
-  createdAt?: Date;
-  response: CompleteResponseStatus;
-  hackerApplicationId?: number;
-  expiryDate: Date;
+export class ApplicationResponse extends Model {
+  public id?: number;
+  public createdAt?: Date;
+  public response: CompleteResponseStatus;
+  public hackerApplicationId?: number;
+  public expiryDate: Date;
+
+  public getHackerApplication: (data?: { transaction: Sequelize.Transaction }) => Promise<HackerApplication>;
+  public hackerApplication?: HackerApplication;
+
+  public getResponseRsvp: () => Promise<ResponseRsvp>;
 }
 
-export interface ApplicationResponseInstance extends Sequelize.Instance<ApplicationResponseAttributes>, ApplicationResponseAttributes {
-  getHackerApplication: (data?: { transaction: Sequelize.Transaction }) => Promise<HackerApplicationInstance>;
-  hackerApplication?: HackerApplicationInstance;
-
-  getResponseRsvp: () => Promise<ResponseRsvpInstance>;
-}
-
-const attributes: SequelizeAttributes<ApplicationResponseAttributes> = {
+ApplicationResponse.init({
   response: {
     type: Sequelize.ENUM(ResponseStatus.INVITED, ResponseStatus.REJECTED),
     allowNull: false,
@@ -29,13 +28,11 @@ const attributes: SequelizeAttributes<ApplicationResponseAttributes> = {
     type: Sequelize.DATE,
     allowNull: false
   }
-};
-
-const ApplicationResponse = db.define<ApplicationResponseInstance, ApplicationResponseAttributes>('applicationResponse', attributes, {
+}, {
+  sequelize: db,
+  modelName: 'applicationResponse',
   tableName: 'application-responses',
 });
 
 ApplicationResponse.belongsTo(HackerApplication);
 HackerApplication.hasOne(ApplicationResponse);
-
-export default ApplicationResponse;

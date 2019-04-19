@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express';
 import { RequestHandlerParams } from 'express-serve-static-core';
 import { checkSchema, validationResult, ValidationSchema } from 'express-validator/check';
 
-import { ApplicationResponse, HackerApplication, HackerInstance, Team, TeamMember, TeamMemberInstance } from 'server/models';
+import { ApplicationResponse, Hacker, HackerApplication, Team, TeamMember } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
 
 const schema: ValidationSchema = {
@@ -18,8 +18,8 @@ const schema: ValidationSchema = {
 export async function newTeam(req: UserRequest, res): Promise<void> {
   const hackerApplication = await req.user.getHackerApplication();
   if (hackerApplication !== null) {
-    const team = await req.user.getTeam();
-    if (team === null) {
+    const teamMember = await req.user.getTeamMember();
+    if (teamMember === null) {
       res.render('apply/team-form', { applicationSlug: hackerApplication.applicationSlug });
     } else {
       res.redirect('/apply/dashboard');
@@ -51,7 +51,7 @@ export const createTeam: RequestHandlerParams = [
   }
 ];
 
-export async function createTeamFromForm(body, user: HackerInstance, errors): Promise<TeamMemberInstance[]> {
+export async function createTeamFromForm(body, user: Hacker, errors): Promise<TeamMember[]> {
   const members = new Set<string>();
   const hackerIds = [user.id];
   const applicationSlugs = {

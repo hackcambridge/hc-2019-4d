@@ -1,13 +1,15 @@
-import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import db from './db';
-import { TeamMemberInstance } from './TeamMember';
+import { TeamMember } from './TeamMember';
 
-export interface TeamInstance extends Sequelize.Instance<{}> {
-  id?: number;
-  teamMembers: TeamMemberInstance[];
+export class Team extends Model {
+  public id?: number;
+  public teamMembers: TeamMember[];
 }
 
-export default db.define<TeamInstance, {}>('team', { }, {
-  tableName: 'teams'
+Team.init({}, {
+  sequelize: db,
+  modelName: 'team',
+  tableName: 'teams',
 });

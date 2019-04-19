@@ -2,9 +2,6 @@ import * as moment from 'moment';
 
 import { sendEmail } from 'server/email';
 import { ApplicationResponse, db, Hacker, HackerApplication, Team, TeamMember } from 'server/models';
-import { ApplicationResponseAttributes } from 'server/models/ApplicationResponse';
-import { HackerInstance } from 'server/models/Hacker';
-import { HackerApplicationInstance } from 'server/models/HackerApplication';
 import { assertNever } from 'shared/common';
 import { ResponseStatus } from 'shared/statuses';
 import { INVITATION_VALIDITY_DURATION } from './constants';
@@ -18,7 +15,7 @@ export type DecidedResponseStatus = ResponseStatus.INVITED | ResponseStatus.REJE
  * single application, or all applications from the team that the input
  * belongs to.
  */
-function normalizeApplicationTeams(application: HackerApplicationInstance): Promise<HackerApplicationInstance[]> {
+function normalizeApplicationTeams(application: HackerApplication): Promise<HackerApplication[]> {
   return application.getHacker().then(hacker => {
     return TeamMember.findOne({
       where: {
@@ -55,7 +52,7 @@ function normalizeApplicationTeams(application: HackerApplicationInstance): Prom
  * Returns a promise that resolves with the applications if all applications have been scored,
  * and rejects if any one of them have not been.
  */
-function checkApplicationsAreScored(applications: HackerApplicationInstance[]): Promise<HackerApplicationInstance[]> {
+function checkApplicationsAreScored(applications: HackerApplication[]): Promise<HackerApplication[]> {
   return Promise
     .all(applications.map(applicationHasBeenIndividuallyScored))
     .then(applicationValidities => applicationValidities.every(validity => validity))
@@ -73,9 +70,9 @@ function checkApplicationsAreScored(applications: HackerApplicationInstance[]): 
  *
  * Returns a promise that resolves with whether the application is new or not
  */
-function setResponseForApplication(application: HackerApplicationInstance, responseStatus: DecidedResponseStatus, transaction) {
+function setResponseForApplication(application: HackerApplication, responseStatus: DecidedResponseStatus, transaction) {
   console.log(`Setting response for application ${application.id} to "${responseStatus}"`);
-  const responseContent: ApplicationResponseAttributes = {
+  const responseContent = {
     response: responseStatus,
     hackerApplicationId: application.id,
     // Expire the invitation at the end of the day to give hackers the full final day to respond.
@@ -99,8 +96,8 @@ function setResponseForApplication(application: HackerApplicationInstance, respo
 /**
  * Sets the response for a set of applications in an ACID-safe way
  */
-function setResponseForApplications(applications: HackerApplicationInstance[], responseStatus: DecidedResponseStatus):
-  PromiseLike<Array<{application: HackerApplicationInstance, isApplicationNew: boolean}>> {
+function setResponseForApplications(applications: HackerApplication[], responseStatus: DecidedResponseStatus):
+  PromiseLike<Array<{application: HackerApplication, isApplicationNew: boolean}>> {
   return db.transaction(transaction =>
     Promise.all(
       applications.map(application =>
@@ -111,7 +108,7 @@ function setResponseForApplications(applications: HackerApplicationInstance[], r
   );
 }
 
-function getEmailForApplicationResponse(hacker: HackerInstance, responseStatus: DecidedResponseStatus) {
+function getEmailForApplicationResponse(hacker: Hacker, responseStatus: DecidedResponseStatus) {
   switch (responseStatus) {
     case ResponseStatus.INVITED:
       return emailTemplates.invited({
@@ -125,7 +122,7 @@ function getEmailForApplicationResponse(hacker: HackerInstance, responseStatus: 
   }
 }
 
-function sendEmailForApplicationResponse(application: HackerApplicationInstance, responseStatus: DecidedResponseStatus) {
+function sendEmailForApplicationResponse(application: HackerApplication, responseStatus: DecidedResponseStatus) {
   console.log(`Sending response email for application ${application.id}`);
 
   return application.getHacker().then(hacker =>

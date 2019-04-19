@@ -1,31 +1,27 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import db from './db';
-import HackerApplication, { HackerApplicationInstance } from './HackerApplication';
+import { HackerApplication } from './HackerApplication';
 
-interface ApplicationTicketAttributes {
-  id?: number;
-  hackerApplicationId: number;
+export class ApplicationTicket extends Model {
+  public id?: number;
+  public hackerApplicationId: number;
+
+  public hackerApplication?: HackerApplication;
 }
 
-export interface ApplicationTicketInstance extends Sequelize.Instance<ApplicationTicketAttributes>, ApplicationTicketAttributes {
-  hackerApplication?: HackerApplicationInstance;
-}
-
-const attributes: SequelizeAttributes<ApplicationTicketAttributes> = {
+ApplicationTicket.init({
   hackerApplicationId: {
     type: Sequelize.INTEGER,
     unique: true,
     allowNull: false,
   },
-};
-
-const ApplicationTicket =
-  db.define<ApplicationTicketInstance, ApplicationTicketAttributes>('applicationTicket', attributes, {
-    tableName: 'application-tickets',
-  });
+}, {
+  sequelize: db,
+  modelName: 'applicationTicket',
+  tableName: 'application-tickets',
+});
 
 ApplicationTicket.belongsTo(HackerApplication);
 HackerApplication.hasOne(ApplicationTicket);
-
-export default ApplicationTicket;
