@@ -21,8 +21,6 @@ export const middleware = {
     origin: [
       // Match an empty origin to allow external tools (like postman) to easily interact with the API
       '',
-      // Match Heroku instances
-      /^https:\/\/hackcam(.*).herokuapp.com$/,
       // Match *.hackcambridge.com
       /^https:\/\/(.*\.)?hackcambridge\.com$/,
       // Match local development environment
