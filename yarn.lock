@@ -227,10 +227,10 @@
   resolved "https://registry.yarnpkg.com/@types/mailgen/-/mailgen-2.0.2.tgz#54b00562a3ae12e04e9955968d262ca787f36b7f"
   integrity sha512-UQ5P6nEHfdDnNxXSXFz4D4CxlJ5Ia49XBmV5t2R+VGfJ97fj59B1pRDrHNOoaDO3DnSOxaGCT5kYLMx3Qmiumg==
 
-"@types/mathjs@^4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-4.4.5.tgz#b28d46919c68b93bcabf0551729624b302af9b4b"
-  integrity sha512-Z9XyD6ORkE/dTwCGQ4htXaB8D/OkcRhQy4EtEvJ6lRmbgcYoS2q3CAMoB3s2mgQZmyQy85gtJcfbCz85LV1w+Q==
+"@types/mathjs@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-5.0.1.tgz#b98e163ea396b4f27bec20ee25ffb8fe9e656af8"
+  integrity sha512-EFBuueI+BRed9bnUO6/9my55b4FH+VQIvqMm58h9JGbtaGCkqr3YSDhnmVbM1SJjF//8SURERSypzNwejOk7lA==
   dependencies:
     decimal.js "^10.0.0"
 
