@@ -1,6 +1,5 @@
 import { sendEmail } from 'server/email';
 import { ApplicationTicket, Hacker, HackerApplication } from 'server/models';
-import { HackerApplicationInstance } from 'server/models/HackerApplication';
 import * as slack from 'server/slack';
 import * as emailTemplates from './email-templates';
 
@@ -36,7 +35,7 @@ function getAllApplicationsWantingTeams() {
   });
 }
 
-function getHighestPriorityRoleIndex(application: HackerApplicationInstance) {
+function getHighestPriorityRoleIndex(application: HackerApplication) {
   ROLE_ORDERING.forEach((role, roleIndex) => {
     if (application.developmentRoles.includes(role)) {
       return roleIndex;
@@ -49,13 +48,13 @@ function applicationDevelopmentComparison(applicationA, applicationB) {
   return getHighestPriorityRoleIndex(applicationA) - getHighestPriorityRoleIndex(applicationB);
 }
 
-function createEmptyTeams(applications: HackerApplicationInstance[]): HackerApplicationInstance[][] {
+function createEmptyTeams(applications: HackerApplication[]): HackerApplication[][] {
   const teamCount = Math.ceil(applications.length / TARGET_TEAM_SIZE);
 
   return new Array(teamCount).fill(0).map(() => []);
 }
 
-function assignApplicationsToTeams(applications: HackerApplicationInstance[]) {
+function assignApplicationsToTeams(applications: HackerApplication[]) {
   const applicationsToAssign = applications.slice(0);
   let teamIndex = 0;
   const teams = createEmptyTeams(applicationsToAssign);
@@ -68,7 +67,7 @@ function assignApplicationsToTeams(applications: HackerApplicationInstance[]) {
   return teams;
 }
 
-function getApplicationsSortedByRole(unsortedApplications: HackerApplicationInstance[]) {
+function getApplicationsSortedByRole(unsortedApplications: HackerApplication[]) {
   const sortedApplications = unsortedApplications.slice(0);
 
   sortedApplications.sort(applicationDevelopmentComparison);
@@ -76,7 +75,7 @@ function getApplicationsSortedByRole(unsortedApplications: HackerApplicationInst
   return sortedApplications;
 }
 
-function createTeamAssignments(): PromiseLike<HackerApplicationInstance[][]> {
+function createTeamAssignments(): PromiseLike<HackerApplication[][]> {
   return getAllApplicationsWantingTeams()
     .then(getApplicationsSortedByRole)
     .then(assignApplicationsToTeams);

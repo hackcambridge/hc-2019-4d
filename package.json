@@ -27,7 +27,7 @@
     "url": "https://github.com/hackcambridge/hack-cambridge-website/issues"
   },
   "engines": {
-    "node": "8.15.*"
+    "node": "8.16.*"
   },
   "homepage": "https://github.com/hackcambridge/hack-cambridge-website#readme",
   "dependencies": {
@@ -55,7 +55,6 @@
     "@types/passport": "^0.4.6",
     "@types/passport-http-bearer": "^1.0.33",
     "@types/pusher-js": "^4.2.0",
-    "@types/sequelize": "^4.27.39",
     "@types/validator": "^9.4.1",
     "@types/webpack-env": "^1.13.6",
     "@types/yargs": "^11.1.1",
@@ -113,7 +112,7 @@
     "pusher-js": "^4.0.0",
     "querystring": "^0.2.0",
     "run-sequence": "^2.2.0",
-    "sequelize": "^3.30.4",
+    "sequelize": "^5.7.0",
     "sequelize-cli": "^3.0.0",
     "stimulus": "^1.1.0",
     "typescript": "^3.1.6",

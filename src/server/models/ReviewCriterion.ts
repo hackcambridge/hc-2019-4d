@@ -1,17 +1,15 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import db from './db';
 
-interface ReviewCriterionAttributes {
-  id?: number;
-  maxValue: number;
-  label: string;
+export class ReviewCriterion extends Model {
+  public id?: number;
+  public maxValue: number;
+  public label: string;
 }
 
-type ReviewCriterionInstance = Sequelize.Instance<ReviewCriterionAttributes>
-  & ReviewCriterionAttributes;
-
-const attributes: SequelizeAttributes<ReviewCriterionAttributes> = {
+ReviewCriterion.init({
   maxValue: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -20,8 +18,8 @@ const attributes: SequelizeAttributes<ReviewCriterionAttributes> = {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-};
-
-export default db.define<ReviewCriterionInstance, ReviewCriterionAttributes>('reviewCriterion', attributes, {
+}, {
+  sequelize: db,
+  modelName: 'reviewCriterion',
   tableName: 'review-criteria',
 });

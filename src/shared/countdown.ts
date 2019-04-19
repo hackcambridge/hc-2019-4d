@@ -8,6 +8,29 @@ interface FormattableDuration extends moment.Duration {
 import * as dates from 'shared/dates';
 
 export class Countdown {
+  private static hackathonStart: Date = dates.getHackingPeriodStart().toDate();
+  private static hackathonEnd: Date = dates.getHackingPeriodEnd().toDate();
+  private static countdownFormat: string = 'hh:mm:ss';
+
+  public onCount: (renderedText: string) => void;
+
+  private difference: FormattableDuration;
+  private deadlineTime: moment.Moment;
+  private nextCountdown: Countdown;
+  private renderFunc: (difference: FormattableDuration) => string;
+  private timer: number;
+  constructor(deadline, renderFunction) {
+    this.difference = null;
+    this.deadlineTime = null;
+    this.renderFunc = renderFunction;
+    this.nextCountdown = null;
+    this.onCount = (() => undefined);
+    this.timer = null;
+
+    if (deadline) {
+      this.deadline = deadline;
+    }
+  }
 
   set deadline(date: Date) {
     this.deadlineTime = moment(date);
@@ -40,30 +63,6 @@ export class Countdown {
     const c = Countdown.createCountdown(Countdown.hackathonStart);
     c.nextCountdown = Countdown.createEndpoint(Countdown.hackathonEnd);
     return c;
-  }
-
-  private static hackathonStart: Date = dates.getHackingPeriodStart().toDate();
-  private static hackathonEnd: Date = dates.getHackingPeriodEnd().toDate();
-  private static countdownFormat: string = 'hh:mm:ss';
-
-  public onCount: (renderedText: string) => void;
-
-  private difference: FormattableDuration;
-  private deadlineTime: moment.Moment;
-  private nextCountdown: Countdown;
-  private renderFunc: (difference: FormattableDuration) => string;
-  private timer: number;
-  constructor(deadline, renderFunction) {
-    this.difference = null;
-    this.deadlineTime = null;
-    this.renderFunc = renderFunction;
-    this.nextCountdown = null;
-    this.onCount = (() => undefined);
-    this.timer = null;
-
-    if (deadline) {
-      this.deadline = deadline;
-    }
   }
 
   public updateTime() {

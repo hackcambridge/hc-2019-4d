@@ -1,19 +1,17 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
-import Admin from './Admin';
+import { Admin } from './Admin';
 import db from './db';
-import HackerApplication from './HackerApplication';
+import { HackerApplication } from './HackerApplication';
 
-interface ApplicationAssignmentAttributes {
-  id?: number;
-  adminId: number;
-  hackerApplicationId: number;
+class ApplicationAssignment extends Model {
+  public id?: number;
+  public adminId: number;
+  public hackerApplicationId: number;
 }
 
-type ApplicationAssignmentInstance = Sequelize.Instance<ApplicationAssignmentAttributes>
-  & ApplicationAssignmentAttributes;
-
-const attributes: SequelizeAttributes<ApplicationAssignmentAttributes> = {
+ApplicationAssignment.init({
   adminId: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -22,12 +20,11 @@ const attributes: SequelizeAttributes<ApplicationAssignmentAttributes> = {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-};
-
-const ApplicationAssignment =
-  db.define<ApplicationAssignmentInstance, ApplicationAssignmentAttributes>('applicationAssignment', attributes, {
-    tableName: 'application-assignments',
-  });
+}, {
+  sequelize: db,
+  modelName: 'applicationAssignment',
+  tableName: 'application-assignments',
+});
 
 ApplicationAssignment.belongsTo(Admin);
 ApplicationAssignment.belongsTo(HackerApplication);

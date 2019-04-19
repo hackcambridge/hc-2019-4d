@@ -2,8 +2,7 @@ import * as moment from 'moment';
 import * as Sequelize from 'sequelize';
 
 import { sendEmail } from 'server/email';
-import { ApplicationResponse, ApplicationResponseInstance, ApplicationTicket, ApplicationTicketInstance, db, Hacker,
-  HackerApplication, HackerApplicationInstance, HackerInstance, ResponseRsvp } from 'server/models';
+import { ApplicationResponse, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'server/models';
 import { INVITATION_VALIDITY_DURATION } from 'server/review/constants';
 import * as slack from 'server/slack';
 import { CompleteRsvpStatus, ResponseStatus } from 'shared/statuses';
@@ -15,8 +14,8 @@ import * as emailTemplates from './email-templates';
  * Sends an email and Slack invite to the user.
  */
 async function createTicket(
-  application: HackerApplicationInstance,
-  transaction: Sequelize.Transaction): Promise<ApplicationTicketInstance> {
+  application: HackerApplication,
+  transaction: Sequelize.Transaction): Promise<ApplicationTicket> {
   const applicationTicket = await ApplicationTicket.create({
       hackerApplicationId: application.id,
     }, { transaction });
@@ -32,7 +31,7 @@ async function createTicket(
   return applicationTicket;
 }
 
-function sendExpiryEmail(hacker: HackerInstance) {
+function sendExpiryEmail(hacker: Hacker) {
   console.log(`Sending invitation expiry email for hacker ${hacker.id}`);
 
   return sendEmail({
@@ -41,7 +40,7 @@ function sendExpiryEmail(hacker: HackerInstance) {
   });
 }
 
-function sendTicketEmail(hacker: HackerInstance) {
+function sendTicketEmail(hacker: Hacker) {
   console.log(`Sending ticket email for hacker ${hacker.id}`);
 
   return sendEmail({
@@ -55,15 +54,13 @@ function sendTicketEmail(hacker: HackerInstance) {
  */
 export function getInvitationExpiryCandidates(durationAgoExpired: moment.Duration) {
   return ApplicationResponse.findAll({
-    where: Sequelize.and(
-      {
-        expiryDate: {
-          $lt: moment().subtract(durationAgoExpired).toDate(),
-        },
-        response: ResponseStatus.INVITED,
+    where: {
+      expiryDate: {
+        [Sequelize.Op.lt]: moment().subtract(durationAgoExpired).toDate(),
       },
-      Sequelize.literal('"responseRsvp" IS null')
-    ) as any,
+      response: ResponseStatus.INVITED,
+      responseRsvp: null
+    },
     include: [
       ResponseRsvp,
       {
@@ -80,7 +77,7 @@ export function getInvitationExpiryCandidates(durationAgoExpired: moment.Duratio
  * @param {Response} response - The response object to expire. Must represent an invitation
  *   and have its application with hacker hydrated.
  */
-export function expireInvitation(applicationResponse: ApplicationResponseInstance) {
+export function expireInvitation(applicationResponse: ApplicationResponse) {
   if (applicationResponse.response !== ResponseStatus.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }
@@ -102,7 +99,7 @@ export function expireInvitation(applicationResponse: ApplicationResponseInstanc
  *
  * If the RSVP is yes, then a ticket will be added to the application.
  */
-export function rsvpToResponse(applicationResponse: ApplicationResponseInstance, rsvpStatus: CompleteRsvpStatus) {
+export function rsvpToResponse(applicationResponse: ApplicationResponse, rsvpStatus: CompleteRsvpStatus) {
   if (applicationResponse.response !== ResponseStatus.INVITED) {
     return Promise.reject('Response is not an invitation.');
   }

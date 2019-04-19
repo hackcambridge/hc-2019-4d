@@ -65,7 +65,7 @@ export function logout(req, _res, next) {
 // If there is user data available in the session, make sure it is put in the request and local res objects
 function setUserFromSession(req, res, next) {
   if (req.userSession && req.userSession.id) {
-    Hacker.findById(req.userSession.id)
+    Hacker.findByPk(req.userSession.id)
       .then(user => {
         if (user != null) {
           req.user = user;

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import * as Sequelize from 'sequelize';
 
 import { ApplicationResponse, ApplicationReview, ApplicationTicket, db, Hacker, HackerApplication, ResponseRsvp } from 'server/models';
 import { CompleteRsvpStatus, ResponseStatus } from 'shared/statuses';
@@ -35,7 +36,7 @@ statsRouter.get('/', async (_req, res, next) => {
 
   /** Applications reviewed and not withdrawn */
   const applicationsReviewedCountPromise =
-  db.query(applicationsReviewedQuery, { type: db.QueryTypes.SELECT }).then(counts => {
+  db.query(applicationsReviewedQuery, { type: Sequelize.QueryTypes.SELECT }).then(counts => {
     // Get the number from the object that's returned
     return parseInt(counts[0].count, 10);
   });
@@ -50,7 +51,7 @@ statsRouter.get('/', async (_req, res, next) => {
         ON "admins"."id" = "adminId"
     ORDER BY count DESC, "admins"."name" ASC`;
 
-  const leaderboardPromise = db.query(leaderboardQuery, { type: db.QueryTypes.SELECT });
+  const leaderboardPromise = db.query(leaderboardQuery, { type: Sequelize.QueryTypes.SELECT });
 
   try {
     const [

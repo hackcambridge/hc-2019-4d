@@ -8,7 +8,7 @@ import * as validator from 'validator';
 import * as emailTemplates from 'server/apply/email-templates';
 import { s3Upload } from 'server/apply/file-upload';
 import { sendEmail } from 'server/email';
-import { HackerApplication, HackerApplicationInstance, HackerInstance } from 'server/models';
+import { Hacker, HackerApplication } from 'server/models';
 import { UserRequest } from 'server/routes/apply-router';
 
 // Optimise the list creation by only making it once, lazily.
@@ -194,7 +194,7 @@ export const createHackerApplication: RequestHandlerParams = [
   }
 ];
 
-async function createApplicationFromForm(body, user: HackerInstance, file): Promise<HackerApplicationInstance> {
+async function createApplicationFromForm(body, user: Hacker, file): Promise<HackerApplication> {
   const applicationSlug: string = generateCombination(2, '-').toLowerCase();
   try {
     const application = await HackerApplication.create({

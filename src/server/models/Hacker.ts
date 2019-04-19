@@ -1,19 +1,20 @@
 import * as moment from 'moment';
 import * as Sequelize from 'sequelize';
+import { HasOneGetAssociationMixin, Model } from 'sequelize';
 
 import { assertNever } from 'shared/common';
 import * as dates from 'shared/dates';
 import { ApplicationsOpenStatus, CompleteRsvpStatus, HackerStatuses, IndividualApplicationStatus, IndividualHackerStatuses,
   OverallStatus, ResponseStatus, RsvpStatus, TeamApplicationStatus, TicketStatus } from 'shared/statuses';
 import db from './db';
-import { HackerApplicationInstance } from './HackerApplication';
-import { TeamMemberInstance } from './TeamMember';
+import { HackerApplication } from './HackerApplication';
+import { TeamMember } from './TeamMember';
 
-async function getTeamApplicationStatus(hackerInstance: HackerInstance): Promise<TeamApplicationStatus | null> {
+async function getTeamApplicationStatus(hackerInstance: Hacker): Promise<TeamApplicationStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
-  const team = await hackerInstance.getTeam();
-  if (team === null) {
+  const teamMember = await hackerInstance.getTeamMember();
+  if (teamMember === null) {
     if (hackerApplication.wantsTeam) {
       // User wants us to place them in team
       return TeamApplicationStatus.WANTS_TEAM;
@@ -29,7 +30,7 @@ async function getTeamApplicationStatus(hackerInstance: HackerInstance): Promise
   }
 }
 
-async function getResponseStatus(hackerInstance: HackerInstance): Promise<ResponseStatus | null> {
+async function getResponseStatus(hackerInstance: Hacker): Promise<ResponseStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
   return hackerApplication.getApplicationResponse().then(applicationResponse => {
@@ -54,7 +55,7 @@ function convertToRsvpStatus(completeRsvpStatus: CompleteRsvpStatus) {
   }
 }
 
-async function getRsvpStatus(hackerInstance: HackerInstance): Promise<RsvpStatus | null> {
+async function getRsvpStatus(hackerInstance: Hacker): Promise<RsvpStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) { return null; }
 
@@ -73,7 +74,7 @@ async function getRsvpStatus(hackerInstance: HackerInstance): Promise<RsvpStatus
   }
 }
 
-async function getIndividualApplicationStatus(hackerInstance: HackerInstance): Promise<IndividualApplicationStatus> {
+async function getIndividualApplicationStatus(hackerInstance: Hacker): Promise<IndividualApplicationStatus> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication === null) {
     return IndividualApplicationStatus.INCOMPLETE;
@@ -82,7 +83,7 @@ async function getIndividualApplicationStatus(hackerInstance: HackerInstance): P
   }
 }
 
-async function getTicketStatus(hackerInstance: HackerInstance): Promise<TicketStatus | null> {
+async function getTicketStatus(hackerInstance: Hacker): Promise<TicketStatus | null> {
   const hackerApplication = await hackerInstance.getHackerApplication();
   if (hackerApplication == null) { return null; }
   return hackerApplication.getApplicationTicket().then(applicationTicket => {
@@ -119,54 +120,84 @@ function deriveOverallStatus(hackerStatuses: IndividualHackerStatuses): OverallS
   }
 }
 
-async function getStatuses(this: HackerInstance): Promise<HackerStatuses> {
-  const individualStatuses: IndividualHackerStatuses = {
-    individualApplicationStatus: await getIndividualApplicationStatus(this),
-    teamApplicationStatus: await getTeamApplicationStatus(this),
-    responseStatus: await getResponseStatus(this),
-    rsvpStatus: await getRsvpStatus(this),
-    ticketStatus: await getTicketStatus(this),
-  };
-  return {
-    ...individualStatuses,
-    overallStatus: await deriveOverallStatus(individualStatuses)
-  };
-}
-
 export class TooYoungError extends Error { }
 
-interface HackerAttributes {
-  id?: number;
-  mlhId: number;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  dateOfBirth: Date;
-  email: string;
-  phoneNumber: string;
-  institution: string;
-  studyLevel: string;
-  course: string;
-  shirtSize: string;
-  dietaryRestrictions: string;
-  specialNeeds?: string;
+export class Hacker extends Model {
+  public id?: number;
+  public mlhId: number;
+  public firstName: string;
+  public lastName: string;
+  public gender: string;
+  public dateOfBirth: Date;
+  public email: string;
+  public phoneNumber: string;
+  public institution: string;
+  public studyLevel: string;
+  public course: string;
+  public shirtSize: string;
+  public dietaryRestrictions: string;
+  public specialNeeds?: string;
+
+  public getHackerApplication: HasOneGetAssociationMixin<HackerApplication>;
+  public hackerApplication?: HackerApplication;
+  public getTeamMember: HasOneGetAssociationMixin<TeamMember>;
+  public teamMember?: TeamMember; // TODO: check should be uppercase
+
+  public static async upsertAndFetchFromMlhUser(mlhUser): Promise<Hacker> {
+    const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
+
+    if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {
+      return Promise.reject(new TooYoungError());
+    }
+
+    return Hacker.upsert({
+      // Personal
+      mlhId: mlhUser.id,
+      firstName: mlhUser.first_name,
+      lastName: mlhUser.last_name,
+      gender: mlhUser.gender,
+      dateOfBirth: mlhUser.date_of_birth,
+      email: mlhUser.email,
+      phoneNumber: mlhUser.phone_number,
+      // Education
+      institution: mlhUser.school.name,
+      studyLevel: mlhUser.level_of_study,
+      course: mlhUser.major,
+      // Logistics
+      shirtSize: mlhUser.shirt_size,
+      dietaryRestrictions: mlhUser.dietary_restrictions,
+      specialNeeds: mlhUser.special_needs,
+    }).then(isNewUser => {
+      if (isNewUser) {
+        console.log('Created new user');
+      }
+
+      return Hacker.findOne({
+        where: { mlhId: mlhUser.id }
+      });
+    });
+  }
+
+  public async getStatuses(): Promise<HackerStatuses> {
+    const individualStatuses: IndividualHackerStatuses = {
+      individualApplicationStatus: await getIndividualApplicationStatus(this),
+      teamApplicationStatus: await getTeamApplicationStatus(this),
+      responseStatus: await getResponseStatus(this),
+      rsvpStatus: await getRsvpStatus(this),
+      ticketStatus: await getTicketStatus(this),
+    };
+    return {
+      ...individualStatuses,
+      overallStatus: await deriveOverallStatus(individualStatuses)
+    };
+  }
+
+  public log(logText: string): void {
+    console.log(`[User ${this.id}] ${logText}`);
+  }
 }
 
-export interface HackerInstance extends Sequelize.Instance<HackerAttributes>, HackerAttributes {
-  getStatuses: () => Promise<HackerStatuses>;
-  log: (logText: string) => void;
-  getHackerApplication: () => Promise<HackerApplicationInstance>;
-  hackerApplication?: HackerApplicationInstance;
-  getTeam: () => Promise<TeamMemberInstance>;
-  Team?: TeamMemberInstance; // TODO: check should be uppercase
-}
-
-interface Hacker extends Sequelize.Model<HackerInstance, HackerAttributes> {
-  upsertAndFetchFromMlhUser?: (mlhUser: any) => any;
-  deriveOverallStatus?: (...args: any[]) => any;
-}
-
-const attributes: SequelizeAttributes<HackerAttributes> = {
+Hacker.init({
   // Personal
   mlhId: {
     type: Sequelize.INTEGER,
@@ -225,52 +256,8 @@ const attributes: SequelizeAttributes<HackerAttributes> = {
   specialNeeds: {
     type: Sequelize.TEXT,
   },
-};
-
-const Hacker: Hacker = db.define<HackerInstance, HackerAttributes>('hacker', attributes, {
+}, {
+  sequelize: db,
+  modelName: 'hacker',
   tableName: 'hackers',
-  instanceMethods: {
-    // Add the instance methods
-    getStatuses,
-    log(logText) {
-      console.log(`[User ${this.id}] ${logText}`);
-    },
-  }
 });
-
-Hacker.upsertAndFetchFromMlhUser = mlhUser => {
-  const under18Cutoff = dates.getHackathonStartDate().subtract(18, 'years');
-
-  if (moment(mlhUser.date_of_birth).isAfter(under18Cutoff)) {
-    return Promise.reject(new TooYoungError());
-  }
-
-  return Hacker.upsert({
-    // Personal
-    mlhId: mlhUser.id,
-    firstName: mlhUser.first_name,
-    lastName: mlhUser.last_name,
-    gender: mlhUser.gender,
-    dateOfBirth: mlhUser.date_of_birth,
-    email: mlhUser.email,
-    phoneNumber: mlhUser.phone_number,
-    // Education
-    institution: mlhUser.school.name,
-    studyLevel: mlhUser.level_of_study,
-    course: mlhUser.major,
-    // Logistics
-    shirtSize: mlhUser.shirt_size,
-    dietaryRestrictions: mlhUser.dietary_restrictions,
-    specialNeeds: mlhUser.special_needs,
-  }).then(isNewUser => {
-    if (isNewUser) {
-      console.log('Created new user');
-    }
-
-    return Hacker.findOne({
-      where: { mlhId: mlhUser.id }
-    });
-  });
-};
-
-export default Hacker;

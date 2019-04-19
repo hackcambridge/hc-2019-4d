@@ -1,51 +1,26 @@
-import * as Sequelize from 'sequelize';
+import { BelongsToGetAssociationMixin, Model } from 'sequelize';
 
 import db from './db';
-import Hacker, { HackerInstance } from './Hacker';
-import Team, { TeamInstance } from './Team';
+import { Hacker } from './Hacker';
+import { Team } from './Team';
 
-interface TeamMemberAttributes {
-  id?: number;
-  teamId: number;
-  hackerId: number;
+export class TeamMember extends Model {
+  public id?: number;
+  public teamId: number;
+
+  public team?: Team;
+
+  public getHacker: BelongsToGetAssociationMixin<Hacker>;
+  public hacker?: Hacker;
 }
 
-export interface TeamMemberInstance extends Sequelize.Instance<TeamMemberAttributes>, TeamMemberAttributes {
-  team?: TeamInstance;
-
-  getHacker: () => Promise<HackerInstance>;
-  hacker?: HackerInstance;
-}
-
-const attributes: SequelizeAttributes<TeamMemberAttributes> = {
-  // Foreign keys
-  teamId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: Team,
-      key: 'id',
-      deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
-    },
-  },
-  hackerId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: Hacker,
-      key: 'id',
-      deferrable:  Sequelize.Deferrable.INITIALLY_IMMEDIATE
-    },
-  },
-};
-
-const TeamMember = db.define<TeamMemberInstance, TeamMemberAttributes>('teamMember', attributes, {
-  tableName: 'teams-members'
+TeamMember.init({}, {
+  sequelize: db,
+  modelName: 'teamMember',
+  tableName: 'teams-members',
 });
 
 TeamMember.belongsTo(Team);
 Team.hasMany(TeamMember);
 TeamMember.belongsTo(Hacker);
-Hacker.hasOne(TeamMember, { as: 'Team' });
-
-export default TeamMember;
+Hacker.hasOne(TeamMember);

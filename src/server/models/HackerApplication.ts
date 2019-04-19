@@ -1,57 +1,47 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
-import { ApplicationResponseInstance } from './ApplicationResponse';
-import { ApplicationReviewInstance } from './ApplicationReview';
-import { ApplicationTicketInstance } from './ApplicationTicket';
+import { ApplicationResponse } from './ApplicationResponse';
+import { ApplicationReview } from './ApplicationReview';
+import { ApplicationTicket } from './ApplicationTicket';
 import db from './db';
-import Hacker from './Hacker';
-import { HackerInstance } from './Hacker';
+import { Hacker } from './Hacker';
 
-interface HackerApplicationAttributes {
-  id?: number;
-  hackerId: number;
-  applicationSlug: string;
-  cv: string;
-  developmentRoles: string[];
-  learningGoal: string;
-  interests: string;
-  recentAccomplishment: string;
-  countryTravellingFrom: string;
-  links: string;
+export class HackerApplication extends Model {
+  public id?: number;
+  public hackerId: number;
+  public applicationSlug: string;
+  public cv: string;
+  public developmentRoles: string[];
+  public learningGoal: string;
+  public interests: string;
+  public recentAccomplishment: string;
+  public countryTravellingFrom: string;
+  public links: string;
+
   /** Boolean for if the hacker said they wanted to make a team application */
-  inTeam: boolean;
-  wantsTeam: boolean;
-  graduationDate: Date;
-  wantsMailingList: boolean;
-  needsVisa: boolean;
-  visaNeededBy?: Date;
-  otherInfo?: string;
+  public inTeam: boolean;
+  public wantsTeam: boolean;
+  public graduationDate: Date;
+  public wantsMailingList: boolean;
+  public needsVisa: boolean;
+  public visaNeededBy?: Date;
+  public otherInfo?: string;
+
   /** Whether the application is withdrawn.  For example, the hacker has told us they want to withdraw,
    *  or they are ineligible for the event.
    */
-  isWithdrawn?: boolean;
+  public isWithdrawn?: boolean;
+
+  public getApplicationResponse: () => Promise<ApplicationResponse>;
+  public applicationResponse?: ApplicationResponse;
+  public applicationReviews?: ApplicationReview[];
+  public getApplicationTicket: () => Promise<ApplicationTicket>;
+  public getHacker: (data?: { transaction: Sequelize.Transaction }) => Promise<Hacker>;
+  public hacker?: Hacker;
 }
 
-export interface HackerApplicationInstance extends Sequelize.Instance<HackerApplicationAttributes>, HackerApplicationAttributes {
-  getApplicationResponse: () => Promise<ApplicationResponseInstance>;
-  applicationResponse?: ApplicationResponseInstance;
-  applicationReviews?: ApplicationReviewInstance[];
-  getApplicationTicket: () => Promise<ApplicationTicketInstance>;
-  getHacker: (data?: { transaction: Sequelize.Transaction }) => Promise<HackerInstance>;
-  hacker?: HackerInstance;
-}
-
-const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
-  hackerId: {
-    type: Sequelize.INTEGER,
-    unique: true,
-    allowNull: false,
-    references: {
-      model: Hacker,
-      key: 'id',
-      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-    },
-  },
+HackerApplication.init({
   applicationSlug: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -125,14 +115,11 @@ const attributes: SequelizeAttributes<HackerApplicationAttributes> = {
     type: Sequelize.BOOLEAN,
     allowNull: true
   }
-};
-
-const HackerApplication =
-  db.define<HackerApplicationInstance, HackerApplicationAttributes>('hackerApplication', attributes, {
-    tableName: 'hackers-applications'
-  });
+}, {
+  sequelize: db,
+  modelName: 'hackerApplication',
+  tableName: 'hackers-applications',
+});
 
 HackerApplication.belongsTo(Hacker);
 Hacker.hasOne(HackerApplication);
-
-export default HackerApplication;

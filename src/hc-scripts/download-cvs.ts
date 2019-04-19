@@ -4,12 +4,12 @@ import * as _ from 'lodash';
 import * as path from 'path';
 
 import { getAllApplicationsWithTickets } from 'server/attendance/attendee-info';
-import { HackerApplicationInstance } from 'server/models';
+import { HackerApplication } from 'server/models';
 import { createHandler } from './utils';
 
 const simultaneousRequests = 10;
 
-function downloadCv(application: HackerApplicationInstance, destPath: string) {
+function downloadCv(application: HackerApplication, destPath: string) {
   return new Promise((resolve, reject) => {
     const dest = fs.createWriteStream(destPath);
 

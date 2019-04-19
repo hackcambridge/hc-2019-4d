@@ -1,19 +1,17 @@
 import * as Sequelize from 'sequelize';
+import { Model } from 'sequelize';
 
 import { CompleteRsvpStatus } from 'shared/statuses';
-import ApplicationResponse from './ApplicationResponse';
+import { ApplicationResponse } from './ApplicationResponse';
 import db from './db';
 
-interface ResponseRsvpAttributes {
-  id?: number;
-  rsvp: CompleteRsvpStatus;
-  applicationResponseId: number;
+export class ResponseRsvp extends Model {
+  public id?: number;
+  public rsvp: CompleteRsvpStatus;
+  public applicationResponseId: number;
 }
 
-export type ResponseRsvpInstance = Sequelize.Instance<ResponseRsvpAttributes>
-  & ResponseRsvpAttributes;
-
-const attributes: SequelizeAttributes<ResponseRsvpAttributes> = {
+ResponseRsvp.init({
   rsvp: {
     type: Sequelize.ENUM(CompleteRsvpStatus.RSVP_YES, CompleteRsvpStatus.RSVP_NO, CompleteRsvpStatus.RSVP_EXPIRED),
     allowNull: false,
@@ -23,13 +21,11 @@ const attributes: SequelizeAttributes<ResponseRsvpAttributes> = {
     unique: true,
     allowNull: false,
   },
-};
-
-const ResponseRsvp = db.define<ResponseRsvpInstance, ResponseRsvpAttributes>('responseRsvp', attributes, {
+}, {
+  sequelize: db,
+  modelName: 'responseRsvp',
   tableName: 'response-rsvps',
 });
 
 ResponseRsvp.belongsTo(ApplicationResponse);
 ApplicationResponse.hasOne(ResponseRsvp);
-
-export default ResponseRsvp;

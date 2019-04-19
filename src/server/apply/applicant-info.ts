@@ -1,6 +1,6 @@
 import * as stringify from 'csv-stringify/lib/sync';
 
-import { Hacker, HackerInstance } from 'server/models';
+import { Hacker } from 'server/models';
 import { assertNever } from 'shared/common';
 import { IndividualApplicationStatus, TeamApplicationStatus } from 'shared/statuses';
 
@@ -9,8 +9,8 @@ export enum UnfinishedApplicationKind {
   TEAM_ONLY = 'team-only',
 }
 
-export async function getHackersWithUnfinishedApplications(kind: UnfinishedApplicationKind): Promise<HackerInstance[]> {
-  const hackers = await Hacker.findAll();
+export async function getHackersWithUnfinishedApplications(kind: UnfinishedApplicationKind): Promise<Hacker[]> {
+  const hackers: Hacker[] = await Hacker.findAll();
   const hackerStatuses = await Promise.all(hackers.map(hacker => hacker.getStatuses()));
   return hackers.filter((_hacker, i) => {
     switch (kind) {
@@ -26,7 +26,7 @@ export async function getHackersWithUnfinishedApplications(kind: UnfinishedAppli
   });
 }
 
-function csvOfHackers(hackerList: ReadonlyArray<HackerInstance>): string {
+function csvOfHackers(hackerList: ReadonlyArray<Hacker>): string {
   const columns = {
     email: 'Email',
     firstName: 'First name',
