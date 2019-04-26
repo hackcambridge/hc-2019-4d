@@ -7,7 +7,6 @@ const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const del = require('del');
 const browserify = require('browserify');
-const sequence = require('run-sequence');
 const bs = require('browser-sync').create();
 const nodemon = require('nodemon');
 
@@ -24,7 +23,7 @@ const validateYaml = require('gulp-yaml-validate');
 
 let prod = !!argv.prod || process.env.NODE_ENV == 'production';
 
-let assetPath = ['assets/**', '!assets/dist/**', '!assets/styles/**'];
+let assetPaths = ['assets/**', '!assets/dist/**', '!assets/styles/**'];
 
 gulp.task('clean', () =>
   del(['dist', 'assets/dist'])
@@ -97,7 +96,7 @@ gulp.task('copy-source', () => {
 // Other assets
 
 gulp.task('copy-assets', () =>
-  gulp.src(assetPath)
+  gulp.src(assetPaths)
     .pipe(gulp.dest('assets/dist'))
     .pipe(bs.stream({ once: true }))
 );
@@ -116,28 +115,30 @@ gulp.task('wait', (cb) =>
   setTimeout(cb, 2000)
 );
 
-gulp.task('build', (cb) => {
-  let args = ['clean', 'copy-assets', 'lint-typescript', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
+function generateBuildTasks() {
+  let tasks = ['clean', 'copy-assets', 'lint-typescript', 'compile-typescript', 'copy-source', 'browserify', 'preprocess-css', 'validate-yaml'];
 
   if (prod) {
     // HACK: Waiting for a little bit means all of the assets actually get rev'd
-    args.push('wait');
-    args.push('rev-assets');
+    tasks.push('wait');
+    tasks.push('rev-assets');
   }
 
-  args.push(cb);
+  return tasks;
+}
 
-  sequence.apply(null, args);
-});
+gulp.task('build', gulp.series(... generateBuildTasks()));
 
-gulp.task('watch', ['build'], () => {
-  gulp.watch(['src/**'], ['compile-typescript', 'copy-source', 'browserify']);
-  gulp.watch('assets/styles/**.css', ['preprocess-css']);
+gulp.task('run-watchers', () => {
+  gulp.watch(['src/**'], gulp.series('compile-typescript', 'copy-source', 'browserify'));
+  gulp.watch('assets/styles/**.css', gulp.series('preprocess-css'));
   gulp.watch(['views/**', 'assets/resources/**'], bs.reload);
-  gulp.watch(assetPath, ['copy-assets']);
-});
+  gulp.watch(assetPaths, gulp.series('copy-assets'));
+})
 
-gulp.task('serve', ['watch'], () => {
+gulp.task('watch', gulp.series('build', 'run-watchers'));
+
+gulp.task('run-server',  () => {
   let runnode = function (env = {}) {
     nodemon({
       script: 'dist/index.js',
@@ -164,3 +165,5 @@ gulp.task('serve', ['watch'], () => {
     });
   }
 });
+
+gulp.task('serve', gulp.series('build', gulp.parallel('run-watchers', 'run-server')));
