@@ -56,7 +56,7 @@ block content
             br
             | Find out what happened on the event page
       div
-    if moment().isAfter(event.dates.getApplicationsEnd())
+    if moment().isAfter(event.dates.getApplicationsEnd()) && moment().isBefore(event.dates.getHackathonStartDate())
       section(grid='grid' sidebar='' columns='7.5' color='blue')
         div
         div(grid='rows' rows='1.0')
