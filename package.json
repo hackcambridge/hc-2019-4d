@@ -64,7 +64,7 @@
     "babelify": "^7.2.0",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.5",
-    "browserify": "^14.5.0",
+    "browserify": "^16.2.3",
     "chalk": "^2.4.2",
     "client-sessions": "^0.8.0",
     "compression": "^1.7.4",
