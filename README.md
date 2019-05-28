@@ -6,7 +6,7 @@
 
 To run the website on your machine, first make sure you have the following things installed:
 
-- [Node.js](https://nodejs.org/dist/latest-v8.x/) v8 LTS.  If you need to keep multiple versions of Node installed, you might find [Node Version Manager](https://github.com/creationix/nvm) helpful.
+- [Node.js](https://nodejs.org) v10 LTS.  If you need to keep multiple versions of Node installed, you might find [Node Version Manager](https://github.com/creationix/nvm) helpful.
 - [Yarn](https://yarnpkg.com/en/docs/install/)
 
 Then [clone this repository from GitHub](https://help.github.com/articles/cloning-a-repository/):
