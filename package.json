@@ -102,7 +102,7 @@
     "nodemailer": "^4.2.0",
     "nodemailer-mailgun-transport": "^1.2.2",
     "nodemailer-sendmail-transport": "^1.0.0",
-    "nodemon": "^1.19.0",
+    "nodemon": "^1.19.1",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
     "pg": "^6.1.0",
