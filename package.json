@@ -125,7 +125,7 @@
     "gulp-cli": "^2.2.0",
     "gulp-tslint": "^8.1.4",
     "gulp-yaml-validate": "^1.0.2",
-    "mocha": "^4.0.1",
+    "mocha": "^6.1.4",
     "tslint": "^5.16.0"
   }
 }
