@@ -115,7 +115,7 @@
     "sequelize-cli": "^5.4.0",
     "stimulus": "^1.1.1",
     "typescript": "^3.4.5",
-    "validator": "^10.11.0",
+    "validator": "^11.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^2.0.0",
     "webpack": "^3.8.1",
