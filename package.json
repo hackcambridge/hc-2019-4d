@@ -92,7 +92,7 @@
     "lodash": "^4.17.4",
     "mailchimp-api": "^2.0.7",
     "mailgen": "^2.0.7",
-    "mathjs": "^5.10.3",
+    "mathjs": "^6.1.0",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.2.2",
     "moment-timezone": "^0.5.25",
